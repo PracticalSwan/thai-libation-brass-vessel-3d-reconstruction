@@ -9,6 +9,8 @@ Updated: 2026-08-27
 - `dataset_audit.csv`, `dataset_summary.json`, and `raw_manifest_before.json` generated.
 - Contact-sheet visual review completed across all 297 images.
 - Shared project agent rules, cleanup policy, Git ignore rules, and GitHub-facing documentation prepared.
+- Local Git repository initialized on `main`; baseline commit `e58a10a` pushed to `origin/main`.
+- GitHub verification confirmed the repository is public, `main` is the default branch, and no raw photographs, ZIP archives, preprocessing reports/previews, or reconstruction outputs were published.
 
 ## Remaining before pyCOLMAP
 
