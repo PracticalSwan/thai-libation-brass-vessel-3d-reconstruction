@@ -1,3 +1,4 @@
 opencv-python>=4.13,<5
 numpy>=2.4,<3
 Pillow>=12,<13
+pytest>=9.1,<10

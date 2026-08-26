@@ -4,16 +4,20 @@ Updated: 2026-08-27
 
 ## Current focus
 
-Finish the real-image preprocessing stage and stop when the dataset is fully ready for pyCOLMAP feature extraction/matching.
+Preprocessing is complete and verified. The next phase may begin pyCOLMAP feature extraction and matching using only `preprocessing/pycolmap_input/images/`, but this task intentionally stopped before any pyCOLMAP command or reconstruction stage.
 
-## Verified dataset state
+## Verified preprocessing state
 
-- Raw source: `IMG20260826122949/`, 297 JPEG files.
-- All 297 are readable, 3072x4080, OPPO Reno12 F, EXIF orientation 1.
-- No exact SHA-256 duplicates and no adjacent near-duplicate candidates under the conservative dHash probe.
-- Ten contact sheets were visually reviewed. The capture has dense middle/low/elevated/top-down/detail coverage.
-- Images 289-297 are a separate hand-held/flipped sequence with object movement and hand occlusion; they require exclusion from the standard fixed-object SfM set unless a later justified reconstruction strategy uses them separately.
+- Raw source: `IMG20260826122949/`, 297 immutable JPEG files at 3072 x 4080.
+- Final decisions: 207 `ACCEPT`, 81 `WARN`, and 9 `REJECT`.
+- Rejected images: indices 289-297 only, because they are the separate hand-held/flipped sequence with object movement and hand occlusion.
+- Selected set: all 288 `ACCEPT` + `WARN` images.
+- Selected variant: PREPROCESSED, using a geometry-preserving 15% LAB-luminance CLAHE blend.
+- Matching evidence: 2,483 PREPROCESSED versus 2,376 RAW fundamental-matrix RANSAC inliers over ten representative neighboring pairs; PREPROCESSED was non-worse on 9 of 10. Matching used decoded quality-95 JPEG bytes identical to the final export encoding.
+- Final input: `preprocessing/pycolmap_input/images/`, 288 readable files at unchanged 3072 x 4080 geometry.
+- Integrity: no duplicate selected-output hashes and zero raw SHA-256/size mismatches across all 297 originals.
+- Visual review: all ten before/after previews and all four sheets containing every WARN/REJECT case were inspected.
 
 ## Next action
 
-Replace the stale demo preprocessing with the smallest real-data QA/preprocessing pipeline, validate representative RAW vs PREPROCESSED SIFT matching, finalize ACCEPT/WARN/REJECT selection without coverage gaps, run the full pipeline, prove raw hashes unchanged, clean residue, and leave deterministic pyCOLMAP-ready inputs.
+Plan and run the pyCOLMAP stage separately. Reconfirm the installed pyCOLMAP API/environment, use the final 288-image directory as the only input, and preserve the preprocessing reports as the provenance boundary.

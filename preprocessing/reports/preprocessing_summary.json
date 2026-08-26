@@ -1,0 +1,24 @@
+{
+  "accept_count": 207,
+  "before_after_preview_count": 10,
+  "decision_sheet_files": [
+    "decisions_001_025.jpg",
+    "decisions_026_050.jpg",
+    "decisions_051_075.jpg",
+    "decisions_076_090.jpg"
+  ],
+  "duplicate_output_groups": [],
+  "preprocessed_inliers_total": 2483,
+  "pycolmap_started": false,
+  "quality_row_count": 297,
+  "raw_count": 297,
+  "raw_inliers_total": 2376,
+  "raw_mismatch_count": 0,
+  "raw_unchanged": true,
+  "rejected_count": 9,
+  "representative_pair_count": 10,
+  "selected_count": 288,
+  "selected_output_count": 288,
+  "selected_variant": "PREPROCESSED",
+  "warn_count": 81
+}

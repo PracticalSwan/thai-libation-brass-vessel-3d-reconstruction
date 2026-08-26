@@ -9,3 +9,4 @@ Read this after `AGENTS.md` when starting substantive work. Keep process lessons
 - Polished brass naturally produces moving highlights; reflection alone is not a rejection reason.
 - Raw smartphone images are immutable source evidence. Derived data must live outside the raw directory, and cleanup must never touch the originals.
 - Contact-sheet review found that the final hand-held/flipped sequence changes object pose/background relation and should not be treated like the fixed-object SfM orbit without explicit justification.
+- Choose a reconstruction input variant from the exact exported artifact's geometric correspondence evidence, not visual preference or an in-memory approximation. In the final ten-pair experiment, the mild quality-95 JPEG preprocessing produced more total verified inliers and was non-worse on 9 of 10 pairs.

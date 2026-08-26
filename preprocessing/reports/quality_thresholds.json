@@ -1,0 +1,11 @@
+{
+  "blur_reject": 131.32831381191545,
+  "blur_warn": 178.16617470348848,
+  "bright_percent_warn": 0.8486111111111106,
+  "brightness_high_warn": 139.35745127118645,
+  "brightness_low_warn": 120.76843820621468,
+  "contrast_warn": 31.16194727683998,
+  "dark_percent_warn": 0.1016596045197739,
+  "feature_count_reject": 528,
+  "feature_count_warn": 1320
+}
