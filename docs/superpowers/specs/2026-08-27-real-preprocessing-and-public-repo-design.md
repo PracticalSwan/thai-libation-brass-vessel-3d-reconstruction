@@ -9,7 +9,7 @@ Finish the real-image preprocessing stage for the Thai Libation Brass Vessel 3D 
 - `IMG20260826122949/` is the authoritative 297-image raw capture set.
 - Raw files are immutable: never overwrite, rename, resize, rotate, crop, recompress, or normalize them in place.
 - Do not over-engineer, over-complicate, or over-test; use the smallest coherent workflow and risk-proportional verification.
-- The raw capture folder and its ZIP archive remain local and are excluded from Git by default because of repository size and possible background/reflection privacy concerns.
+- The user subsequently authorized publication of the reviewed raw capture photographs and image-processing evidence. The raw images remain immutable even though they are versioned publicly.
 
 ## Preprocessing Workflow
 
@@ -27,14 +27,14 @@ Repository name: `thai-libation-brass-vessel-3d-reconstruction`.
 
 Description: Computer vision project reconstructing a Thai brass libation vessel from smartphone photographs using OpenCV preprocessing/QA, pyCOLMAP Structure from Motion, and Blender.
 
-The repository will contain reproducible source code, tests, documentation, safe GitHub-facing assets, MIT license, security policy, contribution guidance, and shared AI-agent instructions. Generated reports/derived datasets remain reproducible outputs unless a small safe preview is intentionally included.
+The repository will contain reproducible source code, tests, documentation, the reviewed raw photographs, intentional image-processing reports/previews/derived datasets, MIT license, security policy, contribution guidance, and shared AI-agent instructions.
 
 ## Collaboration
 
 - Sithu Win San, Eaint Myat Thu, and Gulizara Benjapalaporn are project authors/copyright holders.
 - The repository owner will invite the two teammates manually; agents must not send collaborator invitations.
 - `AGENTS.md` is the canonical project-local instruction file; `CLAUDE.md` imports it.
-- Contributors and AI agents must preserve raw image immutability, avoid destructive cleanup, run the documented verification commands, and never commit secrets or large generated datasets.
+- Contributors and AI agents must preserve raw image immutability, avoid destructive cleanup, run the documented verification commands, and never commit secrets or disposable task residue.
 
 ## Verification
 

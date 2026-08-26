@@ -17,7 +17,7 @@
 - No geometric transformations in preprocessing.
 - Thresholds must come from the real dataset, not the old demo.
 - Stop before pyCOLMAP reconstruction.
-- Do not publish the raw capture set or ZIP by default.
+- Publish the reviewed raw photographs and intentional image-processing evidence as subsequently authorized by the user; preserve raw immutability.
 - Do not over-engineer, over-complicate, or over-test; keep verification proportional to risk.
 
 ---
@@ -77,7 +77,7 @@
 - [ ] Add MIT license with Sithu Win San, Eaint Myat Thu, and Gulizara Benjapalaporn as 2026 copyright holders.
 - [ ] Add security/reporting guidance appropriate for a student CV project.
 - [ ] Add contribution workflow and project-local AI-agent constraints.
-- [ ] Ensure raw data, ZIPs, generated reconstruction outputs, caches, and secrets are ignored.
+- [ ] Keep only secrets ignored. Publish the reviewed raw photographs and intentional image-processing evidence; remove disposable caches/test residue instead of relying on `.gitignore` for cleanup.
 - [ ] Update Serena and fallback memory after verified work.
 
 ### Task 7: Initialize and publish repository

@@ -11,7 +11,7 @@ Current phase: finish image QA/preprocessing and prepare a photogrammetry-ready 
 - Do not over-engineer, over-complicate, or over-test. Prefer the smallest coherent solution and verification proportional to risk.
 - Preserve the student's existing structure and course explainability. Code must remain understandable enough to demonstrate to the professor.
 - Treat `IMG20260826122949/` as immutable raw data. Never overwrite, rename, resize, crop, rotate, recompress, normalize, or delete any original image.
-- Never publish the raw capture folder or `IMG20260826122949.zip` through normal Git unless the user explicitly authorizes a dataset publication workflow.
+- The user has authorized publishing the raw photographs and image-processing evidence to the public repository. Raw-file immutability still applies after publication.
 - Preserve photogrammetric geometry. Preprocessing may change photometry mildly but must not crop, warp, perspective-correct, rotate, synthesize detail, remove reflections with AI, or otherwise move image features.
 - Use most usable photographs. Reject only frames that meaningfully harm SfM; preserve angular coverage and overlap.
 - Reflective brass highlights are expected. Do not reject images solely because they contain specular reflections.
@@ -53,7 +53,7 @@ For changed Python code, run the narrow relevant checks and then the real path:
 - Confirm every selected derived output is readable and report/output counts agree.
 - Re-hash the raw dataset and prove originals are unchanged.
 - Visually inspect representative outputs and any rejected/warned outliers.
-- Before commit/push, inspect `git status`, the intended diff, and staged files; exclude raw images, generated junk, secrets, and unrelated work.
+- Before commit/push, inspect `git status`, the intended diff, and staged files; exclude secrets, temporary/test junk, and unrelated work. Raw images and intentional image-processing evidence are allowed repository content.
 
 ## Removal and cleanup policy
 
@@ -70,7 +70,8 @@ Cleanup is required before task completion, but it must be bounded and evidence-
 
 - Repository: `PracticalSwan/thai-libation-brass-vessel-3d-reconstruction`.
 - Default branch: `main`.
-- The raw image dataset and ZIP are ignored by Git.
+- Raw photographs and intentional image-processing evidence are tracked in Git by user direction. Only secrets belong in `.gitignore`; cleanup policy handles disposable residue instead of hiding it indefinitely.
+- `IMG20260826122949.zip` is a redundant local archive, not part of the requested raw-image/processing publication set. Leave it untracked unless the user separately requests an archive-publication method.
 - Keep commits scoped and descriptive. Do not rewrite history or force-push without explicit authorization.
 - Update `CHANGELOG.md` and `docs/memory-bank/` after meaningful verified milestones, not after trivial edits.
 

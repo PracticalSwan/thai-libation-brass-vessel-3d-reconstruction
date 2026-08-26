@@ -6,7 +6,7 @@ This is a collaborative CSX4213 coursework repository. Keep changes small, expla
 
 1. Read `AGENTS.md` and `CLAUDE.md`.
 2. Inspect `git status` and preserve unrelated contributor work.
-3. Keep `IMG20260826122949/` immutable and outside normal Git history.
+3. Keep the versioned files in `IMG20260826122949/` immutable. Never edit them in place.
 4. Do not over-engineer, over-complicate, or over-test.
 
 ## Development rules
@@ -15,7 +15,7 @@ This is a collaborative CSX4213 coursework repository. Keep changes small, expla
 - Preserve image geometry during preprocessing.
 - Add dependencies only when the existing stack cannot reasonably perform the task.
 - Use clear Python and expose important computer-vision parameters so the workflow can be explained in class.
-- Do not commit secrets, raw capture images, caches, temporary experiments, large generated models, or reconstruction residue.
+- Do not commit secrets or disposable temporary/test residue. Raw capture images and intentional image-processing evidence are expected repository content; cleanup obsolete experiments before committing.
 
 ## Verification
 

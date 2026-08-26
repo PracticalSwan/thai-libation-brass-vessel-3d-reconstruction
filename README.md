@@ -18,13 +18,15 @@ smartphone capture
 
 The current phase is **real-image preprocessing and QA**. The final capture set contains 297 portrait JPEG photographs of the same physical vessel, captured with an OPPO Reno12 F at 3072 x 4080.
 
-The raw dataset is intentionally not stored in normal Git. Contributors place it locally at:
+The authoritative raw dataset is versioned in this public repository at:
 
 ```text
 IMG20260826122949/
 ```
 
-The preprocessing audit has confirmed that all 297 images are readable, share the same dimensions/camera/orientation, and contain no exact duplicates. Full preprocessing selection and RAW-vs-preprocessed feature-match validation are still in progress.
+The separate local `IMG20260826122949.zip` is only a redundant archive of the same photographs and is not part of the Git publication set.
+
+The preprocessing audit has confirmed that all 297 images are readable, share the same dimensions/camera/orientation, and contain no exact duplicates. Audit reports and contact-sheet evidence are also versioned so the preprocessing decisions remain reproducible. Full preprocessing selection and RAW-vs-preprocessed feature-match validation are still in progress.
 
 ## Why preprocessing is conservative
 
@@ -49,10 +51,10 @@ The final preprocessing stage will expose simple, professor-explainable scripts 
 ```text
 AGENTS.md                 canonical AI-agent rules
 CLAUDE.md                 Claude entry point; imports AGENTS.md
-preprocessing/            local QA reports and derived evidence
+preprocessing/            versioned QA reports and derived evidence
 docs/                     design, plans, memory and handoff references
 tests/                    focused preprocessing tests when implemented
-IMG20260826122949/        local immutable raw photos; ignored by Git
+IMG20260826122949/        versioned immutable raw photographs
 ```
 
 ## Setup

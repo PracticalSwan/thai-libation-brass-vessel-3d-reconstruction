@@ -4,7 +4,7 @@ This repository is an academic computer-vision project and does not run a public
 
 ## Sensitive material
 
-Do not commit API keys, tokens, credentials, private configuration, personal records, or unreviewed raw photographs. The local raw capture set is excluded from normal Git history.
+Do not commit API keys, tokens, credentials, private configuration, or personal records. The user has authorized publication of the reviewed raw capture photographs and image-processing evidence; this does not authorize publishing any separate secret or private material that may appear later.
 
 ## Reporting a security issue
 
