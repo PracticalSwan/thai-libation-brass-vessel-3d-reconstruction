@@ -1,0 +1,57 @@
+# Python caches and test residue
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments and local configuration
+.venv/
+venv/
+env/
+.env
+.env.*
+!.env.example
+
+# IDE / OS residue
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.bak
+
+# Immutable local capture data: never publish through normal Git
+IMG20260826122949/
+IMG20260826122949.zip
+*.zip
+
+# Generated preprocessing/reconstruction artifacts
+images_preprocessed/
+images_selected/
+images_for_pycolmap/
+preprocessing/_tmp/
+preprocessing/reports/
+preprocessing/previews/
+reconstruction/
+colmap*/
+pycolmap_output/
+*.db
+*.ply
+*.pcd
+*.obj
+*.mtl
+*.glb
+*.gltf
+
+# Agent-local and scratch state
+.serena/
+.codex/
+*.local.md
+scratch/
+tmp/
+temp/
