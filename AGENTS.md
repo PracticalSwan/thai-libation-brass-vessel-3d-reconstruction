@@ -4,7 +4,7 @@
 
 This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
 
-Current phase: finish image QA/preprocessing and prepare a photogrammetry-ready image set. Do not start pyCOLMAP until the preprocessing completion criteria are satisfied.
+Current phase: preprocessing is complete and verified. The next separately authorized phase may begin pyCOLMAP feature extraction/matching from `preprocessing/pycolmap_input/images/`; do not claim reconstruction results until that later phase is actually run and verified.
 
 ## Core rules
 

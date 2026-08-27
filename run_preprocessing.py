@@ -300,13 +300,16 @@ def _sift_match_metrics(
         )
         cv2.setRNGSeed(4213)
         find_fundamental_matrix = getattr(cv2, "findFundamentalMat")
-        _, mask = find_fundamental_matrix(
-            first_points,
-            second_points,
-            cv2.FM_RANSAC,
-            1.5,
-            0.99,
-        )
+        try:
+            _, mask = find_fundamental_matrix(
+                first_points,
+                second_points,
+                cv2.FM_RANSAC,
+                1.5,
+                0.99,
+            )
+        except cv2.error:
+            mask = None
         if mask is not None:
             inliers = int(np.count_nonzero(mask))
 
@@ -608,6 +611,16 @@ until the preprocessing milestone and raw-hash verification are accepted.
 def run_pipeline(config: PipelineConfig) -> dict[str, Any]:
     """Run the complete bounded preprocessing stage without invoking pyCOLMAP."""
     _validate_pipeline_paths(config)
+    raw_before = verify_raw_manifest(config.raw_dir, config.baseline_manifest)
+    if not raw_before["unchanged"]:
+        raise RuntimeError(f"raw baseline verification failed: {raw_before}")
+    if raw_before["actual_count"] != config.expected_raw_count:
+        raise ValueError(
+            "expected raw count mismatch: "
+            f"actual_raw_count={raw_before['actual_count']}, "
+            f"expected_raw_count={config.expected_raw_count}"
+        )
+
     config.reports_dir.mkdir(parents=True, exist_ok=True)
     config.previews_dir.mkdir(parents=True, exist_ok=True)
     preview_entries = list(config.previews_dir.iterdir())
@@ -630,10 +643,6 @@ def run_pipeline(config: PipelineConfig) -> dict[str, Any]:
         )
     for stale in preview_entries:
         stale.unlink()
-
-    raw_before = verify_raw_manifest(config.raw_dir, config.baseline_manifest)
-    if not raw_before["unchanged"]:
-        raise RuntimeError(f"raw baseline verification failed: {raw_before}")
 
     raw_paths = sorted(
         path

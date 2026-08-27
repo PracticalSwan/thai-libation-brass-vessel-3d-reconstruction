@@ -186,6 +186,51 @@ def test_pipeline_rejects_raw_preview_overlap_before_any_mutation(
     assert source_path.read_bytes() == b"immutable raw"
 
 
+def test_pipeline_rejects_expected_count_mismatch_before_generated_outputs(
+    tmp_path: Path,
+) -> None:
+    """Catches a wrong expected dataset size being rejected only after output work."""
+    raw_dir = tmp_path / "raw"
+    reports_dir = tmp_path / "reports"
+    previews_dir = tmp_path / "previews"
+    output_dir = tmp_path / "selected" / "images"
+    raw_dir.mkdir()
+    reports_dir.mkdir()
+    source_path = raw_dir / "capture.jpg"
+    assert cv2.imwrite(str(source_path), _textured_pair()[0])
+    baseline_path = reports_dir / "raw_manifest_before.json"
+    baseline_path.write_text(
+        json.dumps(
+            {
+                "image_count": 1,
+                "files": [
+                    {
+                        "filename": source_path.name,
+                        "sha256": _sha256(source_path),
+                        "size_bytes": source_path.stat().st_size,
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    config = PipelineConfig(
+        raw_dir=raw_dir,
+        baseline_manifest=baseline_path,
+        reports_dir=reports_dir,
+        previews_dir=previews_dir,
+        output_dir=output_dir,
+        expected_raw_count=2,
+        representative_pairs=((1, 1),),
+    )
+
+    with pytest.raises(ValueError, match="expected raw count"):
+        run_pipeline(config)
+
+    assert not previews_dir.exists()
+    assert not output_dir.exists()
+
+
 def test_variant_choice_requires_better_inlier_evidence_and_defaults_raw_on_tie() -> None:
     """Catches automatically preferring prettier preprocessing without match evidence."""
     tie = [
@@ -222,6 +267,24 @@ def test_run_counts_must_agree_across_reports_manifest_and_outputs() -> None:
             selection_manifest_count=288,
             output_count=287,
         )
+
+
+def test_sift_comparison_handles_degenerate_fundamental_matrix_fit(
+    tmp_path: Path,
+) -> None:
+    """Catches a degenerate pair crashing the complete matching experiment."""
+    first, _ = _textured_pair()
+    first_path = tmp_path / "first.jpg"
+    second_path = tmp_path / "second.jpg"
+    assert cv2.imwrite(str(first_path), first)
+    assert cv2.imwrite(str(second_path), first)
+
+    result = compare_sift_pair(first_path, second_path)
+
+    assert result["raw_good_matches"] > 0
+    assert result["raw_inliers"] >= 0
+    assert result["preprocessed_good_matches"] > 0
+    assert result["preprocessed_inliers"] >= 0
 
 
 def test_sift_comparison_produces_geometrically_verified_matches(

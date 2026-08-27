@@ -11,7 +11,7 @@ Updated: 2026-08-27
   - `quality_check.py` — standardized metrics, dataset-relative thresholds, and decisions;
   - `preprocess_images.py` — deterministic 15% LAB-luminance CLAHE blend with unchanged geometry;
   - `run_preprocessing.py` — raw verification, orchestration, reports, previews, SIFT comparison, and selected-set export.
-- Fifteen focused tests pass, including synthetic sharp/blur behavior, clipping metrics, unreadable inputs, warning semantics, deterministic geometry-preserving preprocessing, raw-manifest mismatch detection, SIFT geometric verification, and a complete miniature pipeline.
+- Twenty-one focused tests pass, including synthetic sharp/blur behavior, clipping metrics, unreadable inputs, warning semantics, deterministic geometry-preserving preprocessing, raw-manifest mismatch detection, preflight count/path safety, degenerate geometric-fit handling, exact JPEG matching parity, SIFT geometric verification, and a complete miniature pipeline.
 - Full real run completed over all 297 photographs.
 - Final decisions: 207 `ACCEPT`, 81 `WARN`, and 9 `REJECT`; all 288 non-rejected images retained.
 - Rejections restricted to images 289-297, the visually confirmed hand-held/flipped and hand-occluded sequence.

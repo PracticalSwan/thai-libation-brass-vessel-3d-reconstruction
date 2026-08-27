@@ -130,6 +130,6 @@ In the next separately authorized phase, verify the installed pyCOLMAP API, poin
 
 ## Verification and limitations
 
-Fresh verification included Python compilation, 15 focused tests, a full 297-image pipeline run, all-output reopen/dimension/hash checks, all-raw re-hashing, and visual inspection of all final decision sheets and before/after previews.
+Fresh verification included Python compilation, 21 focused tests, a full 297-image pipeline run, all-output reopen/dimension/hash checks, all-raw re-hashing, and visual inspection of all final decision sheets and before/after previews.
 
 The ten-pair SIFT experiment is representative evidence, not an all-pairs benchmark and not proof that every image will register in Structure from Motion. Final reconstruction quality remains unverified until the later pyCOLMAP phase. The full `WARN` set is deliberately retained so that the reconstruction stage—not a single threshold—can reveal whether any additional frame needs removal.

@@ -49,7 +49,7 @@ python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 python -m py_compile quality_check.py preprocess_images.py run_preprocessing.py
-python -m pytest -q
+python -B -m pytest -p no:cacheprovider -q
 python run_preprocessing.py
 ```
 
@@ -63,7 +63,7 @@ The verified local environment used Python 3.14.2, OpenCV 4.13.0, NumPy 2.4.0, P
 quality_check.py                         quality metrics, calibration, decisions
 preprocess_images.py                     geometry-preserving photometric transform
 run_preprocessing.py                     reports, previews, SIFT experiment, export
-tests/                                   15 focused behavior/integration tests
+tests/                                   21 focused behavior/integration tests
 preprocessing/reports/                   audit and final measured reports
 preprocessing/previews/contact_sheets/   full raw-sequence visual audit
 preprocessing/previews/final/            before/after, decision, and SIFT figures
