@@ -43,6 +43,20 @@ Current phase: preprocessing is complete and verified. The next separately autho
 - Produce explicit reports and a deterministic selected-image set for later pyCOLMAP use.
 - Stop before pyCOLMAP unless the user explicitly continues to reconstruction after preprocessing is verified complete.
 
+## Planned geometry and ML extension
+
+This extension is planned but not implemented yet. Follow `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md` and `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md` when the user authorizes implementation.
+
+- Geometry 1 must expose SIFT keypoints/matches, Fundamental Matrix estimation, and RANSAC inliers using the verified selected images.
+- Geometry 2 must visualize epipolar geometry from the same Fundamental Matrix/inlier set and report a geometric residual such as Sampson error.
+- Geometry 3 must show classical 2D vessel geometry with Canny edges, contours, ellipse fitting where valid, and a principal/symmetry axis. These are measurements/visualizations only and must never warp the images.
+- The primary ML addition is pretrained Meta SAM 2.1 vessel segmentation. Start with `sam2.1_hiera_small`; do not add extra ML models unless measured evidence requires them.
+- SAM 2 masks are derived annotations. Keep SAM/PyTorch dependencies isolated from the verified preprocessing environment until compatibility is checked, and never commit model checkpoints/caches.
+- For later pyCOLMAP evaluation, use masks through the supported `ImageReader.mask_path` mechanism. Keep an unmasked baseline and compare both runs before choosing a reconstruction path.
+- A weak/failed mask must not remove an image. Correct the mask or use a full-white fallback so baseline feature extraction remains possible.
+- Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, camera poses, point clouds, or reconstruction results.
+- Implementation Phase A stops after geometry/ML analysis and presentation evidence. pyCOLMAP baseline-vs-mask reconstruction is a separately authorized Phase B.
+
 ## Verification
 
 For changed Python code, run the narrow relevant checks and then the real path:

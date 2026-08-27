@@ -108,9 +108,11 @@ The deterministic next-stage directory is `preprocessing/pycolmap_input/images/`
 
 The pipeline verifies `raw_manifest_before.json` before processing and again afterward. A separate final audit re-hashed all 297 originals. Both checks found zero size or SHA-256 mismatches. The final machine-readable proof is `preprocessing/reports/raw_verification_after.json`.
 
-### 13. What comes next in pyCOLMAP
+### 13. What comes next
 
-In the next separately authorized phase, verify the installed pyCOLMAP API, point it only at `preprocessing/pycolmap_input/images/`, extract features, match neighboring/global views as justified, run incremental mapping, and evaluate registered-image count, reprojection error, track length, and coverage before dense reconstruction. None of those steps has been run yet.
+Before reconstruction, the planned Phase A extension will make the project's geometry and ML components explicit: SIFT/RANSAC match visualization, epipolar geometry, 2D vessel shape geometry, and pretrained SAM 2.1 vessel segmentation. These items are designed in `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md` but have not been implemented yet.
+
+After Phase A is implemented and verified, a separately authorized Phase B will verify the installed pyCOLMAP API and run two controlled sparse-reconstruction paths over the same 288 images: an unmasked baseline and a SAM-mask-assisted run through COLMAP's per-image mask interface. Registered-image count, feature/match evidence, sparse-point count, track/reprojection statistics, and background clutter will be compared before choosing the reconstruction path. No geometry-extension implementation or pyCOLMAP reconstruction has run yet.
 
 ## Verification and limitations
 

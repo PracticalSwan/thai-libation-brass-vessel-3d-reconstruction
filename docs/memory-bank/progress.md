@@ -21,8 +21,11 @@ Updated: 2026-08-27
 - Independent integrity audit reopened all 288 outputs at 3072 x 4080, matched every selection-manifest hash, found no output duplicates, and re-hashed all 297 originals with zero mismatches.
 - All four WARN/REJECT decision sheets and all ten before/after previews visually inspected.
 - Course-presentation walkthrough artifacts were delivered and later removed from the workspace after user approval; processing evidence remains under `preprocessing/` and `docs/preprocessing/`.
+- Geometry/ML extension planning completed: three explicit geometry demonstrations (SIFT/RANSAC matches, epipolar geometry, and 2D vessel shape geometry) plus pretrained SAM 2.1 vessel segmentation with planned COLMAP-compatible masks.
+- The geometry/ML design and implementation plan define concrete presentation figures and a later controlled unmasked-vs-mask-assisted pyCOLMAP comparison. This is documentation only; no new analysis scripts, SAM masks, model weights, or reconstruction outputs were created.
 
 ## Next phase
 
-- Begin pyCOLMAP feature extraction and matching in a separate authorized task.
-- No pyCOLMAP, sparse reconstruction, dense reconstruction, meshing, texturing, or Blender reconstruction work has run in this phase.
+- When authorized, implement Phase A geometry/ML analysis and presentation evidence, then stop before pyCOLMAP.
+- After Phase A verification, separately authorize Phase B unmasked versus SAM-mask-assisted pyCOLMAP sparse reconstruction.
+- No geometry-extension implementation, pyCOLMAP, sparse reconstruction, dense reconstruction, meshing, texturing, or Blender reconstruction work has run in this planning phase.

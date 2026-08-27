@@ -16,6 +16,7 @@ All notable verified project milestones are recorded here.
 - Deterministic 288-image `preprocessing/pycolmap_input/images/` set and selection manifest.
 - Ten before/after previews, four complete WARN/REJECT sheets, and SIFT inlier chart.
 - Final raw integrity and output checks: 297/297 original hashes unchanged; 288/288 selected outputs readable at 3072 x 4080; no duplicate output hashes.
+- Geometry/ML extension design and implementation plan covering SIFT/RANSAC match visualization, epipolar geometry, 2D vessel shape geometry, SAM 2.1 vessel segmentation, planned course-presentation figures, and a later controlled masked-vs-unmasked pyCOLMAP comparison. Planning only; no new analysis/reconstruction outputs were produced.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -26,4 +27,5 @@ All notable verified project milestones are recorded here.
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- Begin pyCOLMAP feature extraction/matching and reconstruction in a later phase. No pyCOLMAP stage has run yet.
+- When explicitly authorized, implement Phase A geometry/ML analysis and generate real presentation evidence without running pyCOLMAP.
+- After Phase A verification, separately authorize Phase B unmasked versus SAM-mask-assisted pyCOLMAP sparse reconstruction. No pyCOLMAP stage has run yet.

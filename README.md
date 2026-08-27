@@ -36,6 +36,33 @@ preprocessing/pycolmap_input/images/
 
 Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md) before reconstruction. The full measured method, tables, visual evidence, verification details, and limitations are in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
 
+## Planned geometry + machine-learning extension
+
+The next analysis extension is documented but **not implemented yet**. It adds three explicit geometry demonstrations plus one useful ML component without modifying the verified 288-image set:
+
+1. **Feature geometry** — SIFT keypoints/matches, Fundamental Matrix estimation, and RANSAC-verified inliers shown visually.
+2. **Epipolar geometry** — epipolar lines and geometric residuals from the same verified two-view geometry.
+3. **Vessel shape geometry** — Canny edges, contours, ellipse fitting where valid, and a principal/symmetry axis for representative vessel views.
+4. **ML vessel segmentation** — pretrained Meta SAM 2.1 (`sam2.1_hiera_small` first) to generate vessel masks. A later pyCOLMAP experiment will compare the normal 288-image baseline against the same images with masks supplied through `ImageReader.mask_path`.
+
+```mermaid
+flowchart LR
+    A[288 verified PREPROCESSED images] --> B[SIFT + RANSAC match visualization]
+    B --> C[Epipolar geometry]
+    A --> D[Canny + contour + ellipse/axis]
+    A --> E[SAM 2.1 vessel masks]
+    E --> D
+    A --> F[Later pyCOLMAP baseline]
+    E --> G[Later pyCOLMAP with masks]
+    F --> H[Measured comparison]
+    G --> H
+```
+
+The course-presentation plan includes clear figures for candidate-vs-RANSAC matches, epipolar lines, 2D vessel geometry, SAM mask overlays, and unmasked-vs-mask-filtered keypoints. Reconstruction figures will only be added after pyCOLMAP is actually run.
+
+- Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)
+- Implementation plan: [`docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`](docs/superpowers/plans/2026-08-27-geometry-ml-integration.md)
+
 ## Why preprocessing is conservative
 
 Polished brass naturally produces moving specular highlights. Reflection alone is not a rejection reason. The selected transform changes only luminance photometry: CLAHE-enhanced LAB luminance is blended at 15% with the original luminance.
