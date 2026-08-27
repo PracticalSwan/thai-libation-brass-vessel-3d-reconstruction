@@ -9,7 +9,7 @@ Current phase: preprocessing is complete and verified. The next separately autho
 ## Core rules
 
 - Do not over-engineer, over-complicate, or over-test. Prefer the smallest coherent solution and verification proportional to risk.
-- Preserve the student's existing structure and course explainability. Code must remain understandable enough to demonstrate to the professor.
+- Preserve the student's existing structure and course explainability. Code must remain understandable enough to explain and reproduce for coursework assessment.
 - Treat `IMG20260826122949/` as immutable raw data. Never overwrite, rename, resize, crop, rotate, recompress, normalize, or delete any original image.
 - The user has authorized publishing the raw photographs and image-processing evidence to the public repository. Raw-file immutability still applies after publication.
 - Preserve photogrammetric geometry. Preprocessing may change photometry mildly but must not crop, warp, perspective-correct, rotate, synthesize detail, remove reflections with AI, or otherwise move image features.

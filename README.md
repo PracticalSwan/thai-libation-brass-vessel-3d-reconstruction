@@ -34,7 +34,7 @@ The exact next-stage input directory is:
 preprocessing/pycolmap_input/images/
 ```
 
-Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md) before reconstruction. The full measured method, tables, visual evidence, limitations, and professor demonstration steps are in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
+Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md) before reconstruction. The full measured method, tables, visual evidence, verification details, and limitations are in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
 
 ## Why preprocessing is conservative
 
@@ -69,7 +69,7 @@ preprocessing/previews/contact_sheets/   full raw-sequence visual audit
 preprocessing/previews/final/            before/after, decision, and SIFT figures
 preprocessing/pycolmap_input/images/      exact 288-image next-stage input set
 IMG20260826122949/                        versioned immutable raw photographs
-docs/preprocessing/                       method/results and professor walkthrough
+docs/preprocessing/                       measured method, results, and verification evidence
 ```
 
 The separate local `IMG20260826122949.zip` is only a redundant archive of the same photographs. It is intentionally untracked and is not part of the publication set.

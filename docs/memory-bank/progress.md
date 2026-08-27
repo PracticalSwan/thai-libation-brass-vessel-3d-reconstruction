@@ -20,7 +20,7 @@ Updated: 2026-08-27
 - Final 288-image pyCOLMAP-ready set created in `preprocessing/pycolmap_input/images/`.
 - Independent integrity audit reopened all 288 outputs at 3072 x 4080, matched every selection-manifest hash, found no output duplicates, and re-hashed all 297 originals with zero mismatches.
 - All four WARN/REJECT decision sheets and all ten before/after previews visually inspected.
-- Professor-facing Markdown, Word, and PDF walkthroughs prepared from measured evidence; the DOCX reopened successfully and representative PDF pages were visually inspected.
+- Course-presentation walkthrough artifacts were delivered and later removed from the workspace after user approval; processing evidence remains under `preprocessing/` and `docs/preprocessing/`.
 
 ## Next phase
 

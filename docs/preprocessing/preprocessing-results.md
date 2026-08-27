@@ -1,4 +1,4 @@
-# Preprocessing Results and Professor Walkthrough
+# Preprocessing Results
 
 Updated: 2026-08-27
 
@@ -111,22 +111,6 @@ The pipeline verifies `raw_manifest_before.json` before processing and again aft
 ### 13. What comes next in pyCOLMAP
 
 In the next separately authorized phase, verify the installed pyCOLMAP API, point it only at `preprocessing/pycolmap_input/images/`, extract features, match neighboring/global views as justified, run incremental mapping, and evaluate registered-image count, reprojection error, track length, and coverage before dense reconstruction. None of those steps has been run yet.
-
-## How to demonstrate progress to the professor
-
-1. Open the repository README and explain the full capture-to-3D pipeline.
-2. Show `IMG20260826122949/` and `raw_manifest_before.json` to establish immutable source evidence.
-3. Open one early and one late original contact sheet to show dense angular coverage.
-4. Open `quality_decisions.csv` and explain the measured columns and three decision labels.
-5. Show the threshold table above and emphasize that it came from the real eligible dataset.
-6. Open the four `preprocessing/previews/final/decisions_*.jpg` sheets. Point out that warning frames are retained.
-7. Use `decisions_076_090.jpg` to explain why images 289-297 break fixed-object geometry.
-8. Open two `before_after_*.jpg` previews and explain the 15% luminance-only CLAHE blend.
-9. Open `sift_inliers.png`, then the pair table, and explain SIFT descriptors, the 0.75 ratio test, and RANSAC inliers.
-10. Explain the predeclared selection rule and why PREPROCESSED won 2,483 to 2,376 while remaining non-worse on 9 of 10 pairs.
-11. Show `preprocessing/pycolmap_input/README.md` and the 288-image `images/` directory.
-12. Open `raw_verification_after.json` and state that all 297 hashes still match.
-13. Finish with the boundary: preprocessing is complete, the dataset is ready, and pyCOLMAP reconstruction is the next phase—not a completed claim.
 
 ## Verification and limitations
 

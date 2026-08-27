@@ -14,13 +14,16 @@ All notable verified project milestones are recorded here.
 - Ten neighboring-pair RAW vs PREPROCESSED SIFT comparisons with fundamental-matrix RANSAC verification.
 - PREPROCESSED reconstruction input selection from 2,483 verified inliers versus 2,376 for RAW, non-worse on 9 of 10 pairs, using the exact exported quality-95 JPEG encoding.
 - Deterministic 288-image `preprocessing/pycolmap_input/images/` set and selection manifest.
-- Ten before/after previews, four complete WARN/REJECT sheets, SIFT inlier chart, and professor-facing progress walkthrough.
+- Ten before/after previews, four complete WARN/REJECT sheets, and SIFT inlier chart.
 - Final raw integrity and output checks: 297/297 original hashes unchanged; 288/288 selected outputs readable at 3072 x 4080; no duplicate output hashes.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
 - Treat a degenerate OpenCV fundamental-matrix fit as zero geometric inliers instead of crashing the matching experiment.
 - Correct stale phase/test-count documentation and use the cache-free pytest command in the reproduction steps.
+
+### Removed
+- Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
 - Begin pyCOLMAP feature extraction/matching and reconstruction in a later phase. No pyCOLMAP stage has run yet.
