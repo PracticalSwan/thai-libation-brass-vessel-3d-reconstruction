@@ -1,6 +1,6 @@
 # Final pyCOLMAP Input Set
 
-Use every image in `images/` as the input to the later pyCOLMAP reconstruction experiments.
+This directory contains the verified 288-image PREPROCESSED set reserved for later reconstruction work.
 
 - Selected variant: **PREPROCESSED**
 - Selected images: **288 of 297**
@@ -9,6 +9,6 @@ Use every image in `images/` as the input to the later pyCOLMAP reconstruction e
 
 The variant was selected from the representative SIFT matching evidence in `../reports/sift_matching.json`. `WARN` images remain included because a warning is a review signal, not an automatic rejection.
 
-This directory remains the canonical 288-image input for both later reconstruction experiments. The planned geometry/ML Phase A will analyze these images and generate SAM 2.1 vessel masks without modifying them. A separately authorized Phase B may then compare an unmasked pyCOLMAP baseline against the same images with per-image masks supplied through `ImageReader.mask_path`.
+The current implementation work stops before pyCOLMAP. Step 6 geometry analysis and Steps 7+8 SAM 2.1/feature-mask analysis may read selected images from this directory, but they must never modify it. The ML phase currently segments only ten representative selected images and does not prepare a full reconstruction mask set.
 
-See `../../docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md` for the design and `../../docs/superpowers/plans/2026-08-27-geometry-ml-integration.md` for the future implementation plan.
+See `../../docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md` for the current design and `../../docs/superpowers/plans/2026-08-27-geometry-ml-integration.md` for the Step 6 / Steps 7+8 plan index.

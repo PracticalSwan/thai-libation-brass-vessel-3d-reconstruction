@@ -6,275 +6,250 @@ Updated: 2026-08-27
 
 **Planning only. Nothing in this document is implemented yet.**
 
-The verified preprocessing milestone remains unchanged: 297 immutable raw photographs, 207 `ACCEPT`, 81 `WARN`, 9 `REJECT`, and 288 PREPROCESSED images in `preprocessing/pycolmap_input/images/`. No geometry-extension code, SAM 2 masks, ML model weights, pyCOLMAP feature extraction, or reconstruction has been run as part of this planning change.
+The verified preprocessing milestone remains unchanged: 297 immutable raw photographs, 207 `ACCEPT`, 81 `WARN`, 9 `REJECT`, and 288 PREPROCESSED images in `preprocessing/pycolmap_input/images/`.
 
-## Goal
+The current implementation scope ends after pipeline Steps **6, 7, and 8**. No geometry-extension code, SAM 2 masks, ML model weights, pyCOLMAP feature extraction, or reconstruction has been run as part of this planning work.
 
-Extend the current computer-vision pipeline with three explicit geometry demonstrations and one useful machine-learning component that can be shown clearly during coursework assessment:
+## Current goal
 
-1. visible SIFT keypoints, feature matches, Fundamental Matrix estimation, and RANSAC inlier filtering;
-2. epipolar-geometry visualization from the same verified two-view geometry;
-3. 2D vessel-shape geometry using edges, contours, ellipse fitting, and a symmetry/principal axis;
-4. pretrained SAM 2.1 vessel segmentation, producing masks that can later be compared as a pyCOLMAP feature-extraction aid.
+Extend the completed preprocessing pipeline with two bounded implementation units that are easy to demonstrate during coursework assessment:
 
-The extension must preserve the existing photogrammetric input geometry. It may analyze images and create derived masks/visualizations, but it must not crop, resize, warp, perspective-correct, regenerate, or overwrite the 288 selected images.
+### Step 6 — Geometry Detection / Analysis
+
+1. visible SIFT keypoints and candidate feature matches;
+2. Fundamental Matrix estimation and RANSAC inlier filtering;
+3. epipolar-line visualization and geometric residuals from the same two-view geometry;
+4. 2D vessel-shape geometry using Canny edges, contours, ellipse fitting where valid, and a principal/symmetry axis.
+
+### Steps 7 + 8 — Machine Learning + Feature-Mask Analysis
+
+1. pretrained SAM 2.1 vessel segmentation on a representative subset of selected images;
+2. binary vessel-mask QA and presentation overlays;
+3. SIFT feature counts inside versus outside each vessel mask;
+4. presentation figures showing what the ML segmentation identifies and how it changes the feature distribution considered vessel-related versus background-related.
+
+The extension may analyze images and create derived masks/visualizations, but it must not crop, permanently resize, rotate, warp, perspective-correct, regenerate, or overwrite the 288 selected images.
 
 ## Why this design fits the project
 
-The project already uses SIFT, Fundamental Matrix estimation, and RANSAC internally to compare RAW and PREPROCESSED image pairs. The first two geometry modules therefore expose and explain geometry that already exists in the workflow rather than adding unrelated algorithms.
+The project already uses SIFT, Fundamental Matrix estimation, and RANSAC internally to compare RAW and PREPROCESSED image pairs. Step 6 exposes and explains this geometry rather than adding unrelated algorithms.
 
-The third module adds classical 2D shape analysis that is easy to demonstrate on the brass vessel: silhouette edges, vessel contour, rim/bowl ellipse candidates, and an estimated principal/symmetry axis. These measurements are descriptive evidence only; they are not used to rectify or reshape the photographs.
+The single-image shape module adds intuitive classical computer vision: silhouette edges, contour candidates, ellipse-like vessel/rim structure, centroid, bounding box, and principal-axis direction. These measurements are descriptive only; they do not rectify or reshape the photographs.
 
-The ML component is foreground segmentation rather than generative enhancement. A pretrained segmentation model marks vessel pixels while leaving the source image unchanged. This is directly useful because current COLMAP/pyCOLMAP supports per-image feature masks through `ImageReader.mask_path`; features are not extracted in black mask regions. The later reconstruction stage can therefore compare the same 288 images with and without ML-generated masks.
+The ML component is foreground segmentation rather than generative enhancement. SAM 2.1 labels which pixels belong to the vessel while leaving source images unchanged. Step 8 then uses those masks to measure where SIFT keypoints fall, creating a concrete ML/CV integration that can be shown before any reconstruction stage begins.
 
-## Planned pipeline
+## Current planned pipeline
 
 ```mermaid
 flowchart TD
     A[297 immutable raw photographs] --> B[Verified preprocessing]
     B --> C[288 selected PREPROCESSED images]
 
-    C --> G1[Geometry 1: SIFT keypoints + pair matches]
-    G1 --> G2[Fundamental Matrix + RANSAC inliers]
-    G2 --> G3[Geometry 2: epipolar lines + residuals]
+    C --> G1[Step 6A: SIFT keypoints + candidate matches]
+    G1 --> G2[Step 6B: Fundamental Matrix + RANSAC inliers]
+    G2 --> G3[Step 6C: Epipolar lines + residuals]
 
-    C --> S1[Geometry 3: Canny edges + contours]
-    S1 --> S2[Ellipse candidates + principal/symmetry axis]
+    C --> S1[Step 6D: Canny edges + contours]
+    S1 --> S2[Ellipse candidates + centroid + principal axis]
 
-    C --> M1[ML: SAM 2.1 vessel segmentation]
-    M1 --> M2[Binary vessel masks + visual QA]
-    M2 --> S2
+    C --> M1[Step 7: SAM 2.1 representative vessel segmentation]
+    M1 --> M2[Binary masks + visual QA]
+    M2 --> M3[Step 8: SIFT features inside vs outside mask]
 
-    C --> P1[Later pyCOLMAP baseline: no masks]
-    M2 --> P2[Later pyCOLMAP experiment: ImageReader.mask_path]
-    P1 --> R[Compare registration and reconstruction evidence]
-    P2 --> R
+    G3 --> O[Presentation-ready geometry evidence]
+    S2 --> O
+    M3 --> P[Presentation-ready ML evidence]
 
-    R --> D[Choose baseline or mask-assisted reconstruction from evidence]
+    O --> Z[STOP before pyCOLMAP]
+    P --> Z
 ```
 
-## Geometry module 1 — keypoints, matching, and RANSAC inliers
+## Step 6 geometry design
 
-### Purpose
+### Geometry 1 — keypoints, matching, and RANSAC inliers
 
-Make the existing two-view matching process visible and explainable.
+Use selected PREPROCESSED neighboring pairs from the existing representative experiment.
 
-### Input
+Primary presentation pair: **165-166**.
 
-Use selected PREPROCESSED neighboring pairs from the existing SIFT experiment. The primary presentation pair should be indices **165-166**, because it is a normal vessel view with many useful correspondences. A second low-feature example should use **255-256** so the demonstration does not imply that every pair is equally easy.
+Supporting low-feature pair: **255-256**.
 
-### Planned processing
+Planned processing:
 
-- detect SIFT keypoints/descriptors;
-- run BF-L2 two-neighbor matching;
-- apply the existing Lowe ratio threshold of `0.75`;
-- estimate a Fundamental Matrix with RANSAC using the same `1.5 px` threshold and `0.99` confidence used by the verified preprocessing experiment;
-- separate candidate matches from geometrically verified inliers;
-- calculate keypoint count, good-match count, inlier count, and inlier ratio.
+- SIFT up to 8,000 features;
+- analysis width up to 1,200 pixels with aspect ratio preserved in memory;
+- BF-L2 two-neighbor matching;
+- Lowe ratio threshold `0.75`;
+- Fundamental Matrix RANSAC threshold `1.5 px`;
+- confidence `0.99`;
+- fixed OpenCV RNG seed `4213`;
+- candidate-match count, inlier count, and inlier ratio.
 
-### Planned visual output
+Planned presentation outputs:
 
-`analysis/previews/presentation/geometry_01_matches_165_166.png`
+```text
+analysis/previews/presentation/geometry_01_matches_165_166.png
+analysis/previews/presentation/geometry_01_matches_255_256.png
+```
 
-The figure should contain two clearly labeled rows:
+Each figure shows candidate SIFT matches and RANSAC-verified matches separately so incorrect correspondences are visibly filtered rather than hidden.
 
-1. **Candidate SIFT matches** — side-by-side images with a bounded sample of ratio-test matches;
-2. **RANSAC-verified matches** — the same image pair with only geometric inliers highlighted.
+### Geometry 2 — epipolar geometry
 
-A small text panel should show the pair filenames, keypoint counts, candidate-match count, verified-inlier count, and inlier ratio. The figure must avoid hundreds of overlapping lines; use a deterministic spatially distributed subset for display while retaining full counts in the report.
+Reuse the exact Fundamental Matrix and RANSAC inlier set from Geometry 1.
 
-A second supporting figure may use `255-256` to show how geometry verification behaves when the image pair has fewer features.
+Planned processing:
 
-## Geometry module 2 — epipolar geometry
+- select 8-10 spatially distributed verified correspondences;
+- compute corresponding epipolar lines in the opposite view;
+- draw matching point/line colors;
+- compute Sampson/geometric residual summary.
 
-### Purpose
-
-Show the geometric constraint created by the Fundamental Matrix rather than presenting RANSAC as a black box.
-
-### Planned processing
-
-- reuse the Fundamental Matrix and RANSAC inliers from Geometry 1;
-- choose 8-12 spatially distributed inlier correspondences;
-- compute the epipolar line in the opposite image for each selected point;
-- draw each point and its corresponding line using the same color in both views;
-- compute an epipolar/Sampson residual summary for the verified inliers.
-
-### Planned visual output
+Planned output:
 
 `analysis/previews/presentation/geometry_02_epipolar_165_166.png`
 
-The figure should show the two photographs next to each other, with 8-12 colored point/line correspondences. Include the estimated Fundamental Matrix and median geometric residual in a compact caption or side panel. The purpose is to show that a point in one image constrains where its match should lie in the other image.
+Interpretation boundary: this is two-view projective geometry. It must not be described as a completed 3D reconstruction or camera-pose solution.
 
-### Interpretation boundary
+### Geometry 3 — vessel shape geometry
 
-This is two-view projective geometry. It does not prove a complete 3D reconstruction and must not be described as camera-pose recovery by itself.
+Primary single-image example: **165**.
 
-## Geometry module 3 — vessel shape geometry
+Secondary/top-down-detail example: **255**.
 
-### Purpose
+Planned processing:
 
-Provide an intuitive, classical computer-vision demonstration of geometric structure visible in a single vessel image.
+1. grayscale conversion;
+2. Canny edge detection;
+3. contour extraction;
+4. simple explainable vessel-contour candidate scoring;
+5. bounding box and centroid;
+6. ellipse fitting where enough contour points exist;
+7. PCA/second-moment principal-axis estimation;
+8. report failure honestly when no reliable contour/ellipse exists.
 
-### Planned processing
+Planned outputs:
 
-For representative images such as index 165 and a top-down/detail image such as index 255:
+```text
+analysis/previews/presentation/geometry_03_shape_165.png
+analysis/previews/presentation/geometry_03_shape_255.png
+analysis/previews/presentation/geometry_04_summary.png
+```
 
-1. convert to grayscale;
-2. run Canny edge detection;
-3. find contours;
-4. identify vessel/silhouette contour candidates;
-5. fit ellipse candidates where contours contain enough points;
-6. estimate a principal/symmetry axis from the selected contour using contour moments/PCA;
-7. report contour area, bounding box, ellipse axes/angle where available, and axis angle.
+The Step 6 summary combines only the three geometry demonstrations. It does not depend on ML.
 
-When a valid SAM 2 vessel mask exists, the shape module may use it to isolate the vessel before contour extraction. The report must label this as **mask-assisted shape analysis** rather than pretending the mask came from classical edge detection.
-
-### Planned visual output
-
-`analysis/previews/presentation/geometry_03_shape_165.png`
-
-Use a four-panel layout:
-
-1. original selected image;
-2. Canny edge map;
-3. selected vessel contour/silhouette overlay;
-4. ellipse candidate(s), centroid, bounding box, and principal/symmetry axis overlay.
-
-This output is explanatory geometry only. It must not be fed back into preprocessing as a warp, crop, or perspective correction.
-
-## Machine-learning module — SAM 2.1 vessel segmentation
+## Steps 7 + 8 ML design
 
 ### Model choice
 
-Use **Meta SAM 2.1** as the planned pretrained segmentation model. Start with `sam2.1_hiera_small` because it is a smaller checkpoint and is sufficient for the first feasibility pass. Do not move to base+/large unless representative-mask evidence shows that the small checkpoint is inadequate.
+Use **Meta SAM 2.1** with `sam2.1_hiera_small` for the first feasibility pass.
 
-Do not train or fine-tune a custom model initially. The project needs a clear ML integration, not an unnecessary training project.
+Do not train or fine-tune a custom segmentation model initially. Do not move to a larger checkpoint unless the small checkpoint fails meaningfully on the representative project images.
 
 ### Environment boundary
 
-Do not add PyTorch/SAM 2 dependencies to the already-verified preprocessing environment until compatibility is checked. The official SAM 2 documentation recommends WSL on Windows. The implementation phase should therefore perform a separate ML-environment preflight and keep model runtime dependencies isolated from `requirements.txt` unless there is a demonstrated reason to merge them.
+Keep SAM 2/PyTorch runtime dependencies isolated from the already-verified preprocessing environment until compatibility is confirmed. Model checkpoints and runtime caches must stay outside tracked repository content.
 
-Model checkpoints must not be committed to Git. Record model name/checkpoint provenance and download instructions instead.
+### Representative image set
 
-### Segmentation strategy
+The current ML phase uses exactly ten selected-image indices that already span the preprocessing representative sequence:
 
-Treat the ordered 288-image capture sequence as a near-neighbor image sequence for promptable segmentation/tracking:
+```text
+15, 45, 75, 105, 135, 165, 195, 225, 255, 280
+```
 
-1. initialize SAM 2.1 on the selected image sequence;
-2. provide a point or box prompt around the vessel on an anchor frame;
-3. propagate the vessel mask through neighboring frames;
-4. add correction prompts when visual QA shows drift or missing vessel regions;
-5. retain the complete vessel, including rim, neck, bowl, pedestal, and silhouette boundary;
-6. generate a conservative binary mask for every selected image.
+This is intentionally limited to ten images because the current goal is a useful, measurable ML demonstration—not full reconstruction masking.
 
-If a generated mask fails QA for one image, do **not** reject that photograph. The safe fallback is a full-white mask for that image, which preserves baseline feature extraction while recording the segmentation failure.
+### Prompt strategy
 
-### Mask format for pyCOLMAP
+Use one reproducible normalized XYXY box prompt per representative image. Record the prompts in:
 
-Planned directory:
+`analysis/config/ml_prompts.json`
 
-`analysis/ml/masks/`
+The future implementation must visually choose boxes around the complete vessel and validate them against the selection manifest. If a mask is weak, adjust that image's prompt and record the correction rather than silently accepting a bad mask.
 
-For an image named:
+### Segmentation outputs
 
-`IMG20260826125013.jpg`
+Generate same-size binary masks containing only `0` and `255` for the ten representative images.
 
-the corresponding COLMAP mask must be:
-
-`IMG20260826125013.jpg.png`
-
-Mask convention:
-
-- white (`255`) = vessel/allowed feature region;
-- black (`0`) = background/suppressed feature region.
-
-The masks are derived annotations. They must never replace or modify the JPEG inputs.
-
-### Planned ML visual outputs
+Planned evidence:
 
 1. `analysis/previews/presentation/ml_01_segmentation_165.png`
-   - original image;
-   - binary mask;
-   - colored mask overlay on the original.
+   - original selected image;
+   - binary vessel mask;
+   - mask overlay.
 
 2. `analysis/previews/presentation/ml_02_mask_contact_sheet.png`
-   - representative masks across middle, low, elevated, top-down, detail, and WARN views;
-   - include any correction/fallback cases explicitly.
+   - all ten representative images with mask overlays and status labels.
 
-3. `analysis/previews/presentation/ml_03_masked_features_165.png`
-   - unmasked SIFT keypoints;
-   - mask overlay;
-   - keypoints remaining when the mask is applied;
-   - counts inside/outside the vessel mask.
+Mask QA records at minimum:
 
-These figures make the ML contribution visible without claiming reconstruction improvement before it is measured.
+- source index/filename;
+- model/checkpoint;
+- prompt box;
+- foreground area fraction;
+- mask bounding box;
+- corrected/not corrected;
+- success/failure status.
 
-## Later pyCOLMAP comparison
+A failed segmentation does not reject or modify the source photograph.
 
-This comparison belongs to the separately authorized reconstruction phase, not this planning task.
+### Step 8 feature-mask analysis
 
-Run two controlled sparse-reconstruction experiments with identical image sets and comparable camera/matching settings:
+Reuse Step 6's public SIFT extraction interface so the ML plan does not implement a second SIFT pipeline.
 
-### Baseline A — unmasked
+For each successful representative mask:
 
-- 288 selected PREPROCESSED images;
-- normal pyCOLMAP feature extraction;
-- no ML mask path.
+1. detect SIFT features at the same Step 6 analysis scale;
+2. align the binary mask to that analysis scale using nearest-neighbor interpolation;
+3. count keypoints inside the vessel mask;
+4. count keypoints in background regions;
+5. calculate vessel-feature fraction and background-feature fraction;
+6. keep all counts descriptive—do not claim reconstruction improvement.
 
-### Experiment B — SAM 2 mask-assisted
+Planned outputs:
 
-- same 288 selected PREPROCESSED images;
-- same camera model and matching strategy;
-- `ImageReader.mask_path` points to `analysis/ml/masks/`.
+```text
+analysis/previews/presentation/ml_03_masked_features_165.png
+analysis/previews/presentation/ml_04_feature_mask_summary.png
+analysis/previews/presentation/ml_05_summary.png
+```
 
-### Compare
+The final ML summary should show:
 
-Record at minimum:
-
-- extracted keypoints/features;
-- verified matches;
-- registered images;
-- sparse 3D point count;
-- mean/median track length where available;
-- mean/median reprojection error where available;
-- visual amount of background clutter in the sparse model;
-- failed/weak registration regions in the image sequence.
-
-Use the mask-assisted run only if it improves object focus without materially damaging camera registration. A practical guardrail is to reject the masked variant if registered-image count falls by more than 5% relative to the baseline unless there is a clearly documented compensating benefit. Do not assume ML is better simply because it is ML.
-
-## Presentation sequence
-
-The later course demonstration should be easy to follow in this order:
-
-1. **Input** — show one of the 288 selected PREPROCESSED vessel images.
-2. **Geometry 1** — show SIFT candidate matches and RANSAC-verified matches.
-3. **Geometry 2** — show epipolar lines for the same image pair.
-4. **Geometry 3** — show Canny edges, contour, ellipse, and principal/symmetry axis on one vessel image.
-5. **Machine learning** — show original, SAM 2.1 mask, and overlay.
-6. **Why ML matters** — show unmasked versus mask-filtered feature locations.
-7. **Later reconstruction evidence** — compare baseline and mask-assisted pyCOLMAP sparse models and metrics after that phase is actually run.
-
-A final summary figure should be generated later at:
-
-`analysis/previews/presentation/geometry_ml_pipeline_summary.png`
-
-It should combine small thumbnails from the three geometry modules and the ML mask into one labeled workflow. It must use actual generated outputs, not illustrative/fabricated reconstruction results.
+```text
+SAM 2.1 input + prompt
+→ vessel mask
+→ mask overlay
+→ SIFT features inside/outside mask
+→ ten-image measured summary
+```
 
 ## Planned repository structure
 
 ```text
-geometry_detection.py                   two-view matching/F-matrix/epipolar analysis
-shape_geometry.py                       Canny/contour/ellipse/axis analysis
-ml_segmentation.py                      SAM 2.1 inference, mask QA, mask export
-run_geometry_ml_analysis.py             deterministic analysis/report orchestration
+analysis_common.py                       verified selected-image input boundary
+geometry_detection.py                   SIFT/F-matrix/RANSAC/epipolar analysis
+shape_geometry.py                       Canny/contour/ellipse/principal-axis analysis
+run_geometry_analysis.py                Step 6 orchestration
+
+ml_segmentation.py                      SAM 2.1 inference, mask QA, overlays
+ml_feature_analysis.py                  SIFT inside/outside mask metrics
+run_ml_analysis.py                      Steps 7+8 orchestration
 
 tests/
+  test_analysis_common.py
   test_geometry_detection.py
   test_shape_geometry.py
+  test_run_geometry_analysis.py
+  test_ml_prompt_config.py
   test_ml_segmentation.py
-  test_run_geometry_ml_analysis.py
+  test_ml_feature_analysis.py
+  test_run_ml_analysis.py
 
 analysis/
+  config/
+    ml_prompts.json
   geometry/
   ml/
     masks/
@@ -283,47 +258,55 @@ analysis/
     presentation/
 ```
 
-This structure is planned only; none of these paths should be created as generated output until the relevant implementation task is authorized.
+This structure is planned only. None of these implementation/generated paths exists yet.
 
-## Verification requirements for the future implementation
+## Verification requirements
 
-### Geometry
+### Step 6
 
-- identical image dimensions before/after any visualization input handling;
-- deterministic SIFT/RANSAC results under a fixed OpenCV RNG seed where applicable;
-- Fundamental Matrix is finite and rank-2 within numerical tolerance for valid pairs;
-- displayed RANSAC lines correspond only to verified inliers;
-- epipolar points/lines are derived from the same `F` and selected matches;
-- shape overlays never modify source images.
+- selected inputs verify against the existing 288-row manifest before outputs are created;
+- SIFT/RANSAC settings match the documented values;
+- Fundamental Matrix is finite 3x3 when geometry is valid;
+- displayed RANSAC matches are true inliers from the same run;
+- epipolar lines use the same `F` and correspondences;
+- shape overlays never modify source images;
+- all Step 6 presentation figures receive visual inspection;
+- all 297 raw and 288 selected images remain hash-identical after the run.
 
-### ML segmentation
+### Steps 7 + 8
 
-- masks are binary, readable PNGs and match image dimensions exactly;
-- mask filenames follow COLMAP's required `<image filename>.png` convention;
-- no original/preprocessed JPEG is modified;
-- representative masks are visually inspected across the full capture range;
-- low-quality masks trigger correction or full-white fallback, not image deletion;
-- model/checkpoint provenance is recorded;
-- model weights and caches are not committed.
+- Step 6 prerequisite interfaces are present and tested;
+- only the ten representative images are segmented in the current phase;
+- masks are binary and source-size;
+- model/checkpoint/runtime provenance is recorded;
+- masks receive visual QA and correction/failure status;
+- feature-mask counts reuse Step 6 SIFT extraction;
+- all ML presentation figures are generated from real outputs;
+- all 297 raw and 288 selected images remain hash-identical after the run.
 
-### Integration
+## Current implementation-plan split
 
-- geometry/ML reports state which steps are completed versus planned;
-- pyCOLMAP baseline and masked runs use the same 288-image set;
-- any claim that ML improves reconstruction must be supported by measured comparison results;
-- all final presentation figures are generated from real project outputs.
+- Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`
+- Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`
+- Index: `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`
 
-## Out of scope for the first implementation
+## Explicit stop boundary
 
-- custom SAM 2 training or fine-tuning;
-- generative reflection removal, texture synthesis, inpainting, or object redrawing;
-- learned depth estimation used as fake reconstruction geometry;
-- geometric warping or perspective correction of the 288 inputs;
-- adding multiple ML models merely to increase the number of techniques;
-- dense reconstruction, meshing, texturing, or Blender until the sparse stage is evaluated.
+The current work ends after Steps 6-8 are implemented, measured, visually inspected, documented, and verified.
 
-## External references used for this design
+**Do not create or execute a pyCOLMAP/reconstruction implementation plan as part of these two plans.** A later reconstruction plan can be designed separately when explicitly requested.
 
-- COLMAP/pyCOLMAP `ImageReaderOptions.mask_path`: <https://colmap.github.io/pycolmap/pycolmap.html>
-- COLMAP FAQ, mask image regions: <https://colmap.github.io/faq.html>
+## Out of scope
+
+- full 288-image ML mask generation;
+- pyCOLMAP or COLMAP execution;
+- sparse or dense reconstruction;
+- custom SAM 2 training/fine-tuning;
+- generative reflection removal, inpainting, texture synthesis, or object redrawing;
+- learned depth used as fabricated reconstruction geometry;
+- geometric warping or perspective correction;
+- meshing, texturing, or Blender cleanup.
+
+## External reference for future ML implementation
+
 - Meta SAM 2 official repository and SAM 2.1 checkpoints: <https://github.com/facebookresearch/sam2>

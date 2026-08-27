@@ -4,7 +4,7 @@ Updated: 2026-08-27
 
 ## Current focus
 
-Preprocessing is complete and verified. A geometry-detection and machine-learning extension is now designed and planned, but not implemented. The next authorized implementation should complete Phase A geometry/ML analysis and presentation evidence without modifying `preprocessing/pycolmap_input/images/`; the later Phase B may then compare unmasked versus ML-mask-assisted pyCOLMAP reconstruction.
+Preprocessing is complete and verified. The next implementation scope is now split into exactly two plans: Step 6 geometry detection/analysis, followed by combined Steps 7+8 SAM 2.1 segmentation and feature-mask analysis. The project intentionally stops after Step 8; pyCOLMAP/reconstruction is not currently planned for execution.
 
 ## Verified preprocessing state
 
@@ -18,17 +18,32 @@ Preprocessing is complete and verified. A geometry-detection and machine-learnin
 - Integrity: no duplicate selected-output hashes and zero raw SHA-256/size mismatches across all 297 originals.
 - Visual review: all ten before/after previews and all four sheets containing every WARN/REJECT case were inspected.
 
-## Planned extension state
+## Planned Step 6
 
-- Geometry 1: SIFT keypoints/candidate matches plus Fundamental Matrix/RANSAC inlier visualization.
-- Geometry 2: epipolar-line visualization and geometric residuals from the same two-view geometry.
-- Geometry 3: Canny edges, contours, ellipse fitting where valid, and a principal/symmetry axis for representative vessel views.
-- ML: pretrained Meta SAM 2.1 vessel segmentation, starting with `sam2.1_hiera_small`, producing COLMAP-compatible binary masks without changing image geometry.
-- Planned course-presentation evidence includes match/inlier, epipolar, shape-geometry, segmentation, mask-contact-sheet, and masked-keypoint figures.
+- SIFT keypoints and candidate matches.
+- Fundamental Matrix estimation and RANSAC inlier visualization.
+- Epipolar-line visualization and Sampson/geometric residuals.
+- Canny edges, contours, ellipse fitting where valid, centroid/bounding box, and principal/symmetry axis.
+- Primary pair: 165-166; supporting low-feature pair: 255-256.
+- Primary shape image: 165; supporting top-down/detail image: 255.
+- Plan: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
+
+## Planned Steps 7 + 8
+
+- Pretrained Meta SAM 2.1 using `sam2.1_hiera_small` first.
+- Isolated ML runtime; no changes to the verified preprocessing environment.
+- Segment only ten representative selected images in the current phase: 15, 45, 75, 105, 135, 165, 195, 225, 255, 280.
+- Create binary-mask QA and presentation overlays.
+- Reuse Step 6 SIFT extraction to count features inside versus outside the vessel masks.
+- Produce measured segmentation and feature-mask presentation figures without claiming reconstruction improvement.
+- Plan: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
+
+## Shared planning sources
+
 - Design: `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`.
-- Implementation plan: `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`.
+- Plan index: `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`.
 - No geometry-extension scripts, SAM masks/model weights, or pyCOLMAP outputs exist yet.
 
 ## Next action
 
-When implementation is explicitly authorized, execute Phase A of the geometry/ML plan and stop before pyCOLMAP. After Phase A is verified, a separately authorized Phase B may run controlled unmasked and SAM-mask-assisted pyCOLMAP sparse reconstruction and choose the reconstruction path from measured evidence.
+When implementation is explicitly authorized, execute the Step 6 plan first. After Step 6 is verified, execute the combined Steps 7+8 plan. Stop after Step 8 and report the geometry/ML evidence before planning any reconstruction work.

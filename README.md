@@ -38,30 +38,42 @@ Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/REA
 
 ## Planned geometry + machine-learning extension
 
-The next analysis extension is documented but **not implemented yet**. It adds three explicit geometry demonstrations plus one useful ML component without modifying the verified 288-image set:
+The next work is documented but **not implemented yet** and is intentionally split into two bounded implementation plans. The project will stop after Steps 6-8; pyCOLMAP is not part of the current implementation scope.
 
-1. **Feature geometry** — SIFT keypoints/matches, Fundamental Matrix estimation, and RANSAC-verified inliers shown visually.
-2. **Epipolar geometry** — epipolar lines and geometric residuals from the same verified two-view geometry.
-3. **Vessel shape geometry** — Canny edges, contours, ellipse fitting where valid, and a principal/symmetry axis for representative vessel views.
-4. **ML vessel segmentation** — pretrained Meta SAM 2.1 (`sam2.1_hiera_small` first) to generate vessel masks. A later pyCOLMAP experiment will compare the normal 288-image baseline against the same images with masks supplied through `ImageReader.mask_path`.
+### Step 6 — Geometry Detection / Analysis
+
+- SIFT keypoints and candidate matches;
+- Fundamental Matrix + RANSAC inliers;
+- epipolar lines and geometric residuals;
+- Canny edges, contours, ellipse fitting where valid, centroid/bounding box, and principal/symmetry axis;
+- real presentation-ready geometry figures.
+
+### Steps 7 + 8 — SAM 2.1 + Feature-Mask Analysis
+
+- pretrained Meta SAM 2.1 using `sam2.1_hiera_small` first;
+- prompt-based vessel segmentation on ten representative selected images: `15, 45, 75, 105, 135, 165, 195, 225, 255, 280`;
+- binary vessel-mask QA and overlays;
+- reuse Step 6 SIFT extraction to measure keypoints inside versus outside each mask;
+- real presentation-ready segmentation and feature-mask figures.
 
 ```mermaid
 flowchart LR
-    A[288 verified PREPROCESSED images] --> B[SIFT + RANSAC match visualization]
+    A[288 verified PREPROCESSED images] --> B[Step 6: SIFT + RANSAC]
     B --> C[Epipolar geometry]
-    A --> D[Canny + contour + ellipse/axis]
-    A --> E[SAM 2.1 vessel masks]
-    E --> D
-    A --> F[Later pyCOLMAP baseline]
-    E --> G[Later pyCOLMAP with masks]
-    F --> H[Measured comparison]
-    G --> H
+    A --> D[Step 6: Canny + contour + ellipse/axis]
+    A --> E[Step 7: SAM 2.1 on 10 representative images]
+    E --> F[Step 8: SIFT inside vs outside vessel mask]
+    C --> G[Geometry evidence]
+    D --> G
+    F --> H[ML evidence]
+    G --> I[STOP before pyCOLMAP]
+    H --> I
 ```
 
-The course-presentation plan includes clear figures for candidate-vs-RANSAC matches, epipolar lines, 2D vessel geometry, SAM mask overlays, and unmasked-vs-mask-filtered keypoints. Reconstruction figures will only be added after pyCOLMAP is actually run.
-
 - Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)
-- Implementation plan: [`docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`](docs/superpowers/plans/2026-08-27-geometry-ml-integration.md)
+- Plan index: [`docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`](docs/superpowers/plans/2026-08-27-geometry-ml-integration.md)
+- Step 6 implementation plan: [`docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`](docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md)
+- Steps 7+8 implementation plan: [`docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`](docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md)
 
 ## Why preprocessing is conservative
 

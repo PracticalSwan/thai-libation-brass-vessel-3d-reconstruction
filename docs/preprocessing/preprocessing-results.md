@@ -110,9 +110,9 @@ The pipeline verifies `raw_manifest_before.json` before processing and again aft
 
 ### 13. What comes next
 
-Before reconstruction, the planned Phase A extension will make the project's geometry and ML components explicit: SIFT/RANSAC match visualization, epipolar geometry, 2D vessel shape geometry, and pretrained SAM 2.1 vessel segmentation. These items are designed in `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md` but have not been implemented yet.
+The current next work is split into two implementation plans and stops before reconstruction. Step 6 will make geometry explicit through SIFT/RANSAC match visualization, epipolar geometry, and classical 2D vessel-shape geometry. Combined Steps 7+8 will use pretrained SAM 2.1 on ten representative selected images and measure SIFT features inside versus outside the vessel masks.
 
-After Phase A is implemented and verified, a separately authorized Phase B will verify the installed pyCOLMAP API and run two controlled sparse-reconstruction paths over the same 288 images: an unmasked baseline and a SAM-mask-assisted run through COLMAP's per-image mask interface. Registered-image count, feature/match evidence, sparse-point count, track/reprojection statistics, and background clutter will be compared before choosing the reconstruction path. No geometry-extension implementation or pyCOLMAP reconstruction has run yet.
+The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. The Step 6 and Steps 7+8 implementation plans are linked from `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`. No geometry/ML implementation or pyCOLMAP reconstruction has run yet, and no reconstruction work is part of the current plan.
 
 ## Verification and limitations
 

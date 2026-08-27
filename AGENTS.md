@@ -45,17 +45,18 @@ Current phase: preprocessing is complete and verified. The next separately autho
 
 ## Planned geometry and ML extension
 
-This extension is planned but not implemented yet. Follow `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md` and `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md` when the user authorizes implementation.
+This extension is planned but not implemented yet. The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. The current implementation work is split into exactly two plans:
 
-- Geometry 1 must expose SIFT keypoints/matches, Fundamental Matrix estimation, and RANSAC inliers using the verified selected images.
-- Geometry 2 must visualize epipolar geometry from the same Fundamental Matrix/inlier set and report a geometric residual such as Sampson error.
-- Geometry 3 must show classical 2D vessel geometry with Canny edges, contours, ellipse fitting where valid, and a principal/symmetry axis. These are measurements/visualizations only and must never warp the images.
-- The primary ML addition is pretrained Meta SAM 2.1 vessel segmentation. Start with `sam2.1_hiera_small`; do not add extra ML models unless measured evidence requires them.
-- SAM 2 masks are derived annotations. Keep SAM/PyTorch dependencies isolated from the verified preprocessing environment until compatibility is checked, and never commit model checkpoints/caches.
-- For later pyCOLMAP evaluation, use masks through the supported `ImageReader.mask_path` mechanism. Keep an unmasked baseline and compare both runs before choosing a reconstruction path.
-- A weak/failed mask must not remove an image. Correct the mask or use a full-white fallback so baseline feature extraction remains possible.
+- Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
+- Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
+
+- Step 6 must expose SIFT keypoints/matches, Fundamental Matrix estimation, RANSAC inliers, epipolar geometry, and classical 2D vessel geometry. These are measurements/visualizations only and must never warp the images.
+- Steps 7+8 use pretrained Meta SAM 2.1, starting with `sam2.1_hiera_small`, on ten representative selected images only. Do not generate 288 masks before reconstruction is separately planned.
+- Step 8 reuses Step 6 SIFT extraction to measure features inside versus outside each vessel mask; it does not claim reconstruction improvement.
+- Keep SAM/PyTorch dependencies isolated from the verified preprocessing environment and never commit model checkpoints/caches.
+- A weak/failed segmentation must be corrected or explicitly documented; it must not remove or modify the source photograph.
 - Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, camera poses, point clouds, or reconstruction results.
-- Implementation Phase A stops after geometry/ML analysis and presentation evidence. pyCOLMAP baseline-vs-mask reconstruction is a separately authorized Phase B.
+- Stop after Steps 6-8. Do not create or execute a pyCOLMAP/reconstruction implementation plan until the user explicitly moves the project beyond this scope.
 
 ## Verification
 

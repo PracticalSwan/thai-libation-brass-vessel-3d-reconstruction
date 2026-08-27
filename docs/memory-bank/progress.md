@@ -21,11 +21,13 @@ Updated: 2026-08-27
 - Independent integrity audit reopened all 288 outputs at 3072 x 4080, matched every selection-manifest hash, found no output duplicates, and re-hashed all 297 originals with zero mismatches.
 - All four WARN/REJECT decision sheets and all ten before/after previews visually inspected.
 - Course-presentation walkthrough artifacts were delivered and later removed from the workspace after user approval; processing evidence remains under `preprocessing/` and `docs/preprocessing/`.
-- Geometry/ML extension planning completed: three explicit geometry demonstrations (SIFT/RANSAC matches, epipolar geometry, and 2D vessel shape geometry) plus pretrained SAM 2.1 vessel segmentation with planned COLMAP-compatible masks.
-- The geometry/ML design and implementation plan define concrete presentation figures and a later controlled unmasked-vs-mask-assisted pyCOLMAP comparison. This is documentation only; no new analysis scripts, SAM masks, model weights, or reconstruction outputs were created.
+- Geometry/ML planning is now split into two implementation plans: Step 6 geometry detection/analysis and combined Steps 7+8 SAM 2.1 segmentation + feature-mask analysis.
+- Step 6 plans SIFT/RANSAC matches, epipolar geometry, and classical 2D vessel-shape geometry with explicit presentation figures.
+- Steps 7+8 plan SAM 2.1 segmentation on ten representative selected images and SIFT feature counts inside versus outside the vessel masks; full 288-image masking is deliberately deferred.
+- The previous combined plan is now an index only. pyCOLMAP/reconstruction tasks were removed from the current implementation scope. This remains documentation only; no geometry scripts, SAM masks, model weights, or reconstruction outputs were created.
 
 ## Next phase
 
-- When authorized, implement Phase A geometry/ML analysis and presentation evidence, then stop before pyCOLMAP.
-- After Phase A verification, separately authorize Phase B unmasked versus SAM-mask-assisted pyCOLMAP sparse reconstruction.
-- No geometry-extension implementation, pyCOLMAP, sparse reconstruction, dense reconstruction, meshing, texturing, or Blender reconstruction work has run in this planning phase.
+- When authorized, implement Step 6 first and verify its geometry figures/results.
+- Then implement the combined Steps 7+8 plan and verify its segmentation/feature-mask figures/results.
+- Stop after Step 8. No pyCOLMAP, sparse reconstruction, dense reconstruction, meshing, texturing, or Blender work is currently planned for execution.
