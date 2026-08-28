@@ -4,11 +4,13 @@ import csv
 import hashlib
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import cv2
 import numpy as np
 import pytest
 
+import run_geometry_analysis as geometry_runner
 from run_geometry_analysis import GeometryRunConfig, run_geometry_analysis
 from show_geometry_visuals import build_visuals
 
@@ -201,3 +203,38 @@ def test_visualizer_builds_real_renderings_without_gui_or_source_writes(
     assert metrics["pair"]["ransac_inliers"] >= 8
     assert metrics["shape"]["1"]["status"] in {"ok", "weak_contour"}
     assert {path.name: _sha256(path) for path in images_dir.glob("*.jpg")} == before
+
+
+def test_cli_prints_unavailable_axis_for_honest_shape_failure(
+    monkeypatch: pytest.MonkeyPatch,
+    capsys: pytest.CaptureFixture[str],
+    tmp_path: Path,
+) -> None:
+    """User-approved regression: CLI reporting must preserve valid shape failure states."""
+    args = SimpleNamespace(
+        images_dir=tmp_path / "images",
+        selection_manifest=tmp_path / "selection_manifest.csv",
+        output_root=tmp_path / "analysis",
+        expected_count=2,
+    )
+    summary = geometry_runner.GeometryAnalysisSummary(
+        complete=True,
+        artifacts=(),
+        pair_metrics=(),
+        shape_metrics=(
+            {
+                "index": 1,
+                "status": "no_reliable_contour",
+                "contour_source": "canny_edges",
+                "principal_axis_angle_deg": None,
+            },
+        ),
+    )
+    monkeypatch.setattr(geometry_runner, "_parse_args", lambda: args)
+    monkeypatch.setattr(geometry_runner, "run_geometry_analysis", lambda config: summary)
+
+    assert geometry_runner.main() == 0
+
+    output = capsys.readouterr().out
+    assert "Shape 1: no_reliable_contour" in output
+    assert "axis unavailable" in output

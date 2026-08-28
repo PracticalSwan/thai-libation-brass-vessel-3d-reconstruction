@@ -798,9 +798,12 @@ def main() -> int:
             flush=True,
         )
     for row in summary.shape_metrics:
+        # User-approved reviewer hardening: honest failure states may have no PCA axis.
+        axis = row["principal_axis_angle_deg"]
+        axis_text = "unavailable" if axis is None else f"{axis:.2f} deg"
         print(
             f"Shape {row['index']}: {row['status']}, source {row['contour_source']}, "
-            f"axis {row['principal_axis_angle_deg']:.2f} deg",
+            f"axis {axis_text}",
             flush=True,
         )
     return 0
