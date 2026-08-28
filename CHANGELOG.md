@@ -16,7 +16,30 @@ All notable verified project milestones are recorded here.
 - Deterministic 288-image `preprocessing/pycolmap_input/images/` set and selection manifest.
 - Ten before/after previews, four complete WARN/REJECT sheets, and SIFT inlier chart.
 - Final raw integrity and output checks: 297/297 original hashes unchanged; 288/288 selected outputs readable at 3072 x 4080; no duplicate output hashes.
-- Geometry/ML planning split into two bounded implementation plans: Step 6 geometry detection/analysis and combined Steps 7+8 SAM 2.1 segmentation + feature-mask analysis. The ML phase is limited to ten representative selected images, and pyCOLMAP/reconstruction tasks are excluded from the current implementation scope. Planning only; no new analysis outputs were produced.
+- Initial Geometry/ML planning split the work into Step 6 geometry
+  detection/analysis and combined Steps 7+8 SAM 2.1 segmentation + feature-mask
+  analysis. The ML phase remains limited to ten representative selected images,
+  and pyCOLMAP/reconstruction remains excluded from the current scope.
+- Step 6 selected-input verifier and shared scale contract in `analysis_common.py`,
+  including manifest-order lookup plus readability, dimensions, size, and
+  SHA-256 checks for all 288 inputs before output creation.
+- Step 6 SIFT/Fundamental Matrix implementation with BF-L2 ratio-test matches,
+  strict RANSAC-mask handling, epipolar lines, and Sampson residual reports.
+- Step 6 classical shape implementation with grayscale/Canny evidence,
+  deterministic brass-color contour selection with Canny fallback, bounding
+  box, centroid, PCA principal axis, and residual-gated optional ellipse fit.
+- Deterministic `run_geometry_analysis.py` orchestration and
+  `show_geometry_visuals.py` popup visualizer, backed by 31 focused Step 6
+  tests and real-input smoke checks.
+- Six visually inspected real Step 6 presentation figures and five
+  machine-readable report files under `analysis/`, including complete source,
+  configuration, runtime, measurement, and scope-exclusion provenance.
+- Measured Step 6 evidence: pair 165-166 produced 478 candidates / 300 RANSAC
+  inliers; pair 255-256 produced 57 / 18; primary-pair median Sampson error was
+  0.1431 analysis pixels squared.
+- Final Step 6 integrity proof: 288/288 selected images matched their manifest,
+  and all 297 raw originals remained unchanged with zero size or SHA-256
+  mismatches.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -27,5 +50,7 @@ All notable verified project milestones are recorded here.
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- When explicitly authorized, implement the Step 6 geometry plan first.
-- After Step 6 verification, implement the combined Steps 7+8 SAM 2.1 segmentation and feature-mask analysis plan, then stop before pyCOLMAP.
+- Review and revise the provisional Steps 7+8 plan against the completed Step 6
+  interfaces before any SAM/PyTorch implementation is separately authorized.
+- Continue to stop before pyCOLMAP and reconstruction unless that later phase is
+  explicitly authorized.

@@ -1,0 +1,182 @@
+{
+  "artifacts": [
+    "geometry/epipolar_metrics.json",
+    "geometry/pair_metrics.csv",
+    "geometry/shape_metrics.csv",
+    "previews/presentation/geometry_01_matches_165_166.png",
+    "previews/presentation/geometry_01_matches_255_256.png",
+    "previews/presentation/geometry_02_epipolar_165_166.png",
+    "previews/presentation/geometry_03_shape_165.png",
+    "previews/presentation/geometry_03_shape_255.png",
+    "previews/presentation/geometry_04_summary.png",
+    "reports/geometry_summary.json",
+    "reports/input_verification.json"
+  ],
+  "complete": true,
+  "configuration": {
+    "epipolar_pair": [
+      165,
+      166
+    ],
+    "pairs": [
+      [
+        165,
+        166
+      ],
+      [
+        255,
+        256
+      ]
+    ],
+    "shape": {
+      "border_margin": 2,
+      "canny_high": 135,
+      "canny_low": 45,
+      "ellipse_median_residual_maximum": 0.08,
+      "ellipse_p90_residual_maximum": 0.25,
+      "gaussian_kernel": 5,
+      "gold_hue_high": 40,
+      "gold_hue_low": 5,
+      "gold_saturation_minimum": 55,
+      "gold_value_minimum": 35,
+      "maximum_width": 1200,
+      "minimum_area_fraction": 0.002,
+      "minimum_gold_fraction": 0.002,
+      "minimum_score": 0.3,
+      "morphology_iterations": 2,
+      "morphology_kernel": 11,
+      "weak_score": 0.45
+    },
+    "shape_indices": [
+      165,
+      255
+    ],
+    "sift": {
+      "confidence": 0.99,
+      "maximum_width": 1200,
+      "minimum_correspondences": 8,
+      "nfeatures": 8000,
+      "ransac_threshold": 1.5,
+      "ratio_threshold": 0.75,
+      "rng_seed": 4213
+    }
+  },
+  "generated_at_utc": "2026-08-28T15:54:12.075986+00:00",
+  "pair_metrics": [
+    {
+      "analysis_height_1": 1594,
+      "analysis_height_2": 1594,
+      "analysis_width_1": 1200,
+      "analysis_width_2": 1200,
+      "candidate_matches": 478,
+      "filename_1": "IMG20260826125013.jpg",
+      "filename_2": "IMG20260826125016.jpg",
+      "index_1": 165,
+      "index_2": 166,
+      "inlier_ratio": 0.6276150627615062,
+      "keypoints_1": 4653,
+      "keypoints_2": 4643,
+      "median_sampson_error": 0.14314949483481546,
+      "p90_sampson_error": 0.7593906938141327,
+      "ransac_inliers": 300,
+      "status": "ok"
+    },
+    {
+      "analysis_height_1": 1594,
+      "analysis_height_2": 1594,
+      "analysis_width_1": 1200,
+      "analysis_width_2": 1200,
+      "candidate_matches": 57,
+      "filename_1": "IMG20260826130051.jpg",
+      "filename_2": "IMG20260826130053.jpg",
+      "index_1": 255,
+      "index_2": 256,
+      "inlier_ratio": 0.3157894736842105,
+      "keypoints_1": 1233,
+      "keypoints_2": 2289,
+      "median_sampson_error": 0.08111871233624517,
+      "p90_sampson_error": 0.9010828241543595,
+      "ransac_inliers": 18,
+      "status": "ok"
+    }
+  ],
+  "runtime": {
+    "numpy": "2.4.0",
+    "opencv": "4.13.0",
+    "python": "3.14.2"
+  },
+  "scope_exclusions": [
+    "Step 7/8 ML and SAM",
+    "pyCOLMAP and reconstruction",
+    "meshing, texturing, and Blender"
+  ],
+  "shape_metrics": [
+    {
+      "analysis_height": 1594,
+      "analysis_width": 1200,
+      "bounding_box_height": 1414,
+      "bounding_box_width": 577,
+      "bounding_box_x": 312,
+      "bounding_box_y": 132,
+      "candidate_count": 2,
+      "centroid_x": 595.7912536580458,
+      "centroid_y": 973.5681971052467,
+      "contour_area": 389267.5,
+      "contour_area_fraction": 0.20350663948138853,
+      "contour_source": "hsv_saturation_mask",
+      "ellipse_angle_deg": null,
+      "ellipse_axis_1": null,
+      "ellipse_axis_2": null,
+      "ellipse_center_x": null,
+      "ellipse_center_y": null,
+      "ellipse_fit_median_residual": 0.12836271180030712,
+      "ellipse_fit_p90_residual": 0.4381024654585334,
+      "filename": "IMG20260826125013.jpg",
+      "index": 165,
+      "original_height": 4080,
+      "original_width": 3072,
+      "principal_axis_angle_deg": 88.9912368624923,
+      "scale_x_to_original": 2.56,
+      "scale_y_to_original": 2.559598494353827,
+      "selected_score": 0.9212986237463275,
+      "status": "ellipse_unavailable"
+    },
+    {
+      "analysis_height": 1594,
+      "analysis_width": 1200,
+      "bounding_box_height": 678,
+      "bounding_box_width": 577,
+      "bounding_box_x": 349,
+      "bounding_box_y": 719,
+      "candidate_count": 8,
+      "centroid_x": 634.1960715429869,
+      "centroid_y": 1085.6864387960159,
+      "contour_area": 274688.0,
+      "contour_area_fraction": 0.1436051861145964,
+      "contour_source": "hsv_saturation_mask",
+      "ellipse_angle_deg": 172.25558471679688,
+      "ellipse_axis_1": 558.72705078125,
+      "ellipse_axis_2": 639.7835693359375,
+      "ellipse_center_x": 634.2037963867188,
+      "ellipse_center_y": 1083.0172119140625,
+      "ellipse_fit_median_residual": 0.025805179979894288,
+      "ellipse_fit_p90_residual": 0.1070073927984402,
+      "filename": "IMG20260826130051.jpg",
+      "index": 255,
+      "original_height": 4080,
+      "original_width": 3072,
+      "principal_axis_angle_deg": 82.4996000814819,
+      "scale_x_to_original": 2.56,
+      "scale_y_to_original": 2.559598494353827,
+      "selected_score": 0.7708684238150159,
+      "status": "ok"
+    }
+  ],
+  "source": {
+    "selected_images_directory": "C:\\Assumption University\\CSX4213\\Project\\preprocessing\\pycolmap_input\\images",
+    "selection_manifest": "C:\\Assumption University\\CSX4213\\Project\\preprocessing\\reports\\selection_manifest.csv",
+    "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91",
+    "verified_selected_count": 288
+  },
+  "step": 6
+}

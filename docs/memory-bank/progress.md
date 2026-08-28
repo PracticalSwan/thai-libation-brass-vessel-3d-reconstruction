@@ -1,6 +1,6 @@
 # Progress
 
-Updated: 2026-08-27
+Updated: 2026-08-28
 
 ## Completed and verified
 
@@ -24,10 +24,37 @@ Updated: 2026-08-27
 - Geometry/ML planning is now split into two implementation plans: Step 6 geometry detection/analysis and combined Steps 7+8 SAM 2.1 segmentation + feature-mask analysis.
 - Step 6 plans SIFT/RANSAC matches, epipolar geometry, and classical 2D vessel-shape geometry with explicit presentation figures.
 - Steps 7+8 plan SAM 2.1 segmentation on ten representative selected images and SIFT feature counts inside versus outside the vessel masks; full 288-image masking is deliberately deferred.
-- The previous combined plan is now an index only. pyCOLMAP/reconstruction tasks were removed from the current implementation scope. This remains documentation only; no geometry scripts, SAM masks, model weights, or reconstruction outputs were created.
+- The previous combined plan is now an index only. pyCOLMAP/reconstruction
+  tasks were removed from the current implementation scope; no SAM masks, model
+  weights, or reconstruction outputs were created.
+- Step 6 plan revised into a flexible execution contract before implementation;
+  Steps 7+8 remain provisional and depend only on the selected-record and
+  SIFT-scale interfaces.
+- Step 6 implemented in `analysis_common.py`, `geometry_detection.py`,
+  `shape_geometry.py`, `run_geometry_analysis.py`, and
+  `show_geometry_visuals.py` with 31 focused unit/integration tests.
+- The real Step 6 orchestrator verified all 288 selected inputs, then generated
+  11 intentional artifacts: six presentation figures and five JSON/CSV reports.
+- Real pair 165-166 produced 478 Lowe-ratio candidates and 300 Fundamental
+  Matrix RANSAC inliers (0.628 ratio); real supporting pair 255-256 produced 57
+  candidates and 18 inliers (0.316 ratio).
+- Primary epipolar evidence reported median/p90 Sampson errors of 0.1431/0.7594
+  analysis pixels squared and explicitly excluded pose or reconstruction claims.
+- Classical shape analysis retained contour, centroid, bounding box, and PCA
+  axis for both representative images. It rejected the misleading global
+  side-view ellipse for image 165 and retained the valid top-down/detail ellipse
+  for image 255.
+- All six final presentation figures were visually inspected. A clipped
+  epipolar header and the weak image-165 ellipse were found during review,
+  corrected, regenerated, and inspected again.
+- The real popup visualizer and no-display smoke path both completed. Final
+  integrity checks confirmed all 297 raw photographs unchanged and all 288
+  selected images still matching the manifest.
 
 ## Next phase
 
-- When authorized, implement Step 6 first and verify its geometry figures/results.
-- Then implement the combined Steps 7+8 plan and verify its segmentation/feature-mask figures/results.
-- Stop after Step 8. No pyCOLMAP, sparse reconstruction, dense reconstruction, meshing, texturing, or Blender work is currently planned for execution.
+- First revise the provisional combined Steps 7+8 plan using the completed Step
+  6 interfaces and measured evidence; execute it only under separate
+  authorization.
+- Stop after Step 8. No pyCOLMAP, sparse reconstruction, dense reconstruction,
+  meshing, texturing, or Blender work is currently planned for execution.

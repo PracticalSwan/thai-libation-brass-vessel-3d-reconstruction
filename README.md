@@ -7,6 +7,7 @@ The explainable project pipeline is:
 ```text
 smartphone capture
 -> OpenCV quality analysis and conservative preprocessing
+-> classical 2D/two-view geometry analysis
 -> pyCOLMAP feature extraction and matching
 -> Structure from Motion / sparse reconstruction
 -> dense reconstruction where practical
@@ -16,7 +17,10 @@ smartphone capture
 
 ## Project status
 
-The real-image preprocessing and QA phase is complete and verified. The project is ready to begin pyCOLMAP, but no pyCOLMAP reconstruction has been run yet.
+The real-image preprocessing, QA, and Step 6 classical geometry-analysis phases
+are complete and verified. The project is ready for its next separately
+authorized phase, but no SAM/PyTorch analysis or pyCOLMAP reconstruction has
+been run.
 
 Measured preprocessing result:
 
@@ -28,6 +32,16 @@ Measured preprocessing result:
 - all 288 selected outputs reopened successfully at 3072 x 4080 with no duplicate hashes;
 - all 297 originals re-hashed against the publication baseline with zero size or SHA-256 mismatches.
 
+Measured Step 6 geometry result:
+
+- all 288 selected inputs were re-verified against the selection manifest before analysis;
+- neighboring pair 165-166 produced 478 ratio-test candidates and 300 Fundamental Matrix RANSAC inliers, an inlier ratio of 0.628;
+- supporting pair 255-256 produced 57 candidates and 18 inliers, honestly retaining its lower-feature result;
+- primary-pair median Sampson error was 0.1431 analysis pixels squared;
+- classical contour/PCA measurements were produced for images 165 and 255; the weak global ellipse for the non-elliptical side view was deliberately omitted, while the top-down/detail ellipse passed residual checks;
+- six real presentation figures and five machine-readable reports were generated under `analysis/`;
+- all 297 raw photographs and all 288 selected images were rechecked unchanged after analysis.
+
 The exact next-stage input directory is:
 
 ```text
@@ -36,17 +50,20 @@ preprocessing/pycolmap_input/images/
 
 Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md) before reconstruction. The full measured method, tables, visual evidence, verification details, and limitations are in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
 
-## Planned geometry + machine-learning extension
+## Geometry + planned machine-learning extension
 
-The next work is documented but **not implemented yet** and is intentionally split into two bounded implementation plans. The project will stop after Steps 6-8; pyCOLMAP is not part of the current implementation scope.
+Step 6 is implemented and verified. Steps 7+8 remain provisional and
+unimplemented; their plan must be revised against the real Step 6 interface
+before any ML work begins. The project boundary still stops before pyCOLMAP.
 
 ### Step 6 — Geometry Detection / Analysis
 
-- SIFT keypoints and candidate matches;
-- Fundamental Matrix + RANSAC inliers;
-- epipolar lines and geometric residuals;
-- Canny edges, contours, ellipse fitting where valid, centroid/bounding box, and principal/symmetry axis;
-- real presentation-ready geometry figures.
+- implemented SIFT keypoints and candidate matches;
+- implemented Fundamental Matrix + exact RANSAC inlier handling;
+- implemented epipolar lines and Sampson residuals;
+- implemented Canny edges, classical contours, ellipse fitting where valid,
+  centroid/bounding box, and PCA principal axis;
+- generated and visually verified six presentation-ready geometry figures.
 
 ### Steps 7 + 8 — SAM 2.1 + Feature-Mask Analysis
 
@@ -63,7 +80,7 @@ flowchart LR
     A --> D[Step 6: Canny + contour + ellipse/axis]
     A --> E[Step 7: SAM 2.1 on 10 representative images]
     E --> F[Step 8: SIFT inside vs outside vessel mask]
-    C --> G[Geometry evidence]
+    C --> G[Verified Step 6 geometry evidence]
     D --> G
     F --> H[ML evidence]
     G --> I[STOP before pyCOLMAP]
@@ -72,6 +89,7 @@ flowchart LR
 
 - Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)
 - Plan index: [`docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`](docs/superpowers/plans/2026-08-27-geometry-ml-integration.md)
+- Step 6 measured results: [`docs/geometry-ml/geometry-results.md`](docs/geometry-ml/geometry-results.md)
 - Step 6 implementation plan: [`docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`](docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md)
 - Steps 7+8 implementation plan: [`docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`](docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md)
 
@@ -96,13 +114,37 @@ python run_preprocessing.py
 
 The verified local environment used Python 3.14.2, OpenCV 4.13.0, NumPy 2.4.0, Pillow 12.1.1, and pytest 9.1.1.
 
+## Reproduce Step 6 geometry analysis
+
+Run the deterministic analysis and regenerate its reports and presentation
+figures:
+
+```powershell
+python -B run_geometry_analysis.py
+```
+
+Open the live OpenCV popup views; press `q` or `Esc` to close all windows:
+
+```powershell
+python -B show_geometry_visuals.py --mode all
+```
+
+Modes `matches`, `epipolar`, and `shape` are also available. For a bounded
+non-GUI smoke check, add `--no-display`.
+
 ## Repository layout
 
 ```text
 quality_check.py                         quality metrics, calibration, decisions
 preprocess_images.py                     geometry-preserving photometric transform
 run_preprocessing.py                     reports, previews, SIFT experiment, export
-tests/                                   21 focused behavior/integration tests
+tests/                                   52 focused preprocessing and Step 6 tests
+analysis_common.py                       selected-manifest loading and integrity verification
+geometry_detection.py                    scaled SIFT, RANSAC, epilines, and residuals
+shape_geometry.py                        classical edges, contour, PCA, and optional ellipse
+run_geometry_analysis.py                 Step 6 orchestration, reports, and figures
+show_geometry_visuals.py                 real popup visualizer for the Step 6 flow
+analysis/                                Step 6 machine reports and presentation figures
 preprocessing/reports/                   audit and final measured reports
 preprocessing/previews/contact_sheets/   full raw-sequence visual audit
 preprocessing/previews/final/            before/after, decision, and SIFT figures
@@ -122,6 +164,11 @@ The separate local `IMG20260826122949.zip` is only a redundant archive of the sa
 - `preprocessing/reports/raw_verification_after.json` — final raw-data immutability proof.
 - `preprocessing/reports/preprocessing_summary.json` — phase-level count and outcome summary.
 - `preprocessing/previews/final/` — ten before/after previews, four complete WARN/REJECT sheets, and the SIFT inlier chart.
+- `analysis/reports/geometry_summary.json` — Step 6 source, configuration,
+  measurements, exclusions, and artifact manifest.
+- `analysis/geometry/` — pair, epipolar, and classical shape measurements.
+- `analysis/previews/presentation/` — the six visually inspected real Step 6
+  figures.
 
 ## Collaboration
 

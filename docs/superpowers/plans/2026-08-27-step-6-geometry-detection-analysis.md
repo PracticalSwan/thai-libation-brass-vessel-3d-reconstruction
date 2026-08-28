@@ -1,6 +1,12 @@
 # Step 6 Geometry Detection and Analysis Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+Updated: 2026-08-28
+
+**Status:** Implemented and locally verified on 2026-08-28. The final
+commit/push gate follows this documentation snapshot and is verified from Git,
+not predicted inside the plan. The checkboxes below preserve the original
+observable execution gates rather than serving as the live completion record;
+measured results are in `docs/geometry-ml/geometry-results.md`.
 
 **Goal:** Implement the three planned geometry demonstrations—SIFT/Fundamental-Matrix/RANSAC matching, epipolar geometry, and classical 2D vessel-shape geometry—and generate clear presentation figures from the verified selected images.
 
@@ -10,6 +16,42 @@
 
 **Spec:** `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`
 
+## Implemented result
+
+- all 288 selected images verified before output generation;
+- pair 165-166 measured 478 candidates and 300 RANSAC inliers;
+- pair 255-256 measured 57 candidates and 18 RANSAC inliers;
+- primary median Sampson error measured 0.1431 analysis pixels squared;
+- shape 165 retained contour/box/centroid/PCA but rejected its weak global
+  ellipse; shape 255 retained its valid ellipse;
+- six presentation figures and five machine-readable reports generated;
+- all six figures visually inspected, and both live-popup and no-display
+  visualizer paths completed bounded smoke checks;
+- 31 focused Step 6 tests and the final 52-test repository suite passed;
+- 297 raw and 288 selected images reverified unchanged.
+
+## Observable acceptance criteria
+
+- full verification of the 288-row selected manifest succeeds before final
+  Step 6 output paths are created or replaced;
+- the selected-image boundary reports missing, extra, unreadable, dimension,
+  size, and SHA-256 failures distinctly and keeps deterministic one-based order;
+- SIFT results expose original/analysis dimensions and explicit coordinate scale
+  metadata suitable for later mask/keypoint alignment;
+- Fundamental-Matrix success contains one finite 3x3 matrix and its exact RANSAC
+  inlier mask; insufficient/degenerate cases are structured failures;
+- epipolar lines and Sampson errors consume that same matrix/inlier set;
+- shape results contain explainable candidates, Canny edges, selected contour
+  when defensible, box, centroid, PCA axis, and ellipse only when valid;
+- machine-readable reports retain complete measured data while presentation
+  figures draw deterministic readable subsets;
+- the manual Python launcher reuses production analysis/rendering code, displays
+  real project visuals by default, and has a bounded no-display smoke path;
+- every final figure is visually inspected, both source sets reverify with zero
+  mismatches, focused tests and compilation pass freshly, residue is cleaned,
+  documentation matches measured results, and the intentional commit is pushed
+  and verified on GitHub.
+
 ## Global Constraints
 
 - `IMG20260826122949/` is immutable.
@@ -18,10 +60,38 @@
 - Temporary in-memory downscaling to maximum width 1200 is allowed only for SIFT analysis and must preserve aspect ratio.
 - Step 6 must not load SAM 2, create ML masks, install PyTorch, or invoke pyCOLMAP.
 - Presentation figures must use real project images and real measured geometry; do not fabricate matches, lines, contours, or metrics.
-- Primary two-view presentation pair: selected-image indices 165-166.
-- Low-feature supporting pair: selected-image indices 255-256.
-- Primary single-image shape example: selected-image index 165; secondary viewpoint example: index 255.
+- Preferred two-view presentation pair: selected-image indices 165-166.
+- Preferred supporting/low-feature pair: selected-image indices 255-256.
+- Preferred single-image shape examples: selected-image indices 165 and 255.
+- These indices are defaults. Replace a default with a measured, visually better
+  representative only when the default is insufficient/misleading; record the
+  actual index, metrics, substitution reason, and resulting artifact name.
 - Reports must state when a pair or shape measurement is insufficient rather than forcing a result.
+- Use red-green TDD for production behavior. Documentation/generated figures do
+  not receive source-text tests; their real outputs and consuming paths are
+  checked instead.
+- Do not make intermediate commits. After the full completion gate passes, stage
+  only intentional Step 6 files, preserve the user's `.gitignore` change, make
+  one scoped commit, push `main`, and verify the remote commit.
+
+## Public coordinate and configuration conventions
+
+- Public image sizes are `(width, height)`; OpenCV array shapes remain
+  `(height, width[, channels])`.
+- SIFT keypoints, correspondences, `F`, epilines, and Sampson errors use analysis
+  pixels. Shape measurements also state their coordinate space explicitly.
+- `scale_x_to_original = original_width / analysis_width` and
+  `scale_y_to_original = original_height / analysis_height`. Both values are
+  exposed even though aspect-ratio preservation makes them nearly equal; callers
+  must not infer the scale from one rounded dimension.
+- `SiftConfig`: maximum width `1200`, `nfeatures=8000`, BF-L2 `k=2`, Lowe ratio
+  `0.75`, minimum correspondences `8`, FM-RANSAC threshold `1.5` analysis pixels,
+  confidence `0.99`, RNG seed `4213`.
+- `ShapeConfig` keeps analysis width, Canny thresholds, optional small morphology,
+  minimum contour/ellipse criteria, and simple candidate-score weights together.
+  Tune these only from representative real images and serialize final values.
+- Full measured match/inlier arrays stay in memory/results. Display sampling is
+  deterministic and affects drawing only.
 
 ---
 
@@ -33,8 +103,11 @@
 - Later generated: `analysis/reports/input_verification.json`
 
 **Interfaces:**
-- `SelectedImageRecord(filename: str, width: int, height: int, sha256: str, decision: str)`
-- `load_verified_selected_images(images_dir: Path, manifest_path: Path) -> list[SelectedImageRecord]`
+- `SelectedImageRecord(index, filename, variant, width, height, size_bytes, sha256, decision, reasons)`
+- `VerifiedSelectedSet(records, manifest_sha256, images_dir)`
+- `load_selected_manifest(manifest_path: Path) -> tuple[SelectedImageRecord, ...]`
+- `verify_selected_images(images_dir: Path, manifest_path: Path, expected_count: int | None = None) -> VerifiedSelectedSet`
+- `verify_selected_record(images_dir: Path, record: SelectedImageRecord, verify_hash: bool = True) -> Path`
 - `path_for_index(records: list[SelectedImageRecord], images_dir: Path, one_based_index: int) -> Path`
 
 - [ ] **Step 1: Write failing manifest-boundary tests**
@@ -62,7 +135,11 @@ Expected: import/function failures because `analysis_common.py` does not exist.
 
 - [ ] **Step 3: Implement the minimum verifier**
 
-Read `preprocessing/reports/selection_manifest.csv`, preserve its deterministic row order, require exactly 288 records for the real run, reopen each image, compare width/height, and SHA-256 each file. Do not create `analysis/` outputs until verification succeeds.
+Read `preprocessing/reports/selection_manifest.csv`, preserve row order as the
+canonical selected index, validate safe unique filenames and required fields,
+reopen each image, compare dimensions and size, and SHA-256 every file. The
+generic verifier accepts fixture counts; the real orchestrator explicitly
+requires 288. Do not create final `analysis/` outputs until this succeeds.
 
 - [ ] **Step 4: Run the focused test and verify GREEN**
 
@@ -77,13 +154,9 @@ preprocessing/reports/selection_manifest.csv
 
 Expected real result: 288 verified records with no mismatch. Write `analysis/reports/input_verification.json` only when the final Step 6 orchestrator runs.
 
-- [ ] **Step 6: Commit the boundary helper**
+- [ ] **Step 6: Record the boundary as ready for the next red-green increment**
 
-Suggested commit:
-
-```text
-feat(analysis): verify geometry analysis inputs
-```
+Do not commit yet; the final publication gate owns the single Step 6 commit.
 
 ---
 
@@ -97,11 +170,16 @@ feat(analysis): verify geometry analysis inputs
 - Later generated: `analysis/previews/presentation/geometry_01_matches_255_256.png`
 
 **Interfaces:**
-- `prepare_matching_image(image: np.ndarray, maximum_width: int = 1200) -> tuple[np.ndarray, float]`
-- `extract_sift(image: np.ndarray, maximum_width: int = 1200, nfeatures: int = 8000) -> SiftFeatures`
+- `ImageScale(original_size, analysis_size, scale_x_to_original, scale_y_to_original)` with explicit point-conversion helpers
+- `SiftFeatures(analysis_image, keypoints, descriptors, scale, status)`
+- `prepare_analysis_image(image: np.ndarray, maximum_width: int = 1200) -> tuple[np.ndarray, ImageScale]`
+- `extract_sift(image: np.ndarray, config: SiftConfig = SiftConfig()) -> SiftFeatures`
 - `match_sift(first: SiftFeatures, second: SiftFeatures, ratio_threshold: float = 0.75) -> list[cv2.DMatch]`
 - `estimate_fundamental_geometry(first: SiftFeatures, second: SiftFeatures, matches: list[cv2.DMatch], ransac_threshold: float = 1.5, confidence: float = 0.99, rng_seed: int = 4213) -> GeometryMatchResult`
-- `GeometryMatchResult` stores the finite `F` when available, candidate matches, inlier mask/matches, point arrays, keypoint counts, candidate-match count, inlier count, inlier ratio, and status.
+- `GeometryMatchResult` stores the finite `F` when available, candidate matches,
+  exact inlier mask/matches, candidate point arrays, keypoint counts, counts,
+  ratio, configuration, and `ok`/`descriptors_unavailable`/
+  `insufficient_geometry`/`degenerate_fundamental_matrix` status.
 
 - [ ] **Step 1: Write failing SIFT/matching tests**
 
@@ -169,13 +247,9 @@ Include filenames, keypoints per image, candidate matches, inliers, and inlier r
 
 Reject output if labels overlap, images are stretched, match lines are unreadably dense, or the low-feature example is presented as a failure when it simply has fewer correspondences.
 
-- [ ] **Step 11: Commit two-view geometry**
+- [ ] **Step 11: Record two-view geometry as ready for integration**
 
-Suggested commit:
-
-```text
-feat(geometry): add two-view match verification
-```
+Do not commit yet.
 
 ---
 
@@ -191,6 +265,7 @@ feat(geometry): add two-view match verification
 - `compute_epilines(F: np.ndarray, points: np.ndarray, which_image: int) -> np.ndarray`
 - `sampson_errors(F: np.ndarray, points_a: np.ndarray, points_b: np.ndarray) -> np.ndarray`
 - `select_spatial_inliers(points_a: np.ndarray, points_b: np.ndarray, inlier_mask: np.ndarray, max_points: int = 10) -> np.ndarray`
+- `clip_epiline_to_image(line: np.ndarray, image_size: tuple[int, int]) -> tuple[tuple[int, int], tuple[int, int]] | None`
 
 - [ ] **Step 1: Write failing epipolar tests**
 
@@ -223,13 +298,9 @@ Select 8-10 spatially distributed inliers. Draw each point and corresponding epi
 
 Each matching point should lie close to its corresponding line in the opposite view. Confirm the figure does not imply camera-pose recovery or a completed 3D reconstruction.
 
-- [ ] **Step 7: Commit epipolar analysis**
+- [ ] **Step 7: Record epipolar analysis as ready for integration**
 
-Suggested commit:
-
-```text
-feat(geometry): visualize epipolar constraints
-```
+Do not commit yet.
 
 ---
 
@@ -243,11 +314,16 @@ feat(geometry): visualize epipolar constraints
 - Later generated: `analysis/previews/presentation/geometry_03_shape_255.png`
 
 **Interfaces:**
-- `detect_edges(image: np.ndarray) -> EdgeResult`
+- `ShapeConfig(...)` centralizes deterministic analysis/edge/cleanup/scoring values
+- `detect_edges(image: np.ndarray, config: ShapeConfig = ShapeConfig()) -> EdgeResult`
 - `find_contour_candidates(edges: np.ndarray) -> list[np.ndarray]`
-- `select_vessel_contour(candidates: list[np.ndarray], image_shape: tuple[int, int]) -> np.ndarray | None`
+- `score_contour_candidates(candidates, image_shape, config) -> tuple[ContourCandidate, ...]`
+- `select_vessel_contour(candidates, image_shape, config) -> ContourCandidate | None`
 - `measure_contour_geometry(contour: np.ndarray) -> ShapeGeometryResult`
-- `ShapeGeometryResult` contains contour area, bounding box, centroid, principal-axis angle, optional ellipse center/axes/angle, and status.
+- `ShapeAnalysisResult` contains the analysis image/scale, binary edge map,
+  candidate diagnostics, optional selected contour, contour area, bounding box,
+  centroid, principal-axis endpoints/angle, optional ellipse center/axes/angle,
+  confidence notes, and structured status.
 
 - [ ] **Step 1: Write failing controlled-shape tests**
 
@@ -296,13 +372,9 @@ Each figure must show:
 
 Document if the top-down/detail view produces different or weaker ellipse/axis interpretation. Do not conceal a weak measurement.
 
-- [ ] **Step 10: Commit classical shape geometry**
+- [ ] **Step 10: Record classical shape geometry as ready for integration**
 
-Suggested commit:
-
-```text
-feat(geometry): add vessel shape measurements
-```
+Do not commit yet.
 
 ---
 
@@ -311,6 +383,8 @@ feat(geometry): add vessel shape measurements
 **Files:**
 - Create: `run_geometry_analysis.py`
 - Create: `tests/test_run_geometry_analysis.py`
+- Create: `show_geometry_visuals.py`
+- Create or extend: a focused no-display visualizer smoke test
 - Later generated: `analysis/reports/geometry_summary.json`
 - Later generated: `analysis/previews/presentation/geometry_04_summary.png`
 - Create after real run: `docs/geometry-ml/geometry-results.md`
@@ -321,6 +395,11 @@ feat(geometry): add vessel shape measurements
 
 **Interfaces:**
 - `run_geometry_analysis(images_dir: Path, selection_manifest: Path, output_root: Path) -> GeometryAnalysisSummary`
+- `render/save` helpers are reusable by both the orchestrator and visualizer; the
+  visualizer must not duplicate SIFT, `F`, epipolar, or shape algorithms.
+- `show_geometry_visuals.py --mode {matches,epipolar,shape,all}` displays real
+  labeled visuals by default; `--no-display` exercises analysis/rendering and
+  exits without blocking. The documented close key is `q` or `Esc`.
 
 - [ ] **Step 1: Write failing orchestration tests**
 
@@ -353,7 +432,20 @@ verify 288 selected inputs
 → final summary
 ```
 
-- [ ] **Step 4: Generate `geometry_04_summary.png`**
+The orchestrator validates that `output_root` does not overlap raw or selected
+sources, requires exactly 288 verified records in the real entrypoint, resolves
+preferred defaults through manifest records, and records actual substitutions.
+Write JSON/CSV atomically enough that a failed run cannot be mistaken for a
+complete summary; the completion flag is written last.
+
+- [ ] **Step 4: Implement and smoke-test the professor popup visualizer**
+
+Normal execution recomputes/reuses the real analysis functions for requested
+modes, prints concise metrics, opens display-scaled copies, blocks for manual
+viewing, and always destroys windows cleanly. `--no-display` must not call a GUI
+wait and must complete in bounded time.
+
+- [ ] **Step 5: Generate `geometry_04_summary.png`**
 
 Create one presentation-ready summary image containing real thumbnails from:
 
@@ -363,7 +455,7 @@ Create one presentation-ready summary image containing real thumbnails from:
 
 Label the three techniques explicitly. Do not include ML or pyCOLMAP content in this Step 6 summary.
 
-- [ ] **Step 5: Run all Step 6 focused tests**
+- [ ] **Step 6: Run all Step 6 focused tests**
 
 Run:
 
@@ -373,15 +465,15 @@ python -B -m pytest -p no:cacheprovider -q tests/test_analysis_common.py tests/t
 
 Expected: all Step 6 tests pass.
 
-- [ ] **Step 6: Run the real Step 6 analysis**
+- [ ] **Step 7: Run the real Step 6 analysis**
 
 Run the orchestrator on the verified selected set. Record actual metrics only.
 
-- [ ] **Step 7: Verify source immutability**
+- [ ] **Step 8: Verify source immutability**
 
 Re-hash all 297 raw photographs and all 288 selected images against their existing manifests. Expected: zero mismatches.
 
-- [ ] **Step 8: Visually inspect every Step 6 presentation figure**
+- [ ] **Step 9: Visually inspect every Step 6 presentation figure**
 
 Required figures:
 
@@ -394,21 +486,29 @@ geometry_03_shape_255.png
 geometry_04_summary.png
 ```
 
-- [ ] **Step 9: Write measured Step 6 results documentation**
+- [ ] **Step 10: Write measured Step 6 results documentation**
 
 Create `docs/geometry-ml/geometry-results.md` from actual generated metrics and figures. Keep planned versus measured claims separate.
 
-- [ ] **Step 10: Cleanup and final verification**
+- [ ] **Step 11: Cleanup and final verification**
 
 Remove only task-created caches, scratch renders, temporary probes, and failed partial figures. Preserve intentional reports and presentation evidence.
 
-- [ ] **Step 11: Commit Step 6 implementation separately**
+- [ ] **Step 12: Run the fresh final gate, commit, push, and verify GitHub**
 
-Suggested commit:
+Before committing, run changed-file compilation, the complete focused Step 6
+test command, real selected/raw integrity checks, required-artifact validation,
+`git diff --check`, and inspect the exact status/diff. Stage the intentional
+Step 6 source, tests, documentation, reports, and final figures only; do not
+stage the user's unrelated `.gitignore` modification. Then commit and push:
 
 ```text
 feat(geometry): add presentation-ready geometry analysis
 ```
+
+Verify local `HEAD`, `origin/main`, and the pushed commit SHA agree and the
+remaining worktree change is only the preserved user-owned change, if still
+present.
 
 ## Step 6 completion gate
 
@@ -418,6 +518,11 @@ Step 6 is complete only when:
 - the required presentation figures are visually readable;
 - reports contain fresh selected-JPEG measurements rather than copied preprocessing numbers;
 - the 297 raw files and 288 selected images still match their manifests;
+- the manual popup entrypoint and bounded no-display path both use production
+  rendering/analysis functions;
+- final tests/compilation/diff/integrity checks are fresh and successful;
+- the intentional Step 6 commit is present on `origin/main` while unrelated
+  local work remains unstaged;
 - no ML/SAM or pyCOLMAP work was started.
 
 ## Plan self-review

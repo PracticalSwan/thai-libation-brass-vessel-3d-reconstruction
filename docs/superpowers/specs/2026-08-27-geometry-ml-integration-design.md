@@ -1,14 +1,19 @@
 # Geometry Detection and ML Integration Design
 
-Updated: 2026-08-27
+Updated: 2026-08-28
 
 ## Status
 
-**Planning only. Nothing in this document is implemented yet.**
+**Step 6 is implemented and verified. Steps 7 and 8 remain provisional and must
+be revised again before ML implementation begins.**
 
 The verified preprocessing milestone remains unchanged: 297 immutable raw photographs, 207 `ACCEPT`, 81 `WARN`, 9 `REJECT`, and 288 PREPROCESSED images in `preprocessing/pycolmap_input/images/`.
 
-The current implementation scope ends after pipeline Steps **6, 7, and 8**. No geometry-extension code, SAM 2 masks, ML model weights, pyCOLMAP feature extraction, or reconstruction has been run as part of this planning work.
+Step 6 produced real classical-geometry code, reports, a popup visualizer, and
+six presentation figures under the measured contract below. It did not produce
+SAM 2 masks, ML model weights, pyCOLMAP feature extraction, or reconstruction.
+The Step 7/8 descriptions below preserve the intended learning goals but are not
+a frozen module layout or implementation contract.
 
 ## Current goal
 
@@ -66,13 +71,47 @@ flowchart TD
 
 ## Step 6 geometry design
 
+### Stable input and coordinate contract
+
+All analysis begins at `preprocessing/reports/selection_manifest.csv`, whose row
+order defines the one-based selected-image index. A shared input module must:
+
+- parse every selected row into an immutable record containing index, filename,
+  variant, expected width/height, size, SHA-256, decision, and reasons;
+- reject duplicate/unsafe filenames, missing or extra selected files, unreadable
+  images, dimension/size/hash mismatches, and nondeterministic ordering;
+- verify all 288 selected images before the real Step 6 orchestrator creates or
+  replaces final output files;
+- support a lighter single-record verification path for the interactive demo;
+- keep every output outside both the immutable raw directory and the selected
+  image directory.
+
+Image sizes are always represented as `(width, height)`. OpenCV arrays remain
+`(height, width, channels)`. SIFT keypoint coordinates and all estimated two-view
+geometry are expressed in analysis-image pixels. The public SIFT result records
+both original and analysis sizes plus explicit `scale_x_to_original` and
+`scale_y_to_original` values. Downstream code must use that metadata rather than
+guessing a resize factor. The source JPEG is never rewritten.
+
+Step 6 configuration is explicit and serializable: maximum SIFT width `1200`,
+up to `8000` SIFT features, BF-L2 `k=2`, Lowe ratio `0.75`, Fundamental-Matrix
+RANSAC threshold `1.5` analysis pixels, confidence `0.99`, and OpenCV RNG seed
+`4213`. Shape-analysis thresholds may be tuned from real images, but they must
+live in a small documented configuration object and remain deterministic.
+
 ### Geometry 1 — keypoints, matching, and RANSAC inliers
 
 Use selected PREPROCESSED neighboring pairs from the existing representative experiment.
 
-Primary presentation pair: **165-166**.
+Preferred presentation pair: **165-166**.
 
-Supporting low-feature pair: **255-256**.
+Preferred supporting/low-feature pair: **255-256**.
+
+These indices are defaults, not forced outcomes. The real run may substitute a
+nearby or otherwise representative selected pair when the measured geometry is
+insufficient or the presentation is misleading. Any substitution must be based
+on fresh candidate/inlier measurements, documented with the reason, and must not
+silently turn a failed geometry estimate into a success.
 
 Planned processing:
 
@@ -94,6 +133,11 @@ analysis/previews/presentation/geometry_01_matches_255_256.png
 
 Each figure shows candidate SIFT matches and RANSAC-verified matches separately so incorrect correspondences are visibly filtered rather than hidden.
 
+Descriptor-less inputs, fewer than eight candidates, malformed/non-finite/non-
+3x3 Fundamental Matrices, and empty inlier masks return structured failure
+statuses. Full candidate and inlier arrays are retained for measurement; a
+deterministic spatial sample of at most 60 matches is used for drawing only.
+
 ### Geometry 2 — epipolar geometry
 
 Reuse the exact Fundamental Matrix and RANSAC inlier set from Geometry 1.
@@ -111,11 +155,23 @@ Planned output:
 
 Interpretation boundary: this is two-view projective geometry. It must not be described as a completed 3D reconstruction or camera-pose solution.
 
+The epipolar stage accepts the exact successful two-view result; it never calls
+Fundamental-Matrix estimation again. It selects approximately 8-10 spatially
+distributed inliers for display, clips each line against real image borders,
+and reports Sampson-error summaries over the complete verified inlier set.
+Unavailable or invalid geometry produces an explicit failure result and no
+misleading line figure.
+
 ### Geometry 3 — vessel shape geometry
 
-Primary single-image example: **165**.
+Preferred single-image example: **165**.
 
-Secondary/top-down-detail example: **255**.
+Preferred secondary/top-down/detail example: **255**.
+
+These are presentation defaults. A stronger real selected image may replace one
+when the default lacks a defensible contour, ellipse, or axis. Weak results may
+also be retained as a clearly labeled limitation when they teach something
+useful; no contour or ellipse is forced merely to satisfy a filename.
 
 Planned processing:
 
@@ -138,7 +194,43 @@ analysis/previews/presentation/geometry_04_summary.png
 
 The Step 6 summary combines only the three geometry demonstrations. It does not depend on ML.
 
-## Steps 7 + 8 ML design
+Classical shape analysis uses an aspect-preserving in-memory analysis copy,
+explicit grayscale/Canny thresholds, optional small morphological cleanup, and
+explainable contour scoring based on measured area, centrality, border contact,
+and extent. It returns candidate diagnostics plus structured statuses such as
+`ok`, `weak_contour`, `no_reliable_contour`, and `ellipse_unavailable`. Bounding
+box, centroid, second-moment/PCA axis, and optional ellipse coordinates are
+reported in analysis pixels with the original/analysis scale relationship.
+
+### Step 6 execution and evidence contract
+
+The real orchestrator performs full selected-set verification before creating
+final Step 6 outputs, resolves configured representative records, computes fresh
+geometry against the selected JPEGs, writes machine-readable metrics/config and
+source provenance, renders the professor-facing PNGs, and writes a summary JSON.
+The interactive launcher reuses these analysis/rendering functions, prints the
+same measured metrics, opens labeled OpenCV windows by default, supports a
+bounded `--no-display` smoke path, and closes cleanly on a documented keypress.
+
+Final visual acceptance requires unstretched images, readable labels, restrained
+match density, correctly clipped epilines, correspondence-consistent colors,
+honest weak/failure labels, and contour/ellipse/axis overlays that agree with the
+visible image. File existence alone is not visual verification.
+
+## Steps 7 + 8 ML design (provisional)
+
+The goals below remain useful, but all module names, class names, prompt-file
+locations, environment choices, and task decomposition are revisable. Future ML
+work must begin with a new design check after Step 6 is complete. Step 6 must not
+import ML code or depend on SAM-specific abstractions.
+
+The only stable downstream dependency promised by Step 6 is:
+
+- deterministic verified selected-image records and one-based lookup;
+- a verified per-record loading path;
+- reusable SIFT extraction with keypoints/descriptors;
+- original and analysis image sizes;
+- explicit analysis-to-original coordinate scale metadata.
 
 ### Model choice
 
@@ -225,7 +317,7 @@ SAM 2.1 input + prompt
 → ten-image measured summary
 ```
 
-## Planned repository structure
+## Illustrative repository structure
 
 ```text
 analysis_common.py                       verified selected-image input boundary
@@ -233,9 +325,7 @@ geometry_detection.py                   SIFT/F-matrix/RANSAC/epipolar analysis
 shape_geometry.py                       Canny/contour/ellipse/principal-axis analysis
 run_geometry_analysis.py                Step 6 orchestration
 
-ml_segmentation.py                      SAM 2.1 inference, mask QA, overlays
-ml_feature_analysis.py                  SIFT inside/outside mask metrics
-run_ml_analysis.py                      Steps 7+8 orchestration
+future ML modules                       names and split to be redesigned later
 
 tests/
   test_analysis_common.py
@@ -258,7 +348,8 @@ analysis/
     presentation/
 ```
 
-This structure is planned only. None of these implementation/generated paths exists yet.
+The Step 6 filenames are the preferred small architecture for the current task.
+The ML filenames are intentionally not fixed and must not drive Step 6 design.
 
 ## Verification requirements
 
@@ -272,6 +363,10 @@ This structure is planned only. None of these implementation/generated paths exi
 - shape overlays never modify source images;
 - all Step 6 presentation figures receive visual inspection;
 - all 297 raw and 288 selected images remain hash-identical after the run.
+- focused tests and changed-file compilation pass in fresh final runs;
+- the popup visualizer's noninteractive rendering path completes without writing
+  into source directories;
+- task-created cache/scratch/failed-output residue is removed after inspection.
 
 ### Steps 7 + 8
 

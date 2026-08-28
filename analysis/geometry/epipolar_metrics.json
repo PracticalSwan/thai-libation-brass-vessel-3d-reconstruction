@@ -1,0 +1,33 @@
+{
+  "filenames": [
+    "IMG20260826125013.jpg",
+    "IMG20260826125016.jpg"
+  ],
+  "fundamental_matrix": [
+    [
+      3.138529141953668e-07,
+      2.8186041647818536e-06,
+      -0.005917205873773956
+    ],
+    [
+      -4.483014325027557e-06,
+      1.933701595174139e-08,
+      0.031113953056377416
+    ],
+    [
+      0.0056822384092109525,
+      -0.03052268761723831,
+      1.0
+    ]
+  ],
+  "interpretation": "Two-view projective constraint only; no camera pose, triangulation, or reconstruction was computed.",
+  "maximum_sampson_error": 1.0906190923744183,
+  "median_sampson_error": 0.14314949483481546,
+  "p90_sampson_error": 0.7593906938141327,
+  "pair": [
+    165,
+    166
+  ],
+  "ransac_inlier_count": 300,
+  "sampson_error_units": "analysis pixels squared"
+}

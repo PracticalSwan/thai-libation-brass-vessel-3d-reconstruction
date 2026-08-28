@@ -1,10 +1,22 @@
-# Steps 7 and 8 ML Segmentation and Feature-Mask Analysis Implementation Plan
+# Steps 7 and 8 ML Segmentation and Feature-Mask Analysis Provisional Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+Updated: 2026-08-28
+
+**Status:** Provisional and revisable. Step 6 is now complete, but this plan is
+not authorized for execution. Before ML work is authorized, re-check current
+requirements, the completed Step 6 interfaces, official SAM guidance,
+environment feasibility, and whether this module/task split is still the
+smallest coherent design.
 
 **Goal:** Integrate pretrained SAM 2.1 vessel segmentation on a representative set of verified project images, then quantify and visualize how vessel masks change the distribution of SIFT features for an easy-to-show machine-learning demonstration.
 
-**Architecture:** Keep ML inference isolated from the verified preprocessing environment. `ml_segmentation.py` owns SAM 2.1 prompt-based segmentation, binary-mask normalization, QA, and overlays. `ml_feature_analysis.py` reuses Step 6's public `geometry_detection.extract_sift` function to count features inside versus outside each vessel mask without changing source images. `run_ml_analysis.py` verifies inputs, runs the ten-image representative experiment, writes reports, and creates presentation figures. This plan ends after feature-mask analysis; it does not invoke pyCOLMAP or perform reconstruction.
+**Provisional architecture direction:** Keep ML inference isolated from the
+verified preprocessing environment and reuse Step 6's public selected-image and
+SIFT boundaries. The earlier names `ml_segmentation.py`,
+`ml_feature_analysis.py`, and `run_ml_analysis.py` are examples only, not a
+commitment. A later plan may combine, rename, or replace them when that produces
+a clearer coursework implementation. This plan ends after feature-mask analysis;
+it does not invoke pyCOLMAP or perform reconstruction.
 
 **Tech Stack:** Meta SAM 2.1 with the `sam2.1_hiera_small` checkpoint in an isolated compatible PyTorch environment; Python/OpenCV/NumPy/Pillow for mask handling, SIFT feature analysis, reporting, and figures; pytest for model-independent unit tests. Use the Step 6 SIFT settings: maximum analysis width 1200 and up to 8000 SIFT features.
 
@@ -12,7 +24,26 @@
 
 ## Prerequisite
 
-Step 6 must be implemented first through at least `analysis_common.py` and `geometry_detection.extract_sift`. If those interfaces are absent or their tests fail, stop and complete the Step 6 plan instead of duplicating SIFT/input-verification code here.
+Step 6 has been completed and verified. Future ML code may depend only on these
+stable concepts, whatever their final module paths are:
+
+- deterministic `selection_manifest.csv` records and one-based lookup;
+- verified full-set and per-record selected-image loading;
+- reusable SIFT extraction returning keypoints and descriptors;
+- explicit original/analysis `(width, height)` values;
+- explicit analysis-to-original coordinate scale metadata.
+
+If those contracts are absent or their focused tests fail, stop and repair Step
+6 instead of duplicating manifest or SIFT logic. Step 6 must not import or depend
+on SAM-specific types.
+
+## How to read the remaining tasks
+
+The tasks below preserve intended ML outcomes, risks, and acceptance evidence.
+Their filenames, class names, exact representative set, prompt-storage format,
+environment file, and sequencing are design candidates only. No checklist item
+authorizes ML work in the current Step 6 task, and future implementation should
+revise rather than mechanically execute stale assumptions.
 
 ## Global Constraints
 
@@ -33,12 +64,12 @@ Step 6 must be implemented first through at least `analysis_common.py` and `geom
 
 ### Task 1: ML environment preflight and reproducible boundary
 
-**Files:**
+**Provisional files:**
 - Create only after compatibility is verified: `requirements-ml.txt` or `environment-ml.yml`
 - Create: `docs/geometry-ml/ml-environment.md`
 - Modify after verified setup: `README.md`
 
-**Interfaces:**
+**Provisional interface outcome:**
 - Produces a documented ML runtime capable of loading `sam2.1_hiera_small` and segmenting one project image without changing the existing preprocessing environment.
 
 - [ ] **Step 1: Confirm the Step 6 prerequisite**
@@ -101,11 +132,11 @@ chore(ml): document isolated SAM 2 runtime
 
 ### Task 2: Representative-image prompt configuration
 
-**Files:**
+**Provisional files:**
 - Create: `analysis/config/ml_prompts.json`
 - Create: `tests/test_ml_prompt_config.py`
 
-**Interfaces:**
+**Provisional interfaces:**
 - `load_prompt_config(path: Path, records: list[SelectedImageRecord]) -> list[SegmentationPrompt]`
 - `SegmentationPrompt` contains `index`, `filename`, and normalized box `[x1, y1, x2, y2]` where every coordinate is in `[0.0, 1.0]`.
 
@@ -166,13 +197,13 @@ chore(ml): add representative vessel prompts
 
 ### Task 3: SAM 2.1 segmentation adapter and binary-mask QA
 
-**Files:**
+**Provisional files:**
 - Create: `ml_segmentation.py`
 - Create: `tests/test_ml_segmentation.py`
 - Later generated: `analysis/ml/masks/*.png`
 - Later generated: `analysis/reports/ml_mask_manifest.csv`
 
-**Interfaces:**
+**Provisional interfaces:**
 - `normalize_binary_mask(mask: np.ndarray, width: int, height: int) -> np.ndarray`
 - `mask_quality_metrics(mask: np.ndarray) -> MaskQualityResult`
 - `write_mask(source_filename: str, mask: np.ndarray, output_dir: Path) -> Path`
@@ -242,13 +273,13 @@ feat(ml): segment representative vessel images
 
 ### Task 4: Presentation-ready segmentation evidence
 
-**Files:**
+**Provisional files:**
 - Modify: `ml_segmentation.py`
 - Modify: `tests/test_ml_segmentation.py`
 - Later generated: `analysis/previews/presentation/ml_01_segmentation_165.png`
 - Later generated: `analysis/previews/presentation/ml_02_mask_contact_sheet.png`
 
-**Interfaces:**
+**Provisional interfaces:**
 - `render_segmentation_triptych(image: np.ndarray, mask: np.ndarray, metrics: MaskQualityResult) -> np.ndarray`
 - `render_mask_contact_sheet(items: list[SegmentationPreview]) -> np.ndarray`
 
@@ -286,14 +317,14 @@ feat(ml): add segmentation presentation evidence
 
 ### Task 5: Step 8 SIFT feature-mask analysis
 
-**Files:**
+**Provisional files:**
 - Create: `ml_feature_analysis.py`
 - Create: `tests/test_ml_feature_analysis.py`
 - Later generated: `analysis/reports/masked_feature_counts.csv`
 - Later generated: `analysis/previews/presentation/ml_03_masked_features_165.png`
 - Later generated: `analysis/previews/presentation/ml_04_feature_mask_summary.png`
 
-**Interfaces:**
+**Provisional interfaces:**
 - Consumes: `geometry_detection.extract_sift` from Step 6 and the ten representative binary masks from Task 3.
 - `classify_keypoints_by_mask(features: SiftFeatures, full_resolution_mask: np.ndarray) -> FeatureMaskResult`
 - `FeatureMaskResult` contains total keypoints, vessel keypoints, background keypoints, vessel fraction, background-suppression fraction, and aligned keypoint index lists.
@@ -372,7 +403,7 @@ feat(ml): analyze vessel-masked SIFT features
 
 ### Task 6: Steps 7+8 orchestrator, results, and final demonstration summary
 
-**Files:**
+**Provisional files:**
 - Create: `run_ml_analysis.py`
 - Create: `tests/test_run_ml_analysis.py`
 - Later generated: `analysis/reports/ml_summary.json`
@@ -383,7 +414,7 @@ feat(ml): analyze vessel-masked SIFT features
 - Modify after real run: `docs/memory-bank/active-context.md`
 - Modify after real run: `docs/memory-bank/progress.md`
 
-**Interfaces:**
+**Provisional interfaces:**
 - `run_ml_analysis(images_dir: Path, selection_manifest: Path, prompt_config: Path, output_root: Path) -> MlAnalysisSummary`
 
 - [ ] **Step 1: Write failing orchestration tests**
@@ -482,6 +513,9 @@ feat(ml): add vessel segmentation and feature-mask analysis
 ```
 
 ## Steps 7+8 completion gate
+
+This gate is a future acceptance target, not a claim that the architecture above
+is final or that any ML implementation has started.
 
 Steps 7+8 are complete only when:
 

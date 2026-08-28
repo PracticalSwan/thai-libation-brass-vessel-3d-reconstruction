@@ -1,10 +1,14 @@
 # Active Context
 
-Updated: 2026-08-27
+Updated: 2026-08-28
 
 ## Current focus
 
-Preprocessing is complete and verified. The next implementation scope is now split into exactly two plans: Step 6 geometry detection/analysis, followed by combined Steps 7+8 SAM 2.1 segmentation and feature-mask analysis. The project intentionally stops after Step 8; pyCOLMAP/reconstruction is not currently planned for execution.
+Preprocessing and Step 6 geometry detection/analysis are complete and verified.
+The next possible implementation scope is the still-provisional combined Steps
+7+8 SAM 2.1 segmentation and feature-mask analysis plan, but it must be revised
+against the real Step 6 interfaces before execution. pyCOLMAP/reconstruction is
+not currently authorized or planned for execution.
 
 ## Verified preprocessing state
 
@@ -18,15 +22,32 @@ Preprocessing is complete and verified. The next implementation scope is now spl
 - Integrity: no duplicate selected-output hashes and zero raw SHA-256/size mismatches across all 297 originals.
 - Visual review: all ten before/after previews and all four sheets containing every WARN/REJECT case were inspected.
 
-## Planned Step 6
+## Completed Step 6
 
-- SIFT keypoints and candidate matches.
-- Fundamental Matrix estimation and RANSAC inlier visualization.
-- Epipolar-line visualization and Sampson/geometric residuals.
-- Canny edges, contours, ellipse fitting where valid, centroid/bounding box, and principal/symmetry axis.
-- Primary pair: 165-166; supporting low-feature pair: 255-256.
-- Primary shape image: 165; supporting top-down/detail image: 255.
-- Plan: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
+- `analysis_common.py` verifies deterministic manifest access plus selected-file
+  readability, geometry, byte size, and SHA-256 before output creation.
+- `geometry_detection.py` provides scaled SIFT extraction, BF-L2 ratio-test
+  matching, Fundamental Matrix/RANSAC, epilines, and Sampson residuals.
+- `shape_geometry.py` provides grayscale/Canny evidence, deterministic
+  classical contour selection, bounding box, centroid, PCA principal axis, and
+  a residual-gated optional ellipse.
+- `run_geometry_analysis.py` reproduced 11 intentional artifacts; six are
+  presentation PNGs and five are machine-readable JSON/CSV reports.
+- `show_geometry_visuals.py` reuses the real analysis for `matches`,
+  `epipolar`, `shape`, or `all` popup modes; the live popup path and
+  no-display path both completed in bounded smoke tests.
+- Primary pair 165-166: 4,653 / 4,643 keypoints, 478 candidate matches, 300
+  RANSAC inliers, 0.628 inlier ratio, and 0.1431 median Sampson error in squared
+  analysis-pixel units.
+- Supporting pair 255-256: 1,233 / 2,289 keypoints, 57 candidates, and 18
+  inliers, preserving the honestly weaker view.
+- Shape 165: contour/centroid/box/PCA retained; ellipse omitted as
+  `ellipse_unavailable` because its normalized fit residuals failed.
+- Shape 255: contour/centroid/box/PCA plus ellipse retained as `ok`.
+- All six presentation figures were visually inspected after the final real
+  run. The input verifier passed for 288/288 selected images, and the final raw
+  check passed for 297/297 unchanged photographs.
+- Results: `docs/geometry-ml/geometry-results.md`.
 
 ## Planned Steps 7 + 8
 
@@ -42,8 +63,13 @@ Preprocessing is complete and verified. The next implementation scope is now spl
 
 - Design: `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`.
 - Plan index: `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`.
-- No geometry-extension scripts, SAM masks/model weights, or pyCOLMAP outputs exist yet.
+- Step 6 scripts/reports/figures now exist. No SAM masks/model weights,
+  pyCOLMAP outputs, reconstruction, meshing, texturing, or Blender outputs
+  exist.
 
 ## Next action
 
-When implementation is explicitly authorized, execute the Step 6 plan first. After Step 6 is verified, execute the combined Steps 7+8 plan. Stop after Step 8 and report the geometry/ML evidence before planning any reconstruction work.
+Before any ML implementation, re-read the completed Step 6 results and revise
+the provisional Steps 7+8 plan around the stable selected-record and SIFT-scale
+interfaces. Do not install PyTorch, download SAM checkpoints, generate masks,
+or begin pyCOLMAP/reconstruction without separate authorization.

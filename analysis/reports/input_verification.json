@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "manifest schema and deterministic row order",
+    "missing and extra entries",
+    "readability, dimensions, size, and SHA-256 for every selected image"
+  ],
+  "selected_images_directory": "C:\\Assumption University\\CSX4213\\Project\\preprocessing\\pycolmap_input\\images",
+  "selection_manifest": "C:\\Assumption University\\CSX4213\\Project\\preprocessing\\reports\\selection_manifest.csv",
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91",
+  "verified": true,
+  "verified_selected_count": 288
+}
