@@ -1,4 +1,3 @@
-# Secrets only
 .env
 .env.*
 !.env.example
@@ -10,3 +9,5 @@ id_rsa
 id_rsa.*
 id_ed25519
 id_ed25519.*
+IMG20260826122949.zip
+__pycache__*
