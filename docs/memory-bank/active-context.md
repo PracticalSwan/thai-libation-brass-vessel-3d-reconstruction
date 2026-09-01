@@ -1,14 +1,15 @@
 # Active Context
 
-Updated: 2026-08-28
+Updated: 2026-09-01
 
 ## Current focus
 
 Preprocessing and Step 6 geometry detection/analysis are complete and verified.
-The next possible implementation scope is the still-provisional combined Steps
-7+8 SAM 2.1 segmentation and feature-mask analysis plan, but it must be revised
-against the real Step 6 interfaces before execution. pyCOLMAP/reconstruction is
-not currently authorized or planned for execution.
+The next planned implementation scope is the revised combined Steps 7+8 custom
+CNN segmentation and feature-mask analysis workflow. The architecture is now
+planned in detail but remains unimplemented and requires separate execution
+authorization. pyCOLMAP/reconstruction is not currently authorized or planned
+for execution.
 
 ## Verified preprocessing state
 
@@ -51,25 +52,28 @@ not currently authorized or planned for execution.
 
 ## Planned Steps 7 + 8
 
-- Pretrained Meta SAM 2.1 using `sam2.1_hiera_small` first.
-- Isolated ML runtime; no changes to the verified preprocessing environment.
-- Segment only ten representative selected images in the current phase: 15, 45, 75, 105, 135, 165, 195, 225, 255, 280.
-- Create binary-mask QA and presentation overlays.
-- Reuse Step 6 SIFT extraction to count features inside versus outside the vessel masks.
-- Produce measured segmentation and feature-mask presentation figures without claiming reconstruction improvement.
+- Train a compact project-defined binary segmentation CNN from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the baseline.
+- Start with 36 manually annotated selected images using a leakage-controlled 24 train / 6 validation / 6 held-out test split based on separated capture positions/view groups.
+- Preferred model is a small U-Net-like `SmallSegCNN` with three encoder stages, a compact bottleneck, skip-connected decoder stages, and one output-logit channel.
+- Preferred input tensor size is 384 x 288 `(H x W)` to preserve the source portrait aspect ratio in memory.
+- Train with BCE-with-logits + Dice loss, Adam, seed 4213, validation-based early stopping, and no test-set tuning.
+- Evaluate unedited held-out predictions with Dice, IoU, foreground precision, recall, and visible failure analysis.
+- Reuse Step 6 SIFT extraction to count features inside versus outside CNN-predicted vessel masks on the held-out test images.
+- Produce real training, segmentation, feature-mask, and summary figures without claiming reconstruction improvement.
 - Plan: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
 
 ## Shared planning sources
 
 - Design: `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`.
 - Plan index: `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`.
-- Step 6 scripts/reports/figures now exist. No SAM masks/model weights,
-  pyCOLMAP outputs, reconstruction, meshing, texturing, or Blender outputs
-  exist.
+- Step 6 scripts/reports/figures now exist. No CNN labels, CNN model weights,
+  ML predictions, pyCOLMAP outputs, reconstruction, meshing, texturing, or
+  Blender outputs exist.
 
 ## Next action
 
-Before any ML implementation, re-read the completed Step 6 results and revise
-the provisional Steps 7+8 plan around the stable selected-record and SIFT-scale
-interfaces. Do not install PyTorch, download SAM checkpoints, generate masks,
-or begin pyCOLMAP/reconstruction without separate authorization.
+The Steps 7+8 architecture revision is complete. Before implementation, re-read
+the completed Step 6 results plus the revised CNN design/plan, then verify the
+current PyTorch environment and exact labeled-image selection. Do not create
+manual masks, modify dependencies, implement/train the CNN, generate ML
+predictions, or begin pyCOLMAP/reconstruction without separate authorization.

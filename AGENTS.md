@@ -4,7 +4,7 @@
 
 This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
 
-Current phase: preprocessing is complete and verified. The next separately authorized phase may begin pyCOLMAP feature extraction/matching from `preprocessing/pycolmap_input/images/`; do not claim reconstruction results until that later phase is actually run and verified.
+Current phase: preprocessing and Step 6 geometry analysis are complete and verified. The next planned phase is a separately authorized custom CNN segmentation + SIFT feature-mask analysis workflow; pyCOLMAP/reconstruction remains later and must not be claimed until it is separately run and verified.
 
 ## Core rules
 
@@ -43,19 +43,21 @@ Current phase: preprocessing is complete and verified. The next separately autho
 - Produce explicit reports and a deterministic selected-image set for later pyCOLMAP use.
 - Stop before pyCOLMAP unless the user explicitly continues to reconstruction after preprocessing is verified complete.
 
-## Planned geometry and ML extension
+## Geometry and ML extension
 
-This extension is planned but not implemented yet. The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. The current implementation work is split into exactly two plans:
+The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Step 6 is implemented and verified; Steps 7+8 are planned but not implemented:
 
 - Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
 - Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
 
-- Step 6 must expose SIFT keypoints/matches, Fundamental Matrix estimation, RANSAC inliers, epipolar geometry, and classical 2D vessel geometry. These are measurements/visualizations only and must never warp the images.
-- Steps 7+8 use pretrained Meta SAM 2.1, starting with `sam2.1_hiera_small`, on ten representative selected images only. Do not generate 288 masks before reconstruction is separately planned.
-- Step 8 reuses Step 6 SIFT extraction to measure features inside versus outside each vessel mask; it does not claim reconstruction improvement.
-- Keep SAM/PyTorch dependencies isolated from the verified preprocessing environment and never commit model checkpoints/caches.
-- A weak/failed segmentation must be corrected or explicitly documented; it must not remove or modify the source photograph.
-- Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, camera poses, point clouds, or reconstruction results.
+- Step 6 exposes verified selected-image access, reusable SIFT keypoints/descriptors and scale metadata, Fundamental Matrix/RANSAC, epipolar geometry, and classical 2D vessel geometry.
+- Steps 7+8 now plan a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the baseline.
+- The initial labeled set is planned as 36 manually annotated selected images: 24 train, 6 validation, 6 held-out test, split by separated capture positions/view groups rather than a random neighboring-frame shuffle.
+- Model selection uses training/validation evidence only. The held-out test split remains untouched until the model and threshold are frozen.
+- Step 8 reuses Step 6 SIFT extraction to measure features inside versus outside CNN-predicted vessel masks; it does not claim reconstruction improvement.
+- PyTorch runtime changes, manual mask creation, CNN implementation, and training require separate authorization; this planning update does not authorize them.
+- Weak test predictions must remain visible and documented; they must not be manually repaired and reported as model output.
+- Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, training metrics, camera poses, point clouds, or reconstruction results.
 - Stop after Steps 6-8. Do not create or execute a pyCOLMAP/reconstruction implementation plan until the user explicitly moves the project beyond this scope.
 
 ## Verification

@@ -2,14 +2,11 @@
 
 > **For agentic workers:** This file is an index only. Do not execute it as a combined implementation plan.
 
-Updated: 2026-08-28
+Updated: 2026-09-01
 
 ## Current implementation scope
 
-The previous combined geometry/ML/reconstruction plan has been split along the
-current project boundary. **Step 6 is implemented and verified. Steps 7+8 are
-provisional and must be redesigned/reconfirmed before execution. pyCOLMAP and
-reconstruction are not part of the current implementation scope.**
+The project is split along the current coursework boundary. **Step 6 is implemented and verified. Steps 7+8 now have an approved CNN-based planning architecture but remain unimplemented and require separate execution authorization. pyCOLMAP and reconstruction are not part of the current implementation scope.**
 
 ### Step 6 — Geometry Detection / Analysis
 
@@ -27,34 +24,35 @@ Scope:
 - contour detection;
 - ellipse fitting where valid;
 - centroid, bounding box, and principal/symmetry axis;
-- real presentation figures and measured geometry reports.
-- a reusable verified selected-image/SIFT scale contract;
-- a Python popup visualizer that reuses the real Step 6 implementation.
+- real presentation figures and measured geometry reports;
+- reusable verified selected-image/SIFT scale contract;
+- Python popup visualizer that reuses the real Step 6 implementation.
 
-Preferred indices are defaults subject to measured/visual substitution with a
-documented reason. Hard boundary: no SAM 2, no ML masks, no pyCOLMAP.
+Step 6 is a completed historical implementation boundary. It does not need to be redesigned around the future CNN.
 
-### Steps 7 + 8 — Machine Learning + Feature-Mask Analysis
+### Steps 7 + 8 — Custom CNN Segmentation + Feature-Mask Analysis
 
-Provisional planning source:
+Planning source:
 
 `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`
 
-Scope:
+Current scope:
 
-- isolated SAM 2.1 environment;
-- `sam2.1_hiera_small` feasibility check;
-- prompt-based vessel segmentation on ten representative selected images;
-- binary mask QA and presentation overlays;
-- SIFT features inside versus outside the vessel masks;
-- feature-mask counts, summary figures, and measured ML results.
+- manually annotate an initial 36-image segmentation dataset without modifying the verified source JPEGs;
+- use a leakage-controlled 24 train / 6 validation / 6 held-out test split based on separated capture positions/view groups rather than a random neighboring-frame shuffle;
+- train a small U-Net-like `SmallSegCNN` from random initialization with no pretrained backbone/checkpoint;
+- preferred input tensor geometry `384 x 288` `(H x W)` to preserve the source portrait aspect ratio;
+- train with BCE-with-logits + Dice loss, Adam, fixed seed `4213`, validation-based early stopping, and no test-set tuning;
+- evaluate held-out predictions with Dice, IoU, foreground precision, recall, and visible failure analysis;
+- reuse Step 6 SIFT extraction/scale metadata to count keypoints inside versus outside CNN-predicted test masks;
+- create training, segmentation, feature-mask, and final summary figures from real outputs;
+- retain weak predictions in the measured evidence rather than hiding or manually repairing them.
 
-Prerequisite: Step 6 must provide deterministic manifest access, verified
-selected-image loading, public SIFT keypoints/descriptors, original/analysis
-sizes, and explicit coordinate-scale metadata. The later ML file/class layout is
-not fixed and must not shape Step 6 beyond this clean dependency contract.
+The planned CNN is semantic segmentation, not image classification. It outputs a one-channel vessel/background mask rather than a single class label.
 
-Hard boundary: no pyCOLMAP, no sparse/dense reconstruction, no meshing, no texturing, no Blender.
+Prerequisite: Step 6 must continue to provide deterministic manifest access, verified selected-image loading, public SIFT keypoints/descriptors, original/analysis sizes, and explicit coordinate-scale metadata. The CNN code consumes those interfaces but does not change them.
+
+Hard boundary: no pretrained segmentation model, no SAM, no external segmentation API, no pyCOLMAP, no sparse/dense reconstruction, no meshing, no texturing, no Blender.
 
 ## Current order
 
@@ -63,7 +61,7 @@ Verified preprocessing (complete)
         ↓
 Step 6: Geometry Detection / Analysis (complete and verified)
         ↓
-Steps 7 + 8: SAM 2.1 Segmentation + Feature-Mask Analysis (provisional)
+Steps 7 + 8: From-scratch CNN Segmentation + Feature-Mask Analysis (planned)
         ↓
 STOP
 ```
@@ -76,7 +74,4 @@ Both implementation plans use:
 
 `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`
 
-The design document describes the geometry and intended ML behavior. The narrow
-Step 6 plan now records the implemented contract and links to measured results.
-The Steps 7+8 document remains an outcome-oriented placeholder that must be
-revised using the completed Step 6 evidence.
+The design document records the completed geometry contract and the current CNN-based ML architecture. The Steps 7+8 plan is detailed enough for a future executor, but this planning-only revision does not create labels, code, dependencies, training runs, model weights, or ML outputs.

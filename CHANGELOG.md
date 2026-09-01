@@ -16,10 +16,8 @@ All notable verified project milestones are recorded here.
 - Deterministic 288-image `preprocessing/pycolmap_input/images/` set and selection manifest.
 - Ten before/after previews, four complete WARN/REJECT sheets, and SIFT inlier chart.
 - Final raw integrity and output checks: 297/297 original hashes unchanged; 288/288 selected outputs readable at 3072 x 4080; no duplicate output hashes.
-- Initial Geometry/ML planning split the work into Step 6 geometry
-  detection/analysis and combined Steps 7+8 SAM 2.1 segmentation + feature-mask
-  analysis. The ML phase remains limited to ten representative selected images,
-  and pyCOLMAP/reconstruction remains excluded from the current scope.
+- Initial Geometry/ML planning split the work into Step 6 geometry detection/analysis and a combined Steps 7+8 segmentation + feature-mask phase, while keeping pyCOLMAP/reconstruction outside the current scope.
+- Revised the Steps 7+8 architecture on 2026-09-01 from pretrained SAM inference to a small binary segmentation CNN trained from random initialization: initial 36 manual masks, sequence-aware 24/6/6 train/validation/test split, validation-based model selection, held-out Dice/IoU evaluation, and Step 8 reuse of Step 6 SIFT on CNN-predicted masks.
 - Step 6 selected-input verifier and shared scale contract in `analysis_common.py`,
   including manifest-order lookup plus readability, dimensions, size, and
   SHA-256 checks for all 288 inputs before output creation.
@@ -50,7 +48,5 @@ All notable verified project milestones are recorded here.
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- Review and revise the provisional Steps 7+8 plan against the completed Step 6
-  interfaces before any SAM/PyTorch implementation is separately authorized.
-- Continue to stop before pyCOLMAP and reconstruction unless that later phase is
-  explicitly authorized.
+- The CNN-based Steps 7+8 planning revision is complete. Before implementation, verify the current PyTorch runtime and freeze the exact 36-image annotation/split manifest; do not create labels, code, dependencies, or training outputs without separate authorization.
+- Continue to stop before pyCOLMAP and reconstruction unless that later phase is explicitly authorized.

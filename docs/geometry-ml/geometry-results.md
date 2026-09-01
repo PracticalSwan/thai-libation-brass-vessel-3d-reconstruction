@@ -14,8 +14,8 @@ exposes three classical computer-vision techniques for coursework explanation:
    bounding-box, PCA-axis, and optional ellipse measurements.
 
 These are 2D and two-view projective measurements. No camera pose,
-triangulation, sparse or dense reconstruction, SAM segmentation, meshing,
-texturing, or Blender work was performed.
+triangulation, sparse or dense reconstruction, CNN segmentation/training,
+meshing, texturing, or Blender work was performed.
 
 ## Verified inputs
 
@@ -142,7 +142,9 @@ python -B show_geometry_visuals.py --mode all --no-display
   is deliberately omitted.
 - Fundamental Matrix inliers and low residuals support two-view consistency;
   they do not guarantee successful multi-view reconstruction.
-- Steps 7+8 remain provisional and unimplemented. Their plan must be reviewed
-  against this finished Step 6 interface before any SAM/PyTorch work begins.
+- Steps 7+8 remain unimplemented, but their planning architecture has been revised
+  to a small from-scratch CNN segmentation workflow that reuses this finished
+  Step 6 SIFT/scale interface. CNN labeling, training, and evaluation still require
+  separate authorization.
 - pyCOLMAP and all reconstruction stages remain separately authorized future
   work.

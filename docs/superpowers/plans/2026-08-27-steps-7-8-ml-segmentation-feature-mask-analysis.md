@@ -1,539 +1,556 @@
-# Steps 7 and 8 ML Segmentation and Feature-Mask Analysis Provisional Plan
+# Steps 7 and 8 CNN Segmentation and Feature-Mask Analysis Implementation Plan
 
-Updated: 2026-08-28
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Status:** Provisional and revisable. Step 6 is now complete, but this plan is
-not authorized for execution. Before ML work is authorized, re-check current
-requirements, the completed Step 6 interfaces, official SAM guidance,
-environment feasibility, and whether this module/task split is still the
-smallest coherent design.
+Updated: 2026-09-01
 
-**Goal:** Integrate pretrained SAM 2.1 vessel segmentation on a representative set of verified project images, then quantify and visualize how vessel masks change the distribution of SIFT features for an easy-to-show machine-learning demonstration.
+**Status:** Architecture revised and approved for planning only. No CNN code, labels, training, dependency changes, masks, or Step 8 outputs are authorized by this document update itself.
 
-**Provisional architecture direction:** Keep ML inference isolated from the
-verified preprocessing environment and reuse Step 6's public selected-image and
-SIFT boundaries. The earlier names `ml_segmentation.py`,
-`ml_feature_analysis.py`, and `run_ml_analysis.py` are examples only, not a
-commitment. A later plan may combine, rename, or replace them when that produces
-a clearer coursework implementation. This plan ends after feature-mask analysis;
-it does not invoke pyCOLMAP or perform reconstruction.
+**Goal:** Train a small binary semantic-segmentation CNN from scratch to identify visible Thai brass vessel pixels, evaluate it on a leakage-controlled held-out test set, then reuse the completed Step 6 SIFT interface to measure vessel-versus-background feature distributions from the CNN-predicted masks.
 
-**Tech Stack:** Meta SAM 2.1 with the `sam2.1_hiera_small` checkpoint in an isolated compatible PyTorch environment; Python/OpenCV/NumPy/Pillow for mask handling, SIFT feature analysis, reporting, and figures; pytest for model-independent unit tests. Use the Step 6 SIFT settings: maximum analysis width 1200 and up to 8000 SIFT features.
+**Architecture:** Use a compact U-Net-like encoder-decoder built entirely from project-defined convolutional blocks with random initialization and no pretrained weights. Build a small manually labeled dataset that references the existing verified selected JPEGs without copying or modifying them, split labels by separated viewpoints rather than random neighboring frames, train only on the training split, select the model using validation Dice/IoU, evaluate the locked model once on the held-out test split, then feed predicted masks into the existing Step 6 SIFT coordinate/scale contract.
+
+**Tech Stack:** Python, PyTorch, torchvision where useful for deterministic image transforms, OpenCV, NumPy, CSV/JSON, matplotlib/OpenCV for figures, pytest. No pretrained segmentation model, no SAM checkpoint, and no model-assisted labeling is required.
 
 **Spec:** `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`
 
-## Prerequisite
-
-Step 6 has been completed and verified. Future ML code may depend only on these
-stable concepts, whatever their final module paths are:
-
-- deterministic `selection_manifest.csv` records and one-based lookup;
-- verified full-set and per-record selected-image loading;
-- reusable SIFT extraction returning keypoints and descriptors;
-- explicit original/analysis `(width, height)` values;
-- explicit analysis-to-original coordinate scale metadata.
-
-If those contracts are absent or their focused tests fail, stop and repair Step
-6 instead of duplicating manifest or SIFT logic. Step 6 must not import or depend
-on SAM-specific types.
-
-## How to read the remaining tasks
-
-The tasks below preserve intended ML outcomes, risks, and acceptance evidence.
-Their filenames, class names, exact representative set, prompt-storage format,
-environment file, and sequencing are design candidates only. No checklist item
-authorizes ML work in the current Step 6 task, and future implementation should
-revise rather than mechanically execute stale assumptions.
-
 ## Global Constraints
 
-- `IMG20260826122949/` is immutable.
-- `preprocessing/pycolmap_input/images/` remains the verified 288-image PREPROCESSED source set and must not be modified.
-- Steps 7+8 use **ten representative selected images only** for the current coursework demonstration: indices `15, 45, 75, 105, 135, 165, 195, 225, 255, 280`.
-- Do not generate masks for all 288 images in this phase; that is unnecessary before reconstruction is authorized.
-- Start with pretrained `sam2.1_hiera_small`. Do not train/fine-tune a custom model and do not download larger checkpoints unless the ten-image feasibility result demonstrates a real need.
-- Keep SAM 2/PyTorch runtime dependencies isolated from the verified preprocessing environment.
-- Never commit model checkpoint bytes, package caches, CUDA caches, temporary model downloads, or other runtime residue.
-- ML must segment/label pixels only. Do not inpaint, remove reflections, synthesize texture, generate details, alter geometry, or overwrite source JPEGs.
-- Every binary mask must have the same width/height as its source image and contain only `0` and `255`.
-- A failed segmentation stays a documented failure/correction case; do not reject the source photograph.
-- Step 8 measures feature distribution only. Do not claim masks improve 3D reconstruction because reconstruction is out of scope.
+- `IMG20260826122949/` remains immutable.
+- `preprocessing/pycolmap_input/images/` remains the verified 288-image PREPROCESSED source set and must never be modified.
+- Step 6 is complete. Reuse `analysis_common.py` for verified selected-image access and `geometry_detection.extract_sift` for SIFT. Do not duplicate those pipelines.
+- The segmentation model must be trained from random initialization. No pretrained backbone, transfer learning, SAM, foundation-model checkpoint, or external segmentation API is allowed in the planned baseline.
+- The task is **binary semantic segmentation**: visible brass vessel pixels are foreground; background, holes/openings through which background is visible, hands, table, and unrelated objects are background.
+- Source photographs are never resized or rewritten on disk. Training/inference may create in-memory resized tensors and derived mask files only.
+- Use a manually annotated initial dataset of **36 images: 24 train, 6 validation, 6 test**. If validation evidence shows a real coverage gap, the **training split may expand from 24 to at most 36 images** by adding up to 12 new training-only labels, giving at most 48 labeled images total. Validation/test membership must not change after the split is locked.
+- Avoid sequence leakage. Do not randomly split adjacent capture frames. Labeled indices should be distributed across middle, low, elevated, top-down, and detail viewpoints, with train/validation/test examples separated in the capture sequence where practical.
+- The held-out test set is not used for architecture choice, augmentation choice, threshold tuning, early stopping, or hyperparameter selection.
+- Preferred tensor geometry is `(height=384, width=288)`, matching the source photographs' approximately 4:3 portrait aspect ratio without square-image distortion. If runtime evidence requires a smaller shape, preserve the same aspect ratio and document the change before training.
+- Masks used for training resize with nearest-neighbor interpolation only. Image and mask geometric augmentation must remain exactly synchronized.
+- Use deterministic seed `4213` wherever the library permits deterministic control.
+- Step 8 reports feature distribution only. It must not claim that segmentation improves 3D reconstruction unless a later reconstruction experiment actually tests that hypothesis.
 - No task in this plan may invoke pyCOLMAP, COLMAP, sparse/dense reconstruction, meshing, texturing, or Blender.
+- Planning filenames below are preferred boundaries, not permission for unrelated refactors. Preserve the smallest coherent structure when implementation begins.
 
 ---
 
-### Task 1: ML environment preflight and reproducible boundary
-
-**Provisional files:**
-- Create only after compatibility is verified: `requirements-ml.txt` or `environment-ml.yml`
-- Create: `docs/geometry-ml/ml-environment.md`
-- Modify after verified setup: `README.md`
-
-**Provisional interface outcome:**
-- Produces a documented ML runtime capable of loading `sam2.1_hiera_small` and segmenting one project image without changing the existing preprocessing environment.
-
-- [ ] **Step 1: Confirm the Step 6 prerequisite**
-
-Run:
-
-```powershell
-python -B -m pytest -p no:cacheprovider -q tests/test_analysis_common.py tests/test_geometry_detection.py
-```
-
-Expected: pass. If either file/test does not exist because Step 6 has not been implemented, stop this plan.
-
-- [ ] **Step 2: Re-check the official SAM 2 installation instructions**
-
-At implementation time, use the current official Meta SAM 2 repository as the source of truth for supported Python/PyTorch/CUDA and Windows/WSL setup. Do not copy dependency versions from old notes when upstream requirements have changed.
-
-- [ ] **Step 3: Create an isolated ML environment**
-
-Prefer a separate WSL/Conda/venv environment rather than modifying the working preprocessing environment. Record the chosen environment location and activation command in `docs/geometry-ml/ml-environment.md`.
-
-- [ ] **Step 4: Install only the required inference stack**
-
-Install the official SAM 2 package and the `sam2.1_hiera_small` checkpoint only. Keep the checkpoint outside tracked repository paths.
-
-- [ ] **Step 5: Verify one-image inference on selected index 165**
-
-Use a single box prompt around the vessel. Success criteria:
+## Preferred future file structure
 
 ```text
-model loads
-source image opens at 3072 x 4080
-mask inference completes
-returned mask maps exactly to 3072 x 4080
-source JPEG hash is unchanged
+ml_dataset/
+  manifest.csv                         labeled-image index, filename, split, mask path/hash
+  masks/                               manually created source-size binary PNG masks
+
+segmentation_data.py                  mask/manifest validation, split loading, transforms
+cnn_segmentation.py                   SmallSegCNN model, loss, metrics, prediction helpers
+train_cnn_segmentation.py             deterministic training/validation/checkpoint workflow
+ml_feature_analysis.py                Step 8 SIFT-inside/outside-mask measurements
+run_ml_analysis.py                    held-out evaluation, reports, presentation figures
+
+tests/
+  test_segmentation_data.py
+  test_cnn_segmentation.py
+  test_train_cnn_segmentation.py
+  test_ml_feature_analysis.py
+  test_run_ml_analysis.py
+
+analysis/
+  ml/
+    checkpoints/                       local generated model checkpoint; untracked by default
+    predictions/                       final derived source-size binary masks
+  reports/
+  previews/
+    presentation/
 ```
 
-Do not proceed to the ten-image run if this bounded feasibility test fails.
-
-- [ ] **Step 6: Record exact runtime provenance**
-
-Document:
-
-- SAM model/checkpoint name;
-- upstream package/repository version or commit when practical;
-- Python version;
-- PyTorch version;
-- CUDA/device used, or CPU if applicable;
-- checkpoint path policy;
-- one-image feasibility result.
-
-- [ ] **Step 7: Commit only the environment description/config**
-
-Suggested commit:
-
-```text
-chore(ml): document isolated SAM 2 runtime
-```
+The implementation may combine files if that is demonstrably clearer, but these responsibilities should remain separate: data/splits, model math, training, feature-mask analysis, and orchestration/presentation.
 
 ---
 
-### Task 2: Representative-image prompt configuration
+### Task 1: Freeze the labeled segmentation dataset and leakage-safe split
 
-**Provisional files:**
-- Create: `analysis/config/ml_prompts.json`
-- Create: `tests/test_ml_prompt_config.py`
+**Files:**
+- Create: `ml_dataset/manifest.csv`
+- Create: `ml_dataset/masks/*.png`
+- Create: `segmentation_data.py`
+- Test: `tests/test_segmentation_data.py`
+- Create after the split is locked: `docs/geometry-ml/cnn-dataset.md`
 
-**Provisional interfaces:**
-- `load_prompt_config(path: Path, records: list[SelectedImageRecord]) -> list[SegmentationPrompt]`
-- `SegmentationPrompt` contains `index`, `filename`, and normalized box `[x1, y1, x2, y2]` where every coordinate is in `[0.0, 1.0]`.
+**Interfaces:**
+- Consumes: verified selected-image records from `analysis_common.py`.
+- Produces: validated image/mask pairs with fixed `train`, `val`, or `test` membership.
+- Preferred API: `load_segmentation_manifest(path, selected_records) -> list[SegmentationRecord]`.
+- `SegmentationRecord` should contain at least selected index, filename, split, mask path, source size, source SHA-256, and mask SHA-256.
 
-- [ ] **Step 1: Write failing prompt-schema tests**
+- [ ] **Step 1: Select 36 annotation candidates before drawing masks**
 
-Tests must reject missing representative indices, duplicate indices, filenames that disagree with `selection_manifest.csv`, boxes outside `[0,1]`, inverted boxes, and boxes that cover less than a small minimum fraction of the image.
-
-```python
-def test_prompt_box_must_be_normalized_and_ordered(tmp_path):
-    config = write_prompt_fixture(tmp_path, box=[0.8, 0.2, 0.4, 0.9])
-    with pytest.raises(ValueError, match="box"):
-        load_prompt_config(config, records)
-```
-
-- [ ] **Step 2: Run the test and verify RED**
-
-- [ ] **Step 3: Implement prompt-config validation**
-
-The required index set is exactly:
-
-```python
-REPRESENTATIVE_INDICES = (15, 45, 75, 105, 135, 165, 195, 225, 255, 280)
-```
-
-Resolve filenames from the verified selection manifest; do not type filenames from memory.
-
-- [ ] **Step 4: Visually inspect the ten selected images**
-
-Open the exact selected JPEG for each required index and record one conservative box around the full vessel. Boxes should include rim, neck, bowl, pedestal, and a small margin, while excluding as much unrelated background as practical.
-
-- [ ] **Step 5: Save the reproducible prompt file**
-
-Write `analysis/config/ml_prompts.json` with exactly these top-level fields:
-
-- `model`: exactly `"sam2.1_hiera_small"`;
-- `coordinate_system`: exactly `"normalized_xyxy"`;
-- `prompts`: exactly ten objects, one for each required representative index.
-
-Each prompt object must contain:
-
-- `index`: one of the ten required integer indices;
-- `filename`: the exact filename resolved from `selection_manifest.csv` for that index;
-- `box`: four visually measured normalized floats `[x1, y1, x2, y2]` satisfying `0 <= x1 < x2 <= 1` and `0 <= y1 < y2 <= 1`.
-
-Do not commit synthetic/full-image box values. The committed configuration must contain the actual ten inspected filenames and measured vessel boxes.
-
-- [ ] **Step 6: Run the prompt-schema tests and verify GREEN**
-
-- [ ] **Step 7: Commit the prompt configuration**
-
-Suggested commit:
+Choose the candidates from the verified 288-image sequence so the labeled set spans the real capture conditions:
 
 ```text
-chore(ml): add representative vessel prompts
+middle/side views
+low-angle/base views
+elevated views
+top-down/rim views
+oblique/detail views
+stronger and weaker reflections/background contrast
 ```
+
+Use the existing representative indices as anchors, but do not force a visually unsuitable frame only to preserve an old list. Preferred held-out test anchors include `165` and `255` because they connect directly to the completed geometry demonstration. Freeze the exact list in `ml_dataset/manifest.csv` before training.
+
+- [ ] **Step 2: Lock a 24/6/6 group-aware split**
+
+Rules:
+
+```text
+24 train
+6 validation
+6 test
+```
+
+Do not use random image-level splitting across near-neighbor frames. Test and validation examples should be capture-sequence-separated from training examples where practical. Record the reason/view category for each selected label so coverage can be reviewed before training.
+
+- [ ] **Step 3: Manually annotate source-resolution binary masks**
+
+Annotation rule:
+
+```text
+255 = visible brass vessel surface
+0   = background or visible opening/hole/background through the vessel
+```
+
+Do not use the future CNN prediction to create its own ground truth. A normal polygon/brush annotation tool is acceptable. Record the annotation tool and mask convention in `docs/geometry-ml/cnn-dataset.md`.
+
+- [ ] **Step 4: Write failing data-contract tests**
+
+Tests must reject:
+
+- missing labeled indices;
+- a labeled filename that disagrees with `selection_manifest.csv`;
+- duplicated indices;
+- invalid split names;
+- any split count other than 24/6/6 for the initial dataset;
+- missing/unreadable masks;
+- mask dimensions that differ from the source photograph;
+- mask values other than `0` and `255`;
+- source or mask hash mismatches;
+- the same index appearing in multiple splits.
+
+- [ ] **Step 5: Implement only the manifest/mask validation boundary**
+
+No training logic belongs in this task. The loader should return validated immutable records and derived paths without modifying image or mask bytes.
+
+- [ ] **Step 6: Verify the dataset contract**
+
+Run the focused data tests and a real manifest/mask verification. Confirm 36/36 labeled source images still match the existing selected-image manifest.
+
+- [ ] **Step 7: Freeze the test set**
+
+After the split passes review, treat the six test labels as evaluation-only. Later validation failure may add **training-only** examples, but must not move or replace test images because of model performance.
 
 ---
 
-### Task 3: SAM 2.1 segmentation adapter and binary-mask QA
+### Task 2: Define the from-scratch SmallSegCNN architecture
 
-**Provisional files:**
-- Create: `ml_segmentation.py`
-- Create: `tests/test_ml_segmentation.py`
-- Later generated: `analysis/ml/masks/*.png`
-- Later generated: `analysis/reports/ml_mask_manifest.csv`
+**Files:**
+- Create: `cnn_segmentation.py`
+- Test: `tests/test_cnn_segmentation.py`
 
-**Provisional interfaces:**
-- `normalize_binary_mask(mask: np.ndarray, width: int, height: int) -> np.ndarray`
-- `mask_quality_metrics(mask: np.ndarray) -> MaskQualityResult`
-- `write_mask(source_filename: str, mask: np.ndarray, output_dir: Path) -> Path`
-- `Sam2ImageSegmenter.segment(image: np.ndarray, normalized_box: tuple[float, float, float, float]) -> np.ndarray`
+**Interfaces:**
+- Consumes: normalized image tensor `[N, 3, 384, 288]`.
+- Produces: one-channel segmentation logits `[N, 1, 384, 288]`.
+- Preferred model name: `SmallSegCNN`.
+- No pretrained weights or external backbone constructor is permitted.
 
-The model adapter must remain separate from mask-format utilities so unit tests can run without loading SAM 2.
-
-- [ ] **Step 1: Write failing model-independent mask tests**
+- [ ] **Step 1: Write model-shape and initialization tests**
 
 Verify:
 
-```python
-def test_normalize_binary_mask_returns_only_zero_and_255():
-    source = np.array([[0.1, 0.9], [0.6, 0.2]], dtype=np.float32)
-    mask = normalize_binary_mask(source, width=2, height=2)
-    assert set(np.unique(mask)) <= {0, 255}
+```text
+input:  N x 3 x 384 x 288
+output: N x 1 x 384 x 288 logits
 ```
 
-Also test:
+Also verify the model contains project-defined convolution/upsampling blocks only and has no code path that downloads or loads pretrained weights.
 
-- output dimensions equal requested source dimensions;
-- empty/all-black masks fail QA;
-- all-white masks are flagged as suspicious rather than silently accepted;
-- mask area fraction and bounding box are reported;
-- writing a mask never modifies the source JPEG;
-- mask filenames map deterministically from source filenames.
+- [ ] **Step 2: Implement the preferred compact encoder-decoder**
 
-- [ ] **Step 2: Run tests and verify RED**
-
-- [ ] **Step 3: Implement mask normalization and QA utilities**
-
-Use nearest-neighbor interpolation if a model output must be resized back to the source geometry. Threshold once into `uint8` `{0,255}`. Record foreground area fraction and mask bounding box.
-
-- [ ] **Step 4: Implement the SAM 2.1 image-predictor adapter**
-
-Convert normalized box coordinates to source-image pixel coordinates, run the official image predictor, select the highest-confidence vessel mask returned for the box prompt, and return only the raw mask array to the caller.
-
-- [ ] **Step 5: Run model-independent tests and verify GREEN**
-
-- [ ] **Step 6: Run real segmentation on the ten representative images**
-
-For each index:
+Recommended baseline:
 
 ```text
-verify selected image
-→ load normalized box prompt
-→ SAM 2.1 inference
-→ normalize to binary source-size mask
-→ QA metrics
-→ write mask
-→ record manifest row
+Encoder 1: 3 -> 16 channels, two 3x3 Conv + ReLU, MaxPool
+Encoder 2: 16 -> 32 channels, two 3x3 Conv + ReLU, MaxPool
+Encoder 3: 32 -> 64 channels, two 3x3 Conv + ReLU, MaxPool
+Bottleneck: 64 -> 128 channels, two 3x3 Conv + ReLU, optional small Dropout2d
+Decoder 3: upsample, concatenate encoder-3 skip, convs -> 64
+Decoder 2: upsample, concatenate encoder-2 skip, convs -> 32
+Decoder 1: upsample, concatenate encoder-1 skip, convs -> 16
+Output: 1x1 Conv -> 1 logit channel
 ```
 
-- [ ] **Step 7: Handle weak masks explicitly**
+Use either bilinear upsampling plus convolution or transposed convolution, whichever stays simpler and avoids shape ambiguity. Skip connections are retained because vessel boundaries/rims are important and they are straightforward to explain in a computer-vision presentation.
 
-If the mask clips a major vessel part or includes a large unrelated region, adjust that image's box prompt once and rerun it. Record `corrected=true` and the final prompt in the manifest. If a usable mask still cannot be produced, record `status="failed_segmentation"` and preserve the image unchanged; do not invent a mask.
+- [ ] **Step 3: Keep model size bounded**
 
-- [ ] **Step 8: Commit segmentation code and measured representative masks**
+Target fewer than approximately 2 million trainable parameters. Record the actual parameter count rather than claiming a guessed value. Do not make the network deeper unless validation evidence shows a clear underfitting problem.
 
-Suggested commit:
+- [ ] **Step 4: Define segmentation loss and metrics**
+
+Training loss:
 
 ```text
-feat(ml): segment representative vessel images
+BCEWithLogitsLoss + soft Dice loss
 ```
+
+Primary evaluation metrics:
+
+```text
+Dice coefficient
+IoU / Jaccard index
+foreground precision
+foreground recall
+```
+
+Pixel accuracy may be reported but is secondary because background pixels can dominate it.
+
+- [ ] **Step 5: Verify synthetic forward/backward behavior**
+
+Use tiny deterministic tensors to confirm finite logits, finite loss, a backward pass, and metric behavior for perfect, empty, and mismatched masks.
 
 ---
 
-### Task 4: Presentation-ready segmentation evidence
+### Task 3: Build deterministic training and validation
 
-**Provisional files:**
-- Modify: `ml_segmentation.py`
-- Modify: `tests/test_ml_segmentation.py`
-- Later generated: `analysis/previews/presentation/ml_01_segmentation_165.png`
-- Later generated: `analysis/previews/presentation/ml_02_mask_contact_sheet.png`
+**Files:**
+- Modify/Create: `segmentation_data.py`
+- Create: `train_cnn_segmentation.py`
+- Test: `tests/test_train_cnn_segmentation.py`
+- Generated locally: `analysis/ml/checkpoints/best_small_seg_cnn.pt`
+- Generated: `analysis/reports/cnn_training_history.csv`
+- Generated: `analysis/previews/presentation/ml_01_training_curves.png`
 
-**Provisional interfaces:**
-- `render_segmentation_triptych(image: np.ndarray, mask: np.ndarray, metrics: MaskQualityResult) -> np.ndarray`
-- `render_mask_contact_sheet(items: list[SegmentationPreview]) -> np.ndarray`
+**Interfaces:**
+- Consumes: the frozen train/validation records and `SmallSegCNN`.
+- Produces: best-validation checkpoint, training history, exact run configuration, and training curves.
 
-- [ ] **Step 1: Write image-layout tests**
+- [ ] **Step 1: Implement leakage-safe transforms**
 
-Tests should validate output readability structurally: expected panel count, nonzero output dimensions, deterministic title/label strings, and no source-image mutation.
+Preferred input tensor size: `384 x 288` `(H x W)`.
 
-- [ ] **Step 2: Implement `ml_01_segmentation_165.png`**
-
-The figure must show three clearly labeled panels:
-
-```text
-Original selected image | Binary vessel mask | Mask overlay
-```
-
-Include model name, source index/filename, mask foreground percentage, and whether a correction was required.
-
-- [ ] **Step 3: Implement the ten-image mask contact sheet**
-
-`ml_02_mask_contact_sheet.png` must show all ten representative indices in chronological order with the vessel mask overlaid. Each tile must display the index and segmentation status.
-
-- [ ] **Step 4: Visually inspect both outputs**
-
-Reject figures with unreadable labels, stretched images, overlays that hide the vessel, or masks whose visible errors contradict the recorded QA status.
-
-- [ ] **Step 5: Commit presentation segmentation evidence**
-
-Suggested commit:
+Training-only augmentation may include:
 
 ```text
-feat(ml): add segmentation presentation evidence
+horizontal flip p=0.5
+small rotation, approximately +/-5 degrees
+small translation/scale
+mild brightness/contrast variation, approximately +/-15%
 ```
+
+Rules:
+
+- geometric transforms apply identically to image and mask;
+- photometric transforms apply only to the image;
+- mask interpolation is nearest-neighbor;
+- no vertical flip;
+- no arbitrary perspective warp;
+- no generative augmentation or synthetic reflection removal.
+
+Validation and test use deterministic resize/normalization only.
+
+- [ ] **Step 2: Use a simple fixed baseline training configuration**
+
+Preferred first run:
+
+```text
+optimizer: Adam
+learning rate: 1e-3
+batch size: 8, reduced only if measured GPU memory requires it
+maximum epochs: 60
+early stopping patience: 10 validation epochs
+prediction threshold: 0.5
+seed: 4213
+model selection: highest validation Dice, with validation IoU as supporting metric
+```
+
+Do not touch the test set during this process.
+
+- [ ] **Step 3: Write miniature training-loop tests**
+
+Use a tiny synthetic dataset to verify:
+
+- train and validation loaders stay separate;
+- only training applies random augmentation;
+- loss decreases or remains finite over a tiny deterministic smoke run;
+- checkpoint selection uses validation metrics, not test metrics;
+- early stopping state is deterministic under the fixed seed;
+- run configuration and split-manifest hash are written with the checkpoint report.
+
+- [ ] **Step 4: Run the real baseline training once**
+
+Record actual hardware/device, PyTorch version, parameter count, epochs completed, best epoch, best validation Dice/IoU, runtime, and batch size.
+
+- [ ] **Step 5: Apply one bounded data-expansion decision if needed**
+
+Validation target for a strong coursework result:
+
+```text
+mean Dice >= 0.85
+mean IoU  >= 0.75
+```
+
+These are targets, not numbers to fabricate. If validation quality is clearly weak or a specific viewpoint category fails, add up to **12 new training-only masks** from the failing categories and retrain the same baseline. Do not modify validation/test membership and do not increase network complexity at the same time as adding data, because that would make the cause of improvement unclear.
+
+- [ ] **Step 6: Freeze the final model before test evaluation**
+
+Once model/data decisions are complete from training+validation evidence, lock the checkpoint and threshold. No more architecture, augmentation, or hyperparameter changes after viewing held-out test metrics.
+
+---
+
+### Task 4: Evaluate held-out CNN segmentation and create presentation evidence
+
+**Files:**
+- Modify: `cnn_segmentation.py` as needed for inference helpers only
+- Create/Modify: `run_ml_analysis.py`
+- Test: `tests/test_run_ml_analysis.py`
+- Generated: `analysis/ml/predictions/*.png`
+- Generated: `analysis/reports/cnn_test_metrics.csv`
+- Generated: `analysis/reports/cnn_summary.json`
+- Generated: `analysis/previews/presentation/ml_02_segmentation_examples.png`
+- Generated: `analysis/previews/presentation/ml_03_test_mask_contact_sheet.png`
+
+**Interfaces:**
+- Consumes: frozen checkpoint and six held-out test records.
+- Produces: source-size binary predicted masks and held-out segmentation metrics.
+
+- [ ] **Step 1: Write inference/output-contract tests**
+
+Verify:
+
+- model input is derived from, but never overwrites, the verified selected JPEG;
+- prediction is thresholded to binary `uint8 {0,255}`;
+- predicted mask is restored to exact source width/height using nearest-neighbor interpolation;
+- output writes cannot occur inside raw or selected-image directories;
+- every reported test metric corresponds to the locked test split.
+
+- [ ] **Step 2: Evaluate the held-out test set once**
+
+For all six test images report per-image and aggregate:
+
+```text
+Dice
+IoU
+precision
+recall
+foreground area fraction
+```
+
+Include mean and median Dice/IoU. Do not hide a weak image from the aggregate.
+
+- [ ] **Step 3: Classify visible failures honestly**
+
+Useful failure labels include:
+
+```text
+missed_rim_or_neck
+background_false_positive
+reflection_boundary_error
+opening_filled_in
+partial_vessel_mask
+```
+
+A weak prediction remains part of the test evidence. Do not manually edit a CNN prediction and then report it as model output.
+
+- [ ] **Step 4: Generate professor-facing segmentation figures**
+
+`ml_02_segmentation_examples.png` should show at least two held-out examples, preferably including the continuity images 165 and/or 255 when they are in the frozen test split:
+
+```text
+Original | Ground-truth mask | CNN prediction | Prediction overlay
+```
+
+Include test Dice/IoU for each shown example.
+
+`ml_03_test_mask_contact_sheet.png` should show all six test predictions with concise index/status/Dice labels.
+
+- [ ] **Step 5: Visually inspect every test prediction**
+
+Check the actual vessel rim, neck, body, base, top opening, and background boundary. The written failure label must agree with what is visible.
 
 ---
 
 ### Task 5: Step 8 SIFT feature-mask analysis
 
-**Provisional files:**
+**Files:**
 - Create: `ml_feature_analysis.py`
-- Create: `tests/test_ml_feature_analysis.py`
-- Later generated: `analysis/reports/masked_feature_counts.csv`
-- Later generated: `analysis/previews/presentation/ml_03_masked_features_165.png`
-- Later generated: `analysis/previews/presentation/ml_04_feature_mask_summary.png`
+- Test: `tests/test_ml_feature_analysis.py`
+- Generated: `analysis/reports/masked_feature_counts.csv`
+- Generated: `analysis/previews/presentation/ml_04_masked_features.png`
+- Generated: `analysis/previews/presentation/ml_05_feature_mask_summary.png`
 
-**Provisional interfaces:**
-- Consumes: `geometry_detection.extract_sift` from Step 6 and the ten representative binary masks from Task 3.
-- `classify_keypoints_by_mask(features: SiftFeatures, full_resolution_mask: np.ndarray) -> FeatureMaskResult`
-- `FeatureMaskResult` contains total keypoints, vessel keypoints, background keypoints, vessel fraction, background-suppression fraction, and aligned keypoint index lists.
+**Interfaces:**
+- Consumes: `geometry_detection.extract_sift` and source-size CNN predicted masks from the held-out test set.
+- Preferred API: `classify_keypoints_by_mask(features: SiftFeatures, full_resolution_mask: np.ndarray) -> FeatureMaskResult`.
+- Produces: total, vessel-inside, and background keypoint counts plus aligned keypoint indices and fractions.
 
-- [ ] **Step 1: Write failing keypoint-mask tests**
+- [ ] **Step 1: Write coordinate-alignment tests before integration**
 
-Create synthetic `SiftFeatures` with known keypoint coordinates and verify inside/outside classification after analysis-scale conversion.
+Synthetic features should prove that Step 6 analysis-pixel keypoints map to the correct mask pixels through explicit size metadata rather than guessed scaling.
 
-```python
-def test_keypoints_are_classified_using_matching_scale():
-    features = synthetic_features(points=[(10, 10), (90, 90)], analysis_size=(100, 100))
-    mask = binary_mask_with_white_top_left(width=200, height=200)
-    result = classify_keypoints_by_mask(features, mask)
-    assert result.vessel_count == 1
-    assert result.background_count == 1
-```
+Test:
 
-Also test an all-white mask, all-black mask, dimension mismatch, and descriptor/keypoint alignment.
+- known inside/outside points;
+- border points;
+- source-size mismatch;
+- all-background/all-foreground masks;
+- descriptor/keypoint count alignment.
 
-- [ ] **Step 2: Run tests and verify RED**
+- [ ] **Step 2: Align predicted masks to Step 6 SIFT analysis space**
 
-- [ ] **Step 3: Implement mask-to-SIFT-scale alignment**
+Use nearest-neighbor resizing of the **derived binary mask only**. Never resize or rewrite the source JPEG for Step 8.
 
-Resize the binary mask to `features.analysis_image` using nearest-neighbor interpolation. Never resize or rewrite the source JPEG.
+- [ ] **Step 3: Compute feature-distribution measurements**
 
-- [ ] **Step 4: Implement feature classification and metrics**
-
-For every keypoint, sample the aligned mask at its rounded/clipped coordinates. Count white-mask keypoints as vessel features and black-mask keypoints as background features.
-
-- [ ] **Step 5: Run tests and verify GREEN**
-
-- [ ] **Step 6: Analyze all ten representative images**
-
-Write `masked_feature_counts.csv` with at least:
+For each held-out test image record:
 
 ```text
 index
 filename
-total_keypoints
-vessel_keypoints
-background_keypoints
-vessel_feature_fraction
-background_suppression_fraction
-mask_foreground_fraction
-segmentation_status
+segmentation Dice/IoU
+total SIFT keypoints
+vessel keypoints
+background keypoints
+vessel feature fraction
+background feature fraction
+mask foreground fraction
+segmentation status
 ```
 
-- [ ] **Step 7: Generate `ml_03_masked_features_165.png`**
+Counts are descriptive. A high vessel-feature fraction does not by itself prove better reconstruction.
 
-Use four panels:
+- [ ] **Step 4: Generate `ml_04_masked_features.png`**
 
-1. all SIFT keypoints;
-2. SAM vessel mask overlay;
-3. vessel-inside keypoints only;
-4. compact counts/percentages panel.
-
-This figure explains the ML integration without making any reconstruction claim.
-
-- [ ] **Step 8: Generate `ml_04_feature_mask_summary.png`**
-
-Create one simple summary chart/table across all ten representative indices showing total keypoints versus vessel-inside keypoints and the percentage of background keypoints identified by the mask. Keep each chart visually separate and readable.
-
-- [ ] **Step 9: Visually inspect both figures**
-
-Confirm keypoints shown as vessel-inside actually lie on visible vessel regions in the overlay. Investigate large discrepancies rather than hiding them.
-
-- [ ] **Step 10: Commit feature-mask analysis**
-
-Suggested commit:
+Use a held-out example and show:
 
 ```text
-feat(ml): analyze vessel-masked SIFT features
+all SIFT keypoints
+CNN mask overlay
+vessel-inside keypoints
+background keypoints + counts
 ```
+
+Use visibly distinct markers while keeping the source image readable.
+
+- [ ] **Step 5: Generate `ml_05_feature_mask_summary.png`**
+
+Across the six held-out test images, show total versus vessel-inside keypoint counts and vessel/background fractions. Keep segmentation quality visible beside feature statistics so a poor mask is not presented as trustworthy measurement.
+
+- [ ] **Step 6: Visually cross-check feature classification**
+
+Sample visible keypoints near the rim, silhouette, inner opening, pedestal, and background. Confirm the mask classification matches the overlay.
 
 ---
 
-### Task 6: Steps 7+8 orchestrator, results, and final demonstration summary
+### Task 6: Integrate the CNN and feature-mask demonstration
 
-**Provisional files:**
-- Create: `run_ml_analysis.py`
-- Create: `tests/test_run_ml_analysis.py`
-- Later generated: `analysis/reports/ml_summary.json`
-- Later generated: `analysis/previews/presentation/ml_05_summary.png`
+**Files:**
+- Modify: `run_ml_analysis.py`
+- Test: `tests/test_run_ml_analysis.py`
+- Generated: `analysis/previews/presentation/ml_06_summary.png`
 - Create after real run: `docs/geometry-ml/ml-results.md`
 - Modify after real run: `README.md`
 - Modify after real run: `CHANGELOG.md`
 - Modify after real run: `docs/memory-bank/active-context.md`
 - Modify after real run: `docs/memory-bank/progress.md`
 
-**Provisional interfaces:**
-- `run_ml_analysis(images_dir: Path, selection_manifest: Path, prompt_config: Path, output_root: Path) -> MlAnalysisSummary`
+**Interfaces:**
+- Orchestrator should verify source/label/checkpoint provenance before final output creation.
+- It should consume the frozen model and held-out test set, then invoke Step 8 using the already generated predictions.
 
-- [ ] **Step 1: Write failing orchestration tests**
+- [ ] **Step 1: Write orchestration tests**
 
-Use model-independent fixtures and a fake segmenter. Verify:
+Verify:
 
-- prerequisite interfaces are checked before output creation;
-- exactly the ten representative indices are processed;
-- every successful segmentation has a same-size binary mask and feature-mask metrics;
-- failed segmentation remains documented and does not delete/exclude the source image;
-- no write occurs inside raw or selected-image directories;
+- Step 6 interfaces exist before Step 8 starts;
+- test split and checkpoint provenance are verified before evaluation;
+- no training occurs inside the evaluation orchestrator;
+- failed/weak segmentations remain in reports;
+- source/output path separation is enforced;
 - completion does not depend on pyCOLMAP artifacts.
 
-- [ ] **Step 2: Run the focused test and verify RED**
+- [ ] **Step 2: Generate `ml_06_summary.png`**
 
-Run:
+Professor-ready flow:
+
+```text
+manual ground-truth masks
+→ SmallSegCNN trained from scratch
+→ held-out CNN vessel prediction
+→ Dice / IoU evaluation
+→ existing Step 6 SIFT features
+→ keypoints inside vs outside predicted vessel mask
+```
+
+The figure must not mention SAM or imply reconstruction improvement.
+
+- [ ] **Step 3: Run final ML verification**
+
+Future implementation verification should include:
 
 ```powershell
-python -B -m pytest -p no:cacheprovider -q tests/test_run_ml_analysis.py
+python -B -m pytest -p no:cacheprovider -q tests/test_segmentation_data.py tests/test_cnn_segmentation.py tests/test_train_cnn_segmentation.py tests/test_ml_feature_analysis.py tests/test_run_ml_analysis.py
 ```
 
-- [ ] **Step 3: Implement the minimum orchestrator**
+Then run the real frozen-model held-out evaluation and Step 8 analysis.
 
-Real run order:
+- [ ] **Step 4: Verify source immutability**
 
-```text
-verify Step 6 prerequisite
-→ verify 288 selected inputs
-→ load ten representative prompts
-→ segment ten images
-→ QA/correct masks
-→ analyze SIFT feature distribution
-→ reports
-→ presentation figures
-→ final ML summary
-```
+Re-hash all 297 raw photographs and all 288 selected images against existing manifests. Expected: zero mismatches.
 
-- [ ] **Step 4: Generate `ml_05_summary.png`**
+- [ ] **Step 5: Write measured results documentation**
 
-Create a professor-ready one-page summary using real outputs:
+`docs/geometry-ml/ml-results.md` should record:
 
-```text
-SAM 2.1 input + prompt
-→ vessel segmentation mask
-→ mask overlay
-→ SIFT features inside/outside mask
-→ measured ten-image feature summary
-```
+- exact 24/6/6 initial split and any training-only expansion;
+- annotation convention/tool and labeled-manifest hash;
+- SmallSegCNN architecture and actual parameter count;
+- training configuration and seed;
+- training/validation curves and best epoch;
+- held-out Dice/IoU/precision/recall;
+- visible failure cases;
+- Step 8 SIFT inside/outside counts;
+- explicit limitation that no reconstruction experiment has been run.
 
-Do not include pyCOLMAP, point clouds, reconstruction metrics, or fabricated future results.
+- [ ] **Step 6: Cleanup generated residue**
 
-- [ ] **Step 5: Run all model-independent Steps 7+8 tests**
+Remove caches, temporary checkpoints, failed partial runs, scratch masks, and debug exports. Preserve intentional labeled masks, frozen split manifest, final reports, and presentation figures. Keep only the final best checkpoint locally by default unless the user explicitly chooses to publish model weights.
 
-Run in the repository Python environment where possible:
+---
 
-```powershell
-python -B -m pytest -p no:cacheprovider -q tests/test_ml_prompt_config.py tests/test_ml_segmentation.py tests/test_ml_feature_analysis.py tests/test_run_ml_analysis.py
-```
+## Completion gate
 
-Model-loading/inference verification belongs to the isolated ML environment and must be reported separately.
+Steps 7+8 are complete only when future implementation evidence proves all of the following:
 
-- [ ] **Step 6: Run the real ten-image ML analysis**
-
-Run SAM inference only on the ten representative images. Record actual mask/feature metrics and correction/failure cases.
-
-- [ ] **Step 7: Verify source immutability**
-
-Re-hash all 297 raw photographs and all 288 selected images against their existing manifests. Expected: zero mismatches.
-
-- [ ] **Step 8: Visually inspect every required ML presentation figure**
-
-Required:
-
-```text
-ml_01_segmentation_165.png
-ml_02_mask_contact_sheet.png
-ml_03_masked_features_165.png
-ml_04_feature_mask_summary.png
-ml_05_summary.png
-```
-
-- [ ] **Step 9: Write measured ML results documentation**
-
-Create `docs/geometry-ml/ml-results.md` containing model/runtime provenance, prompt method, ten-image segmentation QA, feature-mask measurements, limitations, and the figures above. State explicitly that no reconstruction experiment has been run.
-
-- [ ] **Step 10: Cleanup**
-
-Remove checkpoint copies inside the repository, caches, temporary renders, scratch prompts, failed partial outputs, `__pycache__`, pytest cache, and abandoned mask experiments. Preserve the final prompt config, intentional representative masks, reports, and presentation figures.
-
-- [ ] **Step 11: Commit Steps 7+8 implementation separately**
-
-Suggested commit:
-
-```text
-feat(ml): add vessel segmentation and feature-mask analysis
-```
-
-## Steps 7+8 completion gate
-
-This gate is a future acceptance target, not a claim that the architecture above
-is final or that any ML implementation has started.
-
-Steps 7+8 are complete only when:
-
-- `sam2.1_hiera_small` is verified in an isolated runtime;
-- all ten representative images have either a verified mask or an explicitly documented segmentation failure;
-- segmentation and feature-mask presentation figures are readable and based on real outputs;
-- feature counts are measured using Step 6's SIFT implementation;
-- raw and selected-image manifests still match;
-- no claim is made that masking improves 3D reconstruction;
-- no pyCOLMAP/reconstruction work was started.
+- the segmentation model was trained from random initialization with no pretrained backbone/checkpoint;
+- the labeled dataset/split is reproducible and leakage-controlled;
+- 24 train / 6 validation / 6 held-out test masks exist for the initial run, with only training-only expansion allowed afterward;
+- the test split remained untouched during model/hyperparameter selection;
+- real training curves and best-validation checkpoint provenance exist;
+- all six held-out test images have unedited CNN predictions and measured Dice/IoU/precision/recall;
+- weak test predictions are retained and documented rather than hidden or manually repaired;
+- Step 8 reuses the completed Step 6 SIFT extraction/scale metadata;
+- feature-mask figures use CNN-predicted masks, not ground truth, for the primary Step 8 result;
+- all presentation figures are generated from real outputs and visually inspected;
+- all 297 raw and 288 selected photographs remain hash-identical;
+- no claim is made that CNN masking improves reconstruction;
+- no pyCOLMAP/reconstruction, meshing, texturing, or Blender work was started as part of this plan.
 
 ## Plan self-review
 
-- Step 7 segmentation is covered by Tasks 1-4.
-- Step 8 feature-mask analysis is covered by Task 5.
-- Task 6 integrates the two steps into a single presentation-ready result without extending into reconstruction.
-- The current phase processes only ten representative images, avoiding unnecessary 288-image mask generation.
-- Step 6 SIFT/input logic is reused rather than duplicated.
-- Every required ML presentation artifact has an explicit filename and acceptance check.
-- No task invokes pyCOLMAP, COLMAP, sparse/dense reconstruction, meshing, texturing, or Blender.
-- Every task contains concrete actions, interfaces, verification commands, and acceptance checks.
+- The model is now a custom CNN segmentation network rather than a pretrained model.
+- The segmentation objective is pixel-level binary masking, not classification.
+- Manual labels are separated into train/validation/test with explicit leakage controls for sequential near-neighbor photographs.
+- Architecture/model selection uses only train+validation evidence; the test set is held out until the model is frozen.
+- The plan starts small at 36 labels and permits only one bounded training-data expansion instead of immediately labeling all 288 images.
+- The recommended U-Net-like skips improve boundary localization while remaining explainable as ordinary convolutional encoder/decoder operations.
+- Dice and IoU are primary because pixel accuracy can be misleading on background-heavy segmentation.
+- Step 8 uses predictions from held-out images and the existing Step 6 SIFT contract.
+- No SAM, pretrained backbone, reconstruction, or generative image manipulation remains in the planned architecture.

@@ -1,6 +1,6 @@
 # Progress
 
-Updated: 2026-08-28
+Updated: 2026-09-01
 
 ## Completed and verified
 
@@ -21,15 +21,14 @@ Updated: 2026-08-28
 - Independent integrity audit reopened all 288 outputs at 3072 x 4080, matched every selection-manifest hash, found no output duplicates, and re-hashed all 297 originals with zero mismatches.
 - All four WARN/REJECT decision sheets and all ten before/after previews visually inspected.
 - Course-presentation walkthrough artifacts were delivered and later removed from the workspace after user approval; processing evidence remains under `preprocessing/` and `docs/preprocessing/`.
-- Geometry/ML planning is now split into two implementation plans: Step 6 geometry detection/analysis and combined Steps 7+8 SAM 2.1 segmentation + feature-mask analysis.
-- Step 6 plans SIFT/RANSAC matches, epipolar geometry, and classical 2D vessel-shape geometry with explicit presentation figures.
-- Steps 7+8 plan SAM 2.1 segmentation on ten representative selected images and SIFT feature counts inside versus outside the vessel masks; full 288-image masking is deliberately deferred.
-- The previous combined plan is now an index only. pyCOLMAP/reconstruction
-  tasks were removed from the current implementation scope; no SAM masks, model
-  weights, or reconstruction outputs were created.
-- Step 6 plan revised into a flexible execution contract before implementation;
-  Steps 7+8 remain provisional and depend only on the selected-record and
-  SIFT-scale interfaces.
+- Geometry/ML planning is split into two implementation plans: completed Step 6 geometry detection/analysis and planned Steps 7+8 custom CNN segmentation + feature-mask analysis.
+- Step 6 covers SIFT/RANSAC matches, epipolar geometry, and classical 2D vessel-shape geometry with explicit presentation figures.
+- On 2026-09-01, the Steps 7+8 architecture was revised from pretrained SAM inference to a small binary segmentation CNN trained from random initialization.
+- The revised ML plan starts with 36 manual masks using a sequence-aware 24 train / 6 validation / 6 held-out test split, with at most 12 later training-only labels if validation shows a real coverage gap.
+- The planned CNN is a compact U-Net-like `SmallSegCNN`, preferred input size 384 x 288 `(H x W)`, BCE-with-logits + Dice loss, Adam, seed 4213, validation-based early stopping, and no test-set tuning.
+- Held-out predictions will be evaluated with Dice, IoU, foreground precision/recall and visible failure analysis before Step 8 reuses Step 6 SIFT to count features inside versus outside CNN-predicted vessel masks.
+- The combined plan index still stops before pyCOLMAP/reconstruction; no CNN labels, CNN model weights, ML predictions, or reconstruction outputs were created by this planning revision.
+- Step 6 remains independent of the future CNN and exposes only the selected-record and SIFT-scale interfaces required downstream.
 - Step 6 implemented in `analysis_common.py`, `geometry_detection.py`,
   `shape_geometry.py`, `run_geometry_analysis.py`, and
   `show_geometry_visuals.py` with 31 focused unit/integration tests.
@@ -53,8 +52,6 @@ Updated: 2026-08-28
 
 ## Next phase
 
-- First revise the provisional combined Steps 7+8 plan using the completed Step
-  6 interfaces and measured evidence; execute it only under separate
-  authorization.
-- Stop after Step 8. No pyCOLMAP, sparse reconstruction, dense reconstruction,
-  meshing, texturing, or Blender work is currently planned for execution.
+- The CNN-based Steps 7+8 plan revision is complete. Implementation still requires separate authorization.
+- The first implementation action, when authorized, is to verify the current PyTorch environment and select/freeze the 36-image manual-label set before creating masks or model code.
+- Stop after Step 8. No pyCOLMAP, sparse reconstruction, dense reconstruction, meshing, texturing, or Blender work is currently planned for execution.

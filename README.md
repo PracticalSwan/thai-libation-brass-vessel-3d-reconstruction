@@ -8,6 +8,7 @@ The explainable project pipeline is:
 smartphone capture
 -> OpenCV quality analysis and conservative preprocessing
 -> classical 2D/two-view geometry analysis
+-> planned custom CNN vessel segmentation + SIFT feature-mask analysis
 -> pyCOLMAP feature extraction and matching
 -> Structure from Motion / sparse reconstruction
 -> dense reconstruction where practical
@@ -18,9 +19,9 @@ smartphone capture
 ## Project status
 
 The real-image preprocessing, QA, and Step 6 classical geometry-analysis phases
-are complete and verified. The project is ready for its next separately
-authorized phase, but no SAM/PyTorch analysis or pyCOLMAP reconstruction has
-been run.
+are complete and verified. The next planned phase is a separately authorized
+from-scratch CNN segmentation and SIFT feature-mask analysis workflow. No CNN
+training, ML masks, or pyCOLMAP reconstruction has been run.
 
 Measured preprocessing result:
 
@@ -52,9 +53,9 @@ Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/REA
 
 ## Geometry + planned machine-learning extension
 
-Step 6 is implemented and verified. Steps 7+8 remain provisional and
-unimplemented; their plan must be revised against the real Step 6 interface
-before any ML work begins. The project boundary still stops before pyCOLMAP.
+Step 6 is implemented and verified. Steps 7+8 now have a revised CNN-based
+planning architecture but remain unimplemented and require separate execution
+authorization. The project boundary still stops before pyCOLMAP.
 
 ### Step 6 — Geometry Detection / Analysis
 
@@ -65,26 +66,29 @@ before any ML work begins. The project boundary still stops before pyCOLMAP.
   centroid/bounding box, and PCA principal axis;
 - generated and visually verified six presentation-ready geometry figures.
 
-### Steps 7 + 8 — SAM 2.1 + Feature-Mask Analysis
+### Steps 7 + 8 — From-Scratch CNN + Feature-Mask Analysis
 
-- pretrained Meta SAM 2.1 using `sam2.1_hiera_small` first;
-- prompt-based vessel segmentation on ten representative selected images: `15, 45, 75, 105, 135, 165, 195, 225, 255, 280`;
-- binary vessel-mask QA and overlays;
-- reuse Step 6 SIFT extraction to measure keypoints inside versus outside each mask;
-- real presentation-ready segmentation and feature-mask figures.
+- manually annotate an initial 36-image binary vessel-segmentation dataset;
+- split it as 24 train / 6 validation / 6 held-out test using separated capture positions/view groups rather than a random neighboring-frame split;
+- train a small U-Net-like `SmallSegCNN` from random initialization with no pretrained weights;
+- evaluate held-out predictions with Dice, IoU, foreground precision, recall, and visible failure analysis;
+- reuse Step 6 SIFT extraction to measure keypoints inside versus outside CNN-predicted vessel masks;
+- generate training, segmentation, feature-mask, and summary figures from real outputs.
 
 ```mermaid
 flowchart LR
     A[288 verified PREPROCESSED images] --> B[Step 6: SIFT + RANSAC]
     B --> C[Epipolar geometry]
     A --> D[Step 6: Canny + contour + ellipse/axis]
-    A --> E[Step 7: SAM 2.1 on 10 representative images]
-    E --> F[Step 8: SIFT inside vs outside vessel mask]
-    C --> G[Verified Step 6 geometry evidence]
-    D --> G
-    F --> H[ML evidence]
-    G --> I[STOP before pyCOLMAP]
-    H --> I
+    A --> E[Manual vessel masks + leakage-safe split]
+    E --> F[Step 7: SmallSegCNN trained from scratch]
+    F --> G[Held-out predictions + Dice/IoU]
+    G --> H[Step 8: SIFT inside vs outside predicted mask]
+    C --> I[Verified Step 6 geometry evidence]
+    D --> I
+    H --> J[ML evidence]
+    I --> K[STOP before pyCOLMAP]
+    J --> K
 ```
 
 - Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)

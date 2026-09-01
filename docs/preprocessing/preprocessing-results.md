@@ -110,9 +110,9 @@ The pipeline verifies `raw_manifest_before.json` before processing and again aft
 
 ### 13. What comes next
 
-The current next work is split into two implementation plans and stops before reconstruction. Step 6 will make geometry explicit through SIFT/RANSAC match visualization, epipolar geometry, and classical 2D vessel-shape geometry. Combined Steps 7+8 will use pretrained SAM 2.1 on ten representative selected images and measure SIFT features inside versus outside the vessel masks.
+The current work is split into two implementation plans and still stops before reconstruction. Step 6 has now completed the SIFT/RANSAC match visualization, epipolar geometry, and classical 2D vessel-shape analysis. Combined Steps 7+8 are now planned as a small binary segmentation CNN trained from scratch on a manually labeled, leakage-controlled subset, followed by SIFT feature counts inside versus outside the CNN-predicted vessel masks.
 
-The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. The Step 6 and Steps 7+8 implementation plans are linked from `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`. No geometry/ML implementation or pyCOLMAP reconstruction has run yet, and no reconstruction work is part of the current plan.
+The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. The Step 6 and Steps 7+8 implementation plans are linked from `docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`. Step 6 is complete; CNN labeling/training and pyCOLMAP reconstruction have not started, and no reconstruction work is part of the current plan.
 
 ## Verification and limitations
 
