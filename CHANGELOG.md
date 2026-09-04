@@ -38,6 +38,13 @@ All notable verified project milestones are recorded here.
 - Final Step 6 integrity proof: 288/288 selected images matched their manifest,
   and all 297 raw originals remained unchanged with zero size or SHA-256
   mismatches.
+- Frozen Steps 7+8 segmentation dataset with 36 reviewed source-size masks and a sequence-aware 24 train / 6 validation / 6 held-out test split. The label manifest SHA-256 is `9925bccf367221472e2301d7c360bd7ea4f5f947981d81b5da22f71fe5b02e0f`.
+- Project-defined `SmallSegCNN` binary segmenter trained from random initialization with 487,297 trainable parameters and no pretrained weights/backbone.
+- Measured baseline training on CUDA: 49 epochs, best epoch 39, validation Dice 0.9681 / IoU 0.9383, 332.1 s runtime on the NVIDIA GeForce RTX 5050 Laptop GPU.
+- Frozen six-image held-out evaluation with mean Dice 0.9525 and mean IoU 0.9107; the image-72 yellow-wall `background_false_positive` remains visible and unedited in the evidence.
+- Step 8 feature-mask analysis reusing `geometry_detection.extract_sift`: 28,673 held-out SIFT keypoints, 27,431 inside CNN-predicted vessel masks and 1,242 outside.
+- Six ML presentation figures plus machine-readable training, held-out, summary, and masked-feature reports generated from real outputs and visually reviewed.
+- Final Steps 7+8 verification: 13 ML-focused tests and 66 complete project tests passed; changed Python compiled; all 297 raw photographs and 288 selected images remained unchanged.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -48,5 +55,5 @@ All notable verified project milestones are recorded here.
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- The CNN-based Steps 7+8 planning revision is complete. Before implementation, verify the current PyTorch runtime and freeze the exact 36-image annotation/split manifest; do not create labels, code, dependencies, or training outputs without separate authorization.
-- Continue to stop before pyCOLMAP and reconstruction unless that later phase is explicitly authorized.
+- Steps 7+8 are complete and verified. Stop before pyCOLMAP/reconstruction unless that later phase is explicitly authorized.
+- If reconstruction is authorized later, begin from the unchanged 288-image PREPROCESSED set and treat the current CNN/feature-mask outputs as analysis evidence rather than assumed reconstruction inputs.

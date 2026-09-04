@@ -1,25 +1,18 @@
 # Geometry Detection and ML Integration Design
 
-Updated: 2026-09-01
+Updated: 2026-09-05
 
 ## Status
 
-**Step 6 is implemented and verified. The Step 7/8 architecture has now been
-revised to a custom CNN segmentation workflow, but implementation has not
-started.**
+**Preprocessing and Steps 6-8 are implemented, measured, visually reviewed, and verified. The repository stops before pyCOLMAP/reconstruction.**
 
 The verified preprocessing milestone remains unchanged: 297 immutable raw photographs, 207 `ACCEPT`, 81 `WARN`, 9 `REJECT`, and 288 PREPROCESSED images in `preprocessing/pycolmap_input/images/`.
 
-Step 6 produced real classical-geometry code, reports, a popup visualizer, and
-six presentation figures under the measured contract below. It did not produce
-CNN training data, segmentation model weights, predicted ML masks, pyCOLMAP
-feature extraction, or reconstruction. The Step 7/8 design below is the current
-approved planning direction and still requires separate authorization before
-implementation.
+Step 6 produced the classical-geometry code, reports, popup visualizer, and six presentation figures described below. Steps 7+8 subsequently implemented the from-scratch `SmallSegCNN`, a frozen sequence-aware 24/6/6 segmentation split, six held-out predictions, Step 6 SIFT feature-mask analysis, and six ML presentation figures. Measured ML results are recorded in `docs/geometry-ml/cnn-dataset.md` and `docs/geometry-ml/ml-results.md`. No pyCOLMAP or reconstruction work has been run.
 
-## Current goal
+## Implemented extension
 
-Extend the completed preprocessing pipeline with two bounded implementation units that are easy to demonstrate during coursework assessment:
+The completed preprocessing pipeline now includes two bounded, coursework-explainable implementation units:
 
 ### Step 6 — Geometry Detection / Analysis
 
@@ -46,7 +39,7 @@ The single-image shape module adds intuitive classical computer vision: silhouet
 
 The ML component is foreground segmentation rather than generative enhancement. A small project-defined CNN is trained from scratch to predict which pixels belong to the vessel while leaving source images unchanged. This gives the coursework a real learning experiment with manual labels, training/validation curves, held-out segmentation metrics, and visible failure analysis. Step 8 then uses those predicted masks to measure where the already-implemented SIFT keypoints fall, creating a concrete ML/CV integration before any reconstruction stage begins.
 
-## Current planned pipeline
+## Implemented pipeline
 
 ```mermaid
 flowchart TD
@@ -223,7 +216,7 @@ visible image. File existence alone is not visual verification.
 
 ## Steps 7 + 8 ML design
 
-The current approved planning direction is a **small binary segmentation CNN trained from scratch**. Module names and minor training details may still change when implementation begins, but the following principles are now fixed unless the user explicitly redesigns them: no pretrained segmentation model, leakage-controlled manual labels, held-out test evaluation, and reuse of the completed Step 6 SIFT/scale contract.
+The implemented baseline is a **small binary segmentation CNN trained from scratch**. The design constraints were retained through the measured run: no pretrained segmentation model, leakage-controlled reviewed labels, held-out test evaluation after model/threshold freeze, and reuse of the completed Step 6 SIFT/scale contract.
 
 The only stable downstream dependency promised by Step 6 is:
 
@@ -290,7 +283,7 @@ Primary metrics are Dice coefficient and IoU/Jaccard, with foreground precision 
 
 CNN predictions are unedited model outputs. A weak prediction remains part of the test evidence and receives an honest failure label such as `background_false_positive`, `reflection_boundary_error`, `opening_filled_in`, or `partial_vessel_mask`.
 
-Planned presentation evidence:
+Implemented presentation evidence:
 
 ```text
 analysis/previews/presentation/ml_01_training_curves.png
@@ -306,7 +299,7 @@ Original | Ground-truth mask | CNN prediction | Prediction overlay
 
 ### Step 8 feature-mask analysis
 
-Reuse Step 6's public SIFT extraction interface so the ML stage does not implement a second SIFT pipeline.
+The implemented Step 8 stage reuses Step 6's public SIFT extraction interface, so the ML stage does not implement a second SIFT pipeline.
 
 The primary Step 8 result uses the **CNN-predicted masks from the held-out test images**, not the ground-truth masks. For each held-out image:
 
@@ -318,7 +311,7 @@ The primary Step 8 result uses the **CNN-predicted masks from the held-out test 
 6. report the segmentation Dice/IoU beside the feature counts so weak masks are not treated as equally reliable;
 7. keep all feature counts descriptive—do not claim reconstruction improvement.
 
-Planned outputs:
+Implemented outputs:
 
 ```text
 analysis/previews/presentation/ml_04_masked_features.png
@@ -326,7 +319,7 @@ analysis/previews/presentation/ml_05_feature_mask_summary.png
 analysis/previews/presentation/ml_06_summary.png
 ```
 
-The final ML summary should show:
+The final ML summary shows:
 
 ```text
 manual ground-truth masks
@@ -337,7 +330,7 @@ manual ground-truth masks
 → keypoints inside vs outside predicted vessel mask
 ```
 
-## Illustrative repository structure
+## Implemented repository structure
 
 ```text
 analysis_common.py                       verified selected-image input boundary
@@ -376,7 +369,7 @@ analysis/
     presentation/
 ```
 
-The future ML filenames are preferred responsibility boundaries, not permission for unrelated refactoring. Step 6 remains independent of the CNN implementation.
+The ML filenames are responsibility boundaries, not permission for unrelated refactoring. Step 6 remains independent of the CNN implementation.
 
 ## Verification requirements
 
@@ -423,7 +416,7 @@ The current work ends after Steps 6-8 are implemented, measured, visually inspec
 ## Out of scope
 
 - labeling or training on all 288 images unless a later evidence-based expansion is separately approved;
-- pretrained segmentation models, transfer learning, SAM, or external segmentation APIs in the planned baseline;
+- pretrained segmentation models, transfer learning, SAM, or external segmentation APIs in the verified baseline;
 - using the held-out test set for model selection or iterative tuning;
 - manually repairing a CNN prediction and reporting it as model output;
 - pyCOLMAP or COLMAP execution;
@@ -433,6 +426,6 @@ The current work ends after Steps 6-8 are implemented, measured, visually inspec
 - geometric warping or perspective correction;
 - meshing, texturing, or Blender cleanup.
 
-## External references for future ML implementation
+## Runtime reference boundary
 
-At implementation time, check the current official PyTorch/torchvision documentation for the installed versions before finalizing device, determinism, or transform APIs. No external pretrained model repository is required by this design.
+The verified ML run used the installed PyTorch/torchvision runtime recorded in `docs/geometry-ml/ml-results.md`. Future reruns should re-check the official documentation if those library versions change. No external pretrained model repository is required by this design.

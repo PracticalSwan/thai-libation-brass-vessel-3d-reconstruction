@@ -1,4 +1,6 @@
 opencv-python>=4.13,<5
 numpy>=2.4,<3
 Pillow>=12,<13
+matplotlib>=3.10,<4
+torch>=2.13,<3
 pytest>=9.1,<10

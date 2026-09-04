@@ -4,7 +4,7 @@
 
 This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
 
-Current phase: preprocessing and Step 6 geometry analysis are complete and verified. The next planned phase is a separately authorized custom CNN segmentation + SIFT feature-mask analysis workflow; pyCOLMAP/reconstruction remains later and must not be claimed until it is separately run and verified.
+Current phase: preprocessing, Step 6 geometry analysis, and Steps 7+8 custom CNN segmentation + SIFT feature-mask analysis are complete and verified. The repository currently stops before pyCOLMAP/reconstruction; that later phase must not be started or claimed until it is separately authorized, run, and verified.
 
 ## Core rules
 
@@ -45,17 +45,17 @@ Current phase: preprocessing and Step 6 geometry analysis are complete and verif
 
 ## Geometry and ML extension
 
-The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Step 6 is implemented and verified; Steps 7+8 are planned but not implemented:
+The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-8 are implemented and verified:
 
 - Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
 - Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
 
 - Step 6 exposes verified selected-image access, reusable SIFT keypoints/descriptors and scale metadata, Fundamental Matrix/RANSAC, epipolar geometry, and classical 2D vessel geometry.
-- Steps 7+8 now plan a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the baseline.
-- The initial labeled set is planned as 36 manually annotated selected images: 24 train, 6 validation, 6 held-out test, split by separated capture positions/view groups rather than a random neighboring-frame shuffle.
-- Model selection uses training/validation evidence only. The held-out test split remains untouched until the model and threshold are frozen.
+- Steps 7+8 use a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the verified baseline.
+- The frozen labeled set contains 36 reviewed selected images: 24 train, 6 validation, 6 held-out test, split by separated capture positions/view groups rather than a random neighboring-frame shuffle.
+- Model selection used training/validation evidence only. The held-out test split was evaluated after the model and 0.5 threshold were frozen.
 - Step 8 reuses Step 6 SIFT extraction to measure features inside versus outside CNN-predicted vessel masks; it does not claim reconstruction improvement.
-- PyTorch runtime changes, manual mask creation, CNN implementation, and training require separate authorization; this planning update does not authorize them.
+- Measured Steps 7+8 results are documented in `docs/geometry-ml/cnn-dataset.md` and `docs/geometry-ml/ml-results.md`.
 - Weak test predictions must remain visible and documented; they must not be manually repaired and reported as model output.
 - Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, training metrics, camera poses, point clouds, or reconstruction results.
 - Stop after Steps 6-8. Do not create or execute a pyCOLMAP/reconstruction implementation plan until the user explicitly moves the project beyond this scope.

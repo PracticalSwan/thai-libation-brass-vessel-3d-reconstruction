@@ -142,9 +142,5 @@ python -B show_geometry_visuals.py --mode all --no-display
   is deliberately omitted.
 - Fundamental Matrix inliers and low residuals support two-view consistency;
   they do not guarantee successful multi-view reconstruction.
-- Steps 7+8 remain unimplemented, but their planning architecture has been revised
-  to a small from-scratch CNN segmentation workflow that reuses this finished
-  Step 6 SIFT/scale interface. CNN labeling, training, and evaluation still require
-  separate authorization.
-- pyCOLMAP and all reconstruction stages remain separately authorized future
-  work.
+- Steps 7+8 are now implemented and verified using a small from-scratch CNN segmentation workflow that reuses this finished Step 6 SIFT/scale interface. Their measured results are documented in `cnn-dataset.md` and `ml-results.md`.
+- pyCOLMAP and all reconstruction stages remain separately authorized future work. No reconstruction-improvement claim is inferred from the CNN/SIFT feature-mask analysis.

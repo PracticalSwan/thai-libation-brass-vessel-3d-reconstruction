@@ -8,7 +8,7 @@ The explainable project pipeline is:
 smartphone capture
 -> OpenCV quality analysis and conservative preprocessing
 -> classical 2D/two-view geometry analysis
--> planned custom CNN vessel segmentation + SIFT feature-mask analysis
+-> custom CNN vessel segmentation + SIFT feature-mask analysis
 -> pyCOLMAP feature extraction and matching
 -> Structure from Motion / sparse reconstruction
 -> dense reconstruction where practical
@@ -18,10 +18,9 @@ smartphone capture
 
 ## Project status
 
-The real-image preprocessing, QA, and Step 6 classical geometry-analysis phases
-are complete and verified. The next planned phase is a separately authorized
-from-scratch CNN segmentation and SIFT feature-mask analysis workflow. No CNN
-training, ML masks, or pyCOLMAP reconstruction has been run.
+The real-image preprocessing, QA, Step 6 classical geometry analysis, and Steps
+7+8 custom CNN segmentation/SIFT feature-mask analysis are complete and
+verified. The project still stops before pyCOLMAP/reconstruction.
 
 Measured preprocessing result:
 
@@ -43,6 +42,17 @@ Measured Step 6 geometry result:
 - six real presentation figures and five machine-readable reports were generated under `analysis/`;
 - all 297 raw photographs and all 288 selected images were rechecked unchanged after analysis.
 
+Measured Steps 7+8 ML result:
+
+- 36 reviewed source-size vessel masks were frozen as 24 train / 6 validation / 6 held-out test using a sequence-aware split;
+- `SmallSegCNN` was trained from random initialization with **487,297** trainable parameters, no pretrained weights, and fixed 384 x 288 model input geometry;
+- training stopped after 49 epochs; best epoch 39 reached validation Dice **0.9681** and IoU **0.9383**;
+- frozen held-out test performance over all six images was mean Dice **0.9525** and mean IoU **0.9107**;
+- held-out index 72 is retained as the visible weak case because the CNN includes a large yellow-wall background false positive;
+- Step 8 reused `geometry_detection.extract_sift` on CNN-predicted masks: 28,673 total SIFT keypoints, 27,431 classified inside the predicted vessel and 1,242 outside;
+- all six ML presentation figures were generated from real outputs and visually inspected;
+- final integrity checks again found 0 raw mismatches across 297 photographs and verified all 288 selected images.
+
 The exact next-stage input directory is:
 
 ```text
@@ -51,11 +61,10 @@ preprocessing/pycolmap_input/images/
 
 Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md) before reconstruction. The full measured method, tables, visual evidence, verification details, and limitations are in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
 
-## Geometry + planned machine-learning extension
+## Geometry + machine-learning extension
 
-Step 6 is implemented and verified. Steps 7+8 now have a revised CNN-based
-planning architecture but remain unimplemented and require separate execution
-authorization. The project boundary still stops before pyCOLMAP.
+Steps 6-8 are implemented and verified. The project boundary still stops before
+pyCOLMAP.
 
 ### Step 6 — Geometry Detection / Analysis
 
@@ -68,12 +77,12 @@ authorization. The project boundary still stops before pyCOLMAP.
 
 ### Steps 7 + 8 — From-Scratch CNN + Feature-Mask Analysis
 
-- manually annotate an initial 36-image binary vessel-segmentation dataset;
-- split it as 24 train / 6 validation / 6 held-out test using separated capture positions/view groups rather than a random neighboring-frame split;
-- train a small U-Net-like `SmallSegCNN` from random initialization with no pretrained weights;
-- evaluate held-out predictions with Dice, IoU, foreground precision, recall, and visible failure analysis;
-- reuse Step 6 SIFT extraction to measure keypoints inside versus outside CNN-predicted vessel masks;
-- generate training, segmentation, feature-mask, and summary figures from real outputs.
+- froze 36 reviewed binary vessel masks as 24 train / 6 validation / 6 held-out test using separated capture positions/view groups rather than a random neighboring-frame split;
+- trained a small U-Net-like `SmallSegCNN` from random initialization with no pretrained weights;
+- selected epoch 39 from validation only, then evaluated the locked 0.5-threshold model on all six held-out images;
+- measured held-out mean Dice 0.9525 and mean IoU 0.9107 while retaining the image-72 background false positive;
+- reused Step 6 SIFT extraction to measure keypoints inside versus outside CNN-predicted vessel masks;
+- generated and visually reviewed six training, segmentation, feature-mask, and summary figures from real outputs.
 
 ```mermaid
 flowchart LR
@@ -94,6 +103,8 @@ flowchart LR
 - Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)
 - Plan index: [`docs/superpowers/plans/2026-08-27-geometry-ml-integration.md`](docs/superpowers/plans/2026-08-27-geometry-ml-integration.md)
 - Step 6 measured results: [`docs/geometry-ml/geometry-results.md`](docs/geometry-ml/geometry-results.md)
+- CNN dataset and split: [`docs/geometry-ml/cnn-dataset.md`](docs/geometry-ml/cnn-dataset.md)
+- Steps 7+8 measured results: [`docs/geometry-ml/ml-results.md`](docs/geometry-ml/ml-results.md)
 - Step 6 implementation plan: [`docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`](docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md)
 - Steps 7+8 implementation plan: [`docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`](docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md)
 
@@ -136,19 +147,47 @@ python -B show_geometry_visuals.py --mode all
 Modes `matches`, `epipolar`, and `shape` are also available. For a bounded
 non-GUI smoke check, add `--no-display`.
 
+## Reproduce Steps 7+8 ML analysis
+
+The frozen label split and model code are in the repository. The final model
+checkpoint is kept locally by default rather than published as repository
+content.
+
+Train the fixed baseline from random initialization:
+
+```powershell
+python -B train_cnn_segmentation.py
+```
+
+After training/validation decisions are frozen, evaluate the held-out test set
+and regenerate the Step 8 reports/figures:
+
+```powershell
+python -B run_ml_analysis.py
+```
+
+The measured run used Python 3.14.2, PyTorch 2.13.0+cu130, torchvision
+0.28.0+cu130, CUDA 13.0, and an NVIDIA GeForce RTX 5050 Laptop GPU.
+
 ## Repository layout
 
 ```text
 quality_check.py                         quality metrics, calibration, decisions
 preprocess_images.py                     geometry-preserving photometric transform
 run_preprocessing.py                     reports, previews, SIFT experiment, export
-tests/                                   52 focused preprocessing and Step 6 tests
+tests/                                   66 focused project tests after Steps 7+8
 analysis_common.py                       selected-manifest loading and integrity verification
 geometry_detection.py                    scaled SIFT, RANSAC, epilines, and residuals
 shape_geometry.py                        classical edges, contour, PCA, and optional ellipse
 run_geometry_analysis.py                 Step 6 orchestration, reports, and figures
 show_geometry_visuals.py                 real popup visualizer for the Step 6 flow
-analysis/                                Step 6 machine reports and presentation figures
+segmentation_data.py                     frozen label validation and paired transforms
+cnn_segmentation.py                      SmallSegCNN, loss, metrics, prediction helpers
+train_cnn_segmentation.py                deterministic train/validation/checkpoint workflow
+ml_feature_analysis.py                   Step 6 SIFT inside/outside predicted-mask analysis
+run_ml_analysis.py                       held-out evaluation, reports, and ML figures
+ml_dataset/                              frozen 36-label manifest and source-size masks
+analysis/                                Step 6 + ML machine reports and presentation figures
 preprocessing/reports/                   audit and final measured reports
 preprocessing/previews/contact_sheets/   full raw-sequence visual audit
 preprocessing/previews/final/            before/after, decision, and SIFT figures
@@ -171,8 +210,12 @@ The separate local `IMG20260826122949.zip` is only a redundant archive of the sa
 - `analysis/reports/geometry_summary.json` — Step 6 source, configuration,
   measurements, exclusions, and artifact manifest.
 - `analysis/geometry/` — pair, epipolar, and classical shape measurements.
-- `analysis/previews/presentation/` — the six visually inspected real Step 6
-  figures.
+- `analysis/previews/presentation/` — the six visually inspected Step 6 figures plus six visually inspected ML presentation figures.
+- `analysis/reports/cnn_training_history.csv` — real train/validation history.
+- `analysis/reports/cnn_test_metrics.csv` — all six held-out segmentation results.
+- `analysis/reports/cnn_summary.json` — model/runtime/split provenance and aggregate ML results.
+- `analysis/reports/masked_feature_counts.csv` — Step 8 SIFT counts from CNN-predicted masks.
+- `analysis/ml/predictions/` — six unedited source-size held-out CNN predictions.
 
 ## Collaboration
 
@@ -186,7 +229,7 @@ Read `CONTRIBUTING.md` before changing the repository and `AGENTS.md` before usi
 
 ## Course relevance
 
-The project demonstrates image-quality measurement, feature detection and matching, geometric verification, Structure from Motion preparation, and later multi-view 3D reconstruction using a real Thai cultural object.
+The project demonstrates image-quality measurement, feature detection and matching, geometric verification, from-scratch CNN semantic segmentation, SIFT feature-mask analysis, Structure from Motion preparation, and later multi-view 3D reconstruction using a real Thai cultural object.
 
 ## License
 
