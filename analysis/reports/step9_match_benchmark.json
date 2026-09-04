@@ -1,0 +1,132 @@
+{
+  "benchmark_pairs": [
+    [
+      15,
+      16
+    ],
+    [
+      45,
+      46
+    ],
+    [
+      75,
+      76
+    ],
+    [
+      105,
+      106
+    ],
+    [
+      135,
+      136
+    ],
+    [
+      165,
+      166
+    ],
+    [
+      195,
+      196
+    ],
+    [
+      225,
+      226
+    ],
+    [
+      255,
+      256
+    ],
+    [
+      280,
+      281
+    ],
+    [
+      15,
+      17
+    ],
+    [
+      45,
+      47
+    ],
+    [
+      75,
+      77
+    ],
+    [
+      105,
+      107
+    ],
+    [
+      135,
+      137
+    ],
+    [
+      165,
+      167
+    ],
+    [
+      195,
+      197
+    ],
+    [
+      225,
+      227
+    ],
+    [
+      255,
+      257
+    ],
+    [
+      280,
+      282
+    ]
+  ],
+  "chosen_mode": "unmasked",
+  "modes": {
+    "raw_cnn": {
+      "median_grid_coverage": 0.5,
+      "median_inlier_ratio": 0.5010262561642009,
+      "median_sampson_error": 0.12105037422676033,
+      "ok_pair_count": 20,
+      "pair_count": 20,
+      "qualified": false,
+      "total_candidates": 4602,
+      "total_inliers": 2841
+    },
+    "reconstruction_mask": {
+      "median_grid_coverage": 0.5,
+      "median_inlier_ratio": 0.5010262561642009,
+      "median_sampson_error": 0.12105037422676033,
+      "ok_pair_count": 20,
+      "pair_count": 20,
+      "qualified": false,
+      "total_candidates": 4602,
+      "total_inliers": 2841
+    },
+    "unmasked": {
+      "median_grid_coverage": 0.625,
+      "median_inlier_ratio": 0.5063907486305539,
+      "median_sampson_error": 0.13393190348088377,
+      "ok_pair_count": 20,
+      "pair_count": 20,
+      "qualified": true,
+      "total_candidates": 5344,
+      "total_inliers": 3146
+    }
+  },
+  "qualification_rule": {
+    "maximum_median_sampson_error_multiplier": 1.1,
+    "minimum_median_inlier_ratio_relative_to_unmasked": "not lower",
+    "minimum_total_inlier_fraction_of_unmasked": 0.95
+  },
+  "row_count": 60,
+  "sift_config": {
+    "confidence": 0.99,
+    "maximum_width": 1200,
+    "minimum_correspondences": 8,
+    "nfeatures": 8000,
+    "ransac_threshold": 1.5,
+    "ratio_threshold": 0.75,
+    "rng_seed": 4213
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "adjacent_edge_count": 287,
+  "bridge_edge_count": 14,
+  "chosen_mode": "unmasked",
+  "excluded_count": 0,
+  "excluded_indices": [],
+  "included_count": 288,
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91",
+  "strong_adjacent_count": 273,
+  "strong_bridge_count": 0,
+  "strong_edge_rule": {
+    "minimum_inlier_ratio": 0.15,
+    "minimum_inliers": 15,
+    "required_status": "ok"
+  },
+  "weak_adjacent_count": 14,
+  "weak_adjacent_pairs": [
+    [
+      73,
+      74
+    ],
+    [
+      145,
+      146
+    ],
+    [
+      203,
+      204
+    ],
+    [
+      246,
+      247
+    ],
+    [
+      258,
+      259
+    ],
+    [
+      266,
+      267
+    ],
+    [
+      267,
+      268
+    ],
+    [
+      271,
+      272
+    ],
+    [
+      272,
+      273
+    ],
+    [
+      273,
+      274
+    ],
+    [
+      276,
+      277
+    ],
+    [
+      279,
+      280
+    ],
+    [
+      283,
+      284
+    ],
+    [
+      285,
+      286
+    ]
+  ]
+}

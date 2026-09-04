@@ -45,6 +45,13 @@ All notable verified project milestones are recorded here.
 - Step 8 feature-mask analysis reusing `geometry_detection.extract_sift`: 28,673 held-out SIFT keypoints, 27,431 inside CNN-predicted vessel masks and 1,242 outside.
 - Six ML presentation figures plus machine-readable training, held-out, summary, and masked-feature reports generated from real outputs and visually reviewed.
 - Final Steps 7+8 verification: 13 ML-focused tests and 66 complete project tests passed; changed Python compiled; all 297 raw photographs and 288 selected images remained unchanged.
+- Step 9 reconstruction-readiness design and four implementation plans covering full-sequence CNN inference, masked-vs-unmasked geometry benchmarking, full-sequence connectivity/subset analysis, and camera/EXIF readiness.
+- Step 9A full-sequence inference: 288 frozen source-size CNN predictions plus 288 deterministic connected-component cleanup masks; cleanup changed 30 predictions while preserving connected failure cases such as the known index-72 yellow-wall false positive.
+- Step 9B frozen 20-pair x 3-mode geometry benchmark: unmasked SIFT produced 3,146 RANSAC inliers versus 2,841 for both masked modes. Each masked mode retained only 90.31% of unmasked inliers and failed the fixed 95% qualification floor, so unmasked SIFT is the measured readiness baseline.
+- Step 9C full-sequence connectivity audit: 287 adjacent edges, 273 strong and 14 weak; 14 local skip bridges tested, zero strong. Conservative subset remains all 288 selected images with zero exclusions.
+- Step 9D raw-EXIF audit: one complete camera signature across all 288 selected filenames (OPPO Reno12 F, 3072 x 4080, orientation 1, 3.98 mm focal length, 26 mm 35-mm equivalent, digital zoom 1.0), supporting one shared camera/intrinsics group as the later SfM starting recommendation.
+- Step 9 machine-readable evidence, 288-image inclusion manifest, and four visually inspected presentation figures under `analysis/` and `preprocessing/reconstruction_input_v1/`.
+- Final Step 9 verification: 26 focused tests and 92 complete project tests passed; changed Step 9 Python compiled; 297/297 raw files remained hash-identical, 288/288 selected images matched their manifest, and all 576 generated Step 9 masks re-opened as hash-matching source-size binary PNGs.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -55,5 +62,6 @@ All notable verified project milestones are recorded here.
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- Steps 7+8 are complete and verified. Stop before pyCOLMAP/reconstruction unless that later phase is explicitly authorized.
-- If reconstruction is authorized later, begin from the unchanged 288-image PREPROCESSED set and treat the current CNN/feature-mask outputs as analysis evidence rather than assumed reconstruction inputs.
+- Steps 6-9 are complete and verified. Stop before pyCOLMAP/reconstruction unless that later phase is explicitly authorized.
+- If reconstruction is authorized later, begin from the unchanged 288-image PREPROCESSED set, use unmasked Step 6 SIFT as the current evidence-backed matching baseline, and begin with one shared camera/intrinsics group while validating both choices against real SfM results.
+- Treat the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes.

@@ -1,0 +1,67 @@
+{
+  "benchmark": {
+    "raw_cnn": {
+      "median_grid_coverage": 0.5,
+      "median_inlier_ratio": 0.5010262561642009,
+      "median_sampson_error": 0.12105037422676033,
+      "ok_pair_count": 20,
+      "pair_count": 20,
+      "qualified": false,
+      "total_candidates": 4602,
+      "total_inliers": 2841
+    },
+    "reconstruction_mask": {
+      "median_grid_coverage": 0.5,
+      "median_inlier_ratio": 0.5010262561642009,
+      "median_sampson_error": 0.12105037422676033,
+      "ok_pair_count": 20,
+      "pair_count": 20,
+      "qualified": false,
+      "total_candidates": 4602,
+      "total_inliers": 2841
+    },
+    "unmasked": {
+      "median_grid_coverage": 0.625,
+      "median_inlier_ratio": 0.5063907486305539,
+      "median_sampson_error": 0.13393190348088377,
+      "ok_pair_count": 20,
+      "pair_count": 20,
+      "qualified": true,
+      "total_candidates": 5344,
+      "total_inliers": 3146
+    }
+  },
+  "camera": {
+    "camera_group_recommendation": "shared_intrinsics_single_camera_signature",
+    "geometry_orientation_consistent": true,
+    "missing_fields": {
+      "datetime_original": 0,
+      "digital_zoom_ratio": 0,
+      "focal_length_35mm": 0,
+      "focal_length_mm": 0,
+      "lens_model": 0,
+      "make": 0,
+      "model": 0,
+      "orientation": 0
+    },
+    "record_count": 288,
+    "unique_signature_count": 1
+  },
+  "checkpoint_sha256": "de2009bfcd00307fa64176cd41b66f5c9e5ac97ab1e8e08226de74df928f526b",
+  "chosen_feature_mode": "unmasked",
+  "connectivity": {
+    "adjacent_edge_count": 287,
+    "bridge_edge_count": 14,
+    "excluded_count": 0,
+    "excluded_indices": [],
+    "included_count": 288,
+    "strong_adjacent_count": 273,
+    "strong_bridge_count": 0,
+    "weak_adjacent_count": 14
+  },
+  "mask_count": 288,
+  "next_boundary": "pyCOLMAP/SfM requires separate explicit authorization",
+  "reconstruction_started": false,
+  "segmentation_manifest_sha256": "9925bccf367221472e2301d7c360bd7ea4f5f947981d81b5da22f71fe5b02e0f",
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91"
+}

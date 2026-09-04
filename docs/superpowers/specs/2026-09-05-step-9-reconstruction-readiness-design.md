@@ -4,7 +4,9 @@ Updated: 2026-09-05
 
 ## Status
 
-Approved for implementation by the user. Step 9 is a pre-reconstruction phase only. It must stop before pyCOLMAP, camera-pose estimation, triangulation, sparse/dense reconstruction, meshing, texturing, or Blender.
+Completed and verified on 2026-09-05. Step 9 remained a pre-reconstruction phase only and stopped before pyCOLMAP, camera-pose estimation, triangulation, sparse/dense reconstruction, meshing, texturing, or Blender.
+
+Measured result: the frozen 20-pair benchmark selected `unmasked` SIFT (3,146 RANSAC inliers versus 2,841 for both masked modes); the 287-edge connectivity audit retained all 288 selected images; and all 288 selected filenames shared one complete OPPO Reno12 F camera signature supporting one shared camera/intrinsics starting group. Final verification passed 26 focused Step 9 tests and 92 complete project tests, with 297/297 raw and 288/288 selected images unchanged.
 
 ## Goal
 

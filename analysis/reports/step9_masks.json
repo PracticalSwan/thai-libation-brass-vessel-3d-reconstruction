@@ -1,0 +1,21 @@
+{
+  "checkpoint_path": "analysis/ml/checkpoints/best_small_seg_cnn.pt",
+  "checkpoint_sha256": "de2009bfcd00307fa64176cd41b66f5c9e5ac97ab1e8e08226de74df928f526b",
+  "cleaned_prediction_count": 30,
+  "cleanup_rule": {
+    "central_roi": "x=25%-75%, y=20%-85%",
+    "erosion": false,
+    "holes_filled": false,
+    "secondary_maximum_bbox_gap_diagonal_fraction": 0.03,
+    "secondary_minimum_area_fraction": 0.02
+  },
+  "mask_count": 288,
+  "mean_raw_foreground_fraction": 0.27526036652431335,
+  "mean_reconstruction_foreground_fraction": 0.27448706727315314,
+  "raw_prediction_count": 288,
+  "raw_prediction_directory": "analysis/ml/full_predictions",
+  "reconstruction_mask_count": 288,
+  "reconstruction_mask_directory": "analysis/ml/reconstruction_masks",
+  "segmentation_manifest_sha256": "9925bccf367221472e2301d7c360bd7ea4f5f947981d81b5da22f71fe5b02e0f",
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91"
+}

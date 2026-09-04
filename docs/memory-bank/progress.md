@@ -38,16 +38,28 @@ Updated: 2026-09-05
 - Step 8 reuses `geometry_detection.extract_sift` and CNN-predicted masks: 28,673 total held-out SIFT keypoints, 27,431 inside predicted vessel masks, and 1,242 outside. Mean per-image vessel-feature fraction is 0.952693.
 - Six ML presentation figures were generated from real outputs and visually inspected. The feature-mask figures retain the weak image-72 limitation instead of implying that high vessel-feature fractions prove reconstruction improvement.
 
+### Step 9 — reconstruction readiness
+
+- Implemented `reconstruction_masks.py`, `reconstruction_matching.py`, `camera_readiness.py`, and `run_reconstruction_readiness.py` with bounded stages `masks`, `benchmark`, `connectivity`, `camera`, and `summary`.
+- Full-sequence inference produced 288 source-size raw CNN predictions and 288 deterministic cleanup masks. Cleanup changed 30 predictions; mean foreground fraction changed from 0.275260 to 0.274487.
+- Frozen 20-pair x 3-mode geometry benchmark chose **unmasked** SIFT: 3,146 RANSAC inliers versus 2,841 for both masked modes. Both masked modes retained 90.31% of unmasked inliers and failed the fixed 95% qualification floor.
+- Full 287-edge adjacent audit found 273 strong and 14 weak transitions. Fourteen local skip bridges were tested and none was strong, so the conservative recommended subset remains 288/288 images with zero exclusions.
+- Camera/EXIF audit found one complete signature across all 288 selected filenames: OPPO Reno12 F, 3072 x 4080, orientation 1, 3.98 mm focal length, 26 mm 35-mm equivalent, digital zoom 1.0. The measured starting recommendation is one shared camera/intrinsics group.
+- Four Step 9 presentation figures and machine-readable CSV/JSON evidence were generated and visually inspected. A zero-range camera-metadata plot defect found during review was fixed.
+- `docs/geometry-ml/reconstruction-readiness.md` records the measured Step 9 method, results, limitations, and no-reconstruction boundary.
+
 ## Verification
 
-- Fresh ML-focused suite: **13 passed**.
-- Fresh complete project suite: **66 passed**.
-- Changed ML Python modules/tests completed `python -m py_compile` successfully.
+- Fresh Step 9-focused suite: **26 passed**.
+- Fresh complete project suite: **92 passed**.
+- Changed Step 9 Python modules completed `python -B -m py_compile` successfully.
 - Fresh final source-integrity verification: 297/297 raw unchanged with 0 mismatches; 288/288 selected images verified against `selection_manifest.csv`.
+- Final mask-manifest verification re-opened and hash-checked all 288 raw predictions and 288 cleanup masks as source-size binary PNGs.
 - Final model checkpoint is preserved locally at `analysis/ml/checkpoints/best_small_seg_cnn.pt` and is not intended for repository publication by default.
+- Step 9 did not run pyCOLMAP/COLMAP or create camera poses, triangulated points, sparse/dense reconstructions, meshes, textures, or Blender outputs.
 
 ## Next phase
 
-Steps 6-8 are complete. The repository deliberately stops before pyCOLMAP/reconstruction. Do not start camera-pose estimation, triangulation, sparse/dense reconstruction, meshing, texturing, or Blender until that later phase is explicitly authorized.
+Steps 6-9 are complete. The repository deliberately stops before pyCOLMAP/reconstruction. Do not start camera-pose estimation, triangulation, sparse/dense reconstruction, meshing, texturing, or Blender until that later phase is explicitly authorized.
 
-If reconstruction is authorized later, start from the unchanged 288-image PREPROCESSED set and treat the current CNN/SIFT feature-mask outputs as analysis evidence only. No reconstruction-improvement claim has been measured yet.
+If reconstruction is authorized later, start from the unchanged 288-image PREPROCESSED set, use unmasked Step 6 SIFT as the current evidence-backed matching baseline, begin from one shared camera/intrinsics group, and validate those choices with actual SfM results. The Step 9 benchmark specifically found that the CNN-mask variants reduce correspondence coverage, so they should remain analysis evidence unless a later reconstruction experiment demonstrates a benefit.

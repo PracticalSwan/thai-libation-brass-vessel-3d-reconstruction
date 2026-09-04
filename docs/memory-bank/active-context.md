@@ -4,11 +4,7 @@ Updated: 2026-09-05
 
 ## Current focus
 
-Preprocessing, Step 6 geometry detection/analysis, and Steps 7+8 custom CNN
-segmentation + SIFT feature-mask analysis are complete and verified. The current
-project boundary is a deliberate stop before pyCOLMAP/reconstruction. Do not
-start camera-pose estimation, triangulation, reconstruction, meshing, texturing,
-or Blender without separate authorization.
+Preprocessing, Step 6 geometry detection/analysis, Steps 7+8 custom CNN segmentation + SIFT feature-mask analysis, and Step 9 reconstruction-readiness analysis are complete and verified. The current project boundary is a deliberate stop before pyCOLMAP/reconstruction. Do not start camera-pose estimation, triangulation, reconstruction, meshing, texturing, or Blender without separate authorization.
 
 ## Verified preprocessing state
 
@@ -71,19 +67,51 @@ or Blender without separate authorization.
 - These are descriptive counts only and do not prove reconstruction improvement.
 - Measured results: `docs/geometry-ml/ml-results.md`.
 
+## Completed Step 9 — reconstruction readiness
+
+### 9A full-sequence inference
+
+- Reused the frozen `SmallSegCNN` checkpoint without retraining or changing the 0.5 threshold.
+- Generated 288 unedited full-sequence predictions under `analysis/ml/full_predictions/`.
+- Generated 288 deterministic connected-component cleanup masks under `analysis/ml/reconstruction_masks/`.
+- Cleanup changed 30 predictions; mean foreground fraction changed from 0.275260 to 0.274487.
+- The cleanup is intentionally conservative and does not remove false-positive regions that remain connected to the predicted vessel; the index-72 yellow-wall limitation remains visible.
+
+### 9B masked versus unmasked geometry benchmark
+
+- Frozen benchmark: 20 representative pairs x 3 feature modes using the existing Step 6 SIFT/Fundamental-Matrix stack.
+- `unmasked`: 5,344 candidates, 3,146 RANSAC inliers, median inlier ratio 0.506391, median Sampson error 0.133932, median grid coverage 0.625.
+- `raw_cnn`: 4,602 candidates, 2,841 inliers, median ratio 0.501026, median Sampson error 0.121050, median grid coverage 0.500.
+- `reconstruction_mask`: identical aggregate result to `raw_cnn` on the frozen pairs.
+- Both masked modes retained only 90.31% of unmasked inliers and failed the fixed 95% qualification floor.
+- Frozen Step 9 recommendation: **unmasked Step 6 SIFT** for later reconstruction preparation.
+
+### 9C full-sequence connectivity
+
+- Evaluated all 287 adjacent selected-image transitions with the frozen unmasked feature mode.
+- Strong adjacent edges: 273; weak adjacent edges: 14.
+- Tested 14 local skip bridges around weak transitions; strong skip bridges: 0.
+- Conservative subset decision: include 288/288 images; excluded count: 0.
+- `preprocessing/reconstruction_input_v1/manifest.csv` records all include decisions and references the existing selected JPEGs instead of duplicating them.
+
+### 9D camera readiness
+
+- Audited raw EXIF for all 288 selected filenames.
+- One complete camera signature across all 288: OPPO Reno12 F, 3072 x 4080, orientation 1, focal length 3.98 mm, 35-mm equivalent 26 mm, digital zoom 1.0, no missing recorded camera-readiness fields.
+- Starting recommendation for later SfM: one shared camera/intrinsics group, to be validated by actual reconstruction behavior.
+- No calibration, undistortion, image resampling, or reconstruction was performed.
+
 ## Verification and evidence
 
-- ML-focused suite: 13 passed.
-- Full project suite: 66 passed.
-- Changed ML Python modules/tests compile successfully.
-- All six ML presentation figures were visually reviewed, including the weak image-72 prediction.
-- Reports: `analysis/reports/cnn_training_history.csv`, `cnn_test_metrics.csv`, `cnn_summary.json`, `masked_feature_counts.csv`.
-- Predictions: `analysis/ml/predictions/`.
-- Figures: `analysis/previews/presentation/ml_01_training_curves.png` through `ml_06_summary.png`.
+- Step 9 focused suite: 26 passed.
+- Fresh full project suite: 92 passed.
+- Changed Step 9 Python modules compile successfully.
+- Fresh source integrity: 297/297 raw unchanged with 0 mismatches; 288/288 selected images verified against `selection_manifest.csv`.
+- `reconstruction_mask_manifest.csv` re-opened and hash-verified all 288 raw predictions and 288 cleanup masks as source-size binary PNGs.
+- All four Step 9 presentation figures were visually inspected; the camera-metadata zero-range plot defect found during review was fixed.
+- Reports: `analysis/reports/step9_masks.json`, `step9_match_benchmark.json`, `step9_connectivity.json`, `step9_camera_readiness.json`, `step9_summary.json`, plus corresponding CSV evidence.
+- Measured narrative: `docs/geometry-ml/reconstruction-readiness.md`.
 
 ## Next action
 
-No further Steps 6-8 implementation is required. Preserve the measured evidence and
-stop before reconstruction. If reconstruction is explicitly authorized later,
-start from the unchanged 288-image PREPROCESSED set and do not assume that CNN
-masking improves reconstruction until a reconstruction experiment measures it.
+No further Steps 6-9 implementation is required. Preserve the measured evidence and stop before reconstruction. If reconstruction is explicitly authorized later, start from the unchanged 288-image PREPROCESSED set, use unmasked Step 6 SIFT as the current evidence-backed matching baseline, begin with one shared camera/intrinsics group, and validate those choices against real pyCOLMAP/SfM results rather than assuming the CNN masks improve reconstruction.

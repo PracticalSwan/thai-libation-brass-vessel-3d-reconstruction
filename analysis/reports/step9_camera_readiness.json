@@ -1,0 +1,35 @@
+{
+  "calibration_performed": false,
+  "camera_group_recommendation": "shared_intrinsics_single_camera_signature",
+  "geometry_orientation_consistent": true,
+  "geometry_orientation_group_count": 1,
+  "image_resampling_performed": false,
+  "metadata_source": "immutable raw JPEG EXIF matched by selected filename",
+  "missing_fields": {
+    "datetime_original": 0,
+    "digital_zoom_ratio": 0,
+    "focal_length_35mm": 0,
+    "focal_length_mm": 0,
+    "lens_model": 0,
+    "make": 0,
+    "model": 0,
+    "orientation": 0
+  },
+  "record_count": 288,
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91",
+  "signature_groups": [
+    {
+      "digital_zoom_ratio": 1.0,
+      "focal_length_35mm": 26.0,
+      "focal_length_mm": 3.98,
+      "frame_count": 288,
+      "height": 4080,
+      "lens_model": "OPPO Reno12 F back camera 26mm f/1.8",
+      "make": "OPPO",
+      "model": "OPPO Reno12 F",
+      "orientation": 1,
+      "width": 3072
+    }
+  ],
+  "unique_signature_count": 1
+}

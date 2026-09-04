@@ -9,6 +9,7 @@ smartphone capture
 -> OpenCV quality analysis and conservative preprocessing
 -> classical 2D/two-view geometry analysis
 -> custom CNN vessel segmentation + SIFT feature-mask analysis
+-> Step 9 reconstruction-readiness benchmark + connectivity/camera audit
 -> pyCOLMAP feature extraction and matching
 -> Structure from Motion / sparse reconstruction
 -> dense reconstruction where practical
@@ -18,9 +19,10 @@ smartphone capture
 
 ## Project status
 
-The real-image preprocessing, QA, Step 6 classical geometry analysis, and Steps
-7+8 custom CNN segmentation/SIFT feature-mask analysis are complete and
-verified. The project still stops before pyCOLMAP/reconstruction.
+The real-image preprocessing, QA, Step 6 classical geometry analysis, Steps
+7+8 custom CNN segmentation/SIFT feature-mask analysis, and Step 9
+reconstruction-readiness analysis are complete and verified. The project still
+stops before pyCOLMAP/reconstruction.
 
 Measured preprocessing result:
 
@@ -53,17 +55,25 @@ Measured Steps 7+8 ML result:
 - all six ML presentation figures were generated from real outputs and visually inspected;
 - final integrity checks again found 0 raw mismatches across 297 photographs and verified all 288 selected images.
 
+Measured Step 9 reconstruction-readiness result:
+
+- the frozen CNN produced 288 source-size full-sequence predictions plus 288 deterministic cleanup masks; cleanup changed 30 predictions while retaining known connected false positives such as index 72 instead of manually repairing them;
+- a frozen 20-pair x 3-mode SIFT/Fundamental-Matrix benchmark chose **unmasked** features: 3,146 RANSAC inliers versus 2,841 for both masked modes; each masked mode retained only 90.31% of unmasked inliers and failed the predeclared 95% qualification floor;
+- the full 287-edge adjacent-sequence audit found 273 strong and 14 weak transitions; 14 local skip bridges were tested and none was strong, so the conservative recommended reconstruction subset remains **288/288 images**;
+- EXIF audit of all 288 selected filenames found one complete camera signature: OPPO Reno12 F, 3072 x 4080, orientation 1, 3.98 mm focal length, 26 mm 35-mm equivalent, digital zoom 1.0; one shared camera/intrinsics group is therefore the measured starting recommendation;
+- final Step 9 verification passed 26 focused tests and 92 complete project tests; all 297 raw photographs and all 288 selected images remained unchanged.
+
 The exact next-stage input directory is:
 
 ```text
 preprocessing/pycolmap_input/images/
 ```
 
-Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md) before reconstruction. The full measured method, tables, visual evidence, verification details, and limitations are in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
+Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md) and [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md) before reconstruction. The measured preprocessing method remains documented in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
 
 ## Geometry + machine-learning extension
 
-Steps 6-8 are implemented and verified. The project boundary still stops before
+Steps 6-9 are implemented and verified. The project boundary still stops before
 pyCOLMAP.
 
 ### Step 6 — Geometry Detection / Analysis
@@ -84,6 +94,16 @@ pyCOLMAP.
 - reused Step 6 SIFT extraction to measure keypoints inside versus outside CNN-predicted vessel masks;
 - generated and visually reviewed six training, segmentation, feature-mask, and summary figures from real outputs.
 
+### Step 9 — Reconstruction Readiness
+
+- ran the frozen `SmallSegCNN` on all 288 selected inputs without retraining or test-driven threshold changes;
+- generated separate raw CNN predictions and conservative connected-component cleanup masks;
+- benchmarked unmasked, raw-CNN-mask, and cleanup-mask SIFT across 20 frozen representative pairs using the existing Step 6 geometry stack;
+- selected **unmasked** SIFT because both masked variants lost too many RANSAC inliers despite slightly lower Sampson error;
+- audited all 287 adjacent image transitions and retained all 288 selected frames because no weak middle frame had a strong predecessor/successor skip bridge;
+- audited raw EXIF for every selected filename and measured one consistent camera signature supporting a shared-intrinsics starting configuration;
+- generated and visually reviewed four Step 9 figures and machine-readable reports while explicitly stopping before pyCOLMAP.
+
 ```mermaid
 flowchart LR
     A[288 verified PREPROCESSED images] --> B[Step 6: SIFT + RANSAC]
@@ -96,8 +116,10 @@ flowchart LR
     C --> I[Verified Step 6 geometry evidence]
     D --> I
     H --> J[ML evidence]
-    I --> K[STOP before pyCOLMAP]
+    I --> K[Step 9: masked vs unmasked benchmark]
     J --> K
+    K --> L[287-edge connectivity + EXIF audit]
+    L --> M[STOP before pyCOLMAP]
 ```
 
 - Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)
@@ -105,8 +127,10 @@ flowchart LR
 - Step 6 measured results: [`docs/geometry-ml/geometry-results.md`](docs/geometry-ml/geometry-results.md)
 - CNN dataset and split: [`docs/geometry-ml/cnn-dataset.md`](docs/geometry-ml/cnn-dataset.md)
 - Steps 7+8 measured results: [`docs/geometry-ml/ml-results.md`](docs/geometry-ml/ml-results.md)
+- Step 9 measured readiness: [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md)
 - Step 6 implementation plan: [`docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`](docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md)
 - Steps 7+8 implementation plan: [`docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`](docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md)
+- Step 9 implementation-plan index: [`docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`](docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md)
 
 ## Why preprocessing is conservative
 
@@ -169,13 +193,27 @@ python -B run_ml_analysis.py
 The measured run used Python 3.14.2, PyTorch 2.13.0+cu130, torchvision
 0.28.0+cu130, CUDA 13.0, and an NVIDIA GeForce RTX 5050 Laptop GPU.
 
+## Reproduce Step 9 reconstruction-readiness analysis
+
+The Step 9 orchestrator is stage-bounded and never invokes pyCOLMAP:
+
+```powershell
+python -B run_reconstruction_readiness.py --stage masks
+python -B run_reconstruction_readiness.py --stage benchmark
+python -B run_reconstruction_readiness.py --stage connectivity
+python -B run_reconstruction_readiness.py --stage camera
+python -B run_reconstruction_readiness.py --stage summary
+```
+
+`--stage all` runs those same five readiness stages in order. It requires the local frozen `best_small_seg_cnn.pt` checkpoint generated by Steps 7+8. The measured Step 9 result chooses unmasked SIFT for later reconstruction preparation; the generated CNN masks remain evidence rather than mandatory reconstruction inputs.
+
 ## Repository layout
 
 ```text
 quality_check.py                         quality metrics, calibration, decisions
 preprocess_images.py                     geometry-preserving photometric transform
 run_preprocessing.py                     reports, previews, SIFT experiment, export
-tests/                                   66 focused project tests after Steps 7+8
+tests/                                   92 project tests after Step 9
 analysis_common.py                       selected-manifest loading and integrity verification
 geometry_detection.py                    scaled SIFT, RANSAC, epilines, and residuals
 shape_geometry.py                        classical edges, contour, PCA, and optional ellipse
@@ -186,12 +224,17 @@ cnn_segmentation.py                      SmallSegCNN, loss, metrics, prediction 
 train_cnn_segmentation.py                deterministic train/validation/checkpoint workflow
 ml_feature_analysis.py                   Step 6 SIFT inside/outside predicted-mask analysis
 run_ml_analysis.py                       held-out evaluation, reports, and ML figures
+reconstruction_masks.py                 Step 9 full-sequence inference and mask validation
+reconstruction_matching.py              Step 9 matching benchmark and connectivity logic
+camera_readiness.py                      Step 9 raw-EXIF camera signature audit
+run_reconstruction_readiness.py          bounded Step 9 orchestration and figures/reports
 ml_dataset/                              frozen 36-label manifest and source-size masks
-analysis/                                Step 6 + ML machine reports and presentation figures
+analysis/                                Step 6 + ML + Step 9 reports, masks, and figures
 preprocessing/reports/                   audit and final measured reports
 preprocessing/previews/contact_sheets/   full raw-sequence visual audit
 preprocessing/previews/final/            before/after, decision, and SIFT figures
 preprocessing/pycolmap_input/images/      exact 288-image next-stage input set
+preprocessing/reconstruction_input_v1/    Step 9 inclusion manifest; references, not copies
 IMG20260826122949/                        versioned immutable raw photographs
 docs/preprocessing/                       measured method, results, and verification evidence
 ```
@@ -210,12 +253,19 @@ The separate local `IMG20260826122949.zip` is only a redundant archive of the sa
 - `analysis/reports/geometry_summary.json` — Step 6 source, configuration,
   measurements, exclusions, and artifact manifest.
 - `analysis/geometry/` — pair, epipolar, and classical shape measurements.
-- `analysis/previews/presentation/` — the six visually inspected Step 6 figures plus six visually inspected ML presentation figures.
+- `analysis/previews/presentation/` — the visually inspected Step 6, ML, and Step 9 presentation figures.
 - `analysis/reports/cnn_training_history.csv` — real train/validation history.
 - `analysis/reports/cnn_test_metrics.csv` — all six held-out segmentation results.
 - `analysis/reports/cnn_summary.json` — model/runtime/split provenance and aggregate ML results.
 - `analysis/reports/masked_feature_counts.csv` — Step 8 SIFT counts from CNN-predicted masks.
 - `analysis/ml/predictions/` — six unedited source-size held-out CNN predictions.
+- `analysis/ml/full_predictions/` — 288 frozen full-sequence CNN predictions from Step 9A.
+- `analysis/ml/reconstruction_masks/` — 288 conservative deterministic Step 9 cleanup masks.
+- `analysis/reports/step9_match_benchmark.json` — masked-vs-unmasked geometric decision and aggregate metrics.
+- `analysis/reports/step9_connectivity.json` — full 287-edge connectivity result and weak-transition list.
+- `analysis/reports/step9_camera_readiness.json` — 288-frame camera-signature audit and grouping recommendation.
+- `analysis/reports/step9_summary.json` — compact final Step 9 provenance and boundary summary.
+- `preprocessing/reconstruction_input_v1/manifest.csv` — all 288 include/exclude decisions; currently 288/288 included.
 
 ## Collaboration
 
