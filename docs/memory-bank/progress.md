@@ -58,20 +58,40 @@ Updated: 2026-09-05
 - Both Step 10 figures were visually inspected. The selected local component has a coherent camera arc and plausible point cloud, but the full sequence remains fragmented, so `acceptance_met=false` and dense reconstruction was not started.
 - `docs/geometry-ml/sparse-reconstruction.md` records the measured implementation, retry decision, fragmentation evidence, outputs, and boundary.
 
+### Step 11 — sparse component bridging
+
+- Refactored the Step 10 image-reader, feature-extraction, and incremental-mapping configuration into shared public helpers so Step 11 uses the same `SIMPLE_RADIAL`, CPU SIFT, and mapper contract.
+- Implemented deterministic bridge candidate generation, pair-list safety, SQLite match summaries, qualification/selection, the fail-closed targeted gate, resumable feature/exhaustive databases, and durable CLI stages.
+- Matched exactly 2,340 non-local diagnostic candidates: 780 around each of boundaries 73-74, 145-146, and 203-204.
+- Boundaries 73-74 and 145-146 had zero geometrically verified candidates. Boundary 203-204 had 68 qualified candidates and 8 selected bridges, so the targeted mapper was skipped because all three boundaries did not qualify.
+- Ran exactly one CPU exhaustive fallback with block size 50. Its database contains 14,900 non-empty match rows and 3,020 verified pair rows.
+- Exhaustive mapping produced eight models with 224 distinct images across their disconnected union. The strongest single model registers 73/288 images with 3,443 points, 12,914 observations, mean track length 3.7508, and 1.1989 px mean reprojection error.
+- The Step 11 candidate, sparse-model, and registration figures were visually inspected. They show the two empty bridge boundaries, the eight selected 203-204 bridges, a plausible local camera arc/point structure, and registration limited to indices 1-73.
+- `reconstruction/bridging/best/`, `points3D.ply`, all component models, seven reports, and three figures preserve the measured result. `bridge_success=false`; dense reconstruction remains blocked.
+- `docs/geometry-ml/sparse-component-bridging.md` records the method, interruption/resume provenance, measurements, visual review, acceptance decision, artifacts, and boundary.
+
 ## Verification
 
-- Fresh Step 10-focused suite: **11 passed**.
-- Fresh complete project suite after Step 10: **103 passed**.
-- Changed Step 10 Python modules completed `python -B -m py_compile` successfully.
+- Fresh Step 11-focused suite after review: **32 passed**.
+- Fresh complete project suite after Step 11 review: **141 passed**.
+- Changed sparse Python modules completed `python -B -m py_compile` successfully.
 - Fresh final source-integrity verification: 297/297 raw unchanged with zero mismatches; 288/288 selected images verified against `selection_manifest.csv`.
-- The selected sparse model re-opened with pyCOLMAP 4.2.0 and exactly matched the summary metrics: 73 registered images, 6,099 sparse points, one camera, 1.2373052447638215 px mean reprojection error.
+- The Step 10 selected sparse model re-opened with pyCOLMAP 4.2.0 and exactly matched the summary metrics: 73 registered images, 6,099 sparse points, one camera, 1.2373052447638215 px mean reprojection error.
+- The Step 11 selected model re-opened and exactly matched its summary metrics: 73 registered images, 3,443 points, one `SIMPLE_RADIAL` camera, 1.1988826674412258 px mean reprojection error.
+- Review fixes now reject stale feature/resume databases whose per-image names, camera IDs, keypoint rows, or descriptor rows differ despite matching aggregate counts; the zero-inlier candidate figure also uses a nonnegative scale.
+- Frozen Step 10 report hashes remained exactly unchanged after Step 11.
 - Both final Step 10 figures were visually inspected; they explicitly identify the 73-image result as the selected component.
 - Transient baseline/retry COLMAP databases and task-created caches were removed after model/report export; intentional sparse models, PLY, reports, figures, source code, spec, and plan remain.
 - Final model checkpoint remains preserved locally at `analysis/ml/checkpoints/best_small_seg_cnn.pt` and is not intended for repository publication.
-- No dense MVS, mesh, texture, or Blender artifact was created by Step 10.
+- No dense MVS, mesh, texture, or Blender artifact was created by Step 11.
+
+## Local tooling
+
+- Installed CodeGraph 1.6.0 and connected it only to Codex CLI and Claude Code.
+- Initialized the repository graph under `.codegraph/` and verified an up-to-date index of 42 Python files, 994 nodes, and 2,649 edges.
 
 ## Next phase
 
-Steps 6-10 are complete. Step 10 executed real sparse SfM but did not create a healthy global model: the selected component contains 73/288 images and the remaining sequence is split across disconnected components. Do not start dense reconstruction, meshing, texturing, or Blender from this state.
+Steps 6-11 are complete. Step 11 executed the authorized bounded recovery path but did not create a healthy global model: the selected component contains 73/288 images, and the 224-image exhaustive union is split across eight coordinate frames. Do not start dense reconstruction, meshing, texturing, or Blender from this state.
 
-The next recommended separately authorized phase is a focused sparse-component bridging investigation using the measured boundaries and preserved sparse models. Keep CNN masks as analysis evidence; Step 9 already showed they reduce correspondence coverage, and Step 10 did not use them for pyCOLMAP features.
+Any next phase requires an explicit decision among recapture, a materially different sparse strategy, or accepting a local-only deliverable. Keep CNN masks as analysis evidence; Step 9 already showed they reduce correspondence coverage, and Steps 10-11 did not use them for pyCOLMAP features.

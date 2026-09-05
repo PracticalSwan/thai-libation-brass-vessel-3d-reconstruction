@@ -6,13 +6,19 @@ from pathlib import Path
 
 import pytest
 
+import sparse_reconstruction as sparse_module
 from sparse_reconstruction import (
     AttemptMetrics,
     DatabaseMetrics,
     ModelMetrics,
     SparseRunConfig,
+    build_feature_extraction_options,
+    build_image_reader_options,
+    build_incremental_pipeline_options,
     choose_best_attempt,
+    extract_sparse_features,
     focal_pixels_from_35mm_equivalent,
+    map_sparse_database,
     should_retry,
     simple_radial_camera_params,
     summarize_database,
@@ -63,6 +69,35 @@ def test_simple_radial_initialization_uses_center_and_zero_distortion():
     assert cy == 2040.0
     assert k == 0.0
     assert focal > 3000.0
+
+
+def test_build_image_reader_options_preserves_step10_camera_initialization():
+    options = build_image_reader_options(SparseRunConfig())
+
+    assert options.camera_model == "SIMPLE_RADIAL"
+    assert options.camera_params == "3069.05066755,1536,2040,0"
+
+
+def test_build_feature_extraction_options_preserves_step10_settings():
+    options = build_feature_extraction_options(SparseRunConfig())
+
+    assert options.max_image_size == 1200
+    assert options.sift.max_num_features == 8192
+    assert options.use_gpu is False
+
+
+def test_build_incremental_pipeline_options_preserves_step10_settings():
+    options = build_incremental_pipeline_options(SparseRunConfig())
+
+    assert options.min_num_matches == 15
+    assert options.multiple_models is True
+    assert options.min_model_size == 10
+    assert options.random_seed == 4213
+    assert options.ba_refine_focal_length is True
+    assert options.ba_refine_principal_point is False
+    assert options.ba_refine_extra_params is True
+    assert options.mapper.random_seed == 4213
+    assert options.triangulation.random_seed == 4213
 
 
 def test_retry_gate_requires_registration_points_finite_error_and_single_camera():
@@ -134,6 +169,102 @@ def test_summarize_database_counts_images_features_matches_and_verified_pairs(tm
         matched_pair_count=1,
         verified_pair_count=1,
     )
+
+
+def test_extract_sparse_features_uses_shared_step10_options(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    image_dir = tmp_path / "images"
+    image_dir.mkdir()
+    (image_dir / "a.jpg").write_bytes(b"a")
+    (image_dir / "b.jpg").write_bytes(b"b")
+    database_path = tmp_path / "features.db"
+
+    def fake_extract_features(**kwargs):
+        assert kwargs["image_path"] == image_dir
+        assert kwargs["camera_mode"] == sparse_module.pycolmap.CameraMode.SINGLE
+        assert kwargs["reader_options"].camera_model == "SIMPLE_RADIAL"
+        assert kwargs["extraction_options"].max_image_size == 1200
+        assert kwargs["extraction_options"].sift.max_num_features == 8192
+        assert kwargs["extraction_options"].use_gpu is False
+        assert kwargs["device"] == sparse_module.pycolmap.Device.cpu
+        with sqlite3.connect(kwargs["database_path"]) as connection:
+            connection.executescript(
+                """
+                CREATE TABLE images(image_id INTEGER PRIMARY KEY, name TEXT);
+                CREATE TABLE keypoints(image_id INTEGER, rows INTEGER, cols INTEGER, data BLOB);
+                CREATE TABLE matches(pair_id INTEGER PRIMARY KEY, rows INTEGER, cols INTEGER, data BLOB);
+                CREATE TABLE two_view_geometries(pair_id INTEGER PRIMARY KEY, rows INTEGER, cols INTEGER, data BLOB);
+                """
+            )
+            connection.executemany(
+                "INSERT INTO images(image_id, name) VALUES (?, ?)",
+                [(1, "a.jpg"), (2, "b.jpg")],
+            )
+            connection.executemany(
+                "INSERT INTO keypoints(image_id, rows, cols, data) VALUES (?, ?, ?, ?)",
+                [(1, 10, 4, b"x"), (2, 20, 4, b"y")],
+            )
+
+    monkeypatch.setattr(sparse_module.pycolmap, "extract_features", fake_extract_features)
+
+    metrics = extract_sparse_features(
+        image_dir, database_path, replace(SparseRunConfig(), expected_images=2)
+    )
+
+    assert metrics == DatabaseMetrics(2, 30, 0, 0)
+
+
+def test_map_sparse_database_writes_models_in_numeric_order(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    image_dir = tmp_path / "images"
+    image_dir.mkdir()
+    database_path = tmp_path / "features.db"
+    database_path.write_bytes(b"database")
+    output_dir = tmp_path / "sparse"
+
+    class FakeReconstruction:
+        def write(self, path: Path) -> None:
+            path.mkdir(parents=True)
+
+    def fake_incremental_mapping(**kwargs):
+        assert kwargs["database_path"] == database_path
+        assert kwargs["image_path"] == image_dir
+        assert kwargs["output_path"] == output_dir
+        assert kwargs["options"].min_num_matches == 15
+        return {1: FakeReconstruction(), 0: FakeReconstruction()}
+
+    def fake_summary(path: Path, total_images: int) -> ModelMetrics:
+        return _model(registered_images=10 + int(path.name))
+
+    monkeypatch.setattr(
+        sparse_module.pycolmap, "incremental_mapping", fake_incremental_mapping
+    )
+    monkeypatch.setattr(sparse_module, "summarize_reconstruction", fake_summary)
+
+    models = map_sparse_database(
+        database_path, image_dir, output_dir, SparseRunConfig()
+    )
+
+    assert [model.registered_images for model in models] == [10, 11]
+
+
+def test_map_sparse_database_rejects_empty_mapping_result(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    image_dir = tmp_path / "images"
+    image_dir.mkdir()
+    database_path = tmp_path / "features.db"
+    database_path.write_bytes(b"database")
+    monkeypatch.setattr(
+        sparse_module.pycolmap, "incremental_mapping", lambda **kwargs: {}
+    )
+
+    with pytest.raises(RuntimeError, match="produced no sparse model"):
+        map_sparse_database(
+            database_path, image_dir, tmp_path / "sparse", SparseRunConfig()
+        )
 
 
 def test_sparse_config_rejects_invalid_overlap():

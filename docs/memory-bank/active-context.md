@@ -4,7 +4,7 @@ Updated: 2026-09-05
 
 ## Current focus
 
-Preprocessing, Steps 6-9 analysis, and Step 10 pyCOLMAP sparse SfM are complete and verified. Step 10 produced valid local sparse reconstructions but the 288-image sequence fragmented into seven models; the selected component registers 73 images. The current project boundary is a deliberate stop before dense reconstruction. Do not start dense MVS, meshing, texturing, or Blender until a separately authorized sparse-component recovery/acceptance phase resolves this limitation.
+Preprocessing and Steps 6-11 are complete and verified. Step 11 exhausted the bounded sparse-component recovery plan, but the 288-image sequence still fragments into multiple models. The selected exhaustive component registers 73 images; 224 images appear only as a union across eight disconnected models. The project boundary remains a deliberate stop before dense reconstruction. Do not start dense MVS, meshing, texturing, or Blender without a separately authorized post-Step-11 decision.
 
 ## Verified preprocessing state
 
@@ -113,18 +113,38 @@ Preprocessing, Steps 6-9 analysis, and Step 10 pyCOLMAP sparse SfM are complete 
 - Large component boundaries are consistent with earlier Step 9 weak transitions at 73-74, 145-146, and 203-204; this is evidence of fragmentation, not proof of a single cause.
 - Measured narrative: `docs/geometry-ml/sparse-reconstruction.md`.
 
+## Completed Step 11 — sparse component bridging
+
+- Added shared public Step 10 pyCOLMAP option/extraction/mapping helpers, `sparse_bridging.py`, `run_sparse_bridging.py`, and focused orchestration/contract tests.
+- Diagnosed exactly 2,340 deterministic non-local candidate pairs: 780 around each fixed boundary 73-74, 145-146, and 203-204.
+- Boundaries 73-74 and 145-146 produced zero geometrically verified candidates. Boundary 203-204 produced 68 qualified candidates and 8 selected bridges.
+- Targeted mapping was skipped by the frozen fail-closed gate because every boundary required at least one selected qualified bridge.
+- The one authorized CPU exhaustive fallback used block size 50 and produced 14,900 non-empty raw-match rows, 3,020 geometrically verified rows, eight sparse models, and 224-image union coverage.
+- The selected single model registers 73/288 images with 3,443 points, 12,914 observations, mean track length 3.7508, 1.1989 px mean reprojection error, and one shared `SIMPLE_RADIAL` camera.
+- Visual review found a smooth local camera arc and plausible local point structure, but incomplete coverage and outliers; the registration figure confirms only indices 1-73 are registered.
+- `step11_summary.json` records `bridge_success=false` and `dense_reconstruction_started=false`. The disconnected 224-image union is diagnostic evidence, not a global model.
+- Measured narrative: `docs/geometry-ml/sparse-component-bridging.md`.
+
 ## Verification and evidence
 
-- Step 10-focused suite: **11 passed**.
-- Fresh complete project suite after Step 10: **103 passed**.
-- `sparse_reconstruction.py` and `run_sparse_reconstruction.py` compile successfully with `python -B -m py_compile`.
+- Step 11-focused suite after review: **32 passed**.
+- Fresh complete project suite after Step 11 review: **141 passed**.
+- `sparse_reconstruction.py`, `sparse_bridging.py`, `run_sparse_reconstruction.py`, and `run_sparse_bridging.py` compile successfully with `python -B -m py_compile`.
 - Fresh protected-source verification: 297/297 raw unchanged with zero mismatches; 288/288 selected images verified against `selection_manifest.csv`.
-- The selected sparse model re-opened with pyCOLMAP 4.2.0 after finalization and matched `step10_summary.json`: 73 registered images, 6,099 points, one camera, 1.2373052447638215 px mean reprojection error.
+- The selected Step 10 sparse model re-opened with pyCOLMAP 4.2.0 after finalization and matched `step10_summary.json`: 73 registered images, 6,099 points, one camera, 1.2373052447638215 px mean reprojection error.
+- The selected Step 11 model re-opened and matched `step11_summary.json`: 73 registered images, 3,443 points, one `SIMPLE_RADIAL` camera, 1.1988826674412258 px mean reprojection error.
+- Post-implementation review hardened feature-cache/exhaustive-resume identity validation and corrected the zero-inlier candidate-figure scale; neither change alters the measured Step 11 SfM result.
+- The three Step 10 JSON report hashes exactly matched their pre-Step-11 snapshots.
 - Both final Step 10 figures were visually inspected and explicitly label the 73-image output as the selected component rather than a global 288-image reconstruction.
 - Transient ~195 MB COLMAP databases from baseline/retry and task-created Python caches were removed after model/report export; the sparse component models, selected model, PLY, reports, and figures were preserved.
 - Dense/MVS/mesh/texture/Blender work was not started.
-- Step 9 measured evidence remains preserved under `analysis/`; Step 10 evidence is under `reconstruction/` and documented in `docs/geometry-ml/sparse-reconstruction.md`.
+- Step 9 measured evidence remains preserved under `analysis/`; Step 10 and Step 11 evidence is under `reconstruction/` and documented in the two sparse-result reports.
+
+## Local tooling
+
+- CodeGraph 1.6.0 is installed globally and wired only to Codex CLI and Claude Code through the `codegraph serve --mcp` stdio server.
+- This repository is initialized at `.codegraph/`; the verified index contains 42 Python files, 994 nodes, and 2,649 edges. Project code and reconstruction outputs were not changed by initialization.
 
 ## Next action
 
-Step 10 execution is complete, but its healthy-single-model acceptance gate failed because the sequence remains fragmented. Do not start dense reconstruction yet. The next recommended separately authorized phase is a narrow sparse-component bridging investigation around the measured component boundaries, using the preserved pyCOLMAP sparse models and Step 9 connectivity evidence rather than adding broad parameter sweeps or hiding the fragmentation.
+Step 11 execution is complete, but its healthy-single-model acceptance gate failed because the sequence remains fragmented. Do not start dense reconstruction. Any later recapture, materially different sparse strategy, or acceptance of a local-only deliverable requires a new explicit authorization; none is implied by the completed Step 11 work.

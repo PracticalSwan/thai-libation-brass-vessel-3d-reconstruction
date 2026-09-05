@@ -192,7 +192,8 @@ def validate_workspace_boundary(image_dir: Path, workspace: Path) -> None:
 def summarize_database(database_path: Path) -> DatabaseMetrics:
     if not database_path.is_file():
         raise ValueError(f"COLMAP database is missing: {database_path}")
-    with sqlite3.connect(str(database_path)) as connection:
+    connection = sqlite3.connect(str(database_path))
+    try:
         image_count = int(connection.execute("SELECT COUNT(*) FROM images").fetchone()[0])
         feature_count = int(
             connection.execute("SELECT COALESCE(SUM(rows), 0) FROM keypoints").fetchone()[0]
@@ -205,6 +206,8 @@ def summarize_database(database_path: Path) -> DatabaseMetrics:
                 "SELECT COUNT(*) FROM two_view_geometries WHERE rows > 0"
             ).fetchone()[0]
         )
+    finally:
+        connection.close()
     return DatabaseMetrics(
         image_count=image_count,
         feature_count=feature_count,
@@ -262,7 +265,21 @@ def registered_image_names(model_path: Path) -> tuple[str, ...]:
     return registered_image_names_from_reconstruction(pycolmap.Reconstruction(model_path))
 
 
-def _feature_options(config: SparseRunConfig) -> pycolmap.FeatureExtractionOptions:
+def build_image_reader_options(config: SparseRunConfig) -> pycolmap.ImageReaderOptions:
+    config.validate()
+    camera_params = simple_radial_camera_params(
+        config.image_width, config.image_height, config.focal_35mm
+    )
+    return pycolmap.ImageReaderOptions(
+        camera_model=config.camera_model,
+        camera_params=",".join(f"{value:.12g}" for value in camera_params),
+    )
+
+
+def build_feature_extraction_options(
+    config: SparseRunConfig,
+) -> pycolmap.FeatureExtractionOptions:
+    config.validate()
     options = pycolmap.FeatureExtractionOptions()
     options.max_image_size = config.max_image_size
     options.sift.max_num_features = config.max_num_features
@@ -270,7 +287,10 @@ def _feature_options(config: SparseRunConfig) -> pycolmap.FeatureExtractionOptio
     return options
 
 
-def _pipeline_options(config: SparseRunConfig) -> pycolmap.IncrementalPipelineOptions:
+def build_incremental_pipeline_options(
+    config: SparseRunConfig,
+) -> pycolmap.IncrementalPipelineOptions:
+    config.validate()
     options = pycolmap.IncrementalPipelineOptions()
     options.min_num_matches = config.minimum_matches
     options.multiple_models = True
@@ -282,6 +302,76 @@ def _pipeline_options(config: SparseRunConfig) -> pycolmap.IncrementalPipelineOp
     options.mapper.random_seed = config.random_seed
     options.triangulation.random_seed = config.random_seed
     return options
+
+
+def extract_sparse_features(
+    image_dir: Path,
+    database_path: Path,
+    config: SparseRunConfig = SparseRunConfig(),
+) -> DatabaseMetrics:
+    config.validate()
+    if not image_dir.is_dir():
+        raise ValueError(f"selected image directory is missing: {image_dir}")
+    if database_path.exists() and (
+        not database_path.is_file() or database_path.stat().st_size > 0
+    ):
+        raise ValueError(f"feature database destination is not empty: {database_path}")
+    database_path.parent.mkdir(parents=True, exist_ok=True)
+    pycolmap.extract_features(
+        database_path=database_path,
+        image_path=image_dir,
+        camera_mode=pycolmap.CameraMode.SINGLE,
+        reader_options=build_image_reader_options(config),
+        extraction_options=build_feature_extraction_options(config),
+        device=pycolmap.Device.cpu,
+    )
+    metrics = summarize_database(database_path)
+    if metrics.image_count != config.expected_images:
+        raise RuntimeError(
+            f"pyCOLMAP database contains {metrics.image_count} images, "
+            f"expected {config.expected_images}"
+        )
+    return metrics
+
+
+def map_sparse_database(
+    database_path: Path,
+    image_dir: Path,
+    output_dir: Path,
+    config: SparseRunConfig = SparseRunConfig(),
+) -> tuple[ModelMetrics, ...]:
+    config.validate()
+    if not database_path.is_file():
+        raise ValueError(f"COLMAP database is missing: {database_path}")
+    if not image_dir.is_dir():
+        raise ValueError(f"selected image directory is missing: {image_dir}")
+    validate_workspace_boundary(image_dir, output_dir)
+    if output_dir.exists():
+        allowed_database = database_path.resolve()
+        unexpected = [
+            path
+            for path in output_dir.iterdir()
+            if path.resolve() != allowed_database
+        ]
+        if unexpected:
+            raise ValueError(f"sparse mapping output is not empty: {output_dir}")
+    output_dir.mkdir(parents=True, exist_ok=True)
+    reconstructions = pycolmap.incremental_mapping(
+        database_path=database_path,
+        image_path=image_dir,
+        output_path=output_dir,
+        options=build_incremental_pipeline_options(config),
+    )
+    if not reconstructions:
+        raise RuntimeError("pyCOLMAP incremental mapping produced no sparse model")
+
+    model_metrics: list[ModelMetrics] = []
+    for model_id in sorted(int(value) for value in reconstructions.keys()):
+        model_path = output_dir / str(model_id)
+        if not model_path.is_dir():
+            reconstructions[model_id].write(model_path)
+        model_metrics.append(summarize_reconstruction(model_path, config.expected_images))
+    return tuple(model_metrics)
 
 
 def _attempt_name(overlap: int, config: SparseRunConfig) -> str:
@@ -312,22 +402,8 @@ def run_sparse_attempt(
     database_path = workspace / "database.db"
     sparse_dir = workspace
 
-    camera_params = simple_radial_camera_params(
-        config.image_width, config.image_height, config.focal_35mm
-    )
-    reader_options = pycolmap.ImageReaderOptions(
-        camera_model=config.camera_model,
-        camera_params=",".join(f"{value:.12g}" for value in camera_params),
-    )
     started = time.perf_counter()
-    pycolmap.extract_features(
-        database_path=database_path,
-        image_path=image_dir,
-        camera_mode=pycolmap.CameraMode.SINGLE,
-        reader_options=reader_options,
-        extraction_options=_feature_options(config),
-        device=pycolmap.Device.cpu,
-    )
+    extract_sparse_features(image_dir, database_path, config)
     pycolmap.match_sequential(
         database_path=database_path,
         pairing_options=pycolmap.SequentialPairingOptions(
@@ -338,27 +414,8 @@ def run_sparse_attempt(
         device=pycolmap.Device.cpu,
     )
     database_metrics = summarize_database(database_path)
-    if database_metrics.image_count != config.expected_images:
-        raise RuntimeError(
-            f"pyCOLMAP database contains {database_metrics.image_count} images, "
-            f"expected {config.expected_images}"
-        )
-    reconstructions = pycolmap.incremental_mapping(
-        database_path=database_path,
-        image_path=image_dir,
-        output_path=sparse_dir,
-        options=_pipeline_options(config),
-    )
+    model_metrics = map_sparse_database(database_path, image_dir, sparse_dir, config)
     runtime_seconds = time.perf_counter() - started
-    if not reconstructions:
-        raise RuntimeError("pyCOLMAP incremental mapping produced no sparse model")
-
-    model_metrics: list[ModelMetrics] = []
-    for model_id in sorted(int(value) for value in reconstructions.keys()):
-        model_path = sparse_dir / str(model_id)
-        if not model_path.is_dir():
-            reconstructions[model_id].write(model_path)
-        model_metrics.append(summarize_reconstruction(model_path, config.expected_images))
     best_model = max(
         model_metrics,
         key=lambda model: (

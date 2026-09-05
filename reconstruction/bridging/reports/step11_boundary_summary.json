@@ -1,0 +1,61 @@
+{
+  "boundaries": [
+    {
+      "boundary": "73-74",
+      "boundary_left": 73,
+      "boundary_right": 74,
+      "candidate_count": 780,
+      "maximum_inlier_ratio": 0.0,
+      "maximum_verified_inliers": 0,
+      "nonzero_match_count": 195,
+      "qualified_count": 0,
+      "selected_count": 0
+    },
+    {
+      "boundary": "145-146",
+      "boundary_left": 145,
+      "boundary_right": 146,
+      "candidate_count": 780,
+      "maximum_inlier_ratio": 0.0,
+      "maximum_verified_inliers": 0,
+      "nonzero_match_count": 155,
+      "qualified_count": 0,
+      "selected_count": 0
+    },
+    {
+      "boundary": "203-204",
+      "boundary_left": 203,
+      "boundary_right": 204,
+      "candidate_count": 780,
+      "maximum_inlier_ratio": 0.8235294117647058,
+      "maximum_verified_inliers": 41,
+      "nonzero_match_count": 252,
+      "qualified_count": 68,
+      "selected_count": 8
+    }
+  ],
+  "candidate_count": 2340,
+  "critical_boundaries": [
+    [
+      73,
+      74
+    ],
+    [
+      145,
+      146
+    ],
+    [
+      203,
+      204
+    ]
+  ],
+  "minimum_inlier_ratio": 0.15,
+  "minimum_sequence_gap": 41,
+  "minimum_verified_inliers": 15,
+  "pycolmap_version": "4.2.0",
+  "selected_bridge_count": 8,
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91",
+  "targeted_allowed": false,
+  "targeted_gate_reason": "no selected qualified bridge for boundary 73-74",
+  "window_size": 40
+}

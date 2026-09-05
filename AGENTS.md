@@ -4,7 +4,7 @@
 
 This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
 
-Current phase: preprocessing, Steps 6-9 analysis, and Step 10 pyCOLMAP sparse SfM are complete and verified. Step 10 produced valid local sparse reconstructions but the 288-image sequence remains fragmented; the selected component registers 73 images. The repository currently stops before dense reconstruction. Do not claim a full-sequence sparse model or start dense MVS, meshing, texturing, or Blender until a separately authorized sparse-component recovery phase resolves or explicitly accepts that limitation.
+Current phase: preprocessing and Steps 6-11 are complete and verified. Step 11 exhausted the authorized bounded sparse-component recovery path, but the 288-image sequence remains fragmented; the selected exhaustive component registers 73 images, while 224 images appear only as a union across eight disconnected models. The repository stops before dense reconstruction. Do not claim a full-sequence sparse model or start dense MVS, meshing, texturing, or Blender unless a separate future phase is explicitly authorized after this failed global-recovery result.
 
 ## Core rules
 
@@ -45,12 +45,13 @@ Current phase: preprocessing, Steps 6-9 analysis, and Step 10 pyCOLMAP sparse Sf
 
 ## Geometry and ML extension
 
-The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-10 are implemented and verified:
+The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-11 are implemented and verified:
 
 - Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
 - Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
 - Step 9: `docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`; measured results are in `docs/geometry-ml/reconstruction-readiness.md`.
 - Step 10: `docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md`; measured results are in `docs/geometry-ml/sparse-reconstruction.md`.
+- Step 11: `docs/superpowers/plans/2026-09-05-step-11-sparse-component-bridging.md`; measured results are in `docs/geometry-ml/sparse-component-bridging.md`.
 
 - Step 6 exposes verified selected-image access, reusable SIFT keypoints/descriptors and scale metadata, Fundamental Matrix/RANSAC, epipolar geometry, and classical 2D vessel geometry.
 - Steps 7+8 use a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the verified baseline.
@@ -64,9 +65,11 @@ The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-
 - Step 9D measured one complete camera signature across all 288 selected frames, supporting one shared camera/intrinsics group as the starting recommendation for later validation.
 - Step 10 used pyCOLMAP 4.2.0 with native unmasked SIFT, one shared `SIMPLE_RADIAL` camera, sequential matching, and incremental mapping. The selected baseline component registers 73/288 images with 6,099 points and 1.2373 px mean reprojection error.
 - The single overlap-40 retry did not improve the largest-component registration count; Step 10 therefore records `acceptance_met=false` and preserves the disconnected sparse components instead of claiming global reconstruction success.
+- Step 11 evaluated exactly 2,340 deterministic non-local pairs around boundaries 73-74, 145-146, and 203-204. The first two boundaries had zero geometrically verified candidates; only 203-204 produced qualified bridges, so targeted mapping was skipped by design.
+- The one authorized CPU exhaustive fallback produced eight models with 224-image union coverage, but its strongest single model still registers 73/288 images with 3,443 points and 1.1989 px mean reprojection error. Step 11 records `bridge_success=false`.
 - Weak CNN predictions must remain visible and documented; they must not be manually repaired and reported as model output.
 - Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, training metrics, camera poses, point clouds, or reconstruction results.
-- Stop after Step 10. Do not start dense reconstruction, meshing, texturing, or Blender until a separate sparse-component recovery/acceptance decision is explicitly authorized.
+- Stop after Step 11. Do not start dense reconstruction, meshing, texturing, or Blender from the disconnected result. Any recapture, materially different sparse strategy, or acceptance of a local-only deliverable requires separate explicit authorization.
 
 ## Verification
 

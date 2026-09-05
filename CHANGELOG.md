@@ -59,6 +59,14 @@ All notable verified project milestones are recorded here.
 - Selected sparse COLMAP model plus PLY export under `reconstruction/sparse/best/`, machine-readable Step 10 reports, and two visually inspected sparse/registration figures.
 - Step 10 records `acceptance_met=false`: the local sparse reconstruction is plausible, but the full sequence remains fragmented, so dense reconstruction was not started and no success claim was made for a global 288-image model.
 - Final Step 10 verification: 11 focused tests and 103 complete project tests passed; changed Step 10 Python compiled; the selected sparse model re-opened with matching summary metrics; 297/297 raw files and 288/288 selected files remained verified; transient COLMAP databases/caches were removed while preserving the sparse models and evidence.
+- Step 11 sparse-component-bridging design, implementation plan, shared Step 10 pyCOLMAP option/runtime helpers, `sparse_bridging.py`, `run_sparse_bridging.py`, and focused tests.
+- Deterministic non-local diagnosis of exactly 2,340 pairs: 780 around each fixed boundary 73-74, 145-146, and 203-204. The first two boundaries produced zero geometrically verified candidates; 203-204 produced 68 qualified candidates and 8 selected bridges.
+- Fail-closed targeted gate: targeted mapping was skipped because every boundary required at least one selected qualified bridge.
+- Exactly one CPU exhaustive fallback with block size 50: 14,900 non-empty match rows, 3,020 geometrically verified rows, eight sparse models, and 224-image union coverage.
+- Selected Step 11 sparse model plus PLY under `reconstruction/bridging/best/`, seven machine-readable reports, and three visually inspected candidate/sparse/registration figures.
+- Step 11 records `bridge_success=false`: the strongest single model remains 73/288 images with 3,443 points and 1.1989 px mean reprojection error, so disconnected-model union coverage is not misreported as a global reconstruction and dense work remains blocked.
+- Final Step 11 review verification: 32 focused tests and 141 complete project tests passed; changed sparse modules compiled; both Step 10 and Step 11 models re-opened with matching metrics; 297/297 raw files and 288/288 selected files remained verified.
+- Post-implementation review hardened feature-cache and interrupted exhaustive-resume identity validation using exact image/camera/keypoint/descriptor layout, and fixed the zero-inlier bridge-candidate figure so its scale cannot display impossible negative inlier values. These fixes do not change the measured Step 11 reconstruction result.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -69,6 +77,6 @@ All notable verified project milestones are recorded here.
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- Steps 6-10 are complete and verified. Step 10 executed sparse SfM but the 288-image sequence remains split across disconnected components; do not start dense MVS from the selected 73-image component if the goal remains a full-vessel reconstruction.
-- The next recommended separately authorized phase is a focused sparse-component bridging investigation around the measured boundaries, especially the Step 9 weak transitions at 73-74, 145-146, and 203-204.
-- Treat the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes and Step 10 used unmasked native pyCOLMAP SIFT.
+- Steps 6-11 are complete and verified. The bounded Step 11 recovery path did not create a healthy global sparse model; do not start dense MVS from the selected 73-image component or the 224-image disconnected union.
+- Any next phase requires a separately authorized decision among recapture, a materially different sparse strategy, or accepting a local-only deliverable. Step 11 does not authorize any of them.
+- Keep the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes, and Steps 10-11 used unmasked native pyCOLMAP SIFT.
