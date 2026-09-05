@@ -4,7 +4,7 @@
 
 This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
 
-Current phase: preprocessing and Steps 6-11 are complete and verified. Step 11 exhausted the authorized bounded sparse-component recovery path, but the 288-image sequence remains fragmented; the selected exhaustive component registers 73 images, while 224 images appear only as a union across eight disconnected models. The repository stops before dense reconstruction. Do not claim a full-sequence sparse model or start dense MVS, meshing, texturing, or Blender unless a separate future phase is explicitly authorized after this failed global-recovery result.
+Current phase: preprocessing and Steps 6-11 are complete and verified. Step 12 learned sparse recovery is implemented and has reached its approved real-runtime failure boundary: the ALIKED-N16Rot smoke test on selected images 1-2 failed with `RuntimeError: ALIKED feature extraction requires ONNX support.` Full learned extraction, boundary matching, mapping, and LoMa inference were therefore not run. Step 11 remains the latest measured reconstruction result: the strongest single model registers 73/288 images and the 224-image union is split across eight disconnected models. Dense reconstruction remains blocked.
 
 ## Core rules
 
@@ -25,10 +25,16 @@ Current phase: preprocessing and Steps 6-11 are complete and verified. Step 11 e
 3. Inspect Git status and the files relevant to the requested task before editing.
 4. Treat unrelated local changes as contributor-owned work.
 
-## Subagents
+## CodeGraph
 
-- Use subagents only when they materially reduce uncertainty or parallelize independent work.
-- If using Codex subagents, use only available `*-glm` / GLM-variant agents backed by GLM-5.3. Do not invoke non-GLM variants for this project.
+- `.codegraph/` is installed project state. Use CodeGraph when it materially helps with dependencies, call paths, architecture, or change impact; use direct inspection for trivial edits.
+- Preserve `.codegraph/` unless an explicit CodeGraph maintenance task requires changing or removing it.
+
+## Skills, plugins, and subagents
+
+- Use relevant installed skills and plugins automatically when they materially improve the task; do not add ceremony to simple work.
+- Subagents may be used automatically when they materially reduce uncertainty or parallelize independent work.
+- If using subagents, use only available `*-glm` / GLM-variant agents backed by GLM-5.3. Do not invoke non-GLM variants for this project.
 - Prefer the GLM-5.3 1M-context variants for broad repository or dataset reasoning so the large context is used effectively rather than spawning many narrow agents.
 - Good fits include `python-pro-glm`, `data-scientist-glm`, `machine-learning-engineer-glm`, `test-automator-glm`, and `code-reviewer-glm` when their scopes match.
 - If the GLM request limit is reached, stop using subagents and continue with the parent agent only. Do not fall back to other subagent models.
@@ -45,13 +51,14 @@ Current phase: preprocessing and Steps 6-11 are complete and verified. Step 11 e
 
 ## Geometry and ML extension
 
-The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-11 are implemented and verified:
+The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-12 are implemented and verified to their approved boundaries:
 
 - Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
 - Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
 - Step 9: `docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`; measured results are in `docs/geometry-ml/reconstruction-readiness.md`.
 - Step 10: `docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md`; measured results are in `docs/geometry-ml/sparse-reconstruction.md`.
 - Step 11: `docs/superpowers/plans/2026-09-05-step-11-sparse-component-bridging.md`; measured results are in `docs/geometry-ml/sparse-component-bridging.md`.
+- Step 12: design `docs/superpowers/specs/2026-09-05-step-12-learned-sparse-recovery-design.md`; plan `docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md`; measured capability boundary `docs/geometry-ml/learned-sparse-recovery.md`. No learned reconstruction model exists because the native smoke was blocked before extraction.
 
 - Step 6 exposes verified selected-image access, reusable SIFT keypoints/descriptors and scale metadata, Fundamental Matrix/RANSAC, epipolar geometry, and classical 2D vessel geometry.
 - Steps 7+8 use a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the verified baseline.
@@ -69,7 +76,7 @@ The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-
 - The one authorized CPU exhaustive fallback produced eight models with 224-image union coverage, but its strongest single model still registers 73/288 images with 3,443 points and 1.1989 px mean reprojection error. Step 11 records `bridge_success=false`.
 - Weak CNN predictions must remain visible and documented; they must not be manually repaired and reported as model output.
 - Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, training metrics, camera poses, point clouds, or reconstruction results.
-- Stop after Step 11. Do not start dense reconstruction, meshing, texturing, or Blender from the disconnected result. Any recapture, materially different sparse strategy, or acceptance of a local-only deliverable requires separate explicit authorization.
+- Step 12 stopped at the approved capability gate because the installed pyCOLMAP wheel lacks the ONNX support required by ALIKED extraction. Do not bypass this by initializing LoMa, rebuilding/replacing pyCOLMAP, or adding an external learned stack without a separate explicit architecture decision. Dense reconstruction, meshing, texturing, and Blender remain blocked.
 
 ## Verification
 

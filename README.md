@@ -13,7 +13,8 @@ smartphone capture
 -> pyCOLMAP feature extraction and matching
 -> Structure from Motion / sparse reconstruction
 -> bounded sparse-component bridge diagnosis and recovery attempt
--> dense reconstruction where practical
+-> bounded native learned sparse-recovery capability gate
+-> dense reconstruction only after an accepted global sparse model
 -> meshing and texturing
 -> Blender cleanup and final model
 ```
@@ -23,10 +24,14 @@ smartphone capture
 The real-image preprocessing, QA, Step 6 classical geometry analysis, Steps
 7+8 custom CNN segmentation/SIFT feature-mask analysis, Step 9
 reconstruction-readiness analysis, Step 10 sparse SfM, and Step 11 bounded
-sparse-component bridging are complete and verified. Step 11 exhausted the
-authorized recovery path but still produced disconnected sparse components, so
-the project stops before dense reconstruction rather than treating a fragmented
-73-image component or a 224-image multi-model union as one complete model.
+sparse-component bridging are complete and verified. Step 12 native learned
+sparse recovery is also complete at its approved capability failure boundary:
+the real ALIKED smoke was blocked because the installed pyCOLMAP 4.2.0 wheel
+lacks ONNX support. Full learned extraction/matching/mapping did not run, LoMa
+was not initialized as a runtime bypass, and Step 11 remains the latest measured
+reconstruction. The project stops before dense reconstruction rather than
+treating a fragmented 73-image component or a 224-image multi-model union as
+one complete model.
 
 Measured preprocessing result:
 
@@ -85,20 +90,30 @@ Measured Step 11 sparse-component-bridging result:
 - its strongest single model registered **73/288 images** with **3,443 points**, mean track length **3.7508**, and mean reprojection error **1.1989 px** using one `SIMPLE_RADIAL` camera;
 - the selected model's local camera arc and point structure are plausible, but registration remains limited to indices 1-73, so `bridge_success=false` and dense reconstruction remains blocked.
 
+Measured Step 12 learned sparse-recovery result:
+
+- Python 3.14.2 and pyCOLMAP 4.2.0 exposed the approved ALIKED-N16Rot/ALIKED-LightGlue and LoMa-B/LoMa-L enums; their static CPU options with `max_image_size=1600` passed validation;
+- the real ALIKED smoke used selected indices 1-2 and failed before feature extraction with `RuntimeError: ALIKED feature extraction requires ONNX support.`;
+- the frozen capability gate therefore prevented 288-image learned extraction, all 2,340 learned boundary matches, and learned sparse mapping;
+- LoMa remained `not_run` because Step 12 does not use a fallback to bypass a missing native learned-runtime prerequisite or silently change the installed stack;
+- no learned model exists, `learned_recovery_success=false`, and `dense_reconstruction_started=false`; Step 11 remains the strongest measured sparse result.
+
 The verified reconstruction input directory remains:
 
 ```text
 preprocessing/pycolmap_input/images/
 ```
 
-Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md), [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md), [`docs/geometry-ml/sparse-reconstruction.md`](docs/geometry-ml/sparse-reconstruction.md), and [`docs/geometry-ml/sparse-component-bridging.md`](docs/geometry-ml/sparse-component-bridging.md). The measured preprocessing method remains documented in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
+Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md), [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md), [`docs/geometry-ml/sparse-reconstruction.md`](docs/geometry-ml/sparse-reconstruction.md), [`docs/geometry-ml/sparse-component-bridging.md`](docs/geometry-ml/sparse-component-bridging.md), and [`docs/geometry-ml/learned-sparse-recovery.md`](docs/geometry-ml/learned-sparse-recovery.md). The measured preprocessing method remains documented in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
 
 ## Geometry + machine-learning extension
 
-Steps 6-11 are implemented and verified. Step 11 executed the fixed non-local
-diagnosis, conditional targeted gate, and one exhaustive fallback, but the
-288-image sequence remains fragmented into multiple sparse models. The current
-boundary therefore stops before dense reconstruction.
+Steps 6-12 are implemented and verified to their approved boundaries. Step 11
+executed the fixed non-local diagnosis, conditional targeted gate, and one
+exhaustive fallback, but the 288-image sequence remained fragmented. Step 12
+then stopped at its real native ALIKED capability smoke because the installed
+pyCOLMAP wheel lacks ONNX support. The current boundary therefore remains before
+dense reconstruction.
 
 ### Step 6 — Geometry Detection / Analysis
 
@@ -147,6 +162,15 @@ boundary therefore stops before dense reconstruction.
 - visually verified that its camera arc and point cloud are plausible only as a local component and that the registration plot reports indices 1-73 rather than the disconnected union;
 - recorded `bridge_success=false` and preserved the stop before dense reconstruction.
 
+### Step 12 — Learned Sparse Recovery
+
+- implemented the bounded ALIKED-first runner, strict learned feature-cache provenance, exact Step 11 candidate identity reuse, explicit learned matcher propagation, conditional LoMa gate, strongest-single-model acceptance, reports, and figures;
+- verified the deterministic control boundary with 20 domain tests and 14 runner tests before native execution;
+- ran the real ALIKED CPU smoke on selected indices 1-2 and recorded the exact missing-ONNX blocker;
+- stopped before full ALIKED extraction, learned boundary matching, learned mapping, and every LoMa runtime call, as required by the frozen capability gate;
+- generated only truthful no-model reports and the visually inspected SIFT-baseline comparison figure;
+- recorded `learned_recovery_success=false` and `dense_reconstruction_started=false`.
+
 ```mermaid
 flowchart LR
     A[288 verified PREPROCESSED images] --> B[Step 6: SIFT + RANSAC]
@@ -167,7 +191,9 @@ flowchart LR
     N --> O[Targeted gate skipped]
     O --> P[One exhaustive fallback]
     P --> Q[8 disconnected sparse components]
-    Q --> R[STOP before dense reconstruction]
+    Q --> R[Step 12: native learned capability gate]
+    R --> S[ALIKED blocked: pyCOLMAP lacks ONNX support]
+    S --> T[STOP before dense reconstruction]
 ```
 
 - Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)
@@ -178,6 +204,7 @@ flowchart LR
 - Step 9 measured readiness: [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md)
 - Step 10 measured sparse reconstruction: [`docs/geometry-ml/sparse-reconstruction.md`](docs/geometry-ml/sparse-reconstruction.md)
 - Step 11 measured sparse bridging: [`docs/geometry-ml/sparse-component-bridging.md`](docs/geometry-ml/sparse-component-bridging.md)
+- Step 12 measured capability boundary: [`docs/geometry-ml/learned-sparse-recovery.md`](docs/geometry-ml/learned-sparse-recovery.md)
 - Step 6 implementation plan: [`docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`](docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md)
 - Steps 7+8 implementation plan: [`docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`](docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md)
 - Step 9 implementation-plan index: [`docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`](docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md)
@@ -185,6 +212,8 @@ flowchart LR
 - Step 10 implementation plan: [`docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md`](docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md)
 - Step 11 design: [`docs/superpowers/specs/2026-09-05-step-11-sparse-component-bridging-design.md`](docs/superpowers/specs/2026-09-05-step-11-sparse-component-bridging-design.md)
 - Step 11 implementation plan: [`docs/superpowers/plans/2026-09-05-step-11-sparse-component-bridging.md`](docs/superpowers/plans/2026-09-05-step-11-sparse-component-bridging.md)
+- Step 12 design: [`docs/superpowers/specs/2026-09-05-step-12-learned-sparse-recovery-design.md`](docs/superpowers/specs/2026-09-05-step-12-learned-sparse-recovery-design.md)
+- Step 12 implementation plan: [`docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md`](docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md)
 
 ## Why preprocessing is conservative
 
@@ -291,13 +320,32 @@ uses CPU matching with block size 50. The measured run skipped targeted mapping,
 completed the exhaustive fallback once, selected a 73-image local component,
 and recorded `bridge_success=false`. No stage invokes dense reconstruction.
 
+## Reproduce Step 12 learned sparse recovery
+
+The Step 12 runner is stage-bounded and uses only the two approved native
+pyCOLMAP learned frontends:
+
+```powershell
+python -B run_learned_sparse_recovery.py --stage capability
+python -B run_learned_sparse_recovery.py --stage aliked-diagnose
+python -B run_learned_sparse_recovery.py --stage finalize --visual-status failed
+```
+
+In the measured environment, `capability` recorded
+`RuntimeError: ALIKED feature extraction requires ONNX support.` The
+`aliked-diagnose` stage therefore wrote a blocked attempt without starting full
+extraction, and finalization wrote no fake learned model or candidate evidence.
+Do not run later ALIKED/LoMa stages unless the approved runtime architecture is
+separately changed and the capability gate passes. No Step 12 stage invokes
+dense reconstruction.
+
 ## Repository layout
 
 ```text
 quality_check.py                         quality metrics, calibration, decisions
 preprocess_images.py                     geometry-preserving photometric transform
 run_preprocessing.py                     reports, previews, SIFT experiment, export
-tests/                                   141 project tests after Step 11 review
+tests/                                   deterministic preprocessing through Step 12 tests
 analysis_common.py                       selected-manifest loading and integrity verification
 geometry_detection.py                    scaled SIFT, RANSAC, epilines, and residuals
 shape_geometry.py                        classical edges, contour, PCA, and optional ellipse
@@ -316,9 +364,11 @@ sparse_reconstruction.py                 Step 10 pyCOLMAP configuration, runtime
 run_sparse_reconstruction.py             Step 10 sparse-SfM stages, reports, and figures
 sparse_bridging.py                       Step 11 candidate diagnosis, gates, and sparse attempts
 run_sparse_bridging.py                   Step 11 durable stages, reports, and figures
+learned_sparse_recovery.py               Step 12 learned-frontend contracts, caches, diagnostics, mapping
+run_learned_sparse_recovery.py           Step 12 capability, fallback, reports, and figures
 ml_dataset/                              frozen 36-label manifest and source-size masks
 analysis/                                Step 6 + ML + Step 9 reports, masks, and figures
-reconstruction/                          Step 10 sparse and Step 11 bridging evidence
+reconstruction/                          Step 10/11 sparse evidence and Step 12 capability result
 preprocessing/reports/                   audit and final measured reports
 preprocessing/previews/contact_sheets/   full raw-sequence visual audit
 preprocessing/previews/final/            before/after, decision, and SIFT figures
@@ -365,6 +415,9 @@ The separate local `IMG20260826122949.zip` is only a redundant archive of the sa
 - `reconstruction/bridging/reports/step11_targeted.json`, `step11_exhaustive.json`, and `step11_attempts.csv` — skipped targeted gate and the single completed exhaustive fallback.
 - `reconstruction/bridging/best/` — selected Step 11 COLMAP sparse binary model and `points3D.ply` export.
 - `reconstruction/bridging/previews/` — the three visually inspected Step 11 candidate, sparse-model, and registration figures.
+- `reconstruction/learned_recovery/reports/step12_capability.json` — native enum/options snapshot and exact real ALIKED ONNX blocker.
+- `reconstruction/learned_recovery/reports/step12_aliked_attempt.json`, `step12_attempts.csv`, and `step12_summary.json` — blocked primary path, not-run LoMa state, no-model acceptance result, and dense-not-started boundary.
+- `reconstruction/learned_recovery/previews/step12_04_frontend_comparison.png` — visually inspected strongest-single-model SIFT baselines; no learned result is implied.
 
 ## Collaboration
 

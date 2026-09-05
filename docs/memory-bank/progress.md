@@ -1,6 +1,6 @@
 # Progress
 
-Updated: 2026-09-05
+Updated: 2026-09-06
 
 ## Completed and verified
 
@@ -70,10 +70,26 @@ Updated: 2026-09-05
 - `reconstruction/bridging/best/`, `points3D.ply`, all component models, seven reports, and three figures preserve the measured result. `bridge_success=false`; dense reconstruction remains blocked.
 - `docs/geometry-ml/sparse-component-bridging.md` records the method, interruption/resume provenance, measurements, visual review, acceptance decision, artifacts, and boundary.
 
+### Step 12 — learned sparse recovery capability boundary
+
+- Implemented the bounded native learned-recovery domain and staged runner with ALIKED-N16Rot + ALIKED-LightGlue first and LoMa-B + LoMa-L only as the conditional fallback.
+- Preserved explicit learned matcher options on both sequential/imported paths, exact Step 11 candidate identity, strict per-image feature-cache layout fingerprints, strongest-single-model acceptance, bounded cleanup, and no learned exhaustive or dense API.
+- Static Python 3.14.2 / pyCOLMAP 4.2.0 capability evidence exposed both approved frontends with valid CPU option objects and `max_image_size=1600`.
+- The real ALIKED smoke on selected indices 1-2 failed before feature extraction with `RuntimeError: ALIKED feature extraction requires ONNX support.`
+- The capability gate stopped the 288-image ALIKED extraction, all 2,340 learned boundary matches, learned sparse mapping, and every LoMa runtime call. No dependency replacement, pyCOLMAP rebuild, or external learned stack was introduced.
+- Final artifacts truthfully record ALIKED `blocked`, LoMa `not_run`, no selected learned model, `metric_acceptance_met=false`, `visual_plausibility_status=failed`, `learned_recovery_success=false`, and `dense_reconstruction_started=false`.
+- The only applicable Step 12 figure compares the authoritative Step 10/11 strongest-single-model SIFT baselines and was visually inspected. `docs/geometry-ml/learned-sparse-recovery.md` records the measured capability boundary.
+
 ## Verification
 
 - Fresh Step 11-focused suite after review: **32 passed**.
 - Fresh complete project suite after Step 11 review: **141 passed**.
+- Step 12 maintenance verification: **20 domain tests passed**, **14 runner tests passed**, and **49 Step 10/11 regression tests passed**.
+- The runtime-blocker reporting regression first raised the Step 12 runner suite to **15 passed**; final review added a blocked-attempt frontend-identity regression, bringing the runner suite to **16 passed**.
+- Final complete project verification after Step 12 review: **177 passed**; all four Step 12 source/test files compiled successfully.
+- The Step 10/11 selected models reopened with exact recorded metrics, and five protected Step 10/11 report hashes matched their pre-Step-12 snapshots.
+- Final source verification again found 297/297 raw images and 288/288 selected images unchanged; Step 12 left no transient database, work directory, learned model/PLY, or compile cache.
+- Syntax compilation succeeded for both Step 12 source modules and both Step 12 test files.
 - Changed sparse Python modules completed `python -B -m py_compile` successfully.
 - Fresh final source-integrity verification: 297/297 raw unchanged with zero mismatches; 288/288 selected images verified against `selection_manifest.csv`.
 - The Step 10 selected sparse model re-opened with pyCOLMAP 4.2.0 and exactly matched the summary metrics: 73 registered images, 6,099 sparse points, one camera, 1.2373052447638215 px mean reprojection error.
@@ -87,11 +103,11 @@ Updated: 2026-09-05
 
 ## Local tooling
 
-- Installed CodeGraph 1.6.0 and connected it only to Codex CLI and Claude Code.
-- Initialized the repository graph under `.codegraph/` and verified an up-to-date index of 42 Python files, 994 nodes, and 2,649 edges.
+- CodeGraph 1.6.0 is installed and the repository graph is initialized under `.codegraph/`; the maintenance review confirmed the project index is available and current.
+- Use CodeGraph when dependency, call-path, architecture, or change-impact analysis materially helps, but prefer direct inspection for trivial edits. Preserve `.codegraph/` unless explicit maintenance requires otherwise.
 
 ## Next phase
 
-Steps 6-11 are complete. Step 11 executed the authorized bounded recovery path but did not create a healthy global model: the selected component contains 73/288 images, and the 224-image exhaustive union is split across eight coordinate frames. Do not start dense reconstruction, meshing, texturing, or Blender from this state.
+Step 12 is complete at its approved native capability failure boundary. Step 11 remains the latest measured reconstruction result. Any continuation requires a separately authorized decision between accepting a local-only sparse reconstruction and an experimental learned global-matching/component-alignment phase with an explicit runtime/dependency change.
 
-Any next phase requires an explicit decision among recapture, a materially different sparse strategy, or accepting a local-only deliverable. Keep CNN masks as analysis evidence; Step 9 already showed they reduce correspondence coverage, and Steps 10-11 did not use them for pyCOLMAP features.
+Do not rebuild/replace pyCOLMAP, add an external learned stack, or start dense reconstruction, meshing, texturing, or Blender under the completed Step 12 scope. Keep CNN masks as analysis evidence; Step 9 already showed they reduce correspondence coverage, and Steps 10-11 did not use them for pyCOLMAP features.

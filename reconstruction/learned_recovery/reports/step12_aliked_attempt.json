@@ -1,0 +1,10 @@
+{
+  "attempt": null,
+  "boundary_gate_allowed": null,
+  "extractor_type": "ALIKED_N16ROT",
+  "frontend": "aliked",
+  "matcher_type": "ALIKED_LIGHTGLUE",
+  "metric_acceptance_met": null,
+  "reason": "RuntimeError: ALIKED feature extraction requires ONNX support.",
+  "status": "blocked"
+}

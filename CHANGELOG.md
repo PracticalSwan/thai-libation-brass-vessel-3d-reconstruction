@@ -67,16 +67,28 @@ All notable verified project milestones are recorded here.
 - Step 11 records `bridge_success=false`: the strongest single model remains 73/288 images with 3,443 points and 1.1989 px mean reprojection error, so disconnected-model union coverage is not misreported as a global reconstruction and dense work remains blocked.
 - Final Step 11 review verification: 32 focused tests and 141 complete project tests passed; changed sparse modules compiled; both Step 10 and Step 11 models re-opened with matching metrics; 297/297 raw files and 288/288 selected files remained verified.
 - Post-implementation review hardened feature-cache and interrupted exhaustive-resume identity validation using exact image/camera/keypoint/descriptor layout, and fixed the zero-inlier bridge-candidate figure so its scale cannot display impossible negative inlier values. These fixes do not change the measured Step 11 reconstruction result.
+- Step 12 learned sparse-recovery design and implementation plan, plus the recovered partial implementation in `learned_sparse_recovery.py`, `run_learned_sparse_recovery.py`, and focused tests. The bounded native frontends remain ALIKED-N16Rot + LightGlue first and LoMa-B + LoMa-L as the single conditional fallback, both CPU with `max_image_size=1600`.
+- Step 12 maintenance review verified the already-reached domain/runner boundary only: 20 domain tests, 14 runner tests, and 49 Step 10/11 regression tests passed. No real learned extraction, matching, mapping, visual acceptance, final runtime report, or dense reconstruction was executed.
+- Real Step 12 capability execution on Python 3.14.2 / pyCOLMAP 4.2.0. Static ALIKED/LoMa options passed, but the ALIKED-N16Rot smoke on selected indices 1-2 stopped with `RuntimeError: ALIKED feature extraction requires ONNX support.`
+- Truthful Step 12 blocked-result artifacts under `reconstruction/learned_recovery/`: capability, ALIKED attempt, attempts table, final summary, and a visually inspected strongest-single-model SIFT comparison. No learned candidate table, learned sparse model, PLY, or model-only figure was fabricated.
+- Measured Step 12 report `docs/geometry-ml/learned-sparse-recovery.md`; `learned_recovery_success=false` and `dense_reconstruction_started=false`.
+- Final Step 12 verification after review: 20 domain tests, 16 runner tests, 49 Step 10/11 regressions, and 177 complete project tests passed; touched Python compiled; Step 10/11 models and five frozen report hashes remained unchanged; 297 raw and 288 selected images reverified; compile/transient residue was removed.
+- Project instructions now record `.codegraph/` as installed CodeGraph state and allow automatic use of relevant skills/plugins plus GLM-only subagents when materially useful.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
 - Treat a degenerate OpenCV fundamental-matrix fit as zero geometric inliers instead of crashing the matching experiment.
 - Correct stale phase/test-count documentation and use the cache-free pytest command in the reproduction steps.
+- Removed duplicated ALIKED capability interpretation from the Step 12 `all` orchestration path. The diagnose stage now owns capability-blocked report semantics, fixing the two stopped-session runner failures and preventing the top-level state machine from diverging from stage behavior.
+- Hardened Step 12 learned-feature cache reuse with a SHA-256 fingerprint of the exact per-image database layout, so stale caches with unchanged aggregate feature totals are rebuilt rather than accepted.
+- Carried the ALIKED native capability blocker into LoMa's `not_run` final-report reason instead of using the ambiguous phrase “fallback was not required”; that runtime-path regression raised the Step 12 runner suite to 15 tests.
+- Preserved frontend/extractor/matcher identity in blocked and explicit `not_run` attempt reports; the final report-contract regression raises the Step 12 runner suite to 16 tests.
 
 ### Removed
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- Steps 6-11 are complete and verified. The bounded Step 11 recovery path did not create a healthy global sparse model; do not start dense MVS from the selected 73-image component or the 224-image disconnected union.
-- Any next phase requires a separately authorized decision among recapture, a materially different sparse strategy, or accepting a local-only deliverable. Step 11 does not authorize any of them.
+- Step 12 is complete at its approved capability failure boundary. The installed pyCOLMAP wheel cannot run the ALIKED extractor without ONNX support; full ALIKED extraction/diagnostics/mapping and every LoMa runtime stage remain intentionally not run.
+- Any continuation requires a separate decision either to accept a local-only sparse reconstruction or to authorize an experimental learned global-matching/component-alignment phase with an explicit runtime/dependency change.
+- Do not start dense MVS, meshing, texturing, or Blender. Step 11 remains the latest measured reconstruction result.
 - Keep the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes, and Steps 10-11 used unmasked native pyCOLMAP SIFT.

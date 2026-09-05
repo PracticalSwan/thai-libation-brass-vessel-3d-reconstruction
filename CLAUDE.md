@@ -9,7 +9,9 @@
 - Do not over-engineer, over-complicate, or over-test. Prefer the smallest coherent solution and verification proportional to risk.
 - Preserve `IMG20260826122949/` as immutable raw source data. Never delete, modify, rename, overwrite, crop, resize, rotate, recompress, or otherwise transform its original photographs.
 - Do not deploy unless deployment is explicitly required.
-- For subagents, use only available GLM-5.3 `*-glm` variants. Use the 1M context effectively instead of spawning unnecessary agents; if GLM request limits are reached, stop using subagents entirely rather than switching models.
+- Use relevant installed skills and plugins automatically when they materially improve the task.
+- `.codegraph/` is installed project state. Use CodeGraph for dependency/call-path/change-impact questions when useful, and preserve it unless explicit maintenance requires otherwise.
+- Subagents may be used automatically when useful, but only available GLM-5.3 `*-glm` variants are allowed. Use the 1M context effectively instead of spawning unnecessary agents; if GLM request limits are reached, stop using subagents entirely rather than switching models.
 - The parent agent must verify subagent work from files, diffs, tests, or runtime evidence before accepting it.
 
 ## Removal and cleanup policy

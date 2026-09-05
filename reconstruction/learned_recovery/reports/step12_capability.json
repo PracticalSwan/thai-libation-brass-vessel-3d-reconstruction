@@ -1,0 +1,158 @@
+{
+  "device_policy": "cpu",
+  "extractor_members": [
+    "UNDEFINED",
+    "SIFT",
+    "ALIKED_N16ROT",
+    "ALIKED_N32",
+    "LOMA_B",
+    "LOMA_B128"
+  ],
+  "frontends": {
+    "aliked": {
+      "effective_max_image_size": 1600,
+      "extraction_options": {
+        "gpu_index": "-1",
+        "max_image_size": 1600,
+        "num_threads": -1,
+        "sift": {
+          "darkness_adaptivity": false,
+          "domain_size_pooling": false,
+          "dsp_max_scale": 3.0,
+          "dsp_min_scale": 0.16666666666666666,
+          "dsp_num_scales": 10,
+          "edge_threshold": 10.0,
+          "estimate_affine_shape": false,
+          "first_octave": -1,
+          "max_num_features": 8192,
+          "max_num_orientations": 2,
+          "normalization": "L1_ROOT",
+          "num_octaves": 4,
+          "octave_resolution": 3,
+          "peak_threshold": 0.006666666666666667,
+          "upright": false
+        },
+        "type": "ALIKED_N16ROT",
+        "use_gpu": false
+      },
+      "extraction_options_valid": true,
+      "extractor": "ALIKED_N16ROT",
+      "matcher": "ALIKED_LIGHTGLUE",
+      "matching_options": {
+        "gpu_index": "-1",
+        "guided_matching": false,
+        "max_num_matches": 32768,
+        "num_threads": -1,
+        "rig_verification": false,
+        "sift": {
+          "cpu_brute_force_matcher": false,
+          "cross_check": true,
+          "max_distance": 0.7,
+          "max_ratio": 0.8
+        },
+        "skip_geometric_verification": false,
+        "skip_image_pairs_in_same_frame": false,
+        "type": "ALIKED_LIGHTGLUE",
+        "use_gpu": false
+      },
+      "matching_options_valid": true,
+      "max_image_size": 1600,
+      "requires_opengl": false,
+      "requires_rgb": true,
+      "smoke": {
+        "exception_message": "ALIKED feature extraction requires ONNX support.",
+        "exception_type": "RuntimeError",
+        "first_features": 0,
+        "frontend": "aliked",
+        "raw_matches": 0,
+        "second_features": 0,
+        "status": "blocked"
+      }
+    },
+    "loma": {
+      "effective_max_image_size": 1600,
+      "extraction_options": {
+        "gpu_index": "-1",
+        "max_image_size": 1600,
+        "num_threads": -1,
+        "sift": {
+          "darkness_adaptivity": false,
+          "domain_size_pooling": false,
+          "dsp_max_scale": 3.0,
+          "dsp_min_scale": 0.16666666666666666,
+          "dsp_num_scales": 10,
+          "edge_threshold": 10.0,
+          "estimate_affine_shape": false,
+          "first_octave": -1,
+          "max_num_features": 8192,
+          "max_num_orientations": 2,
+          "normalization": "L1_ROOT",
+          "num_octaves": 4,
+          "octave_resolution": 3,
+          "peak_threshold": 0.006666666666666667,
+          "upright": false
+        },
+        "type": "LOMA_B",
+        "use_gpu": false
+      },
+      "extraction_options_valid": true,
+      "extractor": "LOMA_B",
+      "matcher": "LOMA_L",
+      "matching_options": {
+        "gpu_index": "-1",
+        "guided_matching": false,
+        "max_num_matches": 32768,
+        "num_threads": -1,
+        "rig_verification": false,
+        "sift": {
+          "cpu_brute_force_matcher": false,
+          "cross_check": true,
+          "max_distance": 0.7,
+          "max_ratio": 0.8
+        },
+        "skip_geometric_verification": false,
+        "skip_image_pairs_in_same_frame": false,
+        "type": "LOMA_L",
+        "use_gpu": false
+      },
+      "matching_options_valid": true,
+      "max_image_size": 1600,
+      "requires_opengl": false,
+      "requires_rgb": true,
+      "smoke": {
+        "exception_message": "",
+        "exception_type": "",
+        "first_features": 0,
+        "frontend": "loma",
+        "raw_matches": 0,
+        "second_features": 0,
+        "status": "not_run"
+      }
+    }
+  },
+  "has_cuda": false,
+  "input_image_count": 288,
+  "matcher_members": [
+    "UNDEFINED",
+    "SIFT_BRUTEFORCE",
+    "SIFT_LIGHTGLUE",
+    "ALIKED_BRUTEFORCE",
+    "ALIKED_LIGHTGLUE",
+    "LOMA_BRUTEFORCE",
+    "LOMA_B",
+    "LOMA_B128",
+    "LOMA_R",
+    "LOMA_L",
+    "LOMA_G"
+  ],
+  "pycolmap_version": "4.2.0",
+  "python_version": "3.14.2",
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91",
+  "smoke_pair": {
+    "first_filename": "IMG20260826122949.jpg",
+    "first_selected_index": 1,
+    "second_filename": "IMG20260826122953.jpg",
+    "second_selected_index": 2
+  },
+  "use_gpu": false
+}

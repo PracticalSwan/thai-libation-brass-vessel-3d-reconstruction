@@ -1,0 +1,3 @@
+frontend,status,reason,boundary_gate_allowed,model_count,registered_images,registration_fraction,sparse_points,observations,mean_track_length,mean_reprojection_error,camera_count,camera_model,runtime_seconds,feature_count,matched_pair_count,verified_pair_count,metric_acceptance_met
+aliked,blocked,RuntimeError: ALIKED feature extraction requires ONNX support.,,,,,,,,,,,,,,,
+loma,not_run,LoMa was not run because the primary learned capability gate was blocked: RuntimeError: ALIKED feature extraction requires ONNX support.,,,,,,,,,,,,,,,

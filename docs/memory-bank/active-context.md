@@ -1,10 +1,10 @@
 # Active Context
 
-Updated: 2026-09-05
+Updated: 2026-09-06
 
 ## Current focus
 
-Preprocessing and Steps 6-11 are complete and verified. Step 11 exhausted the bounded sparse-component recovery plan, but the 288-image sequence still fragments into multiple models. The selected exhaustive component registers 73 images; 224 images appear only as a union across eight disconnected models. The project boundary remains a deliberate stop before dense reconstruction. Do not start dense MVS, meshing, texturing, or Blender without a separately authorized post-Step-11 decision.
+Preprocessing and Steps 6-11 are complete and verified. Step 12 learned sparse recovery is implemented and complete at its approved capability failure boundary. The real ALIKED-N16Rot smoke on selected indices 1-2 stopped with `RuntimeError: ALIKED feature extraction requires ONNX support.` Full learned extraction, the 2,340-pair learned boundary experiment, sparse mapping, and LoMa inference were therefore not run. Step 11 remains the latest measured SfM result: 73/288 images in the strongest single model and 224 images only as a disconnected eight-model union. Dense reconstruction remains blocked.
 
 ## Verified preprocessing state
 
@@ -125,10 +125,27 @@ Preprocessing and Steps 6-11 are complete and verified. Step 11 exhausted the bo
 - `step11_summary.json` records `bridge_success=false` and `dense_reconstruction_started=false`. The disconnected 224-image union is diagnostic evidence, not a global model.
 - Measured narrative: `docs/geometry-ml/sparse-component-bridging.md`.
 
+## Completed Step 12 — learned sparse recovery capability boundary
+
+- Implemented `learned_sparse_recovery.py`, `run_learned_sparse_recovery.py`, and focused domain/runner tests using only ALIKED-N16Rot + ALIKED-LightGlue and the conditional LoMa-B + LoMa-L fallback.
+- The deterministic boundary preserves explicit CPU learned matcher options for both sequential and imported matching, exact Step 11 candidate identity, strict per-image feature-cache layout fingerprints, strongest-single-model acceptance, bounded cleanup, and no learned exhaustive or dense API.
+- Python 3.14.2 / pyCOLMAP 4.2.0 exposed the required learned enums and valid CPU option objects with `max_image_size=1600`; `pycolmap.has_cuda=false`.
+- The real ALIKED smoke on `IMG20260826122949.jpg` and `IMG20260826122953.jpg` failed before extraction because the installed wheel lacks ONNX support. The exact exception is preserved in `step12_capability.json` and `step12_aliked_attempt.json`.
+- The frozen gate stopped 288-image ALIKED extraction and all learned diagnostics/mapping. LoMa stayed `not_run` because it cannot be used as a silent bypass for a missing native learned-runtime prerequisite.
+- Final reports record no selected frontend/model, `metric_acceptance_met=false`, `visual_plausibility_status=failed`, `learned_recovery_success=false`, and `dense_reconstruction_started=false`.
+- Only the strongest-single-model SIFT comparison figure was applicable; it was visually inspected and contains no fabricated learned result. Measured narrative: `docs/geometry-ml/learned-sparse-recovery.md`.
+
 ## Verification and evidence
 
 - Step 11-focused suite after review: **32 passed**.
 - Fresh complete project suite after Step 11 review: **141 passed**.
+- Step 12 maintenance boundary: **20 domain tests passed**, **14 runner tests passed**, and **49 Step 10/11 regression tests passed** after the fixes.
+- The runtime-specific LoMa `not_run` reason regression first raised the Step 12 runner suite to **15 passing tests**; final review added a blocked-attempt frontend-identity regression, bringing it to **16 passing tests**.
+- Final complete project verification after Step 12 review: **177 tests passed**; all four Step 12 source/test files compiled successfully.
+- Step 10/11 selected models reopened with their recorded metrics, and five protected Step 10/11 report hashes exactly matched the pre-Step-12 snapshots.
+- Final integrity verification again found 297/297 raw images unchanged and 288/288 selected images matching the frozen manifest.
+- Step 12 cleanup left no learned transient database, `work/` directory, learned `best/` model, PLY, or compile cache.
+- Syntax compilation succeeded for `learned_sparse_recovery.py`, `run_learned_sparse_recovery.py`, and both Step 12 test files.
 - `sparse_reconstruction.py`, `sparse_bridging.py`, `run_sparse_reconstruction.py`, and `run_sparse_bridging.py` compile successfully with `python -B -m py_compile`.
 - Fresh protected-source verification: 297/297 raw unchanged with zero mismatches; 288/288 selected images verified against `selection_manifest.csv`.
 - The selected Step 10 sparse model re-opened with pyCOLMAP 4.2.0 after finalization and matched `step10_summary.json`: 73 registered images, 6,099 points, one camera, 1.2373052447638215 px mean reprojection error.
@@ -142,9 +159,9 @@ Preprocessing and Steps 6-11 are complete and verified. Step 11 exhausted the bo
 
 ## Local tooling
 
-- CodeGraph 1.6.0 is installed globally and wired only to Codex CLI and Claude Code through the `codegraph serve --mcp` stdio server.
-- This repository is initialized at `.codegraph/`; the verified index contains 42 Python files, 994 nodes, and 2,649 edges. Project code and reconstruction outputs were not changed by initialization.
+- CodeGraph 1.6.0 is installed and this repository is initialized at `.codegraph/`; the maintenance review confirmed the project index is available and current.
+- Use CodeGraph when dependency, call-path, architecture, or change-impact analysis materially helps. Preserve `.codegraph/`; direct inspection is preferred for trivial edits.
 
 ## Next action
 
-Step 11 execution is complete, but its healthy-single-model acceptance gate failed because the sequence remains fragmented. Do not start dense reconstruction. Any later recapture, materially different sparse strategy, or acceptance of a local-only deliverable requires a new explicit authorization; none is implied by the completed Step 11 work.
+Step 12 stopped at the approved native capability gate. Any continuation requires a separate explicit choice between accepting a local-only sparse reconstruction and authorizing an experimental learned global-matching/component-alignment phase with a deliberate runtime/dependency change. Do not rebuild/replace pyCOLMAP, add an external learned stack, or start dense reconstruction, meshing, texturing, or Blender under the completed Step 12 scope.
