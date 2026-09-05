@@ -4,3 +4,4 @@ Pillow>=12,<13
 matplotlib>=3.10,<4
 torch>=2.13,<3
 pytest>=9.1,<10
+pycolmap>=4.2,<5

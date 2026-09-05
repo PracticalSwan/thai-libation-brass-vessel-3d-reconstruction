@@ -52,6 +52,13 @@ All notable verified project milestones are recorded here.
 - Step 9D raw-EXIF audit: one complete camera signature across all 288 selected filenames (OPPO Reno12 F, 3072 x 4080, orientation 1, 3.98 mm focal length, 26 mm 35-mm equivalent, digital zoom 1.0), supporting one shared camera/intrinsics group as the later SfM starting recommendation.
 - Step 9 machine-readable evidence, 288-image inclusion manifest, and four visually inspected presentation figures under `analysis/` and `preprocessing/reconstruction_input_v1/`.
 - Final Step 9 verification: 26 focused tests and 92 complete project tests passed; changed Step 9 Python compiled; 297/297 raw files remained hash-identical, 288/288 selected images matched their manifest, and all 576 generated Step 9 masks re-opened as hash-matching source-size binary PNGs.
+- Step 10 sparse-SfM design, implementation plan, `sparse_reconstruction.py`, `run_sparse_reconstruction.py`, focused tests, and `pycolmap>=4.2,<5` dependency.
+- Real pyCOLMAP 4.2.0 CPU sparse run over all 288 PREPROCESSED inputs using native unmasked SIFT, one shared `SIMPLE_RADIAL` camera, internal `max_image_size=1200`, sequential matching, and incremental mapping.
+- Step 10 baseline overlap 20: 1,255,153 SIFT features, 1,500 non-empty matched pairs, 902 verified pairs, seven sparse models, 216-image union coverage; largest component 73 images / 6,099 points / 1.2373 px mean reprojection error.
+- Single controlled overlap-40 retry: seven sparse models, 223-image union coverage; largest component remained 73 images / 5,769 points, so the frozen ranking retained the baseline component.
+- Selected sparse COLMAP model plus PLY export under `reconstruction/sparse/best/`, machine-readable Step 10 reports, and two visually inspected sparse/registration figures.
+- Step 10 records `acceptance_met=false`: the local sparse reconstruction is plausible, but the full sequence remains fragmented, so dense reconstruction was not started and no success claim was made for a global 288-image model.
+- Final Step 10 verification: 11 focused tests and 103 complete project tests passed; changed Step 10 Python compiled; the selected sparse model re-opened with matching summary metrics; 297/297 raw files and 288/288 selected files remained verified; transient COLMAP databases/caches were removed while preserving the sparse models and evidence.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -62,6 +69,6 @@ All notable verified project milestones are recorded here.
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- Steps 6-9 are complete and verified. Stop before pyCOLMAP/reconstruction unless that later phase is explicitly authorized.
-- If reconstruction is authorized later, begin from the unchanged 288-image PREPROCESSED set, use unmasked Step 6 SIFT as the current evidence-backed matching baseline, and begin with one shared camera/intrinsics group while validating both choices against real SfM results.
-- Treat the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes.
+- Steps 6-10 are complete and verified. Step 10 executed sparse SfM but the 288-image sequence remains split across disconnected components; do not start dense MVS from the selected 73-image component if the goal remains a full-vessel reconstruction.
+- The next recommended separately authorized phase is a focused sparse-component bridging investigation around the measured boundaries, especially the Step 9 weak transitions at 73-74, 145-146, and 203-204.
+- Treat the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes and Step 10 used unmasked native pyCOLMAP SIFT.

@@ -48,18 +48,30 @@ Updated: 2026-09-05
 - Four Step 9 presentation figures and machine-readable CSV/JSON evidence were generated and visually inspected. A zero-range camera-metadata plot defect found during review was fixed.
 - `docs/geometry-ml/reconstruction-readiness.md` records the measured Step 9 method, results, limitations, and no-reconstruction boundary.
 
+### Step 10 — sparse Structure from Motion
+
+- Added `pycolmap>=4.2,<5`, `sparse_reconstruction.py`, `run_sparse_reconstruction.py`, and focused Step 10 tests.
+- Final sparse-SIFT runtime used pyCOLMAP 4.2.0, CPU feature extraction, `max_image_size=1200`, native unmasked SIFT, one shared `SIMPLE_RADIAL` camera, and sequential matching.
+- Baseline overlap 20: 1,255,153 SIFT features, 1,500 non-empty matched pairs, 902 verified pairs, 7 sparse models, 216 distinct images represented across those models. Largest model: 73/288 images, 6,099 points, 21,351 observations, mean track length 3.5007, mean reprojection error 1.2373 px.
+- The single planned overlap-40 retry also produced 7 models; union coverage increased to 223 images but the largest model remained 73 images with 5,769 points.
+- The frozen ranking rule selected the baseline 73-image component; it is exported under `reconstruction/sparse/best/` with `points3D.ply`.
+- Both Step 10 figures were visually inspected. The selected local component has a coherent camera arc and plausible point cloud, but the full sequence remains fragmented, so `acceptance_met=false` and dense reconstruction was not started.
+- `docs/geometry-ml/sparse-reconstruction.md` records the measured implementation, retry decision, fragmentation evidence, outputs, and boundary.
+
 ## Verification
 
-- Fresh Step 9-focused suite: **26 passed**.
-- Fresh complete project suite: **92 passed**.
-- Changed Step 9 Python modules completed `python -B -m py_compile` successfully.
-- Fresh final source-integrity verification: 297/297 raw unchanged with 0 mismatches; 288/288 selected images verified against `selection_manifest.csv`.
-- Final mask-manifest verification re-opened and hash-checked all 288 raw predictions and 288 cleanup masks as source-size binary PNGs.
-- Final model checkpoint is preserved locally at `analysis/ml/checkpoints/best_small_seg_cnn.pt` and is not intended for repository publication by default.
-- Step 9 did not run pyCOLMAP/COLMAP or create camera poses, triangulated points, sparse/dense reconstructions, meshes, textures, or Blender outputs.
+- Fresh Step 10-focused suite: **11 passed**.
+- Fresh complete project suite after Step 10: **103 passed**.
+- Changed Step 10 Python modules completed `python -B -m py_compile` successfully.
+- Fresh final source-integrity verification: 297/297 raw unchanged with zero mismatches; 288/288 selected images verified against `selection_manifest.csv`.
+- The selected sparse model re-opened with pyCOLMAP 4.2.0 and exactly matched the summary metrics: 73 registered images, 6,099 sparse points, one camera, 1.2373052447638215 px mean reprojection error.
+- Both final Step 10 figures were visually inspected; they explicitly identify the 73-image result as the selected component.
+- Transient baseline/retry COLMAP databases and task-created caches were removed after model/report export; intentional sparse models, PLY, reports, figures, source code, spec, and plan remain.
+- Final model checkpoint remains preserved locally at `analysis/ml/checkpoints/best_small_seg_cnn.pt` and is not intended for repository publication.
+- No dense MVS, mesh, texture, or Blender artifact was created by Step 10.
 
 ## Next phase
 
-Steps 6-9 are complete. The repository deliberately stops before pyCOLMAP/reconstruction. Do not start camera-pose estimation, triangulation, sparse/dense reconstruction, meshing, texturing, or Blender until that later phase is explicitly authorized.
+Steps 6-10 are complete. Step 10 executed real sparse SfM but did not create a healthy global model: the selected component contains 73/288 images and the remaining sequence is split across disconnected components. Do not start dense reconstruction, meshing, texturing, or Blender from this state.
 
-If reconstruction is authorized later, start from the unchanged 288-image PREPROCESSED set, use unmasked Step 6 SIFT as the current evidence-backed matching baseline, begin from one shared camera/intrinsics group, and validate those choices with actual SfM results. The Step 9 benchmark specifically found that the CNN-mask variants reduce correspondence coverage, so they should remain analysis evidence unless a later reconstruction experiment demonstrates a benefit.
+The next recommended separately authorized phase is a focused sparse-component bridging investigation using the measured boundaries and preserved sparse models. Keep CNN masks as analysis evidence; Step 9 already showed they reduce correspondence coverage, and Step 10 did not use them for pyCOLMAP features.

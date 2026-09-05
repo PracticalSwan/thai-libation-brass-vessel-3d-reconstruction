@@ -1,0 +1,3 @@
+attempt,overlap,model_count,registered_images,registration_fraction,sparse_points,observations,mean_track_length,mean_reprojection_error,camera_count,camera_model,runtime_seconds,feature_count,matched_pair_count,verified_pair_count
+baseline,20,7,73,0.2534722222222222,6099,21351,3.500737825873094,1.2373052447638215,1,SIMPLE_RADIAL,346.2242532999953,1255153,1500,902
+retry_overlap40,40,7,73,0.2534722222222222,5769,20372,3.531287918183394,1.2162740411263846,1,SIMPLE_RADIAL,337.11883030005265,1255153,1501,898

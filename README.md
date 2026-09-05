@@ -20,9 +20,11 @@ smartphone capture
 ## Project status
 
 The real-image preprocessing, QA, Step 6 classical geometry analysis, Steps
-7+8 custom CNN segmentation/SIFT feature-mask analysis, and Step 9
-reconstruction-readiness analysis are complete and verified. The project still
-stops before pyCOLMAP/reconstruction.
+7+8 custom CNN segmentation/SIFT feature-mask analysis, Step 9
+reconstruction-readiness analysis, and Step 10 sparse SfM execution are complete
+and verified. Step 10 produced valid but disconnected sparse components, so the
+project stops before dense reconstruction rather than treating a fragmented
+73-image component as a complete model.
 
 Measured preprocessing result:
 
@@ -63,18 +65,28 @@ Measured Step 9 reconstruction-readiness result:
 - EXIF audit of all 288 selected filenames found one complete camera signature: OPPO Reno12 F, 3072 x 4080, orientation 1, 3.98 mm focal length, 26 mm 35-mm equivalent, digital zoom 1.0; one shared camera/intrinsics group is therefore the measured starting recommendation;
 - final Step 9 verification passed 26 focused tests and 92 complete project tests; all 297 raw photographs and all 288 selected images remained unchanged.
 
-The exact next-stage input directory is:
+Measured Step 10 sparse-SfM result:
+
+- pyCOLMAP 4.2.0 used native unmasked SIFT with one shared `SIMPLE_RADIAL` camera and CPU-only feature extraction; the final internal sparse-SIFT limit was 1200 pixels while the 3072 x 4080 source JPEGs remained unchanged;
+- the overlap-20 baseline extracted 1,255,153 SIFT features and returned 7 sparse components; the largest registered **73/288 images** with **6,099 points**, mean track length **3.5007**, and mean reprojection error **1.2373 px**;
+- the single planned overlap-40 retry also returned 7 components and did not improve the largest-component registration count; its largest model registered 73 images with 5,769 points;
+- the frozen ranking rule therefore selected the baseline 73-image component and exported it to `reconstruction/sparse/best/` plus `points3D.ply`;
+- the baseline components cover 216 distinct images in total and the retry components cover 223, confirming that the dataset reconstructs locally but does not yet form one global coordinate frame;
+- the selected component has a coherent camera arc and plausible sparse geometry, but the fixed >=274-image single-model acceptance target was not met, so dense reconstruction has **not** started.
+
+The verified reconstruction input directory remains:
 
 ```text
 preprocessing/pycolmap_input/images/
 ```
 
-Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md) and [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md) before reconstruction. The measured preprocessing method remains documented in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
+Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md), [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md), and [`docs/geometry-ml/sparse-reconstruction.md`](docs/geometry-ml/sparse-reconstruction.md). The measured preprocessing method remains documented in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
 
 ## Geometry + machine-learning extension
 
-Steps 6-9 are implemented and verified. The project boundary still stops before
-pyCOLMAP.
+Steps 6-10 are implemented and verified. Step 10 executed real pyCOLMAP sparse
+SfM, but the 288-image sequence remains fragmented into multiple sparse models.
+The current boundary therefore stops before dense reconstruction.
 
 ### Step 6 — Geometry Detection / Analysis
 
@@ -104,6 +116,16 @@ pyCOLMAP.
 - audited raw EXIF for every selected filename and measured one consistent camera signature supporting a shared-intrinsics starting configuration;
 - generated and visually reviewed four Step 9 figures and machine-readable reports while explicitly stopping before pyCOLMAP.
 
+### Step 10 — Sparse Structure from Motion
+
+- added a bounded pyCOLMAP 4.2 sparse-SfM pipeline using native unmasked SIFT, one shared `SIMPLE_RADIAL` camera, sequential matching, and incremental mapping;
+- used an internal 1200-pixel sparse-SIFT limit after the Windows pyCOLMAP wheel proved CPU-only; source JPEGs remain at 3072 x 4080;
+- baseline overlap 20 produced seven sparse models; its largest component registered 73 images with 6,099 points and 1.2373 px mean reprojection error;
+- the single planned overlap-40 retry also produced seven models and did not increase the largest component beyond 73 images;
+- selected the baseline component by the frozen ranking rule and exported binary COLMAP files plus `points3D.ply` under `reconstruction/sparse/best/`;
+- visually verified a coherent local camera trajectory and point cloud, but recorded `acceptance_met=false` because the full sequence remains fragmented;
+- stopped before dense reconstruction instead of hiding fragmentation or adding unplanned parameter sweeps.
+
 ```mermaid
 flowchart LR
     A[288 verified PREPROCESSED images] --> B[Step 6: SIFT + RANSAC]
@@ -119,7 +141,9 @@ flowchart LR
     I --> K[Step 9: masked vs unmasked benchmark]
     J --> K
     K --> L[287-edge connectivity + EXIF audit]
-    L --> M[STOP before pyCOLMAP]
+    L --> M[Step 10: pyCOLMAP sparse SfM]
+    M --> N[7 disconnected sparse components]
+    N --> O[STOP before dense reconstruction]
 ```
 
 - Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)
@@ -128,9 +152,12 @@ flowchart LR
 - CNN dataset and split: [`docs/geometry-ml/cnn-dataset.md`](docs/geometry-ml/cnn-dataset.md)
 - Steps 7+8 measured results: [`docs/geometry-ml/ml-results.md`](docs/geometry-ml/ml-results.md)
 - Step 9 measured readiness: [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md)
+- Step 10 measured sparse reconstruction: [`docs/geometry-ml/sparse-reconstruction.md`](docs/geometry-ml/sparse-reconstruction.md)
 - Step 6 implementation plan: [`docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`](docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md)
 - Steps 7+8 implementation plan: [`docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`](docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md)
 - Step 9 implementation-plan index: [`docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`](docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md)
+- Step 10 design: [`docs/superpowers/specs/2026-09-05-step-10-sparse-sfm-design.md`](docs/superpowers/specs/2026-09-05-step-10-sparse-sfm-design.md)
+- Step 10 implementation plan: [`docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md`](docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md)
 
 ## Why preprocessing is conservative
 
@@ -207,13 +234,25 @@ python -B run_reconstruction_readiness.py --stage summary
 
 `--stage all` runs those same five readiness stages in order. It requires the local frozen `best_small_seg_cnn.pt` checkpoint generated by Steps 7+8. The measured Step 9 result chooses unmasked SIFT for later reconstruction preparation; the generated CNN masks remain evidence rather than mandatory reconstruction inputs.
 
+## Reproduce Step 10 sparse SfM
+
+Install the project requirements, then run the bounded Step 10 stages:
+
+```powershell
+python -B run_sparse_reconstruction.py --stage baseline
+python -B run_sparse_reconstruction.py --stage retry
+python -B run_sparse_reconstruction.py --stage finalize
+```
+
+`--stage all` performs the same sequence and skips the retry when the baseline passes the frozen acceptance gate. The measured 2026-09-05 run required the overlap-40 retry, but neither attempt produced a dominant global model. `finalize` therefore selects the best measured local component and explicitly records `acceptance_met=false`; it does not invoke any dense-reconstruction API.
+
 ## Repository layout
 
 ```text
 quality_check.py                         quality metrics, calibration, decisions
 preprocess_images.py                     geometry-preserving photometric transform
 run_preprocessing.py                     reports, previews, SIFT experiment, export
-tests/                                   92 project tests after Step 9
+tests/                                   103 project tests after Step 10
 analysis_common.py                       selected-manifest loading and integrity verification
 geometry_detection.py                    scaled SIFT, RANSAC, epilines, and residuals
 shape_geometry.py                        classical edges, contour, PCA, and optional ellipse
@@ -228,8 +267,11 @@ reconstruction_masks.py                 Step 9 full-sequence inference and mask 
 reconstruction_matching.py              Step 9 matching benchmark and connectivity logic
 camera_readiness.py                      Step 9 raw-EXIF camera signature audit
 run_reconstruction_readiness.py          bounded Step 9 orchestration and figures/reports
+sparse_reconstruction.py                 Step 10 pyCOLMAP configuration, runtime, and metrics
+run_sparse_reconstruction.py             Step 10 sparse-SfM stages, reports, and figures
 ml_dataset/                              frozen 36-label manifest and source-size masks
 analysis/                                Step 6 + ML + Step 9 reports, masks, and figures
+reconstruction/                          Step 10 sparse models, reports, PLY, and previews
 preprocessing/reports/                   audit and final measured reports
 preprocessing/previews/contact_sheets/   full raw-sequence visual audit
 preprocessing/previews/final/            before/after, decision, and SIFT figures
@@ -266,6 +308,11 @@ The separate local `IMG20260826122949.zip` is only a redundant archive of the sa
 - `analysis/reports/step9_camera_readiness.json` — 288-frame camera-signature audit and grouping recommendation.
 - `analysis/reports/step9_summary.json` — compact final Step 9 provenance and boundary summary.
 - `preprocessing/reconstruction_input_v1/manifest.csv` — all 288 include/exclude decisions; currently 288/288 included.
+- `reconstruction/reports/step10_summary.json` — selected sparse component, acceptance result, camera parameters, and attempt provenance.
+- `reconstruction/reports/step10_baseline.json` and `step10_retry_overlap40.json` — all sparse-component metrics for the two frozen attempts.
+- `reconstruction/reports/step10_registered_images.csv` — selected-component registration status for all 288 sequence positions.
+- `reconstruction/sparse/best/` — selected COLMAP sparse binary model and `points3D.ply` export.
+- `reconstruction/previews/` — the two visually inspected Step 10 sparse-model and registration figures.
 
 ## Collaboration
 

@@ -1,25 +1,26 @@
 # Final pyCOLMAP Input Set
 
-This directory contains the verified 288-image PREPROCESSED set reserved for later reconstruction work.
+This directory contains the verified 288-image PREPROCESSED set used by Step 10 sparse SfM.
 
 - Selected variant: **PREPROCESSED**
 - Selected images: **288 of 297**
 - Selection rule: include `ACCEPT` and `WARN`; exclude only `REJECT`
 - Naming: original deterministic capture filenames
-- Current Step 9 subset recommendation: **keep all 288 images**
-- Current Step 9 feature recommendation: **unmasked Step 6 SIFT**
-- Current Step 9 camera recommendation: **one shared camera/intrinsics group as the starting configuration**
+- Step 9 subset decision: keep all 288 images
+- Step 9/10 feature decision: unmasked features
+- Step 9/10 camera decision: one shared camera/intrinsics group as the starting configuration
 
-The variant was selected from the representative SIFT matching evidence in `../reports/sift_matching.json`. `WARN` images remain included because a warning is a review signal, not an automatic rejection.
+The selected JPEGs remain immutable reconstruction inputs. Step 10 read them directly and did not resize, crop, rotate, recompress, undistort, or otherwise modify them.
 
-Step 6 geometry analysis, Steps 7+8 custom CNN/feature-mask analysis, and Step 9 reconstruction-readiness analysis read selected images from this directory but never modify them.
+Step 10 used pyCOLMAP 4.2.0 native SIFT with one shared `SIMPLE_RADIAL` camera. Because the installed Windows pyCOLMAP wheel was CPU-only, sparse feature extraction used COLMAP's internal `max_image_size=1200`; this changes only the feature-extraction working scale, not these 3072 x 4080 files.
 
-Step 9 did run the frozen CNN across all 288 selected images and created separate derived masks under `../../analysis/ml/`. Those masks are **not** the recommended reconstruction matching input: on the frozen 20-pair benchmark, unmasked SIFT produced 3,146 Fundamental-Matrix RANSAC inliers versus 2,841 for both masked modes. The masked modes retained only 90.31% of unmasked inliers and failed the fixed 95% qualification floor.
+Measured Step 10 result:
 
-The full adjacent-sequence audit measured 273 strong and 14 weak transitions over 287 adjacent pairs. None of the 14 tested local skip bridges was strong, so there is no evidence-backed frame that can be removed without risking sequence coverage. `../reconstruction_input_v1/manifest.csv` therefore includes all 288 selected images and references these existing JPEGs instead of duplicating them.
+- baseline sequential overlap 20: 7 sparse components, 216-image union coverage; largest component 73 images / 6,099 points / 1.2373 px mean reprojection error;
+- controlled overlap-40 retry: 7 sparse components, 223-image union coverage; largest component still 73 images / 5,769 points;
+- frozen ranking selected the baseline 73-image component under `../../reconstruction/sparse/best/`;
+- the fixed >=274-image healthy-single-model acceptance target was not met, so dense reconstruction has not started.
 
-The camera-readiness audit found one consistent raw-EXIF signature across all 288 selected filenames: OPPO Reno12 F, 3072 x 4080, orientation 1, 3.98 mm focal length, 26 mm 35-mm equivalent, and digital zoom 1.0. This supports starting later SfM with one shared camera/intrinsics group, subject to validation by actual reconstruction results.
+The large component breaks are consistent with Step 9 weak transitions around 73-74, 145-146, and 203-204. The current evidence therefore supports a future targeted sparse-component bridging investigation rather than immediately starting dense MVS or deleting broad groups of images.
 
-The current implementation work still stops before pyCOLMAP. No camera poses, triangulation, sparse/dense model, mesh, texture, or Blender output has been created by Step 9.
-
-See `../../docs/geometry-ml/reconstruction-readiness.md` for measured Step 9 results, `../../docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md` for the Step 9 plan index, and `../../docs/geometry-ml/ml-results.md` for the completed Steps 7+8 ML results.
+See `../../docs/geometry-ml/sparse-reconstruction.md` for measured Step 10 results, `../../docs/geometry-ml/reconstruction-readiness.md` for Step 9 evidence, and `../../docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md` for the implementation plan.

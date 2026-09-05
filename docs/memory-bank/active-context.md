@@ -4,7 +4,7 @@ Updated: 2026-09-05
 
 ## Current focus
 
-Preprocessing, Step 6 geometry detection/analysis, Steps 7+8 custom CNN segmentation + SIFT feature-mask analysis, and Step 9 reconstruction-readiness analysis are complete and verified. The current project boundary is a deliberate stop before pyCOLMAP/reconstruction. Do not start camera-pose estimation, triangulation, reconstruction, meshing, texturing, or Blender without separate authorization.
+Preprocessing, Steps 6-9 analysis, and Step 10 pyCOLMAP sparse SfM are complete and verified. Step 10 produced valid local sparse reconstructions but the 288-image sequence fragmented into seven models; the selected component registers 73 images. The current project boundary is a deliberate stop before dense reconstruction. Do not start dense MVS, meshing, texturing, or Blender until a separately authorized sparse-component recovery/acceptance phase resolves this limitation.
 
 ## Verified preprocessing state
 
@@ -101,17 +101,30 @@ Preprocessing, Step 6 geometry detection/analysis, Steps 7+8 custom CNN segmenta
 - Starting recommendation for later SfM: one shared camera/intrinsics group, to be validated by actual reconstruction behavior.
 - No calibration, undistortion, image resampling, or reconstruction was performed.
 
+## Completed Step 10 — sparse SfM
+
+- Added `pycolmap>=4.2,<5`; measured runtime used pyCOLMAP 4.2.0 on Windows.
+- Windows pyCOLMAP wheel exposed CPU-only SIFT, so the final internal sparse-feature limit is 1200 pixels; the 3072 x 4080 source JPEGs remain unchanged.
+- Camera mode: one shared `SIMPLE_RADIAL` camera initialized from the Step 9 26 mm 35-mm-equivalent evidence at `f=3069.0507 px`, center `(1536, 2040)`, `k=0`.
+- Baseline sequential overlap 20: 1,255,153 SIFT features, 1,500 non-empty matched pairs, 902 verified pairs, 7 sparse models, 216-image union coverage. Largest model: 73/288 images, 6,099 points, 21,351 observations, mean track 3.5007, mean reprojection error 1.2373 px.
+- One controlled overlap-40 retry: 7 sparse models, 223-image union coverage. Largest model again 73 images with 5,769 points, so the frozen ranking selected the baseline component.
+- Selected output: `reconstruction/sparse/best/` plus `points3D.ply`.
+- Visual review found a coherent local camera arc and plausible point cloud, but the fixed >=274-image global acceptance target was not met; `step10_summary.json` records `acceptance_met=false`.
+- Large component boundaries are consistent with earlier Step 9 weak transitions at 73-74, 145-146, and 203-204; this is evidence of fragmentation, not proof of a single cause.
+- Measured narrative: `docs/geometry-ml/sparse-reconstruction.md`.
+
 ## Verification and evidence
 
-- Step 9 focused suite: 26 passed.
-- Fresh full project suite: 92 passed.
-- Changed Step 9 Python modules compile successfully.
-- Fresh source integrity: 297/297 raw unchanged with 0 mismatches; 288/288 selected images verified against `selection_manifest.csv`.
-- `reconstruction_mask_manifest.csv` re-opened and hash-verified all 288 raw predictions and 288 cleanup masks as source-size binary PNGs.
-- All four Step 9 presentation figures were visually inspected; the camera-metadata zero-range plot defect found during review was fixed.
-- Reports: `analysis/reports/step9_masks.json`, `step9_match_benchmark.json`, `step9_connectivity.json`, `step9_camera_readiness.json`, `step9_summary.json`, plus corresponding CSV evidence.
-- Measured narrative: `docs/geometry-ml/reconstruction-readiness.md`.
+- Step 10-focused suite: **11 passed**.
+- Fresh complete project suite after Step 10: **103 passed**.
+- `sparse_reconstruction.py` and `run_sparse_reconstruction.py` compile successfully with `python -B -m py_compile`.
+- Fresh protected-source verification: 297/297 raw unchanged with zero mismatches; 288/288 selected images verified against `selection_manifest.csv`.
+- The selected sparse model re-opened with pyCOLMAP 4.2.0 after finalization and matched `step10_summary.json`: 73 registered images, 6,099 points, one camera, 1.2373052447638215 px mean reprojection error.
+- Both final Step 10 figures were visually inspected and explicitly label the 73-image output as the selected component rather than a global 288-image reconstruction.
+- Transient ~195 MB COLMAP databases from baseline/retry and task-created Python caches were removed after model/report export; the sparse component models, selected model, PLY, reports, and figures were preserved.
+- Dense/MVS/mesh/texture/Blender work was not started.
+- Step 9 measured evidence remains preserved under `analysis/`; Step 10 evidence is under `reconstruction/` and documented in `docs/geometry-ml/sparse-reconstruction.md`.
 
 ## Next action
 
-No further Steps 6-9 implementation is required. Preserve the measured evidence and stop before reconstruction. If reconstruction is explicitly authorized later, start from the unchanged 288-image PREPROCESSED set, use unmasked Step 6 SIFT as the current evidence-backed matching baseline, begin with one shared camera/intrinsics group, and validate those choices against real pyCOLMAP/SfM results rather than assuming the CNN masks improve reconstruction.
+Step 10 execution is complete, but its healthy-single-model acceptance gate failed because the sequence remains fragmented. Do not start dense reconstruction yet. The next recommended separately authorized phase is a narrow sparse-component bridging investigation around the measured component boundaries, using the preserved pyCOLMAP sparse models and Step 9 connectivity evidence rather than adding broad parameter sweeps or hiding the fragmentation.

@@ -4,7 +4,7 @@
 
 This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
 
-Current phase: preprocessing, Step 6 geometry analysis, Steps 7+8 custom CNN segmentation + SIFT feature-mask analysis, and Step 9 reconstruction-readiness analysis are complete and verified. The repository currently stops before pyCOLMAP/reconstruction; that later phase must not be started or claimed until it is separately authorized, run, and verified.
+Current phase: preprocessing, Steps 6-9 analysis, and Step 10 pyCOLMAP sparse SfM are complete and verified. Step 10 produced valid local sparse reconstructions but the 288-image sequence remains fragmented; the selected component registers 73 images. The repository currently stops before dense reconstruction. Do not claim a full-sequence sparse model or start dense MVS, meshing, texturing, or Blender until a separately authorized sparse-component recovery phase resolves or explicitly accepts that limitation.
 
 ## Core rules
 
@@ -45,11 +45,12 @@ Current phase: preprocessing, Step 6 geometry analysis, Steps 7+8 custom CNN seg
 
 ## Geometry and ML extension
 
-The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-9 are implemented and verified:
+The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-10 are implemented and verified:
 
 - Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
 - Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
 - Step 9: `docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`; measured results are in `docs/geometry-ml/reconstruction-readiness.md`.
+- Step 10: `docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md`; measured results are in `docs/geometry-ml/sparse-reconstruction.md`.
 
 - Step 6 exposes verified selected-image access, reusable SIFT keypoints/descriptors and scale metadata, Fundamental Matrix/RANSAC, epipolar geometry, and classical 2D vessel geometry.
 - Steps 7+8 use a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the verified baseline.
@@ -61,9 +62,11 @@ The shared design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-
 - Step 9B measured `unmasked` SIFT as the reconstruction-readiness baseline: the masked modes retained only 90.31% of unmasked RANSAC inliers and failed the fixed 95% qualification floor.
 - Step 9C conservatively keeps all 288 selected images because none of the 14 weak adjacent transitions had a strong local skip bridge that justified removing the middle frame.
 - Step 9D measured one complete camera signature across all 288 selected frames, supporting one shared camera/intrinsics group as the starting recommendation for later validation.
+- Step 10 used pyCOLMAP 4.2.0 with native unmasked SIFT, one shared `SIMPLE_RADIAL` camera, sequential matching, and incremental mapping. The selected baseline component registers 73/288 images with 6,099 points and 1.2373 px mean reprojection error.
+- The single overlap-40 retry did not improve the largest-component registration count; Step 10 therefore records `acceptance_met=false` and preserves the disconnected sparse components instead of claiming global reconstruction success.
 - Weak CNN predictions must remain visible and documented; they must not be manually repaired and reported as model output.
 - Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, training metrics, camera poses, point clouds, or reconstruction results.
-- Stop after Step 9. Do not create or execute a pyCOLMAP/reconstruction implementation plan until the user explicitly moves the project beyond this scope.
+- Stop after Step 10. Do not start dense reconstruction, meshing, texturing, or Blender until a separate sparse-component recovery/acceptance decision is explicitly authorized.
 
 ## Verification
 
