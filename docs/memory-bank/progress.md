@@ -80,6 +80,20 @@ Updated: 2026-09-06
 - Final artifacts truthfully record ALIKED `blocked`, LoMa `not_run`, no selected learned model, `metric_acceptance_met=false`, `visual_plausibility_status=failed`, `learned_recovery_success=false`, and `dense_reconstruction_started=false`.
 - The only applicable Step 12 figure compares the authoritative Step 10/11 strongest-single-model SIFT baselines and was visually inspected. `docs/geometry-ml/learned-sparse-recovery.md` records the measured capability boundary.
 
+### Step 13 — external learned global recovery
+
+- Added one pinned official CVG LightGlue dependency plus `external_learned_recovery.py`, `run_external_learned_recovery.py`, focused tests, a frozen design/plan, and Step 13-local durable evidence.
+- Real ALIKED-N16Rot + LightGlue capability ran on CUDA with 4,096 features per smoke image and 2,952 raw matches.
+- Exact 2,340-pair learned diagnostics recovered all three critical boundaries: 778 qualified candidates at 73-74, 418 at 145-146, and 745 at 203-204; eight bridges were selected per boundary.
+- Diagnostic reporting records 363,318 pre-verification LightGlue matches and 363,171 post-verification COLMAP match rows.
+- The one approved full schedule contained 5,574 unique pairs and 5,269,937 raw LightGlue correspondences. Its verified COLMAP database contained 288 images, 1,129,555 imported keypoints, 5,531 non-empty match rows, and 5,264 verified pair rows.
+- Three sparse models were produced. The strongest registers 266/288 images with 29,713 points, 106,480 observations, mean track length 3.5836, one `SIMPLE_RADIAL` camera, and 1.374824 px mean reprojection error.
+- The model leaves selected indices 267-288 unregistered and therefore misses the frozen >=274 global gate by 8 images. `metric_acceptance_met=false`, `visual_plausibility_status=failed`, and `step13_success=false`.
+- The 266-image model plus PLY is retained under `reconstruction/external_learned_recovery/best/` as evidence, but the frozen local fallback selects Step 10 `reconstruction/sparse/best` because it ties Step 11 at 73 images and has more sparse points (6,099 vs 3,443).
+- Four real Step 13 figures were generated and visually inspected. Transient learned features, diagnostic/mapping databases, pair lists, mapping components, and the Step 13 `work/` directory were removed after finalization.
+- Sparse recovery is closed; no Step 13 retry, second matcher, parameter sweep, learned exhaustive matcher, dense MVS, mesh, texture, or Blender output was run.
+- `docs/geometry-ml/external-learned-global-recovery.md` records the complete measured Step 13 outcome.
+
 ## Verification
 
 - Fresh Step 11-focused suite after review: **32 passed**.
@@ -87,6 +101,10 @@ Updated: 2026-09-06
 - Step 12 maintenance verification: **20 domain tests passed**, **14 runner tests passed**, and **49 Step 10/11 regression tests passed**.
 - The runtime-blocker reporting regression first raised the Step 12 runner suite to **15 passed**; final review added a blocked-attempt frontend-identity regression, bringing the runner suite to **16 passed**.
 - Final complete project verification after Step 12 review: **177 passed**; all four Step 12 source/test files compiled successfully.
+- Final Step 13 verification: **21 focused tests passed** and **198 complete project tests passed**; all four Step 13 source/test files compiled successfully and compile-cache residue was removed.
+- Final Step 13 source-integrity verification found 297/297 raw images unchanged and 288/288 selected images matching the frozen manifest; five protected Step 10/11 report hashes remained exactly unchanged.
+- The retained Step 13 evidence model reopened at 266 images / 29,713 points / one `SIMPLE_RADIAL` camera / 1.374823762049934 px. The selected downstream Step 10 model reopened at 73 images / 6,099 points / 1.2373052447638215 px.
+- Step 13 source scan found no learned exhaustive or dense/MVS API, transient `work/` state is absent, and all four Step 13 figures were visually inspected.
 - The Step 10/11 selected models reopened with exact recorded metrics, and five protected Step 10/11 report hashes matched their pre-Step-12 snapshots.
 - Final source verification again found 297/297 raw images and 288/288 selected images unchanged; Step 12 left no transient database, work directory, learned model/PLY, or compile cache.
 - Syntax compilation succeeded for both Step 12 source modules and both Step 12 test files.
@@ -108,6 +126,6 @@ Updated: 2026-09-06
 
 ## Next phase
 
-Step 12 is complete at its approved native capability failure boundary. Step 11 remains the latest measured reconstruction result. Any continuation requires a separately authorized decision between accepting a local-only sparse reconstruction and an experimental learned global-matching/component-alignment phase with an explicit runtime/dependency change.
+Step 13 is complete and sparse-recovery experimentation is closed. The external learned run reached 266/288 images but failed the frozen >=274 global gate, so the selected downstream sparse source is Step 10 `reconstruction/sparse/best` (73 images / 6,099 points). The Step 13 266-image model remains evidence only.
 
-Do not rebuild/replace pyCOLMAP, add an external learned stack, or start dense reconstruction, meshing, texturing, or Blender under the completed Step 12 scope. Keep CNN masks as analysis evidence; Step 9 already showed they reduce correspondence coverage, and Steps 10-11 did not use them for pyCOLMAP features.
+The next phase is a separately authorized **local-only dense reconstruction** design/acceptance plan for the selected Step 10 component. After that approval, the remaining implementation sequence is dense-workspace/undistortion preparation, dense stereo and fusion, mesh reconstruction/cleanup, texturing, Blender cleanup/final presentation model, final visual/quantitative validation, and coursework/report/presentation packaging. Keep CNN masks as analysis evidence; Step 9 already showed they reduce correspondence coverage.

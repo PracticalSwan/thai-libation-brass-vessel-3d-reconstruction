@@ -1,0 +1,65 @@
+{
+  "aliked_model_name": "aliked-n16rot",
+  "boundaries": [
+    {
+      "boundary": "73-74",
+      "boundary_left": 73,
+      "boundary_right": 74,
+      "candidate_count": 780,
+      "maximum_inlier_ratio": 0.6727272727272727,
+      "maximum_verified_inliers": 249,
+      "nonzero_match_count": 780,
+      "qualified_count": 778,
+      "selected_count": 8
+    },
+    {
+      "boundary": "145-146",
+      "boundary_left": 145,
+      "boundary_right": 146,
+      "candidate_count": 780,
+      "maximum_inlier_ratio": 0.7037037037037037,
+      "maximum_verified_inliers": 120,
+      "nonzero_match_count": 773,
+      "qualified_count": 418,
+      "selected_count": 8
+    },
+    {
+      "boundary": "203-204",
+      "boundary_left": 203,
+      "boundary_right": 204,
+      "candidate_count": 780,
+      "maximum_inlier_ratio": 0.7083333333333334,
+      "maximum_verified_inliers": 1129,
+      "nonzero_match_count": 775,
+      "qualified_count": 745,
+      "selected_count": 8
+    }
+  ],
+  "candidate_count": 2340,
+  "colmap_raw_match_count_post_verification": 363171,
+  "critical_boundaries": [
+    [
+      73,
+      74
+    ],
+    [
+      145,
+      146
+    ],
+    [
+      203,
+      204
+    ]
+  ],
+  "frontend": "aliked_lightglue",
+  "lightglue_raw_match_count_pre_verification": 363318,
+  "matching_runtime_seconds": 208.92562049999833,
+  "pinned_lightglue_commit": "eb42fee2d71449efb0aa5c10549752b5d75384d8",
+  "raw_match_count": 363171,
+  "raw_matches_removed_during_verification": 147,
+  "selected_bridge_count": 24,
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91",
+  "status": "completed",
+  "targeted_allowed": true,
+  "targeted_gate_reason": "all critical boundaries have a selected qualified bridge"
+}

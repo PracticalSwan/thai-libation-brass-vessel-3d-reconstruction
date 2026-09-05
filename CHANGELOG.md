@@ -74,6 +74,12 @@ All notable verified project milestones are recorded here.
 - Measured Step 12 report `docs/geometry-ml/learned-sparse-recovery.md`; `learned_recovery_success=false` and `dense_reconstruction_started=false`.
 - Final Step 12 verification after review: 20 domain tests, 16 runner tests, 49 Step 10/11 regressions, and 177 complete project tests passed; touched Python compiled; Step 10/11 models and five frozen report hashes remained unchanged; 297 raw and 288 selected images reverified; compile/transient residue was removed.
 - Project instructions now record `.codegraph/` as installed CodeGraph state and allow automatic use of relevant skills/plugins plus GLM-only subagents when materially useful.
+- Step 13 external learned global-recovery design, implementation plan, pinned official LightGlue dependency, external ALIKED/LightGlue adapter, COLMAP external-feature import path, staged runner, focused tests, durable reports, and four real review figures.
+- Real Step 13 capability smoke on CUDA: 4,096 ALIKED-N16Rot features per smoke image and 2,952 LightGlue raw matches using the official package pinned to commit `eb42fee2d71449efb0aa5c10549752b5d75384d8`.
+- Exact 2,340-pair learned boundary diagnosis recovered every critical boundary: 778 qualified candidates at 73-74, 418 at 145-146, and 745 at 203-204, with eight selected bridges per boundary.
+- The one permitted 5,574-pair full learned mapping attempt produced a strongest single model with 266/288 registered images, 29,713 points, 106,480 observations, one `SIMPLE_RADIAL` camera, and 1.374824 px mean reprojection error.
+- Step 13 retained the 266-image model as measured evidence but recorded `step13_success=false` because the frozen >=274-image gate was missed by eight images. The verified Step 10 73-image / 6,099-point model is selected as the local downstream fallback and sparse recovery is closed.
+- Final Step 13 verification: 21 focused tests and 198 complete project tests passed; four touched Python files compiled; 297 raw and 288 selected images reverified; five protected Step 10/11 report hashes remained unchanged; four real Step 13 figures were visually inspected; transient Step 13 work was removed.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -83,12 +89,15 @@ All notable verified project milestones are recorded here.
 - Hardened Step 12 learned-feature cache reuse with a SHA-256 fingerprint of the exact per-image database layout, so stale caches with unchanged aggregate feature totals are rebuilt rather than accepted.
 - Carried the ALIKED native capability blocker into LoMa's `not_run` final-report reason instead of using the ambiguous phrase “fallback was not required”; that runtime-path regression raised the Step 12 runner suite to 15 tests.
 - Preserved frontend/extractor/matcher identity in blocked and explicit `not_run` attempt reports; the final report-contract regression raises the Step 12 runner suite to 16 tests.
+- Step 13 diagnostic reports now distinguish LightGlue correspondences before geometric verification (363,318) from COLMAP match rows after verification (363,171), preventing ambiguous raw-match reporting.
+- Step 13 feature-cache validation now rejects any external learned feature set whose coordinate frame does not match the source image dimensions, making the original-pixel COLMAP import contract explicit and regression-tested.
 
 ### Removed
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 
 ### Next
-- Step 12 is complete at its approved capability failure boundary. The installed pyCOLMAP wheel cannot run the ALIKED extractor without ONNX support; full ALIKED extraction/diagnostics/mapping and every LoMa runtime stage remain intentionally not run.
-- Any continuation requires a separate decision either to accept a local-only sparse reconstruction or to authorize an experimental learned global-matching/component-alignment phase with an explicit runtime/dependency change.
-- Do not start dense MVS, meshing, texturing, or Blender. Step 11 remains the latest measured reconstruction result.
-- Keep the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes, and Steps 10-11 used unmasked native pyCOLMAP SIFT.
+- Step 13 is complete and sparse-recovery experimentation is closed. The learned run materially improved connectivity to 266/288 images but did not meet the frozen >=274 global acceptance gate.
+- The selected downstream sparse source is the verified Step 10 local model at `reconstruction/sparse/best` (73 images / 6,099 points). The 266-image Step 13 model remains evidence only under `reconstruction/external_learned_recovery/best/`.
+- Before any dense work, create a separate local-only dense-reconstruction design/acceptance phase for the selected Step 10 component. Do not silently reuse the old global-gate assumption.
+- After that approval: undistort/prepare the selected local component, run dense stereo/fusion, mesh, texture, perform Blender cleanup, validate the final model, and update final coursework/report/presentation artifacts.
+- Keep the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes.

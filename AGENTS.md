@@ -4,7 +4,7 @@
 
 This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
 
-Current phase: preprocessing and Steps 6-11 are complete and verified. Step 12 learned sparse recovery is implemented and has reached its approved real-runtime failure boundary: the ALIKED-N16Rot smoke test on selected images 1-2 failed with `RuntimeError: ALIKED feature extraction requires ONNX support.` Full learned extraction, boundary matching, mapping, and LoMa inference were therefore not run. Step 11 remains the latest measured reconstruction result: the strongest single model registers 73/288 images and the 224-image union is split across eight disconnected models. Dense reconstruction remains blocked.
+Current phase: preprocessing and Steps 6-13 are complete and verified. Step 13 ran the one approved external ALIKED-N16Rot + LightGlue recovery experiment on CUDA, recovered all three fixed sparse boundaries, and produced a strongest single model registering 266/288 images with 29,713 points. The frozen global gate required at least 274 images, so `step13_success=false`; no retry, second matcher, parameter sweep, or learned exhaustive search is allowed. Sparse recovery is closed. The frozen fallback ranking selects Step 10 `reconstruction/sparse/best` (73 images / 6,099 points) as the downstream sparse source. The 266-image Step 13 model remains evidence only. Dense reconstruction has not started and requires a separately approved local-only downstream phase.
 
 ## Core rules
 
@@ -51,14 +51,15 @@ Current phase: preprocessing and Steps 6-11 are complete and verified. Step 12 l
 
 ## Geometry and ML extension
 
-The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-12 are implemented and verified to their approved boundaries:
+The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-13 are implemented and verified to their approved boundaries:
 
 - Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
 - Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
 - Step 9: `docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`; measured results are in `docs/geometry-ml/reconstruction-readiness.md`.
 - Step 10: `docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md`; measured results are in `docs/geometry-ml/sparse-reconstruction.md`.
 - Step 11: `docs/superpowers/plans/2026-09-05-step-11-sparse-component-bridging.md`; measured results are in `docs/geometry-ml/sparse-component-bridging.md`.
-- Step 12: design `docs/superpowers/specs/2026-09-05-step-12-learned-sparse-recovery-design.md`; plan `docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md`; measured capability boundary `docs/geometry-ml/learned-sparse-recovery.md`. No learned reconstruction model exists because the native smoke was blocked before extraction.
+- Step 12: design `docs/superpowers/specs/2026-09-05-step-12-learned-sparse-recovery-design.md`; plan `docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md`; measured capability boundary `docs/geometry-ml/learned-sparse-recovery.md`. The native learned path stopped at the missing-ONNX capability gate.
+- Step 13: design `docs/superpowers/specs/2026-09-06-step-13-external-learned-global-recovery-design.md`; plan `docs/superpowers/plans/2026-09-06-step-13-external-learned-global-recovery.md`; measured result `docs/geometry-ml/external-learned-global-recovery.md`. The one external learned map reached 266/288 but failed the frozen >=274 gate, so Step 10 is the selected local fallback.
 
 - Step 6 exposes verified selected-image access, reusable SIFT keypoints/descriptors and scale metadata, Fundamental Matrix/RANSAC, epipolar geometry, and classical 2D vessel geometry.
 - Steps 7+8 use a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the verified baseline.
@@ -76,7 +77,7 @@ The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-
 - The one authorized CPU exhaustive fallback produced eight models with 224-image union coverage, but its strongest single model still registers 73/288 images with 3,443 points and 1.1989 px mean reprojection error. Step 11 records `bridge_success=false`.
 - Weak CNN predictions must remain visible and documented; they must not be manually repaired and reported as model output.
 - Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, training metrics, camera poses, point clouds, or reconstruction results.
-- Step 12 stopped at the approved capability gate because the installed pyCOLMAP wheel lacks the ONNX support required by ALIKED extraction. Do not bypass this by initializing LoMa, rebuilding/replacing pyCOLMAP, or adding an external learned stack without a separate explicit architecture decision. Dense reconstruction, meshing, texturing, and Blender remain blocked.
+- Step 12 stopped at the approved native capability gate because the installed pyCOLMAP wheel lacks the ONNX support required by ALIKED extraction. Step 13 was the separately authorized architecture change and is now complete: one pinned external ALIKED + LightGlue frontend, one diagnostic, one mapping attempt, no retry/sweep/exhaustive fallback, and no dense API. Do not reopen sparse-recovery experimentation or change the >=274 acceptance gate after the result. The next phase may only begin by explicitly designing/authorizing local-only dense reconstruction from the selected Step 10 model; meshing, texturing, and Blender remain outside the completed Step 13 scope.
 
 ## Verification
 

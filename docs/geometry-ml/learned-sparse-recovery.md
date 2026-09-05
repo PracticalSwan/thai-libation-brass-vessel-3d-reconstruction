@@ -1,5 +1,7 @@
 # Step 12 Learned Sparse Recovery
 
+> **Subsequent phase:** Step 13 later introduced the separately authorized external ALIKED + LightGlue runtime. Its measured 266/288-image result and final Step 10 local fallback are documented in [`external-learned-global-recovery.md`](external-learned-global-recovery.md). The sections below preserve the historical Step 12 native-runtime boundary.
+
 ## Outcome
 
 Step 12 reached its approved native-capability failure boundary and stopped

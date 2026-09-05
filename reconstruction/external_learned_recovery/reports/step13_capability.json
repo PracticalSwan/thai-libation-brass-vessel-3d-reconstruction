@@ -1,0 +1,48 @@
+{
+  "input_image_count": 288,
+  "runtime": {
+    "aliked_model_name": "aliked-n16rot",
+    "cuda_available": true,
+    "device": "cuda",
+    "frontend": "aliked_lightglue",
+    "gpu_name": "NVIDIA GeForce RTX 5050 Laptop GPU",
+    "kornia_version": "0.8.3",
+    "lightglue": {
+      "direct_url": {
+        "url": "https://github.com/cvg/LightGlue.git",
+        "vcs_info": {
+          "commit_id": "eb42fee2d71449efb0aa5c10549752b5d75384d8",
+          "requested_revision": "eb42fee2d71449efb0aa5c10549752b5d75384d8",
+          "vcs": "git"
+        }
+      },
+      "distribution_version": "0.0",
+      "pinned_commit": "eb42fee2d71449efb0aa5c10549752b5d75384d8",
+      "repository": "https://github.com/cvg/LightGlue.git"
+    },
+    "max_image_size": 1600,
+    "max_keypoints": 4096,
+    "pycolmap_version": "4.2.0",
+    "python_version": "3.14.2",
+    "torch_cuda_version": "13.0",
+    "torch_version": "2.13.0+cu130",
+    "torchvision_version": "0.28.0+cu130"
+  },
+  "selection_manifest_sha256": "79408d59b022803e1acc42d4c1e118c209a8120e76e689ea9b60909015f37a91",
+  "smoke": {
+    "device": "cuda",
+    "exception_message": "",
+    "exception_type": "",
+    "first_features": 4096,
+    "raw_matches": 2952,
+    "second_features": 4096,
+    "status": "passed"
+  },
+  "smoke_pair": {
+    "first_filename": "IMG20260826122949.jpg",
+    "first_selected_index": 1,
+    "second_filename": "IMG20260826122953.jpg",
+    "second_selected_index": 2
+  },
+  "status": "passed"
+}
