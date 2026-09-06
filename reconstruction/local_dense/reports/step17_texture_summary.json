@@ -1,0 +1,160 @@
+{
+  "acceptance": {
+    "checks": {
+      "asset": true,
+      "visual": true
+    },
+    "passed": true
+  },
+  "attempts": [
+    {
+      "config": {
+        "num_threads": 2,
+        "texture_scale_factor": 1.0
+      },
+      "failure_category": null,
+      "output_dir": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\texture\\attempt_1",
+      "process": {
+        "args": [
+          "C:\\Tools\\COLMAP-4.2.0\\bin\\colmap.exe",
+          "mesh_texturer",
+          "--workspace_path",
+          "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\work\\dense_workspace",
+          "--input_path",
+          "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\mesh\\final_mesh.ply",
+          "--output_path",
+          "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\texture\\attempt_1",
+          "--output_type",
+          "BIN",
+          "--MeshTextureMapping.texture_scale_factor",
+          "1.0",
+          "--MeshTextureMapping.num_threads",
+          "2",
+          "--log_target",
+          "stdout",
+          "--log_color",
+          "0"
+        ],
+        "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\work\\logs\\step17-texture-1.log",
+        "log_sha256": "cc7090220be8c7e88a2472683b84ec42ff203e509ae89814c7f03f6bb7d7252b",
+        "output_tail": "I20260906 18:14:57.560654 17424 mvs.cc:176] Reading model...\r\nI20260906 18:14:57.594912 17424 mvs.cc:180] Loading 73 images...\r\nI20260906 18:14:58.479093 17424 mvs.cc:193] Reading input mesh from \"C:\\\\Assumption University\\\\CSX4213\\\\Project\\\\reconstruction\\\\local_dense\\\\mesh\\\\final_mesh.ply\"...\r\nI20260906 18:14:58.547080 17424 mvs.cc:195] Mesh has 283341 vertices and 499999 faces\r\nI20260906 18:14:58.547112 17424 texture_mapping.cc:1050] --- MeshTextureMappingOptions ---\r\nI20260906 18:14:58.547120 17424 texture_mapping.cc:1051] min_cos_normal_angle: 0.1\r\nI20260906 18:14:58.547128 17424 texture_mapping.cc:1052] min_visible_vertices: 3\r\nI20260906 18:14:58.547131 17424 texture_mapping.cc:1053] view_selection_smoothing_iterations: 3\r\nI20260906 18:14:58.547133 17424 texture_mapping.cc:1054] atlas_patch_padding: 2\r\nI20260906 18:14:58.547135 17424 texture_mapping.cc:1055] inpaint_radius: 5\r\nI20260906 18:14:58.547137 17424 texture_mapping.cc:1056] apply_color_correction: 1\r\nI20260906 18:14:58.547140 17424 texture_mapping.cc:1057] color_correction_regularization: 0.1\r\nI20260906 18:14:58.547142 17424 texture_mapping.cc:1058] num_threads: 2\r\nI20260906 18:14:58.547144 17424 texture_mapping.cc:1059] texture_scale_factor: 1\r\nI20260906 18:14:58.547147 17424 mvs.cc:200] Running surface texture mapping...\r\nI20260906 18:14:58.547154 17424 texture_mapping.cc:1084] Computing face normals...\r\nI20260906 18:14:58.550472 17424 texture_mapping.cc:1087] Building face adjacency...\r\nI20260906 18:14:59.312267 17424 texture_mapping.cc:1090] Selecting views for 499999 faces from 73 images...\r\nI20260906 18:15:42.917711 17424 texture_mapping.cc:1104] 371238 / 499999 faces assigned to views\r\nI20260906 18:15:42.917744 17424 texture_mapping.cc:1107] Extracting face regions...\r\nI20260906 18:15:42.986978 17424 texture_mapping.cc:1110] Found 73784 regions\r\nI20260906 18:15:42.986999 17424 texture_mapping.cc:1112] Computing region projections...\r\nI20260906 18:15:43.009082 17424 texture_mapping.cc:1122] Packing texture atlas...\r\nI20260906 18:15:43.013528 17424 texture_mapping.cc:1127] Atlas size: 4096 x 1902\r\nI20260906 18:15:43.013551 17424 texture_mapping.cc:1130] Computing face UVs...\r\nI20260906 18:15:43.020869 17424 texture_mapping.cc:1134] Baking texture...\r\nI20260906 18:15:43.419921 17424 texture_mapping.cc:1149] Applying global color correction...\r\nI20260906 18:15:44.633356 17424 texture_mapping.cc:1163] Inpainting atlas...\r\nI20260906 18:15:44.885830 17424 texture_mapping.cc:1167] Surface texture mapping complete\r\nI20260906 18:15:44.922817 17424 mvs.cc:208] Writing texture atlas to \"C:\\\\Assumption University\\\\CSX4213\\\\Project\\\\reconstruction\\\\local_dense\\\\texture\\\\attempt_1\\\\texture.png\"...\r\nI20260906 18:15:45.814311 17424 mvs.cc:217] Writing textured mesh to \"C:\\\\Assumption University\\\\CSX4213\\\\Project\\\\reconstruction\\\\local_dense\\\\texture\\\\attempt_1\\\\mesh.ply\"...\r\nI20260906 18:15:46.224432 17424 mvs.cc:224] Mesh texture mapping complete\r\n",
+        "returncode": 0,
+        "runtime_seconds": 48.801702200085856,
+        "started_at": "2026-09-06T11:14:57.513137+00:00",
+        "status": "completed"
+      },
+      "status": "completed"
+    }
+  ],
+  "integrity": {
+    "local_images_verified": 73,
+    "protected_files_checked": 160,
+    "protected_unchanged": true,
+    "source_manifest_hash": "5548006c3368bbd71cff6563b19b789bb9b397faf7e265f078e54dc2dc704c00"
+  },
+  "render": {
+    "face_count": 499999,
+    "material_name": "COLMAP_Photo_Texture",
+    "non_background_fraction": [
+      0.9640845070422536,
+      0.9692873386150235,
+      0.9620671948356807
+    ],
+    "rendered_view_count": 3,
+    "saved_blend": null,
+    "status": "completed",
+    "temporary_view_files_removed": true,
+    "texture_dimensions": [
+      4096,
+      1902
+    ],
+    "texture_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\texture\\attempt_1\\texture.png",
+    "texture_sha256": "434878f4b5347ada92f05321bfc78ffc91e795869677dcaf8ab72173ad183156",
+    "uv_layer_count": 1,
+    "uv_loop_count": 1499997,
+    "vertex_count": 283341
+  },
+  "render_identity": {
+    "blender_sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7",
+    "output_dir": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\texture\\attempt_1",
+    "output_manifest": [
+      {
+        "relative_path": "mesh.ply",
+        "sha256": "84390f29775c37624dbb1df7e66730fa9440f17557cd0372b01df9bc20094f22"
+      },
+      {
+        "relative_path": "texture.png",
+        "sha256": "434878f4b5347ada92f05321bfc78ffc91e795869677dcaf8ab72173ad183156"
+      }
+    ],
+    "preview_sha256": "f00f0ed1162c1c6935830edd442cbe4097683db694afcd712679be9072e5a29c",
+    "renderer_sha256": "8ae9861fd3b4ea7d866ce2abfc3886c135905630de84362bf2543d2964edeb2f"
+  },
+  "source_manifest_hash": "5548006c3368bbd71cff6563b19b789bb9b397faf7e265f078e54dc2dc704c00",
+  "status": "completed",
+  "texture_directory": "reconstruction/local_dense/texture/attempt_1",
+  "texture_output": [
+    {
+      "relative_path": "mesh.ply",
+      "role": "textured_mesh",
+      "sha256": "84390f29775c37624dbb1df7e66730fa9440f17557cd0372b01df9bc20094f22",
+      "size_bytes": 22400311
+    },
+    {
+      "image_dimensions": [
+        4096,
+        1902
+      ],
+      "relative_path": "texture.png",
+      "role": "photo_texture",
+      "sha256": "434878f4b5347ada92f05321bfc78ffc91e795869677dcaf8ab72173ad183156",
+      "size_bytes": 5677252
+    }
+  ],
+  "validation": {
+    "accepted": true,
+    "face_count": 499999,
+    "geometry_bounds": [
+      2.5011619329452515,
+      5.213420629501343,
+      2.6302517652511597
+    ],
+    "meaningful_uv_fraction": 0.7300454600909202,
+    "mesh_path": "C:/Assumption University/CSX4213/Project/reconstruction/local_dense/texture/attempt_1/mesh.ply",
+    "minimum_meaningful_uv_fraction": 0.5,
+    "normalized_uv_range": true,
+    "output_manifest": [
+      {
+        "relative_path": "mesh.ply",
+        "role": "textured_mesh",
+        "sha256": "84390f29775c37624dbb1df7e66730fa9440f17557cd0372b01df9bc20094f22",
+        "size_bytes": 22400311
+      },
+      {
+        "image_dimensions": [
+          4096,
+          1902
+        ],
+        "relative_path": "texture.png",
+        "role": "photo_texture",
+        "sha256": "434878f4b5347ada92f05321bfc78ffc91e795869677dcaf8ab72173ad183156",
+        "size_bytes": 5677252
+      }
+    ],
+    "texture_dimensions": [
+      4096,
+      1902
+    ],
+    "texture_path": "C:/Assumption University/CSX4213/Project/reconstruction/local_dense/texture/attempt_1/texture.png",
+    "topology_preserved": true,
+    "uv_max": 0.9992547631263733,
+    "uv_min": 0.0,
+    "vertex_count": 283341
+  },
+  "visual_review": {
+    "artifact_sha256": "84390f29775c37624dbb1df7e66730fa9440f17557cd0372b01df9bc20094f22",
+    "note": "The headless Blender triptych shows the same recognizable vessel fragments from three calibrated cameras with clearly image-derived dark brass, gold highlights, and surface color variation. The geometry remains incomplete and separated, and reflective highlights, dark regions, seams, and untextured faces remain visible and are documented rather than hidden.",
+    "preview_sha256": "f00f0ed1162c1c6935830edd442cbe4097683db694afcd712679be9072e5a29c",
+    "status": "passed"
+  }
+}

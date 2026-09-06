@@ -4,7 +4,7 @@ Updated: 2026-09-06
 
 ## Current focus
 
-Preprocessing and Steps 6-13 are complete and verified. Step 13 used the separately authorized external ALIKED-N16Rot + LightGlue runtime on CUDA, recovered all three exact Step 11 boundaries, and produced a strongest single sparse model with 266/288 images, 29,713 points, and 1.374824 px mean reprojection error. The frozen global acceptance gate required at least 274 images, so `step13_success=false` and sparse recovery is closed. The 266-image model is retained as evidence, while the frozen fallback ranking selects Step 10 `reconstruction/sparse/best` (73 images / 6,099 points) as the downstream sparse source. Dense reconstruction has not started; the next phase must explicitly design/authorize local-only dense reconstruction from that selected local model.
+Preprocessing and Steps 6-17 are complete and verified. Step 13 used the separately authorized external ALIKED-N16Rot + LightGlue runtime on CUDA, recovered all three exact Step 11 boundaries, and produced a strongest single sparse model with 266/288 images, 29,713 points, and 1.374824 px mean reprojection error. The frozen global acceptance gate required at least 274 images, so `step13_success=false` and sparse recovery is closed. The 266-image model is retained as evidence, while the frozen fallback ranking selected Step 10 `reconstruction/sparse/best` (73 images / 6,099 points) as the downstream sparse source. Steps 14-17 used only that local model and completed CUDA dense fusion, bounded mesh reconstruction, COLMAP photo texturing, and headless Blender validation; manual Blender cleanup has not started.
 
 ## Verified preprocessing state
 
@@ -149,8 +149,25 @@ Preprocessing and Steps 6-13 are complete and verified. Step 13 used the separat
 - Step 13 is the final sparse-recovery experiment. No retry, second learned frontend, parameter sweep, learned exhaustive matching, dense MVS, meshing, texturing, or Blender work was run.
 - Measured narrative: `docs/geometry-ml/external-learned-global-recovery.md`.
 
+## Steps 14-17 local dense, mesh, and photo texture
+
+- Used only the frozen Step 10 local fallback: 73 registered images, 6,099 points, one `SIMPLE_RADIAL` camera, and 1.237305 px mean reprojection error. The Step 13 266-image model remains evidence only.
+- Verified the official COLMAP 4.2.0 CUDA CLI and Blender 5.2.0 LTS, then prepared exactly 73 readable undistorted images with unchanged poses/intrinsics/sparse points.
+- One preferred CUDA PatchMatch run completed all 73 depth/normal maps. Geometric fusion produced 391,899 finite colored points, 64.26 times the sparse source; 99.9980% are inside the one-span expanded Step 10 bounds and eight disclosed outliers remain visible.
+- Poisson produced 2,040,189 faces. The one Delaunay alternative was visually rejected for unsupported enclosing sheets.
+- Deterministic component filtering kept components with at least 0.5% of Poisson faces: 18 kept, 5,458 removed, 96.6387% of faces retained. One measured-ratio QEM simplification produced the accepted 283,341-vertex / 499,999-face final mesh.
+- One COLMAP texturing attempt preserved exact coordinates and face connectivity, produced a 4096 x 1902 atlas, and achieved 73.0045% meaningful UV coverage.
+- Headless Blender rendered three calibrated views and saved no `.blend` file. The preview shows truthful partial geometry, dark reflective brass, seams, missing areas, and disconnected surfaces. `steps14_17_success=true`; `blender_manual_cleanup_started=false`.
+- Measured report: `docs/geometry-ml/local-dense-mesh-texture.md`. Integrated machine-readable report: `reconstruction/local_dense/reports/steps14_17_summary.json`.
+
 ## Verification and evidence
 
+- Final Steps 14-17 verification passed 49 focused tests, 106 Step 10-13 regression tests, and all 247 project tests. The four new source modules and four test files compiled successfully.
+- Final hardening terminates the full Windows child-process tree on interruption, checks descendants before restart, refuses unrecorded final/texture outputs, enforces normalized UV coordinates, and records sampled-vertex preview mode for large Step 16 meshes.
+- The real `run_local_reconstruction.py --stage all` path completed with acceptance true and did not add PatchMatch, mesh, or texture attempts.
+- Final artifact reopening verified the Step 10 model, dense PLY, final mesh, textured PLY topology/UVs, atlas, Blender report, and integrated success report.
+- Integrity checks found 297/297 raw images unchanged, 288/288 selected images exact, all 73 local source images exact, and all 160 protected Step 10-13 files unchanged. `.codegraph/` and the private segmentation checkpoint remain present.
+- Documentation link/whitespace and Git diff checks passed. Task-created caches, preview inputs, duplicate Delaunay workspace copies, stale process state, per-camera render intermediates, and accidental `NUL` residue were removed; no `.blend` or manual/sculpt output exists.
 - Step 11-focused suite after review: **32 passed**.
 - Fresh complete project suite after Step 11 review: **141 passed**.
 - Step 12 maintenance boundary: **20 domain tests passed**, **14 runner tests passed**, and **49 Step 10/11 regression tests passed** after the fixes.
@@ -172,7 +189,7 @@ Preprocessing and Steps 6-13 are complete and verified. Step 13 used the separat
 - The three Step 10 JSON report hashes exactly matched their pre-Step-11 snapshots.
 - Both final Step 10 figures were visually inspected and explicitly label the 73-image output as the selected component rather than a global 288-image reconstruction.
 - Transient ~195 MB COLMAP databases from baseline/retry and task-created Python caches were removed after model/report export; the sparse component models, selected model, PLY, reports, and figures were preserved.
-- Dense/MVS/mesh/texture/Blender work was not started.
+- Steps 14-17 dense/MVS/mesh/texture work is complete at the approved 73-view local boundary; only automated headless Blender validation ran.
 - Step 9 measured evidence remains preserved under `analysis/`; Step 10 and Step 11 evidence is under `reconstruction/` and documented in the two sparse-result reports.
 
 ## Local tooling
@@ -182,4 +199,4 @@ Preprocessing and Steps 6-13 are complete and verified. Step 13 used the separat
 
 ## Next action
 
-Step 13 is complete and closes sparse-recovery experimentation. The external learned run improved the strongest single model to 266/288 images but did not meet the frozen >=274 global acceptance gate. The selected downstream sparse source is Step 10 `reconstruction/sparse/best` (73 images / 6,099 points); the Step 13 266-image model remains evidence only. The next task is to create and approve a local-only dense-reconstruction design/acceptance plan for that selected Step 10 component. Only after that new phase is authorized should the project proceed to undistortion/dense preparation, dense stereo/fusion, meshing, texturing, Blender cleanup, final model validation, and final coursework/report/presentation packaging.
+Steps 14-17 are complete and verified at the approved local boundary. Preserve the accepted dense cloud, Poisson evidence, rejected Delaunay alternative, deterministic component-filter result, simplified final mesh, COLMAP photo texture, calibrated Blender preview, and all attempt ledgers. Do not reopen sparse recovery, rerun dense/mesh/texturing as an optimization sweep, or change the measured gates. If the coursework needs a cleaner presentation asset, the next task is a separately authorized bounded Blender manual-cleanup/final-presentation phase starting from `reconstruction/local_dense/texture/attempt_1/`; retain the partial 73-view and reflective-brass limitations in every final claim.

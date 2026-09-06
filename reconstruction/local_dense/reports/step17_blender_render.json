@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "vertex_count": 283341,
+  "face_count": 499999,
+  "uv_layer_count": 1,
+  "uv_loop_count": 1499997,
+  "material_name": "COLMAP_Photo_Texture",
+  "texture_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\texture\\attempt_1\\texture.png",
+  "texture_sha256": "434878f4b5347ada92f05321bfc78ffc91e795869677dcaf8ab72173ad183156",
+  "texture_dimensions": [
+    4096,
+    1902
+  ],
+  "rendered_view_count": 3,
+  "temporary_view_files_removed": true,
+  "non_background_fraction": [
+    0.9640845070422536,
+    0.9692873386150235,
+    0.9620671948356807
+  ],
+  "saved_blend": null
+}

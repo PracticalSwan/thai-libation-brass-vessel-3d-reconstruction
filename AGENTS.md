@@ -4,7 +4,7 @@
 
 This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
 
-Current phase: preprocessing and Steps 6-13 are complete and verified. Step 13 ran the one approved external ALIKED-N16Rot + LightGlue recovery experiment on CUDA, recovered all three fixed sparse boundaries, and produced a strongest single model registering 266/288 images with 29,713 points. The frozen global gate required at least 274 images, so `step13_success=false`; no retry, second matcher, parameter sweep, or learned exhaustive search is allowed. Sparse recovery is closed. The frozen fallback ranking selects Step 10 `reconstruction/sparse/best` (73 images / 6,099 points) as the downstream sparse source. The 266-image Step 13 model remains evidence only. Dense reconstruction has not started and requires a separately approved local-only downstream phase.
+Current phase: preprocessing and Steps 6-17 are complete and verified. Step 13 ran the one approved external ALIKED-N16Rot + LightGlue recovery experiment on CUDA and produced a strongest single model registering 266/288 images with 29,713 points, but it failed the frozen >=274 global gate. Sparse recovery is closed and the 266-image model remains evidence only. Steps 14-17 used only the frozen Step 10 `reconstruction/sparse/best` fallback (73 images / 6,099 points): CUDA dense fusion produced 391,899 points, the accepted Poisson path was component-filtered and simplified to 499,999 faces, and COLMAP generated a topology-preserving photo texture with 73.00% meaningful UV coverage. Headless Blender validated the asset. `steps14_17_success=true` and `blender_manual_cleanup_started=false`; any manual cleanup or final presentation work requires a separate phase.
 
 ## Core rules
 
@@ -51,7 +51,7 @@ Current phase: preprocessing and Steps 6-13 are complete and verified. Step 13 r
 
 ## Geometry and ML extension
 
-The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-13 are implemented and verified to their approved boundaries:
+The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-17 are implemented and verified to their approved boundaries:
 
 - Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
 - Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
@@ -60,6 +60,7 @@ The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-
 - Step 11: `docs/superpowers/plans/2026-09-05-step-11-sparse-component-bridging.md`; measured results are in `docs/geometry-ml/sparse-component-bridging.md`.
 - Step 12: design `docs/superpowers/specs/2026-09-05-step-12-learned-sparse-recovery-design.md`; plan `docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md`; measured capability boundary `docs/geometry-ml/learned-sparse-recovery.md`. The native learned path stopped at the missing-ONNX capability gate.
 - Step 13: design `docs/superpowers/specs/2026-09-06-step-13-external-learned-global-recovery-design.md`; plan `docs/superpowers/plans/2026-09-06-step-13-external-learned-global-recovery.md`; measured result `docs/geometry-ml/external-learned-global-recovery.md`. The one external learned map reached 266/288 but failed the frozen >=274 gate, so Step 10 is the selected local fallback.
+- Steps 14-17: design `docs/superpowers/specs/2026-09-06-steps-14-17-local-dense-mesh-texture-design.md`; plan `docs/superpowers/plans/2026-09-06-steps-14-17-local-dense-mesh-texture.md`; measured result `docs/geometry-ml/local-dense-mesh-texture.md`. The local CUDA dense, mesh, photo-texture, and headless Blender validation gates all passed.
 
 - Step 6 exposes verified selected-image access, reusable SIFT keypoints/descriptors and scale metadata, Fundamental Matrix/RANSAC, epipolar geometry, and classical 2D vessel geometry.
 - Steps 7+8 use a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the verified baseline.
@@ -77,7 +78,8 @@ The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-
 - The one authorized CPU exhaustive fallback produced eight models with 224-image union coverage, but its strongest single model still registers 73/288 images with 3,443 points and 1.1989 px mean reprojection error. Step 11 records `bridge_success=false`.
 - Weak CNN predictions must remain visible and documented; they must not be manually repaired and reported as model output.
 - Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, training metrics, camera poses, point clouds, or reconstruction results.
-- Step 12 stopped at the approved native capability gate because the installed pyCOLMAP wheel lacks the ONNX support required by ALIKED extraction. Step 13 was the separately authorized architecture change and is now complete: one pinned external ALIKED + LightGlue frontend, one diagnostic, one mapping attempt, no retry/sweep/exhaustive fallback, and no dense API. Do not reopen sparse-recovery experimentation or change the >=274 acceptance gate after the result. The next phase may only begin by explicitly designing/authorizing local-only dense reconstruction from the selected Step 10 model; meshing, texturing, and Blender remain outside the completed Step 13 scope.
+- Step 12 stopped at the approved native capability gate because the installed pyCOLMAP wheel lacks the ONNX support required by ALIKED extraction. Step 13 was the separately authorized architecture change and is complete: one pinned external ALIKED + LightGlue frontend, one diagnostic, one mapping attempt, no retry/sweep/exhaustive fallback, and no dense API. Do not reopen sparse-recovery experimentation or change the >=274 acceptance gate after the result.
+- Steps 14-17 are complete at the approved local boundary. Preserve the exact Step 10 source and all dense/mesh/texture attempt ledgers. Do not rerun PatchMatch, add mesh candidates, alter the deterministic component rule, replace the photo texture, or start manual Blender cleanup as an optimization sweep. The accepted final mesh is `reconstruction/local_dense/mesh/final_mesh.ply`; the accepted textured asset is under `reconstruction/local_dense/texture/attempt_1/`.
 
 ## Verification
 

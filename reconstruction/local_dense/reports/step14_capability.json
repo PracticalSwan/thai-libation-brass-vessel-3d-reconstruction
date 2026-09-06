@@ -1,0 +1,80 @@
+{
+  "archive_sha256": "991e0bae403a496fcc4de0c1f1f428619bf12f8000978f77bc6799d9bfeac23e",
+  "backend_kind": "official_colmap_4.2_cuda_cli",
+  "backend_reason": "Installed pyCOLMAP wheel has no CUDA; official CLI provides the full dense and texture chain",
+  "blender": {
+    "executable_sha256": "e27fbfea8564aa645d4463cb0949695fd85562b9de6df9561b06859a1074adf7",
+    "output_tail": "Blender 5.2.0 LTS\r\n\tbuild date: 2026-07-14\r\n\tbuild time: 01:35:40\r\n\tbuild commit date: 2026-07-13\r\n\tbuild commit time: 15:20\r\n\tbuild hash: fbe6228777e7\r\n\tbuild branch: blender-v5.2-release\r\n\tbuild platform: Windows\r\n\tbuild type: Release\r\n\tbuild c flags:  /W3 -Werror=implicit-function-declaration -Werror=return-type -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wstrict-prototypes -Wmissing-prototypes -Wunused-parameter -Wundef -Wundef-prefix -Werror=unguarded-availability-new /DWIN32 /D_WINDOWS /MP /nologo /J /Gy /Gd /showFilenames -Wno-unused-command-line-argument -Wno-microsoft-enum-forward-reference /clang:-funsigned-char /clang:-fno-strict-aliasing /clang:-ffp-contract=off -march=x86-64-v2 \r\n\tbuild c++ flags:  /W3 -Wno-tautological-compare -Wno-unknown-pragmas -Wno-char-subscripts -Wno-overloaded-virtual -Wno-sign-compare -Wno-invalid-offsetof -Wno-suggest-override -Wundef -Wundef-prefix -Wunused-parameter -Wmismatched-tags -Werror=unguarded-availability-new /DWIN32 /D_WINDOWS /EHsc  /Gy /MP /nologo /J /Gd /showFilenames /EHsc -Wno-unused-command-line-argument -Wno-microsoft-enum-forward-reference /clang:-funsigned-char /clang:-fno-strict-aliasing /clang:-ffp-contract=off -march=x86-64-v2 \r\n\tbuild link flags: /MACHINE:X64  /SUBSYSTEM:CONSOLE /STACK:2097152 /ignore:4049 /ignore:4217 /ignore:4221\r\n\tbuild system: CMake\r\n",
+    "path": "C:\\Program Files\\Blender Foundation\\Blender 5.2\\blender.exe",
+    "status": "completed",
+    "version": "Blender 5.2.0 LTS"
+  },
+  "command_capabilities": {
+    "delaunay_mesher": true,
+    "image_undistorter": true,
+    "mesh_simplifier": true,
+    "mesh_texturer": true,
+    "patch_match_stereo": true,
+    "poisson_mesher": true,
+    "stereo_fusion": true
+  },
+  "command_help": {
+    "delaunay_mesher": "I20260906 20:39:29.979383 28264 option_manager.cc:1317] COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)\r\nI20260906 20:39:29.980853 28264 option_manager.cc:1319] Options can either be specified via command-line or by defining them in a .ini project file passed to `--project_path`.\r\n  -h [ --help ] \r\n  --project_path arg\r\n  --default_random_seed arg (=0)\r\n  --log_target arg (=stderr_and_file)   {stderr, stdout, file, stderr_and_file}\r\n  --log_path arg\r\n  --log_level arg (=0)\r\n  --log_severity arg (=0)               0:INFO, 1:WARNING, 2:ERROR, 3:FATAL\r\n  --log_color arg (=1)\r\n  --input_path arg                      Path to either the dense workspace \r\n                                        folder or the sparse reconstruction\r\n  --input_type arg (=dense)             {dense, sparse}\r\n  --output_path arg\r\n  --DelaunayMeshing.max_proj_dist arg (=20)\r\n  --DelaunayMeshing.max_depth_dist arg (=0.05)\r\n  --DelaunayMeshing.visibility_sigma arg (=3)\r\n  --DelaunayMeshing.distance_sigma_factor arg (=1)\r\n  --DelaunayMeshing.quality_regularization arg (=1)\r\n  --DelaunayMeshing.max_side_length_factor arg (=25)\r\n  --DelaunayMeshing.max_side_length_percentile arg (=95)\r\n  --DelaunayMeshing.num_threads arg (=-1)\r\n",
+    "image_undistorter": "I20260906 20:39:30.102416 18940 option_manager.cc:1317] COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)\r\nI20260906 20:39:30.103372 18940 option_manager.cc:1319] Options can either be specified via command-line or by defining them in a .ini project file passed to `--project_path`.\r\n  -h [ --help ] \r\n  --project_path arg\r\n  --default_random_seed arg (=0)\r\n  --log_target arg (=stderr_and_file)   {stderr, stdout, file, stderr_and_file}\r\n  --log_path arg\r\n  --log_level arg (=0)\r\n  --log_severity arg (=0)               0:INFO, 1:WARNING, 2:ERROR, 3:FATAL\r\n  --log_color arg (=1)\r\n  --image_path arg\r\n  --input_path arg\r\n  --output_path arg\r\n  --output_type arg (=COLMAP)           {COLMAP, PMVS, CMP-MVS}\r\n  --image_list_path arg\r\n  --copy_policy arg (=copy)             {COPY, SOFT_LINK, HARD_LINK}\r\n  --blank_pixels arg (=0)\r\n  --min_scale arg (=0.2)\r\n  --max_scale arg (=2)\r\n  --max_image_size arg (=-1)\r\n  --roi_min_x arg (=0)\r\n  --roi_min_y arg (=0)\r\n  --roi_max_x arg (=1)\r\n  --roi_max_y arg (=1)\r\n  --num_patch_match_src_images arg (=20)\r\n  --jpeg_quality arg (=-1)\r\n  --num_threads arg (=-1)\r\n",
+    "mesh_simplifier": "I20260906 20:39:30.217512 12000 option_manager.cc:1317] COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)\r\nI20260906 20:39:30.218354 12000 option_manager.cc:1319] Options can either be specified via command-line or by defining them in a .ini project file passed to `--project_path`.\r\n  -h [ --help ] \r\n  --project_path arg\r\n  --default_random_seed arg (=0)\r\n  --log_target arg (=stderr_and_file)   {stderr, stdout, file, stderr_and_file}\r\n  --log_path arg\r\n  --log_level arg (=0)\r\n  --log_severity arg (=0)               0:INFO, 1:WARNING, 2:ERROR, 3:FATAL\r\n  --log_color arg (=1)\r\n  --input_path arg                      Path to input PLY mesh\r\n  --output_path arg                     Path to output PLY mesh\r\n  --MeshSimplification.target_face_ratio arg (=0.1)\r\n  --MeshSimplification.max_error arg (=0)\r\n  --MeshSimplification.boundary_weight arg (=1e+03)\r\n  --MeshSimplification.interpolate_colors arg (=1)\r\n  --MeshSimplification.num_threads arg (=-1)\r\n",
+    "mesh_texturer": "I20260906 20:39:30.350598 50208 option_manager.cc:1317] COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)\r\nI20260906 20:39:30.351426 50208 option_manager.cc:1319] Options can either be specified via command-line or by defining them in a .ini project file passed to `--project_path`.\r\n  -h [ --help ] \r\n  --project_path arg\r\n  --default_random_seed arg (=0)\r\n  --log_target arg (=stderr_and_file)   {stderr, stdout, file, stderr_and_file}\r\n  --log_path arg\r\n  --log_level arg (=0)\r\n  --log_severity arg (=0)               0:INFO, 1:WARNING, 2:ERROR, 3:FATAL\r\n  --log_color arg (=1)\r\n  --workspace_path arg                  Path to the workspace folder containing\r\n                                        undistorted images and sparse \r\n                                        reconstruction\r\n  --input_path arg                      Path to the input PLY mesh file\r\n  --output_path arg                     Path to the output directory. The \r\n                                        textured mesh PLY and texture atlas \r\n                                        image will be written here\r\n  --output_type arg (=BIN)              {BIN, TXT}\r\n  --MeshTextureMapping.min_cos_normal_angle arg (=0.1)\r\n  --MeshTextureMapping.min_visible_vertices arg (=3)\r\n  --MeshTextureMapping.view_selection_smoothing_iterations arg (=3)\r\n  --MeshTextureMapping.atlas_patch_padding arg (=2)\r\n  --MeshTextureMapping.inpaint_radius arg (=5)\r\n  --MeshTextureMapping.apply_color_correction arg (=1)\r\n  --MeshTextureMapping.color_correction_regularization arg (=0.1)\r\n  --MeshTextureMapping.num_threads arg (=-1)\r\n  --MeshTextureMapping.texture_scale_factor arg (=1)\r\n",
+    "patch_match_stereo": "I20260906 20:39:30.483849 38336 option_manager.cc:1317] COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)\r\nI20260906 20:39:30.484821 38336 option_manager.cc:1319] Options can either be specified via command-line or by defining them in a .ini project file passed to `--project_path`.\r\n  -h [ --help ] \r\n  --project_path arg\r\n  --default_random_seed arg (=0)\r\n  --log_target arg (=stderr_and_file)   {stderr, stdout, file, stderr_and_file}\r\n  --log_path arg\r\n  --log_level arg (=0)\r\n  --log_severity arg (=0)               0:INFO, 1:WARNING, 2:ERROR, 3:FATAL\r\n  --log_color arg (=1)\r\n  --workspace_path arg                  Path to the folder containing the \r\n                                        undistorted images\r\n  --workspace_format arg (=COLMAP)      {COLMAP, PMVS}\r\n  --pmvs_option_name arg (=option-all)\r\n  --config_path arg\r\n  --PatchMatchStereo.max_image_size arg (=-1)\r\n  --PatchMatchStereo.gpu_index arg (=-1)\r\n  --PatchMatchStereo.depth_min arg (=-1)\r\n  --PatchMatchStereo.depth_max arg (=-1)\r\n  --PatchMatchStereo.window_radius arg (=5)\r\n  --PatchMatchStereo.window_step arg (=1)\r\n  --PatchMatchStereo.sigma_spatial arg (=-1)\r\n  --PatchMatchStereo.sigma_color arg (=0.2)\r\n  --PatchMatchStereo.num_samples arg (=15)\r\n  --PatchMatchStereo.ncc_sigma arg (=0.6)\r\n  --PatchMatchStereo.min_triangulation_angle arg (=1)\r\n  --PatchMatchStereo.incident_angle_sigma arg (=0.9)\r\n  --PatchMatchStereo.num_iterations arg (=5)\r\n  --PatchMatchStereo.geom_consistency arg (=1)\r\n  --PatchMatchStereo.geom_consistency_regularizer arg (=0.3)\r\n  --PatchMatchStereo.geom_consistency_max_cost arg (=3)\r\n  --PatchMatchStereo.filter arg (=1)\r\n  --PatchMatchStereo.filter_min_ncc arg (=0.1)\r\n  --PatchMatchStereo.filter_min_triangulation_angle arg (=3)\r\n  --PatchMatchStereo.filter_min_num_consistent arg (=2)\r\n  --PatchMatchStereo.filter_geom_consistency_max_cost arg (=1)\r\n  --PatchMatchStereo.cache_size arg (=32)\r\n  --PatchMatchStereo.allow_missing_files arg (=0)\r\n  --PatchMatchStereo.write_consistency_graph arg (=0)\r\n  --PatchMatchStereo.num_threads arg (=-1)\r\n",
+    "poisson_mesher": "I20260906 20:39:30.607766 53788 option_manager.cc:1317] COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)\r\nI20260906 20:39:30.608767 53788 option_manager.cc:1319] Options can either be specified via command-line or by defining them in a .ini project file passed to `--project_path`.\r\n  -h [ --help ] \r\n  --project_path arg\r\n  --default_random_seed arg (=0)\r\n  --log_target arg (=stderr_and_file)   {stderr, stdout, file, stderr_and_file}\r\n  --log_path arg\r\n  --log_level arg (=0)\r\n  --log_severity arg (=0)               0:INFO, 1:WARNING, 2:ERROR, 3:FATAL\r\n  --log_color arg (=1)\r\n  --input_path arg\r\n  --output_path arg\r\n  --PoissonMeshing.point_weight arg (=1)\r\n  --PoissonMeshing.depth arg (=13)\r\n  --PoissonMeshing.color arg (=1)\r\n  --PoissonMeshing.trim arg (=10)\r\n  --PoissonMeshing.num_threads arg (=-1)\r\n",
+    "stereo_fusion": "I20260906 20:39:30.735325 21368 option_manager.cc:1317] COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)\r\nI20260906 20:39:30.736335 21368 option_manager.cc:1319] Options can either be specified via command-line or by defining them in a .ini project file passed to `--project_path`.\r\n  -h [ --help ] \r\n  --project_path arg\r\n  --default_random_seed arg (=0)\r\n  --log_target arg (=stderr_and_file)   {stderr, stdout, file, stderr_and_file}\r\n  --log_path arg\r\n  --log_level arg (=0)\r\n  --log_severity arg (=0)               0:INFO, 1:WARNING, 2:ERROR, 3:FATAL\r\n  --log_color arg (=1)\r\n  --workspace_path arg\r\n  --workspace_format arg (=COLMAP)      {COLMAP, PMVS}\r\n  --pmvs_option_name arg (=option-all)\r\n  --input_type arg (=geometric)         {photometric, geometric}\r\n  --output_type arg (=PLY)              {BIN, TXT, PLY}\r\n  --output_path arg\r\n  --StereoFusion.mask_path arg\r\n  --StereoFusion.num_threads arg (=-1)\r\n  --StereoFusion.max_image_size arg (=-1)\r\n  --StereoFusion.min_num_pixels arg (=5)\r\n  --StereoFusion.max_num_pixels arg (=10000)\r\n  --StereoFusion.max_traversal_depth arg (=100)\r\n  --StereoFusion.max_reproj_error arg (=2)\r\n  --StereoFusion.max_depth_error arg (=0.01)\r\n  --StereoFusion.max_normal_error arg (=10)\r\n  --StereoFusion.check_num_images arg (=50)\r\n  --StereoFusion.cache_size arg (=32)\r\n  --StereoFusion.use_cache arg (=0)\r\n"
+  },
+  "cuda_dense_supported": true,
+  "cuda_device": {
+    "args": [
+      "C:\\Users\\LOQ\\AppData\\Local\\Python\\pythoncore-3.14-64\\python.exe",
+      "-B",
+      "-c",
+      "import torch; x=torch.ones(8,device='cuda:0'); print(torch.cuda.get_device_name(0)); print(float(x.sum())); print(torch.cuda.get_device_capability(0))"
+    ],
+    "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\work\\logs\\cuda-device.log",
+    "log_sha256": "5245c38d1e3cf21fd26389f18bfe398845671df33481a99fdc23f2e6a3f97a89",
+    "output_tail": "NVIDIA GeForce RTX 5050 Laptop GPU\r\n8.0\r\n(12, 0)\r\n",
+    "returncode": 0,
+    "runtime_seconds": 2.0673273999709636,
+    "started_at": "2026-09-06T13:39:30.890578+00:00",
+    "status": "completed"
+  },
+  "executable": "C:\\Tools\\COLMAP-4.2.0\\bin\\colmap.exe",
+  "executable_sha256": "ee5b79a836561723e10cacaf80ca685f92352f93b15273999a03af90c9e0ed20",
+  "gpu": {
+    "args": [
+      "nvidia-smi",
+      "--query-gpu=name,driver_version,memory.total,memory.free",
+      "--format=csv"
+    ],
+    "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\work\\logs\\gpu.log",
+    "log_sha256": "2c2fdcf78b217224ae5a6317fec5088eb46bcdf228ef23431d78abf84a0612ce",
+    "output_tail": "name, driver_version, memory.total [MiB], memory.free [MiB]\r\nNVIDIA GeForce RTX 5050 Laptop GPU, 616.56, 8151 MiB, 6793 MiB\r\n",
+    "returncode": 0,
+    "runtime_seconds": 0.07561629998963326,
+    "started_at": "2026-09-06T13:39:30.812401+00:00",
+    "status": "completed"
+  },
+  "patchmatch_kernel_execution": {
+    "completed_depth_maps": 73,
+    "gpu_index": "0",
+    "log_sha256": "730da8613d57c3cdd2535d809031b17c03127b0e535eb0a12dd46476505bb4c8",
+    "runtime_seconds": 1811.6726370999822,
+    "status": "completed"
+  },
+  "pycolmap_dense_functions": [
+    "undistort_images",
+    "patch_match_stereo",
+    "stereo_fusion",
+    "poisson_meshing",
+    "simplify_mesh"
+  ],
+  "pycolmap_has_cuda": false,
+  "pycolmap_version": "4.2.0",
+  "release_url": "https://github.com/colmap/colmap/releases/tag/4.2.0",
+  "version": "COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)"
+}

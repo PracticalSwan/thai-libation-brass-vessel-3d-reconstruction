@@ -1,0 +1,1363 @@
+{
+  "acceptance": {
+    "checks": {
+      "color": true,
+      "finite": true,
+      "more_than_sparse": true,
+      "plausible_bounds": true,
+      "reference_coverage": true,
+      "spatial_rank_3": true,
+      "visual": true
+    },
+    "passed": true,
+    "quality_target_met": true
+  },
+  "backend": "COLMAP 4.2.0 (Commit be5e291 on 2026-08-31 with CUDA)",
+  "fused_path": "reconstruction/local_dense/dense/fused.ply",
+  "fused_sha256": "87d89e16eb8fcc53d57f5bb371592b077b4e5838ba6a27eedb5a69e87a97236b",
+  "fusion": {
+    "args": [
+      "C:\\Tools\\COLMAP-4.2.0\\bin\\colmap.exe",
+      "stereo_fusion",
+      "--workspace_path",
+      "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\work\\dense_workspace",
+      "--workspace_format",
+      "COLMAP",
+      "--input_type",
+      "geometric",
+      "--output_path",
+      "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\dense\\fused.ply",
+      "--output_type",
+      "PLY",
+      "--StereoFusion.max_image_size",
+      "1600",
+      "--StereoFusion.num_threads",
+      "2",
+      "--StereoFusion.cache_size",
+      "4",
+      "--StereoFusion.use_cache",
+      "1",
+      "--log_target",
+      "stdout",
+      "--log_color",
+      "0"
+    ],
+    "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\work\\logs\\step15-fusion.log",
+    "log_sha256": "c0283da5c7375b5a75646fafd6a3c598d76ecc78c258a84e85f8ebf3145e71cc",
+    "output_tail": "I20260906 15:19:53.432916 14724 fusion.cc:85] max_reproj_error: 2\r\nI20260906 15:19:53.432920 14724 fusion.cc:86] max_depth_error: 0.01\r\nI20260906 15:19:53.432924 14724 fusion.cc:87] max_normal_error: 10\r\nI20260906 15:19:53.432926 14724 fusion.cc:88] check_num_images: 50\r\nI20260906 15:19:53.432928 14724 fusion.cc:89] use_cache: 1\r\nI20260906 15:19:53.432932 14724 fusion.cc:90] cache_size: 4\r\nI20260906 15:19:53.432934 14724 fusion.cc:93] bbox_min: -3.40282e+38 -3.40282e+38 -3.40282e+38\r\nI20260906 15:19:53.432947 14724 fusion.cc:94] bbox_max: 3.40282e+38 3.40282e+38 3.40282e+38\r\nI20260906 15:19:53.432954 14724 fusion.cc:144] Reading workspace...\r\nI20260906 15:19:53.469745 14724 fusion.cc:179] Reading configuration...\r\nI20260906 15:19:57.208741 14724 fusion.cc:247] Starting fusion with 1 threads\r\nI20260906 15:19:57.208869 14724 fusion.cc:283] Fusing image [1/73] with index 0\r\nI20260906 15:20:19.604557 14724 fusion.cc:310]  in 22.396s (17182 points)\r\nI20260906 15:20:19.604582 14724 fusion.cc:283] Fusing image [2/73] with index 2\r\nI20260906 15:20:21.032375 14724 fusion.cc:310]  in 1.428s (30041 points)\r\nI20260906 15:20:21.032401 14724 fusion.cc:283] Fusing image [3/73] with index 3\r\nI20260906 15:20:22.302190 14724 fusion.cc:310]  in 1.270s (38600 points)\r\nI20260906 15:20:22.302216 14724 fusion.cc:283] Fusing image [4/73] with index 4\r\nI20260906 15:20:23.747063 14724 fusion.cc:310]  in 1.445s (48123 points)\r\nI20260906 15:20:23.747089 14724 fusion.cc:283] Fusing image [5/73] with index 5\r\nI20260906 15:20:25.083357 14724 fusion.cc:310]  in 1.336s (56559 points)\r\nI20260906 15:20:25.083381 14724 fusion.cc:283] Fusing image [6/73] with index 6\r\nI20260906 15:20:26.539791 14724 fusion.cc:310]  in 1.456s (64545 points)\r\nI20260906 15:20:26.539814 14724 fusion.cc:283] Fusing image [7/73] with index 7\r\nI20260906 15:20:27.977035 14724 fusion.cc:310]  in 1.437s (73115 points)\r\nI20260906 15:20:27.977066 14724 fusion.cc:283] Fusing image [8/73] with index 8\r\nI20260906 15:20:29.177939 14724 fusion.cc:310]  in 1.201s (79937 points)\r\nI20260906 15:20:29.177964 14724 fusion.cc:283] Fusing image [9/73] with index 9\r\nI20260906 15:20:30.852711 14724 fusion.cc:310]  in 1.675s (86983 points)\r\nI20260906 15:20:30.852736 14724 fusion.cc:283] Fusing image [10/73] with index 10\r\nI20260906 15:20:32.213323 14724 fusion.cc:310]  in 1.361s (94098 points)\r\nI20260906 15:20:32.213347 14724 fusion.cc:283] Fusing image [11/73] with index 11\r\nI20260906 15:20:33.598716 14724 fusion.cc:310]  in 1.385s (101445 points)\r\nI20260906 15:20:33.598740 14724 fusion.cc:283] Fusing image [12/73] with index 12\r\nI20260906 15:20:34.893727 14724 fusion.cc:310]  in 1.295s (107310 points)\r\nI20260906 15:20:34.893754 14724 fusion.cc:283] Fusing image [13/73] with index 13\r\nI20260906 15:20:36.234710 14724 fusion.cc:310]  in 1.341s (114857 points)\r\nI20260906 15:20:36.234739 14724 fusion.cc:283] Fusing image [14/73] with index 14\r\nI20260906 15:20:37.381504 14724 fusion.cc:310]  in 1.147s (119884 points)\r\nI20260906 15:20:37.381526 14724 fusion.cc:283] Fusing image [15/73] with index 15\r\nI20260906 15:20:38.578856 14724 fusion.cc:310]  in 1.197s (124555 points)\r\nI20260906 15:20:38.578881 14724 fusion.cc:283] Fusing image [16/73] with index 16\r\nI20260906 15:20:39.865306 14724 fusion.cc:310]  in 1.286s (130073 points)\r\nI20260906 15:20:39.865330 14724 fusion.cc:283] Fusing image [17/73] with index 17\r\nI20260906 15:20:41.038499 14724 fusion.cc:310]  in 1.173s (134494 points)\r\nI20260906 15:20:41.038522 14724 fusion.cc:283] Fusing image [18/73] with index 18\r\nI20260906 15:20:42.049802 14724 fusion.cc:310]  in 1.011s (137492 points)\r\nI20260906 15:20:42.049828 14724 fusion.cc:283] Fusing image [19/73] with index 19\r\nI20260906 15:20:43.133546 14724 fusion.cc:310]  in 1.084s (139767 points)\r\nI20260906 15:20:43.133596 14724 fusion.cc:283] Fusing image [20/73] with index 20\r\nI20260906 15:20:44.128964 14724 fusion.cc:310]  in 0.995s (142377 points)\r\nI20260906 15:20:44.128985 14724 fusion.cc:283] Fusing image [21/73] with index 21\r\nI20260906 15:20:46.858146 14724 fusion.cc:310]  in 2.729s (146829 points)\r\nI20260906 15:20:46.858168 14724 fusion.cc:283] Fusing image [22/73] with index 22\r\nI20260906 15:20:48.426556 14724 fusion.cc:310]  in 1.568s (156207 points)\r\nI20260906 15:20:48.426584 14724 fusion.cc:283] Fusing image [23/73] with index 23\r\nI20260906 15:20:49.506054 14724 fusion.cc:310]  in 1.079s (161162 points)\r\nI20260906 15:20:49.506079 14724 fusion.cc:283] Fusing image [24/73] with index 24\r\nI20260906 15:20:50.860050 14724 fusion.cc:310]  in 1.354s (166309 points)\r\nI20260906 15:20:50.860075 14724 fusion.cc:283] Fusing image [25/73] with index 25\r\nI20260906 15:20:52.074006 14724 fusion.cc:310]  in 1.214s (171764 points)\r\nI20260906 15:20:52.074032 14724 fusion.cc:283] Fusing image [26/73] with index 26\r\nI20260906 15:20:53.153834 14724 fusion.cc:310]  in 1.080s (176083 points)\r\nI20260906 15:20:53.153857 14724 fusion.cc:283] Fusing image [27/73] with index 27\r\nI20260906 15:20:54.196314 14724 fusion.cc:310]  in 1.042s (180418 points)\r\nI20260906 15:20:54.196340 14724 fusion.cc:283] Fusing image [28/73] with index 28\r\nI20260906 15:20:55.278989 14724 fusion.cc:310]  in 1.083s (186057 points)\r\nI20260906 15:20:55.279016 14724 fusion.cc:283] Fusing image [29/73] with index 29\r\nI20260906 15:20:56.323004 14724 fusion.cc:310]  in 1.044s (191975 points)\r\nI20260906 15:20:56.323036 14724 fusion.cc:283] Fusing image [30/73] with index 30\r\nI20260906 15:20:57.353626 14724 fusion.cc:310]  in 1.031s (197318 points)\r\nI20260906 15:20:57.353648 14724 fusion.cc:283] Fusing image [31/73] with index 31\r\nI20260906 15:20:58.474693 14724 fusion.cc:310]  in 1.121s (204675 points)\r\nI20260906 15:20:58.474717 14724 fusion.cc:283] Fusing image [32/73] with index 32\r\nI20260906 15:20:59.527245 14724 fusion.cc:310]  in 1.053s (211479 points)\r\nI20260906 15:20:59.527274 14724 fusion.cc:283] Fusing image [33/73] with index 33\r\nI20260906 15:21:00.533260 14724 fusion.cc:310]  in 1.006s (215671 points)\r\nI20260906 15:21:00.533287 14724 fusion.cc:283] Fusing image [34/73] with index 34\r\nI20260906 15:21:01.479634 14724 fusion.cc:310]  in 0.946s (220606 points)\r\nI20260906 15:21:01.479673 14724 fusion.cc:283] Fusing image [35/73] with index 35\r\nI20260906 15:21:02.482172 14724 fusion.cc:310]  in 1.003s (225393 points)\r\nI20260906 15:21:02.482198 14724 fusion.cc:283] Fusing image [36/73] with index 36\r\nI20260906 15:21:03.355050 14724 fusion.cc:310]  in 0.873s (228287 points)\r\nI20260906 15:21:03.355073 14724 fusion.cc:283] Fusing image [37/73] with index 37\r\nI20260906 15:21:04.503725 14724 fusion.cc:310]  in 1.149s (232877 points)\r\nI20260906 15:21:04.503747 14724 fusion.cc:283] Fusing image [38/73] with index 38\r\nI20260906 15:21:05.809495 14724 fusion.cc:310]  in 1.306s (239157 points)\r\nI20260906 15:21:05.809526 14724 fusion.cc:283] Fusing image [39/73] with index 39\r\nI20260906 15:21:07.179202 14724 fusion.cc:310]  in 1.370s (246655 points)\r\nI20260906 15:21:07.179226 14724 fusion.cc:283] Fusing image [40/73] with index 40\r\nI20260906 15:21:08.394281 14724 fusion.cc:310]  in 1.215s (252794 points)\r\nI20260906 15:21:08.394306 14724 fusion.cc:283] Fusing image [41/73] with index 41\r\nI20260906 15:21:09.582209 14724 fusion.cc:310]  in 1.188s (258938 points)\r\nI20260906 15:21:09.582244 14724 fusion.cc:283] Fusing image [42/73] with index 42\r\nI20260906 15:21:10.623895 14724 fusion.cc:310]  in 1.042s (264711 points)\r\nI20260906 15:21:10.623923 14724 fusion.cc:283] Fusing image [43/73] with index 43\r\nI20260906 15:21:11.708693 14724 fusion.cc:310]  in 1.085s (271334 points)\r\nI20260906 15:21:11.708758 14724 fusion.cc:283] Fusing image [44/73] with index 44\r\nI20260906 15:21:12.804258 14724 fusion.cc:310]  in 1.096s (278706 points)\r\nI20260906 15:21:12.804283 14724 fusion.cc:283] Fusing image [45/73] with index 45\r\nI20260906 15:21:13.676486 14724 fusion.cc:310]  in 0.872s (284088 points)\r\nI20260906 15:21:13.676509 14724 fusion.cc:283] Fusing image [46/73] with index 46\r\nI20260906 15:21:14.666479 14724 fusion.cc:310]  in 0.990s (290632 points)\r\nI20260906 15:21:14.666504 14724 fusion.cc:283] Fusing image [47/73] with index 47\r\nI20260906 15:21:15.605917 14724 fusion.cc:310]  in 0.939s (296775 points)\r\nI20260906 15:21:15.605941 14724 fusion.cc:283] Fusing image [48/73] with index 48\r\nI20260906 15:21:16.593332 14724 fusion.cc:310]  in 0.987s (302245 points)\r\nI20260906 15:21:16.593353 14724 fusion.cc:283] Fusing image [49/73] with index 49\r\nI20260906 15:21:17.581828 14724 fusion.cc:310]  in 0.988s (307817 points)\r\nI20260906 15:21:17.581852 14724 fusion.cc:283] Fusing image [50/73] with index 50\r\nI20260906 15:21:18.343771 14724 fusion.cc:310]  in 0.762s (311779 points)\r\nI20260906 15:21:18.343794 14724 fusion.cc:283] Fusing image [51/73] with index 51\r\nI20260906 15:21:19.188244 14724 fusion.cc:310]  in 0.844s (316615 points)\r\nI20260906 15:21:19.188268 14724 fusion.cc:283] Fusing image [52/73] with index 52\r\nI20260906 15:21:19.900086 14724 fusion.cc:310]  in 0.712s (319912 points)\r\nI20260906 15:21:19.900108 14724 fusion.cc:283] Fusing image [53/73] with index 53\r\nI20260906 15:21:20.640078 14724 fusion.cc:310]  in 0.740s (323881 points)\r\nI20260906 15:21:20.640100 14724 fusion.cc:283] Fusing image [54/73] with index 54\r\nI20260906 15:21:21.259810 14724 fusion.cc:310]  in 0.620s (325994 points)\r\nI20260906 15:21:21.259855 14724 fusion.cc:283] Fusing image [55/73] with index 55\r\nI20260906 15:21:22.139647 14724 fusion.cc:310]  in 0.880s (332242 points)\r\nI20260906 15:21:22.139673 14724 fusion.cc:283] Fusing image [56/73] with index 56\r\nI20260906 15:21:22.839133 14724 fusion.cc:310]  in 0.699s (335980 points)\r\nI20260906 15:21:22.839157 14724 fusion.cc:283] Fusing image [57/73] with index 57\r\nI20260906 15:21:23.540783 14724 fusion.cc:310]  in 0.702s (337924 points)\r\nI20260906 15:21:23.540808 14724 fusion.cc:283] Fusing image [58/73] with index 58\r\nI20260906 15:21:24.304736 14724 fusion.cc:310]  in 0.764s (340553 points)\r\nI20260906 15:21:24.304762 14724 fusion.cc:283] Fusing image [59/73] with index 59\r\nI20260906 15:21:25.307854 14724 fusion.cc:310]  in 1.003s (347043 points)\r\nI20260906 15:21:25.307884 14724 fusion.cc:283] Fusing image [60/73] with index 60\r\nI20260906 15:21:26.204254 14724 fusion.cc:310]  in 0.896s (351109 points)\r\nI20260906 15:21:26.204279 14724 fusion.cc:283] Fusing image [61/73] with index 61\r\nI20260906 15:21:27.192546 14724 fusion.cc:310]  in 0.988s (358775 points)\r\nI20260906 15:21:27.192570 14724 fusion.cc:283] Fusing image [62/73] with index 62\r\nI20260906 15:21:28.171217 14724 fusion.cc:310]  in 0.979s (363918 points)\r\nI20260906 15:21:28.171243 14724 fusion.cc:283] Fusing image [63/73] with index 63\r\nI20260906 15:21:29.027202 14724 fusion.cc:310]  in 0.856s (368423 points)\r\nI20260906 15:21:29.027227 14724 fusion.cc:283] Fusing image [64/73] with index 64\r\nI20260906 15:21:29.758461 14724 fusion.cc:310]  in 0.731s (372222 points)\r\nI20260906 15:21:29.758488 14724 fusion.cc:283] Fusing image [65/73] with index 65\r\nI20260906 15:21:30.598939 14724 fusion.cc:310]  in 0.840s (378352 points)\r\nI20260906 15:21:30.598969 14724 fusion.cc:283] Fusing image [66/73] with index 66\r\nI20260906 15:21:31.325219 14724 fusion.cc:310]  in 0.726s (383568 points)\r\nI20260906 15:21:31.325246 14724 fusion.cc:283] Fusing image [67/73] with index 67\r\nI20260906 15:21:32.019762 14724 fusion.cc:310]  in 0.695s (387973 points)\r\nI20260906 15:21:32.019788 14724 fusion.cc:283] Fusing image [68/73] with index 68\r\nI20260906 15:21:32.572018 14724 fusion.cc:310]  in 0.552s (390519 points)\r\nI20260906 15:21:32.572044 14724 fusion.cc:283] Fusing image [69/73] with index 69\r\nI20260906 15:21:33.024059 14724 fusion.cc:310]  in 0.452s (391556 points)\r\nI20260906 15:21:33.024084 14724 fusion.cc:283] Fusing image [70/73] with index 70\r\nI20260906 15:21:33.485931 14724 fusion.cc:310]  in 0.462s (391882 points)\r\nI20260906 15:21:33.485953 14724 fusion.cc:283] Fusing image [71/73] with index 71\r\nI20260906 15:21:33.892141 14724 fusion.cc:310]  in 0.406s (391899 points)\r\nI20260906 15:21:33.892166 14724 fusion.cc:283] Fusing image [72/73] with index 72\r\nI20260906 15:21:34.247826 14724 fusion.cc:310]  in 0.356s (391899 points)\r\nI20260906 15:21:34.247848 14724 fusion.cc:283] Fusing image [73/73] with index 1\r\nI20260906 15:21:34.576189 14724 fusion.cc:310]  in 0.328s (391899 points)\r\nI20260906 15:21:34.603549 14724 fusion.cc:337] Number of fused points: 391899\r\nI20260906 15:21:34.603567 14724 timer.cc:90] Elapsed time: 1.686 [minutes]\r\nI20260906 15:21:34.691556 14724 mvs.cc:395] Writing output: \"C:\\\\Assumption University\\\\CSX4213\\\\Project\\\\reconstruction\\\\local_dense\\\\dense\\\\fused.ply\"\r\n",
+    "returncode": 0,
+    "runtime_seconds": 101.83236790006049,
+    "started_at": "2026-09-06T08:19:53.381964+00:00",
+    "status": "completed"
+  },
+  "integrity": {
+    "local_images_verified": 73,
+    "protected_files_checked": 160,
+    "protected_unchanged": true,
+    "source_manifest_hash": "5548006c3368bbd71cff6563b19b789bb9b397faf7e265f078e54dc2dc704c00"
+  },
+  "maps": [
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 257411,
+        "width": 1202
+      },
+      "filename": "IMG20260826122949.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 294218,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 241534,
+        "width": 1202
+      },
+      "filename": "IMG20260826122953.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 277249,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 269458,
+        "width": 1202
+      },
+      "filename": "IMG20260826122956.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 307535,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 307422,
+        "width": 1202
+      },
+      "filename": "IMG20260826123000.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 350996,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 363755,
+        "width": 1202
+      },
+      "filename": "IMG20260826123004.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 402044,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 372229,
+        "width": 1202
+      },
+      "filename": "IMG20260826123008.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 408701,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 397839,
+        "width": 1202
+      },
+      "filename": "IMG20260826123012.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 434794,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 386551,
+        "width": 1202
+      },
+      "filename": "IMG20260826123017.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 420767,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 382087,
+        "width": 1202
+      },
+      "filename": "IMG20260826123020.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 415651,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 418239,
+        "width": 1202
+      },
+      "filename": "IMG20260826123023.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 453332,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 404609,
+        "width": 1202
+      },
+      "filename": "IMG20260826123027.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 444719,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 396587,
+        "width": 1202
+      },
+      "filename": "IMG20260826123038.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 434885,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 417251,
+        "width": 1202
+      },
+      "filename": "IMG20260826123042.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 456547,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 410710,
+        "width": 1202
+      },
+      "filename": "IMG20260826123046.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 455917,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 409813,
+        "width": 1202
+      },
+      "filename": "IMG20260826123052.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 462828,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 429691,
+        "width": 1202
+      },
+      "filename": "IMG20260826123056.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 486057,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 460630,
+        "width": 1202
+      },
+      "filename": "IMG20260826123101.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 524353,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 384287,
+        "width": 1202
+      },
+      "filename": "IMG20260826123106.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 443258,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 368703,
+        "width": 1202
+      },
+      "filename": "IMG20260826123111.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 424191,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 398839,
+        "width": 1202
+      },
+      "filename": "IMG20260826123115.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 473313,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 413561,
+        "width": 1202
+      },
+      "filename": "IMG20260826123119.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 491952,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 353476,
+        "width": 1202
+      },
+      "filename": "IMG20260826123123.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 415416,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 298186,
+        "width": 1202
+      },
+      "filename": "IMG20260826123157.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 335982,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 297906,
+        "width": 1202
+      },
+      "filename": "IMG20260826123204.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 335845,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 339425,
+        "width": 1202
+      },
+      "filename": "IMG20260826123209.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 374251,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 349482,
+        "width": 1202
+      },
+      "filename": "IMG20260826123213.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 381424,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 321749,
+        "width": 1202
+      },
+      "filename": "IMG20260826123217.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 350885,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 330658,
+        "width": 1202
+      },
+      "filename": "IMG20260826123223.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 363067,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 348635,
+        "width": 1202
+      },
+      "filename": "IMG20260826123228.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 381426,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 323428,
+        "width": 1202
+      },
+      "filename": "IMG20260826123233.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 349521,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 328932,
+        "width": 1202
+      },
+      "filename": "IMG20260826123237.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 361252,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 343742,
+        "width": 1202
+      },
+      "filename": "IMG20260826123246.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 369637,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 332656,
+        "width": 1202
+      },
+      "filename": "IMG20260826123250.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 362311,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 279428,
+        "width": 1202
+      },
+      "filename": "IMG20260826123308.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 316918,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 396886,
+        "width": 1202
+      },
+      "filename": "IMG20260826123316.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 440291,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 348129,
+        "width": 1202
+      },
+      "filename": "IMG20260826123320.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 399671,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 369219,
+        "width": 1202
+      },
+      "filename": "IMG20260826123324.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 430287,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 407649,
+        "width": 1202
+      },
+      "filename": "IMG20260826123329.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 481797,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 402334,
+        "width": 1202
+      },
+      "filename": "IMG20260826123333.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 473309,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 394043,
+        "width": 1202
+      },
+      "filename": "IMG20260826123344.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 454295,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 387548,
+        "width": 1202
+      },
+      "filename": "IMG20260826123349.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 446261,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 402712,
+        "width": 1202
+      },
+      "filename": "IMG20260826123353.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 459370,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 355893,
+        "width": 1202
+      },
+      "filename": "IMG20260826123357.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 401225,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 358987,
+        "width": 1202
+      },
+      "filename": "IMG20260826123403.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 397019,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 367974,
+        "width": 1202
+      },
+      "filename": "IMG20260826123408.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 395886,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 323386,
+        "width": 1202
+      },
+      "filename": "IMG20260826123414.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 349808,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 341738,
+        "width": 1202
+      },
+      "filename": "IMG20260826123417.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 367656,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 373043,
+        "width": 1202
+      },
+      "filename": "IMG20260826123422.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 398468,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 374845,
+        "width": 1202
+      },
+      "filename": "IMG20260826123427.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 405774,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 354749,
+        "width": 1202
+      },
+      "filename": "IMG20260826123434.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 382250,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 338627,
+        "width": 1202
+      },
+      "filename": "IMG20260826123437.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 368958,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 354544,
+        "width": 1202
+      },
+      "filename": "IMG20260826123441.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 380236,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 323297,
+        "width": 1202
+      },
+      "filename": "IMG20260826123446.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 356131,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 292432,
+        "width": 1202
+      },
+      "filename": "IMG20260826123450.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 313127,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 289747,
+        "width": 1202
+      },
+      "filename": "IMG20260826123454.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 311869,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 325554,
+        "width": 1202
+      },
+      "filename": "IMG20260826123708.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 344450,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 311226,
+        "width": 1202
+      },
+      "filename": "IMG20260826123712.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 330529,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 329113,
+        "width": 1202
+      },
+      "filename": "IMG20260826123719.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 348298,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 374288,
+        "width": 1202
+      },
+      "filename": "IMG20260826123725.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 405794,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 337215,
+        "width": 1202
+      },
+      "filename": "IMG20260826123730.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 363864,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 310897,
+        "width": 1202
+      },
+      "filename": "IMG20260826123733.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 334782,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 329870,
+        "width": 1202
+      },
+      "filename": "IMG20260826123740.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 346918,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 355921,
+        "width": 1202
+      },
+      "filename": "IMG20260826123746.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 372357,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 363236,
+        "width": 1202
+      },
+      "filename": "IMG20260826123749.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 384848,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 355794,
+        "width": 1202
+      },
+      "filename": "IMG20260826123753.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 375504,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 343396,
+        "width": 1202
+      },
+      "filename": "IMG20260826123759.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 359830,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 370971,
+        "width": 1202
+      },
+      "filename": "IMG20260826123804.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 392343,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 371788,
+        "width": 1202
+      },
+      "filename": "IMG20260826123807.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 394774,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 303377,
+        "width": 1202
+      },
+      "filename": "IMG20260826123810.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 328643,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 310928,
+        "width": 1202
+      },
+      "filename": "IMG20260826123813.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 339596,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 327171,
+        "width": 1202
+      },
+      "filename": "IMG20260826123816.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 356069,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 284750,
+        "width": 1202
+      },
+      "filename": "IMG20260826123820.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 317858,
+        "width": 1202
+      }
+    },
+    {
+      "depth": {
+        "channels": 1,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 272699,
+        "width": 1202
+      },
+      "filename": "IMG20260826123824.jpg",
+      "normal": {
+        "channels": 3,
+        "finite": true,
+        "height": 1600,
+        "positive_count": 309884,
+        "width": 1202
+      }
+    }
+  ],
+  "metrics": {
+    "bounding_box_extents": [
+      12.796958446502686,
+      9.919385433197021,
+      12.82782506942749
+    ],
+    "bounding_box_max": [
+      1.9468045234680176,
+      3.73714017868042,
+      11.3897705078125
+    ],
+    "bounding_box_min": [
+      -10.850153923034668,
+      -6.182245254516602,
+      -1.4380545616149902
+    ],
+    "dense_to_sparse_ratio": 64.2562715199213,
+    "face_count": 0,
+    "file_size_bytes": 10581520,
+    "finite_xyz_count": 391899,
+    "finite_xyz_fraction": 1.0,
+    "has_color": true,
+    "has_normals": true,
+    "has_uv": false,
+    "point_count": 391899,
+    "rank": 3,
+    "reference_expanded_fraction": 0.9999795865771538,
+    "reference_expanded_outlier_count": 8,
+    "robust_bounding_box_max": [
+      -1.0004313204288477,
+      3.0206296977996825,
+      3.9401521687507643
+    ],
+    "robust_bounding_box_min": [
+      -4.3167816343307495,
+      -2.270276497364044,
+      1.0631133255958558
+    ],
+    "vertex_count": 391899
+  },
+  "readable_depth_maps": 73,
+  "readable_normal_maps": 73,
+  "selected_attempt": 1,
+  "selected_config": {
+    "cache_size": 1,
+    "filter": true,
+    "geom_consistency": true,
+    "gpu_index": "0",
+    "max_image_size": 1600,
+    "num_threads": 2,
+    "source_views": 20
+  },
+  "source_manifest_hash": "5548006c3368bbd71cff6563b19b789bb9b397faf7e265f078e54dc2dc704c00",
+  "status": "completed",
+  "visual_review": {
+    "artifact_sha256": "87d89e16eb8fcc53d57f5bb371592b077b4e5838ba6a27eedb5a69e87a97236b",
+    "note": "All three full-bound views show the same coherent vessel-related dense core with recognizable bowl, body, and projecting spout/handle structure. Sparse long-range outliers remain visible and are disclosed; measured expanded-box coverage is used for the catastrophic-bounds gate.",
+    "preview_sha256": "9fbc3f8fbf282d39782c627a510cb6dd1826fffaec28fe84d6ac54d6d7f9eade",
+    "status": "passed"
+  },
+  "workspace": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\local_dense\\work\\dense_workspace"
+}

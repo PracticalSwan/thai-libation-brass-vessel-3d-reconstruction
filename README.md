@@ -16,15 +16,16 @@ smartphone capture
 -> bounded native learned sparse-recovery capability gate
 -> one bounded external ALIKED + LightGlue global-recovery experiment
 -> selected sparse source: accepted global model or frozen local fallback
--> dense reconstruction only under a separately approved downstream phase
--> meshing and texturing
--> Blender cleanup and final model
+-> local-only CUDA dense reconstruction from the frozen Step 10 fallback
+-> evidence-selected mesh, deterministic component cleanup, and QEM simplification
+-> COLMAP photo texture + headless Blender validation
+-> separately authorized Blender cleanup and final presentation model
 ```
 
 ## Project status
 
-The real-image preprocessing, QA, Steps 6-12, and the final bounded Step 13
-sparse-recovery experiment are complete and verified. Step 13 used the official
+The real-image preprocessing, QA, and Steps 6-17 are complete and verified.
+Step 13 used the official
 external ALIKED-N16Rot + LightGlue frontend on CUDA because Step 12's native
 pyCOLMAP path lacked ONNX support. Learned matching recovered all three fixed
 sequence boundaries and produced a strongest single model with **266/288
@@ -33,8 +34,12 @@ registered images** and **29,713 points**, a major improvement over the prior
 Step 13 still records `step13_success=false`. Sparse recovery is now closed and
 the frozen fallback rule selects the verified Step 10 local model
 (`reconstruction/sparse/best`, 73 images / 6,099 points) as the downstream
-sparse source. Dense reconstruction has not started and requires a separately
-approved local-only downstream phase.
+sparse source. Steps 14-17 then used only that 73-image local component: CUDA
+PatchMatch/fusion produced 391,899 points, an evidence-selected Poisson mesh was
+component-filtered and simplified to 499,999 faces, and COLMAP generated a
+4096 x 1902 photo atlas with 73.00% meaningful UV coverage. Headless Blender
+validated the final asset without manual cleanup. The result is a partial local
+model rather than a complete 288-image or 360-degree reconstruction.
 
 Measured preprocessing result:
 
@@ -91,7 +96,7 @@ Measured Step 11 sparse-component-bridging result:
 - targeted mapping was correctly skipped because every boundary needed at least one selected qualified bridge;
 - the one allowed CPU exhaustive fallback, using block size 50 and the shared Step 10 feature/mapping configuration, produced 8 sparse models and 224-image union coverage;
 - its strongest single model registered **73/288 images** with **3,443 points**, mean track length **3.7508**, and mean reprojection error **1.1989 px** using one `SIMPLE_RADIAL` camera;
-- the selected model's local camera arc and point structure are plausible, but registration remains limited to indices 1-73, so `bridge_success=false` and dense reconstruction remains blocked.
+- the selected model's local camera arc and point structure are plausible, but registration remains limited to indices 1-73, so Step 11 recorded `bridge_success=false` and stopped its own dense boundary.
 
 Measured Step 12 learned sparse-recovery result:
 
@@ -108,7 +113,18 @@ Measured Step 13 external learned global-recovery result:
 - one full 5,574-pair mapping attempt produced a strongest single model with **266/288 registered images**, **29,713 points**, **106,480 observations**, one `SIMPLE_RADIAL` camera, and **1.3748 px** mean reprojection error;
 - the fixed global acceptance floor was **274/288**, so the learned model missed acceptance by 8 images and `step13_success=false`; no retry, second matcher, parameter sweep, or learned exhaustive search was run;
 - the 266-image model and four real review figures are retained as Step 13 evidence, but the frozen fallback ranking selects the verified Step 10 local model (73 images / 6,099 points) as `selected_sparse_source`;
-- final verification passed **21 Step 13 tests** and **198 complete project tests**, preserved all 297 raw and 288 selected images, and removed Step 13 transient work; dense reconstruction did not start.
+- final verification passed **21 Step 13 tests** and **198 complete project tests**, preserved all 297 raw and 288 selected images, and removed Step 13 transient work; Step 13 itself did not start dense reconstruction.
+
+Measured Steps 14-17 local dense/mesh/texture result:
+
+- exact dense input remained the Step 10 `reconstruction/sparse/best` component with 73 registered images, 6,099 points, and 1.2373 px mean reprojection error;
+- official COLMAP 4.2.0 CUDA PatchMatch completed all 73 depth/normal maps once and fused 391,899 finite colored points, 64.26x the sparse count;
+- 99.9980% of fused points lie inside a one-span expansion of the Step 10 bounds; eight full-bound outliers remain visible in the real preview;
+- Poisson produced the plausible vessel surface; the one Delaunay alternative was rejected for giant unsupported sheets;
+- a deterministic 0.5%-of-faces component rule retained 96.64% of Poisson faces, followed by one measured-ratio QEM simplification to 283,341 vertices and 499,999 faces;
+- one COLMAP texturing attempt preserved coordinates and exact face connectivity, produced a readable 4096 x 1902 atlas, and mapped 73.00% of faces with nondegenerate normalized UVs;
+- headless Blender 5.2.0 LTS rendered three calibrated views without saving a `.blend` file or performing manual cleanup; `steps14_17_success=true` and `blender_manual_cleanup_started=false`.
+- final verification passed 49 focused tests, 106 Step 10-13 regression tests, and all 247 project tests; `--stage all` passed, 297 raw / 288 selected images and 160 protected Step 10-13 files remained exact, and every final 3D/texture artifact reopened successfully.
 
 The verified reconstruction input directory remains:
 
@@ -116,18 +132,19 @@ The verified reconstruction input directory remains:
 preprocessing/pycolmap_input/images/
 ```
 
-Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md), [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md), [`docs/geometry-ml/sparse-reconstruction.md`](docs/geometry-ml/sparse-reconstruction.md), [`docs/geometry-ml/sparse-component-bridging.md`](docs/geometry-ml/sparse-component-bridging.md), [`docs/geometry-ml/learned-sparse-recovery.md`](docs/geometry-ml/learned-sparse-recovery.md), and [`docs/geometry-ml/external-learned-global-recovery.md`](docs/geometry-ml/external-learned-global-recovery.md). The measured preprocessing method remains documented in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
+Read [`preprocessing/pycolmap_input/README.md`](preprocessing/pycolmap_input/README.md), [`docs/geometry-ml/reconstruction-readiness.md`](docs/geometry-ml/reconstruction-readiness.md), [`docs/geometry-ml/sparse-reconstruction.md`](docs/geometry-ml/sparse-reconstruction.md), [`docs/geometry-ml/sparse-component-bridging.md`](docs/geometry-ml/sparse-component-bridging.md), [`docs/geometry-ml/learned-sparse-recovery.md`](docs/geometry-ml/learned-sparse-recovery.md), [`docs/geometry-ml/external-learned-global-recovery.md`](docs/geometry-ml/external-learned-global-recovery.md), and [`docs/geometry-ml/local-dense-mesh-texture.md`](docs/geometry-ml/local-dense-mesh-texture.md). The measured preprocessing method remains documented in [`docs/preprocessing/preprocessing-results.md`](docs/preprocessing/preprocessing-results.md).
 
 ## Geometry + machine-learning extension
 
-Steps 6-13 are implemented and verified to their approved boundaries. Step 12
+Steps 6-17 are implemented and verified to their approved boundaries. Step 12
 stopped at its native ALIKED capability gate because the installed pyCOLMAP
 wheel lacks ONNX support. Step 13 then used one pinned external ALIKED +
 LightGlue runtime, recovered all three targeted sparse boundaries, and produced
 a 266-image strongest model. Because the frozen global gate required at least
 274 images, sparse recovery closed with the Step 10 73-image local component as
-the selected downstream source. Dense reconstruction remains a separate next
-phase and has not started.
+the selected downstream source. The separately approved local phase then
+completed dense stereo, mesh reconstruction, photo texturing, and automated
+Blender validation while preserving that local-only boundary.
 
 ### Step 6 — Geometry Detection / Analysis
 
@@ -194,6 +211,15 @@ phase and has not started.
 - selected the Step 10 73-image / 6,099-point model as the local downstream fallback and closed further sparse-recovery experimentation;
 - passed 21 Step 13 tests and 198 complete project tests, visually inspected four real Step 13 figures, preserved protected inputs/reports, and removed transient Step 13 work.
 
+### Steps 14-17 — Local Dense Model and Photo Texture
+
+- prepared exactly the 73 registered Step 10 views and verified the official COLMAP 4.2.0 CUDA dense and texturing command surface;
+- completed one preferred PatchMatch configuration and fused 391,899 finite colored points;
+- retained Poisson after the one Delaunay alternative produced unsupported enclosing sheets, then applied measured component filtering and QEM simplification;
+- produced a final 283,341-vertex / 499,999-face mesh and a topology-preserving photo texture with 73.00% meaningful UV coverage;
+- reopened the asset and rendered three calibrated views in headless Blender 5.2.0 LTS, with no manual geometry edit or saved `.blend` file;
+- recorded `steps14_17_success=true` while preserving the partial 73-view limitation.
+
 ```mermaid
 flowchart LR
     A[288 verified PREPROCESSED images] --> B[Step 6: SIFT + RANSAC]
@@ -219,7 +245,10 @@ flowchart LR
     S --> T[Step 13: external ALIKED + LightGlue]
     T --> U[266/288: below 274 global gate]
     U --> V[Select Step 10 local fallback]
-    V --> W[STOP before separately approved dense phase]
+    V --> W[Steps 14-15: local CUDA dense cloud]
+    W --> X[Step 16: Poisson + bounded cleanup]
+    X --> Y[Step 17: COLMAP photo texture]
+    Y --> Z[Headless Blender validation]
 ```
 
 - Design: [`docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`](docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md)
@@ -232,6 +261,7 @@ flowchart LR
 - Step 11 measured sparse bridging: [`docs/geometry-ml/sparse-component-bridging.md`](docs/geometry-ml/sparse-component-bridging.md)
 - Step 12 measured capability boundary: [`docs/geometry-ml/learned-sparse-recovery.md`](docs/geometry-ml/learned-sparse-recovery.md)
 - Step 13 measured external learned recovery: [`docs/geometry-ml/external-learned-global-recovery.md`](docs/geometry-ml/external-learned-global-recovery.md)
+- Steps 14-17 measured local dense/mesh/texture result: [`docs/geometry-ml/local-dense-mesh-texture.md`](docs/geometry-ml/local-dense-mesh-texture.md)
 - Step 6 implementation plan: [`docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`](docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md)
 - Steps 7+8 implementation plan: [`docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`](docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md)
 - Step 9 implementation-plan index: [`docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`](docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md)
@@ -243,6 +273,8 @@ flowchart LR
 - Step 12 implementation plan: [`docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md`](docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md)
 - Step 13 design: [`docs/superpowers/specs/2026-09-06-step-13-external-learned-global-recovery-design.md`](docs/superpowers/specs/2026-09-06-step-13-external-learned-global-recovery-design.md)
 - Step 13 implementation plan: [`docs/superpowers/plans/2026-09-06-step-13-external-learned-global-recovery.md`](docs/superpowers/plans/2026-09-06-step-13-external-learned-global-recovery.md)
+- Steps 14-17 design: [`docs/superpowers/specs/2026-09-06-steps-14-17-local-dense-mesh-texture-design.md`](docs/superpowers/specs/2026-09-06-steps-14-17-local-dense-mesh-texture-design.md)
+- Steps 14-17 implementation plan: [`docs/superpowers/plans/2026-09-06-steps-14-17-local-dense-mesh-texture.md`](docs/superpowers/plans/2026-09-06-steps-14-17-local-dense-mesh-texture.md)
 
 ## Why preprocessing is conservative
 
@@ -387,13 +419,32 @@ The published measured outcome is 266/288 registered images, below the fixed
 `dense_reconstruction_started=false`. Do not rerun the map as an optimization
 sweep or change the frozen threshold after the result.
 
+## Reproduce Steps 14-17 local dense reconstruction
+
+The measured local pipeline is restartable and uses only the frozen Step 10
+73-view component:
+
+```powershell
+python -B run_local_reconstruction.py --stage prepare
+python -B run_local_reconstruction.py --stage stereo
+python -B run_local_reconstruction.py --stage mesh
+python -B run_local_reconstruction.py --stage texture
+python -B run_local_reconstruction.py --stage finalize
+```
+
+`--stage all` uses the same tested stage sequence and stops at the first failed
+hard gate. Existing accepted outputs are reopened and hash-checked. Visual
+decisions require `--visual-status` plus a substantive `--visual-note` and are
+bound to current artifact/preview hashes. Do not start manual Blender cleanup
+or treat this partial local output as a full 288-image reconstruction.
+
 ## Repository layout
 
 ```text
 quality_check.py                         quality metrics, calibration, decisions
 preprocess_images.py                     geometry-preserving photometric transform
 run_preprocessing.py                     reports, previews, SIFT experiment, export
-tests/                                   deterministic preprocessing through Step 13 tests
+tests/                                   deterministic preprocessing through Step 17 tests
 analysis_common.py                       selected-manifest loading and integrity verification
 geometry_detection.py                    scaled SIFT, RANSAC, epilines, and residuals
 shape_geometry.py                        classical edges, contour, PCA, and optional ellipse
@@ -416,9 +467,13 @@ learned_sparse_recovery.py               Step 12 learned-frontend contracts, cac
 run_learned_sparse_recovery.py           Step 12 capability, fallback, reports, and figures
 external_learned_recovery.py              Step 13 external ALIKED/LightGlue + COLMAP adapter
 run_external_learned_recovery.py          Step 13 capability, diagnosis, one map, finalization
+local_reconstruction.py                   Steps 14-17 gates, subprocess, retry, and source contracts
+local_reconstruction_io.py                PLY, component, topology, UV, and texture validation
+run_local_reconstruction.py               restartable dense, mesh, texture, and finalization stages
+render_local_reconstruction.py            headless Blender calibrated texture validator
 ml_dataset/                              frozen 36-label manifest and source-size masks
 analysis/                                Step 6 + ML + Step 9 reports, masks, and figures
-reconstruction/                          Step 10-13 sparse/capability/recovery evidence
+reconstruction/                          Step 10-17 sparse, dense, mesh, and texture evidence
 preprocessing/reports/                   audit and final measured reports
 preprocessing/previews/contact_sheets/   full raw-sequence visual audit
 preprocessing/previews/final/            before/after, decision, and SIFT figures
@@ -471,6 +526,13 @@ The separate local `IMG20260826122949.zip` is only a redundant archive of the sa
 - `reconstruction/external_learned_recovery/reports/step13_capability.json`, `step13_boundary_summary.json`, `step13_attempt.json`, and `step13_summary.json` — real external learned runtime, exact boundary recovery, the single full mapping attempt, and final fallback decision.
 - `reconstruction/external_learned_recovery/best/` — strongest Step 13 evidence model (266 images / 29,713 points); retained for audit but not selected downstream because it missed the frozen 274-image gate.
 - `reconstruction/external_learned_recovery/previews/` — four visually inspected Step 13 boundary, sparse-model, registration, and model-comparison figures.
+- `reconstruction/local_dense/reports/steps14_17_summary.json` — integrated Step 14-17 provenance, selected attempts, gates, metrics, hashes, limitations, and manual-Blender boundary.
+- `reconstruction/local_dense/dense/fused.ply` — accepted 391,899-point local dense cloud plus its visibility sidecar.
+- `reconstruction/local_dense/mesh/final_mesh.ply` — accepted 283,341-vertex / 499,999-face deterministic final mesh.
+- `reconstruction/local_dense/texture/attempt_1/` — topology-preserving textured mesh and 4096 x 1902 photo atlas.
+- `reconstruction/local_dense/previews/` — real Step 14 sparse, Step 15 dense, Step 16 candidate/final, and Step 17 headless Blender figures.
+
+Heavy restart state under `reconstruction/local_dense/work/`, `.codegraph/`, the private CNN checkpoint, and oversized or redundant intermediate mesh files are intentionally local-only. Their measured metrics, hashes, and visual evidence remain in the published reports and previews; the compact accepted final dense, mesh, and textured assets are the repository-facing outputs.
 
 ## Collaboration
 
@@ -484,7 +546,7 @@ Read `CONTRIBUTING.md` before changing the repository and `AGENTS.md` before usi
 
 ## Course relevance
 
-The project demonstrates image-quality measurement, feature detection and matching, geometric verification, from-scratch CNN semantic segmentation, SIFT feature-mask analysis, Structure from Motion preparation, and later multi-view 3D reconstruction using a real Thai cultural object.
+The project demonstrates image-quality measurement, feature detection and matching, geometric verification, from-scratch CNN semantic segmentation, SIFT feature-mask analysis, sparse Structure from Motion, CUDA multi-view stereo, bounded mesh processing, and photo texture validation using a real Thai cultural object.
 
 ## License
 

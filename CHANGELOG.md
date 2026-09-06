@@ -80,6 +80,13 @@ All notable verified project milestones are recorded here.
 - The one permitted 5,574-pair full learned mapping attempt produced a strongest single model with 266/288 registered images, 29,713 points, 106,480 observations, one `SIMPLE_RADIAL` camera, and 1.374824 px mean reprojection error.
 - Step 13 retained the 266-image model as measured evidence but recorded `step13_success=false` because the frozen >=274-image gate was missed by eight images. The verified Step 10 73-image / 6,099-point model is selected as the local downstream fallback and sparse recovery is closed.
 - Final Step 13 verification: 21 focused tests and 198 complete project tests passed; four touched Python files compiled; 297 raw and 288 selected images reverified; five protected Step 10/11 report hashes remained unchanged; four real Step 13 figures were visually inspected; transient Step 13 work was removed.
+- Steps 14-17 restartable local dense pipeline, PLY/component/UV validators, headless Blender renderer, focused tests, design/plan/handoff, durable reports, and real previews.
+- Exact 73-view Step 10 dense workspace with verified poses/intrinsics and official COLMAP 4.2.0 CUDA plus Blender 5.2.0 LTS capability evidence.
+- One preferred CUDA PatchMatch run completed 73 depth/normal maps; geometric fusion produced 391,899 finite colored points, 64.26 times the sparse source, with 99.9980% inside the expanded Step 10 bounds.
+- Poisson primary mesh with 2,040,189 faces, one rejected Delaunay giant-shell alternative, deterministic 0.5%-face component filtering that retained 96.64% of faces, and one measured-ratio QEM simplification to 499,999 faces.
+- One COLMAP photo-texture attempt with exact topology preservation, a 4096 x 1902 atlas, 73.00% meaningful UV coverage, and a three-view headless Blender validation render.
+- Integrated `steps14_17_success=true` result with `blender_manual_cleanup_started=false` and a measured report at `docs/geometry-ml/local-dense-mesh-texture.md`.
+- Final Steps 14-17 verification: 49 focused tests, 106 Step 10-13 regressions, and 247 complete project tests passed; changed Python compiled; the real `all` stage passed; 297 raw, 288 selected, 73 local, and 160 protected Step 10-13 files remained exact; final artifacts reopened; documentation and cleanup checks passed.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -91,13 +98,22 @@ All notable verified project milestones are recorded here.
 - Preserved frontend/extractor/matcher identity in blocked and explicit `not_run` attempt reports; the final report-contract regression raises the Step 12 runner suite to 16 tests.
 - Step 13 diagnostic reports now distinguish LightGlue correspondences before geometric verification (363,318) from COLMAP match rows after verification (363,171), preventing ambiguous raw-match reporting.
 - Step 13 feature-cache validation now rejects any external learned feature set whose coordinate frame does not match the source image dimensions, making the original-pixel COLMAP import contract explicit and regression-tested.
+- Steps 14-17 now persist visual rejection by artifact/preview hash, record failed mesh subprocesses before using the one alternative, and permit only measured resource/runtime dense fallback categories.
+- Dense plausibility now checks the robust 0.1-99.9 percentile core plus at least 99% expanded-source-box coverage while preserving full bounds and full-cloud previews.
+- Textured-asset validation now compares exact face connectivity, requires at least 50% meaningful UV coverage, isolates retry outputs, and invalidates cached renders when mesh, atlas, manifest, renderer, Blender, or preview hashes change.
+- Headless Blender uses its verified 5.2 render-engine identifier, creates a world after factory reset, exits nonzero on Python errors, and must produce reopenable preview/report artifacts before the stage can pass.
+- The `all` CLI path now calls the same tested gate-owning `run_sequence` helper used by orchestration tests.
+- Windows interruption now terminates the complete launched subprocess tree, and restart protection checks the recorded parent plus surviving descendants.
+- Final-mesh and texture-attempt paths now reject unrecorded existing content before any overwrite, while textured-asset validation rejects finite UVs outside the normalized atlas range.
+- Step 16 machine reports and documentation now disclose when a large-mesh preview uses sampled vertices; Step 17 still imports and renders the exact final triangle surface in Blender.
+- Windows process-tree cleanup now isolates 	askkill from host stdio with DEVNULL, preventing WinError 50 in MCP/headless hosts while preserving timeout and descendant termination.
 
 ### Removed
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
+- Three task-created per-camera Blender render intermediates after composing the final Step 17 triptych.
 
 ### Next
-- Step 13 is complete and sparse-recovery experimentation is closed. The learned run materially improved connectivity to 266/288 images but did not meet the frozen >=274 global acceptance gate.
-- The selected downstream sparse source is the verified Step 10 local model at `reconstruction/sparse/best` (73 images / 6,099 points). The 266-image Step 13 model remains evidence only under `reconstruction/external_learned_recovery/best/`.
-- Before any dense work, create a separate local-only dense-reconstruction design/acceptance phase for the selected Step 10 component. Do not silently reuse the old global-gate assumption.
-- After that approval: undistort/prepare the selected local component, run dense stereo/fusion, mesh, texture, perform Blender cleanup, validate the final model, and update final coursework/report/presentation artifacts.
-- Keep the CNN masks as analysis evidence rather than assumed reconstruction inputs; Step 9 measured lower correspondence coverage for both masked modes.
+- Preserve the accepted Steps 14-17 local artifacts and their attempt ledgers; do not reopen sparse recovery or rerun dense/mesh/texturing as an optimization sweep.
+- If needed, separately authorize a bounded Blender manual-cleanup and final-presentation phase using `reconstruction/local_dense/texture/attempt_1/mesh.ply` and `texture.png` as the starting asset.
+- Keep the 73-view limitation, disconnected geometry, missing regions, reflective-brass seams, dark areas, and 73.00% meaningful UV coverage visible in coursework reporting.
+- Keep the CNN masks as analysis evidence; Step 9 measured lower correspondence coverage for both masked modes.

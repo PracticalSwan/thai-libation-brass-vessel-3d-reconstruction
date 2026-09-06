@@ -94,8 +94,26 @@ Updated: 2026-09-06
 - Sparse recovery is closed; no Step 13 retry, second matcher, parameter sweep, learned exhaustive matcher, dense MVS, mesh, texture, or Blender output was run.
 - `docs/geometry-ml/external-learned-global-recovery.md` records the complete measured Step 13 outcome.
 
+### Steps 14-17 — local dense reconstruction, mesh, and photo texture
+
+- Implemented restartable `prepare`, `stereo`, `mesh`, `texture`, `finalize`, and tested `all` orchestration with frozen Step 10 source protection and bounded attempt ledgers.
+- Prepared exactly 73 registered views. Official COLMAP 4.2.0 CUDA PatchMatch completed 73 depth/normal maps in 1,811.67 seconds; no PatchMatch fallback ran.
+- Geometric fusion produced 391,899 finite colored points in 101.83 seconds after one recorded cache-only correction from 1 GiB to 4 GiB reused the completed maps. The dense/sparse ratio is 64.2563 and expanded-box coverage is 99.9980%.
+- Poisson primary completed with 1,088,150 vertices / 2,040,189 faces. The one 69,153-face Delaunay alternative was rejected for giant unsupported sheets.
+- The measured 0.5%-face component rule kept 18 components and 96.6387% of Poisson faces while removing 5,458 tiny components. QEM simplified the retained surface at ratio 0.253599 to the accepted 283,341-vertex / 499,999-face final mesh.
+- One COLMAP texture attempt completed in 48.80 seconds. Exact coordinates and face topology were preserved; meaningful UV coverage is 73.0045% and the atlas is 4096 x 1902.
+- Headless Blender 5.2.0 LTS reopened the mesh/UV/material/atlas contract and rendered three calibrated views. No `.blend` file or manual cleanup was produced.
+- All Step 14-17 hard gates passed. `reconstruction/local_dense/reports/steps14_17_summary.json` records `steps14_17_success=true` and `blender_manual_cleanup_started=false`.
+
 ## Verification
 
+- Final Steps 14-17 checks: **49 focused tests passed**, **106 Step 10-13 regression tests passed**, and **247 complete project tests passed**.
+- Independent GLM review led to four verified safeguards: full Windows process-tree termination/restart checks, ownership guards for final and texture-attempt outputs, normalized UV-range validation, and explicit sampled-vertex evidence labels for large Step 16 previews.
+- The four Steps 14-17 source modules and four focused test files compiled successfully.
+- The real `--stage all` path passed without creating additional PatchMatch, mesher, simplifier, or texturer attempts.
+- Final reopening verified the 73-image / 6,099-point Step 10 model, 391,899-point dense cloud, 283,341-vertex / 499,999-face final mesh, exact textured topology, 73.0045% meaningful UV coverage, 4096 x 1902 atlas, and three-view Blender report.
+- Final integrity found 297/297 raw images unchanged, 288/288 selected inputs exact, all 73 local inputs exact, and 160 protected Step 10-13 files unchanged. `.codegraph/` and the private checkpoint remain present; no `.blend` or manual/sculpt output exists.
+- Documentation links, whitespace, and Git diff checks passed after bounded cleanup of task-created caches, temporary preview inputs, duplicate Delaunay workspace copies, process state, intermediate per-camera renders, and accidental `NUL` residue.
 - Fresh Step 11-focused suite after review: **32 passed**.
 - Fresh complete project suite after Step 11 review: **141 passed**.
 - Step 12 maintenance verification: **20 domain tests passed**, **14 runner tests passed**, and **49 Step 10/11 regression tests passed**.
@@ -126,6 +144,4 @@ Updated: 2026-09-06
 
 ## Next phase
 
-Step 13 is complete and sparse-recovery experimentation is closed. The external learned run reached 266/288 images but failed the frozen >=274 global gate, so the selected downstream sparse source is Step 10 `reconstruction/sparse/best` (73 images / 6,099 points). The Step 13 266-image model remains evidence only.
-
-The next phase is a separately authorized **local-only dense reconstruction** design/acceptance plan for the selected Step 10 component. After that approval, the remaining implementation sequence is dense-workspace/undistortion preparation, dense stereo and fusion, mesh reconstruction/cleanup, texturing, Blender cleanup/final presentation model, final visual/quantitative validation, and coursework/report/presentation packaging. Keep CNN masks as analysis evidence; Step 9 already showed they reduce correspondence coverage.
+Steps 14-17 are complete. The accepted downstream asset is `reconstruction/local_dense/texture/attempt_1/mesh.ply` plus `texture.png`; the final untextured mesh is `reconstruction/local_dense/mesh/final_mesh.ply`. Any manual Blender cleanup or final presentation packaging is a separate phase and must preserve the local 73-view, disconnected-geometry, missing-region, reflective-brass, seam, and 73.00% UV-coverage limitations. Sparse recovery remains closed, and the Step 13 266-image model remains evidence only.
