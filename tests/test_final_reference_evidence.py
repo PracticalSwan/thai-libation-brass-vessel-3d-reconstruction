@@ -14,7 +14,11 @@ from final_reference_evidence import (
     build_component_mask_evidence,
     build_geometry_mask_evidence,
     build_ornament_inventory,
+    build_motif_reference,
+    build_repeat_placements,
+    evaluate_chain_support,
     extract_ornament_crop,
+    extract_ornament_family_crops,
     refine_geometry_mask,
     FinalReferenceView,
     Landmark,
@@ -504,6 +508,211 @@ def test_ornament_inventory_is_source_traceable_and_omits_chain():
         "evidence_requirement": "two_independent_source_views",
     }
     assert all(family.primary_view_indices for family in inventory["families"])
+
+
+def test_ornament_family_crops_are_multi_view_and_have_contact_sheet(tmp_path: Path):
+    sources: list[Path] = []
+    for index, shade in ((267, 90), (268, 110)):
+        source = tmp_path / f"source_{index:03d}.png"
+        Image.new("RGB", (80, 60), (shade, shade - 10, shade - 20)).save(source)
+        sources.append(source)
+
+    result = extract_ornament_family_crops(
+        "ORB_GLOBE_HERO_MOTIF",
+        (
+            (267, "anchor", sources[0], (8, 10, 72, 50)),
+            (268, "secondary", sources[1], (6, 12, 74, 48)),
+        ),
+        tmp_path / "ornament_crops",
+    )
+
+    assert [crop["view_index"] for crop in result["crops"]] == [267, 268]
+    assert [crop["role"] for crop in result["crops"]] == ["anchor", "secondary"]
+    assert all(crop["source_sha256"] and crop["crop_sha256"] for crop in result["crops"])
+    assert result["contact_sheet"]["path"].is_file()
+    assert result["contact_sheet"]["support_count"] == 2
+    assert set(path.name for path in tmp_path.joinpath("ornament_crops").glob("*")) == {
+        "ORB_GLOBE_HERO_MOTIF_267_anchor.png",
+        "ORB_GLOBE_HERO_MOTIF_268_secondary.png",
+        "ORB_GLOBE_HERO_MOTIF_contact_sheet.png",
+    }
+
+
+def _alignment_decision(
+    method: str, homography: tuple[float, ...] | None, reason: str
+) -> reference_evidence.PairAlignmentDecision:
+    return reference_evidence.PairAlignmentDecision(
+        method=method,
+        match_count=40 if homography is not None else 3,
+        inlier_count=24 if homography is not None else 1,
+        homography=homography,
+        reason=reason,
+    )
+
+
+def _motif_source(path: Path, *, specular: bool = False) -> Path:
+    image = np.full((72, 96, 3), 105, dtype=np.uint8)
+    image[24:48, 28:68] = 35
+    image[30:42, 36:60] = 215
+    if specular:
+        image[4:24, 8:88] = 255
+    Image.fromarray(image).save(path)
+    return path
+
+
+def test_motif_reference_records_failure_and_reduces_consensus_support(tmp_path: Path):
+    anchor = _motif_source(tmp_path / "anchor.png")
+    secondary = _motif_source(tmp_path / "secondary.png")
+    calls: list[tuple[Path, Path]] = []
+
+    def failed_aligner(first: Path, second: Path, output: Path):
+        calls.append((first, second))
+        Image.new("RGB", (20, 20), (0, 0, 0)).save(output)
+        return _alignment_decision(
+            "aliked_lightglue", None, "fallback rejected: homography had too few inliers"
+        )
+
+    result = build_motif_reference(
+        "ORB_GLOBE_HERO_MOTIF",
+        anchor,
+        (secondary,),
+        tmp_path / "family",
+        match_dir=tmp_path / "matches",
+        align_pair=failed_aligner,
+    )
+
+    assert len(calls) == 1
+    assert result["multi_view_consensus"] is False
+    assert result["aligned_support_count"] == 0
+    assert result["source_support_count"] == 1
+    assert result["alignment_records"][0]["status"] == "rejected"
+    assert result["alignment_records"][0]["explicit_failure"] == (
+        "fallback rejected: homography had too few inliers"
+    )
+    assert result["alignment_records"][0]["fallback_used"] is True
+    assert result["confidence_adjustment"] == "anchor_only_reduced_confidence"
+    for name in ("source_anchor.png", "analysis_anchor.png", "consensus.png", "mask_or_height.png"):
+        assert result["artifacts"][name]["path"].is_file()
+
+
+def test_motif_reference_excludes_specular_patch_from_height_consensus(tmp_path: Path):
+    anchor = _motif_source(tmp_path / "anchor.png")
+    secondary = _motif_source(tmp_path / "secondary.png", specular=True)
+    identity = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
+
+    def identity_aligner(first: Path, second: Path, output: Path):
+        Image.new("RGB", (20, 20), (0, 0, 0)).save(output)
+        return _alignment_decision("sift", identity, "SIFT met thresholds")
+
+    result = build_motif_reference(
+        "ORB_GLOBE_HERO_MOTIF",
+        anchor,
+        (secondary,),
+        tmp_path / "family",
+        match_dir=tmp_path / "matches",
+        align_pair=identity_aligner,
+    )
+
+    record = result["alignment_records"][0]
+    assert record["status"] == "accepted_geometry"
+    assert record["photometric_quality"]["specular_dominated"] is True
+    assert record["used_for_geometry_support"] is True
+    assert record["used_for_texture_height_consensus"] is False
+    assert result["multi_view_consensus"] is False
+    assert result["aligned_support_count"] == 1
+    assert result["texture_height_support_count"] == 0
+    assert result["artifacts"]["confidence.png"]["path"].is_file()
+
+
+def test_repeat_placement_requires_two_views_consistent_count_and_surface_provenance():
+    family = next(
+        family
+        for family in build_ornament_inventory()["families"]
+        if family.family_id == "ORB_GLOBE_HERO_MOTIF"
+    )
+    sectors = []
+    for start in range(0, 360, 30):
+        angle = start + 15
+        support_class = (
+            "direct_multi_view"
+            if angle in (45, 75, 135)
+            else "symmetry_repetition"
+            if angle != 315
+            else "hidden_generic_fill"
+        )
+        sectors.append(
+            {"sector": f"azimuth_{start:03d}_{start + 30:03d}", "support_class": support_class}
+        )
+    observations = (
+        {"selected_index": 267, "azimuth_deg": 20.0},
+        {"selected_index": 267, "azimuth_deg": 80.0},
+        {"selected_index": 268, "azimuth_deg": 80.0},
+        {"selected_index": 268, "azimuth_deg": 140.0},
+    )
+
+    placement = build_repeat_placements(family, observations, sectors)
+
+    assert placement["full_ring_supported"] is True
+    assert placement["repeat_count"] == 6
+    assert placement["phase_source"] == "multi_view_circular_median"
+    assert len(placement["placements"]) == 5
+    assert placement["blocked_placements"][0]["angle_deg"] == pytest.approx(320.0)
+    assert placement["blocked_placements"][0]["reason"] == "hidden_generic_fill"
+    assert {entry["provenance"] for entry in placement["placements"]} == {
+        "directly_observed",
+        "symmetry_repetition",
+    }
+
+
+def test_repeat_placement_does_not_infer_full_ring_from_one_view():
+    family = next(
+        family
+        for family in build_ornament_inventory()["families"]
+        if family.family_id == "ORB_GLOBE_HERO_MOTIF"
+    )
+    observations = (
+        {"selected_index": 267, "azimuth_deg": 20.0},
+        {"selected_index": 267, "azimuth_deg": 80.0},
+    )
+
+    placement = build_repeat_placements(family, observations, ())
+
+    assert placement["full_ring_supported"] is False
+    assert placement["status"] == "insufficient_independent_views"
+    assert placement["placements"] == []
+
+
+def test_chain_support_requires_two_independently_aligned_originals():
+    identity = (1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0)
+    one_view = (
+        {
+            "selected_index": 267,
+            "source_path": "a.jpg",
+            "source_sha256": "a" * 64,
+            "alignment": _alignment_decision("sift", identity, "ok"),
+        },
+        {
+            "selected_index": 268,
+            "source_path": "b.jpg",
+            "source_sha256": "b" * 64,
+            "alignment": _alignment_decision("aliked_lightglue", None, "failed"),
+        },
+    )
+    two_views = (
+        one_view[0],
+        {
+            "selected_index": 268,
+            "source_path": "b.jpg",
+            "source_sha256": "b" * 64,
+            "alignment": _alignment_decision("sift", identity, "ok"),
+        },
+    )
+
+    assert evaluate_chain_support(one_view)["supported"] is False
+    support = evaluate_chain_support(two_views)
+    assert support["supported"] is True
+    assert support["independent_source_count"] == 2
+    assert support["decision"] == "eligible_for_source_bound_model_review"
 
 
 def test_geometry_mask_refinement_is_deterministic_and_bounded():

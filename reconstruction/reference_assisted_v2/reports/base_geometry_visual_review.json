@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "accepted": true,
+  "reviewed_on": "2026-09-09",
+  "reviewer": "Codex pipeline owner visual inspection",
+  "blend_path": "reconstruction/reference_assisted_v2/work/30_BASE_GEOMETRY_ACCEPTED.blend",
+  "blend_sha256": "39c6d5e2c81bfe7fc45058719cd7884e0d4747d9824a8e503d21cfe85cf3c61e",
+  "plan1_candidate_sha256": "edbed94742df14bebab91c877884a0e247a91e99f5e46c91331c516f831166e0",
+  "components": {
+    "bowl_pedestal": "pass",
+    "globe_shoulder": "pass",
+    "neck": "pass",
+    "lid_finial": "pass",
+    "overall_identity": "pass"
+  },
+  "diagnostics": [
+    {
+      "view": "front",
+      "path": "reconstruction/reference_assisted_v2/diagnostics/20_base_geometry/validation/geometry_validation_front.png",
+      "sha256": "8c9331b3543f99807bf0e2bd38618581bb882979705829e9f4c7b7e388fc1448"
+    },
+    {
+      "view": "quarter",
+      "path": "reconstruction/reference_assisted_v2/diagnostics/20_base_geometry/validation/geometry_validation_quarter.png",
+      "sha256": "a73d888553918805684428acc604773c5f4eb439ba36c4b00844d96b4cea0337"
+    },
+    {
+      "view": "side",
+      "path": "reconstruction/reference_assisted_v2/diagnostics/20_base_geometry/validation/geometry_validation_side.png",
+      "sha256": "9b2fa535a6f53dd1b55fd916bc0a210fd51164f41a02c477810764bb1f22a9ef"
+    },
+    {
+      "view": "low",
+      "path": "reconstruction/reference_assisted_v2/diagnostics/20_base_geometry/validation/geometry_validation_low.png",
+      "sha256": "586c3e7c6a7cd3a362ac1d7d8214e33cf83930542671993fc1ab744381062e86"
+    },
+    {
+      "view": "top",
+      "path": "reconstruction/reference_assisted_v2/diagnostics/20_base_geometry/validation/geometry_validation_top.png",
+      "sha256": "4175d0087b553300a97a082547a1b439bf8dc9ff79b66b03148a764494cdfeea"
+    },
+    {
+      "view": "wire",
+      "path": "reconstruction/reference_assisted_v2/diagnostics/20_base_geometry/validation/geometry_validation_wire.png",
+      "sha256": "a16b890db7ba2b4d0d53102d7de1acc8be3868a31afeb52e0d3ac122d7a847f2"
+    }
+  ],
+  "visual_findings": {
+    "bowl_pedestal": "The saved candidate preserves the accepted broad receiving bowl, narrow waist, flared pedestal and grounded foot across front, quarter, low and top views.",
+    "globe_shoulder": "The globe remains rounded and seated within the bowl with the accepted shoulder and construction-ring transitions; no generic V1 globe was imported.",
+    "neck": "The long tapered neck, base transition and source-supported opening read consistently in front, side, quarter and top renders.",
+    "lid_finial": "The stepped conical lid and rounded finial preserve the accepted axial proportions without unsupported chain or ornament.",
+    "overall_identity": "The unornamented macro silhouette and component placement visibly agree with the accepted source-photo diagnostics; the regenerated explicit Wireframe-modifier render exposes the evaluated topology. Surface ornament and brass appearance remain intentionally deferred to later plans."
+  },
+  "limitations": [
+    "The reviewed Blender cameras are display-only pinhole views; numeric geometry acceptance remains bound to exact SIMPLE_RADIAL reprojection in the companion reports.",
+    "This review accepts base shape only and does not claim ornament, topology, UV, texture, material, final render or export readiness."
+  ]
+}

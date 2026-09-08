@@ -18,6 +18,8 @@
 - Ornament on unseen backsides may be repeated only when the visible manufactured pattern clearly repeats.
 - Never claim inferred repetition as directly photographed.
 - Large form remains unchanged in this plan; ornament cannot compensate for bad silhouette.
+- Consume Plan 2 `surface_evidence_coverage.json`. Directly observed sectors, detail-only sectors, symmetry/repetition-inferred sectors, and unsupported hidden sectors must remain distinguishable in ornament provenance.
+- Do not populate an unseen backside with ornament merely because a front-side motif exists. Full-ring repetition is allowed only when manufactured repetition/count/phase is established from the multi-view evidence; otherwise keep unsupported sectors conservative and disclose them.
 - Use Blender `sculpting`, `texture-workflow`, `materials`, and `qa-review` skills as applicable.
 - Spend compute on real multi-view correspondence, rectification, motif consolidation, high-detail generation, and close-up render comparison when it improves fidelity. Do not replace difficult source reconstruction with generic decoration.
 - A technically clean ornament pass that does not reproduce the photographed motif family is a failed gate and must be revised.
@@ -275,7 +277,7 @@ mask_or_height.png
 
 - [ ] **Step 1: Measure visible angular spacing using camera-aware geometry**
 
-For registered views, project the accepted rotational host surface and estimate motif center azimuths from image positions.
+For registered views, project the accepted rotational host surface and estimate motif center azimuths from image positions. Cross-reference `surface_evidence_coverage.json` so every measured center is tagged as directly observed, and every later replicated sector is tagged as inferred rather than silently promoted to observed evidence.
 
 - [ ] **Step 2: Infer full repeat count only from consistent evidence**
 

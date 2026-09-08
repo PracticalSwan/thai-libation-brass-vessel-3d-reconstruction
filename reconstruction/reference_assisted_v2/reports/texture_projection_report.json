@@ -1,0 +1,666 @@
+{
+  "accepted_input_provenance": {
+    "final_cv_fit_sha256": "215008cd1f22f7151ca1d7dc4448ce0372b38c029616ee1c80b674c7b92b0c1f",
+    "final_profiles_sha256": "ae1090b2ec9b2cf0c231a74898c12e3834f1dd19225a819b8b7b6250ae393fe6",
+    "final_reference_evidence_sha256": "bbcc6dc070725f46d01916018cb8443f6cc9a07b65895dc8c0c417ba2365c435",
+    "surface_evidence_coverage_sha256": "848fd02f21f8742d4d8b44d7169d388af3b09868865b99c34bdaf2b676a609f6"
+  },
+  "blocked_reasons": [
+    "exact_projection_geometry_package_missing",
+    "per_texel_depth_masked_projection_not_run",
+    "component_level_photo_informed_fallback_only"
+  ],
+  "claim_scope": "photo_informed_component_fusion_fallback_no_visual_qa",
+  "component_fusion": {
+    "globe": [
+      {
+        "accepted_count": 11,
+        "color_srgb_fused": [
+          185.0,
+          133.0,
+          53.0
+        ],
+        "confidence": 1.0,
+        "stop": "lower",
+        "view_count": 11
+      },
+      {
+        "accepted_count": 11,
+        "color_srgb_fused": [
+          168.0,
+          124.0,
+          44.0
+        ],
+        "confidence": 1.0,
+        "stop": "middle",
+        "view_count": 11
+      },
+      {
+        "accepted_count": 11,
+        "color_srgb_fused": [
+          138.0,
+          76.0,
+          30.0
+        ],
+        "confidence": 1.0,
+        "stop": "upper",
+        "view_count": 11
+      }
+    ],
+    "lid_finial": [
+      {
+        "accepted_count": 9,
+        "color_srgb_fused": [
+          154.0,
+          117.0,
+          54.0
+        ],
+        "confidence": 0.8181818181818182,
+        "stop": "lower",
+        "view_count": 11
+      },
+      {
+        "accepted_count": 10,
+        "color_srgb_fused": [
+          196.0,
+          153.0,
+          50.0
+        ],
+        "confidence": 0.9090909090909091,
+        "stop": "middle",
+        "view_count": 11
+      },
+      {
+        "accepted_count": 10,
+        "color_srgb_fused": [
+          172.0,
+          118.0,
+          40.0
+        ],
+        "confidence": 0.9090909090909091,
+        "stop": "upper",
+        "view_count": 11
+      }
+    ],
+    "neck": [
+      {
+        "accepted_count": 10,
+        "color_srgb_fused": [
+          149.0,
+          108.0,
+          37.0
+        ],
+        "confidence": 0.9090909090909091,
+        "stop": "lower",
+        "view_count": 11
+      },
+      {
+        "accepted_count": 10,
+        "color_srgb_fused": [
+          141.0,
+          95.0,
+          30.0
+        ],
+        "confidence": 0.9090909090909091,
+        "stop": "middle",
+        "view_count": 11
+      },
+      {
+        "accepted_count": 10,
+        "color_srgb_fused": [
+          138.0,
+          90.0,
+          22.0
+        ],
+        "confidence": 0.9090909090909091,
+        "stop": "upper",
+        "view_count": 11
+      }
+    ],
+    "receiving_bowl_pedestal": [
+      {
+        "accepted_count": 11,
+        "color_srgb_fused": [
+          118.0,
+          83.0,
+          33.0
+        ],
+        "confidence": 1.0,
+        "stop": "lower",
+        "view_count": 11
+      },
+      {
+        "accepted_count": 11,
+        "color_srgb_fused": [
+          115.0,
+          84.0,
+          32.0
+        ],
+        "confidence": 1.0,
+        "stop": "middle",
+        "view_count": 11
+      },
+      {
+        "accepted_count": 11,
+        "color_srgb_fused": [
+          134.0,
+          91.0,
+          29.0
+        ],
+        "confidence": 1.0,
+        "stop": "upper",
+        "view_count": 11
+      }
+    ]
+  },
+  "component_height_boundaries": {
+    "globe_bottom": 0.37918617723505904,
+    "globe_top": 0.6364371803875293,
+    "neck_top": 0.8087588056914039,
+    "receiving_top": 0.4451418996636791
+  },
+  "coordinate_model": "plan1_normalized_height_bands",
+  "coverage": {
+    "direct_projection_percent": 0.0,
+    "low_confidence_percent": 0.0,
+    "supported_texel_count": 0,
+    "zero_sample_percent": 100.0
+  },
+  "derived_maps_claim": "roughness_and_wear_inferred_not_directly_measured",
+  "direct_projection_percent": 0.0,
+  "fallback": {
+    "active": true,
+    "ambient_occlusion_map": "neutral_pending_plan4_bake_integration",
+    "azimuthal_ornament_detail_projected": false,
+    "component_correspondence": "accepted_plan1_reviewed_component_masks",
+    "exact_projection_package_path": "reconstruction/reference_assisted_v2/work/projection_geometry",
+    "exact_projection_package_present": false,
+    "normal_map": "neutral_flat_pending_plan4_bake_integration",
+    "reason": "Blender UV geometry export and per-view depth maps are not yet available for exact per-texel projection",
+    "texel_direct_projection": false,
+    "vertical_component_gradients": true
+  },
+  "fusion_method": "per_component_weighted_median_local_consistency",
+  "highlight_rejection": {
+    "deep_shadow_value_cutoff": 0.08,
+    "highlight_value_cutoff": 0.97
+  },
+  "inferred_fill_percent": 100.0,
+  "inferred_texel_count": 16777216,
+  "photometric_correspondence_note": "One overlap observation per accepted component mask and view; minimum_overlap_samples=4; relative harmonization only, not reflectance recovery",
+  "photometric_harmonization": {
+    "anchor_view_index": 0,
+    "claim": "relative_photometric_harmonization_not_reflectance_recovery",
+    "color_calibrated": false,
+    "corrections": [
+      {
+        "accepted": true,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.0,
+        "robust_residual_before": 0.0,
+        "sample_count": 4,
+        "selected_index": 3,
+        "unreliable_reason": null,
+        "view_index": 0
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.11448361236858824,
+        "robust_residual_before": 0.11448361236858824,
+        "sample_count": 4,
+        "selected_index": 19,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 1
+      },
+      {
+        "accepted": true,
+        "gains_srgb": [
+          1.0171470207253885,
+          1.0151307236747074,
+          1.0319047619047619
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.04379942749429515,
+        "robust_residual_before": 0.03999230991053165,
+        "sample_count": 4,
+        "selected_index": 72,
+        "unreliable_reason": null,
+        "view_index": 2
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.24750193689314692,
+        "robust_residual_before": 0.24750193689314692,
+        "sample_count": 4,
+        "selected_index": 90,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 3
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.18146526512038985,
+        "robust_residual_before": 0.18146526512038985,
+        "sample_count": 4,
+        "selected_index": 114,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 4
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.1808816887176284,
+        "robust_residual_before": 0.1808816887176284,
+        "sample_count": 4,
+        "selected_index": 128,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 5
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.15640865647421565,
+        "robust_residual_before": 0.15640865647421565,
+        "sample_count": 4,
+        "selected_index": 142,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 6
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.17715553348677174,
+        "robust_residual_before": 0.17715553348677174,
+        "sample_count": 4,
+        "selected_index": 148,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 7
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.16788482165169868,
+        "robust_residual_before": 0.16788482165169868,
+        "sample_count": 4,
+        "selected_index": 165,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 8
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.1784529183285522,
+        "robust_residual_before": 0.1784529183285522,
+        "sample_count": 4,
+        "selected_index": 188,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 9
+      },
+      {
+        "accepted": false,
+        "gains_srgb": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "rejection_counts": {
+          "clipped_highlight": 0,
+          "deep_shadow": 0,
+          "specular": 0
+        },
+        "robust_residual_after": 0.1823951037067858,
+        "robust_residual_before": 0.1823951037067858,
+        "sample_count": 4,
+        "selected_index": 200,
+        "unreliable_reason": "gain_outside_conservative_bounds",
+        "view_index": 10
+      }
+    ],
+    "method": "anchor_median_rgb_gain"
+  },
+  "projection_method": "component_level_photo_informed_fusion_fallback",
+  "schema_version": 1,
+  "selected_view_count": 11,
+  "selected_views": [
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/003_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/003_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/003_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/003_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/003_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826122956.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 3,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826122956.jpg",
+      "source_sha256": "8db6db94e8e45fc3480898f2b5e62ef2133ee97a5c61ef82d636211f2b51599e",
+      "view_category": "normal_side",
+      "view_index": 0
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/019_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/019_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/019_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/019_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/019_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826123111.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 19,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826123111.jpg",
+      "source_sha256": "df760370b6b526dfbdb0a20fa55ad8d423baaa896e868aa9d6c2177ec9ec015e",
+      "view_category": "normal_side",
+      "view_index": 1
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/072_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/072_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/072_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/072_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/072_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826123820.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 72,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826123820.jpg",
+      "source_sha256": "8a709a8263212f6f36952393f685983bc833338b6e18fc68a6fecffea9ab676c",
+      "view_category": "normal_side",
+      "view_index": 2
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/090_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/090_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/090_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/090_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/090_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826124123.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 90,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826124123.jpg",
+      "source_sha256": "99e5f885e3d2cd1a13561811874040abd2a2acfdbb2de870a21ef2b5c8a8e8c8",
+      "view_category": "low_angle_pedestal",
+      "view_index": 3
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/114_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/114_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/114_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/114_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/114_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826124323.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 114,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826124323.jpg",
+      "source_sha256": "c042d0adbf7ea8c2b0b7962af8f777054f2e833e35564937829623b94f3df29c",
+      "view_category": "low_angle_pedestal",
+      "view_index": 4
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/128_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/128_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/128_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/128_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/128_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826124422.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 128,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826124422.jpg",
+      "source_sha256": "a780f066ea973f953c863ed0c6c10ceb7fe4878b8541a722e363a88095424a3d",
+      "view_category": "low_angle_pedestal",
+      "view_index": 5
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/142_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/142_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/142_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/142_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/142_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826124754.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 142,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826124754.jpg",
+      "source_sha256": "78779564977103710d8d8864b4734c5851b0733c9312a6ced126a6573f800aa6",
+      "view_category": "low_angle_pedestal",
+      "view_index": 6
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/148_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/148_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/148_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/148_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/148_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826124908.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 148,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826124908.jpg",
+      "source_sha256": "a5164a40b220b7f75cf847c1e68930643f2bf56283a0e36da5227c1fbf1c3a95",
+      "view_category": "elevated_oblique",
+      "view_index": 7
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/165_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/165_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/165_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/165_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/165_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826125013.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 165,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826125013.jpg",
+      "source_sha256": "cedab10568128360cc9d1711726cb34a71cc037099d60b641f9b5101111f78fb",
+      "view_category": "elevated_oblique",
+      "view_index": 8
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/188_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/188_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/188_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/188_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/188_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826125249.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 188,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826125249.jpg",
+      "source_sha256": "fd71901e868130baca172454fcfc2d7def3d469531747a0dd357792d1a17c00f",
+      "view_category": "elevated_oblique",
+      "view_index": 9
+    },
+    {
+      "component_mask_provenance": {
+        "globe": "reconstruction/reference_assisted_v2/evidence/component_masks/200_globe.png",
+        "lid_finial": "reconstruction/reference_assisted_v2/evidence/component_masks/200_lid_finial.png",
+        "main_vessel": "reconstruction/reference_assisted_v2/evidence/component_masks/200_main_vessel.png",
+        "neck": "reconstruction/reference_assisted_v2/evidence/component_masks/200_neck.png",
+        "receiving_bowl_pedestal": "reconstruction/reference_assisted_v2/evidence/component_masks/200_receiving_bowl_pedestal.png"
+      },
+      "filename": "IMG20260826125422.jpg",
+      "fit_included": true,
+      "inclusion_reason": "accepted_plan1_fit_component_color_fusion",
+      "quality_condition": "normal",
+      "selected_index": 200,
+      "source_path": "preprocessing/pycolmap_input/images/IMG20260826125422.jpg",
+      "source_sha256": "01079ea8f5ba3b96e3522d6cd28c57678b93c6a1b91524550a2678c6e9b8fcfb",
+      "view_category": "elevated_oblique",
+      "view_index": 10
+    }
+  ],
+  "stage": "texture_projection",
+  "status": "BLOCKED",
+  "texture_size": 4096,
+  "textures": [
+    {
+      "color_space": "sRGB",
+      "height": 4096,
+      "path": "textures/final/T_ThaiLibation_BaseColor.png",
+      "sha256": "3fc5fb44808223dfd3bf31867923d777ffcd3508fa7c96eee55242cd9fd0fa23",
+      "width": 4096
+    },
+    {
+      "color_space": "Non-Color",
+      "height": 4096,
+      "path": "textures/final/T_ThaiLibation_Roughness.png",
+      "sha256": "e0456633c514e32d26dff92acb8631f1ba52304b8dae4bc0f71d9ec70bee9ab4",
+      "width": 4096
+    },
+    {
+      "color_space": "Non-Color",
+      "height": 4096,
+      "path": "textures/final/T_ThaiLibation_Wear.png",
+      "sha256": "0ec25baaf2187522ef0aa68ab369847f3300afeb36241f955d0e9f18b4b59a83",
+      "width": 4096
+    },
+    {
+      "color_space": "Non-Color",
+      "height": 4096,
+      "path": "textures/final/T_ThaiLibation_Metallic.png",
+      "sha256": "fdbf78fae13b9c50df80cb574f7504438c3471fa498f3f2ae5b44b1492b9ff63",
+      "width": 4096
+    },
+    {
+      "color_space": "Non-Color",
+      "height": 4096,
+      "path": "textures/final/T_ThaiLibation_Normal.png",
+      "sha256": "57295e759e5e07d4f2da697996a91645eb62d1de2918c084032005f39a106db7",
+      "width": 4096
+    },
+    {
+      "color_space": "Non-Color",
+      "height": 4096,
+      "path": "textures/final/T_ThaiLibation_AO.png",
+      "sha256": "fdbf78fae13b9c50df80cb574f7504438c3471fa498f3f2ae5b44b1492b9ff63",
+      "width": 4096
+    },
+    {
+      "color_space": "Non-Color",
+      "height": 4096,
+      "path": "textures/final/T_ThaiLibation_InferredRegionMask.png",
+      "sha256": "fdbf78fae13b9c50df80cb574f7504438c3471fa498f3f2ae5b44b1492b9ff63",
+      "width": 4096
+    }
+  ],
+  "visibility_method": "reviewed_component_masks_no_uv_depth_visibility"
+}

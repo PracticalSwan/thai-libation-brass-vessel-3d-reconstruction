@@ -114,6 +114,7 @@ This phase is part of the Computer Vision coursework. At least these existing pr
 
 6. **New V2 multi-view texture projection**
    - project selected source photographs onto the V2 surface using known/refined cameras;
+   - estimate bounded overlap-based photometric normalization from trustworthy corresponding regions so exposure/white-balance differences do not become texture seams; reject clipped/specular samples from that solve and disclose that the result is relative harmonization, not color-calibrated reflectance;
    - weight contributions by view angle, visibility, mask confidence, clipping/saturation, and consistency;
    - use robust median/weighted fusion to reduce transient polished-brass specular highlights;
    - derive object-specific base-color/roughness/detail masks from the photos where defensible.
@@ -129,14 +130,36 @@ smartphone photographs
 → CV-selected reference views
 → multi-view silhouette/profile fitting
 → Blender parametric reconstruction
+→ distortion-consistent registered-view coverage audit
 → CV-aligned ornament/image patch extraction
 → Blender high/low detail + UV/bakes
 → multi-view photo texture projection
-→ reference-camera render validation
+→ reference-camera + non-canonical render validation
 → final Blender/GLB presentation asset
 ```
 
 If the final asset can be reproduced without any of the CV evidence above, the implementation has failed this design.
+
+## CV continuity and full-surface evidence coverage
+
+Plan 1's accepted 16-view fit is the primary macro-geometry constraint, but V2 must not overfit only those cameras. Downstream Blender validation therefore adds a secondary **registered-view coverage audit** over Step 13-registered, non-canonical views using the existing Step 9/CNN masks (reviewed masks where available). This audit is a generalization/cross-check workload, not a second optimization set: render low-cost binary silhouettes, compute per-view overlap diagnostics, inspect the worst views, and classify each failure as `mask_failure`, `camera_failure`, or `model_mismatch`. A real structural `model_mismatch` routes back to the responsible geometry stage; noisy CNN masks are documented rather than used to deform the model.
+
+All camera-metric paths must be distortion-consistent. Raw source photographs use the frozen `SIMPLE_RADIAL` camera model through pyCOLMAP/exact verified distortion math. Blender pinhole cameras may be used for viewport/reference display only when paired with explicitly generated undistorted images and the corresponding derived camera. Never compare a pinhole render directly to a raw distorted source and call the result an exact CV metric.
+
+The Blender reconstruction must also maintain a **surface-evidence coverage manifest**. For each major component and meaningful azimuth/elevation region, record whether final geometry/appearance is:
+
+```text
+direct_multi_view          supported by registered source views
+reviewed_single_or_detail  supported by a reviewed/detail source but not multi-view camera coverage
+symmetry_repetition        inferred from established rotational/manufactured repetition
+hidden_generic_fill        physically plausible completion with no direct source support
+```
+
+This manifest constrains backside completion, ornament replication, texture filling, and final reporting. It does not forbid completing unseen surfaces; it makes the completion method explicit and prevents inferred regions from being presented as directly reconstructed.
+
+As an independent classical-CV check, reuse Step 6 Canny/contour/PCA/ellipse evidence where source edges are reliable to compare projected circular rims, feet, shoulder/lid rings, and the vessel axis. These measurements are diagnostic cross-checks only; they do not override stronger reviewed masks, landmarks, or accepted multi-view profile evidence.
+
+Do not add a new NeRF/3DGS/neural reconstruction branch, retrain the frozen CNN, or reopen global sparse/dense recovery merely to finish the deadline model. The approved V2 architecture already contains the necessary CV stages; additional methods are justified only if a concrete downstream blocker proves the current evidence insufficient.
 
 ## Protected evidence boundary
 

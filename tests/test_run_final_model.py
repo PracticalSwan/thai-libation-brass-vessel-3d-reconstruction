@@ -1,5 +1,7 @@
 from pathlib import Path
 import json
+import sys
+from types import SimpleNamespace
 
 import pytest
 
@@ -119,6 +121,83 @@ def test_cv_fit_requires_separate_accepted_visual_review(monkeypatch, tmp_path: 
     assert observed["review"] is None
     assert result["accepted"] is True
     assert result["metrics_passed"] is True
+
+
+def test_cv_continuity_reports_guard_every_downstream_stage():
+    for stage in ("ornament", "cleanup", "uv-bake", "lookdev", "final-validate", "export"):
+        assert runner.ADDITIONAL_PREREQUISITE_REPORTS[stage] == runner.CV_CONTINUITY_REPORTS
+
+
+def test_geometry_validate_runs_blender_then_exact_camera_audit(
+    monkeypatch, tmp_path: Path
+):
+    report_dir = tmp_path / runner.V2_RELATIVE_ROOT / "reports"
+    report_dir.mkdir(parents=True)
+    (report_dir / "final_cv_fit.json").write_text(
+        '{"accepted": true}\n', encoding="utf-8"
+    )
+    observed = []
+
+    def fake_blender(stage, project_root=runner.PROJECT_ROOT):
+        observed.append(("blender", stage, project_root))
+        return {"stage": stage, "returncode": 0}
+
+    def fake_audit(project_root, v2_root):
+        observed.append(("audit", project_root, v2_root))
+        return {"stage": "geometry-audit", "accepted": True}
+
+    monkeypatch.setattr(runner, "run_blender_stage", fake_blender)
+    monkeypatch.setitem(
+        sys.modules,
+        "final_geometry_audit",
+        SimpleNamespace(run_geometry_audit=fake_audit),
+    )
+
+    result = runner.run_stage("geometry-validate", tmp_path)
+
+    assert observed == [
+        ("blender", "geometry-validate", tmp_path.resolve()),
+        (
+            "audit",
+            tmp_path.resolve(),
+            tmp_path.resolve() / runner.V2_RELATIVE_ROOT,
+        ),
+    ]
+    assert result["blender"]["returncode"] == 0
+    assert result["audit"]["accepted"] is True
+
+
+def test_ornament_requires_registered_view_and_surface_coverage_reports(monkeypatch, tmp_path: Path):
+    report_dir = tmp_path / runner.V2_RELATIVE_ROOT / "reports"
+    report_dir.mkdir(parents=True)
+    (report_dir / "base_geometry_report.json").write_text(
+        '{"accepted": true}\n', encoding="utf-8"
+    )
+    monkeypatch.setattr(
+        runner,
+        "run_blender_stage",
+        lambda stage, project_root=runner.PROJECT_ROOT: {"stage": stage},
+    )
+
+    with pytest.raises(ValueError, match="registered_view_coverage_report.json"):
+        runner.run_stage("ornament", tmp_path)
+
+    (report_dir / "registered_view_coverage_report.json").write_text(
+        '{"accepted": true}\n', encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="surface_evidence_coverage.json"):
+        runner.run_stage("ornament", tmp_path)
+
+    (report_dir / "surface_evidence_coverage.json").write_text(
+        '{"accepted": false}\n', encoding="utf-8"
+    )
+    with pytest.raises(ValueError, match="not accepted"):
+        runner.run_stage("ornament", tmp_path)
+
+    (report_dir / "surface_evidence_coverage.json").write_text(
+        '{"accepted": true}\n', encoding="utf-8"
+    )
+    assert runner.run_stage("ornament", tmp_path)["stage"] == "ornament"
 
 
 def test_export_requires_explicit_user_approval(tmp_path: Path):

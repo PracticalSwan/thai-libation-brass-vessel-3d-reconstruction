@@ -1,0 +1,232 @@
+{
+  "accepted": false,
+  "blend_path": "reconstruction/reference_assisted_v2/work/30_BASE_GEOMETRY_ACCEPTED.blend",
+  "blend_sha256": "39c6d5e2c81bfe7fc45058719cd7884e0d4747d9824a8e503d21cfe85cf3c61e",
+  "diagnostics": {
+    "front": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\reference_assisted_v2\\diagnostics\\20_base_geometry\\validation\\geometry_validation_front.png",
+    "low": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\reference_assisted_v2\\diagnostics\\20_base_geometry\\validation\\geometry_validation_low.png",
+    "quarter": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\reference_assisted_v2\\diagnostics\\20_base_geometry\\validation\\geometry_validation_quarter.png",
+    "side": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\reference_assisted_v2\\diagnostics\\20_base_geometry\\validation\\geometry_validation_side.png",
+    "top": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\reference_assisted_v2\\diagnostics\\20_base_geometry\\validation\\geometry_validation_top.png",
+    "wire": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\reference_assisted_v2\\diagnostics\\20_base_geometry\\validation\\geometry_validation_wire.png"
+  },
+  "regular_python_cv_validation_pending": true,
+  "schema_version": 1,
+  "source_blend": "reconstruction/reference_assisted_v2/work/base_geometry.blend",
+  "stage": "geometry-validate-blender",
+  "statistics": {
+    "mesh_count": 23,
+    "objects": [
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Pedestal",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Bowl",
+        "polygons": 2880,
+        "source": "accepted_plan1_profile",
+        "vertices": 2880
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_VesselBody",
+        "polygons": 3040,
+        "source": "accepted_plan1_profile",
+        "vertices": 2882
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_VesselNeck",
+        "polygons": 2880,
+        "source": "accepted_plan1_profile",
+        "vertices": 2880
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Lid",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Finial",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Pedestal_FootRoll",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Pedestal_UpperRoll",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Bowl_LowerSeatRing",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Bowl_RolledRim",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Globe_LowerConstructionBand",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Shoulder_Ring_01",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Shoulder_Ring_02",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Shoulder_Ring_03",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Neck_LowerCollar",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Neck_UpperCollar",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Lid_TierRing_01",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Lid_TierRing_02",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Lid_TierRing_03",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Lid_TierRing_04",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Lid_TierRing_05",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Lid_TierRing_06",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_V2_NeutralClay"
+        ],
+        "name": "SM_Lid_TierRing_07",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      }
+    ],
+    "polygons": 39712,
+    "vertices": 39080
+  },
+  "wireframe_diagnostic_method": "temporary_renderable_WIREFRAME_modifiers_removed_after_render"
+}

@@ -33,3 +33,10 @@ Read this after `AGENTS.md` when starting substantive work. Keep process lessons
 ## V2 projection fitting: silhouette extrema are not axis-center endpoints
 
 For tilted cameras, the visible top/bottom of a finite-radius revolved component is the projected profile/ring extremum, not the projection of the 3D axis-center endpoint. Likewise, paired semantic left/right landmarks must be evaluated against the named component's projected tangent/extrema rather than the whole assembly silhouette. Confusing these quantities produced systematic elevated-view vertical offsets and inflated globe landmark errors. The accepted Plan-1 fit uses profile-extrema semantics and component-aware lateral landmarks; preserve this distinction in Blender/source-camera validation.
+
+## 2026-09-08
+
+- Passing a small canonical camera set can still overfit the selected views. Preserve an independent Step 13-registered non-canonical silhouette audit after Blender reconstruction and inspect the worst usable views before accepting geometry.
+- Do not deform geometry around a weak CNN mask or a known camera outlier. Classify downstream audit failures explicitly as mask, camera, or real model mismatch; only repeated evidence-backed model mismatch should route back to geometry.
+- Lens-model consistency is part of the CV contract. Raw source comparisons must use the verified `SIMPLE_RADIAL` projection, while Blender pinhole renders require paired undistorted derived references; mixing coordinate models can create false shape errors.
+- A completed 3D surface inevitably contains regions with different evidence strength. Persist direct multi-view, reviewed/detail-only, symmetry/repetition-inferred, and hidden generic-fill provenance so backside geometry, ornament repetition, and texture fill remain truthful and controllable.

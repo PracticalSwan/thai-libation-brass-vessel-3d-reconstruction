@@ -476,7 +476,7 @@ all transforms documented/applied as required
 
 - [ ] **Step 3: Re-run source-camera geometry metrics**
 
-Do not accept cleanup if geometry falls below Plan 2 gate.
+Do not accept cleanup if geometry falls below Plan 2 gate. Also rerun the low-resolution registered-view coverage audit from Plan 2; cleanup/retopo must not introduce a repeated non-canonical `model_mismatch`, even when the 16 canonical metrics still pass.
 
 - [ ] **Step 4: Save accepted topology file**
 

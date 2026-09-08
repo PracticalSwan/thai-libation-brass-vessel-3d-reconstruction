@@ -1798,6 +1798,330 @@ def extract_ornament_crop(
     }
 
 
+def extract_ornament_family_crops(
+    family_id: str,
+    sources: Sequence[tuple[int, str, Path, tuple[int, int, int, int]]],
+    output_dir: Path,
+) -> dict[str, object]:
+    """Extract the reviewed views for one ornament family and one contact sheet.
+
+    This helper keeps the photographic source pixels unchanged and records every
+    crop independently.  It is intentionally small: alignment and consensus are
+    handled by :func:`build_motif_reference` after the evidence is extracted.
+    """
+
+    if not family_id or not sources:
+        raise ValueError("ornament family crops require an id and source views")
+    target_dir = Path(output_dir)
+    target_dir.mkdir(parents=True, exist_ok=True)
+    crop_records: list[dict[str, object]] = []
+    crop_paths: list[Path] = []
+    labels: list[str] = []
+    for selected_index, role, source_path, bbox in sources:
+        if role not in {"anchor", "secondary"}:
+            raise ValueError("ornament crop role must be anchor or secondary")
+        crop_path = target_dir / f"{family_id}_{int(selected_index):03d}_{role}.png"
+        record = extract_ornament_crop(Path(source_path), bbox, crop_path)
+        record.update(
+            {
+                "view_index": int(selected_index),
+                "role": role,
+                "source_path": Path(source_path),
+                "crop_path": crop_path,
+            }
+        )
+        crop_records.append(record)
+        crop_paths.append(crop_path)
+        labels.append(f"{int(selected_index):03d} | {role}")
+    sheet_path = target_dir / f"{family_id}_contact_sheet.png"
+    make_labeled_contact_sheet(
+        tuple(crop_paths),
+        tuple(labels),
+        sheet_path,
+        cell_size=(420, 360),
+        columns=min(3, len(crop_paths)),
+    )
+    return {
+        "family_id": family_id,
+        "crops": crop_records,
+        "contact_sheet": {
+            "path": sheet_path,
+            "sha256": sha256_file(sheet_path),
+            "support_count": len(crop_records),
+        },
+    }
+
+
+def _ornament_analysis_image(path: Path) -> tuple[np.ndarray, np.ndarray, dict[str, object]]:
+    image = cv2.imread(str(path), cv2.IMREAD_COLOR)
+    if image is None:
+        raise ValueError(f"unreadable ornament image: {path}")
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    value = hsv[:, :, 2]
+    saturation = hsv[:, :, 1]
+    specular = (value >= 245) & (saturation <= 45)
+    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    analysis = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8)).apply(gray)
+    return image, analysis, {
+        "specular_fraction": float(np.mean(specular)),
+        "specular_dominated": bool(np.mean(specular) >= 0.08),
+    }
+
+
+def _write_ornament_artifact(path: Path, values: np.ndarray) -> dict[str, object]:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if not cv2.imwrite(str(path), values):
+        raise OSError(f"failed to write ornament artifact: {path}")
+    return {"path": path, "sha256": sha256_file(path)}
+
+
+def build_motif_reference(
+    family_id: str,
+    anchor_path: Path,
+    secondary_paths: Sequence[Path],
+    output_dir: Path,
+    *,
+    match_dir: Path,
+    align_pair=align_detail_pair,
+) -> dict[str, object]:
+    """Build a conservative, source-bound motif consensus for Blender tracing.
+
+    Geometrically aligned views count as shape support.  Specular-dominated
+    aligned views remain useful geometric evidence but are excluded from the
+    grayscale height consensus so highlights cannot become false relief.
+    """
+
+    target_dir = Path(output_dir)
+    target_dir.mkdir(parents=True, exist_ok=True)
+    Path(match_dir).mkdir(parents=True, exist_ok=True)
+    anchor_bgr, anchor_analysis, _ = _ornament_analysis_image(Path(anchor_path))
+    artifacts: dict[str, dict[str, object]] = {
+        "source_anchor.png": _write_ornament_artifact(
+            target_dir / "source_anchor.png", anchor_bgr
+        ),
+        "analysis_anchor.png": _write_ornament_artifact(
+            target_dir / "analysis_anchor.png", anchor_analysis
+        ),
+    }
+    aligned_geometry: list[np.ndarray] = []
+    aligned_height: list[np.ndarray] = []
+    confidence_layers: list[np.ndarray] = []
+    records: list[dict[str, object]] = []
+    anchor_size = (anchor_analysis.shape[1], anchor_analysis.shape[0])
+    for position, secondary_path in enumerate(secondary_paths, start=1):
+        diagnostic = Path(match_dir) / f"{family_id}_{position:02d}_alignment.png"
+        decision = align_pair(Path(anchor_path), Path(secondary_path), diagnostic)
+        accepted = decision.homography is not None
+        record: dict[str, object] = {
+            "source_path": Path(secondary_path),
+            "source_sha256": sha256_file(Path(secondary_path)),
+            "method": decision.method,
+            "match_count": int(decision.match_count),
+            "inlier_count": int(decision.inlier_count),
+            "status": "accepted_geometry" if accepted else "rejected",
+            "explicit_failure": None if accepted else decision.reason,
+            "fallback_used": decision.method == "aliked_lightglue",
+            "diagnostic_path": diagnostic,
+            "diagnostic_sha256": sha256_file(diagnostic),
+        }
+        if accepted:
+            _, secondary_analysis, quality = _ornament_analysis_image(Path(secondary_path))
+            matrix = np.asarray(decision.homography, dtype=np.float64).reshape(3, 3)
+            warped = cv2.warpPerspective(
+                secondary_analysis,
+                matrix,
+                anchor_size,
+                flags=cv2.INTER_LINEAR,
+                borderMode=cv2.BORDER_CONSTANT,
+                borderValue=0,
+            )
+            valid = cv2.warpPerspective(
+                np.full(secondary_analysis.shape, 255, dtype=np.uint8),
+                matrix,
+                anchor_size,
+                flags=cv2.INTER_NEAREST,
+                borderMode=cv2.BORDER_CONSTANT,
+                borderValue=0,
+            )
+            record["photometric_quality"] = quality
+            record["used_for_geometry_support"] = True
+            record["used_for_texture_height_consensus"] = not bool(
+                quality["specular_dominated"]
+            )
+            aligned_geometry.append(warped)
+            confidence_layers.append(valid)
+            if record["used_for_texture_height_consensus"]:
+                aligned_height.append(warped)
+        else:
+            record["photometric_quality"] = None
+            record["used_for_geometry_support"] = False
+            record["used_for_texture_height_consensus"] = False
+        records.append(record)
+
+    geometry_support = len(aligned_geometry)
+    height_support = len(aligned_height)
+    consensus_stack = [anchor_analysis, *aligned_height]
+    consensus = np.median(np.stack(consensus_stack, axis=0), axis=0).astype(np.uint8)
+    # Dark engraved/embossed contours become high values for a later bump source.
+    height = cv2.GaussianBlur(255 - consensus, (0, 0), 1.15)
+    height = cv2.normalize(height, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
+    if confidence_layers:
+        confidence = np.mean(np.stack(confidence_layers, axis=0), axis=0).astype(np.uint8)
+    else:
+        confidence = np.zeros_like(anchor_analysis)
+    artifacts.update(
+        {
+            "consensus.png": _write_ornament_artifact(
+                target_dir / "consensus.png", consensus
+            ),
+            "mask_or_height.png": _write_ornament_artifact(
+                target_dir / "mask_or_height.png", height
+            ),
+            "confidence.png": _write_ornament_artifact(
+                target_dir / "confidence.png", confidence
+            ),
+        }
+    )
+    multi_view = geometry_support >= 1 and height_support >= 1
+    return {
+        "family_id": family_id,
+        "source_support_count": 1 + geometry_support,
+        "aligned_support_count": geometry_support,
+        "texture_height_support_count": height_support,
+        "multi_view_consensus": multi_view,
+        "confidence_adjustment": (
+            "multi_view_supported" if multi_view else "anchor_only_reduced_confidence"
+        ),
+        "alignment_records": records,
+        "artifacts": artifacts,
+    }
+
+
+def build_repeat_placements(
+    family: OrnamentFamily,
+    observations: Sequence[dict[str, object]],
+    surface_sectors: Sequence[dict[str, object]],
+) -> dict[str, object]:
+    """Infer a radial phase only when two independent photographs agree."""
+
+    if family.repeat_mode != "radial_repetition" or family.repeat_count is None:
+        return {"status": "not_radial", "full_ring_supported": False, "placements": []}
+    by_view: dict[int, list[float]] = {}
+    for observation in observations:
+        by_view.setdefault(int(observation["selected_index"]), []).append(
+            float(observation["azimuth_deg"]) % 360.0
+        )
+    estimated_counts: list[int] = []
+    phase_samples: list[float] = []
+    for angles in by_view.values():
+        values = sorted(set(round(value, 8) for value in angles))
+        if len(values) < 2:
+            continue
+        gaps = [values[index + 1] - values[index] for index in range(len(values) - 1)]
+        spacing = float(np.median([gap for gap in gaps if gap > 1e-6]))
+        if spacing <= 0.0:
+            continue
+        estimated_counts.append(int(round(360.0 / spacing)))
+        phase_samples.extend(value % spacing for value in values)
+    if len(estimated_counts) < 2 or max(estimated_counts) - min(estimated_counts) > 1:
+        return {
+            "status": "insufficient_independent_views",
+            "full_ring_supported": False,
+            "repeat_count": int(family.repeat_count),
+            "placements": [],
+            "blocked_placements": [],
+        }
+    repeat_count = int(round(float(np.median(estimated_counts))))
+    if abs(repeat_count - int(family.repeat_count)) > 1:
+        return {
+            "status": "repeat_count_disagrees_with_inventory",
+            "full_ring_supported": False,
+            "repeat_count": repeat_count,
+            "placements": [],
+            "blocked_placements": [],
+        }
+    spacing = 360.0 / repeat_count
+    phase = float(np.median([value % spacing for value in phase_samples])) % spacing
+    sector_classes: list[tuple[float, float, str]] = []
+    for sector in surface_sectors:
+        label = str(sector.get("sector", ""))
+        parts = label.split("_")
+        if len(parts) != 3:
+            continue
+        sector_classes.append(
+            (float(parts[1]), float(parts[2]), str(sector.get("support_class", "")))
+        )
+    placements: list[dict[str, object]] = []
+    blocked: list[dict[str, object]] = []
+    for index in range(repeat_count):
+        angle = (phase + index * spacing) % 360.0
+        support_class = "symmetry_repetition"
+        for start, end, candidate_class in sector_classes:
+            if start <= angle < end:
+                support_class = candidate_class
+                break
+        if support_class == "hidden_generic_fill":
+            blocked.append(
+                {"angle_deg": angle, "reason": "hidden_generic_fill", "repeat_index": index}
+            )
+            continue
+        provenance = (
+            "directly_observed"
+            if support_class in {"direct_multi_view", "reviewed_single_or_detail"}
+            else "symmetry_repetition"
+        )
+        placements.append(
+            {
+                "angle_deg": angle,
+                "repeat_index": index,
+                "provenance": provenance,
+                "surface_support_class": support_class,
+            }
+        )
+    return {
+        "status": "supported",
+        "full_ring_supported": True,
+        "repeat_count": repeat_count,
+        "accepted_repeat_count": repeat_count,
+        "phase_angle_degrees": phase,
+        "phase_angle_radians": math.radians(phase),
+        "phase_source": "multi_view_circular_median",
+        "independent_view_count": len(estimated_counts),
+        "placements": placements,
+        "blocked_placements": blocked,
+    }
+
+
+def evaluate_chain_support(
+    observations: Sequence[dict[str, object]],
+) -> dict[str, object]:
+    """Require two independently aligned originals before chain modeling."""
+
+    accepted: list[dict[str, object]] = []
+    identities: set[tuple[int, str]] = set()
+    for observation in observations:
+        decision = observation.get("alignment")
+        if not isinstance(decision, PairAlignmentDecision) or decision.homography is None:
+            continue
+        identity = (
+            int(observation.get("selected_index", -1)),
+            str(observation.get("source_sha256", "")),
+        )
+        if identity in identities:
+            continue
+        identities.add(identity)
+        accepted.append(dict(observation))
+    supported = len(accepted) >= 2
+    return {
+        "supported": supported,
+        "independent_source_count": len(accepted),
+        "decision": (
+            "eligible_for_source_bound_model_review" if supported else "omit_from_v2"
+        ),
+        "evidence_requirement": "two_independently_aligned_originals",
+    }
+
+
 def build_ornament_evidence(project_root: Path) -> dict[str, object]:
     """Extract documented motif crops and persist the ornament manifest."""
 

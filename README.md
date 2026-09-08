@@ -22,7 +22,8 @@ smartphone capture
 -> separate reference-assisted V1 prototype (later rejected for visual mismatch)
 -> V2 CV-constrained multi-view fit (Plan 1 accepted) + Blender reconstruction
 -> source-derived ornament + multi-view photo projection + Blender cleanup
--> source-camera visual QA + verified final Blender/GLB presentation asset
+-> source-camera visual QA + verified pre-export Blender presentation asset
+-> user-approved GLB export/re-import/publication (blocked until explicit approval)
 ```
 
 ## Project status
@@ -44,7 +45,7 @@ component-filtered and simplified to 499,999 faces, and COLMAP generated a
 validated the final asset without manual cleanup. The result is a partial local
 model rather than a complete 288-image or 360-degree reconstruction.
 
-A later reference-assisted V1 prototype under `reconstruction/reference_assisted/` remains preserved as a visually rejected prototype. Final V2 Plan 1 is now accepted: median silhouette IoU 0.901495, minimum reliable-view IoU 0.856102, median landmark error 0.011306 object height, p95 0.038080, with bowl/globe/neck/lid/finial visual review passing on the exact candidate. The next phase is the full Blender construction/detail/cleanup/UV/material workflow. Export is intentionally blocked until the user inspects and approves the completed Blender model.
+A later reference-assisted V1 prototype under `reconstruction/reference_assisted/` remains preserved as a visually rejected prototype. Final V2 now reaches the pre-export inspection gate. Plan 1 remains the accepted macro-geometry foundation: median silhouette IoU 0.901495, minimum reliable-view IoU 0.856102, median landmark error 0.011306 object height, p95 0.038080, with bowl/globe/neck/lid/finial visual review passing on the exact candidate. Plan 2's corrected non-canonical audit found 77 usable OK views, 63 independently explained camera failures, 24 mask failures, and zero usable model mismatches. Plans 3-5 produced source-supported ornament, practical cleanup, shared UVs and 2048-pixel AO/normal/curvature bakes, photo-informed texture inputs, polished-brass lookdev, and representative source-vs-render QA. After user review exposed the known top-only receiving-bowl mismatch, a bounded correction flared only the upper bowl lip above normalized Z 0.385 while preserving the globe, lower bowl, axis, height, and component positions; the top bowl/globe radius ratio is now 1.14 and the annular radial clearance increases to 0.018 at the rim. `reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.blend` is the current accepted pre-export Blender asset. GLB export, re-import, promotion, and publication remain intentionally blocked until explicit user approval is recorded.
 
 Measured preprocessing result:
 

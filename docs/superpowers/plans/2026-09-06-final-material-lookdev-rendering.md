@@ -22,6 +22,8 @@
 - Final material must read as the bright polished gold/brass object in the photographs, not dark brown/black metal.
 - Use substantial compute for depth/visibility maps, multi-view projection, robust fusion, high-resolution bakes/textures, and meaningful render iterations when it improves source fidelity.
 - Material acceptance is visual as well as technical. If the final surface still reads as generic procedural brass rather than the photographed object, return to projection/fusion/detail reconstruction and continue.
+- Consume Plan 2 `surface_evidence_coverage.json` during projection and gap filling. Directly observed texels/regions, detail-only regions, symmetry/repetition inference, and hidden generic fill must remain distinguishable through the final texture report and inferred-region mask.
+- Reuse only camera/mask evidence whose coordinate path is explicit and distortion-consistent; raw Step 13 sources use exact `SIMPLE_RADIAL` math, while derived undistorted sources use their paired derived cameras.
 
 ---
 
@@ -199,6 +201,32 @@ Include filename/index, camera id, quality condition, mask source, view category
 
 ---
 
+### Task 3A: Estimate bounded multi-view photometric normalization from overlap
+
+**Files:**
+- Modify: `final_texture_projection.py`
+- Test: `tests/test_final_texture_projection.py`
+
+**Goal:** Reduce exposure/white-balance seams between source photographs before robust texture fusion without pretending the capture is color-calibrated or flattening real brass variation.
+
+- [ ] **Step 1: Collect only trustworthy overlap samples**
+
+Use geometrically corresponding surface samples from selected registered views where visibility passes, masks agree, view angle is adequate, and pixels are neither clipped highlights nor deep shadows. Prefer moderately rough/textured or stable chromatic regions over mirror-like highlights.
+
+- [ ] **Step 2: Estimate robust per-view normalization relative to a stable anchor/consensus**
+
+Estimate small luminance and chromaticity gains (or an equivalent low-DOF color transform) from overlapping accepted samples using robust medians/trimmed statistics. Do not fit a high-capacity color transform that can paint away real object differences. Clamp correction magnitudes to documented conservative bounds and mark a view `photometric_unreliable` instead of forcing a large correction.
+
+- [ ] **Step 3: Keep specular behavior out of the normalization target**
+
+Moving polished-brass highlights are view-dependent illumination, not surface albedo. Reject them from the normalization solve and continue to suppress them during final fusion. Stable dark engraving/recess color that repeats geometrically across views must remain available as object evidence.
+
+- [ ] **Step 4: Persist photometric provenance and overlap diagnostics**
+
+Record per-view transform parameters, sample counts, robust residual before/after, anchor/consensus method, rejection counts, and whether correction was accepted. Save at least one overlap/seam diagnostic panel before and after normalization. The report must state that no color chart exists and the result is relative photometric harmonization, not calibrated reflectance recovery.
+
+---
+
 ### Task 4: Project source images to UV texels with visibility checks
 
 **Files:**
@@ -332,7 +360,7 @@ Default metal surface is `1.0`. Only deviate if source evidence indicates non-me
 
 - [ ] **Step 1: Identify low-confidence/zero-sample UV texels**
 
-Use projection confidence map.
+Use the projection confidence map together with `surface_evidence_coverage.json`. A zero-sample texel in a `direct_multi_view` region is a projection/visibility defect to diagnose, not an automatic license to inpaint. `hidden_generic_fill` is permitted only in regions already classified as unsupported/hidden by the coverage manifest.
 
 - [ ] **Step 2: Fill in order of evidence strength**
 

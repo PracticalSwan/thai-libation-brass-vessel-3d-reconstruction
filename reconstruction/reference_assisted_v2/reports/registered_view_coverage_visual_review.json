@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "accepted": true,
+  "reviewed_on": "2026-09-09",
+  "reviewer": "Codex pipeline owner visual inspection",
+  "blend_sha256": "39c6d5e2c81bfe7fc45058719cd7884e0d4747d9824a8e503d21cfe85cf3c61e",
+  "views": [
+    {
+      "selected_index": 45,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/045_overlay.png",
+      "diagnostic_sha256": "c3a66b1b8562ef0678fd84c073271a234560e202c5ea640296886c7f75740135",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 59,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/059_overlay.png",
+      "diagnostic_sha256": "d1f73c4f2ace27e0ec0c2d0b52e4eed0390ebebc9725716ec8efc25a2be2c1fa",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 47,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/047_overlay.png",
+      "diagnostic_sha256": "4b302c08be3c1ff0d3dbe456318a71c96b461ab0df6449e50f478022bf949260",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 48,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/048_overlay.png",
+      "diagnostic_sha256": "2e5c679c9b026f14c7a65aff7f718a4501b03bf634682ad4940b326c98316848",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 49,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/049_overlay.png",
+      "diagnostic_sha256": "52b6240a34935c7c5a6f3dd8ba15617a02617688a16be9e820dd7c658d5ee207",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 127,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/127_overlay.png",
+      "diagnostic_sha256": "c6d63c69c54741ecc83877a2104a00cdbedcfee1c37b721e4600fff3455ba6b9",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 133,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/133_overlay.png",
+      "diagnostic_sha256": "18b58d1f002b4936d339ff11b9d115356ac65d9f8ea3c45d643538cb1376cd55",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 126,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/126_overlay.png",
+      "diagnostic_sha256": "a3b418c1b818251420c2b48d81404f20dbb91a0ef290153dc54115d03f56d241",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 116,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/116_overlay.png",
+      "diagnostic_sha256": "b55b3b24d573d044969aa6a92c45182a2db0f94ad0267916e80f18562f3b2412",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 95,
+      "classification": "mask_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/095_overlay.png",
+      "diagnostic_sha256": "f3b270e5a4d409759d30d3834eb748032338bb77157c0b72adb1805fac26948a",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 178,
+      "classification": "mask_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/178_overlay.png",
+      "diagnostic_sha256": "8d3b8bdacd830092a34815aa8a0073b708b161203db7c5c3c87dff38f5d8ed30",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 183,
+      "classification": "mask_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/183_overlay.png",
+      "diagnostic_sha256": "fd893a1b127a9d6a01a3eb9f6254f5ba2eb0f6b8c6429c44d34f4af6cffa1720",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 154,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/154_overlay.png",
+      "diagnostic_sha256": "1f4bb51bb764500adc8dd1fe1a8956bc860521f8f4273a3be7007db1f14bc615",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 184,
+      "classification": "mask_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/184_overlay.png",
+      "diagnostic_sha256": "8136032de8cd0dd929c9e4f5bc91b09448d2d48ddad257e8410b4d89732cd0ff",
+      "verdict": "classification_confirmed"
+    },
+    {
+      "selected_index": 169,
+      "classification": "camera_failure",
+      "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/169_overlay.png",
+      "diagnostic_sha256": "873a495978b7e012b39a182d4a97be6896b89ccff8564864ac61d2b6726a2c00",
+      "verdict": "classification_confirmed"
+    }
+  ],
+  "finding": "All 15 regenerated worst-view panels were opened. Views 45, 47, 48, 49, 59, 116, 126, 127, 133, 154 and 169 show frozen-camera axis extent or placement disagreement with the observed vessel; views 95, 178, 183 and 184 visibly include segmentation contamination. None exposes a repeated usable structural mismatch in the accepted common vessel geometry.",
+  "metric_policy": "The original scored SIMPLE_RADIAL IoU is unchanged. Diagnostic centroid/rigid alignment and the independent local +Z axis placement/extent check never alter the metric, fit a per-view object transform, or write back to Step-13 cameras."
+}

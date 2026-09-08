@@ -48,6 +48,19 @@ PREREQUISITE_REPORTS = {
     "export": "final_validation_report.json",
 }
 
+CV_CONTINUITY_REPORTS = (
+    "registered_view_coverage_report.json",
+    "surface_evidence_coverage.json",
+)
+
+ADDITIONAL_PREREQUISITE_REPORTS = {
+    # Every downstream Blender stage preserves Plan 2's proof that the accepted
+    # geometry generalizes beyond the 16 canonical fit views and records which
+    # surface regions are direct CV evidence versus bounded inference.
+    stage: CV_CONTINUITY_REPORTS
+    for stage in ("ornament", "cleanup", "uv-bake", "lookdev", "final-validate", "export")
+}
+
 
 def require_accepted_report(path: Path) -> dict[str, Any]:
     """Load one stage gate and require an explicit accepted=true value."""
@@ -183,6 +196,21 @@ def _run_texture_projection(project_root: Path) -> dict[str, Any]:
     )
 
 
+def _run_geometry_validation(project_root: Path) -> dict[str, Any]:
+    """Create the Blender checkpoint, then score it with exact CV cameras."""
+
+    from final_geometry_audit import run_geometry_audit
+
+    v2_root = project_root / V2_RELATIVE_ROOT
+    blender_result = run_blender_stage("geometry-validate", project_root)
+    audit_result = run_geometry_audit(project_root, v2_root)
+    return {
+        "stage": "geometry-validate",
+        "blender": blender_result,
+        "audit": audit_result,
+    }
+
+
 def run_stage(stage: str, project_root: Path = PROJECT_ROOT) -> dict[str, Any]:
     """Run one named stage after checking its immediate accepted prerequisite."""
 
@@ -193,6 +221,8 @@ def run_stage(stage: str, project_root: Path = PROJECT_ROOT) -> dict[str, Any]:
     report_name = PREREQUISITE_REPORTS.get(stage)
     if report_name is not None:
         require_accepted_report(v2_root / "reports" / report_name)
+    for additional_report in ADDITIONAL_PREREQUISITE_REPORTS.get(stage, ()):
+        require_accepted_report(v2_root / "reports" / additional_report)
     if stage == "export":
         require_user_export_approval(v2_root)
 
@@ -202,6 +232,8 @@ def run_stage(stage: str, project_root: Path = PROJECT_ROOT) -> dict[str, Any]:
         return build_final_reference_evidence(root)
     if stage == "cv-fit":
         return _run_cv_fit(root)
+    if stage == "geometry-validate":
+        return _run_geometry_validation(root)
     if stage == "lookdev":
         projection_result = _run_texture_projection(root)
         blender_result = run_blender_stage(stage, root)

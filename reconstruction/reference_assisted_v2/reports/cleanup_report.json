@@ -1,0 +1,272 @@
+{
+  "accepted": true,
+  "blend_path": "reconstruction/reference_assisted_v2/work/50_CLEAN_TOPOLOGY_ACCEPTED.blend",
+  "blend_sha256": "ecd0e4a0ddda10ab315078085e54a5119f922e309dbe792da6a8865a899e5cd7",
+  "editable_ornament_sources_preserved": true,
+  "failure_reasons": [],
+  "forbidden_objects": [],
+  "mesh_cleanup": [
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Pedestal",
+      "nonmanifold_edges": 0,
+      "polygons": 1600,
+      "vertices": 1442
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Bowl",
+      "nonmanifold_edges": 0,
+      "polygons": 2880,
+      "vertices": 2880
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_VesselBody",
+      "nonmanifold_edges": 0,
+      "polygons": 3040,
+      "vertices": 2882
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_VesselNeck",
+      "nonmanifold_edges": 0,
+      "polygons": 2880,
+      "vertices": 2880
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Lid",
+      "nonmanifold_edges": 0,
+      "polygons": 1600,
+      "vertices": 1442
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Finial",
+      "nonmanifold_edges": 0,
+      "polygons": 1600,
+      "vertices": 1442
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Pedestal_FootRoll",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Pedestal_UpperRoll",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Bowl_LowerSeatRing",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Bowl_RolledRim",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Globe_LowerConstructionBand",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Shoulder_Ring_01",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Shoulder_Ring_02",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Shoulder_Ring_03",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Neck_LowerCollar",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Neck_UpperCollar",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Lid_TierRing_01",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Lid_TierRing_02",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Lid_TierRing_03",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Lid_TierRing_04",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Lid_TierRing_05",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Lid_TierRing_06",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Lid_TierRing_07",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "HP_ORN_ShoulderRing_04",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "HP_ORN_PedestalRing_03",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "HP_ORN_PedestalRing_04",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    }
+  ],
+  "policy": "preserve_separate_CV_profile_parts_no_global_remesh_or_decimation",
+  "receiving_bowl_clearance_correction": {
+    "clearance_at_flare_start": 0.006,
+    "clearance_at_rim_target": 0.018,
+    "component_positions_changed": false,
+    "evidence_reason": "top_only_step6_mismatch_plus_user_rejected_fused_globe_bowl_clearance",
+    "globe_profile_changed": false,
+    "lower_bowl_profile_unchanged": true,
+    "minimum_shell_radial_clearance": 0.005982060621289392,
+    "minimum_wall_thickness": 0.0015,
+    "outer_profile_change_scope": "bowl_outer_z_above_0.385_only",
+    "outer_profile_changed": true,
+    "outer_profile_max_radius_delta": 0.017125128329071454,
+    "policy": "localized_top_oblique_evidence_correction_upper_receiving_bowl_lip_only",
+    "rolled_rim_inner_radius": 0.21772666245415584,
+    "rolled_rim_minor_radius": 0.0032,
+    "rolled_rim_outer_radius": 0.22412666245415583,
+    "rolled_rim_radial_clearance": 0.019425303114150028,
+    "samples": [
+      {
+        "globe_radius": 0.18824460028095397,
+        "inner_radius": 0.19422666090224336,
+        "radial_clearance": 0.005982060621289392,
+        "z": 0.38503763024115123
+      },
+      {
+        "globe_radius": 0.1947611545401674,
+        "inner_radius": 0.20676678575780535,
+        "radial_clearance": 0.012005631217637952,
+        "z": 0.4150897649524152
+      },
+      {
+        "globe_radius": 0.19734881073928182,
+        "inner_radius": 0.2153488107392818,
+        "radial_clearance": 0.017999999999999988,
+        "z": 0.4451418996636791
+      }
+    ],
+    "source_views": [
+      267,
+      268,
+      278,
+      288
+    ],
+    "target_rim_to_globe_radius_ratio": 1.14,
+    "top_globe_radius": 0.19734881073928182,
+    "top_outer_radius": 0.22497764424278124,
+    "top_outer_to_globe_radius_ratio": 1.14
+  },
+  "required_base_objects_missing": [],
+  "schema_version": 1,
+  "source_blend": "reconstruction/reference_assisted_v2/work/40_ORNAMENT_ACCEPTED.blend",
+  "source_blend_sha256": "f67519538ef29b51769b1fd1b5b3d2565a6f0923079c5d625bc833427c6c07b5",
+  "stage": "cleanup"
+}

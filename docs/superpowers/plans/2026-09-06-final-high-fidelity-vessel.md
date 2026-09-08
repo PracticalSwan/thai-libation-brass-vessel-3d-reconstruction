@@ -27,6 +27,10 @@
 - Failure of an intermediate technique is not permission to accept a weak final asset. Diagnose, adapt, and continue until the final gates pass or a genuine external blocker is proven.
 - Deadline execution: once a gate is accepted, move immediately to the next Blender stage; do not spend another 5-hour window re-optimizing an accepted upstream stage unless a downstream defect proves it wrong.
 - Current pre-export delivery requires a fully constructed, detailed, cleaned, UV/baked, textured/materialed and screenshot-verified Blender model ready for user inspection. Stop after `final-validate`; GLB export/re-import, final promotion/publication and final-completion Git publication are deferred until explicit user approval.
+- Preserve CV continuity after Plan 1: exact metrics use the Step 13 `SIMPLE_RADIAL` camera model or explicitly matched undistorted derived views, never an unqualified Blender pinhole approximation against raw photos.
+- During Plan 2, run a low-cost registered-view coverage audit outside the 16 canonical fit views using Step 13 cameras and existing masks. Treat it as a cross-check rather than a second optimization set; inspect the worst views and route genuine model mismatch back to geometry instead of deforming the model around bad masks.
+- Maintain `surface_evidence_coverage.json` from Plan 2 onward, classifying major component regions as direct multi-view, reviewed/detail-only, symmetry/repetition inferred, or hidden generic fill. Plan 3 ornament, Plan 5 texture filling, and Plan 6 final QA must consume this provenance.
+- Use Step 6 classical edge/contour/PCA/ellipse measurements as independent diagnostics for circular rims/rings and axis consistency where reliable; do not add new NeRF/3DGS/retraining/sparse-recovery branches merely to finish the deadline model.
 
 ---
 
@@ -57,7 +61,7 @@ Read and execute:
 
 `docs/superpowers/plans/2026-09-06-final-cv-constrained-blender-geometry.md`
 
-Produces a measured, unornamented V2 base mesh and camera-matched diagnostic renders.
+Produces a measured, unornamented V2 base mesh, distortion-consistent canonical camera diagnostics, a non-canonical registered-view coverage audit, and `surface_evidence_coverage.json` describing direct versus inferred surface support.
 
 Hard gate:
 
@@ -68,7 +72,7 @@ median landmark error <= 2.0% object height
 95th percentile landmark error <= 4.0% object height
 ```
 
-A visible component mismatch vetoes the numeric pass. These are minimum floors, not quality targets; continue fitting when additional evidence-directed work materially improves the same-object match.
+A visible component mismatch vetoes the numeric pass. The non-canonical registered-view coverage audit adds a generalization veto: repeated usable-view `model_mismatch` also blocks Plan 2 even if the 16 canonical metrics pass. These are minimum floors, not quality targets; continue evidence-directed correction when it materially improves the same-object match.
 
 ### Plan 3 — Ornament and photo-detail reconstruction
 
@@ -96,7 +100,7 @@ Read and execute:
 
 `docs/superpowers/plans/2026-09-06-final-material-lookdev-rendering.md`
 
-Produces object-specific brass textures/materials, neutral diagnostic lookdev, beauty scene, reference comparisons, and final renders.
+Produces overlap-normalized and robustly fused object-specific brass textures/materials, neutral diagnostic lookdev, beauty scene, reference comparisons, and final renders. Photometric normalization is bounded and evidence-based so exposure/white-balance differences are reduced without treating moving brass highlights as albedo.
 
 Hard gate: material/lighting/reference-match review passes; the model looks like the photographed object rather than a generic vessel.
 

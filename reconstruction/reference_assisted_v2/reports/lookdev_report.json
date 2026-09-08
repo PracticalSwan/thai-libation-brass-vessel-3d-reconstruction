@@ -1,0 +1,54 @@
+{
+  "accepted": true,
+  "beauty_lighting": [
+    "LGT_Beauty_Key",
+    "LGT_Beauty_Fill",
+    "LGT_Beauty_FrontSoft",
+    "LGT_Beauty_Rim",
+    "LGT_Beauty_Top"
+  ],
+  "blend_path": "reconstruction/reference_assisted_v2/work/70_LOOKDEV_ACCEPTED.blend",
+  "blend_sha256": "27004962571f70b886281399ea4c055b190cd9f84eb769f26d3d1a7ab2ebad9d",
+  "failure_reasons": [],
+  "forbidden_objects": [],
+  "material": "MAT_FINAL_PolishedThaiBrass",
+  "material_contract": {
+    "metallic": 1.0,
+    "photo_informed_basecolor_blend": 0.26,
+    "roughness_target": "0.14-0.32"
+  },
+  "renders": {
+    "assembly_clearance_detail": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/assembly_clearance_detail.png",
+      "sha256": "730a82fd18b57e471caf0ef5cfc50de9b70213aa1a8783f6c8058c3954c0863d"
+    },
+    "beauty_front": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/beauty_front.png",
+      "sha256": "51fac73f76adcb8330a0843d3c0ba1020b94a6b477cc842ddfafeb041652972b"
+    },
+    "beauty_quarter": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/beauty_quarter.png",
+      "sha256": "d5543c1b47cea9a62f7739c9350ef34d2f55d53dd462df00907d237bc4a428b6"
+    },
+    "beauty_side": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/beauty_side.png",
+      "sha256": "b0ba24131f3f14844ead24087308cbf3983cb7707330e29c6aa28f5590537474"
+    },
+    "bowl_pedestal_detail": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/bowl_pedestal_detail.png",
+      "sha256": "96ef10cacd9ddf5b6d3497af289e1c7c396a0e08434b2f603a61f14db2148c97"
+    },
+    "globe_detail": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/globe_detail.png",
+      "sha256": "8e5df63d26a6533de2a0ca5fde5b3c28cfcd6988adc51971d8cc52000541b89a"
+    },
+    "neck_lid_detail": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/neck_lid_detail.png",
+      "sha256": "37b678c0ebc83ab34f6e362b49eff3f281e263c12862f7f3011dab66c625c3c2"
+    }
+  },
+  "schema_version": 1,
+  "source_blend": "reconstruction/reference_assisted_v2/work/60_UV_BAKE_ACCEPTED.blend",
+  "source_blend_sha256": "cb24bb8d86afc7e87260ed3ca6880999b03333a7255dfa45e714e67d8510ad81",
+  "stage": "lookdev"
+}

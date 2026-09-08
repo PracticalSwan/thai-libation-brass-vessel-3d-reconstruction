@@ -1,0 +1,309 @@
+{
+  "accepted": true,
+  "blend_path": "reconstruction/reference_assisted_v2/work/40_ORNAMENT_ACCEPTED.blend",
+  "blend_sha256": "f67519538ef29b51769b1fd1b5b3d2565a6f0923079c5d625bc833427c6c07b5",
+  "chain_decision": "omit_from_v2",
+  "detail_renders": {
+    "bowl_flame_clay": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/bowl_flame_clay.png",
+      "sha256": "05a099949e792f90118888ef47ab826f81b5f7ff57e90505f867d0f8778947eb"
+    },
+    "full_quarter_clay": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/full_quarter_clay.png",
+      "sha256": "ffe2909b80312965034fa72bec86f30c311cff8aee4421ef8197a55187fffd0f"
+    },
+    "globe_front_clay": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/globe_front_clay.png",
+      "sha256": "eb98b1b541e1599084d888831556126c0ebeeac9cae8a28c362883c57df62224"
+    },
+    "globe_quarter_clay": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/globe_quarter_clay.png",
+      "sha256": "53cce282d427c736d5d114e443198fddc40e785e8f8edd28c3ba57fee3b2e611"
+    },
+    "neck_lid_clay": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/neck_lid_clay.png",
+      "sha256": "180241337be1b509e02fc03fbc37906d09f5103d801159bd0a6801c694f9bc6d"
+    },
+    "pedestal_clay": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/pedestal_clay.png",
+      "sha256": "cd9c9cf82379fbe625897cfc65750ddca93235bdbea8b5bbe1d7d88db4b93eb4"
+    }
+  },
+  "editable_high_sources_preserved": true,
+  "failure_reasons": [],
+  "family_count": 12,
+  "family_diagnostics": {
+    "ORB_BOWL_FLAME_BAND": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_BOWL_FLAME_BAND/model_clay.png",
+        "sha256": "05a099949e792f90118888ef47ab826f81b5f7ff57e90505f867d0f8778947eb"
+      },
+      "representation": "highpoly_bake",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_BOWL_FLAME_BAND/source_crop.png",
+        "sha256": "71a2bdc6f24e7f16e97d44f184b00d632e130052bf0cabde9dbdaebb0768a6d4"
+      },
+      "source_views": [
+        90,
+        114,
+        128,
+        142
+      ]
+    },
+    "ORB_GLOBE_CROSSHATCH": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_GLOBE_CROSSHATCH/model_clay.png",
+        "sha256": "eb98b1b541e1599084d888831556126c0ebeeac9cae8a28c362883c57df62224"
+      },
+      "representation": "normal_height",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_GLOBE_CROSSHATCH/source_crop.png",
+        "sha256": "e1dee5af177753dee2087f45aec09db96a507e4755e3897d625605feba4c779b"
+      },
+      "source_views": [
+        267,
+        268,
+        278,
+        288
+      ]
+    },
+    "ORB_GLOBE_HERO_MOTIF": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_GLOBE_HERO_MOTIF/model_clay.png",
+        "sha256": "eb98b1b541e1599084d888831556126c0ebeeac9cae8a28c362883c57df62224"
+      },
+      "representation": "highpoly_bake",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_GLOBE_HERO_MOTIF/source_crop.png",
+        "sha256": "a616d912e5a18174901ddbaa9cc2825e592396e484f76593d2fc38e519c07ddd"
+      },
+      "source_views": [
+        267,
+        268,
+        288
+      ]
+    },
+    "ORB_GLOBE_LOWER_BAND": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_GLOBE_LOWER_BAND/model_clay.png",
+        "sha256": "53cce282d427c736d5d114e443198fddc40e785e8f8edd28c3ba57fee3b2e611"
+      },
+      "representation": "explicit_geometry",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_GLOBE_LOWER_BAND/source_crop.png",
+        "sha256": "08ac118f2b6f4030556cff4a8f21f3095a1dd6fe253f913d911e7d90fd4cca37"
+      },
+      "source_views": [
+        3,
+        72,
+        148,
+        165
+      ]
+    },
+    "ORB_GLOBE_SCROLL_BAND": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_GLOBE_SCROLL_BAND/model_clay.png",
+        "sha256": "53cce282d427c736d5d114e443198fddc40e785e8f8edd28c3ba57fee3b2e611"
+      },
+      "representation": "normal_height",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_GLOBE_SCROLL_BAND/source_crop.png",
+        "sha256": "46a4b172593a0d8e5eef668a980145ce087163495224fb700a5dd796c9f77ed1"
+      },
+      "source_views": [
+        148,
+        165,
+        267,
+        268
+      ]
+    },
+    "ORB_LID_DECOR_BAND": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_LID_DECOR_BAND/model_clay.png",
+        "sha256": "180241337be1b509e02fc03fbc37906d09f5103d801159bd0a6801c694f9bc6d"
+      },
+      "representation": "normal_height",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_LID_DECOR_BAND/source_crop.png",
+        "sha256": "a29205aafacdb616f4e8b68851126c2f8dd8cc8585621c12af1449b3a73c7e26"
+      },
+      "source_views": [
+        3,
+        19,
+        148,
+        165
+      ]
+    },
+    "ORB_LID_TIERS": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_LID_TIERS/model_clay.png",
+        "sha256": "180241337be1b509e02fc03fbc37906d09f5103d801159bd0a6801c694f9bc6d"
+      },
+      "representation": "explicit_geometry",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_LID_TIERS/source_crop.png",
+        "sha256": "0559681d9f7b688b5138f3de069ef170666a779c2c648e4e8d40e1ef3a3fbb22"
+      },
+      "source_views": [
+        148,
+        165,
+        206,
+        221
+      ]
+    },
+    "ORB_NECK_FIELD": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_NECK_FIELD/model_clay.png",
+        "sha256": "180241337be1b509e02fc03fbc37906d09f5103d801159bd0a6801c694f9bc6d"
+      },
+      "representation": "normal_height",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_NECK_FIELD/source_crop.png",
+        "sha256": "61bfd32fb3655f247d6df9e29105571cab80fc27eb8c197f69977dff2b4e5f8d"
+      },
+      "source_views": [
+        3,
+        19,
+        148,
+        165
+      ]
+    },
+    "ORB_NECK_LOTUS": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_NECK_LOTUS/model_clay.png",
+        "sha256": "180241337be1b509e02fc03fbc37906d09f5103d801159bd0a6801c694f9bc6d"
+      },
+      "representation": "highpoly_bake",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_NECK_LOTUS/source_crop.png",
+        "sha256": "b3c8823ed81f9e0e6ecf794a020c5575f2ced8ea5b6d7c6c4751aebaa290e800"
+      },
+      "source_views": [
+        3,
+        19,
+        148,
+        165
+      ]
+    },
+    "ORB_NECK_UPPER_BAND": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_NECK_UPPER_BAND/model_clay.png",
+        "sha256": "180241337be1b509e02fc03fbc37906d09f5103d801159bd0a6801c694f9bc6d"
+      },
+      "representation": "normal_height",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_NECK_UPPER_BAND/source_crop.png",
+        "sha256": "e0c6908ff6cadbc7d7171faf819b1ee27ac4fa22ee0ba619e4f41025f0216899"
+      },
+      "source_views": [
+        3,
+        19,
+        148,
+        165
+      ]
+    },
+    "ORB_PEDESTAL_RINGS": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_PEDESTAL_RINGS/model_clay.png",
+        "sha256": "cd9c9cf82379fbe625897cfc65750ddca93235bdbea8b5bbe1d7d88db4b93eb4"
+      },
+      "representation": "explicit_geometry",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_PEDESTAL_RINGS/source_crop.png",
+        "sha256": "dae68a2e88d5dd9bd8aaa1b11d7bcfff22985d11d871a5ec1d2c1e9891b694f0"
+      },
+      "source_views": [
+        90,
+        114,
+        128,
+        142
+      ]
+    },
+    "ORB_SHOULDER_RINGS": {
+      "model_render": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_SHOULDER_RINGS/model_clay.png",
+        "sha256": "53cce282d427c736d5d114e443198fddc40e785e8f8edd28c3ba57fee3b2e611"
+      },
+      "representation": "explicit_geometry",
+      "source_crop": {
+        "path": "reconstruction/reference_assisted_v2/diagnostics/30_ornament/ORB_SHOULDER_RINGS/source_crop.png",
+        "sha256": "86feb79fb9282ea0552fbbadf4f24aa3797874c6e3152c8156784cb334934bd3"
+      },
+      "source_views": [
+        148,
+        165,
+        267,
+        268
+      ]
+    }
+  },
+  "forbidden_chain_objects": [],
+  "forbidden_v1_objects": [],
+  "manifest_path": "reconstruction/reference_assisted_v2/reports/ornament_manifest.json",
+  "manifest_sha256": "ef0e24075d44e0dc6177aeb675477d6a1ef847ce50b115f98297d9b8f7aac955",
+  "missing_objects": {},
+  "ornament_source_object_count": 11,
+  "represented_families": {
+    "ORB_BOWL_FLAME_BAND": [
+      "HP_ORN_BowlFlameBand"
+    ],
+    "ORB_GLOBE_CROSSHATCH": [
+      "HP_ORN_GlobeCrosshatchSource"
+    ],
+    "ORB_GLOBE_HERO_MOTIF": [
+      "HP_ORN_GlobeHeroMotif"
+    ],
+    "ORB_GLOBE_LOWER_BAND": [
+      "SM_Globe_LowerConstructionBand"
+    ],
+    "ORB_GLOBE_SCROLL_BAND": [
+      "HP_ORN_GlobeScrollBand"
+    ],
+    "ORB_LID_DECOR_BAND": [
+      "HP_ORN_LidDecorBand"
+    ],
+    "ORB_LID_TIERS": [
+      "SM_Lid_TierRing_01",
+      "SM_Lid_TierRing_02",
+      "SM_Lid_TierRing_03",
+      "SM_Lid_TierRing_04",
+      "SM_Lid_TierRing_05",
+      "SM_Lid_TierRing_06",
+      "SM_Lid_TierRing_07"
+    ],
+    "ORB_NECK_FIELD": [
+      "HP_ORN_NeckFieldSource"
+    ],
+    "ORB_NECK_LOTUS": [
+      "HP_ORN_NeckLotus"
+    ],
+    "ORB_NECK_UPPER_BAND": [
+      "HP_ORN_NeckUpperBand"
+    ],
+    "ORB_PEDESTAL_RINGS": [
+      "SM_Pedestal_FootRoll",
+      "SM_Pedestal_UpperRoll",
+      "HP_ORN_PedestalRing_03",
+      "HP_ORN_PedestalRing_04"
+    ],
+    "ORB_SHOULDER_RINGS": [
+      "SM_Shoulder_Ring_01",
+      "SM_Shoulder_Ring_02",
+      "SM_Shoulder_Ring_03",
+      "HP_ORN_ShoulderRing_04"
+    ]
+  },
+  "schema_version": 1,
+  "source_blend": "reconstruction/reference_assisted_v2/work/30_BASE_GEOMETRY_ACCEPTED.blend",
+  "source_blend_sha256": "39c6d5e2c81bfe7fc45058719cd7884e0d4747d9824a8e503d21cfe85cf3c61e",
+  "source_policy": "project_photographs_and_existing_cv_feature_evidence_only",
+  "stage": "ornament",
+  "visual_review_scope": [
+    "globe_hero_and_crosshatch",
+    "globe_scroll_and_shoulder_rings",
+    "neck_lotus_and_field",
+    "lid_tiers",
+    "bowl_flame_band",
+    "pedestal_rings"
+  ]
+}

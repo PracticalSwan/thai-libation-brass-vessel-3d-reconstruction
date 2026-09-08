@@ -23,6 +23,8 @@
 - Never force-push.
 - Final `NO-SHIP` is not an acceptable stopping state. A failed QA category routes back to the responsible earlier plan for correction and revalidation. Stop only if a genuine external blocker remains after reasonable evidence-directed alternatives are exhausted; never fabricate `SHIP`.
 - Use enough compute/rendering/verification to make the final decision credible. Do not weaken final QA merely to finish faster.
+- Pre-export final validation must rerun the Plan 2 registered-view coverage audit after cleanup/lookdev. Any repeated usable-view `model_mismatch` is a `NO-SHIP` geometry failure even when the canonical 16-view thresholds still pass.
+- Final QA/reporting must consume `surface_evidence_coverage.json` and disclose which geometry/appearance regions are direct multi-view evidence, reviewed/detail-only, symmetry/repetition inferred, or hidden generic fill.
 
 ---
 
@@ -174,6 +176,12 @@ minimum reliable-view IoU >= 0.84
 median landmark error <= 0.020 object height
 95th percentile landmark error <= 0.040
 ```
+
+- [ ] **Step 4A: Re-run non-canonical registered-view generalization audit**
+
+Repeat the Plan 2 low-resolution silhouette audit on the final cleaned/textured model using the same distortion-consistent camera/mask paths. Compare against the earlier `registered_view_coverage_report.json` and inspect the current worst views. Any repeated usable-view `model_mismatch` must route back to geometry/cleanup; do not dismiss it because the canonical median still passes.
+
+Also re-open `surface_evidence_coverage.json` and verify final ornament/texture decisions did not silently turn `symmetry_repetition` or `hidden_generic_fill` regions into claims of direct reconstruction.
 
 - [ ] **Step 5: Apply visual identity veto**
 

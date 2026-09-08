@@ -1,0 +1,305 @@
+{
+  "accepted": true,
+  "blend_path": "reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.blend",
+  "blend_sha256": "4b97ef9d38846c5f27856401dd4834802970b8afcec77a6c72305fd828ca4e3e",
+  "chain_decision": "omit_from_v2",
+  "detail_renders": {
+    "final_assembly_clearance_close": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_assembly_clearance_close.png",
+      "sha256": "b3058266a09a673f5f886a633aeae6f8ddd2d87568c826125f611dd75d3f2a7a"
+    },
+    "final_bowl_pedestal_close": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_bowl_pedestal_close.png",
+      "sha256": "c81afb0c9b91c0ececc12d2eec6f19b588c1ff2a14dd9e4740582ff00b6ff913"
+    },
+    "final_globe_close": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_globe_close.png",
+      "sha256": "e153594bf319197f49a70e0397e5e395c7cb671db34fc97ca29385a023f4d114"
+    },
+    "final_neck_lid_close": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_neck_lid_close.png",
+      "sha256": "9bf57db4db9a42cbc27f6e9816c171cc27100d259bca78401f79565d8a6cb48c"
+    }
+  },
+  "export_performed": false,
+  "failure_reasons": [],
+  "forbidden_objects": [],
+  "mesh_statistics": {
+    "mesh_count": 26,
+    "objects": [
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Pedestal",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Bowl",
+        "polygons": 2880,
+        "source": "accepted_plan1_profile",
+        "vertices": 2880
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_VesselBody",
+        "polygons": 3040,
+        "source": "accepted_plan1_profile",
+        "vertices": 2882
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_VesselNeck",
+        "polygons": 2880,
+        "source": "accepted_plan1_profile",
+        "vertices": 2880
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Finial",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Pedestal_FootRoll",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Pedestal_UpperRoll",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Bowl_LowerSeatRing",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Bowl_RolledRim",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Globe_LowerConstructionBand",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Shoulder_Ring_01",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Shoulder_Ring_02",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Shoulder_Ring_03",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Neck_LowerCollar",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Neck_UpperCollar",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_01",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_02",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_03",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_04",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_05",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_06",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_07",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "HP_ORN_ShoulderRing_04",
+        "polygons": 1536,
+        "source": "photographed_explicit_ring_family",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "HP_ORN_PedestalRing_03",
+        "polygons": 1536,
+        "source": "photographed_explicit_ring_family",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "HP_ORN_PedestalRing_04",
+        "polygons": 1536,
+        "source": "photographed_explicit_ring_family",
+        "vertices": 1536
+      }
+    ],
+    "polygons": 44320,
+    "vertices": 43688
+  },
+  "missing_uv_objects": [],
+  "render_object_count": 34,
+  "review_renders": {
+    "front": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_front.png",
+      "sha256": "d24a33b2e84feb63013dd96f5cb1439e04649fbda9b93c5454dfd3b14e6bc29a"
+    },
+    "low": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_low.png",
+      "sha256": "09a899e8a0d0ece45da77de81441ff272146594c82ca4c84c4c1cf9023c90724"
+    },
+    "quarter": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_quarter.png",
+      "sha256": "3f5ca4230470a3b92faa54ec2054c52c0499e432997cada4234f840bed5f7ef1"
+    },
+    "side": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_side.png",
+      "sha256": "c5c3b0b5144667b0e335ee853e5e9b9f6af7e05f9eec3c89dcb93df0712e2aeb"
+    },
+    "top": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_top.png",
+      "sha256": "921cb8a16169fe74ab3622ae8722b1961aff1b03bf8547c93202de5226c8679b"
+    },
+    "wire": {
+      "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_wire.png",
+      "sha256": "22411a8ac08feb2c8fc98c8ddcf18dc885bb9b1c519f3b50a882a133c1e61011"
+    }
+  },
+  "schema_version": 1,
+  "source_blend": "reconstruction/reference_assisted_v2/work/70_LOOKDEV_ACCEPTED.blend",
+  "source_blend_sha256": "27004962571f70b886281399ea4c055b190cd9f84eb769f26d3d1a7ab2ebad9d",
+  "stage": "final-validate",
+  "user_review_required_before_export": true,
+  "uv_checker": {
+    "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/uv_checker.png",
+    "sha256": "b54f3dd21f749c8b306aa677260a591658d9b6e55ca9cbb0789ce10a2f0ffd95"
+  }
+}

@@ -1,0 +1,420 @@
+{
+  "accepted": true,
+  "base_geometry_visual_review": {
+    "accepted": true,
+    "path": "reconstruction/reference_assisted_v2/reports/base_geometry_visual_review.json",
+    "sha256": "e1a016ee649ae93565ab50ba3dc0c1351b133cfd59a347e783522771f827f639",
+    "validation": {
+      "components": {
+        "bowl_pedestal": "pass",
+        "globe_shoulder": "pass",
+        "lid_finial": "pass",
+        "neck": "pass",
+        "overall_identity": "pass"
+      },
+      "failures": [],
+      "passed": true,
+      "reviewed_views": [
+        "front",
+        "low",
+        "quarter",
+        "side",
+        "top",
+        "wire"
+      ]
+    }
+  },
+  "blend_path": "reconstruction/reference_assisted_v2/work/30_BASE_GEOMETRY_ACCEPTED.blend",
+  "blend_sha256": "39c6d5e2c81bfe7fc45058719cd7884e0d4747d9824a8e503d21cfe85cf3c61e",
+  "camera_display_contract": "Blender_pinhole_display_only_not_metric",
+  "camera_metric_contract": "raw_source_exact_SIMPLE_RADIAL",
+  "canonical_camera_set": [
+    3,
+    19,
+    50,
+    72,
+    90,
+    114,
+    128,
+    142,
+    148,
+    165,
+    188,
+    200,
+    206,
+    221,
+    243,
+    255
+  ],
+  "canonical_metrics": {
+    "gate_landmark_count": 228.0,
+    "median_landmark_error_fraction": 0.011305634218273655,
+    "median_silhouette_iou": 0.9014951045250066,
+    "minimum_reliable_silhouette_iou": 0.8561018639257498,
+    "p95_landmark_error_fraction": 0.03808036479821417,
+    "reliable_view_count": 11.0
+  },
+  "component_visual_review": {
+    "bowl_pedestal": "pass",
+    "globe_shoulder": "pass",
+    "lid_finial": "pass",
+    "neck": "pass",
+    "overall_identity": "pass"
+  },
+  "diagnostics": [
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/045_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/059_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/047_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/048_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/049_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/127_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/133_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/126_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/116_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/095_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/178_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/183_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/154_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/184_overlay.png",
+    "reconstruction/reference_assisted_v2/diagnostics/21_registered_view_coverage/169_overlay.png"
+  ],
+  "failure_reasons": [],
+  "metric_thresholds": {
+    "median_landmark_error_fraction": 0.02,
+    "median_silhouette_iou": 0.9,
+    "minimum_reliable_silhouette_iou": 0.84,
+    "p95_landmark_error_fraction": 0.04
+  },
+  "ornament_started": false,
+  "plan1_candidate_sha256": "edbed94742df14bebab91c877884a0e247a91e99f5e46c91331c516f831166e0",
+  "profiles": {
+    "import_max_abs_delta": 0.0,
+    "path": "reconstruction/reference_assisted_v2/reports/final_profiles.json",
+    "sha256": "ae1090b2ec9b2cf0c231a74898c12e3834f1dd19225a819b8b7b6250ae393fe6"
+  },
+  "registered_view_coverage_report": {
+    "accepted": true,
+    "path": "reconstruction/reference_assisted_v2/reports/registered_view_coverage_report.json",
+    "sha256": "50a1d2ec1e67a6a9c6e3448f434fc913d0b66f0d87c2e533a6a81067ac6b515e"
+  },
+  "schema_version": 1,
+  "stage": "geometry-validate",
+  "step6_crosscheck": {
+    "accepted": true,
+    "candidate_binding": {
+      "blend_sha256": "39c6d5e2c81bfe7fc45058719cd7884e0d4747d9824a8e503d21cfe85cf3c61e",
+      "plan1_candidate_sha256": "edbed94742df14bebab91c877884a0e247a91e99f5e46c91331c516f831166e0",
+      "profiles_sha256": "ae1090b2ec9b2cf0c231a74898c12e3834f1dd19225a819b8b7b6250ae393fe6"
+    },
+    "diagnostics": [
+      "reconstruction/reference_assisted_v2/diagnostics/22_step6_candidate_crosscheck/165_candidate_overlay.png",
+      "reconstruction/reference_assisted_v2/diagnostics/22_step6_candidate_crosscheck/255_candidate_overlay.png"
+    ],
+    "interpretation": "Step 6 remains an independent corroborating cross-check; rejected Step-6 ellipses stay unavailable and never override reviewed masks",
+    "method": "candidate_bound_exact_camera_projection_against_rerun_frozen_Step6_contour_Canny_PCA_and_reliable_ellipse",
+    "records": [
+      {
+        "accepted": true,
+        "axis_angle_difference_degrees": 0.010871412345508702,
+        "candidate_silhouette_to_step6_contour": {
+          "median_fraction_object_height": 0.005403111645322203,
+          "median_pixels": 7.639999866485596,
+          "p90_fraction_object_height": 0.0145903820701502,
+          "p90_pixels": 20.630800247192383,
+          "sample_count": 3083
+        },
+        "coordinate_path": "exact_SIMPLE_RADIAL",
+        "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/22_step6_candidate_crosscheck/165_candidate_overlay.png",
+        "diagnostic_sha256": "eae4eae3b594b6f7d2e5180b6381eb5a784651026b0ee0a81a13ff0f1fe2d405",
+        "ellipse_comparison": {
+          "available": false,
+          "reason": "Step-6 ellipse was rejected by its frozen residual gate"
+        },
+        "evaluation_status": "reliable_sweep_crosscheck",
+        "filename": "IMG20260826125013.jpg",
+        "hard_gate_eligible": true,
+        "named_feature_edge_residuals": [
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.022280377410931838,
+              "median_pixels": 31.504453659057617,
+              "p90_fraction_object_height": 0.038101384865681216,
+              "p90_pixels": 53.875358200073244,
+              "sample_count": 180
+            },
+            "feature": "pedestal_foot",
+            "profile": "pedestal",
+            "z": 0.018
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.007734688876204646,
+              "median_pixels": 10.93685007095337,
+              "p90_fraction_object_height": 0.01478952626359176,
+              "p90_pixels": 20.91239013671875,
+              "sample_count": 180
+            },
+            "feature": "pedestal_upper",
+            "profile": "pedestal",
+            "z": 0.184
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.0006753889556652754,
+              "median_pixels": 0.9549999833106995,
+              "p90_fraction_object_height": 0.005696110543300947,
+              "p90_pixels": 8.054300308227539,
+              "sample_count": 180
+            },
+            "feature": "bowl_rim",
+            "profile": "bowl_outer",
+            "z": 0.443
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.0006753889556652754,
+              "median_pixels": 0.9549999833106995,
+              "p90_fraction_object_height": 0.0038735502342860805,
+              "p90_pixels": 5.477200031280518,
+              "sample_count": 180
+            },
+            "feature": "shoulder_ring_01",
+            "profile": "shoulder",
+            "z": 0.568
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.0009683875585715201,
+              "median_pixels": 1.3693000078201294,
+              "p90_fraction_object_height": 0.0038824894134866796,
+              "p90_pixels": 5.489840030670165,
+              "sample_count": 180
+            },
+            "feature": "shoulder_ring_02",
+            "profile": "shoulder",
+            "z": 0.592
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.0006753889556652754,
+              "median_pixels": 0.9549999833106995,
+              "p90_fraction_object_height": 0.0032964922919806188,
+              "p90_pixels": 4.661240100860595,
+              "sample_count": 180
+            },
+            "feature": "shoulder_ring_03",
+            "profile": "shoulder",
+            "z": 0.618
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.0006753889556652754,
+              "median_pixels": 0.9549999833106995,
+              "p90_fraction_object_height": 0.0016437765563900096,
+              "p90_pixels": 2.3243000507354736,
+              "sample_count": 180
+            },
+            "feature": "lid_tier_lower",
+            "profile": "lid",
+            "z": 0.827
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.0006753889556652754,
+              "median_pixels": 0.9549999833106995,
+              "p90_fraction_object_height": 0.0027015558226611016,
+              "p90_pixels": 3.819999933242798,
+              "sample_count": 180
+            },
+            "feature": "lid_tier_mid",
+            "profile": "lid",
+            "z": 0.881
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.0006753889556652754,
+              "median_pixels": 0.9549999833106995,
+              "p90_fraction_object_height": 0.0020261669091490406,
+              "p90_pixels": 2.865000009536743,
+              "sample_count": 180
+            },
+            "feature": "lid_tier_upper",
+            "profile": "lid",
+            "z": 0.935
+          }
+        ],
+        "projected_axis_angle_degrees": 88.98036545014679,
+        "selected_index": 165,
+        "step6_principal_axis_angle_degrees": 88.9912368624923,
+        "step6_status": "ellipse_unavailable",
+        "sweep": "elevated_148_200"
+      },
+      {
+        "accepted": null,
+        "axis_angle_difference_degrees": 1.2623711064083238,
+        "candidate_silhouette_to_step6_contour": {
+          "median_fraction_object_height": 0.323138076647193,
+          "median_pixels": 219.08761596679688,
+          "p90_fraction_object_height": 0.5516636761240551,
+          "p90_pixels": 374.02797241210936,
+          "sample_count": 2545
+        },
+        "coordinate_path": "exact_SIMPLE_RADIAL",
+        "diagnostic": "reconstruction/reference_assisted_v2/diagnostics/22_step6_candidate_crosscheck/255_candidate_overlay.png",
+        "diagnostic_sha256": "5c5ead7cc74d1caf71401a6cc8e69c0997f3ac94edd9906566d68ff978bbac43",
+        "ellipse_comparison": {
+          "angle_difference_degrees": 84.90228271484375,
+          "available": true,
+          "candidate_axes": [
+            756.32275390625,
+            959.366943359375
+          ],
+          "candidate_center": [
+            554.7825317382812,
+            1418.90576171875
+          ],
+          "center_error_fraction_object_height": 0.5090715072537418,
+          "maximum_relative_axis_error": 0.4995179453500949,
+          "source_axes": [
+            558.72705078125,
+            639.7835693359375
+          ],
+          "source_center": [
+            634.2037963867188,
+            1083.0172119140625
+          ]
+        },
+        "evaluation_status": "evaluation_only_top_sweep_axis_evidence_unreliable",
+        "filename": "IMG20260826130051.jpg",
+        "hard_gate_eligible": false,
+        "named_feature_edge_residuals": [
+          {
+            "edge_residual": {
+              "median_fraction_object_height": null,
+              "median_pixels": null,
+              "p90_fraction_object_height": null,
+              "p90_pixels": null,
+              "sample_count": 0
+            },
+            "feature": "pedestal_foot",
+            "profile": "pedestal",
+            "z": 0.018
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": null,
+              "median_pixels": null,
+              "p90_fraction_object_height": null,
+              "p90_pixels": null,
+              "sample_count": 0
+            },
+            "feature": "pedestal_upper",
+            "profile": "pedestal",
+            "z": 0.184
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.26215673125950634,
+              "median_pixels": 177.7422637939453,
+              "p90_fraction_object_height": 0.6125827215414131,
+              "p90_pixels": 415.3310852050781,
+              "sample_count": 111
+            },
+            "feature": "bowl_rim",
+            "profile": "bowl_outer",
+            "z": 0.443
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.15479093455986992,
+              "median_pixels": 104.9482536315918,
+              "p90_fraction_object_height": 0.24002914653766824,
+              "p90_pixels": 162.73976135253906,
+              "sample_count": 180
+            },
+            "feature": "shoulder_ring_01",
+            "profile": "shoulder",
+            "z": 0.568
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.07637785458635088,
+              "median_pixels": 51.7841854095459,
+              "p90_fraction_object_height": 0.15173749445462298,
+              "p90_pixels": 102.87802124023438,
+              "sample_count": 180
+            },
+            "feature": "shoulder_ring_02",
+            "profile": "shoulder",
+            "z": 0.592
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.02228311170167276,
+              "median_pixels": 15.10794973373413,
+              "p90_fraction_object_height": 0.07834044037315346,
+              "p90_pixels": 53.11481857299805,
+              "sample_count": 180
+            },
+            "feature": "shoulder_ring_03",
+            "profile": "shoulder",
+            "z": 0.618
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.022707742927348718,
+              "median_pixels": 15.395849704742432,
+              "p90_fraction_object_height": 0.08704862003832792,
+              "p90_pixels": 59.01896438598633,
+              "sample_count": 180
+            },
+            "feature": "lid_tier_lower",
+            "profile": "lid",
+            "z": 0.827
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.015732301019989285,
+              "median_pixels": 10.666500091552734,
+              "p90_fraction_object_height": 0.09710112827717378,
+              "p90_pixels": 65.83456497192383,
+              "sample_count": 180
+            },
+            "feature": "lid_tier_mid",
+            "profile": "lid",
+            "z": 0.881
+          },
+          {
+            "edge_residual": {
+              "median_fraction_object_height": 0.013619469330374119,
+              "median_pixels": 9.234000205993652,
+              "p90_fraction_object_height": 0.06986013204298891,
+              "p90_pixels": 47.365169525146484,
+              "sample_count": 180
+            },
+            "feature": "lid_tier_upper",
+            "profile": "lid",
+            "z": 0.935
+          }
+        ],
+        "projected_axis_angle_degrees": 83.76197118789023,
+        "selected_index": 255,
+        "step6_principal_axis_angle_degrees": 82.4996000814819,
+        "step6_status": "ok",
+        "sweep": "top_206_255"
+      }
+    ],
+    "sha256": "618a4ca6aef1234bf5b630e0a91c19e5aa7b46f38e0828dd739be89e17714cb7",
+    "source": "analysis/reports/geometry_summary.json",
+    "thresholds": {
+      "axis_angle_difference_degrees": 8.0,
+      "median_named_feature_edge_fraction_object_height": 0.055,
+      "silhouette_contour_median_fraction_object_height": 0.055
+    }
+  },
+  "surface_evidence_coverage": {
+    "accepted": true,
+    "path": "reconstruction/reference_assisted_v2/reports/surface_evidence_coverage.json",
+    "sha256": "848fd02f21f8742d4d8b44d7169d388af3b09868865b99c34bdaf2b676a609f6"
+  }
+}

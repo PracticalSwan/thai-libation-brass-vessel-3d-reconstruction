@@ -48,6 +48,8 @@ reconstruction/reference_assisted_v2/evidence/**
 ```text
 reconstruction/reference_assisted_v2/work/base_geometry.blend
 reconstruction/reference_assisted_v2/reports/base_geometry_report.json
+reconstruction/reference_assisted_v2/reports/registered_view_coverage_report.json
+reconstruction/reference_assisted_v2/reports/surface_evidence_coverage.json
 reconstruction/reference_assisted_v2/diagnostics/20_base_geometry/**
 ```
 
@@ -212,9 +214,9 @@ def create_camera_from_cv_reference(
 ) -> bpy.types.Object: ...
 ```
 
-Use Step 13 camera intrinsics/extrinsics from V2 report. Preserve SIMPLE_RADIAL evidence in custom properties even if Blender camera approximates distortion-free perspective for viewport review.
+Use Step 13 camera intrinsics/extrinsics from V2 report. Preserve `SIMPLE_RADIAL` evidence in custom properties even if Blender camera approximates distortion-free perspective for viewport review.
 
-If lens distortion must be handled for exact overlays, prefer creating undistorted derived reference images/cameras under V2 evidence rather than pretending Blender's standard perspective includes SIMPLE_RADIAL distortion.
+Exact metric/overlay paths must be distortion-consistent. Use either raw source images with exact verified `SIMPLE_RADIAL` projection/distortion math, or explicitly generated undistorted derived images with the corresponding derived pinhole camera. Never compare a standard Blender pinhole render directly against a raw distorted source and report that as an exact CV metric. Record source hash plus transformation/camera parameters for every derived undistorted reference.
 
 - [ ] **Step 2: Create derived undistorted review images if required**
 
@@ -514,6 +516,81 @@ The implementation agent must inspect real images. Numeric-only acceptance is fo
 
 ---
 
+### Task 9A: Run the registered-view CV coverage and surface-evidence audit
+
+**Files:**
+- Modify: `final_model_validation.py`
+- Modify: `build_final_model_blender.py`
+- Modify: `run_final_model.py`
+
+**Interfaces:**
+- Produces `registered_view_coverage_report.json` and `surface_evidence_coverage.json` as part of `geometry-validate`.
+
+- [ ] **Step 1: Render a low-cost silhouette audit outside the canonical fit set**
+
+Use Step 13-registered selected images with valid source/mask evidence that were **not** among the 16 canonical fit views **and that fall inside the accepted `capture_sweep_intervals` recorded by Plan 1**. Registered images outside those intervals have no accepted V2 object-pose assignment and must not be silently scored as though they do; keep them as unmodeled-pose evidence unless a pose is established independently. Prefer all eligible non-canonical views because binary silhouette renders are cheap; if runtime requires bounding the workload, use a deterministic camera-diverse subset and record the selection rule. Apply the accepted V2 sweep/gauge correction consistently: for side/low/elevated audit cameras, transform Step 13 camera centers using the exact per-sweep `anchor_world` + `factor` recorded under `final_cv_fit.json -> fit_summary -> camera_center_normalization`, and use the corresponding accepted `sweep_alignments` object pose. The top-down sweep remains evaluation-only under its documented top alignment. **Do not extrapolate the canonical views' bounded per-camera translation refinements to non-canonical audit cameras and do not fit new per-view corrections on the audit set.**
+
+Use existing Step 9 reconstruction/CNN masks, with reviewed masks taking precedence where available. This is a cross-check workload, not a second profile-optimization set.
+
+- [ ] **Step 2: Keep exact camera geometry distortion-consistent**
+
+For raw source masks/images, compute comparison metrics through exact verified `SIMPLE_RADIAL` projection/distortion math. If using derived undistorted images, use only their paired derived pinhole cameras. Record which path each view uses.
+
+- [ ] **Step 3: Compute and rank per-view silhouette diagnostics**
+
+At minimum record:
+
+```text
+evaluated blend/geometry path + SHA-256
+final_cv_fit.json candidate SHA-256
+camera normalization/alignment provenance hash or exact source fields
+mask/evidence manifest hash
+selected index / filename
+camera/view group
+mask source
+silhouette IoU
+foreground coverage difference
+source quality condition
+classification = ok | mask_failure | camera_failure | model_mismatch
+```
+
+The audit is candidate-bound: never reuse an accepted coverage report for a different Blender geometry hash. Later cleanup/final reruns must likewise bind their audit result to the exact evaluated candidate rather than treating the Plan 2 report as permanently current.
+
+Open the worst-scoring views across the capture sweeps rather than accepting aggregate numbers blindly. Do **not** deform the model to chase a visibly bad CNN mask. A genuine repeated structural `model_mismatch` in non-canonical views routes back to the responsible camera/profile/assembly diagnosis and requires rerunning the canonical gate afterward.
+
+- [ ] **Step 4: Reuse Step 6 classical shape evidence as an independent cross-check**
+
+Where edge quality is reliable, compare source Canny/contour/PCA/ellipse evidence against projected Blender geometry for:
+
+```text
+bowl rolled rim
+pedestal/foot circles
+shoulder construction rings
+lid tiers/rings
+whole-vessel projected axis
+```
+
+Store residual/overlay diagnostics. Treat this as independent corroboration; do not override stronger reviewed masks/landmarks with a weak edge detector.
+
+- [ ] **Step 5: Build the surface-evidence coverage manifest**
+
+For each major component and meaningful azimuth/elevation sector, record support counts and classify final surface support as exactly one of:
+
+```text
+direct_multi_view
+reviewed_single_or_detail
+symmetry_repetition
+hidden_generic_fill
+```
+
+Use registered camera visibility plus component masks/landmarks to establish direct coverage. This manifest must later constrain ornament repetition, backside completion, texture filling, and final reporting.
+
+- [ ] **Step 6: Apply the coverage veto without inventing a new optimization target**
+
+The canonical Gate B thresholds remain the hard numeric geometry gate. The registered-view audit adds a visual/generalization veto: if multiple usable non-canonical views expose a real same-component shape error, geometry is not accepted until corrected. Isolated failures attributable to known mask/camera defects remain documented as such and do not become reasons to distort the object.
+
+---
+
 ### Task 10: Run bounded geometry correction loop
 
 **Files:**
@@ -616,10 +693,10 @@ This becomes the immutable rollback source for ornament work.
 
 - [ ] **Step 4: Write `base_geometry_report.json`**
 
-Include object list, profiles consumed, dimensions in normalized units, camera set, metrics, diagnostic paths, and `ornament_started=false` at this checkpoint.
+Include object list, profiles consumed, dimensions in normalized units, canonical camera set, distortion-handling path, canonical metrics, `registered_view_coverage_report.json`, `surface_evidence_coverage.json`, diagnostic paths, and `ornament_started=false` at this checkpoint.
 
 - [ ] **Step 5: Verify this plan**
 
 Run focused orchestrator/validation tests and compile new Python modules. Reopen accepted blend in background Blender and confirm required objects/collections exist.
 
-**Plan completion gate:** No ornament, sculpted wear, final UVs, or beauty materials begin until the accepted base blend and geometry report exist.
+**Plan completion gate:** No ornament, sculpted wear, final UVs, or beauty materials begin until the accepted base blend and geometry report exist **and** the registered-view coverage audit plus surface-evidence coverage manifest have been generated/reviewed with no unresolved real `model_mismatch`.
