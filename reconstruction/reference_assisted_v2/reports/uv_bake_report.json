@@ -8,7 +8,7 @@
         2048,
         2048
       ],
-      "sha256": "3e84a024fb40447690f9278fc3d901f58a9ae34e0a91614f4219a0a9d80fd506"
+      "sha256": "f0820bd40839d0d0e6de600493438e762c7806f786a276935f93fc1d0c017b74"
     },
     "curvature": {
       "path": "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_Curvature.png",
@@ -16,7 +16,7 @@
         2048,
         2048
       ],
-      "sha256": "72759139f2ca5b25a2bdc4a4e5e9cb2a745b79298b125e5760f47ef3ce7aa571"
+      "sha256": "453d917c2af4fe1de1ecafb489cd6703a832b446a4ad0fcf48c5ba8a511be3a7"
     },
     "normal": {
       "path": "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_Normal.png",
@@ -24,17 +24,17 @@
         2048,
         2048
       ],
-      "sha256": "04ddbf528b68ec1d95953eb4b07c53f432f400baee1fe47f0be8f833be0c5099"
+      "sha256": "a2b3b2825aaa37d5e2f158db99410132e9fd3717383f429c64a7f2e0bca2ec42"
     }
   },
   "blend_path": "reconstruction/reference_assisted_v2/work/60_UV_BAKE_ACCEPTED.blend",
-  "blend_sha256": "cb24bb8d86afc7e87260ed3ca6880999b03333a7255dfa45e714e67d8510ad81",
+  "blend_sha256": "f90d6a4fa67dc84aced476b84bb1115b9657b906419db457c4a04ff0a56ce2b0",
   "failure_reasons": [],
-  "mesh_count": 26,
+  "mesh_count": 29,
   "schema_version": 1,
   "source_blend": "reconstruction/reference_assisted_v2/work/50_CLEAN_TOPOLOGY_ACCEPTED.blend",
-  "source_blend_sha256": "ecd0e4a0ddda10ab315078085e54a5119f922e309dbe792da6a8865a899e5cd7",
+  "source_blend_sha256": "8ec41670d71ac94b5eba58e02cc1eb39f77c19cabd0ad7d0b730d921010c4e28",
   "stage": "uv-bake",
-  "uv_mesh_count": 26,
+  "uv_mesh_count": 29,
   "uv_method": "shared_multi_object_smart_uv_then_pack"
 }

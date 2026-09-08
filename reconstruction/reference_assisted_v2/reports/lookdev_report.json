@@ -8,7 +8,7 @@
     "LGT_Beauty_Top"
   ],
   "blend_path": "reconstruction/reference_assisted_v2/work/70_LOOKDEV_ACCEPTED.blend",
-  "blend_sha256": "27004962571f70b886281399ea4c055b190cd9f84eb769f26d3d1a7ab2ebad9d",
+  "blend_sha256": "6538d25ecfdcae2ec980c4bf3bf531a0a5128c19c421e9335d9570bab5c2b3b4",
   "failure_reasons": [],
   "forbidden_objects": [],
   "material": "MAT_FINAL_PolishedThaiBrass",
@@ -20,35 +20,35 @@
   "renders": {
     "assembly_clearance_detail": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/assembly_clearance_detail.png",
-      "sha256": "730a82fd18b57e471caf0ef5cfc50de9b70213aa1a8783f6c8058c3954c0863d"
+      "sha256": "1b3af3740feada08e5750b4d2292715eb818a1eea7b84970778f1b37baa778ac"
     },
     "beauty_front": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/beauty_front.png",
-      "sha256": "51fac73f76adcb8330a0843d3c0ba1020b94a6b477cc842ddfafeb041652972b"
+      "sha256": "557c5124d2c40e9e3e45ddd9c79c4a8ab8537df042fd6fcec12fc9dfd1c7efab"
     },
     "beauty_quarter": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/beauty_quarter.png",
-      "sha256": "d5543c1b47cea9a62f7739c9350ef34d2f55d53dd462df00907d237bc4a428b6"
+      "sha256": "048b3e8085e580575bf1ce89bcbe41b46ad1d8cdb4332b526d72b046830a2c7c"
     },
     "beauty_side": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/beauty_side.png",
-      "sha256": "b0ba24131f3f14844ead24087308cbf3983cb7707330e29c6aa28f5590537474"
+      "sha256": "604d4995ce4792ea2d0fb108c777641f5e0a337b91d2b90620474d77c142fa15"
     },
     "bowl_pedestal_detail": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/bowl_pedestal_detail.png",
-      "sha256": "96ef10cacd9ddf5b6d3497af289e1c7c396a0e08434b2f603a61f14db2148c97"
+      "sha256": "62091355d91d7b491412c6a16c4b5fb940f0561f3c41d1446a6e487cf91d786f"
     },
     "globe_detail": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/globe_detail.png",
-      "sha256": "8e5df63d26a6533de2a0ca5fde5b3c28cfcd6988adc51971d8cc52000541b89a"
+      "sha256": "983504f5c51607f1fa880f9fbf0b5f3c74211daaff3b4741270482bfc52a34fc"
     },
     "neck_lid_detail": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/50_lookdev/neck_lid_detail.png",
-      "sha256": "37b678c0ebc83ab34f6e362b49eff3f281e263c12862f7f3011dab66c625c3c2"
+      "sha256": "807ffead3dfdd598ca7e011bf292ba4e1babf4a550f596c92b4bd6876d332265"
     }
   },
   "schema_version": 1,
   "source_blend": "reconstruction/reference_assisted_v2/work/60_UV_BAKE_ACCEPTED.blend",
-  "source_blend_sha256": "cb24bb8d86afc7e87260ed3ca6880999b03333a7255dfa45e714e67d8510ad81",
+  "source_blend_sha256": "f90d6a4fa67dc84aced476b84bb1115b9657b906419db457c4a04ff0a56ce2b0",
   "stage": "lookdev"
 }

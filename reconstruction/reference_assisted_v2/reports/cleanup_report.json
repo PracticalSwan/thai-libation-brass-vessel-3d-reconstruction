@@ -1,7 +1,7 @@
 {
   "accepted": true,
   "blend_path": "reconstruction/reference_assisted_v2/work/50_CLEAN_TOPOLOGY_ACCEPTED.blend",
-  "blend_sha256": "ecd0e4a0ddda10ab315078085e54a5119f922e309dbe792da6a8865a899e5cd7",
+  "blend_sha256": "8ec41670d71ac94b5eba58e02cc1eb39f77c19cabd0ad7d0b730d921010c4e28",
   "editable_ornament_sources_preserved": true,
   "failure_reasons": [],
   "forbidden_objects": [],
@@ -193,6 +193,30 @@
     {
       "degenerate_faces": 0,
       "loose_vertices": 0,
+      "name": "SM_Globe_LowerSupport",
+      "nonmanifold_edges": 0,
+      "polygons": 1120,
+      "vertices": 962
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Globe_LowerSupport_BottomRing",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
+      "name": "SM_Globe_LowerSupport_TopRing",
+      "nonmanifold_edges": 0,
+      "polygons": 1536,
+      "vertices": 1536
+    },
+    {
+      "degenerate_faces": 0,
+      "loose_vertices": 0,
       "name": "HP_ORN_ShoulderRing_04",
       "nonmanifold_edges": 0,
       "polygons": 1536,
@@ -222,34 +246,36 @@
     "component_positions_changed": false,
     "evidence_reason": "top_only_step6_mismatch_plus_user_rejected_fused_globe_bowl_clearance",
     "globe_profile_changed": false,
+    "inner_profile_changed": false,
+    "inner_profile_max_radius_delta": 0.0,
     "lower_bowl_profile_unchanged": true,
-    "minimum_shell_radial_clearance": 0.005982060621289392,
+    "minimum_shell_radial_clearance": 0.040830650324319956,
     "minimum_wall_thickness": 0.0015,
-    "outer_profile_change_scope": "bowl_outer_z_above_0.385_only",
-    "outer_profile_changed": true,
-    "outer_profile_max_radius_delta": 0.017125128329071454,
+    "outer_profile_change_scope": "none_required_after_globe_refinement",
+    "outer_profile_changed": false,
+    "outer_profile_max_radius_delta": 0.0,
     "policy": "localized_top_oblique_evidence_correction_upper_receiving_bowl_lip_only",
-    "rolled_rim_inner_radius": 0.21772666245415584,
+    "rolled_rim_inner_radius": 0.20121123924524195,
     "rolled_rim_minor_radius": 0.0032,
-    "rolled_rim_outer_radius": 0.22412666245415583,
-    "rolled_rim_radial_clearance": 0.019425303114150028,
+    "rolled_rim_outer_radius": 0.20761123924524194,
+    "rolled_rim_radial_clearance": 0.06042261983921096,
     "samples": [
       {
-        "globe_radius": 0.18824460028095397,
-        "inner_radius": 0.19422666090224336,
-        "radial_clearance": 0.005982060621289392,
+        "globe_radius": 0.07548825630595936,
+        "inner_radius": 0.17223944390200038,
+        "radial_clearance": 0.09675118759604102,
         "z": 0.38503763024115123
       },
       {
-        "globe_radius": 0.1947611545401674,
-        "inner_radius": 0.20676678575780535,
-        "radial_clearance": 0.012005631217637952,
+        "globe_radius": 0.11535328466564437,
+        "inner_radius": 0.17993118861904583,
+        "radial_clearance": 0.06457790395340146,
         "z": 0.4150897649524152
       },
       {
-        "globe_radius": 0.19734881073928182,
-        "inner_radius": 0.2153488107392818,
-        "radial_clearance": 0.017999999999999988,
+        "globe_radius": 0.14207956367974467,
+        "inner_radius": 0.18291021400406463,
+        "radial_clearance": 0.040830650324319956,
         "z": 0.4451418996636791
       }
     ],
@@ -259,14 +285,65 @@
       278,
       288
     ],
-    "target_rim_to_globe_radius_ratio": 1.14,
-    "top_globe_radius": 0.19734881073928182,
-    "top_outer_radius": 0.22497764424278124,
-    "top_outer_to_globe_radius_ratio": 1.14
+    "target_rim_to_globe_radius_ratio": 1.3,
+    "top_globe_radius": 0.14207956367974467,
+    "top_outer_radius": 0.2078525159137098,
+    "top_outer_to_globe_radius_ratio": 1.4629304210295933
   },
   "required_base_objects_missing": [],
   "schema_version": 1,
   "source_blend": "reconstruction/reference_assisted_v2/work/40_ORNAMENT_ACCEPTED.blend",
-  "source_blend_sha256": "f67519538ef29b51769b1fd1b5b3d2565a6f0923079c5d625bc833427c6c07b5",
-  "stage": "cleanup"
+  "source_blend_sha256": "58a6345c9b966f919ba1b9a97e50debb46a4858dbe948793677b160d6c614e50",
+  "stage": "cleanup",
+  "upper_vessel_globe_refinement": {
+    "bowl_outer_to_globe_max_radius_ratio": 1.3,
+    "component_positions_changed": false,
+    "globe_bottom_radius": 0.06715235129519855,
+    "globe_bottom_radius_scale": 0.35899215347335683,
+    "globe_original_max_radius": 0.20072613611058343,
+    "globe_radius_scale": 0.7965407684366996,
+    "globe_refined_max_radius": 0.15988655070285368,
+    "lower_support_objects": [
+      "SM_Globe_LowerSupport",
+      "SM_Globe_LowerSupport_BottomRing",
+      "SM_Globe_LowerSupport_TopRing"
+    ],
+    "lower_support_profile": [
+      [
+        0.286,
+        0.07
+      ],
+      [
+        0.298,
+        0.083
+      ],
+      [
+        0.315,
+        0.086
+      ],
+      [
+        0.336,
+        0.078
+      ],
+      [
+        0.355,
+        0.068
+      ],
+      [
+        0.37918617723505904,
+        0.06715235129519855
+      ]
+    ],
+    "neck_junction_radius_preserved": true,
+    "plan1_profiles_modified_on_disk": false,
+    "policy": "bounded_downstream_source_review_globe_and_shoulder_radial_refinement",
+    "rebuilt_dependent_rings": [
+      "SM_Globe_LowerConstructionBand",
+      "SM_Shoulder_Ring_01",
+      "SM_Shoulder_Ring_02",
+      "SM_Shoulder_Ring_03"
+    ],
+    "source_evidence": "four_user_oblique_photos_plus_existing_top_oblique_source_views",
+    "z_levels_changed": false
+  }
 }

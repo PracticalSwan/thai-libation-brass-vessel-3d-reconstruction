@@ -76,6 +76,15 @@ REQUIRED_ORNAMENT_FAMILIES = (
 
 RENDER_ENGINE = "BLENDER_EEVEE"
 
+# Final user-review correction derived from the strong oblique/top photographs.
+# Plan-1 stays preserved in final_profiles.json; this downstream refinement
+# addresses only the visually proven globe-envelope defect. Four close oblique
+# views show the receiving-bowl outer diameter at roughly 1.28-1.34x the globe
+# diameter, with a narrow lower globe support visibly separated inside the bowl.
+FINAL_GLOBE_BOWL_RADIUS_RATIO = 1.30
+FINAL_GLOBE_RADIUS_SHAPE = (0.42, 0.68, 0.86, 0.97, 1.00, 0.96, 0.83, 0.62, 0.36)
+FINAL_SHOULDER_RADIUS_SHAPE = (0.99, 1.00, 0.97, 0.90, 0.79, 0.66, 0.50, 0.31, 0.275)
+
 BLENDER_STAGES = (
     "base",
     "geometry-validate",
@@ -409,6 +418,46 @@ def outer_envelope_profile(
         if candidates:
             output.append((z, max(candidates)))
     return tuple(output)
+
+
+def source_reviewed_finalization_profiles(
+    profiles: Mapping[str, Sequence[tuple[float, float]]],
+) -> dict[str, tuple[tuple[float, float], ...]]:
+    """Return the bounded source-reviewed globe/shoulder refinement.
+
+    Plan-1 data remains immutable on disk. This function is downstream-only and
+    preserves every accepted component Z level, the neck, bowl, pedestal, lid,
+    finial, axis, and component positions. Only the radial globe/shoulder envelope
+    is revised to match the close oblique photographs.
+    """
+
+    corrected = {
+        name: tuple((float(z), float(radius)) for z, radius in profile)
+        for name, profile in profiles.items()
+    }
+    globe = corrected["globe"]
+    shoulder = corrected["shoulder"]
+    bowl_outer = corrected["bowl_outer"]
+    if len(globe) != len(FINAL_GLOBE_RADIUS_SHAPE):
+        raise ValueError("final globe refinement requires the accepted 9-section globe profile")
+    if len(shoulder) != len(FINAL_SHOULDER_RADIUS_SHAPE):
+        raise ValueError("final shoulder refinement requires the accepted 9-section shoulder profile")
+
+    bowl_reference_radius = max(radius for _, radius in bowl_outer)
+    target_globe_max_radius = bowl_reference_radius / FINAL_GLOBE_BOWL_RADIUS_RATIO
+    corrected["globe"] = tuple(
+        (z, target_globe_max_radius * shape)
+        for (z, _), shape in zip(globe, FINAL_GLOBE_RADIUS_SHAPE)
+    )
+
+    # Preserve the measured neck junction exactly while making the shoulder a
+    # smooth continuation of the compact ellipsoidal globe.
+    shoulder_radii = [target_globe_max_radius * shape for shape in FINAL_SHOULDER_RADIUS_SHAPE]
+    shoulder_radii[-1] = shoulder[-1][1]
+    corrected["shoulder"] = tuple(
+        (z, radius) for (z, _), radius in zip(shoulder, shoulder_radii)
+    )
+    return corrected
 
 
 def profile_measurements(
@@ -1553,7 +1602,9 @@ def run_ornament_stage(v2_root: Path) -> dict[str, Any]:
 
     rollback = v2_root / "work" / "31_before_ornament.blend"
     bpy.ops.wm.save_as_mainfile(filepath=str(rollback))
-    profiles = validate_profile_payload(read_json(v2_root / "reports" / "final_profiles.json"))
+    profiles = source_reviewed_finalization_profiles(
+        validate_profile_payload(read_json(v2_root / "reports" / "final_profiles.json"))
+    )
     manifest_path = v2_root / "reports" / "ornament_manifest.json"
     manifest = read_json(manifest_path)
     families = validate_ornament_manifest(manifest)

@@ -16,18 +16,26 @@ import build_final_model_blender as builder
 
 
 # The accepted Plan-1/2 macro geometry remains the foundation. Strong top-oblique
-# source views and explicit user review reveal one localized exception: the upper
-# receiving-bowl lip is too narrow relative to the globe. This bounded Plan-4
-# correction flares only the upper bowl lip/cavity; lower bowl geometry, globe
-# geometry, axis, heights, and component positions remain unchanged. Values are
-# normalized to the project's 1.0 set height.
-BOWL_RIM_TO_GLOBE_RADIUS_RATIO = 1.14
+# source views and explicit user review require a minimum bowl/globe clearance.
+# After the downstream compact-globe refinement, the accepted bowl shell already
+# exceeds that minimum, so its profile stays unchanged; the source-reviewed rolled
+# rim thickness is still rebuilt explicitly. Values are normalized to the project's
+# 1.0 set height.
+BOWL_RIM_TO_GLOBE_RADIUS_RATIO = 1.30
 BOWL_UPPER_FLARE_START_Z = 0.385
 BOWL_GLOBE_CLEARANCE_AT_FLARE_START = 0.0060
 BOWL_GLOBE_CLEARANCE_AT_RIM = 0.0180
 BOWL_MIN_WALL_THICKNESS = 0.0015
 BOWL_CLEARANCE_BLEND_DEPTH = 0.045
 BOWL_RIM_MINOR_RADIUS = 0.0032
+GLOBE_LOWER_SUPPORT_PROFILE = (
+    (0.286, 0.070),
+    (0.298, 0.083),
+    (0.315, 0.086),
+    (0.336, 0.078),
+    (0.355, 0.068),
+    (0.37918617723505904, 0.0),  # replaced at runtime by refined globe bottom radius
+)
 
 
 def _bpy_modules():
@@ -217,10 +225,128 @@ def _rebuild_bowl_rim(
         bpy.data.meshes.remove(old_mesh)
 
 
+def _replace_profile_curve(name: str, profile: Iterable[tuple[float, float]]) -> None:
+    bpy, _ = _bpy_modules()
+    obj = bpy.data.objects.get(name)
+    if obj is None or obj.type != "CURVE" or not obj.data.splines:
+        return
+    spline = obj.data.splines[0]
+    points = tuple(profile)
+    if len(spline.points) != len(points):
+        return
+    for point, (z, radius) in zip(spline.points, points):
+        point.co = (float(radius), 0.0, float(z), 1.0)
+    obj["sections_json"] = json.dumps(points)
+    obj["source_reviewed_finalization_profile"] = True
+
+
+def _apply_upper_vessel_globe_refinement(v2_root: Path) -> dict[str, Any]:
+    """Apply the source-reviewed compact ellipsoidal globe refinement."""
+
+    bpy, _ = _bpy_modules()
+    original = builder.validate_profile_payload(
+        builder.read_json(v2_root / "reports" / "final_profiles.json")
+    )
+    profiles = builder.source_reviewed_finalization_profiles(original)
+    body = bpy.data.objects.get("SM_VesselBody")
+    if body is None:
+        raise ValueError("source-reviewed globe refinement requires SM_VesselBody")
+    envelope = builder.outer_envelope_profile(profiles["globe"], profiles["shoulder"])
+    body_profile = builder._solid_profile(envelope)
+    _replace_lathe_mesh(body, body_profile)
+    body["source"] = "accepted_plan1_plus_source_reviewed_globe_shoulder_refinement"
+    body["profile_sha256"] = builder._sha256_bytes(
+        json.dumps(body_profile, separators=(",", ":")).encode("utf-8")
+    )
+    _replace_profile_curve("CRV_GlobeProfile", profiles["globe"])
+    _replace_profile_curve("CRV_ShoulderProfile", profiles["shoulder"])
+
+    # The close oblique photographs consistently show a narrow physical support
+    # below the globe inside the receiving bowl. Keep it separate/editable rather
+    # than extending the globe envelope or filling the cavity.
+    support_profile = tuple(
+        (z, profiles["globe"][0][1] if index == len(GLOBE_LOWER_SUPPORT_PROFILE) - 1 else radius)
+        for index, (z, radius) in enumerate(GLOBE_LOWER_SUPPORT_PROFILE)
+    )
+    low = bpy.data.collections.get("COL_LOW")
+    root = bpy.data.objects.get("ROOT_ThaiLibationV2")
+    if low is None or root is None:
+        raise ValueError("source-reviewed globe refinement requires COL_LOW and ROOT_ThaiLibationV2")
+    material = body.data.materials[0] if body.data.materials else builder._new_material(
+        "MAT_V2_NeutralClay", (0.54, 0.43, 0.27, 1.0), metallic=0.0, roughness=0.62
+    )
+    support = builder._create_mesh_object(
+        "SM_Globe_LowerSupport", builder._solid_profile(support_profile), low, root, material
+    )
+    support["physical_part"] = True
+    support["source"] = "source_reviewed_oblique_photo_lower_globe_support"
+    support["source_reviewed_finalization_profile"] = True
+    support["source_evidence"] = "four_user_oblique_photos"
+    support_rings = []
+    for name, z, minor in (
+        ("SM_Globe_LowerSupport_BottomRing", 0.300, 0.0040),
+        ("SM_Globe_LowerSupport_TopRing", 0.368, 0.0030),
+    ):
+        ring = builder._add_torus(
+            name,
+            outer_radius=builder._interpolate_radius(support_profile, z),
+            z=z,
+            minor_radius=minor,
+            collection=low,
+            root=root,
+            material=material,
+        )
+        ring["source"] = "source_reviewed_oblique_photo_lower_globe_support_ring"
+        ring["source_reviewed_finalization_profile"] = True
+        support_rings.append(name)
+
+    ring_specs = (
+        ("SM_Globe_LowerConstructionBand", "globe", 0.397, 0.0030),
+        ("SM_Shoulder_Ring_01", "shoulder", 0.568, 0.0026),
+        ("SM_Shoulder_Ring_02", "shoulder", 0.592, 0.0024),
+        ("SM_Shoulder_Ring_03", "shoulder", 0.618, 0.0022),
+    )
+    rebuilt: list[str] = []
+    for name, profile_name, z, minor in ring_specs:
+        ring = bpy.data.objects.get(name)
+        if ring is None:
+            raise ValueError(f"source-reviewed globe refinement is missing {name}")
+        outer_radius = builder._interpolate_radius(profiles[profile_name], z)
+        _rebuild_bowl_rim(ring, outer_radius=outer_radius, z=z, minor_radius=minor)
+        ring["source"] = "accepted_plan1_plus_source_reviewed_finalization_ring"
+        ring["source_reviewed_finalization_profile"] = True
+        rebuilt.append(name)
+
+    old_max = max(radius for _, radius in original["globe"])
+    new_max = max(radius for _, radius in profiles["globe"])
+    bowl_reference = max(radius for _, radius in original["bowl_outer"])
+    body["source_reviewed_globe_refinement"] = True
+    body["globe_refinement_evidence"] = "four_user_oblique_photos_plus_existing_top_oblique_source_views"
+    return {
+        "policy": "bounded_downstream_source_review_globe_and_shoulder_radial_refinement",
+        "source_evidence": "four_user_oblique_photos_plus_existing_top_oblique_source_views",
+        "plan1_profiles_modified_on_disk": False,
+        "component_positions_changed": False,
+        "z_levels_changed": False,
+        "globe_original_max_radius": old_max,
+        "globe_refined_max_radius": new_max,
+        "globe_radius_scale": new_max / old_max,
+        "bowl_outer_to_globe_max_radius_ratio": bowl_reference / new_max,
+        "globe_bottom_radius": profiles["globe"][0][1],
+        "globe_bottom_radius_scale": profiles["globe"][0][1] / original["globe"][0][1],
+        "neck_junction_radius_preserved": profiles["shoulder"][-1][1] == original["shoulder"][-1][1],
+        "lower_support_profile": [[float(z), float(radius)] for z, radius in support_profile],
+        "lower_support_objects": [support.name, *support_rings],
+        "rebuilt_dependent_rings": rebuilt,
+    }
+
+
 def _apply_receiving_bowl_clearance(v2_root: Path) -> dict[str, Any]:
     bpy, _ = _bpy_modules()
-    profiles = builder.validate_profile_payload(
-        builder.read_json(v2_root / "reports" / "final_profiles.json")
+    profiles = builder.source_reviewed_finalization_profiles(
+        builder.validate_profile_payload(
+            builder.read_json(v2_root / "reports" / "final_profiles.json")
+        )
     )
     bowl = bpy.data.objects.get("SM_Bowl")
     rim = bpy.data.objects.get("SM_Bowl_RolledRim")
@@ -235,6 +361,20 @@ def _apply_receiving_bowl_clearance(v2_root: Path) -> dict[str, Any]:
     )
     corrected_shell = builder.closed_shell_profile(corrected_outer, corrected_inner)
     _replace_lathe_mesh(bowl, corrected_shell)
+    outer_max_delta = max(
+        abs(corrected_radius - original_radius)
+        for (_, corrected_radius), (_, original_radius) in zip(corrected_outer, profiles["bowl_outer"])
+    )
+    inner_max_delta = max(
+        abs(corrected_radius - original_radius)
+        for (_, corrected_radius), (_, original_radius) in zip(corrected_inner, profiles["bowl_inner"])
+    )
+    bowl_profile_changed = max(outer_max_delta, inner_max_delta) > 1e-12
+    if bowl_profile_changed:
+        bowl["source"] = "accepted_plan1_plus_source_reviewed_bowl_clearance"
+        bowl["profile_sha256"] = builder._sha256_bytes(
+            json.dumps(corrected_shell, separators=(",", ":")).encode("utf-8")
+        )
 
     rim_z = 0.443
     rim_outer = builder._interpolate_radius(corrected_outer, rim_z)
@@ -266,14 +406,11 @@ def _apply_receiving_bowl_clearance(v2_root: Path) -> dict[str, Any]:
     if min_shell_clearance <= 0.0 or rim_clearance <= 0.0:
         raise ValueError("receiving-bowl clearance correction still intersects the globe")
 
-    bowl["source_supported_clearance_correction"] = True
+    bowl["source_supported_clearance_correction"] = bowl_profile_changed
     bowl["clearance_evidence"] = "top_oblique_globe_reference_views_267_268_278_288"
+    rim["source"] = "accepted_plan1_plus_source_reviewed_rolled_rim_clearance"
     rim["source_supported_clearance_correction"] = True
     rim["clearance_evidence"] = "top_oblique_globe_reference_views_267_268_278_288"
-    outer_max_delta = max(
-        abs(corrected_radius - original_radius)
-        for (_, corrected_radius), (_, original_radius) in zip(corrected_outer, profiles["bowl_outer"])
-    )
     top_z, top_outer_radius = corrected_outer[-1]
     top_globe_radius = builder._interpolate_radius(profiles["globe"], top_z)
     return {
@@ -292,9 +429,13 @@ def _apply_receiving_bowl_clearance(v2_root: Path) -> dict[str, Any]:
         "top_outer_radius": top_outer_radius,
         "top_globe_radius": top_globe_radius,
         "top_outer_to_globe_radius_ratio": top_outer_radius / top_globe_radius,
-        "outer_profile_changed": True,
-        "outer_profile_change_scope": "bowl_outer_z_above_0.385_only",
+        "outer_profile_changed": outer_max_delta > 1e-12,
+        "outer_profile_change_scope": (
+            "bowl_outer_z_above_0.385_only" if outer_max_delta > 1e-12 else "none_required_after_globe_refinement"
+        ),
         "outer_profile_max_radius_delta": outer_max_delta,
+        "inner_profile_changed": inner_max_delta > 1e-12,
+        "inner_profile_max_radius_delta": inner_max_delta,
         "lower_bowl_profile_unchanged": True,
         "globe_profile_changed": False,
         "component_positions_changed": False,
@@ -344,6 +485,7 @@ def run_cleanup_stage(v2_root: Path) -> dict[str, Any]:
     if ornament.get("blend_sha256") != builder.sha256_file(source):
         raise ValueError("ornament report does not bind the cleanup source blend")
     collections = _collections()
+    globe_refinement = _apply_upper_vessel_globe_refinement(v2_root)
     clearance_correction = _apply_receiving_bowl_clearance(v2_root)
     meshes = _mesh_objects(collections)
     cleanup = [_cleanup_mesh(obj) for obj in meshes]
@@ -362,6 +504,7 @@ def run_cleanup_stage(v2_root: Path) -> dict[str, Any]:
         "blend_path": output.relative_to(project_root).as_posix(),
         "blend_sha256": builder.sha256_file(output),
         "policy": "preserve_separate_CV_profile_parts_no_global_remesh_or_decimation",
+        "upper_vessel_globe_refinement": globe_refinement,
         "receiving_bowl_clearance_correction": clearance_correction,
         "mesh_cleanup": cleanup,
         "required_base_objects_missing": required,

@@ -1,31 +1,31 @@
 {
   "accepted": true,
   "blend_path": "reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.blend",
-  "blend_sha256": "4b97ef9d38846c5f27856401dd4834802970b8afcec77a6c72305fd828ca4e3e",
+  "blend_sha256": "70a47d0dd006fdd2a0c65e2d8302ff495f59037c9feb57b118009dd2820d34ed",
   "chain_decision": "omit_from_v2",
   "detail_renders": {
     "final_assembly_clearance_close": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_assembly_clearance_close.png",
-      "sha256": "b3058266a09a673f5f886a633aeae6f8ddd2d87568c826125f611dd75d3f2a7a"
+      "sha256": "111555f0319a7dee59c4afaa12aaff12859f906583319c57e0b417fd0c22b468"
     },
     "final_bowl_pedestal_close": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_bowl_pedestal_close.png",
-      "sha256": "c81afb0c9b91c0ececc12d2eec6f19b588c1ff2a14dd9e4740582ff00b6ff913"
+      "sha256": "58ea781270ed86bfbfc16a28d1274e9940e2d913ef50066bf250cb92d164172f"
     },
     "final_globe_close": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_globe_close.png",
-      "sha256": "e153594bf319197f49a70e0397e5e395c7cb671db34fc97ca29385a023f4d114"
+      "sha256": "95b17ea562e156c5f975a22dbf7f88ea14b7ebdaaadd8600852ab48dc6a76b8b"
     },
     "final_neck_lid_close": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_neck_lid_close.png",
-      "sha256": "9bf57db4db9a42cbc27f6e9816c171cc27100d259bca78401f79565d8a6cb48c"
+      "sha256": "9ef992a92cb4694a0f2e94c0cc317c33e3c815b5837a4285c4208803a6158750"
     }
   },
   "export_performed": false,
   "failure_reasons": [],
   "forbidden_objects": [],
   "mesh_statistics": {
-    "mesh_count": 26,
+    "mesh_count": 29,
     "objects": [
       {
         "materials": [
@@ -51,7 +51,7 @@
         ],
         "name": "SM_VesselBody",
         "polygons": 3040,
-        "source": "accepted_plan1_profile",
+        "source": "accepted_plan1_plus_source_reviewed_globe_shoulder_refinement",
         "vertices": 2882
       },
       {
@@ -114,7 +114,7 @@
         ],
         "name": "SM_Bowl_RolledRim",
         "polygons": 1536,
-        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "source": "accepted_plan1_plus_source_reviewed_rolled_rim_clearance",
         "vertices": 1536
       },
       {
@@ -123,7 +123,7 @@
         ],
         "name": "SM_Globe_LowerConstructionBand",
         "polygons": 1536,
-        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "source": "accepted_plan1_plus_source_reviewed_finalization_ring",
         "vertices": 1536
       },
       {
@@ -132,7 +132,7 @@
         ],
         "name": "SM_Shoulder_Ring_01",
         "polygons": 1536,
-        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "source": "accepted_plan1_plus_source_reviewed_finalization_ring",
         "vertices": 1536
       },
       {
@@ -141,7 +141,7 @@
         ],
         "name": "SM_Shoulder_Ring_02",
         "polygons": 1536,
-        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "source": "accepted_plan1_plus_source_reviewed_finalization_ring",
         "vertices": 1536
       },
       {
@@ -150,7 +150,7 @@
         ],
         "name": "SM_Shoulder_Ring_03",
         "polygons": 1536,
-        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "source": "accepted_plan1_plus_source_reviewed_finalization_ring",
         "vertices": 1536
       },
       {
@@ -238,6 +238,33 @@
         "materials": [
           "MAT_FINAL_PolishedThaiBrass"
         ],
+        "name": "SM_Globe_LowerSupport",
+        "polygons": 1120,
+        "source": "source_reviewed_oblique_photo_lower_globe_support",
+        "vertices": 962
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Globe_LowerSupport_BottomRing",
+        "polygons": 1536,
+        "source": "source_reviewed_oblique_photo_lower_globe_support_ring",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Globe_LowerSupport_TopRing",
+        "polygons": 1536,
+        "source": "source_reviewed_oblique_photo_lower_globe_support_ring",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
         "name": "HP_ORN_ShoulderRing_04",
         "polygons": 1536,
         "source": "photographed_explicit_ring_family",
@@ -262,44 +289,44 @@
         "vertices": 1536
       }
     ],
-    "polygons": 44320,
-    "vertices": 43688
+    "polygons": 48512,
+    "vertices": 47722
   },
   "missing_uv_objects": [],
-  "render_object_count": 34,
+  "render_object_count": 37,
   "review_renders": {
     "front": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_front.png",
-      "sha256": "d24a33b2e84feb63013dd96f5cb1439e04649fbda9b93c5454dfd3b14e6bc29a"
+      "sha256": "96e1cd197919c1cc46cd62e2ec40c5460ee51dc158c482f791fccc843e6b35c2"
     },
     "low": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_low.png",
-      "sha256": "09a899e8a0d0ece45da77de81441ff272146594c82ca4c84c4c1cf9023c90724"
+      "sha256": "6ba3a07f5f3981aa07b417d053e14a8fdf8b964799588422b80e0bdc898b174e"
     },
     "quarter": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_quarter.png",
-      "sha256": "3f5ca4230470a3b92faa54ec2054c52c0499e432997cada4234f840bed5f7ef1"
+      "sha256": "5279ff7750cc6ff6cddfd7ff912a67aebf146ff20ebc69c439b3969fe6178518"
     },
     "side": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_side.png",
-      "sha256": "c5c3b0b5144667b0e335ee853e5e9b9f6af7e05f9eec3c89dcb93df0712e2aeb"
+      "sha256": "fe292c31915c3b4e83a5707af4cc5cd6f870bb1514ee6e2bedcb6776dc02441f"
     },
     "top": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_top.png",
-      "sha256": "921cb8a16169fe74ab3622ae8722b1961aff1b03bf8547c93202de5226c8679b"
+      "sha256": "3d0763735d64b1252aad7f340204e7571cec575a45d7858898958df72ed0aa11"
     },
     "wire": {
       "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/final_wire.png",
-      "sha256": "22411a8ac08feb2c8fc98c8ddcf18dc885bb9b1c519f3b50a882a133c1e61011"
+      "sha256": "0b69002052d62ca46b56e367460e467bb77584599d1879b9b89d04413ac16a36"
     }
   },
   "schema_version": 1,
   "source_blend": "reconstruction/reference_assisted_v2/work/70_LOOKDEV_ACCEPTED.blend",
-  "source_blend_sha256": "27004962571f70b886281399ea4c055b190cd9f84eb769f26d3d1a7ab2ebad9d",
+  "source_blend_sha256": "6538d25ecfdcae2ec980c4bf3bf531a0a5128c19c421e9335d9570bab5c2b3b4",
   "stage": "final-validate",
   "user_review_required_before_export": true,
   "uv_checker": {
     "path": "reconstruction/reference_assisted_v2/diagnostics/60_final_validation/uv_checker.png",
-    "sha256": "b54f3dd21f749c8b306aa677260a591658d9b6e55ca9cbb0789ce10a2f0ffd95"
+    "sha256": "0abc748865c78727d49d01c6f3fdb1f87c7ac4b26ead1a02dc48f3fa59079ceb"
   }
 }

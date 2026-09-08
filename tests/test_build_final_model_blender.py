@@ -75,6 +75,23 @@ def test_closed_shell_profile_joins_outer_and_reversed_inner_without_axis_cap():
     )
 
 
+def test_source_reviewed_finalization_profiles_make_a_compact_round_globe():
+    globe = tuple((0.379 + index * 0.029, 0.18 + index * 0.002) for index in range(9))
+    shoulder = tuple((0.482 + index * 0.019, 0.17 - index * 0.015) for index in range(9))
+    bowl_outer = tuple((0.205 + index * 0.030, 0.10 + index * 0.0135) for index in range(9))
+    profiles = {"globe": globe, "shoulder": shoulder, "bowl_outer": bowl_outer}
+
+    corrected = builder.source_reviewed_finalization_profiles(profiles)
+
+    assert [z for z, _ in corrected["globe"]] == [z for z, _ in globe]
+    assert [z for z, _ in corrected["shoulder"]] == [z for z, _ in shoulder]
+    target_max = max(radius for _, radius in bowl_outer) / builder.FINAL_GLOBE_BOWL_RADIUS_RATIO
+    assert max(radius for _, radius in corrected["globe"]) == pytest.approx(target_max)
+    assert corrected["globe"][0][1] < globe[0][1] * 0.5
+    assert corrected["shoulder"][-1][1] == shoulder[-1][1]
+    assert corrected["bowl_outer"] == bowl_outer
+
+
 def test_receiving_bowl_clearance_applies_only_to_the_upper_lip_and_cavity():
     bowl_inner = ((0.20, 0.09), (0.35, 0.16), (0.385, 0.172), (0.415, 0.180), (0.445, 0.183))
     bowl_outer = ((0.20, 0.102), (0.35, 0.190), (0.385, 0.196), (0.415, 0.204), (0.445, 0.208))
@@ -84,10 +101,10 @@ def test_receiving_bowl_clearance_applies_only_to_the_upper_lip_and_cavity():
     corrected_inner = finisher.source_supported_bowl_inner_profile(bowl_inner, corrected_outer, globe)
 
     assert corrected_outer[:3] == bowl_outer[:3]
-    assert corrected_outer[-1][1] > bowl_outer[-1][1]
+    assert corrected_outer[-1][1] >= bowl_outer[-1][1]
     top_globe_radius = builder._interpolate_radius(globe, corrected_outer[-1][0])
-    assert corrected_outer[-1][1] / top_globe_radius == pytest.approx(
-        finisher.BOWL_RIM_TO_GLOBE_RADIUS_RATIO
+    assert corrected_outer[-1][1] >= (
+        top_globe_radius * finisher.BOWL_RIM_TO_GLOBE_RADIUS_RATIO - 1e-12
     )
     assert corrected_inner[0] == bowl_inner[0]
     for z, radius in corrected_inner:
