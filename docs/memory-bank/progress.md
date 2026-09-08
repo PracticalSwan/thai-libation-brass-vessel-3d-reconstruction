@@ -1,6 +1,6 @@
 # Progress
 
-Updated: 2026-09-06
+Updated: 2026-09-08
 
 ## Completed and verified
 
@@ -144,4 +144,8 @@ Updated: 2026-09-06
 
 ## Next phase
 
-Steps 14-17 are complete. The accepted downstream asset is `reconstruction/local_dense/texture/attempt_1/mesh.ply` plus `texture.png`; the final untextured mesh is `reconstruction/local_dense/mesh/final_mesh.ply`. Any manual Blender cleanup or final presentation packaging is a separate phase and must preserve the local 73-view, disconnected-geometry, missing-region, reflective-brass, seam, and 73.00% UV-coverage limitations. Sparse recovery remains closed, and the Step 13 266-image model remains evidence only.
+V2 Plan 1 is complete and accepted. Final Gate-B candidate: median silhouette IoU **0.901495**, minimum reliable-view IoU **0.856102**, median landmark error **0.011306**, p95 **0.038080**; exact candidate-bound bowl/globe/neck/lid/finial visual review passes. Final focused verification passes **59/59** V1/V2 IO/reference/CV-fit/orchestrator tests, changed Python compiles, and the real `analyze` and `cv-fit` stages both reproduced accepted outputs.
+
+The next 5-hour Codex window starts Blender immediately. Execute Plans 2-5 continuously as gates pass: measured base construction; evidence-supported ornament/detail; thorough topology cleanup, restrained source-supported sculpting, retopology where necessary, UVs and bakes; then photo-derived texture/material/lookdev and final Blender validation. Use Blender MCP and the installed Blender skills, inspect real renders/wireframes/topology/UVs at each gate, and fix defects rather than hiding them. Preserve physically meaningful separate parts instead of blindly joining everything.
+
+**Hard stop:** after the complete model reaches pre-export `final-validate`, save the user-review-ready Blender state and stop for user inspection. Do not export GLB, perform export re-import, promote/publish final assets, or run final publication until the user explicitly approves export.

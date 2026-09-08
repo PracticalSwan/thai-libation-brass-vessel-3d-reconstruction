@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "accepted": true,
+  "review_method": "source_photo_geometry_mask_and_landmark_contact_sheet_visual_review",
+  "geometry_mask_board_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/geometry_mask_overlays_board.png",
+  "geometry_mask_board_sha256": "4293492b41cecca4cceb14b814dabcacba5f5a2e67585f01c8b9cc7937d359ee",
+  "landmark_board_path": "reconstruction/reference_assisted_v2/evidence/annotations/landmark_overlays_board.png",
+  "landmark_board_sha256": "36748604b5f068c2ce043934560b2b093586618c69e21cfd4d1ea4f0fd7b9338",
+  "reviewed_canonical_view_count": 16,
+  "geometry_masks": "pass",
+  "landmarks": "pass",
+  "notes": "All 16 regenerated canonical geometry-mask and landmark overlays were reviewed against their source photographs. Obvious connected table/reflection tails were removed in the V2 geometry masks, reviewed landmark corrections track the intended physical component features, and historical CNN masks remain unchanged. This review is annotation/evidence QA; the separate candidate-bound cv_visual_review.json remains the final Plan-1 model visual veto."
+}

@@ -19,7 +19,10 @@ smartphone capture
 -> local-only CUDA dense reconstruction from the frozen Step 10 fallback
 -> evidence-selected mesh, deterministic component cleanup, and QEM simplification
 -> COLMAP photo texture + headless Blender validation
--> separately authorized Blender cleanup and final presentation model
+-> separate reference-assisted V1 prototype (later rejected for visual mismatch)
+-> V2 CV-constrained multi-view fit (Plan 1 accepted) + Blender reconstruction
+-> source-derived ornament + multi-view photo projection + Blender cleanup
+-> source-camera visual QA + verified final Blender/GLB presentation asset
 ```
 
 ## Project status
@@ -40,6 +43,8 @@ component-filtered and simplified to 499,999 faces, and COLMAP generated a
 4096 x 1902 photo atlas with 73.00% meaningful UV coverage. Headless Blender
 validated the final asset without manual cleanup. The result is a partial local
 model rather than a complete 288-image or 360-degree reconstruction.
+
+A later reference-assisted V1 prototype under `reconstruction/reference_assisted/` remains preserved as a visually rejected prototype. Final V2 Plan 1 is now accepted: median silhouette IoU 0.901495, minimum reliable-view IoU 0.856102, median landmark error 0.011306 object height, p95 0.038080, with bowl/globe/neck/lid/finial visual review passing on the exact candidate. The next phase is the full Blender construction/detail/cleanup/UV/material workflow. Export is intentionally blocked until the user inspects and approves the completed Blender model.
 
 Measured preprocessing result:
 

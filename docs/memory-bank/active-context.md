@@ -1,10 +1,10 @@
 # Active Context
 
-Updated: 2026-09-06
+Updated: 2026-09-08
 
 ## Current focus
 
-Preprocessing and Steps 6-17 are complete and verified. Step 13 used the separately authorized external ALIKED-N16Rot + LightGlue runtime on CUDA, recovered all three exact Step 11 boundaries, and produced a strongest single sparse model with 266/288 images, 29,713 points, and 1.374824 px mean reprojection error. The frozen global acceptance gate required at least 274 images, so `step13_success=false` and sparse recovery is closed. The 266-image model is retained as evidence, while the frozen fallback ranking selected Step 10 `reconstruction/sparse/best` (73 images / 6,099 points) as the downstream sparse source. Steps 14-17 used only that local model and completed CUDA dense fusion, bounded mesh reconstruction, COLMAP photo texturing, and headless Blender validation; manual Blender cleanup has not started.
+V2 Plan 1 is implemented and accepted. The candidate-bound CV fit now passes Gate B: median whole-object silhouette IoU **0.901495**, minimum reliable-view IoU **0.856102**, median landmark error **0.011306** object height, and p95 landmark error **0.038080**. The separate `cv_visual_review.json` is bound to candidate SHA `edbed94742df14bebab91c877884a0e247a91e99f5e46c91331c516f831166e0` and passes bowl/globe/neck/lid/finial. Step 13 source files remain protected; V2 uses derived gauge/translation corrections only. The next Codex window must immediately enter Blender: build measured base geometry, source-supported ornament/detail, thorough cleanup/sculpt/retopo/UV/bakes, photo-driven materials/lookdev, and final Blender validation. **Stop before export** for user inspection; GLB/export/re-import/publication require explicit user approval.
 
 ## Verified preprocessing state
 

@@ -87,6 +87,9 @@ All notable verified project milestones are recorded here.
 - One COLMAP photo-texture attempt with exact topology preservation, a 4096 x 1902 atlas, 73.00% meaningful UV coverage, and a three-view headless Blender validation render.
 - Integrated `steps14_17_success=true` result with `blender_manual_cleanup_started=false` and a measured report at `docs/geometry-ml/local-dense-mesh-texture.md`.
 - Final Steps 14-17 verification: 49 focused tests, 106 Step 10-13 regressions, and 247 complete project tests passed; changed Python compiled; the real `all` stage passed; 297 raw, 288 selected, 73 local, and 160 protected Step 10-13 files remained exact; final artifacts reopened; documentation and cleanup checks passed.
+- Final V2 Plan 1 CV evidence/model-fit implementation with 16 canonical registered views, source-photo-refined geometry masks, reviewed component landmarks, Step 6 SIFT/RANSAC diagnostics, bounded ALIKED/LightGlue detail-alignment evidence, Step 13 camera reuse, component masks, deterministic profile fitting, and Blender-consumable `final_profiles.json`.
+- Accepted V2 Gate B candidate: median whole-object silhouette IoU 0.901495, minimum reliable-view IoU 0.856102, median landmark error 0.011306 object height, p95 landmark error 0.038080, with candidate-bound bowl/globe/neck/lid/finial visual review passing.
+- Final Plan 1 verification after review: changed modules compiled; 59 focused V1/V2 IO/reference/CV-fit/orchestrator tests passed; the real `analyze` stage regenerated accepted reference evidence; the real `cv-fit` stage reproduced the accepted Gate B metrics.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -108,12 +111,15 @@ All notable verified project milestones are recorded here.
 - Step 16 machine reports and documentation now disclose when a large-mesh preview uses sampled vertices; Step 17 still imports and renders the exact final triangle surface in Blender.
 - Windows process-tree cleanup now isolates 	askkill from host stdio with DEVNULL, preventing WinError 50 in MCP/headless hosts while preserving timeout and descendant termination.
 
+- Final V2 reference-evidence acceptance is now fail-closed on an explicit visual review bound to the exact current geometry-mask and landmark contact-sheet hashes; regenerated reports no longer remain accepted while those reviews say `pending`.
+- `run_final_model.py --stage all` now intentionally stops at pre-export `final-validate`, and the explicit `export` stage requires a user-approval sidecar before any GLB/export/re-import work can begin.
+
 ### Removed
 - Course-presentation DOCX/PDF walkthrough artifacts after delivery, while retaining all measured preprocessing reports, contact sheets, previews, and reconstruction-input evidence.
 - Three task-created per-camera Blender render intermediates after composing the final Step 17 triptych.
 
 ### Next
-- Preserve the accepted Steps 14-17 local artifacts and their attempt ledgers; do not reopen sparse recovery or rerun dense/mesh/texturing as an optimization sweep.
-- If needed, separately authorize a bounded Blender manual-cleanup and final-presentation phase using `reconstruction/local_dense/texture/attempt_1/mesh.ply` and `texture.png` as the starting asset.
-- Keep the 73-view limitation, disconnected geometry, missing regions, reflective-brass seams, dark areas, and 73.00% meaningful UV coverage visible in coursework reporting.
-- Keep the CNN masks as analysis evidence; Step 9 measured lower correspondence coverage for both masked modes.
+- Preserve the accepted V2 Plan 1 CV contract and immediately continue to Plan 2 Blender geometry; return to the fit only if downstream source-camera evidence proves a real Plan 1 defect.
+- Continue through source-supported ornament/detail, topology cleanup and restrained sculpting, retopology where justified, UV/bakes, photo-derived material/lookdev, and final Blender validation without reopening protected sparse/dense experiments.
+- Stop before export for user inspection. GLB export, re-import, final promotion/publication, and export-phase completion remain blocked until explicit user approval is recorded.
+- Keep the truthful Step 10 local-dense limitations and historical CNN/SfM evidence visible in coursework reporting; V2 is CV-constrained + Blender-completed, not direct complete photogrammetry.

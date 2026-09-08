@@ -11,3 +11,14 @@ id_ed25519
 id_ed25519.*
 IMG20260826122949.zip
 __pycache__*
+
+# Final V2 reproducible heavy/generated image and intermediate work products.
+# Keep compact reports and curated JSON annotations commit-eligible.
+reconstruction/reference_assisted_v2/work/
+reconstruction/reference_assisted_v2/diagnostics/
+reconstruction/reference_assisted_v2/evidence/geometry_masks/
+reconstruction/reference_assisted_v2/evidence/component_masks/
+reconstruction/reference_assisted_v2/evidence/cv_matches/
+reconstruction/reference_assisted_v2/evidence/ornament_crops/
+reconstruction/reference_assisted_v2/evidence/reference_boards/
+reconstruction/reference_assisted_v2/evidence/annotations/*.png

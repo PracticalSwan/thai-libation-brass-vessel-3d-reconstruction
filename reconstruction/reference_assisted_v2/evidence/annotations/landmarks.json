@@ -1,0 +1,3880 @@
+{
+  "annotation_method": "cv_seeded",
+  "coordinate_space": "source_image_pixels_and_normalized_0_1",
+  "schema_version": 1,
+  "views": [
+    {
+      "filename": "IMG20260826122956.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/003_geometry_mask.png",
+      "geometry_mask_sha256": "149dca2946948ab9dcedbae8602266766ffb16588189fe095c4a8bcc0ec0467a",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.5267201309423294,
+          "normalized_y": 0.03111873825283975,
+          "x": 1617.5575221238937,
+          "y": 126.93333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5075398460620766,
+          "normalized_y": 0.9802402549644521,
+          "x": 1558.654867256637,
+          "y": 3998.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.5267201309423294,
+          "normalized_y": 0.03111873825283975,
+          "x": 1617.5575221238937,
+          "y": 126.93333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.5267201309423294,
+          "normalized_y": 0.08001961265015935,
+          "x": 1617.5575221238937,
+          "y": 326.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.4499989914213179,
+          "normalized_y": 0.1489253902100188,
+          "x": 1381.9469026548672,
+          "y": 607.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5886872051708388,
+          "normalized_y": 0.14336847266486882,
+          "x": 1807.858407079646,
+          "y": 584.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.4499989914213179,
+          "normalized_y": 0.1489253902100188,
+          "x": 1381.9469026548672,
+          "y": 607.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5886872051708388,
+          "normalized_y": 0.14336847266486882,
+          "x": 1807.858407079646,
+          "y": 584.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.457376024067569,
+          "normalized_y": 0.20338318215248835,
+          "x": 1404.6017699115043,
+          "y": 829.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5798347659953375,
+          "normalized_y": 0.20116041513442837,
+          "x": 1780.6725663716813,
+          "y": 820.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.46475305671382017,
+          "normalized_y": 0.373424859034077,
+          "x": 1427.2566371681417,
+          "y": 1523.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.576883952936837,
+          "normalized_y": 0.373424859034077,
+          "x": 1771.6106194690265,
+          "y": 1523.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_left",
+          "normalized_x": 0.32016321684729826,
+          "normalized_y": 0.5212388657350657,
+          "x": 983.221238938053,
+          "y": 2126.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_right",
+          "normalized_x": 0.7140967601571077,
+          "normalized_y": 0.5212388657350657,
+          "x": 2192.9911504424776,
+          "y": 2126.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.5208185048253285,
+          "normalized_y": 0.39565252921467675,
+          "x": 1599.433628318584,
+          "y": 1613.8666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5163922852375779,
+          "normalized_y": 0.5834763422407453,
+          "x": 1585.8407079646017,
+          "y": 2380.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.24344207732628673,
+          "normalized_y": 0.5623600555691755,
+          "x": 747.6106194690266,
+          "y": 2293.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7731130213271167,
+          "normalized_y": 0.5590259050420854,
+          "x": 2374.2300884955753,
+          "y": 2280.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.38065488454655744,
+          "normalized_y": 0.7868595243932336,
+          "x": 1168.9911504424779,
+          "y": 3209.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6359002141068459,
+          "normalized_y": 0.7846367573751737,
+          "x": 1952.8495575221239,
+          "y": 3200.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.3821302910758076,
+          "normalized_y": 0.8013075100106235,
+          "x": 1173.5221238938052,
+          "y": 3268.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6329494010483455,
+          "normalized_y": 0.8013075100106235,
+          "x": 1943.787610619469,
+          "y": 3268.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.33786809519830097,
+          "normalized_y": 0.9335621475851924,
+          "x": 1037.5929203539822,
+          "y": 3808.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.6772115969258522,
+          "normalized_y": 0.9335621475851924,
+          "x": 2079.716814159292,
+          "y": 3808.0
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/003_landmarks.png",
+      "overlay_sha256": "5efb640515aafb79409a4f21ddd612a21797f336744bd35b80dc3f6b4b7f29ac",
+      "selected_index": 3,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "normal_side"
+    },
+    {
+      "filename": "IMG20260826123111.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/019_geometry_mask.png",
+      "geometry_mask_sha256": "54f654f7d78b2a3695be7520bac200308bb6c37b578857fe7678d2f1afd532be",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.5340971635885806,
+          "normalized_y": 0.025561820707689795,
+          "x": 1640.212389380531,
+          "y": 104.26666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.49573659382807483,
+          "normalized_y": 0.9724605704012421,
+          "x": 1522.4070796460178,
+          "y": 3966.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.5340971635885806,
+          "normalized_y": 0.025561820707689795,
+          "x": 1640.212389380531,
+          "y": 104.26666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.5311463505300802,
+          "normalized_y": 0.07223992808694941,
+          "x": 1631.1504424778761,
+          "y": 294.6666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.44704817836281746,
+          "normalized_y": 0.14670262319195881,
+          "x": 1372.8849557522124,
+          "y": 598.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.59606423781709,
+          "normalized_y": 0.14447985617389883,
+          "x": 1830.513274336283,
+          "y": 589.3333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.44704817836281746,
+          "normalized_y": 0.14670262319195881,
+          "x": 1372.8849557522124,
+          "y": 598.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.59606423781709,
+          "normalized_y": 0.14447985617389883,
+          "x": 1830.513274336283,
+          "y": 589.3333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.45885143059681927,
+          "normalized_y": 0.20449456566151836,
+          "x": 1409.132743362832,
+          "y": 834.1333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5783593594660873,
+          "normalized_y": 0.20116041513442837,
+          "x": 1776.141592920354,
+          "y": 820.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.45294980447981836,
+          "normalized_y": 0.37231347552504696,
+          "x": 1391.0088495575221,
+          "y": 1518.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5636052941735851,
+          "normalized_y": 0.37231347552504696,
+          "x": 1730.8318584070796,
+          "y": 1518.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_left",
+          "normalized_x": 0.298032118908545,
+          "normalized_y": 0.5279071667892458,
+          "x": 915.2566371681415,
+          "y": 2153.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_right",
+          "normalized_x": 0.6904902556891043,
+          "normalized_y": 0.5279071667892458,
+          "x": 2120.495575221239,
+          "y": 2153.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.5090152525913268,
+          "normalized_y": 0.3945411457056468,
+          "x": 1563.1858407079646,
+          "y": 1609.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.49573659382807483,
+          "normalized_y": 0.5834763422407453,
+          "x": 1522.4070796460178,
+          "y": 2380.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.2286880120337845,
+          "normalized_y": 0.5601372885511154,
+          "x": 702.3008849557522,
+          "y": 2284.7999999999997
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7598343625638646,
+          "normalized_y": 0.5590259050420854,
+          "x": 2333.451327433628,
+          "y": 2280.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.3659008192540552,
+          "normalized_y": 0.7868595243932336,
+          "x": 1123.6814159292035,
+          "y": 3209.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6196707422850934,
+          "normalized_y": 0.7846367573751737,
+          "x": 1903.0088495575221,
+          "y": 3200.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.3659008192540552,
+          "normalized_y": 0.8035302770286835,
+          "x": 1123.6814159292035,
+          "y": 3277.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6181953357558433,
+          "normalized_y": 0.8035302770286835,
+          "x": 1898.4778761061946,
+          "y": 3277.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.32311402990579874,
+          "normalized_y": 0.9246710795129525,
+          "x": 992.2831858407079,
+          "y": 3771.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.6639329381626001,
+          "normalized_y": 0.9246710795129525,
+          "x": 2038.9380530973451,
+          "y": 3771.733333333333
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/019_landmarks.png",
+      "overlay_sha256": "4c729a1684337f28be5361e8080f139b46599f9badc871c986066239c91a81d2",
+      "selected_index": 19,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "normal_side"
+    },
+    {
+      "filename": "IMG20260826123434.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/050_geometry_mask.png",
+      "geometry_mask_sha256": "3521dc5aa6d49796fc415d5f86400fa92c0d378dcbcd92737a63ffe66983a326",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.4677038697723206,
+          "normalized_y": 0.05112364141537959,
+          "x": 1436.3185840707965,
+          "y": 208.53333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5031136264743259,
+          "normalized_y": 0.9491215167116124,
+          "x": 1545.0619469026549,
+          "y": 3871.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.4677038697723206,
+          "normalized_y": 0.05112364141537959,
+          "x": 1436.3185840707965,
+          "y": 208.53333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.4677038697723206,
+          "normalized_y": 0.09335621475851925,
+          "x": 1436.3185840707965,
+          "y": 380.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.4057367955438112,
+          "normalized_y": 0.16337337582740868,
+          "x": 1246.0176991150443,
+          "y": 666.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5459004158225823,
+          "normalized_y": 0.1611506088093487,
+          "x": 1676.4601769911503,
+          "y": 657.3333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.4057367955438112,
+          "normalized_y": 0.16337337582740868,
+          "x": 1246.0176991150443,
+          "y": 666.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5459004158225823,
+          "normalized_y": 0.1611506088093487,
+          "x": 1676.4601769911503,
+          "y": 657.3333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.4190154543070632,
+          "normalized_y": 0.2244994688240582,
+          "x": 1286.796460176991,
+          "y": 915.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5340971635885806,
+          "normalized_y": 0.2222767018059982,
+          "x": 1640.212389380531,
+          "y": 906.6666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.43376951959956545,
+          "normalized_y": 0.38120454359728695,
+          "x": 1332.1061946902655,
+          "y": 1554.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5414741962348317,
+          "normalized_y": 0.3789817765792269,
+          "x": 1662.867256637168,
+          "y": 1545.8666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_left",
+          "normalized_x": 0.3142615907302974,
+          "normalized_y": 0.5179047152079758,
+          "x": 965.0973451327434,
+          "y": 2112.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_right",
+          "normalized_x": 0.683113223042853,
+          "normalized_y": 0.5179047152079758,
+          "x": 2097.8407079646017,
+          "y": 2112.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.48983496771107393,
+          "normalized_y": 0.40343221377788674,
+          "x": 1504.283185840708,
+          "y": 1645.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.4986874068865752,
+          "normalized_y": 0.5768080411865653,
+          "x": 1531.4690265486724,
+          "y": 2352.7999999999997
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.2493437034432876,
+          "normalized_y": 0.5590259050420854,
+          "x": 765.7345132743362,
+          "y": 2280.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7509819233883633,
+          "normalized_y": 0.5523576039879056,
+          "x": 2306.265486725664,
+          "y": 2253.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.38360569760505786,
+          "normalized_y": 0.7701887717577838,
+          "x": 1178.0530973451328,
+          "y": 3141.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6211461488143437,
+          "normalized_y": 0.7668546212306938,
+          "x": 1907.5398230088495,
+          "y": 3128.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.37917947801730717,
+          "normalized_y": 0.7868595243932336,
+          "x": 1164.4601769911503,
+          "y": 3209.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6240969618728441,
+          "normalized_y": 0.7868595243932336,
+          "x": 1916.6017699115043,
+          "y": 3209.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.33934350172755123,
+          "normalized_y": 0.9046661763504127,
+          "x": 1042.1238938053098,
+          "y": 3690.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.6683591577503509,
+          "normalized_y": 0.9046661763504127,
+          "x": 2052.5309734513276,
+          "y": 3690.133333333333
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/050_landmarks.png",
+      "overlay_sha256": "c58b9c216714ea66117eff42c7b1df714887f40b0fd6a7a8b660b23140f9076a",
+      "selected_index": 50,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "normal_side"
+    },
+    {
+      "filename": "IMG20260826123820.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/072_geometry_mask.png",
+      "geometry_mask_sha256": "90f8571b1bf3745da0e62366e9414037f57a50a7fcaaad2147e46e6e51faadcb",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.48983496771107393,
+          "normalized_y": 0.04223257334313966,
+          "x": 1504.283185840708,
+          "y": 172.26666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.49426118729882457,
+          "normalized_y": 0.974683337419302,
+          "x": 1517.8761061946902,
+          "y": 3975.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.48983496771107393,
+          "normalized_y": 0.04223257334313966,
+          "x": 1504.283185840708,
+          "y": 172.26666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.4913103742403241,
+          "normalized_y": 0.08557653019530931,
+          "x": 1508.8141592920354,
+          "y": 349.06666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.42786789348256454,
+          "normalized_y": 0.15448230775516875,
+          "x": 1313.9823008849557,
+          "y": 630.1333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5636052941735851,
+          "normalized_y": 0.15114815722807878,
+          "x": 1730.8318584070796,
+          "y": 616.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.42786789348256454,
+          "normalized_y": 0.15448230775516875,
+          "x": 1313.9823008849557,
+          "y": 630.1333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5636052941735851,
+          "normalized_y": 0.15114815722807878,
+          "x": 1730.8318584070796,
+          "y": 616.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.43524492612881566,
+          "normalized_y": 0.2089400996976383,
+          "x": 1336.6371681415928,
+          "y": 852.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5532774484688335,
+          "normalized_y": 0.20782871618860832,
+          "x": 1699.1150442477876,
+          "y": 847.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.43967114571656635,
+          "normalized_y": 0.375647626052137,
+          "x": 1350.2300884955753,
+          "y": 1532.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5488512288810827,
+          "normalized_y": 0.375647626052137,
+          "x": 1685.5221238938052,
+          "y": 1532.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_left",
+          "normalized_x": 0.3054091515547961,
+          "normalized_y": 0.5234616327531257,
+          "x": 937.9115044247787,
+          "y": 2135.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_right",
+          "normalized_x": 0.689014849159854,
+          "normalized_y": 0.5234616327531257,
+          "x": 2115.9646017699115,
+          "y": 2135.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.49573659382807483,
+          "normalized_y": 0.39676391272370676,
+          "x": 1522.4070796460178,
+          "y": 1618.3999999999999
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.497212000357325,
+          "normalized_y": 0.5845877257497752,
+          "x": 1526.9380530973451,
+          "y": 2384.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.2242617924460338,
+          "normalized_y": 0.5634714390782055,
+          "x": 688.7079646017698,
+          "y": 2298.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7480311103298628,
+          "normalized_y": 0.5590259050420854,
+          "x": 2297.2035398230087,
+          "y": 2280.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.3659008192540552,
+          "normalized_y": 0.7857481408842036,
+          "x": 1123.6814159292035,
+          "y": 3205.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6196707422850934,
+          "normalized_y": 0.7846367573751737,
+          "x": 1903.0088495575221,
+          "y": 3200.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.3659008192540552,
+          "normalized_y": 0.8024188935196535,
+          "x": 1123.6814159292035,
+          "y": 3273.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6196707422850934,
+          "normalized_y": 0.8024188935196535,
+          "x": 1903.0088495575221,
+          "y": 3273.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.32458943643504895,
+          "normalized_y": 0.9257824630219824,
+          "x": 996.8141592920354,
+          "y": 3776.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.6654083446918504,
+          "normalized_y": 0.9257824630219824,
+          "x": 2043.4690265486724,
+          "y": 3776.2666666666664
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/072_landmarks.png",
+      "overlay_sha256": "fe99633f5c3df91280887daf335dd0b5341ca96c458e9343c9ee545ff87aad0f",
+      "selected_index": 72,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "normal_side"
+    },
+    {
+      "filename": "IMG20260826124123.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/090_geometry_mask.png",
+      "geometry_mask_sha256": "764dfde84c6c264c4f95eeb53575b671902d0ecd0c8f55df7a295db537d773ec",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.5163922852375779,
+          "normalized_y": 0.0,
+          "x": 1585.8407079646017,
+          "y": 0.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5075398460620766,
+          "normalized_y": 0.9246710795129525,
+          "x": 1558.654867256637,
+          "y": 3771.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "finial_top",
+          "normalized_x": 0.5163922852375779,
+          "normalized_y": 0.0,
+          "x": 1585.8407079646017,
+          "y": 0.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "finial_bottom",
+          "normalized_x": 0.5163922852375779,
+          "normalized_y": 0.008891068072239928,
+          "x": 1585.8407079646017,
+          "y": 36.266666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.4499989914213179,
+          "normalized_y": 0.06890577755985944,
+          "x": 1381.9469026548672,
+          "y": 281.06666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5813101725245877,
+          "normalized_y": 0.07335131159597941,
+          "x": 1785.203539823009,
+          "y": 299.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.4499989914213179,
+          "normalized_y": 0.06890577755985944,
+          "x": 1381.9469026548672,
+          "y": 281.06666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5813101725245877,
+          "normalized_y": 0.07335131159597941,
+          "x": 1785.203539823009,
+          "y": 299.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.4618022436553197,
+          "normalized_y": 0.1111383509029991,
+          "x": 1418.1946902654868,
+          "y": 453.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5724577333490863,
+          "normalized_y": 0.10780420037590913,
+          "x": 1758.0176991150443,
+          "y": 439.73333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.46475305671382017,
+          "normalized_y": 0.23894745444144805,
+          "x": 1427.2566371681417,
+          "y": 974.6666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5665561072320855,
+          "normalized_y": 0.23894745444144805,
+          "x": 1739.8938053097345,
+          "y": 974.6666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_left",
+          "normalized_x": 0.3083599646132965,
+          "normalized_y": 0.33897197025414727,
+          "x": 946.9734513274336,
+          "y": 1382.6666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_right",
+          "normalized_x": 0.6993426948646055,
+          "normalized_y": 0.33897197025414727,
+          "x": 2147.6814159292035,
+          "y": 1382.6666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.5163922852375779,
+          "normalized_y": 0.2600637411130179,
+          "x": 1585.8407079646017,
+          "y": 1060.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5060644395328263,
+          "normalized_y": 0.36675655797989704,
+          "x": 1554.1238938053098,
+          "y": 1496.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.21836016632903296,
+          "normalized_y": 0.41121189834109667,
+          "x": 670.5840707964602,
+          "y": 1677.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7981949323243703,
+          "normalized_y": 0.41676881588624665,
+          "x": 2451.2566371681414,
+          "y": 1700.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.31868781031804805,
+          "normalized_y": 0.6568276538367246,
+          "x": 978.6902654867256,
+          "y": 2679.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6860640361013535,
+          "normalized_y": 0.6568276538367246,
+          "x": 2106.9026548672564,
+          "y": 2679.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.3673762257833054,
+          "normalized_y": 0.6957260766527744,
+          "x": 1128.212389380531,
+          "y": 2837.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6403264336945965,
+          "normalized_y": 0.6957260766527744,
+          "x": 1966.442477876106,
+          "y": 2837.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.27737642749904184,
+          "normalized_y": 0.8879954237149628,
+          "x": 851.8230088495575,
+          "y": 3622.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.736227858095861,
+          "normalized_y": 0.8879954237149628,
+          "x": 2260.955752212389,
+          "y": 3622.133333333333
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/090_landmarks.png",
+      "overlay_sha256": "756e74041a6bf2f05afabc2041517d0192e9e1da8c26f69e7797cb52df41d1b3",
+      "selected_index": 90,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "filename": "IMG20260826124323.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/114_geometry_mask.png",
+      "geometry_mask_sha256": "bb3f71cd70c957e5c3017a4b04a7c53a9dc509b8c59adfdb80ff47eabc9f305e",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.5075398460620766,
+          "normalized_y": 0.030007354743809757,
+          "x": 1558.654867256637,
+          "y": 122.39999999999999
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5016382199450756,
+          "normalized_y": 0.9613467353109422,
+          "x": 1540.5309734513273,
+          "y": 3921.333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.5075398460620766,
+          "normalized_y": 0.030007354743809757,
+          "x": 1558.654867256637,
+          "y": 122.39999999999999
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.5060644395328263,
+          "normalized_y": 0.05890332597858952,
+          "x": 1554.1238938053098,
+          "y": 240.26666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.4367203326580659,
+          "normalized_y": 0.11336111792105907,
+          "x": 1341.1681415929204,
+          "y": 462.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5695069202905859,
+          "normalized_y": 0.11669526844814905,
+          "x": 1748.9557522123894,
+          "y": 476.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.4367203326580659,
+          "normalized_y": 0.11336111792105907,
+          "x": 1341.1681415929204,
+          "y": 462.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5695069202905859,
+          "normalized_y": 0.11669526844814905,
+          "x": 1748.9557522123894,
+          "y": 476.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.44557277183356725,
+          "normalized_y": 0.15892784179128872,
+          "x": 1368.353982300885,
+          "y": 648.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5606544811150845,
+          "normalized_y": 0.15892784179128872,
+          "x": 1721.7699115044247,
+          "y": 648.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.44557277183356725,
+          "normalized_y": 0.2956280134019776,
+          "x": 1368.353982300885,
+          "y": 1205.8666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5518020419395833,
+          "normalized_y": 0.30118493094712756,
+          "x": 1694.58407079646,
+          "y": 1228.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_left",
+          "normalized_x": 0.28917967973304365,
+          "normalized_y": 0.4056549807959467,
+          "x": 888.070796460177,
+          "y": 1654.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_right",
+          "normalized_x": 0.6875394426306037,
+          "normalized_y": 0.4056549807959467,
+          "x": 2111.433628318584,
+          "y": 1654.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.4986874068865752,
+          "normalized_y": 0.3211898341096674,
+          "x": 1531.4690265486724,
+          "y": 1310.1333333333332
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.49426118729882457,
+          "normalized_y": 0.42343711694042657,
+          "x": 1517.8761061946902,
+          "y": 1727.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.21098313368278182,
+          "normalized_y": 0.4745607583558062,
+          "x": 647.929203539823,
+          "y": 1935.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.781965460502618,
+          "normalized_y": 0.47678352537386615,
+          "x": 2401.4159292035397,
+          "y": 1944.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.3216386233765485,
+          "normalized_y": 0.7057285282340443,
+          "x": 987.7522123893805,
+          "y": 2878.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.683113223042853,
+          "normalized_y": 0.7057285282340443,
+          "x": 2097.8407079646017,
+          "y": 2878.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.3673762257833054,
+          "normalized_y": 0.7324017324507641,
+          "x": 1128.212389380531,
+          "y": 2987.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6270477749313446,
+          "normalized_y": 0.7324017324507641,
+          "x": 1925.6637168141592,
+          "y": 2987.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.27590102096979163,
+          "normalized_y": 0.9268938465310125,
+          "x": 847.29203539823,
+          "y": 3780.7999999999997
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.7273754189203597,
+          "normalized_y": 0.9268938465310125,
+          "x": 2233.7699115044247,
+          "y": 3780.7999999999997
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/114_landmarks.png",
+      "overlay_sha256": "e1378bdc6312a8a2a536eb498b6c3c1ab8436d3b04a3ba56c646e1f3e8f05bc2",
+      "selected_index": 114,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "filename": "IMG20260826124422.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/128_geometry_mask.png",
+      "geometry_mask_sha256": "4e00d750642366f668234c6b890667b93f0b0303ef3a339250d648e41f8bcace",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.47950712200632234,
+          "normalized_y": 0.06779439405082945,
+          "x": 1472.5663716814158,
+          "y": 276.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5193430982960784,
+          "normalized_y": 0.9446759826754922,
+          "x": 1594.9026548672566,
+          "y": 3853.333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.47950712200632234,
+          "normalized_y": 0.06779439405082945,
+          "x": 1472.5663716814158,
+          "y": 276.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.48098252853557255,
+          "normalized_y": 0.09891313230366919,
+          "x": 1477.0973451327434,
+          "y": 403.46666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.42196626736556364,
+          "normalized_y": 0.15114815722807878,
+          "x": 1295.858407079646,
+          "y": 616.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5429496027640819,
+          "normalized_y": 0.15448230775516875,
+          "x": 1667.3982300884954,
+          "y": 630.1333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.42196626736556364,
+          "normalized_y": 0.15114815722807878,
+          "x": 1295.858407079646,
+          "y": 616.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5429496027640819,
+          "normalized_y": 0.15448230775516875,
+          "x": 1667.3982300884954,
+          "y": 630.1333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.430818706541065,
+          "normalized_y": 0.19338073057121843,
+          "x": 1323.0442477876106,
+          "y": 788.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5385233831763312,
+          "normalized_y": 0.19338073057121843,
+          "x": 1653.8053097345132,
+          "y": 788.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.4426219587750668,
+          "normalized_y": 0.3189670670916074,
+          "x": 1359.2920353982302,
+          "y": 1301.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5473758223518326,
+          "normalized_y": 0.3223012176186974,
+          "x": 1680.9911504424779,
+          "y": 1314.6666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_left",
+          "normalized_x": 0.32458943643504895,
+          "normalized_y": 0.42343711694042657,
+          "x": 996.8141592920354,
+          "y": 1727.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_right",
+          "normalized_x": 0.6934410687476046,
+          "normalized_y": 0.42343711694042657,
+          "x": 2129.5575221238937,
+          "y": 1727.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.49573659382807483,
+          "normalized_y": 0.3456402713083272,
+          "x": 1522.4070796460178,
+          "y": 1409.8666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5090152525913268,
+          "normalized_y": 0.44121925308490645,
+          "x": 1563.1858407079646,
+          "y": 1799.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.24196667079703651,
+          "normalized_y": 0.493454278009316,
+          "x": 743.0796460176991,
+          "y": 2012.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.781965460502618,
+          "normalized_y": 0.492342894500286,
+          "x": 2401.4159292035397,
+          "y": 2008.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.351146753961553,
+          "normalized_y": 0.7046171447250142,
+          "x": 1078.3716814159293,
+          "y": 2874.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6860640361013535,
+          "normalized_y": 0.7046171447250142,
+          "x": 2106.9026548672564,
+          "y": 2874.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.3968843563683099,
+          "normalized_y": 0.7312903489417341,
+          "x": 1218.8318584070796,
+          "y": 2982.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.643277246753097,
+          "normalized_y": 0.7312903489417341,
+          "x": 1975.504424778761,
+          "y": 2982.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.3054091515547961,
+          "normalized_y": 0.9146686279316826,
+          "x": 937.9115044247787,
+          "y": 3730.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.7318016385081104,
+          "normalized_y": 0.9146686279316826,
+          "x": 2247.362831858407,
+          "y": 3730.9333333333334
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/128_landmarks.png",
+      "overlay_sha256": "e37eac6493c043d45484e07216c342e1f1f6ad9ac0ae0da78bce0921ee34cfcd",
+      "selected_index": 128,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "filename": "IMG20260826124754.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/142_geometry_mask.png",
+      "geometry_mask_sha256": "27b588352dba3f2736acb84654c5972815173cb0f5f8fb7ba54e17e42a05ef30",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.5016382199450756,
+          "normalized_y": 0.0622374765056795,
+          "x": 1540.5309734513273,
+          "y": 253.86666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5518020419395833,
+          "normalized_y": 0.9346735310942225,
+          "x": 1694.58407079646,
+          "y": 3812.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.5016382199450756,
+          "normalized_y": 0.0622374765056795,
+          "x": 1540.5309734513273,
+          "y": 253.86666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.5031136264743259,
+          "normalized_y": 0.09224483124948925,
+          "x": 1545.0619469026549,
+          "y": 376.26666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.4426219587750668,
+          "normalized_y": 0.14336847266486882,
+          "x": 1359.2920353982302,
+          "y": 584.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5650807007028353,
+          "normalized_y": 0.14114570564680887,
+          "x": 1735.3628318584072,
+          "y": 575.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.4426219587750668,
+          "normalized_y": 0.14336847266486882,
+          "x": 1359.2920353982302,
+          "y": 584.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5650807007028353,
+          "normalized_y": 0.14114570564680887,
+          "x": 1735.3628318584072,
+          "y": 575.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.4499989914213179,
+          "normalized_y": 0.17893274495382855,
+          "x": 1381.9469026548672,
+          "y": 729.8666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5621298876443348,
+          "normalized_y": 0.17782136144479854,
+          "x": 1726.3008849557523,
+          "y": 725.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.47360549588932144,
+          "normalized_y": 0.3045190814742175,
+          "x": 1454.442477876106,
+          "y": 1242.1333333333332
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5754085464075869,
+          "normalized_y": 0.3045190814742175,
+          "x": 1767.0796460176991,
+          "y": 1242.1333333333332
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_left",
+          "normalized_x": 0.3526221604908032,
+          "normalized_y": 0.40232083026885673,
+          "x": 1082.9026548672566,
+          "y": 1641.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_right",
+          "normalized_x": 0.7303262319788603,
+          "normalized_y": 0.40232083026885673,
+          "x": 2242.83185840708,
+          "y": 1641.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.5281955374715797,
+          "normalized_y": 0.32563536814578736,
+          "x": 1622.0884955752213,
+          "y": 1328.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5399987897055815,
+          "normalized_y": 0.42121434992236656,
+          "x": 1658.3362831858408,
+          "y": 1718.1333333333332
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.2611469556772894,
+          "normalized_y": 0.4790062923919261,
+          "x": 801.9823008849557,
+          "y": 1953.8666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.8114735910876224,
+          "normalized_y": 0.4678924573016262,
+          "x": 2492.0353982300885,
+          "y": 1908.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.37180244537105606,
+          "normalized_y": 0.6890577755985944,
+          "x": 1141.8053097345132,
+          "y": 2810.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.7140967601571077,
+          "normalized_y": 0.6857236250715044,
+          "x": 2192.9911504424776,
+          "y": 2797.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.41606464124856274,
+          "normalized_y": 0.7157309798153142,
+          "x": 1277.7345132743362,
+          "y": 2919.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6668837512211007,
+          "normalized_y": 0.7157309798153142,
+          "x": 2048.0,
+          "y": 2919.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.33344187561055033,
+          "normalized_y": 0.9013320258233227,
+          "x": 1024.0,
+          "y": 3676.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.7672113952101157,
+          "normalized_y": 0.9013320258233227,
+          "x": 2356.1061946902655,
+          "y": 3676.5333333333333
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/142_landmarks.png",
+      "overlay_sha256": "3275dbe4e1fd94e2135c925dbab19de7da499fb397aed825a267930e7cf2bac7",
+      "selected_index": 142,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "filename": "IMG20260826124908.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/148_geometry_mask.png",
+      "geometry_mask_sha256": "5bb53cff2ce6746426b2c9a427bf35b713fd14a52e7595cac11d6042999d11d5",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.48835956118182366,
+          "normalized_y": 0.052235024924409575,
+          "x": 1499.7522123893805,
+          "y": 213.06666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.48688415465257345,
+          "normalized_y": 0.9235596960039225,
+          "x": 1495.2212389380531,
+          "y": 3767.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.48835956118182366,
+          "normalized_y": 0.052235024924409575,
+          "x": 1499.7522123893805,
+          "y": 213.06666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.48688415465257345,
+          "normalized_y": 0.123363569502329,
+          "x": 1495.2212389380531,
+          "y": 503.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.40426138901456093,
+          "normalized_y": 0.20227179864345834,
+          "x": 1241.4867256637167,
+          "y": 825.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5665561072320855,
+          "normalized_y": 0.20227179864345834,
+          "x": 1739.8938053097345,
+          "y": 825.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.40426138901456093,
+          "normalized_y": 0.20227179864345834,
+          "x": 1241.4867256637167,
+          "y": 825.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5665561072320855,
+          "normalized_y": 0.20227179864345834,
+          "x": 1739.8938053097345,
+          "y": 825.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.4190154543070632,
+          "normalized_y": 0.27562311023943775,
+          "x": 1286.796460176991,
+          "y": 1124.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.550326635410333,
+          "normalized_y": 0.2745117267304078,
+          "x": 1690.0530973451328,
+          "y": 1119.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.430818706541065,
+          "normalized_y": 0.4423306365939364,
+          "x": 1323.0442477876106,
+          "y": 1804.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5311463505300802,
+          "normalized_y": 0.4423306365939364,
+          "x": 1631.1504424778761,
+          "y": 1804.2666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_left",
+          "normalized_x": 0.298032118908545,
+          "normalized_y": 0.5712511236414154,
+          "x": 915.2566371681415,
+          "y": 2330.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_right",
+          "normalized_x": 0.6565559055163491,
+          "normalized_y": 0.5712511236414154,
+          "x": 2016.283185840708,
+          "y": 2330.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.48393334159407303,
+          "normalized_y": 0.4667810737925962,
+          "x": 1486.1592920353983,
+          "y": 1904.0
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.47950712200632234,
+          "normalized_y": 0.6823894745444145,
+          "x": 1472.5663716814158,
+          "y": 2783.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.23901585773853606,
+          "normalized_y": 0.6112609299664951,
+          "x": 734.0176991150443,
+          "y": 2493.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7332770450373606,
+          "normalized_y": 0.6112609299664951,
+          "x": 2251.8938053097345,
+          "y": 2493.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.3599991931370543,
+          "normalized_y": 0.7924164419383836,
+          "x": 1105.5575221238937,
+          "y": 3232.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6122937096388424,
+          "normalized_y": 0.7924164419383836,
+          "x": 1880.353982300885,
+          "y": 3232.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.37770407148805696,
+          "normalized_y": 0.8157554956280134,
+          "x": 1159.929203539823,
+          "y": 3327.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.5931134247585894,
+          "normalized_y": 0.8157554956280134,
+          "x": 1821.4513274336282,
+          "y": 3327.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.34967134743230277,
+          "normalized_y": 0.8791043556427229,
+          "x": 1073.8407079646017,
+          "y": 3585.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.6329494010483455,
+          "normalized_y": 0.8791043556427229,
+          "x": 1943.787610619469,
+          "y": 3585.866666666667
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/148_landmarks.png",
+      "overlay_sha256": "703bd823fc88cfe47f1be46d3b29176c5d721b6fa004a051031d8992a577c82e",
+      "selected_index": 148,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "elevated_oblique"
+    },
+    {
+      "filename": "IMG20260826125013.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/165_geometry_mask.png",
+      "geometry_mask_sha256": "fc87c5a1156ca28e73e9e36d96c973cc8695c763b8fd529d3ce66d32b3fb1ebd",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.4750809024185717,
+          "normalized_y": 0.09224483124948925,
+          "x": 1458.9734513274336,
+          "y": 376.26666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5001628134158255,
+          "normalized_y": 0.9313393805671325,
+          "x": 1536.0,
+          "y": 3798.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.4750809024185717,
+          "normalized_y": 0.09224483124948925,
+          "x": 1458.9734513274336,
+          "y": 376.26666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.47655630894782186,
+          "normalized_y": 0.1489253902100188,
+          "x": 1463.504424778761,
+          "y": 607.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.4072122020730614,
+          "normalized_y": 0.22338808531502818,
+          "x": 1250.5486725663716,
+          "y": 911.1999999999999
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5532774484688335,
+          "normalized_y": 0.2211653182969682,
+          "x": 1699.1150442477876,
+          "y": 902.1333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.4072122020730614,
+          "normalized_y": 0.22338808531502818,
+          "x": 1250.5486725663716,
+          "y": 911.1999999999999
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5532774484688335,
+          "normalized_y": 0.2211653182969682,
+          "x": 1699.1150442477876,
+          "y": 902.1333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.4249170804240641,
+          "normalized_y": 0.2956280134019776,
+          "x": 1304.9203539823009,
+          "y": 1205.8666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5473758223518326,
+          "normalized_y": 0.29340524638391763,
+          "x": 1680.9911504424779,
+          "y": 1196.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.4426219587750668,
+          "normalized_y": 0.45122170466617634,
+          "x": 1359.2920353982302,
+          "y": 1840.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5444250092933322,
+          "normalized_y": 0.4478875541390864,
+          "x": 1671.929203539823,
+          "y": 1826.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_left",
+          "normalized_x": 0.32754024949354943,
+          "normalized_y": 0.5768080411865653,
+          "x": 1005.8761061946902,
+          "y": 2352.7999999999997
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_right",
+          "normalized_x": 0.6801624099843527,
+          "normalized_y": 0.5734738906594753,
+          "x": 2088.778761061947,
+          "y": 2339.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.49426118729882457,
+          "normalized_y": 0.4723379913377461,
+          "x": 1517.8761061946902,
+          "y": 1926.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5016382199450756,
+          "normalized_y": 0.6779439405082945,
+          "x": 1540.5309734513273,
+          "y": 2765.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.2611469556772894,
+          "normalized_y": 0.609038162948435,
+          "x": 801.9823008849557,
+          "y": 2484.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.742129484212862,
+          "normalized_y": 0.609038162948435,
+          "x": 2279.079646017699,
+          "y": 2484.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.37475325842955653,
+          "normalized_y": 0.8057530440467434,
+          "x": 1150.867256637168,
+          "y": 3286.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.616719929226593,
+          "normalized_y": 0.8057530440467434,
+          "x": 1893.9469026548672,
+          "y": 3286.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.38655651066355834,
+          "normalized_y": 0.8279807142273432,
+          "x": 1187.1150442477876,
+          "y": 3377.333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6078674900510916,
+          "normalized_y": 0.8279807142273432,
+          "x": 1866.7610619469026,
+          "y": 3377.333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.3585237866078041,
+          "normalized_y": 0.8913295742420527,
+          "x": 1101.0265486725664,
+          "y": 3635.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.6403264336945965,
+          "normalized_y": 0.8913295742420527,
+          "x": 1966.442477876106,
+          "y": 3635.733333333333
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/165_landmarks.png",
+      "overlay_sha256": "0dfeeb3568daef1c0e0aa978c303ff73886807863fa7f283b7507c1409ad7760",
+      "selected_index": 165,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "elevated_oblique"
+    },
+    {
+      "filename": "IMG20260826125249.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/188_geometry_mask.png",
+      "geometry_mask_sha256": "e8b5d2e69ba2281e50b39cf49f098522df410c0282af362f24b59c4990a9ed10",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.5429496027640819,
+          "normalized_y": 0.044455340361199636,
+          "x": 1667.3982300884954,
+          "y": 181.33333333333331
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5193430982960784,
+          "normalized_y": 0.9235596960039225,
+          "x": 1594.9026548672566,
+          "y": 3767.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.5429496027640819,
+          "normalized_y": 0.044455340361199636,
+          "x": 1667.3982300884954,
+          "y": 181.33333333333331
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.5414741962348317,
+          "normalized_y": 0.10669281686687913,
+          "x": 1662.867256637168,
+          "y": 435.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.4559006175383188,
+          "normalized_y": 0.18893519653509847,
+          "x": 1400.070796460177,
+          "y": 770.6666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.6211461488143437,
+          "normalized_y": 0.18893519653509847,
+          "x": 1907.5398230088495,
+          "y": 770.6666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.4559006175383188,
+          "normalized_y": 0.18893519653509847,
+          "x": 1400.070796460177,
+          "y": 770.6666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.6211461488143437,
+          "normalized_y": 0.18893519653509847,
+          "x": 1907.5398230088495,
+          "y": 770.6666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.470654682830821,
+          "normalized_y": 0.2611751246220479,
+          "x": 1445.3805309734514,
+          "y": 1065.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5931134247585894,
+          "normalized_y": 0.2600637411130179,
+          "x": 1821.4513274336282,
+          "y": 1060.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.47655630894782186,
+          "normalized_y": 0.4323281850126665,
+          "x": 1463.504424778761,
+          "y": 1763.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5798347659953375,
+          "normalized_y": 0.4323281850126665,
+          "x": 1780.6725663716813,
+          "y": 1763.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_left",
+          "normalized_x": 0.3349172821398005,
+          "normalized_y": 0.5679169731143254,
+          "x": 1028.5309734513273,
+          "y": 2316.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_right",
+          "normalized_x": 0.7037689144523561,
+          "normalized_y": 0.5679169731143254,
+          "x": 2161.2743362831857,
+          "y": 2316.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.5281955374715797,
+          "normalized_y": 0.4534444716842363,
+          "x": 1622.0884955752213,
+          "y": 1849.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5208185048253285,
+          "normalized_y": 0.6712756394541145,
+          "x": 1599.433628318584,
+          "y": 2738.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.26999939485279073,
+          "normalized_y": 0.606815395930375,
+          "x": 829.1681415929204,
+          "y": 2475.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7657359886808655,
+          "normalized_y": 0.606815395930375,
+          "x": 2351.575221238938,
+          "y": 2475.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.39540894983905966,
+          "normalized_y": 0.7979733594835335,
+          "x": 1214.3008849557523,
+          "y": 3254.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6373756206360961,
+          "normalized_y": 0.7979733594835335,
+          "x": 1957.3805309734512,
+          "y": 3254.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.4116384216608121,
+          "normalized_y": 0.8202010296641333,
+          "x": 1264.141592920354,
+          "y": 3345.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6255723684020944,
+          "normalized_y": 0.8202010296641333,
+          "x": 1921.132743362832,
+          "y": 3345.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.3732778519003063,
+          "normalized_y": 0.8791043556427229,
+          "x": 1146.3362831858408,
+          "y": 3585.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.6565559055163491,
+          "normalized_y": 0.8791043556427229,
+          "x": 2016.283185840708,
+          "y": 3585.866666666667
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/188_landmarks.png",
+      "overlay_sha256": "8a5936935671be8eaa84dceaff785ece9d36e0b7417ecb11c29e23d1628508ad",
+      "selected_index": 188,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "elevated_oblique"
+    },
+    {
+      "filename": "IMG20260826125422.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/200_geometry_mask.png",
+      "geometry_mask_sha256": "a311e9522f0c374961b5d0c7fc494fd3760fbe4f9c0cd95da4f69b5fabdcad67",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.4514743979505681,
+          "normalized_y": 0.10780420037590913,
+          "x": 1386.4778761061946,
+          "y": 439.73333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.4750809024185717,
+          "normalized_y": 0.9124458609136227,
+          "x": 1458.9734513274336,
+          "y": 3721.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.4514743979505681,
+          "normalized_y": 0.10780420037590913,
+          "x": 1386.4778761061946,
+          "y": 439.73333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.4514743979505681,
+          "normalized_y": 0.17004167688158864,
+          "x": 1386.4778761061946,
+          "y": 693.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.36885163231255563,
+          "normalized_y": 0.247838522513688,
+          "x": 1132.7433628318583,
+          "y": 1010.9333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5267201309423294,
+          "normalized_y": 0.25228405654980796,
+          "x": 1617.5575221238937,
+          "y": 1029.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.36885163231255563,
+          "normalized_y": 0.247838522513688,
+          "x": 1132.7433628318583,
+          "y": 1010.9333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5267201309423294,
+          "normalized_y": 0.25228405654980796,
+          "x": 1617.5575221238937,
+          "y": 1029.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.38360569760505786,
+          "normalized_y": 0.3189670670916074,
+          "x": 1178.0530973451328,
+          "y": 1301.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5119660656498273,
+          "normalized_y": 0.3234126011277274,
+          "x": 1572.2477876106195,
+          "y": 1319.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.40131057595606057,
+          "normalized_y": 0.4745607583558062,
+          "x": 1232.424778761062,
+          "y": 1935.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5031136264743259,
+          "normalized_y": 0.4745607583558062,
+          "x": 1545.0619469026549,
+          "y": 1935.7333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_left",
+          "normalized_x": 0.27590102096979163,
+          "normalized_y": 0.6123723134755251,
+          "x": 847.29203539823,
+          "y": 2497.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "globe_max_right",
+          "normalized_x": 0.6255723684020944,
+          "normalized_y": 0.6112609299664951,
+          "x": 1921.132743362832,
+          "y": 2493.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.45294980447981836,
+          "normalized_y": 0.4967884285364059,
+          "x": 1391.0088495575221,
+          "y": 2026.3999999999999
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.45294980447981836,
+          "normalized_y": 0.6979488436708343,
+          "x": 1391.0088495575221,
+          "y": 2846.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.2213109793875334,
+          "normalized_y": 0.6245975320748549,
+          "x": 679.6460176991151,
+          "y": 2547.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.6919656622183543,
+          "normalized_y": 0.6245975320748549,
+          "x": 2125.026548672566,
+          "y": 2547.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.34967134743230277,
+          "normalized_y": 0.8013075100106235,
+          "x": 1073.8407079646017,
+          "y": 3268.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.5886872051708388,
+          "normalized_y": 0.8013075100106235,
+          "x": 1807.858407079646,
+          "y": 3268.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.3703270388418059,
+          "normalized_y": 0.8235351801912233,
+          "x": 1137.274336283186,
+          "y": 3359.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.5709823268198361,
+          "normalized_y": 0.8235351801912233,
+          "x": 1753.4867256637167,
+          "y": 3359.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_left",
+          "normalized_x": 0.3349172821398005,
+          "normalized_y": 0.8702132875704829,
+          "x": 1028.5309734513273,
+          "y": 3549.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "foot_right",
+          "normalized_x": 0.6108183031095922,
+          "normalized_y": 0.8702132875704829,
+          "x": 1875.8230088495575,
+          "y": 3549.6
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/200_landmarks.png",
+      "overlay_sha256": "9ef01f4ed5dc9b9aa87148e565757e6adac03b2ef2ddecbee2288f6b8dadc828",
+      "selected_index": 200,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "elevated_oblique"
+    },
+    {
+      "filename": "IMG20260826125527.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/206_geometry_mask.png",
+      "geometry_mask_sha256": "1ff90a459f3c956ce0c829d49f183073ce71e3f59f52147dada0185c890603be",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.5222939113545788,
+          "normalized_y": 0.21116286671569828,
+          "x": 1603.9646017699115,
+          "y": 861.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5119660656498273,
+          "normalized_y": 0.8435400833537631,
+          "x": 1572.2477876106195,
+          "y": 3440.7999999999997
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.5222939113545788,
+          "normalized_y": 0.21116286671569828,
+          "x": 1603.9646017699115,
+          "y": 861.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.523769317883829,
+          "normalized_y": 0.3189670670916074,
+          "x": 1608.4955752212388,
+          "y": 1301.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.3968843563683099,
+          "normalized_y": 0.3889842281604968,
+          "x": 1218.8318584070796,
+          "y": 1586.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.6344248075775958,
+          "normalized_y": 0.3889842281604968,
+          "x": 1948.3185840707965,
+          "y": 1586.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.3968843563683099,
+          "normalized_y": 0.3889842281604968,
+          "x": 1218.8318584070796,
+          "y": 1586.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.6344248075775958,
+          "normalized_y": 0.3889842281604968,
+          "x": 1948.3185840707965,
+          "y": 1586.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.4249170804240641,
+          "normalized_y": 0.48678597695513603,
+          "x": 1304.9203539823009,
+          "y": 1985.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.6093428965803419,
+          "normalized_y": 0.48678597695513603,
+          "x": 1871.2920353982302,
+          "y": 1985.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.4544252110090685,
+          "normalized_y": 0.5979243278581352,
+          "x": 1395.5398230088495,
+          "y": 2438.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5813101725245877,
+          "normalized_y": 0.5979243278581352,
+          "x": 1785.203539823009,
+          "y": 2438.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_left",
+          "normalized_x": 0.3098353711425467,
+          "normalized_y": 0.6612731878728447,
+          "x": 951.5044247787611,
+          "y": 2697.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_right",
+          "normalized_x": 0.7155721666863579,
+          "normalized_y": 0.6612731878728447,
+          "x": 2197.522123893805,
+          "y": 2697.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.5208185048253285,
+          "normalized_y": 0.6379341341832148,
+          "x": 1599.433628318584,
+          "y": 2602.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.510490659120577,
+          "normalized_y": 0.7890822914112936,
+          "x": 1567.716814159292,
+          "y": 3218.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.24196667079703651,
+          "normalized_y": 0.6657187219089646,
+          "x": 743.0796460176991,
+          "y": 2715.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7804900539733677,
+          "normalized_y": 0.6657187219089646,
+          "x": 2396.884955752212,
+          "y": 2715.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.3732778519003063,
+          "normalized_y": 0.8324262482634632,
+          "x": 1146.3362831858408,
+          "y": 3395.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6506542793993482,
+          "normalized_y": 0.8324262482634632,
+          "x": 1998.1592920353983,
+          "y": 3395.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.4234416738948139,
+          "normalized_y": 0.8368717822995833,
+          "x": 1300.3893805309735,
+          "y": 3413.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6004904574048406,
+          "normalized_y": 0.8368717822995833,
+          "x": 1844.1061946902655,
+          "y": 3413.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "foot_left",
+          "normalized_x": 0.4234416738948139,
+          "normalized_y": 0.8402059328266731,
+          "x": 1300.3893805309735,
+          "y": 3427.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "foot_right",
+          "normalized_x": 0.6004904574048406,
+          "normalized_y": 0.8402059328266731,
+          "x": 1844.1061946902655,
+          "y": 3427.2
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_center",
+          "normalized_x": 0.5112283623852021,
+          "normalized_y": 0.6657187219089646,
+          "x": 1569.9823008849557,
+          "y": 2715.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_major_axis_a",
+          "normalized_x": 0.24196667079703651,
+          "normalized_y": 0.6657187219089646,
+          "x": 743.0796460176991,
+          "y": 2715.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_major_axis_b",
+          "normalized_x": 0.7804900539733677,
+          "normalized_y": 0.6657187219089646,
+          "x": 2396.884955752212,
+          "y": 2715.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_center",
+          "normalized_x": 0.5127037689144524,
+          "normalized_y": 0.6612731878728447,
+          "x": 1574.513274336283,
+          "y": 2697.3333333333335
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/206_landmarks.png",
+      "overlay_sha256": "c08e09e79c579bf55bfbc4a36aece94690c3c2c9dbc4c9b20af9fd01ce0b508b",
+      "selected_index": 206,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "top_down_rim"
+    },
+    {
+      "filename": "IMG20260826125650.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/221_geometry_mask.png",
+      "geometry_mask_sha256": "a62936e14b69cb84e793d4a6e2d3b8479125ec6763a0078a6201cb933eb65788",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.497212000357325,
+          "normalized_y": 0.19782626460733838,
+          "x": 1526.9380530973451,
+          "y": 806.9333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5473758223518326,
+          "normalized_y": 0.8246465637002532,
+          "x": 1680.9911504424779,
+          "y": 3363.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.497212000357325,
+          "normalized_y": 0.19782626460733838,
+          "x": 1526.9380530973451,
+          "y": 806.9333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.5031136264743259,
+          "normalized_y": 0.2789572607665277,
+          "x": 1545.0619469026549,
+          "y": 1137.8666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.41606464124856274,
+          "normalized_y": 0.3434175042902672,
+          "x": 1277.7345132743362,
+          "y": 1400.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.6049166769925912,
+          "normalized_y": 0.3434175042902672,
+          "x": 1857.6991150442477,
+          "y": 1400.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.41606464124856274,
+          "normalized_y": 0.3434175042902672,
+          "x": 1277.7345132743362,
+          "y": 1400.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.6049166769925912,
+          "normalized_y": 0.3434175042902672,
+          "x": 1857.6991150442477,
+          "y": 1400.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.444097365304317,
+          "normalized_y": 0.4367737190487864,
+          "x": 1363.8230088495575,
+          "y": 1781.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5901626117000891,
+          "normalized_y": 0.4367737190487864,
+          "x": 1812.3893805309735,
+          "y": 1781.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.4750809024185717,
+          "normalized_y": 0.5379096183705157,
+          "x": 1458.9734513274336,
+          "y": 2194.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5916380182293393,
+          "normalized_y": 0.5379096183705157,
+          "x": 1816.9203539823009,
+          "y": 2194.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_left",
+          "normalized_x": 0.3614745996663045,
+          "normalized_y": 0.6190406145297049,
+          "x": 1110.0884955752213,
+          "y": 2525.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_right",
+          "normalized_x": 0.7303262319788603,
+          "normalized_y": 0.6190406145297049,
+          "x": 2242.83185840708,
+          "y": 2525.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.5311463505300802,
+          "normalized_y": 0.5779194246955953,
+          "x": 1631.1504424778761,
+          "y": 2357.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5444250092933322,
+          "normalized_y": 0.736847266486884,
+          "x": 1671.929203539823,
+          "y": 3005.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.3024583384962956,
+          "normalized_y": 0.6290430661109749,
+          "x": 928.8495575221239,
+          "y": 2565.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.781965460502618,
+          "normalized_y": 0.6290430661109749,
+          "x": 2401.4159292035397,
+          "y": 2565.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.4485235848920676,
+          "normalized_y": 0.7868595243932336,
+          "x": 1377.4159292035397,
+          "y": 3209.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6536050924578486,
+          "normalized_y": 0.7868595243932336,
+          "x": 2007.2212389380531,
+          "y": 3209.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.4559006175383188,
+          "normalized_y": 0.7990847429925635,
+          "x": 1400.070796460177,
+          "y": 3259.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6359002141068459,
+          "normalized_y": 0.7990847429925635,
+          "x": 1952.8495575221239,
+          "y": 3259.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "foot_left",
+          "normalized_x": 0.4514743979505681,
+          "normalized_y": 0.8035302770286835,
+          "x": 1386.4778761061946,
+          "y": 3277.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "foot_right",
+          "normalized_x": 0.643277246753097,
+          "normalized_y": 0.8035302770286835,
+          "x": 1975.504424778761,
+          "y": 3277.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_center",
+          "normalized_x": 0.5422118994994568,
+          "normalized_y": 0.6290430661109749,
+          "x": 1665.132743362832,
+          "y": 2565.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_major_axis_a",
+          "normalized_x": 0.3024583384962956,
+          "normalized_y": 0.6290430661109749,
+          "x": 928.8495575221239,
+          "y": 2565.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_major_axis_b",
+          "normalized_x": 0.781965460502618,
+          "normalized_y": 0.6290430661109749,
+          "x": 2401.4159292035397,
+          "y": 2565.866666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_center",
+          "normalized_x": 0.5459004158225823,
+          "normalized_y": 0.6190406145297049,
+          "x": 1676.4601769911503,
+          "y": 2525.0666666666666
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/221_landmarks.png",
+      "overlay_sha256": "6f6176a5e41fb35f1eed0e181ccbceda8cc15f519a257986b27c3a3535b73287",
+      "selected_index": 221,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "top_down_rim"
+    },
+    {
+      "filename": "IMG20260826125942.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/243_geometry_mask.png",
+      "geometry_mask_sha256": "78a7d02346e25a00be27d9aeaf538aadf0972a61f100918860f9adec24080116",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.504589033003576,
+          "normalized_y": 0.1355887881016589,
+          "x": 1549.5929203539822,
+          "y": 553.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5296709440008299,
+          "normalized_y": 0.8379831658086132,
+          "x": 1626.6194690265486,
+          "y": 3418.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.504589033003576,
+          "normalized_y": 0.1355887881016589,
+          "x": 1549.5929203539822,
+          "y": 553.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.5060644395328263,
+          "normalized_y": 0.21449701724278825,
+          "x": 1554.1238938053098,
+          "y": 874.9333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.41606464124856274,
+          "normalized_y": 0.28673694532973765,
+          "x": 1277.7345132743362,
+          "y": 1169.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.5990150508755904,
+          "normalized_y": 0.28673694532973765,
+          "x": 1839.575221238938,
+          "y": 1169.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.41606464124856274,
+          "normalized_y": 0.28673694532973765,
+          "x": 1277.7345132743362,
+          "y": 1169.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.5990150508755904,
+          "normalized_y": 0.28673694532973765,
+          "x": 1839.575221238938,
+          "y": 1169.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_left",
+          "normalized_x": 0.4367203326580659,
+          "normalized_y": 0.37787039307019693,
+          "x": 1341.1681415929204,
+          "y": 1541.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_top_right",
+          "normalized_x": 0.5827855790538379,
+          "normalized_y": 0.37787039307019693,
+          "x": 1789.7345132743362,
+          "y": 1541.3333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_left",
+          "normalized_x": 0.4544252110090685,
+          "normalized_y": 0.5079022636267059,
+          "x": 1395.5398230088495,
+          "y": 2071.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "neck_base_right",
+          "normalized_x": 0.5665561072320855,
+          "normalized_y": 0.5079022636267059,
+          "x": 1739.8938053097345,
+          "y": 2071.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_left",
+          "normalized_x": 0.32311402990579874,
+          "normalized_y": 0.610149546457465,
+          "x": 992.2831858407079,
+          "y": 2488.7999999999997
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_right",
+          "normalized_x": 0.6978672883353553,
+          "normalized_y": 0.610149546457465,
+          "x": 2143.150442477876,
+          "y": 2488.7999999999997
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "medium",
+          "name": "globe_top_transition",
+          "normalized_x": 0.510490659120577,
+          "normalized_y": 0.5468006864427556,
+          "x": 1567.716814159292,
+          "y": 2230.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5134414721790774,
+          "normalized_y": 0.7090626787611342,
+          "x": 1576.7787610619469,
+          "y": 2892.2666666666664
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.28032724055754227,
+          "normalized_y": 0.627931682601945,
+          "x": 860.8849557522124,
+          "y": 2561.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7524573299176136,
+          "normalized_y": 0.627931682601945,
+          "x": 2310.7964601769913,
+          "y": 2561.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.4131138281900623,
+          "normalized_y": 0.7713001552668137,
+          "x": 1268.6725663716813,
+          "y": 3146.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6491788728700979,
+          "normalized_y": 0.7713001552668137,
+          "x": 1993.6283185840707,
+          "y": 3146.133333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.42934330001181475,
+          "normalized_y": 0.7990847429925635,
+          "x": 1318.513274336283,
+          "y": 3259.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6240969618728441,
+          "normalized_y": 0.7990847429925635,
+          "x": 1916.6017699115043,
+          "y": 3259.4666666666667
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "foot_left",
+          "normalized_x": 0.417540047777813,
+          "normalized_y": 0.8079758110648034,
+          "x": 1282.2654867256638,
+          "y": 3295.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "foot_right",
+          "normalized_x": 0.643277246753097,
+          "normalized_y": 0.8079758110648034,
+          "x": 1975.504424778761,
+          "y": 3295.733333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_center",
+          "normalized_x": 0.5163922852375779,
+          "normalized_y": 0.627931682601945,
+          "x": 1585.8407079646017,
+          "y": 2561.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_major_axis_a",
+          "normalized_x": 0.28032724055754227,
+          "normalized_y": 0.627931682601945,
+          "x": 860.8849557522124,
+          "y": 2561.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_major_axis_b",
+          "normalized_x": 0.7524573299176136,
+          "normalized_y": 0.627931682601945,
+          "x": 2310.7964601769913,
+          "y": 2561.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_center",
+          "normalized_x": 0.510490659120577,
+          "normalized_y": 0.610149546457465,
+          "x": 1567.716814159292,
+          "y": 2488.7999999999997
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/243_landmarks.png",
+      "overlay_sha256": "faa54232985f4122ea29a1a96fed81cf175ce9f066222f132b624a122c6b8755",
+      "selected_index": 243,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "top_down_rim"
+    },
+    {
+      "filename": "IMG20260826130051.jpg",
+      "geometry_mask_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+      "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/255_geometry_mask.png",
+      "geometry_mask_sha256": "18b205a229053ec0b093383fbcac21e3d462d3d007b13282512b2167b1161fce",
+      "landmarks": [
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_top",
+          "normalized_x": 0.510490659120577,
+          "normalized_y": 0.4601127727384163,
+          "x": 1567.716814159292,
+          "y": 1876.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "axis_bottom",
+          "normalized_x": 0.5296709440008299,
+          "normalized_y": 0.8724360545885429,
+          "x": 1626.6194690265486,
+          "y": 3558.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_top",
+          "normalized_x": 0.510490659120577,
+          "normalized_y": 0.4601127727384163,
+          "x": 1567.716814159292,
+          "y": 1876.8
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "finial_bottom",
+          "normalized_x": 0.5031136264743259,
+          "normalized_y": 0.5479120699517855,
+          "x": 1545.0619469026549,
+          "y": 2234.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_left",
+          "normalized_x": 0.4086876086023117,
+          "normalized_y": 0.5801421917136553,
+          "x": 1255.0796460176991,
+          "y": 2366.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_max_right",
+          "normalized_x": 0.6122937096388424,
+          "normalized_y": 0.5801421917136553,
+          "x": 1880.353982300885,
+          "y": 2366.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_left",
+          "normalized_x": 0.4086876086023117,
+          "normalized_y": 0.5801421917136553,
+          "x": 1255.0796460176991,
+          "y": 2366.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "lid_lower_right",
+          "normalized_x": 0.6122937096388424,
+          "normalized_y": 0.5801421917136553,
+          "x": 1880.353982300885,
+          "y": 2366.4
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "neck_top_left",
+          "normalized_x": 0.44557277183356725,
+          "normalized_y": 0.6390455176922448,
+          "x": 1368.353982300885,
+          "y": 2606.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "neck_top_right",
+          "normalized_x": 0.5857363921123384,
+          "normalized_y": 0.6390455176922448,
+          "x": 1798.796460176991,
+          "y": 2606.6666666666665
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "neck_base_left",
+          "normalized_x": 0.4750809024185717,
+          "normalized_y": 0.6679414889270245,
+          "x": 1458.9734513274336,
+          "y": 2724.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "neck_base_right",
+          "normalized_x": 0.5754085464075869,
+          "normalized_y": 0.6679414889270245,
+          "x": 1767.0796460176991,
+          "y": 2724.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_left",
+          "normalized_x": 0.3540975670200534,
+          "normalized_y": 0.6979488436708343,
+          "x": 1087.433628318584,
+          "y": 2846.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_max_right",
+          "normalized_x": 0.7037689144523561,
+          "normalized_y": 0.6979488436708343,
+          "x": 2161.2743362831857,
+          "y": 2846.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_top_transition",
+          "normalized_x": 0.5267201309423294,
+          "normalized_y": 0.6946146931437445,
+          "x": 1617.5575221238937,
+          "y": 2833.3333333333335
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_bottom_transition",
+          "normalized_x": 0.5296709440008299,
+          "normalized_y": 0.8101985780828633,
+          "x": 1626.6194690265486,
+          "y": 3304.7999999999997
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_left",
+          "normalized_x": 0.29213049279154407,
+          "normalized_y": 0.6979488436708343,
+          "x": 897.1327433628319,
+          "y": 2846.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_right",
+          "normalized_x": 0.7701622082686161,
+          "normalized_y": 0.6979488436708343,
+          "x": 2365.16814159292,
+          "y": 2846.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "bowl_bottom_transition_left",
+          "normalized_x": 0.4426219587750668,
+          "normalized_y": 0.867990520552423,
+          "x": 1359.2920353982302,
+          "y": 3540.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "bowl_bottom_transition_right",
+          "normalized_x": 0.6196707422850934,
+          "normalized_y": 0.867990520552423,
+          "x": 1903.0088495575221,
+          "y": 3540.5333333333333
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "pedestal_waist_left",
+          "normalized_x": 0.4499989914213179,
+          "normalized_y": 0.8691019040614529,
+          "x": 1381.9469026548672,
+          "y": 3545.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "pedestal_waist_right",
+          "normalized_x": 0.6108183031095922,
+          "normalized_y": 0.8691019040614529,
+          "x": 1875.8230088495575,
+          "y": 3545.0666666666666
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "foot_left",
+          "normalized_x": 0.4499989914213179,
+          "normalized_y": 0.8702132875704829,
+          "x": 1381.9469026548672,
+          "y": 3549.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "foot_right",
+          "normalized_x": 0.6108183031095922,
+          "normalized_y": 0.8702132875704829,
+          "x": 1875.8230088495575,
+          "y": 3549.6
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_center",
+          "normalized_x": 0.5311463505300802,
+          "normalized_y": 0.6979488436708343,
+          "x": 1631.1504424778761,
+          "y": 2846.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_major_axis_a",
+          "normalized_x": 0.29213049279154407,
+          "normalized_y": 0.6979488436708343,
+          "x": 897.1327433628319,
+          "y": 2846.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "high",
+          "name": "bowl_rim_major_axis_b",
+          "normalized_x": 0.7701622082686161,
+          "normalized_y": 0.6979488436708343,
+          "x": 2365.16814159292,
+          "y": 2846.9333333333334
+        },
+        {
+          "annotation_method": "cv_seeded_visually_reviewed",
+          "confidence": "low",
+          "name": "globe_center",
+          "normalized_x": 0.5289332407362048,
+          "normalized_y": 0.6979488436708343,
+          "x": 1624.353982300885,
+          "y": 2846.9333333333334
+        }
+      ],
+      "overlay_path": "reconstruction/reference_assisted_v2/evidence/annotations/255_landmarks.png",
+      "overlay_sha256": "6b234bfe3526a2a7af5b3401fcd0a2d8c41162eec111b91fafed3a6413cf64b2",
+      "selected_index": 255,
+      "source_image_size": [
+        3072,
+        4080
+      ],
+      "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+      "view_category": "top_down_rim"
+    }
+  ],
+  "visual_review_status": "accepted_exact_board_hashes"
+}

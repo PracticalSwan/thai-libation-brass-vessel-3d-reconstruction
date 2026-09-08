@@ -1,0 +1,361 @@
+{
+  "method": "reviewed_multi_view_silhouette_plus_photo_color_reference",
+  "manual_cleanup_started": false,
+  "source_scope": {
+    "reviewed_side_masks": 8,
+    "selected_indices": [
+      3,
+      10,
+      19,
+      28,
+      39,
+      50,
+      62,
+      72
+    ],
+    "raw_source_immutable": true
+  },
+  "measurements": {
+    "median_external_width_to_height": 0.4123424273597354,
+    "per_view_external_width_to_height": [
+      0.4343891402714932,
+      0.44393939393939397,
+      0.40588235294117647,
+      0.4166666666666667,
+      0.4366424087550698,
+      0.402457757296467,
+      0.40441176470588236,
+      0.41641337386018235
+    ],
+    "photo_median_brass_srgb": [
+      0.4784313725490196,
+      0.33725490196078434,
+      0.09215686274509804
+    ],
+    "roughness_estimate": 0.24,
+    "metallic": 1.0
+  },
+  "profiles": {
+    "bowl": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.280807,
+        0.0
+      ],
+      [
+        0.362093,
+        0.045
+      ],
+      [
+        0.406431,
+        0.11
+      ],
+      [
+        0.406431,
+        0.18
+      ],
+      [
+        0.347314,
+        0.25
+      ],
+      [
+        0.325145,
+        0.34
+      ],
+      [
+        0.339924,
+        0.41
+      ],
+      [
+        0.4286,
+        0.49
+      ],
+      [
+        0.517275,
+        0.59
+      ],
+      [
+        0.591172,
+        0.7
+      ],
+      [
+        0.63551,
+        0.8
+      ],
+      [
+        0.665068,
+        0.875
+      ],
+      [
+        0.605951,
+        0.905
+      ],
+      [
+        0.561613,
+        0.885
+      ],
+      [
+        0.524665,
+        0.82
+      ],
+      [
+        0.480327,
+        0.74
+      ],
+      [
+        0.4286,
+        0.67
+      ],
+      [
+        0.369482,
+        0.62
+      ],
+      [
+        0.295586,
+        0.61
+      ],
+      [
+        0.20691,
+        0.64
+      ],
+      [
+        0.118234,
+        0.69
+      ],
+      [
+        0.0,
+        0.72
+      ]
+    ],
+    "vessel": [
+      [
+        0.0,
+        0.68
+      ],
+      [
+        0.229079,
+        0.68
+      ],
+      [
+        0.347314,
+        0.74
+      ],
+      [
+        0.443379,
+        0.84
+      ],
+      [
+        0.517275,
+        0.98
+      ],
+      [
+        0.561613,
+        1.14
+      ],
+      [
+        0.569003,
+        1.31
+      ],
+      [
+        0.539444,
+        1.46
+      ],
+      [
+        0.472938,
+        1.61
+      ],
+      [
+        0.376872,
+        1.73
+      ],
+      [
+        0.288196,
+        1.81
+      ],
+      [
+        0.243858,
+        1.9
+      ],
+      [
+        0.229079,
+        2.04
+      ],
+      [
+        0.225384,
+        2.37
+      ],
+      [
+        0.229079,
+        2.52
+      ],
+      [
+        0.251248,
+        2.58
+      ],
+      [
+        0.184741,
+        2.58
+      ],
+      [
+        0.173657,
+        2.36
+      ],
+      [
+        0.169962,
+        2.08
+      ],
+      [
+        0.147793,
+        1.96
+      ],
+      [
+        0.0,
+        1.91
+      ]
+    ],
+    "lid": [
+      [
+        0.162572,
+        2.55
+      ],
+      [
+        0.266027,
+        2.56
+      ],
+      [
+        0.295586,
+        2.61
+      ],
+      [
+        0.280807,
+        2.68
+      ],
+      [
+        0.251248,
+        2.7
+      ],
+      [
+        0.273417,
+        2.75
+      ],
+      [
+        0.251248,
+        2.8
+      ],
+      [
+        0.229079,
+        2.83
+      ],
+      [
+        0.251248,
+        2.88
+      ],
+      [
+        0.2143,
+        2.93
+      ],
+      [
+        0.125624,
+        2.96
+      ],
+      [
+        0.088676,
+        2.93
+      ],
+      [
+        0.118234,
+        2.88
+      ],
+      [
+        0.140403,
+        2.81
+      ],
+      [
+        0.147793,
+        2.72
+      ],
+      [
+        0.140403,
+        2.63
+      ]
+    ],
+    "radial_scale": 0.7389649235837552
+  },
+  "provenance": [
+    {
+      "selected_index": 3,
+      "filename": "IMG20260826122956.jpg",
+      "mask_path": "ml_dataset/masks/IMG20260826122956_mask.png",
+      "mask_sha256": "80ae09e81d7a5ae920db9ce448e9e64479b96aef55be0e21b0e8de113f025694",
+      "image_sha256": "dd08374c78367655a55feee3b8485aeded514b00b18ccc2f38f9071c2bfc1485",
+      "aspect": 0.4343891402714932
+    },
+    {
+      "selected_index": 10,
+      "filename": "IMG20260826123023.jpg",
+      "mask_path": "ml_dataset/masks/IMG20260826123023_mask.png",
+      "mask_sha256": "62e4d0eae6fc02aa6916919e8da86fb2ff330644ca9fd90161a5e25fc5f9dc1f",
+      "image_sha256": "405c1149a6bcc8de6073c44bd11a0699a3270aefaf7ad4dc51529c452b6cabf7",
+      "aspect": 0.44393939393939397
+    },
+    {
+      "selected_index": 19,
+      "filename": "IMG20260826123111.jpg",
+      "mask_path": "ml_dataset/masks/IMG20260826123111_mask.png",
+      "mask_sha256": "45ebc6bd0f603937a4e0f2ee854839f178f57c85bcc0aa243f9fe8951375365e",
+      "image_sha256": "89646e56b9141cde2df95cb85d840bf9fabc8ed1f5fb42c9e3a4790668bb8b20",
+      "aspect": 0.40588235294117647
+    },
+    {
+      "selected_index": 28,
+      "filename": "IMG20260826123223.jpg",
+      "mask_path": "ml_dataset/masks/IMG20260826123223_mask.png",
+      "mask_sha256": "5cff484c4b5013bd040fdee66d1442507058268c3b39106362cc20276c236156",
+      "image_sha256": "8fbf061fb441b4646e5d8953c671788fabfaaf9704c6f4ca21ffac22f885c99f",
+      "aspect": 0.4166666666666667
+    },
+    {
+      "selected_index": 39,
+      "filename": "IMG20260826123333.jpg",
+      "mask_path": "ml_dataset/masks/IMG20260826123333_mask.png",
+      "mask_sha256": "e9c6b9e6a53996f0d48456af39ae556302847ce2c258e5d93cc821c1bf752463",
+      "image_sha256": "f678227676427893202f76b1a48107854630711a0ae4f5c10c067162a235c6e1",
+      "aspect": 0.4366424087550698
+    },
+    {
+      "selected_index": 50,
+      "filename": "IMG20260826123434.jpg",
+      "mask_path": "ml_dataset/masks/IMG20260826123434_mask.png",
+      "mask_sha256": "a527fbd52e3afc6575f56c345397f383bd0f28190ac1e0ab305294deb4ff88ae",
+      "image_sha256": "4fb76b18867d144deee48df8b8c2b20460a8e208371806461166af571c7af8c0",
+      "aspect": 0.402457757296467
+    },
+    {
+      "selected_index": 62,
+      "filename": "IMG20260826123740.jpg",
+      "mask_path": "ml_dataset/masks/IMG20260826123740_mask.png",
+      "mask_sha256": "e877a360dc2699c4ff1b3f3f80323b0cf7f7758ba22941dcec8271863495979c",
+      "image_sha256": "0654f96f4e2958ba0decdf392c9d93bf49d17c5fff75fbc95bf67d34529cbb64",
+      "aspect": 0.40441176470588236
+    },
+    {
+      "selected_index": 72,
+      "filename": "IMG20260826123820.jpg",
+      "mask_path": "ml_dataset/masks/IMG20260826123820_mask.png",
+      "mask_sha256": "6b1a93389150b33588a6cc3138da1661e198b6a4060a449ec2b165ea1e3f87e6",
+      "image_sha256": "e0cd79ed2b96ffefc05aebf33bf2a7f0317093f59c3bd22bc480746769c2445f",
+      "aspect": 0.41641337386018235
+    }
+  ],
+  "artifacts": {
+    "reference_silhouette": "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted/reports/reference_silhouette.png"
+  },
+  "limitations": [
+    "geometry is reference-assisted and symmetry-inferred rather than direct dense photogrammetry",
+    "ornament on unseen surfaces is estimated from repeated visible motifs",
+    "physical scale remains arbitrary until an external measurement is supplied"
+  ]
+}

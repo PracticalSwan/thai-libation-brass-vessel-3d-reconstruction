@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "candidate_sha256": "edbed94742df14bebab91c877884a0e247a91e99f5e46c91331c516f831166e0",
+  "accepted": true,
+  "reviewed_at": "2026-09-08T14:43:48.0546418+07:00",
+  "review_method": "source_mask_fit_overlay_and_signed_difference_visual_veto",
+  "reviewed_reliable_views": [
+    3,
+    19,
+    72,
+    90,
+    114,
+    128,
+    142,
+    148,
+    165,
+    188,
+    200
+  ],
+  "components": {
+    "bowl": "pass",
+    "globe": "pass",
+    "neck": "pass",
+    "lid": "pass",
+    "finial": "pass"
+  },
+  "notes": {
+    "bowl": "Receiving-bowl rim, wall, lower transition, and pedestal envelope track the reviewed silhouettes across side, low, and elevated reliable views.",
+    "globe": "The globe maximum, upper shoulder, and lower-seat envelope remain source-aligned in every reliable diagnostic; residuals are thin contour bands rather than a component-scale mismatch.",
+    "neck": "The long neck envelope and its base/top transitions remain aligned across the three reliable capture sweeps.",
+    "lid": "The measured conical lid envelope matches the source silhouette; individual stepped rings are reserved for the source-derived detail plan.",
+    "finial": "The source-span profile restores the photographed rounded ball envelope; small highlight-edge differences remain below macro-geometry scale."
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "accepted": true,
+  "manual_cleanup_started": false,
+  "silhouette_iou": 0.8060086279497448,
+  "minimum_silhouette_iou": 0.7,
+  "mesh_object_count": 136,
+  "vertex_count": 65882,
+  "polygon_count": 67082,
+  "nonmanifold_edges_by_object": {},
+  "artifacts": [
+    "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted/Thai_Libation_Vessel_REFERENCE_ASSISTED_PRE_CLEAN.blend",
+    "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted/Thai_Libation_Vessel_REFERENCE_ASSISTED_PRE_CLEAN.glb",
+    "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted/previews/reference_front.png",
+    "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted/previews/reference_quarter.png",
+    "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted/previews/reference_side.png",
+    "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted/previews/reference_top_oblique.png",
+    "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted/previews/reference_render_silhouette.png"
+  ]
+}

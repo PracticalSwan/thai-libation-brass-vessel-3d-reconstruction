@@ -1,0 +1,467 @@
+{
+  "accepted": true,
+  "chain": {
+    "decision": "omit_from_v2",
+    "evidence_requirement": "two_independent_source_views",
+    "supported": false
+  },
+  "families": [
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          2088,
+          2122
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_GLOBE_CROSSHATCH_267.png",
+        "crop_sha256": "e1dee5af177753dee2087f45aec09db96a507e4755e3897d625605feba4c779b",
+        "source_bbox": [
+          492,
+          734,
+          2580,
+          2856
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826130313.jpg",
+        "source_sha256": "ed70e37437431c4835ec530dc5e5a4c9813f14645dad440a9c6d5d8a7e868c07"
+      },
+      "confidence": "high",
+      "directly_observed": true,
+      "family_id": "ORB_GLOBE_CROSSHATCH",
+      "hidden_repetition_inferred": false,
+      "host_component": "vessel_globe",
+      "notes": "Dense cross-hatched and pebbled field visible across close oblique globe views.",
+      "primary_view_indices": [
+        267,
+        268,
+        278,
+        288
+      ],
+      "repeat_count": null,
+      "repeat_mode": "surface_field",
+      "representation": "normal_height",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          2088,
+          2040
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_GLOBE_HERO_MOTIF_267.png",
+        "crop_sha256": "a616d912e5a18174901ddbaa9cc2825e592396e484f76593d2fc38e519c07ddd",
+        "source_bbox": [
+          492,
+          816,
+          2580,
+          2856
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826130313.jpg",
+        "source_sha256": "ed70e37437431c4835ec530dc5e5a4c9813f14645dad440a9c6d5d8a7e868c07"
+      },
+      "confidence": "medium",
+      "directly_observed": true,
+      "family_id": "ORB_GLOBE_HERO_MOTIF",
+      "hidden_repetition_inferred": true,
+      "host_component": "vessel_globe",
+      "notes": "Large Thai flame/floral medallion; six repeats are an evidence-bounded radial inference.",
+      "primary_view_indices": [
+        267,
+        268,
+        288
+      ],
+      "repeat_count": 6,
+      "repeat_mode": "radial_repetition",
+      "representation": "highpoly_bake",
+      "support_count": 3
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          2212,
+          1551
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_GLOBE_SCROLL_BAND_268.png",
+        "crop_sha256": "46a4b172593a0d8e5eef668a980145ce087163495224fb700a5dd796c9f77ed1",
+        "source_bbox": [
+          430,
+          1387,
+          2642,
+          2938
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826130322.jpg",
+        "source_sha256": "2d06baf5362f66f66842766b5d5ff629237c0f33de6051b4096af66409cf8193"
+      },
+      "confidence": "high",
+      "directly_observed": true,
+      "family_id": "ORB_GLOBE_SCROLL_BAND",
+      "hidden_repetition_inferred": true,
+      "host_component": "vessel_globe",
+      "notes": "Scrolling floral band around the lower globe.",
+      "primary_view_indices": [
+        148,
+        165,
+        267,
+        268
+      ],
+      "repeat_count": null,
+      "repeat_mode": "radial_band",
+      "representation": "normal_height",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          2088,
+          980
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_GLOBE_LOWER_BAND_148.png",
+        "crop_sha256": "08ac118f2b6f4030556cff4a8f21f3095a1dd6fe253f913d911e7d90fd4cca37",
+        "source_bbox": [
+          492,
+          1958,
+          2580,
+          2938
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826124908.jpg",
+        "source_sha256": "a5164a40b220b7f75cf847c1e68930643f2bf56283a0e36da5227c1fbf1c3a95"
+      },
+      "confidence": "high",
+      "directly_observed": true,
+      "family_id": "ORB_GLOBE_LOWER_BAND",
+      "hidden_repetition_inferred": false,
+      "host_component": "vessel_globe",
+      "notes": "Horizontal construction seam and lower textured band.",
+      "primary_view_indices": [
+        3,
+        72,
+        148,
+        165
+      ],
+      "repeat_count": 1,
+      "repeat_mode": "continuous_ring",
+      "representation": "explicit_geometry",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          1536,
+          1264
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_SHOULDER_RINGS_267.png",
+        "crop_sha256": "86feb79fb9282ea0552fbbadf4f24aa3797874c6e3152c8156784cb334934bd3",
+        "source_bbox": [
+          768,
+          82,
+          2304,
+          1346
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826130313.jpg",
+        "source_sha256": "ed70e37437431c4835ec530dc5e5a4c9813f14645dad440a9c6d5d8a7e868c07"
+      },
+      "confidence": "high",
+      "directly_observed": true,
+      "family_id": "ORB_SHOULDER_RINGS",
+      "hidden_repetition_inferred": false,
+      "host_component": "vessel_shoulder",
+      "notes": "Concentric stepped shoulder rings visible in elevated and close oblique photographs.",
+      "primary_view_indices": [
+        148,
+        165,
+        267,
+        268
+      ],
+      "repeat_count": 4,
+      "repeat_mode": "continuous_rings",
+      "representation": "explicit_geometry",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          1106,
+          1428
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_NECK_FIELD_165.png",
+        "crop_sha256": "61bfd32fb3655f247d6df9e29105571cab80fc27eb8c197f69977dff2b4e5f8d",
+        "source_bbox": [
+          983,
+          163,
+          2089,
+          1591
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826125013.jpg",
+        "source_sha256": "cedab10568128360cc9d1711726cb34a71cc037099d60b641f9b5101111f78fb"
+      },
+      "confidence": "medium",
+      "directly_observed": true,
+      "family_id": "ORB_NECK_FIELD",
+      "hidden_repetition_inferred": false,
+      "host_component": "vessel_neck",
+      "notes": "Fine cross-hatched neck background field.",
+      "primary_view_indices": [
+        3,
+        19,
+        148,
+        165
+      ],
+      "repeat_count": null,
+      "repeat_mode": "surface_field",
+      "representation": "normal_height",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          1228,
+          1428
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_NECK_LOTUS_165.png",
+        "crop_sha256": "b3c8823ed81f9e0e6ecf794a020c5575f2ced8ea5b6d7c6c4751aebaa290e800",
+        "source_bbox": [
+          922,
+          122,
+          2150,
+          1550
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826125013.jpg",
+        "source_sha256": "cedab10568128360cc9d1711726cb34a71cc037099d60b641f9b5101111f78fb"
+      },
+      "confidence": "medium",
+      "directly_observed": true,
+      "family_id": "ORB_NECK_LOTUS",
+      "hidden_repetition_inferred": true,
+      "host_component": "vessel_neck",
+      "notes": "Tall lotus/flame panels visible around the tapered neck.",
+      "primary_view_indices": [
+        3,
+        19,
+        148,
+        165
+      ],
+      "repeat_count": 6,
+      "repeat_mode": "radial_repetition",
+      "representation": "highpoly_bake",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          1352,
+          857
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_NECK_UPPER_BAND_165.png",
+        "crop_sha256": "e0c6908ff6cadbc7d7171faf819b1ee27ac4fa22ee0ba619e4f41025f0216899",
+        "source_bbox": [
+          860,
+          41,
+          2212,
+          898
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826125013.jpg",
+        "source_sha256": "cedab10568128360cc9d1711726cb34a71cc037099d60b641f9b5101111f78fb"
+      },
+      "confidence": "high",
+      "directly_observed": true,
+      "family_id": "ORB_NECK_UPPER_BAND",
+      "hidden_repetition_inferred": true,
+      "host_component": "vessel_neck",
+      "notes": "Decorated upper collar below the lid.",
+      "primary_view_indices": [
+        3,
+        19,
+        148,
+        165
+      ],
+      "repeat_count": null,
+      "repeat_mode": "radial_band",
+      "representation": "normal_height",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          1044,
+          938
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_LID_TIERS_148.png",
+        "crop_sha256": "0559681d9f7b688b5138f3de069ef170666a779c2c648e4e8d40e1ef3a3fbb22",
+        "source_bbox": [
+          1014,
+          0,
+          2058,
+          938
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826124908.jpg",
+        "source_sha256": "a5164a40b220b7f75cf847c1e68930643f2bf56283a0e36da5227c1fbf1c3a95"
+      },
+      "confidence": "high",
+      "directly_observed": true,
+      "family_id": "ORB_LID_TIERS",
+      "hidden_repetition_inferred": false,
+      "host_component": "lid",
+      "notes": "Six progressively smaller stepped lid rings plus finial seat.",
+      "primary_view_indices": [
+        148,
+        165,
+        206,
+        221
+      ],
+      "repeat_count": 6,
+      "repeat_mode": "continuous_rings",
+      "representation": "explicit_geometry",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          1228,
+          1020
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_LID_DECOR_BAND_148.png",
+        "crop_sha256": "a29205aafacdb616f4e8b68851126c2f8dd8cc8585621c12af1449b3a73c7e26",
+        "source_bbox": [
+          922,
+          122,
+          2150,
+          1142
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826124908.jpg",
+        "source_sha256": "a5164a40b220b7f75cf847c1e68930643f2bf56283a0e36da5227c1fbf1c3a95"
+      },
+      "confidence": "medium",
+      "directly_observed": true,
+      "family_id": "ORB_LID_DECOR_BAND",
+      "hidden_repetition_inferred": true,
+      "host_component": "lid",
+      "notes": "Narrow decorated band immediately below the conical tiers.",
+      "primary_view_indices": [
+        3,
+        19,
+        148,
+        165
+      ],
+      "repeat_count": null,
+      "repeat_mode": "radial_band",
+      "representation": "normal_height",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          2334,
+          1632
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_BOWL_FLAME_BAND_090.png",
+        "crop_sha256": "71a2bdc6f24e7f16e97d44f184b00d632e130052bf0cabde9dbdaebb0768a6d4",
+        "source_bbox": [
+          369,
+          1550,
+          2703,
+          3182
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826124123.jpg",
+        "source_sha256": "99e5f885e3d2cd1a13561811874040abd2a2acfdbb2de870a21ef2b5c8a8e8c8"
+      },
+      "confidence": "high",
+      "directly_observed": true,
+      "family_id": "ORB_BOWL_FLAME_BAND",
+      "hidden_repetition_inferred": true,
+      "host_component": "receiving_bowl",
+      "notes": "Repeated raised flame/lotus motif around the receiving bowl.",
+      "primary_view_indices": [
+        90,
+        114,
+        128,
+        142
+      ],
+      "repeat_count": 8,
+      "repeat_mode": "radial_repetition",
+      "representation": "highpoly_bake",
+      "support_count": 4
+    },
+    {
+      "anchor_crop": {
+        "crop_dimensions": [
+          1720,
+          1265
+        ],
+        "crop_path": "reconstruction/reference_assisted_v2/evidence/ornament_crops/ORB_PEDESTAL_RINGS_090.png",
+        "crop_sha256": "dae68a2e88d5dd9bd8aaa1b11d7bcfff22985d11d871a5ec1d2c1e9891b694f0",
+        "source_bbox": [
+          676,
+          2774,
+          2396,
+          4039
+        ],
+        "source_dimensions": [
+          3072,
+          4080
+        ],
+        "source_path": "preprocessing/pycolmap_input/images/IMG20260826124123.jpg",
+        "source_sha256": "99e5f885e3d2cd1a13561811874040abd2a2acfdbb2de870a21ef2b5c8a8e8c8"
+      },
+      "confidence": "high",
+      "directly_observed": true,
+      "family_id": "ORB_PEDESTAL_RINGS",
+      "hidden_repetition_inferred": false,
+      "host_component": "pedestal",
+      "notes": "Foot and waist construction rings.",
+      "primary_view_indices": [
+        90,
+        114,
+        128,
+        142
+      ],
+      "repeat_count": 4,
+      "repeat_mode": "continuous_rings",
+      "representation": "explicit_geometry",
+      "support_count": 4
+    }
+  ],
+  "schema_version": 1,
+  "source_policy": "immutable_project_photographs_only"
+}

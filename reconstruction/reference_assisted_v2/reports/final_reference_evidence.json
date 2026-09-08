@@ -1,0 +1,1485 @@
+{
+  "accepted": true,
+  "canonical_geometry_views": [
+    {
+      "filename": "IMG20260826122956.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 3,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "train",
+      "step13_image_id": 3,
+      "step13_registered": true,
+      "view_category": "normal_side"
+    },
+    {
+      "filename": "IMG20260826123111.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 19,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "train",
+      "step13_image_id": 19,
+      "step13_registered": true,
+      "view_category": "normal_side"
+    },
+    {
+      "filename": "IMG20260826123434.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 50,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "train",
+      "step13_image_id": 50,
+      "step13_registered": true,
+      "view_category": "normal_side"
+    },
+    {
+      "filename": "IMG20260826123820.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 72,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "test",
+      "step13_image_id": 72,
+      "step13_registered": true,
+      "view_category": "normal_side"
+    },
+    {
+      "filename": "IMG20260826124123.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 90,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "train",
+      "step13_image_id": 90,
+      "step13_registered": true,
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "filename": "IMG20260826124323.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 114,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "train",
+      "step13_image_id": 114,
+      "step13_registered": true,
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "filename": "IMG20260826124422.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 128,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "val",
+      "step13_image_id": 128,
+      "step13_registered": true,
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "filename": "IMG20260826124754.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 142,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "test",
+      "step13_image_id": 142,
+      "step13_registered": true,
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "filename": "IMG20260826124908.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 148,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "train",
+      "step13_image_id": 148,
+      "step13_registered": true,
+      "view_category": "elevated_oblique"
+    },
+    {
+      "filename": "IMG20260826125013.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 165,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "test",
+      "step13_image_id": 165,
+      "step13_registered": true,
+      "view_category": "elevated_oblique"
+    },
+    {
+      "filename": "IMG20260826125249.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 188,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "val",
+      "step13_image_id": 188,
+      "step13_registered": true,
+      "view_category": "elevated_oblique"
+    },
+    {
+      "filename": "IMG20260826125422.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 200,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "test",
+      "step13_image_id": 200,
+      "step13_registered": true,
+      "view_category": "elevated_oblique"
+    },
+    {
+      "filename": "IMG20260826125527.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 206,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "train",
+      "step13_image_id": 206,
+      "step13_registered": true,
+      "view_category": "top_down_rim"
+    },
+    {
+      "filename": "IMG20260826125650.jpg",
+      "quality_condition": "normal",
+      "replacement_for": null,
+      "selected_index": 221,
+      "selection_reason": "preferred_registered_normal_quality",
+      "split": "val",
+      "step13_image_id": 221,
+      "step13_registered": true,
+      "view_category": "top_down_rim"
+    },
+    {
+      "filename": "IMG20260826125942.jpg",
+      "quality_condition": "low_contrast",
+      "replacement_for": null,
+      "selected_index": 243,
+      "selection_reason": "preferred_registered_low_contrast_quality",
+      "split": "val",
+      "step13_image_id": 243,
+      "step13_registered": true,
+      "view_category": "top_down_rim"
+    },
+    {
+      "filename": "IMG20260826130051.jpg",
+      "quality_condition": "low_sharpness_low_features",
+      "replacement_for": null,
+      "selected_index": 255,
+      "selection_reason": "preferred_registered_low_sharpness_low_features_quality",
+      "split": "test",
+      "step13_image_id": 255,
+      "step13_registered": true,
+      "view_category": "top_down_rim"
+    }
+  ],
+  "cnn_prediction_count": 36,
+  "component_masks": {
+    "view_count": 16,
+    "views": [
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 864265,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/003_globe.png",
+            "sha256": "b60e3fca6fdfc8d0c54f028c56d19dccef22591356a0120fa1d008d5a05b0161"
+          },
+          "lid_finial": {
+            "foreground_pixels": 121253,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/003_lid_finial.png",
+            "sha256": "9772b50d88a3d2986d40c9abbd0b87893f9afe7865086c1e23194105bc2108ed"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1273404,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/003_main_vessel.png",
+            "sha256": "5255cd7ec838657200fde188c8235f7e6aed7ec08dd78569dafd1d5827be8403"
+          },
+          "neck": {
+            "foreground_pixels": 240699,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/003_neck.png",
+            "sha256": "37cbb389606ab43abaa41b109ec0ed9f7ce2e3efa8cec2b15bd9ebc783016047"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 1865604,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/003_receiving_bowl_pedestal.png",
+            "sha256": "eb5f1c2f11e91e7225c0ab433392fa6e1b3ede4d964fcdfaf54155dd98f9a587"
+          }
+        },
+        "filename": "IMG20260826122956.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/003_components.png",
+        "overlay_sha256": "785e947a26b91739c00c4529a8968a47723342876278bb520f016431ca45c319",
+        "selected_index": 3
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 868440,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/019_globe.png",
+            "sha256": "c403415795fd5dcff2b54a94264e4625668e2277842b2d65544cd26d8ebd0e6b"
+          },
+          "lid_finial": {
+            "foreground_pixels": 136276,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/019_lid_finial.png",
+            "sha256": "3fc3b43f2ce8da5d9f48d029f87974978c1aab04286a2a4f9a299dd1ec0d0429"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1306853,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/019_main_vessel.png",
+            "sha256": "0a22f71c444f70df0da4397be925078f223543b4a53f2651e56d9c87c4e62047"
+          },
+          "neck": {
+            "foreground_pixels": 253952,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/019_neck.png",
+            "sha256": "806f7367f31eafabece12c004e2181737caa96779d3ea35a5fd813be9b2a2d49"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 1819661,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/019_receiving_bowl_pedestal.png",
+            "sha256": "e1e53372a8a8e200bfae60cf2269f807b35036d5008559e771183b90e2039a8e"
+          }
+        },
+        "filename": "IMG20260826123111.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/019_components.png",
+        "overlay_sha256": "060edbf539699826e76fcf38b0a384bf0f50a44af8fc2ca7847e8d753a74ba46",
+        "selected_index": 19
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 754264,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/050_globe.png",
+            "sha256": "194b1cd22175c56aa9591fbb4f03667a1504f567c53078f7a8f2f7e5ea6d0094"
+          },
+          "lid_finial": {
+            "foreground_pixels": 114437,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/050_lid_finial.png",
+            "sha256": "6f6d8505bc2382a5c764a7b6dd18d981b14b7c3828fffd389c721dd3c3e5a4a7"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1162618,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/050_main_vessel.png",
+            "sha256": "add4447508fc12c13aaf8bd3e046d2ad6b861b17bc252ec209b716a2b8015c11"
+          },
+          "neck": {
+            "foreground_pixels": 224802,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/050_neck.png",
+            "sha256": "0f132e4721a77fe9794e9dbf91732e83e8d5683bfbe5177fbdfc59c21d428ce3"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 1642481,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/050_receiving_bowl_pedestal.png",
+            "sha256": "ac533001418c8f859528c590d933befd18698d0f205578af7e8eeee6f655f30e"
+          }
+        },
+        "filename": "IMG20260826123434.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/050_components.png",
+        "overlay_sha256": "7ec21c19b28dbadce78e5fe2b79b3fa2a4cf4d9dcea11671b2ee2ac060c74907",
+        "selected_index": 50
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 857525,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/072_globe.png",
+            "sha256": "b6fc6d7a99d016b34a7517b522562525873e0585c148e3c21ec4ea9748d668a9"
+          },
+          "lid_finial": {
+            "foreground_pixels": 116830,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/072_lid_finial.png",
+            "sha256": "f21615491cb585b04464b1b6849815ad61cd0deceed0a366d43fa0e43ac2ff56"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1263463,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/072_main_vessel.png",
+            "sha256": "7ad83343fbc3cde1f2efd80f46dc89ba66a1ee11fd3b983384a9fa8c831e2889"
+          },
+          "neck": {
+            "foreground_pixels": 242901,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/072_neck.png",
+            "sha256": "2f67a410b1dc31761a99ef173c8f9262d65f8381521c5692bd152582c9ed5698"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 1806804,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/072_receiving_bowl_pedestal.png",
+            "sha256": "afe909845fb2b53551cb2dec1903f1f178b8caa77c4743f44dfe7a8305ea56b9"
+          }
+        },
+        "filename": "IMG20260826123820.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/072_components.png",
+        "overlay_sha256": "13dd3c7aac91505b6d3a1b0dcdc79ff363d0b68fa3c120d7647f33c6e01e2c58",
+        "selected_index": 72
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 433157,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/090_globe.png",
+            "sha256": "9b91f9d2bdb2ef29a71cc08f0b409dd4c6b341f14f0a242b5a2e1dbb4ed7d8cf"
+          },
+          "lid_finial": {
+            "foreground_pixels": 73024,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/090_lid_finial.png",
+            "sha256": "fe5671cb39b61e2b7dc3a7ae6723a520d7e5a246f2f22df4dabf0c1e7c036b83"
+          },
+          "main_vessel": {
+            "foreground_pixels": 923077,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/090_main_vessel.png",
+            "sha256": "d34637163e35d5a4c63b217edcb8bf907ba4e692b8a79f3d40a537a54a130bfd"
+          },
+          "neck": {
+            "foreground_pixels": 193994,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/090_neck.png",
+            "sha256": "eb941ce287957c07ed8032f65f93c56845c4723225942b6c4e8551fb12dafc5e"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 2965422,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/090_receiving_bowl_pedestal.png",
+            "sha256": "6d9eb5a42349028284107f5c96894bc0ec0b88573779a939fcd128d43ff5073b"
+          }
+        },
+        "filename": "IMG20260826124123.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/090_components.png",
+        "overlay_sha256": "f444e34bff5a039e9949ca3ae2ada6e03ee33833480c545132e0275154f0ace9",
+        "selected_index": 90
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 409759,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/114_globe.png",
+            "sha256": "24b6cb8a7c4fbaf522833c3314c99469380d8a9fa2be9aba2352767d6adda986"
+          },
+          "lid_finial": {
+            "foreground_pixels": 91709,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/114_lid_finial.png",
+            "sha256": "c93d5cd0574013764a65677e6df47ffdcaf07186cdf29a32a1bbe09b2ecb863a"
+          },
+          "main_vessel": {
+            "foreground_pixels": 961504,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/114_main_vessel.png",
+            "sha256": "c8dc71eda58699bfe69ecf55cdc5273b92d0fb41518a319601070dfb69a4ce4f"
+          },
+          "neck": {
+            "foreground_pixels": 205204,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/114_neck.png",
+            "sha256": "9af822d8ce7f057a3077ca0558592a77c36f16344c6a93f1e6b4e53a211c493a"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 2758491,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/114_receiving_bowl_pedestal.png",
+            "sha256": "5f2c5753c815be3d7575a3e36eba9e951bdbac875cd8a0978e9816a2ec933f4e"
+          }
+        },
+        "filename": "IMG20260826124323.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/114_components.png",
+        "overlay_sha256": "639b8836f83b6cd8e06c9e587aaee93e251b6c03e65490a6eeae04593fae609e",
+        "selected_index": 114
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 362179,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/128_globe.png",
+            "sha256": "9ac4ea040e281e955c4696d1d70b8c00ddccedb6df938eb921751046df28b980"
+          },
+          "lid_finial": {
+            "foreground_pixels": 90248,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/128_lid_finial.png",
+            "sha256": "cb8d861a818ec5574cef1c1b823726798083a7c344dc89cd0d8a6b62d9f94e7a"
+          },
+          "main_vessel": {
+            "foreground_pixels": 878103,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/128_main_vessel.png",
+            "sha256": "19b25688081c722fa6f64c46d3575082b0b2e896b23beace4c79a5d0671f7cd7"
+          },
+          "neck": {
+            "foreground_pixels": 177714,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/128_neck.png",
+            "sha256": "3becdd101534a430226a38e1526376c3f6bf69e23377c4a9a3a40f75c43e1d27"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 2426852,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/128_receiving_bowl_pedestal.png",
+            "sha256": "cbb25db7f2ebf9289b537dd1bd1189ed4ff52ac4eb876d035ff1db0170aab1ef"
+          }
+        },
+        "filename": "IMG20260826124422.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/128_components.png",
+        "overlay_sha256": "259e43645759a1d5b9f4d334793f38996455b65c4e9dd09c458ec396c2e34aad",
+        "selected_index": 128
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 377033,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/142_globe.png",
+            "sha256": "61aaa0f70a3309d41a3b335ebfb038b08f1312ab7522a641b3e025a0e273a418"
+          },
+          "lid_finial": {
+            "foreground_pixels": 79987,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/142_lid_finial.png",
+            "sha256": "550d07683cc12fba99f4864cd018fa3f296a823f21a4d0b3c8cb2af12e168ce0"
+          },
+          "main_vessel": {
+            "foreground_pixels": 890878,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/142_main_vessel.png",
+            "sha256": "63bbd37604691d599fba2da6ac6868d14b7357fc15fe7c08a045cc54f35a7c88"
+          },
+          "neck": {
+            "foreground_pixels": 175177,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/142_neck.png",
+            "sha256": "5e173862b77514993f6f9bd91c7ac7bcd132405f718ac5245e2b4f4f8b7912b7"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 2498843,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/142_receiving_bowl_pedestal.png",
+            "sha256": "6c82c6ccc00eab93f67e95227cb99fa2a0837a810cb995efdf61e8fb2ffc11ea"
+          }
+        },
+        "filename": "IMG20260826124754.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/142_components.png",
+        "overlay_sha256": "73e1770db6300dfe426a295a2e0093bce38551e0474d28a5ce5ef8999ba8387d",
+        "selected_index": 142
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 1118350,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/148_globe.png",
+            "sha256": "232ba5fee57c3f25f38fb4a923104b78b9f8cd3d4e54b1b005dc6015887dadae"
+          },
+          "lid_finial": {
+            "foreground_pixels": 178744,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/148_lid_finial.png",
+            "sha256": "79d4fdf8a32db631a4110614cb0d755c77f0340fc76c60f51a3c0ce79f806228"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1539026,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/148_main_vessel.png",
+            "sha256": "914d80c3e9294fe3d5e14103e2b3049ebec7a139f45b0692f378ba7c15a75dd9"
+          },
+          "neck": {
+            "foreground_pixels": 251909,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/148_neck.png",
+            "sha256": "776716f47ecb51180e13bb6bce3cb7117328a44d34723e79fa0dbe8b2c8785c0"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 1062856,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/148_receiving_bowl_pedestal.png",
+            "sha256": "eddee9bea1fa8aed49d8227ef1eeddde6b8f968c8af06dcb0082e4993ce78878"
+          }
+        },
+        "filename": "IMG20260826124908.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/148_components.png",
+        "overlay_sha256": "78081696d7fb661572b58cb1904b11a81f880c3139f953f6d2716ab21fb8fb6c",
+        "selected_index": 148
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 1018147,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/165_globe.png",
+            "sha256": "f8c8ac6f43d59099f58cc68b9d5237f89d61b36629542e7fb83938dbb401fadd"
+          },
+          "lid_finial": {
+            "foreground_pixels": 148092,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/165_lid_finial.png",
+            "sha256": "506627c1dc46504e81e0db22247f9baf014a87f13ea650760187f2c8d95f6917"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1357043,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/165_main_vessel.png",
+            "sha256": "0d8c7a1da0b0bebcb053bc76ac92b2299b6c2a99cb0f1a6bc1b968dd6ac9b759"
+          },
+          "neck": {
+            "foreground_pixels": 222830,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/165_neck.png",
+            "sha256": "253e21cc5114cbf7deb4da6f5836ae8ad68a2d3176d6dd883635046cd24f85f2"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 1113953,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/165_receiving_bowl_pedestal.png",
+            "sha256": "63f4c886e5e20fb4f3a1ce3aebf03906dfc3ac41fd59caed540e829dde813603"
+          }
+        },
+        "filename": "IMG20260826125013.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/165_components.png",
+        "overlay_sha256": "8f908fa982a48d38f4d9e7dfeba6c2dd86932a3f22907a963806dcb9cb97c58b",
+        "selected_index": 165
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 1116130,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/188_globe.png",
+            "sha256": "a8283bde6a85e5360779c1037fb64a09b865ecf8c5a227d600ab19822b923abe"
+          },
+          "lid_finial": {
+            "foreground_pixels": 156277,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/188_lid_finial.png",
+            "sha256": "24f113322847bfcfd961a462b48cf4d85746e6e9551e89d87b4604d0ca60b3df"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1491402,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/188_main_vessel.png",
+            "sha256": "ff59c1275b67a3fddebda49f74909339373c7e5e219e4d6d9da21c4e404d0b4f"
+          },
+          "neck": {
+            "foreground_pixels": 254043,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/188_neck.png",
+            "sha256": "4944ddc54f67988c1b7f2ad0b0e63e32b167841a08f169aa7ffd649a9e27bc81"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 1104358,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/188_receiving_bowl_pedestal.png",
+            "sha256": "4f2ebf10ea624aa7336a6895a96c63fb87995dc93abf0bbda9458cfd35cbdf33"
+          }
+        },
+        "filename": "IMG20260826125249.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/188_components.png",
+        "overlay_sha256": "d08ae0f6fe68409565bdb12bdcb977847ec891f3955e4b2af832c1d96f6873df",
+        "selected_index": 188
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 1015725,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/200_globe.png",
+            "sha256": "1da4eaf2a99475e0dfa1ed90b53b7fc5dfe1e4653a1bdd10d941db9ffcb57fbf"
+          },
+          "lid_finial": {
+            "foreground_pixels": 161270,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/200_lid_finial.png",
+            "sha256": "081578c29462f48cdd5f093483bdb103a27f09a2c2b412e8b667ef3ee9c89074"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1367636,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/200_main_vessel.png",
+            "sha256": "3d0a0169eb9c33a5834d45d637aa57781b8b663170c1dc7839d731378d73c029"
+          },
+          "neck": {
+            "foreground_pixels": 207244,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/200_neck.png",
+            "sha256": "833f84d896e996d0bf41e3998b082b8608a1e94e84d26df365a81826b4f13750"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 918105,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/200_receiving_bowl_pedestal.png",
+            "sha256": "00f00934420bef5b2ad326504d70f9b8dd131fba4209ae0517c5ec6df1ba188c"
+          }
+        },
+        "filename": "IMG20260826125422.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/200_components.png",
+        "overlay_sha256": "742bb820c264565937e6506ce34d0f2bca81e560a0bb84a3621404afcad6fc8e",
+        "selected_index": 200
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 944614,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/206_globe.png",
+            "sha256": "3d15a3c549497c773bc4936209791c7a8e5d3f8e9f6846aa0753ed0bf6242b27"
+          },
+          "lid_finial": {
+            "foreground_pixels": 355397,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/206_lid_finial.png",
+            "sha256": "a0a17b561689cfc6e5577c85b1d8d4c4e273885923867efaabbcbcfbe4ed7bb0"
+          },
+          "main_vessel": {
+            "foreground_pixels": 2002415,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/206_main_vessel.png",
+            "sha256": "3476746bf749b2f6cd92f03f0e3982c6aee2bb15f97dddc12752428c409eff8f"
+          },
+          "neck": {
+            "foreground_pixels": 530315,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/206_neck.png",
+            "sha256": "9400f7bf63e5e35a9d7fc7cca94a136316f1e958f73e941ed387551a3d5c2a5b"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 543951,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/206_receiving_bowl_pedestal.png",
+            "sha256": "7ca67a09c82fd9c13270354bc145ad93fa2cf256d95dab6726407afce0253c36"
+          }
+        },
+        "filename": "IMG20260826125527.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/206_components.png",
+        "overlay_sha256": "579122d33ac809da397fa480c42b4943aceaaf1fe5922750dfc33cb1fe723680",
+        "selected_index": 206
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 893791,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/221_globe.png",
+            "sha256": "53e7d24ab4582416c2997ca7bc031e732867dcd527c9d382939abe9b0b289064"
+          },
+          "lid_finial": {
+            "foreground_pixels": 231140,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/221_lid_finial.png",
+            "sha256": "cd5230a5bb73b41772b305319d340a09c627acb73c9a7c263628a2707652ad22"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1521139,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/221_main_vessel.png",
+            "sha256": "30b46e8473f8f2ba1dec26f7c7fe51f8e4a54a78325505abd293c40ef092eda1"
+          },
+          "neck": {
+            "foreground_pixels": 279330,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/221_neck.png",
+            "sha256": "02addba10a66feb31298ac09c09d4c61b20cda2105be3412ed46bd2ae3470a71"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 521208,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/221_receiving_bowl_pedestal.png",
+            "sha256": "656e98616da2257da5c626f2428212f6e774e0d9f32c680bf0f3b2e0843321b6"
+          }
+        },
+        "filename": "IMG20260826125650.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/221_components.png",
+        "overlay_sha256": "afcfe0f42cdca10ffa76cc2df146d40bc8a3e8c2a1a27705dfe304515f0bae96",
+        "selected_index": 221
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 899984,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/243_globe.png",
+            "sha256": "4ae9b9e59da5b60f646a541bb9fe3ed7e1f51368af232a76fde5585267e9b67e"
+          },
+          "lid_finial": {
+            "foreground_pixels": 211197,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/243_lid_finial.png",
+            "sha256": "f7db0f54de687a36521d6f9933af1632a3f6e7b5a69150167e6d857594e7a226"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1536216,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/243_main_vessel.png",
+            "sha256": "f349fa7889d243f72d4e5c2e0da2925eebe4216b4f61f5ba8124d0d3865d2e99"
+          },
+          "neck": {
+            "foreground_pixels": 269129,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/243_neck.png",
+            "sha256": "8811ee63c0993a0678eb679e018816de30bc67a76f05b15e8f89140adb71af18"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 599095,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/243_receiving_bowl_pedestal.png",
+            "sha256": "32c7298ad4d06f9280ae6bdaecc022cce75424807456b02eb235a79d6dc55af9"
+          }
+        },
+        "filename": "IMG20260826125942.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/243_components.png",
+        "overlay_sha256": "70e50e28e7afb57dc61cb5d93083d9624da9b32008f740d1ec6ec897cf294725",
+        "selected_index": 243
+      },
+      {
+        "annotation_method": "reviewed_whole_mask_plus_cv_seeded_landmark_split",
+        "components": {
+          "globe": {
+            "foreground_pixels": 632547,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/255_globe.png",
+            "sha256": "210ed90953341bb9ce194efa221b2fac288f569711c7932ff8f91a79c6904640"
+          },
+          "lid_finial": {
+            "foreground_pixels": 317111,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/255_lid_finial.png",
+            "sha256": "3bc84d4f9db5bc338ca8f5f7b3beddeb7530c64e986f0b165688fdffd827e55e"
+          },
+          "main_vessel": {
+            "foreground_pixels": 1306084,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/255_main_vessel.png",
+            "sha256": "20beeb33de7a5d6b4a96ee90b3eea405b39f47e732efd9c486fc0e61d277852e"
+          },
+          "neck": {
+            "foreground_pixels": 171353,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/255_neck.png",
+            "sha256": "0e25a14a8fe7423964aeec560508c2fd17da335352b3ca24daf7ab7410f36f1d"
+          },
+          "receiving_bowl_pedestal": {
+            "foreground_pixels": 472155,
+            "path": "reconstruction/reference_assisted_v2/evidence/component_masks/255_receiving_bowl_pedestal.png",
+            "sha256": "06a516b5f23eb1b616cb49e7de4b50dafa308c7eb44556b981d539e560a7eabd"
+          }
+        },
+        "filename": "IMG20260826130051.jpg",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/component_masks/255_components.png",
+        "overlay_sha256": "e54c0fabc6445156b62804f98266dc098334545cf3fb2aadb9a7086642abaf5e",
+        "selected_index": 255
+      }
+    ]
+  },
+  "detail_alignment_diagnostics": [
+    {
+      "first_index": 266,
+      "first_path": "preprocessing/pycolmap_input/images/IMG20260826130134.jpg",
+      "homography": [
+        3.868311347592891,
+        -1.2504361131277029,
+        461.6978623040219,
+        5.818727474690713,
+        0.16100851465126365,
+        -4515.286874609545,
+        0.004490690386602249,
+        -0.0014622854887131904,
+        1.0
+      ],
+      "inlier_count": 4,
+      "match_count": 6,
+      "method": "aliked_lightglue",
+      "output_path": "reconstruction/reference_assisted_v2/evidence/cv_matches/detail_266_267.png",
+      "output_sha256": "a22316668faa2e995b347158af34317e950005e44c557906a89543daa8ab8ea4",
+      "reason": "SIFT rejected: matches=19 inliers=5 ratio=0.263; used frozen ALIKED-N16Rot + LightGlue fallback",
+      "second_index": 267,
+      "second_path": "preprocessing/pycolmap_input/images/IMG20260826130313.jpg"
+    },
+    {
+      "first_index": 266,
+      "first_path": "preprocessing/pycolmap_input/images/IMG20260826130134.jpg",
+      "homography": [
+        -1.704167558941272,
+        -0.8447401711052832,
+        3965.1056291645373,
+        0.924362043091763,
+        -4.518814589170503,
+        10203.663254127901,
+        0.0003080123717534929,
+        -0.0007935077932556048,
+        0.9999999999999999
+      ],
+      "inlier_count": 6,
+      "match_count": 32,
+      "method": "aliked_lightglue",
+      "output_path": "reconstruction/reference_assisted_v2/evidence/cv_matches/detail_266_268.png",
+      "output_sha256": "dc605dbd8fa70e2d1669f636cc6717566181440d80e636db0da11105dfe00bea",
+      "reason": "SIFT rejected: matches=17 inliers=5 ratio=0.294; used frozen ALIKED-N16Rot + LightGlue fallback",
+      "second_index": 268,
+      "second_path": "preprocessing/pycolmap_input/images/IMG20260826130322.jpg"
+    },
+    {
+      "first_index": 268,
+      "first_path": "preprocessing/pycolmap_input/images/IMG20260826130322.jpg",
+      "homography": [
+        0.023168848965743085,
+        -0.02814084835833421,
+        751.3965295648792,
+        -0.6495087865900145,
+        0.1635673975068609,
+        1995.4372432450405,
+        -0.00023927890845467438,
+        -5.572931764876877e-05,
+        1.0
+      ],
+      "inlier_count": 9,
+      "match_count": 130,
+      "method": "aliked_lightglue",
+      "output_path": "reconstruction/reference_assisted_v2/evidence/cv_matches/detail_268_278.png",
+      "output_sha256": "b8ead2b2fdbd7dfa8416e4902c3ae6a42b8614c2454fba8f48dcf2c781ea6be0",
+      "reason": "SIFT rejected: matches=28 inliers=5 ratio=0.179; used frozen ALIKED-N16Rot + LightGlue fallback",
+      "second_index": 278,
+      "second_path": "preprocessing/pycolmap_input/images/IMG20260826130357.jpg"
+    },
+    {
+      "first_index": 278,
+      "first_path": "preprocessing/pycolmap_input/images/IMG20260826130357.jpg",
+      "homography": [
+        0.9554176437362041,
+        -0.26282118425364887,
+        641.1876308425914,
+        0.18893218005834622,
+        1.0314273217019525,
+        -144.80923714484,
+        -1.9910953983112813e-05,
+        3.69666499921365e-05,
+        1.0
+      ],
+      "inlier_count": 29,
+      "match_count": 639,
+      "method": "aliked_lightglue",
+      "output_path": "reconstruction/reference_assisted_v2/evidence/cv_matches/detail_278_288.png",
+      "output_sha256": "f32e233acfbc8b8582fa2ae645103f90e14e9bd3cb1754b192733c79603f4eac",
+      "reason": "SIFT rejected: matches=39 inliers=2 ratio=0.051; used frozen ALIKED-N16Rot + LightGlue fallback",
+      "second_index": 288,
+      "second_path": "preprocessing/pycolmap_input/images/IMG20260826130427.jpg"
+    }
+  ],
+  "geometry_masks": {
+    "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+    "historical_ml_masks_modified": false,
+    "overlay_board_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/geometry_mask_overlays_board.png",
+    "overlay_board_sha256": "4293492b41cecca4cceb14b814dabcacba5f5a2e67585f01c8b9cc7937d359ee",
+    "schema_version": 1,
+    "view_count": 16,
+    "views": [
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9499778470209691,
+        "filename": "IMG20260826122956.jpg",
+        "geometry_foreground_pixels": 3139008,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/003_geometry_mask.png",
+        "geometry_mask_sha256": "149dca2946948ab9dcedbae8602266766ffb16588189fe095c4a8bcc0ec0467a",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/003_geometry_overlay.png",
+        "overlay_sha256": "3eae7decc11938eda58b20bc3b5f7a0c7eb056071386e6165f6c924ac2bdd665",
+        "photo_traced_patch_count": 1,
+        "reviewed_foreground_pixels": 3304296,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826122956_mask.png",
+        "reviewed_ml_mask_sha256": "80ae09e81d7a5ae920db9ce448e9e64479b96aef55be0e21b0e8de113f025694",
+        "selected_index": 3,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "normal_side"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9391469165840618,
+        "filename": "IMG20260826123111.jpg",
+        "geometry_foreground_pixels": 3126514,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/019_geometry_mask.png",
+        "geometry_mask_sha256": "54f654f7d78b2a3695be7520bac200308bb6c37b578857fe7678d2f1afd532be",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/019_geometry_overlay.png",
+        "overlay_sha256": "18a83a7c311f6573477607142dd1ae2e7bdc40a9b215b9af43297e2ee62d184e",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 3329100,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826123111_mask.png",
+        "reviewed_ml_mask_sha256": "45ebc6bd0f603937a4e0f2ee854839f178f57c85bcc0aa243f9fe8951375365e",
+        "selected_index": 19,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "normal_side"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9165804033203546,
+        "filename": "IMG20260826123434.jpg",
+        "geometry_foreground_pixels": 2805099,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/050_geometry_mask.png",
+        "geometry_mask_sha256": "3521dc5aa6d49796fc415d5f86400fa92c0d378dcbcd92737a63ffe66983a326",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/050_geometry_overlay.png",
+        "overlay_sha256": "efe53354ac25f7410dcb77efd6530977a481938073e917daf33062d92f341cd7",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 3060396,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826123434_mask.png",
+        "reviewed_ml_mask_sha256": "a527fbd52e3afc6575f56c345397f383bd0f28190ac1e0ab305294deb4ff88ae",
+        "selected_index": 50,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "normal_side"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9358835313454091,
+        "filename": "IMG20260826123820.jpg",
+        "geometry_foreground_pixels": 3070267,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/072_geometry_mask.png",
+        "geometry_mask_sha256": "90f8571b1bf3745da0e62366e9414037f57a50a7fcaaad2147e46e6e51faadcb",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/072_geometry_overlay.png",
+        "overlay_sha256": "d816f9cf0a038ee632e9869a5b46bf20294752966d8ec4ac7c3dbb1738b9db7f",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 3280608,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826123820_mask.png",
+        "reviewed_ml_mask_sha256": "6b1a93389150b33588a6cc3138da1661e198b6a4060a449ec2b165ea1e3f87e6",
+        "selected_index": 72,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "normal_side"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9004156478085288,
+        "filename": "IMG20260826124123.jpg",
+        "geometry_foreground_pixels": 3888499,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/090_geometry_mask.png",
+        "geometry_mask_sha256": "764dfde84c6c264c4f95eeb53575b671902d0ecd0c8f55df7a295db537d773ec",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/090_geometry_overlay.png",
+        "overlay_sha256": "3e45cc96af5c6ce69c19df3ca68c9908b8cd5ae8fad7c4d4cc0a0d333fa4f349",
+        "photo_traced_patch_count": 1,
+        "reviewed_foreground_pixels": 4318560,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826124123_mask.png",
+        "reviewed_ml_mask_sha256": "d8290f414a1b5943cfffb6788bd2dd3796a8c5b4d053078f0ce32ef9391140fb",
+        "selected_index": 90,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "low_angle_pedestal"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9351335684242174,
+        "filename": "IMG20260826124323.jpg",
+        "geometry_foreground_pixels": 3719995,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/114_geometry_mask.png",
+        "geometry_mask_sha256": "bb3f71cd70c957e5c3017a4b04a7c53a9dc509b8c59adfdb80ff47eabc9f305e",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/114_geometry_overlay.png",
+        "overlay_sha256": "a8c714a523d03cb2dfc2e2dea9ae2ed867041214b5e884dc683e3790e3be32df",
+        "photo_traced_patch_count": 1,
+        "reviewed_foreground_pixels": 3978036,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826124323_mask.png",
+        "reviewed_ml_mask_sha256": "2d762dbee8f981ceda8f1a7d21602dd11d2b68d8a4c2b7625cebf1ba39c3abfa",
+        "selected_index": 114,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "low_angle_pedestal"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9086836143279774,
+        "filename": "IMG20260826124422.jpg",
+        "geometry_foreground_pixels": 3304955,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/128_geometry_mask.png",
+        "geometry_mask_sha256": "4e00d750642366f668234c6b890667b93f0b0303ef3a339250d648e41f8bcace",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/128_geometry_overlay.png",
+        "overlay_sha256": "0611aecae07457e1156f9c13d26ee7b4c02159e428b89f9ee0f3f61520e566d8",
+        "photo_traced_patch_count": 1,
+        "reviewed_foreground_pixels": 3637080,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826124422_mask.png",
+        "reviewed_ml_mask_sha256": "02cd377dba15068002fac40f41102b1f1faf67d5773a0853009467450b67cae5",
+        "selected_index": 128,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "low_angle_pedestal"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9246405061882363,
+        "filename": "IMG20260826124754.jpg",
+        "geometry_foreground_pixels": 3389721,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/142_geometry_mask.png",
+        "geometry_mask_sha256": "27b588352dba3f2736acb84654c5972815173cb0f5f8fb7ba54e17e42a05ef30",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/142_geometry_overlay.png",
+        "overlay_sha256": "a2e3f7fe91a5543e5517f59300870462d2780a69adcfd1f9f34db671c07a35e6",
+        "photo_traced_patch_count": 1,
+        "reviewed_foreground_pixels": 3665988,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826124754_mask.png",
+        "reviewed_ml_mask_sha256": "eb1644f8897431dc88d38e310140183fc05b524d0c7883168ae8e4482aa11b41",
+        "selected_index": 142,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "low_angle_pedestal"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9107055102632275,
+        "filename": "IMG20260826124908.jpg",
+        "geometry_foreground_pixels": 2601882,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/148_geometry_mask.png",
+        "geometry_mask_sha256": "5bb53cff2ce6746426b2c9a427bf35b713fd14a52e7595cac11d6042999d11d5",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/148_geometry_overlay.png",
+        "overlay_sha256": "a5a05cecd1af8e17e58fd631765334c26d7aa8027450c412b8ab0c75651dab70",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 2856996,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826124908_mask.png",
+        "reviewed_ml_mask_sha256": "b63cdbcbe3be63ee9aa5712ddf70f5114e611ed2cae48ab7692289e6c43d1079",
+        "selected_index": 148,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "elevated_oblique"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.8745130182674775,
+        "filename": "IMG20260826125013.jpg",
+        "geometry_foreground_pixels": 2470996,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/165_geometry_mask.png",
+        "geometry_mask_sha256": "fc87c5a1156ca28e73e9e36d96c973cc8695c763b8fd529d3ce66d32b3fb1ebd",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/165_geometry_overlay.png",
+        "overlay_sha256": "102087a227ef0c147181c1de237e7d0c5ef24febf1d5f45b6861616e9b778019",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 2825568,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826125013_mask.png",
+        "reviewed_ml_mask_sha256": "7250096513d00c7418fc0e8d903445bc80996f26758af1b55ed5fdf1365a2c24",
+        "selected_index": 165,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "elevated_oblique"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9177797011919511,
+        "filename": "IMG20260826125249.jpg",
+        "geometry_foreground_pixels": 2595760,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/188_geometry_mask.png",
+        "geometry_mask_sha256": "e8b5d2e69ba2281e50b39cf49f098522df410c0282af362f24b59c4990a9ed10",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/188_geometry_overlay.png",
+        "overlay_sha256": "019509c347109f921f87c9eaf8de26d1dea4dc39141fc2e0f5240e71619c2404",
+        "photo_traced_patch_count": 1,
+        "reviewed_foreground_pixels": 2828304,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826125249_mask.png",
+        "reviewed_ml_mask_sha256": "da774f2fccb8ebe620fbbc799fbb2b0e64a31256da35d3c862aba980d115c8bd",
+        "selected_index": 188,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "elevated_oblique"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.937689117963663,
+        "filename": "IMG20260826125422.jpg",
+        "geometry_foreground_pixels": 2285741,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/200_geometry_mask.png",
+        "geometry_mask_sha256": "a311e9522f0c374961b5d0c7fc494fd3760fbe4f9c0cd95da4f69b5fabdcad67",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/200_geometry_overlay.png",
+        "overlay_sha256": "3b86a84db91666ff1fa355cc88578be183f489aeffbc5680b735cb825372d513",
+        "photo_traced_patch_count": 1,
+        "reviewed_foreground_pixels": 2437632,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826125422_mask.png",
+        "reviewed_ml_mask_sha256": "4adf8c3007e1f908bb9453aa92ffdc984833e5215716eee9acb7b2d36bc4a6af",
+        "selected_index": 200,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "elevated_oblique"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9060704398756022,
+        "filename": "IMG20260826125527.jpg",
+        "geometry_foreground_pixels": 2546366,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/206_geometry_mask.png",
+        "geometry_mask_sha256": "1ff90a459f3c956ce0c829d49f183073ce71e3f59f52147dada0185c890603be",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/206_geometry_overlay.png",
+        "overlay_sha256": "b7981c251ed2272db828933ef7bc67e24690f00b630ace1bed49382137c11566",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 2810340,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826125527_mask.png",
+        "reviewed_ml_mask_sha256": "ccfd5a7006068b0df746f5fefd671acde03734f9208173ecea966ffce6f30dc8",
+        "selected_index": 206,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "top_down_rim"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9025113126171033,
+        "filename": "IMG20260826125650.jpg",
+        "geometry_foreground_pixels": 2042347,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/221_geometry_mask.png",
+        "geometry_mask_sha256": "a62936e14b69cb84e793d4a6e2d3b8479125ec6763a0078a6201cb933eb65788",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/221_geometry_overlay.png",
+        "overlay_sha256": "123f441f46e46162dbc19b08bf016bedb1a09bc3d8512b6124aa76e750810af4",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 2262960,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826125650_mask.png",
+        "reviewed_ml_mask_sha256": "8252e0384061251784e65f84ea6e408f7e7c9b99b27919edbd5461f7cbd2209d",
+        "selected_index": 221,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "top_down_rim"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.8929901906664124,
+        "filename": "IMG20260826125942.jpg",
+        "geometry_foreground_pixels": 2135311,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/243_geometry_mask.png",
+        "geometry_mask_sha256": "78a7d02346e25a00be27d9aeaf538aadf0972a61f100918860f9adec24080116",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/243_geometry_overlay.png",
+        "overlay_sha256": "bf55f18761ae17e08aa4c730443249fcfe026be2915e97ea822427daaf6596d8",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 2391192,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826125942_mask.png",
+        "reviewed_ml_mask_sha256": "1c8747e6f4a64508f18b8e59e8bb70240ba6b034742a0375b70797da7f259819",
+        "selected_index": 243,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "top_down_rim"
+      },
+      {
+        "annotation_method": "source_photo_grabcut_refined_from_reviewed_ml_mask",
+        "area_ratio_vs_reviewed": 0.9369231952690157,
+        "filename": "IMG20260826130051.jpg",
+        "geometry_foreground_pixels": 1778239,
+        "geometry_mask_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/255_geometry_mask.png",
+        "geometry_mask_sha256": "18b205a229053ec0b093383fbcac21e3d462d3d007b13282512b2167b1161fce",
+        "overlay_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/255_geometry_overlay.png",
+        "overlay_sha256": "bf63934314fd83782a119de6dfcaa5f35d3645eaf27f306fb64dcd1b9a160c90",
+        "photo_traced_patch_count": 0,
+        "reviewed_foreground_pixels": 1897956,
+        "reviewed_ml_mask_path": "ml_dataset/masks/IMG20260826130051_mask.png",
+        "reviewed_ml_mask_sha256": "b7b9457bca6ad39f0945d996c17f17174e0c0779b25624d65841132542f3a340",
+        "selected_index": 255,
+        "source_review_sha256": "d9bce732475d9c1fecddb95b943d9d70750dca4c750bc448fab3b1694aa4aa50",
+        "view_category": "top_down_rim"
+      }
+    ],
+    "visual_review_status": "accepted_exact_board_hashes"
+  },
+  "landmarks": {
+    "board_path": "reconstruction/reference_assisted_v2/evidence/annotations/landmark_overlays_board.png",
+    "board_sha256": "36748604b5f068c2ce043934560b2b093586618c69e21cfd4d1ea4f0fd7b9338",
+    "path": "reconstruction/reference_assisted_v2/evidence/annotations/landmarks.json",
+    "sha256": "02772838cf2e74b099b78f2964bb92608aa382d9f66c4238dd975218c265c965",
+    "view_count": 16,
+    "visual_review_status": "accepted_exact_board_hashes"
+  },
+  "method": "cv_constrained_reference_reconstruction",
+  "ornament_manifest": {
+    "chain": {
+      "decision": "omit_from_v2",
+      "evidence_requirement": "two_independent_source_views",
+      "supported": false
+    },
+    "family_count": 12,
+    "path": "reconstruction/reference_assisted_v2/reports/ornament_manifest.json",
+    "sha256": "ef0e24075d44e0dc6177aeb675477d6a1ef847ce50b115f98297d9b8f7aac955"
+  },
+  "protected_inputs_modified": false,
+  "reference_boards": {
+    "bowl_pedestal_detail": {
+      "filenames": [
+        "IMG20260826124123.jpg",
+        "IMG20260826124323.jpg",
+        "IMG20260826124422.jpg",
+        "IMG20260826124754.jpg"
+      ],
+      "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/bowl_pedestal_detail.png",
+      "selected_indices": [
+        90,
+        114,
+        128,
+        142
+      ],
+      "sha256": "47f096c7e1b84e5d27d22dbead19944287be8c11b818f804de70c47af2bafe6c"
+    },
+    "elevated_oblique": {
+      "filenames": [
+        "IMG20260826124908.jpg",
+        "IMG20260826124916.jpg",
+        "IMG20260826124927.jpg",
+        "IMG20260826125013.jpg",
+        "IMG20260826125146.jpg",
+        "IMG20260826125224.jpg",
+        "IMG20260826125249.jpg",
+        "IMG20260826125422.jpg"
+      ],
+      "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/elevated_oblique.png",
+      "selected_indices": [
+        148,
+        151,
+        154,
+        165,
+        177,
+        180,
+        188,
+        200
+      ],
+      "sha256": "f7655403e4f9b635b2567f7578957684c9dcd5c4b1f68c3e3001f329d8ab5a29"
+    },
+    "globe_ornament_detail": {
+      "filenames": [
+        "IMG20260826130313.jpg",
+        "IMG20260826130322.jpg",
+        "IMG20260826130357.jpg",
+        "IMG20260826130427.jpg"
+      ],
+      "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/globe_ornament_detail.png",
+      "selected_indices": [
+        267,
+        268,
+        278,
+        288
+      ],
+      "sha256": "ac25bc4913a77b916f6f9de5ba1c83ae72a4c8376e70c0c35fd5e29b83eb96fd"
+    },
+    "low_angle_pedestal": {
+      "filenames": [
+        "IMG20260826124024.jpg",
+        "IMG20260826124048.jpg",
+        "IMG20260826124123.jpg",
+        "IMG20260826124156.jpg",
+        "IMG20260826124237.jpg",
+        "IMG20260826124323.jpg",
+        "IMG20260826124422.jpg",
+        "IMG20260826124754.jpg"
+      ],
+      "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/low_angle_pedestal.png",
+      "selected_indices": [
+        76,
+        82,
+        90,
+        98,
+        106,
+        114,
+        128,
+        142
+      ],
+      "sha256": "822a049087b09a77e230cb961cd033fc22c58dbbf9ad300274a878c602d92929"
+    },
+    "neck_lid_detail": {
+      "filenames": [
+        "IMG20260826124908.jpg",
+        "IMG20260826124916.jpg",
+        "IMG20260826124927.jpg",
+        "IMG20260826125013.jpg"
+      ],
+      "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/neck_lid_detail.png",
+      "selected_indices": [
+        148,
+        151,
+        154,
+        165
+      ],
+      "sha256": "113b1596787b31c1399c912daf9a39d13934b33944d0c81a7ca4838ab8f1d483"
+    },
+    "normal_side": {
+      "filenames": [
+        "IMG20260826122956.jpg",
+        "IMG20260826123023.jpg",
+        "IMG20260826123111.jpg",
+        "IMG20260826123223.jpg",
+        "IMG20260826123333.jpg",
+        "IMG20260826123434.jpg",
+        "IMG20260826123740.jpg",
+        "IMG20260826123820.jpg"
+      ],
+      "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/normal_side.png",
+      "selected_indices": [
+        3,
+        10,
+        19,
+        28,
+        39,
+        50,
+        62,
+        72
+      ],
+      "sha256": "e7e88da621d9766965405a4233266c2a4b5dbda6c6c7b79e5ac5d7dfb28d6a26"
+    },
+    "oblique_detail": {
+      "filenames": [
+        "IMG20260826130313.jpg",
+        "IMG20260826130322.jpg",
+        "IMG20260826130357.jpg",
+        "IMG20260826130427.jpg"
+      ],
+      "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/oblique_detail.png",
+      "selected_indices": [
+        267,
+        268,
+        278,
+        288
+      ],
+      "sha256": "ac25bc4913a77b916f6f9de5ba1c83ae72a4c8376e70c0c35fd5e29b83eb96fd"
+    },
+    "top_down_rim": {
+      "filenames": [
+        "IMG20260826125527.jpg",
+        "IMG20260826125534.jpg",
+        "IMG20260826125619.jpg",
+        "IMG20260826125650.jpg",
+        "IMG20260826125845.jpg",
+        "IMG20260826125854.jpg",
+        "IMG20260826125942.jpg",
+        "IMG20260826130051.jpg"
+      ],
+      "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/top_down_rim.png",
+      "selected_indices": [
+        206,
+        209,
+        212,
+        221,
+        230,
+        233,
+        243,
+        255
+      ],
+      "sha256": "356e5c83a043fd42dad708110fd8488cba32c1ffdd789ac43ce974b851b81173"
+    }
+  },
+  "reference_visual_review": {
+    "accepted": true,
+    "geometry_mask_board_path": "reconstruction/reference_assisted_v2/evidence/geometry_masks/geometry_mask_overlays_board.png",
+    "geometry_mask_board_sha256": "4293492b41cecca4cceb14b814dabcacba5f5a2e67585f01c8b9cc7937d359ee",
+    "geometry_masks": "pass",
+    "landmark_board_path": "reconstruction/reference_assisted_v2/evidence/annotations/landmark_overlays_board.png",
+    "landmark_board_sha256": "36748604b5f068c2ce043934560b2b093586618c69e21cfd4d1ea4f0fd7b9338",
+    "landmarks": "pass",
+    "notes": "All 16 regenerated canonical geometry-mask and landmark overlays were reviewed against their source photographs. Obvious connected table/reflection tails were removed in the V2 geometry masks, reviewed landmark corrections track the intended physical component features, and historical CNN masks remain unchanged. This review is annotation/evidence QA; the separate candidate-bound cv_visual_review.json remains the final Plan-1 model visual veto.",
+    "path": "reconstruction/reference_assisted_v2/reports/reference_visual_review.json",
+    "review_method": "source_photo_geometry_mask_and_landmark_contact_sheet_visual_review",
+    "reviewed_canonical_view_count": 16,
+    "schema_version": 1,
+    "sha256": "0207a527aa228ba91407788ef6c0ee0bd72797d3a8f7d716edd4a518a390c6ae"
+  },
+  "reviewed_view_count": 36,
+  "schema_version": 1,
+  "sift_ransac_diagnostics": [
+    {
+      "candidate_matches": 329,
+      "first_index": 3,
+      "first_path": "preprocessing/pycolmap_input/images/IMG20260826122956.jpg",
+      "first_scale": {
+        "analysis_size": [
+          1200,
+          1594
+        ],
+        "original_size": [
+          3072,
+          4080
+        ],
+        "scale_x_to_original": 2.56,
+        "scale_y_to_original": 2.559598494353827
+      },
+      "fundamental_matrix_status": "ok",
+      "inlier_ratio": 0.547112462006079,
+      "median_sampson_error": 0.0946189276196703,
+      "output_path": "reconstruction/reference_assisted_v2/evidence/cv_matches/sift_normal_side_003_004.png",
+      "output_sha256": "766982c3eb08c95fe3f61cc98a3b6f43e5d10014b781ec164157ecbdb1691c26",
+      "ransac_inliers": 180,
+      "second_index": 4,
+      "second_path": "preprocessing/pycolmap_input/images/IMG20260826123000.jpg",
+      "second_scale": {
+        "analysis_size": [
+          1200,
+          1594
+        ],
+        "original_size": [
+          3072,
+          4080
+        ],
+        "scale_x_to_original": 2.56,
+        "scale_y_to_original": 2.559598494353827
+      },
+      "view_category": "normal_side"
+    },
+    {
+      "candidate_matches": 282,
+      "first_index": 90,
+      "first_path": "preprocessing/pycolmap_input/images/IMG20260826124123.jpg",
+      "first_scale": {
+        "analysis_size": [
+          1200,
+          1594
+        ],
+        "original_size": [
+          3072,
+          4080
+        ],
+        "scale_x_to_original": 2.56,
+        "scale_y_to_original": 2.559598494353827
+      },
+      "fundamental_matrix_status": "ok",
+      "inlier_ratio": 0.48936170212765956,
+      "median_sampson_error": 0.11096737666232007,
+      "output_path": "reconstruction/reference_assisted_v2/evidence/cv_matches/sift_low_angle_pedestal_090_091.png",
+      "output_sha256": "c727795b4795a95fe88f8036d0abfb7ebb1e9a086da31f8f9ae81cb85eb1a77f",
+      "ransac_inliers": 138,
+      "second_index": 91,
+      "second_path": "preprocessing/pycolmap_input/images/IMG20260826124128.jpg",
+      "second_scale": {
+        "analysis_size": [
+          1200,
+          1594
+        ],
+        "original_size": [
+          3072,
+          4080
+        ],
+        "scale_x_to_original": 2.56,
+        "scale_y_to_original": 2.559598494353827
+      },
+      "view_category": "low_angle_pedestal"
+    },
+    {
+      "candidate_matches": 451,
+      "first_index": 148,
+      "first_path": "preprocessing/pycolmap_input/images/IMG20260826124908.jpg",
+      "first_scale": {
+        "analysis_size": [
+          1200,
+          1594
+        ],
+        "original_size": [
+          3072,
+          4080
+        ],
+        "scale_x_to_original": 2.56,
+        "scale_y_to_original": 2.559598494353827
+      },
+      "fundamental_matrix_status": "ok",
+      "inlier_ratio": 0.6385809312638581,
+      "median_sampson_error": 0.07682569624671845,
+      "output_path": "reconstruction/reference_assisted_v2/evidence/cv_matches/sift_elevated_oblique_148_149.png",
+      "output_sha256": "a3d7d030b9f8359b76bb7f32170c8bd46e519fad6573efc75d6ad9e341807cb8",
+      "ransac_inliers": 288,
+      "second_index": 149,
+      "second_path": "preprocessing/pycolmap_input/images/IMG20260826124910.jpg",
+      "second_scale": {
+        "analysis_size": [
+          1200,
+          1594
+        ],
+        "original_size": [
+          3072,
+          4080
+        ],
+        "scale_x_to_original": 2.56,
+        "scale_y_to_original": 2.559598494353827
+      },
+      "view_category": "elevated_oblique"
+    },
+    {
+      "candidate_matches": 123,
+      "first_index": 206,
+      "first_path": "preprocessing/pycolmap_input/images/IMG20260826125527.jpg",
+      "first_scale": {
+        "analysis_size": [
+          1200,
+          1594
+        ],
+        "original_size": [
+          3072,
+          4080
+        ],
+        "scale_x_to_original": 2.56,
+        "scale_y_to_original": 2.559598494353827
+      },
+      "fundamental_matrix_status": "ok",
+      "inlier_ratio": 0.3333333333333333,
+      "median_sampson_error": 0.1409079624970458,
+      "output_path": "reconstruction/reference_assisted_v2/evidence/cv_matches/sift_top_down_rim_206_207.png",
+      "output_sha256": "bcca31a207fefbcd980b9d784936d36bdea764c26dd82201e6997382245ff052",
+      "ransac_inliers": 41,
+      "second_index": 207,
+      "second_path": "preprocessing/pycolmap_input/images/IMG20260826125529.jpg",
+      "second_scale": {
+        "analysis_size": [
+          1200,
+          1594
+        ],
+        "original_size": [
+          3072,
+          4080
+        ],
+        "scale_x_to_original": 2.56,
+        "scale_y_to_original": 2.559598494353827
+      },
+      "view_category": "top_down_rim"
+    }
+  ],
+  "step13_registered_reviewed_count": 32,
+  "v1_rejection": {
+    "mismatch_categories": [
+      "wrong globe/body profile",
+      "wrong bowl/pedestal profile",
+      "wrong neck proportions",
+      "unsupported generic decoration",
+      "unsupported chain unless later evidence found",
+      "material/value mismatch",
+      "insufficient single-aggregate validation"
+    ],
+    "path": "reconstruction/reference_assisted_v2/evidence/reference_boards/v1_rejection.png",
+    "representative_source_indices": [
+      3,
+      72,
+      148,
+      165
+    ],
+    "sha256": "8755de625905b56da35bf1f7463859fe31712b1d2e06ca8550a252e49965a81f",
+    "v1_preview_paths": [
+      "reconstruction/reference_assisted/previews/reference_front.png",
+      "reconstruction/reference_assisted/previews/reference_quarter.png"
+    ]
+  }
+}
