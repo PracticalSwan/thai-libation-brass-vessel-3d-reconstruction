@@ -136,7 +136,7 @@ def test_stage_checkpoints_remain_inside_v2_and_stop_before_export(tmp_path: Pat
         tmp_path / "final" / "Thai_Libation_Vessel_FINAL.blend"
     )
     assert "export" not in checkpoints
-    assert builder.BLENDER_STAGES[-1] == "final-validate"
+    assert builder.BLENDER_STAGES[-2:] == ("final-validate", "export")
 
 
 def test_surface_parts_are_source_named_and_exclude_v1_shortcuts():

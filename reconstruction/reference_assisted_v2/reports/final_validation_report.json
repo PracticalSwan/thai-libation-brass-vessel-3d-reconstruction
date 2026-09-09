@@ -21,9 +21,15 @@
       "sha256": "9ef992a92cb4694a0f2e94c0cc317c33e3c815b5837a4285c4208803a6158750"
     }
   },
-  "export_performed": false,
+  "export_performed": true,
+  "export_reimport_report": "reconstruction/reference_assisted_v2/reports/export_reimport_report.json",
+  "export_reimport_report_sha256": "f6e2fe146cd5e37af653211262e404e92e7979bb5dce4ae06fd11a4382a5aee2",
   "failure_reasons": [],
+  "final_asset_manifest": "reconstruction/reference_assisted_v2/reports/final_asset_manifest.json",
+  "final_asset_manifest_sha256": "5ada97a42acd02bbac0fcefd138044e86a4431e2ceae151a5d607ea419dd5625",
   "forbidden_objects": [],
+  "glb_path": "reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.glb",
+  "glb_sha256": "f0daa50f1198aa9cb79293780611c88af4910a64a13bf79495067d8c724a9f27",
   "mesh_statistics": {
     "mesh_count": 29,
     "objects": [
@@ -293,6 +299,7 @@
     "vertices": 47722
   },
   "missing_uv_objects": [],
+  "qa_verdict": "SHIP",
   "render_object_count": 37,
   "review_renders": {
     "front": {

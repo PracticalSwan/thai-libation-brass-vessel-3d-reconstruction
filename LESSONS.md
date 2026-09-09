@@ -40,3 +40,9 @@ For tilted cameras, the visible top/bottom of a finite-radius revolved component
 - Do not deform geometry around a weak CNN mask or a known camera outlier. Classify downstream audit failures explicitly as mask, camera, or real model mismatch; only repeated evidence-backed model mismatch should route back to geometry.
 - Lens-model consistency is part of the CV contract. Raw source comparisons must use the verified `SIMPLE_RADIAL` projection, while Blender pinhole renders require paired undistorted derived references; mixing coordinate models can create false shape errors.
 - A completed 3D surface inevitably contains regions with different evidence strength. Persist direct multi-view, reviewed/detail-only, symmetry/repetition-inferred, and hidden generic-fill provenance so backside geometry, ornament repetition, and texture fill remain truthful and controllable.
+
+## 2026-09-09
+
+- glTF portability is a separate material contract from Blender lookdev. Preserve the editable master shader, then derive a bounded PBR-compatible export representation instead of destructively flattening the source `.blend`.
+- For polished metal, raw RGB render differences can be dominated by tangent reconstruction and specular highlight placement even when exported geometry is exact. Keep hard structural gates such as silhouette, bounds, object/material presence, and embedded textures; if the planned RGB tolerance is adjusted, do it once, record the measured reason, and never hide the difference image.
+- A truthful fallback may be promotion-ready without becoming a successful direct method. The Plan-5 component-level photo-informed material fallback can support the accepted final appearance while its report still states 0% direct per-texel projection and 100% inferred fill; downstream documentation and guards must preserve that distinction.

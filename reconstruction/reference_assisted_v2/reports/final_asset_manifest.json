@@ -1,0 +1,80 @@
+{
+  "accepted": true,
+  "cv_evidence_reports": {
+    "base_geometry_report.json": "bbf7872369c5752e93f3348d25d1720b8191a3758b3a91c95a0ad08f282211b3",
+    "cleanup_report.json": "a20f7e31254fc85f7f847ac766e3e4b6d7e86dd7ab5feda6a0635cf8a0911906",
+    "final_cv_fit.json": "215008cd1f22f7151ca1d7dc4448ce0372b38c029616ee1c80b674c7b92b0c1f",
+    "lookdev_report.json": "4cb7a6cd5730fe46ed7d6c4b7484ab121a53d2c3458acdfc32dd4762803e074d",
+    "ornament_build_report.json": "f6e52e3ec4ff6ced3efd057eceb56a905144d9fd3134c1e313d88002340d6388",
+    "registered_view_coverage_report.json": "50a1d2ec1e67a6a9c6e3448f434fc913d0b66f0d87c2e533a6a81067ac6b515e",
+    "surface_evidence_coverage.json": "848fd02f21f8742d4d8b44d7169d388af3b09868865b99c34bdaf2b676a609f6",
+    "texture_projection_report.json": "4b3d3373a8d36a5e2f5f126b0ad9690f8df8c6454b0dd3b32772d42c3cbae321",
+    "uv_bake_report.json": "e399c7b85abeb435878af0eb3eaee5cd13d2bcf417bca31c8f84f4e7115df2b0"
+  },
+  "glb": {
+    "path": "reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.glb",
+    "sha256": "f0daa50f1198aa9cb79293780611c88af4910a64a13bf79495067d8c724a9f27",
+    "size_bytes": 12130192
+  },
+  "master_blend": {
+    "path": "reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.blend",
+    "sha256": "70a47d0dd006fdd2a0c65e2d8302ff495f59037c9feb57b118009dd2820d34ed",
+    "size_bytes": 1305781
+  },
+  "preview_renders": [
+    "reconstruction/reference_assisted_v2/diagnostics/80_export_reimport/master_neutral.png",
+    "reconstruction/reference_assisted_v2/diagnostics/80_export_reimport/reimport_neutral.png",
+    "reconstruction/reference_assisted_v2/diagnostics/80_export_reimport/difference.png"
+  ],
+  "qa_verdict": "SHIP",
+  "scale_status": "relative_no_physical_measurement",
+  "schema_version": 1,
+  "source_boundary": "V2 is CV-constrained and Blender-completed; local_dense remains the measured partial photogrammetry result. Raw IMG20260826122949 photographs and Steps 1-17 evidence were not modified by export.",
+  "textures": [
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_AO.png",
+      "sha256": "fdbf78fae13b9c50df80cb574f7504438c3471fa498f3f2ae5b44b1492b9ff63",
+      "size_bytes": 25455
+    },
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_BaseColor.png",
+      "sha256": "3fc5fb44808223dfd3bf31867923d777ffcd3508fa7c96eee55242cd9fd0fa23",
+      "size_bytes": 60131
+    },
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_BaseColor_GLTF.png",
+      "sha256": "e1c715de8149b9d45eb50062362500e8720aa18218a381681135464abcc01105",
+      "size_bytes": 64473
+    },
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_Curvature.png",
+      "sha256": "453d917c2af4fe1de1ecafb489cd6703a832b446a4ad0fcf48c5ba8a511be3a7",
+      "size_bytes": 1030663
+    },
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_InferredRegionMask.png",
+      "sha256": "fdbf78fae13b9c50df80cb574f7504438c3471fa498f3f2ae5b44b1492b9ff63",
+      "size_bytes": 25455
+    },
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_Metallic.png",
+      "sha256": "fdbf78fae13b9c50df80cb574f7504438c3471fa498f3f2ae5b44b1492b9ff63",
+      "size_bytes": 25455
+    },
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_Normal.png",
+      "sha256": "57295e759e5e07d4f2da697996a91645eb62d1de2918c084032005f39a106db7",
+      "size_bytes": 58634
+    },
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_Roughness.png",
+      "sha256": "e0456633c514e32d26dff92acb8631f1ba52304b8dae4bc0f71d9ec70bee9ab4",
+      "size_bytes": 25735
+    },
+    {
+      "path": "reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_Wear.png",
+      "sha256": "0ec25baaf2187522ef0aa68ab369847f3300afeb36241f955d0e9f18b4b59a83",
+      "size_bytes": 25906
+    }
+  ]
+}

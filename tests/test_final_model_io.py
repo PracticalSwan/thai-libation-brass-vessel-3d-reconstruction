@@ -71,6 +71,45 @@ def test_required_reports_ready_requires_every_accepted_report(tmp_path: Path):
         required_reports_ready(root)
 
 
+def test_required_reports_ready_accepts_only_disclosed_texture_fallback(tmp_path: Path):
+    root = tmp_path / "reconstruction" / "reference_assisted_v2"
+    reports = root / "reports"
+    reports.mkdir(parents=True)
+    names = (
+        "final_cv_fit.json",
+        "base_geometry_report.json",
+        "ornament_build_report.json",
+        "cleanup_report.json",
+        "uv_bake_report.json",
+        "texture_projection_report.json",
+        "lookdev_report.json",
+        "final_validation_report.json",
+    )
+    for name in names:
+        write_json_atomic(reports / name, {"accepted": True}, root)
+
+    fallback = {
+        "status": "BLOCKED",
+        "claim_scope": "photo_informed_component_fusion_fallback_no_visual_qa",
+        "projection_method": "component_level_photo_informed_fusion_fallback",
+        "blocked_reasons": [
+            "exact_projection_geometry_package_missing",
+            "per_texel_depth_masked_projection_not_run",
+            "component_level_photo_informed_fallback_only",
+        ],
+        "fallback": {"active": True, "texel_direct_projection": False},
+        "direct_projection_percent": 0.0,
+        "inferred_fill_percent": 100.0,
+    }
+    write_json_atomic(reports / "texture_projection_report.json", fallback, root)
+    assert required_reports_ready(root) == tuple(reports / name for name in names)
+
+    fallback["direct_projection_percent"] = 1.0
+    write_json_atomic(reports / "texture_projection_report.json", fallback, root)
+    with pytest.raises(ValueError, match="texture_projection_report.json is not accepted"):
+        required_reports_ready(root)
+
+
 def test_build_file_manifest_records_relative_hash_and_size(tmp_path: Path):
     root = tmp_path / "reconstruction" / "reference_assisted_v2"
     asset = root / "final" / "asset.glb"

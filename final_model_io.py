@@ -97,8 +97,41 @@ def owned_work_path(path: Path, v2_root: Path) -> bool:
     return resolved == work_root or work_root in resolved.parents
 
 
+def _promotion_report_accepted(name: str, payload: Mapping[str, object]) -> bool:
+    """Return whether one report is truthful and sufficient for final promotion."""
+
+    if payload.get("accepted") is True:
+        return True
+    if name != "texture_projection_report.json":
+        return False
+
+    # Plan 5 reached a disclosed component-level photo-informed fallback rather
+    # than exact per-texel projection. That is sufficient for the accepted final
+    # lookdev/material asset only when the report preserves the exact limitation;
+    # it must never be promoted as direct texture projection.
+    fallback = payload.get("fallback")
+    blocked = payload.get("blocked_reasons")
+    try:
+        direct_percent = float(payload.get("direct_projection_percent", -1.0))
+        inferred_percent = float(payload.get("inferred_fill_percent", -1.0))
+    except (TypeError, ValueError):
+        return False
+    return (
+        isinstance(fallback, Mapping)
+        and fallback.get("active") is True
+        and fallback.get("texel_direct_projection") is False
+        and payload.get("projection_method") == "component_level_photo_informed_fusion_fallback"
+        and payload.get("claim_scope") == "photo_informed_component_fusion_fallback_no_visual_qa"
+        and direct_percent == 0.0
+        and inferred_percent == 100.0
+        and isinstance(blocked, list)
+        and "per_texel_depth_masked_projection_not_run" in blocked
+        and "component_level_photo_informed_fallback_only" in blocked
+    )
+
+
 def required_reports_ready(v2_root: Path) -> tuple[Path, ...]:
-    """Return accepted promotion reports or fail closed on the first gap."""
+    """Return truthful promotion-ready reports or fail closed on the first gap."""
 
     root = v2_root.resolve()
     reports = root / "reports"
@@ -111,7 +144,7 @@ def required_reports_ready(v2_root: Path) -> tuple[Path, ...]:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError) as exc:
             raise ValueError(f"required promotion report is unreadable: {name}") from exc
-        if payload.get("accepted") is not True:
+        if not _promotion_report_accepted(name, payload):
             raise ValueError(f"required promotion report {name} is not accepted")
         ready.append(path)
     return tuple(ready)

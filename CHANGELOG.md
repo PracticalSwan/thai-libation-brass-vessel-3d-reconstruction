@@ -95,7 +95,13 @@ All notable verified project milestones are recorded here.
 - Completed Plans 3-5 and pre-export Plan 6: source-supported ornament families, practical topology/normal cleanup, shared UVs, 2048² AO/tangent-normal/curvature bakes, photo-informed texture fallback, polished warm-brass lookdev, representative source-camera/detail renders, wireframe/UV QA, and `Thai_Libation_Vessel_FINAL.blend` at the user-inspection gate.
 - Corrected the source-visible globe/receiving-bowl relationship through two explicit user-review passes while keeping the frozen Plan-1 profile JSON unchanged. The downstream finalization profile now reshapes only the globe/shoulder radial envelope to a compact ellipsoid: globe max radius **0.15989** instead of **0.20073**, receiving-bowl/globe max-radius ratio **1.30**, and rolled-rim radial clearance about **0.0604**. All accepted Z levels, axis, neck junction, lower bowl profile, pedestal, lid, finial, and component positions remain fixed.
 - Added a separate source-supported `SM_Globe_LowerSupport` plus two small construction rings so the narrow lower collar visible inside the bowl in all four close oblique reference photographs is represented as real geometry rather than empty space or a fused globe extension.
-- Final pre-export inspection state passes zoomed high-oblique, top, globe-close, and quarter visual review; the focused Final-V2 Blender/CV/orchestrator suite passes **92/92**, and `final_validation_report.json` remains accepted with `export_performed=false`.
+- Final pre-export inspection state passed zoomed high-oblique, top, globe-close, and quarter visual review; the focused Final-V2 Blender/CV/orchestrator suite passed **92/92** before export approval.
+- Recorded explicit user export approval and implemented the separate approval-gated GLB path without destructively changing the canonical `.blend`.
+- Added a portable glTF PBR material translation: the master warm-brass/photo-color mix is baked into a derived 4096-pixel base-color texture, while roughness and tangent normal remain embedded; only the tiny Blender-only procedural micro-bump is omitted.
+- Completed canonical GLB export and clean factory-scene re-import. The re-import contains 37 meshes, one brass material and three embedded PBR images with exact bounds, silhouette IoU **1.0**, and no unresolved external images; `export_reimport_report.json` records `qa_verdict=SHIP`.
+- Preserved the Plan-5 limitation instead of relabeling it: `texture_projection_report.json` remains a component-level photo-informed fallback with **0% direct per-texel projection / 100% inferred fill**. Final promotion recognizes only this exact disclosed fallback contract.
+- Final export-completion verification: changed final-model modules compile, **30 focused tests passed**, **369 complete project tests passed**, all **297/297** raw photographs remain unchanged, and all **288/288** selected inputs verify against the frozen manifest.
+- Final artifact hashes: `.blend` `70a47d0dd006fdd2a0c65e2d8302ff495f59037c9feb57b118009dd2820d34ed`; `.glb` `f0daa50f1198aa9cb79293780611c88af4910a64a13bf79495067d8c724a9f27`.
 
 ### Fixed
 - Fail preprocessing before creating generated outputs when the configured expected raw-image count disagrees with the verified baseline.
@@ -125,6 +131,6 @@ All notable verified project milestones are recorded here.
 - Three task-created per-camera Blender render intermediates after composing the final Step 17 triptych.
 
 ### Next
-- Preserve the accepted pre-export Final V2 inspection asset and wait for explicit user approval before running any GLB export/re-import/promotion/publication step.
-- If the user requests additional visual corrections, keep them bounded to source-supported defects and re-run only the affected downstream Blender stages; do not reopen frozen sparse/dense experiments without new blocking evidence.
-- Keep the truthful Step 10 local-dense limitations, historical CNN/SfM evidence, Plan-2 audit classifications, and component-level photo-texture fallback visible in coursework reporting; V2 is CV-constrained + Blender-completed, not direct complete photogrammetry.
+- Treat Final V2 reconstruction/export as complete; the next normal work is coursework demo/report packaging and selection of presentation evidence.
+- If later assessment feedback requires a visual correction, keep it bounded to source-supported defects and re-run only affected downstream V2 stages; do not reopen frozen sparse/dense experiments without new blocking evidence.
+- Keep the truthful Step 10 local-dense limitations, historical CNN/SfM evidence, Plan-2 audit classifications, and component-level photo-informed texture fallback visible in coursework reporting; V2 is CV-constrained + Blender-completed, not direct complete photogrammetry.

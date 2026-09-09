@@ -104,6 +104,53 @@ def discover_blender() -> Path:
     )
 
 
+def prepare_gltf_basecolor_texture(project_root: Path = PROJECT_ROOT) -> dict[str, Any]:
+    """Bake the master shader's simple color mix into a glTF-compatible texture."""
+
+    import cv2
+    import numpy as np
+
+    root = project_root.resolve()
+    texture_dir = root / V2_RELATIVE_ROOT / "textures" / "final"
+    source = texture_dir / "T_ThaiLibation_BaseColor.png"
+    output = texture_dir / "T_ThaiLibation_BaseColor_GLTF.png"
+    image = cv2.imread(str(source), cv2.IMREAD_UNCHANGED)
+    if image is None:
+        raise ValueError(f"cannot read final base-color texture: {source}")
+    if image.ndim != 3 or image.shape[2] not in {3, 4}:
+        raise ValueError("final base-color texture must be RGB or RGBA")
+
+    bgr = image[..., :3].astype(np.float32) / 255.0
+    rgb = bgr[..., ::-1]
+    linear = np.where(
+        rgb <= 0.04045,
+        rgb / 12.92,
+        ((rgb + 0.055) / 1.055) ** 2.4,
+    )
+    # Exact master material constants from MAT_FINAL_PolishedThaiBrass:
+    # MixRGB(MIX), fac=0.26, Color1=(0.83, 0.49, 0.105), Color2=photo texture.
+    constant = np.array([0.83, 0.49, 0.105], dtype=np.float32)
+    mixed = 0.74 * constant + 0.26 * linear
+    srgb = np.where(
+        mixed <= 0.0031308,
+        mixed * 12.92,
+        1.055 * np.power(mixed, 1.0 / 2.4) - 0.055,
+    )
+    baked_bgr = np.clip(np.rint(srgb[..., ::-1] * 255.0), 0, 255).astype(np.uint8)
+    if image.shape[2] == 4:
+        baked = np.dstack([baked_bgr, image[..., 3]])
+    else:
+        baked = baked_bgr
+    output.parent.mkdir(parents=True, exist_ok=True)
+    if not cv2.imwrite(str(output), baked):
+        raise ValueError(f"failed to write glTF-compatible base-color texture: {output}")
+    return {
+        "source": source.relative_to(root).as_posix(),
+        "output": output.relative_to(root).as_posix(),
+        "size_bytes": output.stat().st_size,
+    }
+
+
 def run_blender_stage(stage: str, project_root: Path = PROJECT_ROOT) -> dict[str, Any]:
     """Execute one Blender stage in a clean background process with a durable log."""
 
@@ -225,6 +272,7 @@ def run_stage(stage: str, project_root: Path = PROJECT_ROOT) -> dict[str, Any]:
         require_accepted_report(v2_root / "reports" / additional_report)
     if stage == "export":
         require_user_export_approval(v2_root)
+        prepare_gltf_basecolor_texture(root)
 
     if stage == "analyze":
         from final_reference_evidence import build_final_reference_evidence

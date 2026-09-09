@@ -145,6 +145,6 @@ Two different 3D outputs now exist and must remain distinguishable:
 
 The second asset is useful as historical/prototype evidence but is not accepted as the final presentation model and must not be reported as a direct 360-degree dense reconstruction.
 
-## Next phase
+## Superseded by Final V2
 
-V1's requested pre-clean stop boundary was reached without manual Blender cleaning/sculpting. The user subsequently rejected V1's visual identity. The next phase is the separately designed V2 high-fidelity CV-constrained rebuild defined by `docs/superpowers/specs/2026-09-06-final-high-fidelity-vessel-design.md` and the `docs/superpowers/plans/2026-09-06-final-*.md` plan set. Those plans are complete; V2 implementation has not started. V2 may perform Blender cleaning/sculpting only after its CV-derived base geometry and source-derived ornament gates pass.
+V1's requested pre-clean stop boundary was reached without manual Blender cleaning/sculpting, but the user subsequently rejected its visual identity. The separately designed V2 high-fidelity CV-constrained rebuild has now been implemented, validated, exported, freshly re-imported, and accepted as the final presentation asset. V1 remains only as historical evidence of why technical manifold/silhouette checks were insufficient. The authoritative final report is [`final-high-fidelity-presentation-model.md`](final-high-fidelity-presentation-model.md); it preserves V1's failure history while documenting accepted V2 geometry, source-supported ornament, the disclosed component-level texture fallback, final GLB verification, and remaining limitations.

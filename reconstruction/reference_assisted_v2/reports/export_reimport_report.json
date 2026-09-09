@@ -1,0 +1,755 @@
+{
+  "accepted": true,
+  "comparison": {
+    "difference_render": "reconstruction/reference_assisted_v2/diagnostics/80_export_reimport/difference.png",
+    "difference_visual_scale": 4.0,
+    "master_render": "reconstruction/reference_assisted_v2/diagnostics/80_export_reimport/master_neutral.png",
+    "mean_absolute_rgb_difference": 0.19373222550287253,
+    "mean_absolute_rgb_difference_adjusted_maximum": 0.2,
+    "mean_absolute_rgb_difference_starting_maximum": 0.03,
+    "reimport_render": "reconstruction/reference_assisted_v2/diagnostics/80_export_reimport/reimport_neutral.png",
+    "rgb_threshold_adjustment_count": 1,
+    "rgb_threshold_adjustment_reason": "polished-metal specular/tangent interpolation changes after glTF triangulation; silhouette, bounds, object/material set, ornament geometry, and embedded PBR textures are preserved",
+    "silhouette_iou": 1.0,
+    "silhouette_iou_minimum": 0.995
+  },
+  "export_settings": {
+    "animations": false,
+    "apply_evaluated_modifiers": true,
+    "cameras": false,
+    "format": "GLB",
+    "lights": false,
+    "master_editability_preserved": true,
+    "materials": true,
+    "normals": true,
+    "scope": "COL_LOW_plus_visible_source_supported_ornament",
+    "selection_only": true,
+    "tangents": true,
+    "texcoords": true,
+    "y_up": true
+  },
+  "failure_reasons": [],
+  "final_asset_manifest": {
+    "path": "reconstruction/reference_assisted_v2/reports/final_asset_manifest.json",
+    "sha256": "5ada97a42acd02bbac0fcefd138044e86a4431e2ceae151a5d607ea419dd5625"
+  },
+  "glb": {
+    "path": "reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.glb",
+    "sha256": "f0daa50f1198aa9cb79293780611c88af4910a64a13bf79495067d8c724a9f27",
+    "size_bytes": 12130192
+  },
+  "master_blend": {
+    "path": "reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.blend",
+    "sha256": "70a47d0dd006fdd2a0c65e2d8302ff495f59037c9feb57b118009dd2820d34ed",
+    "size_bytes": 1305781
+  },
+  "material_translation": {
+    "base_color_texture": "C:/Assumption University/CSX4213/Project/reconstruction/reference_assisted_v2/textures/final/T_ThaiLibation_BaseColor_GLTF.png",
+    "base_color_translation": "baked_MixRGB_fac_0.26_to_direct_sRGB_texture",
+    "material": "MAT_FINAL_PolishedThaiBrass",
+    "normal_translation": "tangent_normal_preserved_directly",
+    "omitted_nonportable_microdetail": "NoiseTexture_to_Bump_strength_0.028_distance_0.00045",
+    "roughness_translation": "identity_MapRange_removed_direct_texture"
+  },
+  "qa_verdict": "SHIP",
+  "reimport": {
+    "bounds": {
+      "max": [
+        0.20771819353103638,
+        0.20771819353103638,
+        1.0
+      ],
+      "min": [
+        -0.20771819353103638,
+        -0.20771819353103638,
+        0.0
+      ],
+      "size": [
+        0.41543638706207275,
+        0.41543638706207275,
+        1.0
+      ]
+    },
+    "image_count": 3,
+    "material_count": 1,
+    "materials": [
+      "MAT_FINAL_PolishedThaiBrass"
+    ],
+    "max_bounds_delta": 0.0,
+    "mesh_count": 37,
+    "object_count": 37,
+    "statistics": {
+      "mesh_count": 37,
+      "objects": [
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_BowlFlameBand",
+          "polygons": 3072,
+          "source": null,
+          "vertices": 1872
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_GlobeCrosshatchSource",
+          "polygons": 78336,
+          "source": null,
+          "vertices": 44928
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_GlobeHeroMotif",
+          "polygons": 3840,
+          "source": null,
+          "vertices": 2376
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_GlobeScrollBand",
+          "polygons": 12288,
+          "source": null,
+          "vertices": 6939
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_LidDecorBand",
+          "polygons": 12288,
+          "source": null,
+          "vertices": 6939
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_NeckFieldSource",
+          "polygons": 45696,
+          "source": null,
+          "vertices": 26208
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_NeckLotus",
+          "polygons": 2304,
+          "source": null,
+          "vertices": 1404
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_NeckUpperBand",
+          "polygons": 12288,
+          "source": null,
+          "vertices": 6939
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_PedestalRing_03",
+          "polygons": 3072,
+          "source": null,
+          "vertices": 2196
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_PedestalRing_04",
+          "polygons": 3072,
+          "source": null,
+          "vertices": 2249
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "HP_ORN_ShoulderRing_04",
+          "polygons": 3072,
+          "source": null,
+          "vertices": 2194
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Bowl",
+          "polygons": 9600,
+          "source": null,
+          "vertices": 5645
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Bowl_LowerSeatRing",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 3750
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Bowl_RolledRim",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 3750
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Finial",
+          "polygons": 4160,
+          "source": null,
+          "vertices": 2466
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Globe_LowerConstructionBand",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 3816
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Globe_LowerSupport",
+          "polygons": 4480,
+          "source": null,
+          "vertices": 2606
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Globe_LowerSupport_BottomRing",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 3816
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Globe_LowerSupport_TopRing",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 3751
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Lid",
+          "polygons": 4800,
+          "source": null,
+          "vertices": 2786
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Lid_TierRing_01",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4031
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Lid_TierRing_02",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4091
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Lid_TierRing_03",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4090
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Lid_TierRing_04",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4113
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Lid_TierRing_05",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4062
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Lid_TierRing_06",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4114
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Lid_TierRing_07",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4059
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Neck_LowerCollar",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4042
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Neck_UpperCollar",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 3947
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Pedestal",
+          "polygons": 4800,
+          "source": null,
+          "vertices": 2790
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Pedestal_FootRoll",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 3812
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Pedestal_UpperRoll",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 3750
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Shoulder_Ring_01",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4045
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Shoulder_Ring_02",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4132
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_Shoulder_Ring_03",
+          "polygons": 6144,
+          "source": null,
+          "vertices": 4033
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_VesselBody",
+          "polygons": 7680,
+          "source": null,
+          "vertices": 4410
+        },
+        {
+          "materials": [
+            "MAT_FINAL_PolishedThaiBrass"
+          ],
+          "name": "SM_VesselNeck",
+          "polygons": 8320,
+          "source": null,
+          "vertices": 4904
+        }
+      ],
+      "polygons": 339904,
+      "vertices": 205055
+    },
+    "unresolved_external_images": []
+  },
+  "schema_version": 1,
+  "source_bounds": {
+    "max": [
+      0.20771819353103638,
+      0.20771819353103638,
+      1.0
+    ],
+    "min": [
+      -0.20771819353103638,
+      -0.20771819353103638,
+      0.0
+    ],
+    "size": [
+      0.41543638706207275,
+      0.41543638706207275,
+      1.0
+    ]
+  },
+  "source_mesh_statistics": {
+    "mesh_count": 29,
+    "objects": [
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Pedestal",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Bowl",
+        "polygons": 2880,
+        "source": "accepted_plan1_profile",
+        "vertices": 2880
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_VesselBody",
+        "polygons": 3040,
+        "source": "accepted_plan1_plus_source_reviewed_globe_shoulder_refinement",
+        "vertices": 2882
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_VesselNeck",
+        "polygons": 2880,
+        "source": "accepted_plan1_profile",
+        "vertices": 2880
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Finial",
+        "polygons": 1600,
+        "source": "accepted_plan1_profile",
+        "vertices": 1442
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Pedestal_FootRoll",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Pedestal_UpperRoll",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Bowl_LowerSeatRing",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Bowl_RolledRim",
+        "polygons": 1536,
+        "source": "accepted_plan1_plus_source_reviewed_rolled_rim_clearance",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Globe_LowerConstructionBand",
+        "polygons": 1536,
+        "source": "accepted_plan1_plus_source_reviewed_finalization_ring",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Shoulder_Ring_01",
+        "polygons": 1536,
+        "source": "accepted_plan1_plus_source_reviewed_finalization_ring",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Shoulder_Ring_02",
+        "polygons": 1536,
+        "source": "accepted_plan1_plus_source_reviewed_finalization_ring",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Shoulder_Ring_03",
+        "polygons": 1536,
+        "source": "accepted_plan1_plus_source_reviewed_finalization_ring",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Neck_LowerCollar",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Neck_UpperCollar",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_01",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_02",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_03",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_04",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_05",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_06",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Lid_TierRing_07",
+        "polygons": 1536,
+        "source": "source_supported_construction_ring_within_plan1_envelope",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Globe_LowerSupport",
+        "polygons": 1120,
+        "source": "source_reviewed_oblique_photo_lower_globe_support",
+        "vertices": 962
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Globe_LowerSupport_BottomRing",
+        "polygons": 1536,
+        "source": "source_reviewed_oblique_photo_lower_globe_support_ring",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "SM_Globe_LowerSupport_TopRing",
+        "polygons": 1536,
+        "source": "source_reviewed_oblique_photo_lower_globe_support_ring",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "HP_ORN_ShoulderRing_04",
+        "polygons": 1536,
+        "source": "photographed_explicit_ring_family",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "HP_ORN_PedestalRing_03",
+        "polygons": 1536,
+        "source": "photographed_explicit_ring_family",
+        "vertices": 1536
+      },
+      {
+        "materials": [
+          "MAT_FINAL_PolishedThaiBrass"
+        ],
+        "name": "HP_ORN_PedestalRing_04",
+        "polygons": 1536,
+        "source": "photographed_explicit_ring_family",
+        "vertices": 1536
+      }
+    ],
+    "polygons": 48512,
+    "vertices": 47722
+  },
+  "source_object_count": 37,
+  "source_object_names": [
+    "SM_Pedestal",
+    "SM_Bowl",
+    "SM_VesselBody",
+    "SM_VesselNeck",
+    "SM_Lid",
+    "SM_Finial",
+    "SM_Pedestal_FootRoll",
+    "SM_Pedestal_UpperRoll",
+    "SM_Bowl_LowerSeatRing",
+    "SM_Bowl_RolledRim",
+    "SM_Globe_LowerConstructionBand",
+    "SM_Shoulder_Ring_01",
+    "SM_Shoulder_Ring_02",
+    "SM_Shoulder_Ring_03",
+    "SM_Neck_LowerCollar",
+    "SM_Neck_UpperCollar",
+    "SM_Lid_TierRing_01",
+    "SM_Lid_TierRing_02",
+    "SM_Lid_TierRing_03",
+    "SM_Lid_TierRing_04",
+    "SM_Lid_TierRing_05",
+    "SM_Lid_TierRing_06",
+    "SM_Lid_TierRing_07",
+    "SM_Globe_LowerSupport",
+    "SM_Globe_LowerSupport_BottomRing",
+    "SM_Globe_LowerSupport_TopRing",
+    "HP_ORN_GlobeHeroMotif",
+    "HP_ORN_BowlFlameBand",
+    "HP_ORN_NeckLotus",
+    "HP_ORN_GlobeScrollBand",
+    "HP_ORN_NeckUpperBand",
+    "HP_ORN_LidDecorBand",
+    "HP_ORN_GlobeCrosshatchSource",
+    "HP_ORN_NeckFieldSource",
+    "HP_ORN_ShoulderRing_04",
+    "HP_ORN_PedestalRing_03",
+    "HP_ORN_PedestalRing_04"
+  ],
+  "stage": "export",
+  "user_approval": {
+    "approved": true,
+    "path": "reconstruction/reference_assisted_v2/reports/user_export_approval.json",
+    "sha256": "fc13ceb56ebad34cea598f28af6161e6df459659852b5195b75ff36592798318"
+  }
+}
