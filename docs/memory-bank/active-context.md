@@ -6,7 +6,7 @@ Updated: 2026-09-13
 
 **V4 is the only active direction.** V1/V2 were rejected by the professor and V3 was visually rejected after direct Blender inspection. Their active reconstruction/model artifacts were removed; do not restore them unless historical recovery is explicitly requested.
 
-The final V4 photographs are present and cannot be retaken. **Implementation has progressed through ingest, isolation, learned matching, sparse reconstruction, and dense reconstruction. The active checkpoint is dense/post-fusion acceptance, immediately before raw Poisson meshing.**
+The final V4 photographs are present and cannot be retaken. **Implementation is complete through dense/post-fusion acceptance, raw Poisson, conservative Blender cleanup, LOD0/UV/AO, brass lookdev, canonical export, and fresh GLB re-import.**
 
 Latest verified continuation facts:
 
@@ -21,9 +21,22 @@ camera model: SIMPLE_RADIAL
 cross-ring connections: 1005 in the healthy source graph
 corrected COLMAP fusion-mask resolution: 372 / 372, zero legacy fallback/missing
 corrected-mask fused SHA-256: df05019e2e56d1c54351f4b2cee161cbcfb7b782a3c6b0d4920d6e303f39d7d8
+raw Poisson: 887,770 vertices / 1,669,931 faces; SHA-256 55a4e92c9491cced508360d1645355ed447785f175df0556b400528fa9522941
+clean high: 883,016 vertices / 1,662,911 faces after strict detached-noise cull
+LOD0: 172,851 vertices / 299,324 faces; one finite angle-based UV map
+canonical master: reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend
+canonical GLB: reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.glb
 ```
 
-The corrected-mask post-fusion report found `board_slab_detected=false`, `cloth_or_background_structure_detected=false`, `pedestal_board_webbing_detected=false`, and `vessel_identity_confirmed=true`. The remaining reported failure is driven by cross-ring continuity evidence that is currently invalidated by a coordinate-frame bug in `_depth_pair_consistency` plus an implementation-only 0.50-at-1% threshold.
+The corrected-mask post-fusion report found `board_slab_detected=false`, `cloth_or_background_structure_detected=false`, `pedestal_board_webbing_detected=false`, and `vessel_identity_confirmed=true`. The source-camera-Z correction was regression-tested and the existing true3 maps were re-audited without PatchMatch recomputation. All 28 selected cross-ring measurements are finite/measured; the 0.50-at-1% value is diagnostic only (four transitions remain below it), so no geometry transition rerun was justified.
+
+## Final V4 assets and limits
+
+The accepted fused cloud is finite, rank-3, and recognizable in four semantic views. One raw Poisson mesh is preserved unchanged and passed the four-view raw gate. Blender retains the raw and rollback objects, a hidden scan-derived clean-high object, and active `SM_V4_Vessel_LOD0`. Cleanup removed only 622 detached components that met both the 100-face and 0.0035-world-dimension limits; coarser voxel/remesh tests were rejected after measured extent loss.
+
+`MAT_V4_Brass` is built from the uncoated reference set, using `IMG20260912132007.jpg` (SHA-256 `393C8FDCFBB025EA3D58649AB2E6314BF2D6E7185C3ACEA6744B8055AC959F3B`) and a packed 1024² AO detail map. Fresh factory-startup GLB import passed the mesh/material/texture/bounds/normals/export-scope gate and produced four re-import previews under `reconstruction/v4/previews/final_glb_reimport_v1/`.
+
+The final geometry is intentionally honest: porous/missing bowl and stem regions remain where the dense evidence is absent, no reference-modeled geometry was substituted, and absolute physical scale is unverified (normalized scale only).
 
 Canonical immutable source:
 
@@ -126,9 +139,9 @@ COLMAP 4.2.0 commit be5e291 with CUDA
 
 Project handoff also previously verified Python 3.14.2, PyTorch 2.13.0+cu130 with CUDA, NVIDIA GeForce RTX 5050 Laptop GPU, and pyCOLMAP 4.2.0. Implementation refreshes these identities before use.
 
-## Immediate implementation action
+## Completion checkpoint
 
-Read `AGENTS.md`, this file, `progress.md`, the V4 spec, and the V4 implementation plan. Preserve the large intentional cleanup diff and all current V4 dense candidates/maps/hashes. **Do not restart Task 1 or any completed upstream stage.** First correct `_depth_pair_consistency` so source depth is compared against reprojected source-camera Z, add a distinct-pose regression, and re-run the ring audit on the existing true3 depth maps with the corrected 372/372 mask set. Treat the 0.50-at-1% score as diagnostic rather than an authoritative blocker. If corrected evidence and direct cloud inspection show a recognizable finite/rank-3 vessel without dominant board/background contamination, accept the best fused candidate and proceed immediately to one preserved raw Poisson mesh and the four-view raw visual gate. If viable, continue directly into Blender finalization, material/UV, canonical `.blend`/`.glb`, and fresh GLB re-import verification.
+The dense metric fix, distinct-pose regression, corrected true3 ring audit, raw Poisson, four-view raw inspection, scan-preserving cleanup, LOD0/UV/AO, brass material, canonical Blender save/export, and fresh GLB re-import are complete. Do not reopen ingest, segmentation, matching, sparse SfM, PatchMatch, or rejected V1/V2/V3 geometry unless a new user request supplies concrete contrary evidence.
 
 Canonical planning files:
 

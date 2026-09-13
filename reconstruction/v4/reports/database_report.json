@@ -1,0 +1,95 @@
+{
+  "camera_contract": {
+    "camera_mode": "SINGLE",
+    "camera_model": "SIMPLE_RADIAL",
+    "camera_params": "3069.05066755,1536,2040,0",
+    "image_height": 4080,
+    "image_width": 3072
+  },
+  "database_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\database.db",
+  "database_sha256": "96fcca0079ac2b69e91e51c21804d2ee74af433ccaf8f06e1347d372dd1adf7b",
+  "feature_image_count": 372,
+  "feature_manifest_sha256": "5a128a3efe254b2872d7ca2b4a9bc03257ff55a574c1f4a43cd9da127bccb8b6",
+  "feature_model_identity": {
+    "aliked_checkpoint": {
+      "bytes": 2738325,
+      "path": "C:\\Users\\LOQ\\.cache\\torch\\hub\\checkpoints\\aliked-n16rot.pth",
+      "sha256": "ddf3abbf38e86f6a74540d214e1a9712c54b2d8551abc864542199f2347d7332",
+      "status": "available"
+    },
+    "aliked_model_name": "aliked-n16rot",
+    "cuda_available": true,
+    "detection_threshold": 0.2,
+    "device": "cuda",
+    "fingerprint": "cc3c7c41be70cadbd14fd0cac7ba146eb042eb13c04ec8deb94f4e16474a2d4d",
+    "frontend": "aliked_lightglue",
+    "kornia_version": "0.8.2",
+    "lightglue_direct_url": {
+      "url": "https://github.com/cvg/LightGlue.git",
+      "vcs_info": {
+        "commit_id": "eb42fee2d71449efb0aa5c10549752b5d75384d8",
+        "requested_revision": "main",
+        "vcs": "git"
+      }
+    },
+    "lightglue_version": "0.0",
+    "max_image_size": 2048,
+    "max_keypoints": 4096,
+    "torch_version": "2.13.0+cu130"
+  },
+  "imported_pair_count": 2121,
+  "lightglue_matching_runtime_seconds": 85.073,
+  "metrics": {
+    "camera_count": 1,
+    "image_count": 372,
+    "keypoint_rows": 562404,
+    "match_pair_rows": 2121,
+    "pycolmap_matched_image_pairs": 2121,
+    "pycolmap_verified_image_pairs": 2121,
+    "raw_match_rows": 1394499,
+    "verified_inlier_rows": 1237912,
+    "verified_pair_rows": 2118
+  },
+  "min_raw_matches_to_import": 8,
+  "pairs_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\database_pairs.txt",
+  "pairs_sha256": "22b83aef912cd2eb99b8bda37e2d4a83aae2a744b0e54a12af05ccb21e04f1ef",
+  "pycolmap_version": "4.2.0",
+  "raw_match_count": {
+    "max": 3241,
+    "median": 557,
+    "min": 30,
+    "total": 1394499
+  },
+  "schedule_sha256": "da67783f7e4e93a7f762f1fe53033479e463d3c123b6074e2e9c71710ab23caf",
+  "scheduled_pair_count": 2121,
+  "schema_version": 1,
+  "status": "complete",
+  "two_view_geometry_options": {
+    "compute_relative_pose": false,
+    "detect_watermark": true,
+    "filter_stationary_matches": false,
+    "force_H_use": false,
+    "max_H_inlier_ratio": 0.8,
+    "min_E_F_inlier_ratio": 0.95,
+    "min_inlier_ratio": 0.0,
+    "min_num_inliers": 15,
+    "multiple_ignore_watermark": true,
+    "multiple_models": false,
+    "ransac": {
+      "confidence": 0.999,
+      "dyn_num_trials_multiplier": 3.0,
+      "max_error": 4.0,
+      "max_num_trials": 10000,
+      "min_inlier_ratio": 0.25,
+      "min_num_trials": 100,
+      "num_threads": 1,
+      "random_seed": 4213
+    },
+    "stationary_matches_max_error": 4.0,
+    "use_degensac": false,
+    "use_sampson_refinement": true,
+    "watermark_border_size": 0.1,
+    "watermark_detection_max_error": 4.0,
+    "watermark_min_inlier_ratio": 0.7
+  }
+}

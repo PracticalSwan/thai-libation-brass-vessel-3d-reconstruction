@@ -1,0 +1,71 @@
+{
+  "board_refinement": {
+    "available_sequences": [
+      "empty_g8",
+      "empty_g9"
+    ],
+    "negative_only": true,
+    "status": "deferred_until_registered_empty_reference"
+  },
+  "capability": {
+    "groundingdino_t": true,
+    "missing": [],
+    "required_models": [
+      "Grounding DINO-T/Swin-T",
+      "SAM 2.1 Hiera-small"
+    ],
+    "sam2_1_hiera_small": true,
+    "smallseg_primary": false,
+    "status": "available"
+  },
+  "completed_count": 372,
+  "dino_device": "cpu",
+  "model_identity": {
+    "dino_box_threshold": 0.25,
+    "dino_text_threshold": 0.2,
+    "fingerprint": "00bbd8c2e14cc8ba7ee7c6e4ecb930cb053fe91a9256161c24c80a2b1478b1d7",
+    "groundingdino": {
+      "checkpoint": {
+        "bytes": 693997677,
+        "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\models\\groundingdino_swint_ogc.pth",
+        "sha256": "3b3ca2563c77c69f651d7bd133e97139c186df06231157a64c507099c52bc799",
+        "status": "available"
+      },
+      "config": {
+        "bytes": 1049,
+        "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\v4_runtime\\Lib\\site-packages\\groundingdino\\config\\GroundingDINO_SwinT_OGC.py",
+        "sha256": "5d7093aaaeaafbf8eec07a1aef5bee976dff5615d54e0ca88293cd92e008a7c8",
+        "status": "available"
+      },
+      "package": "0.1.0",
+      "root": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\v4_runtime\\Lib\\site-packages\\groundingdino"
+    },
+    "prompt": "a brass libation vessel.",
+    "sam2": {
+      "checkpoint": {
+        "bytes": 184416285,
+        "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\models\\sam2.1_hiera_small.pt",
+        "sha256": "6d1aa6f30de5c92224f8172114de081d104bbd23dd9dc5c58996f0cad5dc4d38",
+        "status": "available"
+      },
+      "config": {
+        "bytes": 3880,
+        "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\v4_runtime\\Lib\\site-packages\\sam2\\configs\\sam2.1\\sam2.1_hiera_s.yaml",
+        "sha256": "592306d059a2df49898fefcb939c11abc9dfc8fd962bc77c31d132e68cb4320a",
+        "status": "available"
+      },
+      "package": "1.0",
+      "root": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\v4_runtime\\Lib\\site-packages\\sam2"
+    }
+  },
+  "records_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\isolation_records.json",
+  "refresh_interval": 24,
+  "repaired_disconnected_component_count": 15,
+  "resumed_without_inference": true,
+  "sam_device": "cuda",
+  "schema_version": 1,
+  "selected_geometry_count": 372,
+  "source_manifest": "C:\\Assumption University\\CSX4213\\Project\\capture_v4\\manifests\\source_manifest.csv",
+  "source_manifest_sha256": "1b075d2d6e250ad562b2c4dd2158cc691cbe6b20cd2b49766ac08b9c63bc4a5c",
+  "status": "complete"
+}

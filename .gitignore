@@ -22,3 +22,20 @@ reconstruction/reference_assisted_v2/evidence/cv_matches/
 reconstruction/reference_assisted_v2/evidence/ornament_crops/
 reconstruction/reference_assisted_v2/evidence/reference_boards/
 reconstruction/reference_assisted_v2/evidence/annotations/*.png
+
+# Local code-intelligence/runtime state and private ML checkpoints.
+# These must never be committed or published.
+.codegraph/
+analysis/ml/checkpoints/
+
+# V4 immutable source and generated runtime/map products stay local; publish
+# only the compact manifests, accepted meshes, curated previews, and reports.
+CSX4213_Project_V4_Images/
+CSX4213_Project_V4_Images.zip
+capture_v4/derived/
+reconstruction/v4/work/features/
+reconstruction/v4/work/models/
+reconstruction/v4/work/v4_runtime/
+reconstruction/v4/dense/*/
+reconstruction/v4/dense/*.ply.vis
+reconstruction/v4/blender/*.blend1

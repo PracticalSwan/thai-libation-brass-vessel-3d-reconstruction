@@ -1,0 +1,41 @@
+{
+  "review_status": "failed",
+  "approval_status": "failed",
+  "reviewer": "Codex fused-cloud visual inspection",
+  "approver": "V4 contamination gate",
+  "previews": {
+    "front": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_fused_semantic\\dense_fused_front.png",
+      "sha256": "12bbc737f3969b77a2a83c00267dd80adbdc9fb073e9018341983efe209c3472"
+    },
+    "quarter": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_fused_semantic\\dense_fused_quarter.png",
+      "sha256": "e775fc46b52291b14bcd46d428afd824670a62a6c705361f9f619e842a5f09a8"
+    },
+    "side": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_fused_semantic\\dense_fused_side.png",
+      "sha256": "2e8ea71089a46e42b09d1e96f1bb92340fa0bcd5ae90544859891831ef1a76c7"
+    },
+    "top_oblique": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_fused_semantic\\dense_fused_top_oblique.png",
+      "sha256": "10d0fb4c105a1c659abc09c605d3dbe143529e7e3f05dfd8361c31a2c5682e1d"
+    }
+  },
+  "regions": {
+    "bowl_and_interior": true,
+    "globe_or_shoulder": true,
+    "neck_lid_or_finial": true,
+    "pedestal_and_base": true
+  },
+  "contamination_findings": {
+    "board_slab_detected": true,
+    "pedestal_board_webbing_detected": true,
+    "cloth_or_background_structure_detected": true,
+    "vessel_identity_confirmed": true
+  },
+  "review_basis": [
+    "Inspected the real fused cloud from front, quarter, side, and top-oblique semantic projections.",
+    "All four views show a broad board slab spanning the vessel and dense pedestal-to-board webbing; the fused result is rejected before Poisson. The image-bottom escape measurement is recorded separately and is not treated as geometry-local webbing.",
+    "The vessel silhouette is identifiable, but contamination findings are disqualifying under the strict gate."
+  ]
+}

@@ -4,7 +4,7 @@ Updated: 2026-09-13
 
 ## Current project state
 
-The project is at **V4 dense/post-fusion acceptance; raw Poisson and Blender finalization remain**.
+The project is at **V4 final-model completion**. Dense/post-fusion acceptance, raw Poisson, Blender cleanup/material/export, and fresh GLB re-import are verified.
 
 - V1: rejected by professor; removed from active project.
 - V2: rejected by professor; removed from active project.
@@ -25,9 +25,13 @@ SIMPLE_RADIAL sparse camera model
 completed 2000-pixel CUDA geometric PatchMatch workspaces/candidates preserved
 corrected StereoFusion mask contract: 372 / 372 `<image_name>.png` masks resolved
 corrected-mask fused SHA-256: df05019e2e56d1c54351f4b2cee161cbcfb7b782a3c6b0d4920d6e303f39d7d8
+raw Poisson: 887,770 vertices / 1,669,931 faces; SHA-256 55a4e92c9491cced508360d1645355ed447785f175df0556b400528fa9522941
+clean high: 883,016 vertices / 1,662,911 faces after strict detached-noise cull
+LOD0: 172,851 vertices / 299,324 faces; one finite angle-based UV map; packed 1024² AO bake
+canonical `.blend` and `.glb`: `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.*`
 ```
 
-The corrected-mask post-fusion evidence currently reports no detected dominant board slab, cloth/background structure, or pedestal-board webbing and confirms vessel identity. Raw Poisson has not yet been authorized by the current software gate because the ring-transition audit still uses a defective cross-camera depth comparison and an implementation-only hard threshold.
+The corrected-mask post-fusion evidence reports no detected dominant board slab, cloth/background structure, or pedestal-board webbing and confirms vessel identity. The cross-camera audit now compares source depth with reprojected source-camera Z; the distinct-pose regression passes, all 28 selected cross-ring measurements are finite/measured, and the 0.50-at-1% value is retained as a diagnostic rather than an acceptance blocker. PatchMatch was not rerun for metric reevaluation.
 
 Canonical immutable V4 source:
 
@@ -155,8 +159,14 @@ Earlier project verification also established Python 3.14.2, PyTorch 2.13.0+cu13
 
 Essential gates are: 688-file manifest reconciliation; full vessel masks with no board/background leakage; coherent cross-connected vessel-centered sparse model; real CUDA PatchMatch smoke; plausible fused cloud/raw Poisson before Blender; valid canonical `.blend`; clean GLB re-import.
 
-### Current completion direction — 2026-09-13
+### V4 completion record — 2026-09-13
 
+<!-- The following pre-completion checkpoint is superseded and retained only as historical context.
 Do not repeat completed upstream stages or restart the full dense run. Correct the ring depth audit first: `_depth_pair_consistency` must compare the source geometric depth map to the reprojected **source-camera Z** rather than to reference-camera depth. Add a distinct-camera-pose regression and re-evaluate existing true3 maps with the corrected 372/372 masks. The current `mean_consistent_fraction_at_1pct >= 0.50` rule is diagnostic only and must not override the authoritative visual/contamination gate. If corrected evidence shows no real transition break and the cloud is recognizable, finite/rank-3, and free of dominant board/background contamination, create one canonical `poisson_raw.ply`, preserve it unchanged, inspect it from front/quarter/side/top-oblique, and—if viable—finish Blender cleanup, LOD0/UV/detail bake, brass material from uncoated references, canonical `.blend`/`.glb`, and fresh GLB re-import. Only a concrete real geometry defect justifies localized dense recomputation.
 
-This documentation update changes direction/state only. It does not itself modify V4 reconstruction code, dense outputs, Blender state, Git history, or external services.
+-->
+The final V4 completion is recorded above; canonical assets, gate reports, and limitations are preserved under `reconstruction/v4/`.
+
+Final acceptance facts: source-camera-Z correction and distinct-pose regression (`7 passed`); corrected true3 ring audit on existing maps with 372/372 masks and no PatchMatch rerun; 28/28 selected cross-ring pairs measured; accepted finite/rank-3 fused cloud; preserved raw Poisson; four-view raw gate; strict scan-only cleanup; LOD0 with stable bounds, explicit-seam UVs, and packed AO; uncoated-reference brass PBR; canonical `.blend`/`.glb`; and fresh factory-startup GLB re-import with one final mesh, finite positions/normals, packed texture, matching bounds, and no debug export.
+
+Known limits remain explicit: porous/missing bowl and stem regions are retained where dense evidence is absent, no synthetic/reference-modeled geometry was added, and absolute physical scale is unverified.

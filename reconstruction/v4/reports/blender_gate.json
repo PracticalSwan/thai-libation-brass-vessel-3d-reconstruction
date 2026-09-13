@@ -1,0 +1,101 @@
+{
+  "canonical_hashes": {
+    "blend": "a06b6b759aded6ff10c8b8174984041030eb6424d16bf5735df75eeafc260033",
+    "glb": "f3adb3a31519d47d6d215aa1cf0037f0f95c9ad99c44871fbcb767c7eabe97c1",
+    "raw_mesh": "55a4e92c9491cced508360d1645355ed447785f175df0556b400528fa9522941"
+  },
+  "canonical_paths": {
+    "blend": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\Thai_Libation_Vessel_V4_FINAL.blend",
+    "glb": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\Thai_Libation_Vessel_V4_FINAL.glb",
+    "raw_mesh": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\mesh\\poisson_raw.ply"
+  },
+  "fresh_glb_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\glb_reimport_verification.json",
+  "glb_gate": {
+    "checks": {
+      "material_present": true,
+      "mesh_nonzero": true,
+      "normals_ok": true,
+      "only_final_exported": true,
+      "sane_bounds": true,
+      "textures_resolve": true
+    },
+    "passed": true
+  },
+  "glb_summary": {
+    "face_count": 299324,
+    "materials": [
+      "MAT_V4_Brass"
+    ],
+    "normals_ok": true,
+    "only_final_exported": true,
+    "sane_bounds": true,
+    "textures_resolve": true,
+    "vertex_count": 199341
+  },
+  "limitations": [
+    "normalized absolute scale unverified",
+    "scan-derived Poisson has porous missing regions retained; no synthetic geometry added",
+    "AO bake emitted Blender circular-dependency informational warning but produced a non-uniform packed image"
+  ],
+  "lod0": {
+    "faces": 299324,
+    "object": "SM_V4_Vessel_LOD0",
+    "uv_layers": 1,
+    "verts": 172851
+  },
+  "material_provenance": {
+    "ao_image": "T_V4_Vessel_AO.png",
+    "name": "MAT_V4_Brass",
+    "reference": "CSX4213_Project_V4_Images/IMG20260912132007.jpg",
+    "reference_sha256": "393C8FDCFBB025EA3D58649AB2E6314BF2D6E7185C3ACEA6744B8055AC959F3B"
+  },
+  "raw_poisson_immutable_sha256": "55a4e92c9491cced508360d1645355ed447785f175df0556b400528fa9522941",
+  "scene_gate": {
+    "checks": {
+      "brass_material": true,
+      "clean_high_present": true,
+      "collections": true,
+      "final_present": true,
+      "nonzero_mesh": true,
+      "raw_preserved": true,
+      "sane_transforms": true
+    },
+    "passed": true
+  },
+  "scene_summary": {
+    "collections": [
+      "COL_V4_Final",
+      "COL_V4_Lookdev",
+      "COL_V4_Source",
+      "COL_V4_Work"
+    ],
+    "final_face_count": 299324,
+    "final_materials": [
+      "MAT_V4_Brass"
+    ],
+    "final_object": "SM_V4_Vessel_LOD0",
+    "final_uv_layers": 1,
+    "final_vertex_count": 172851,
+    "materials": [
+      "Dots Stroke",
+      "MAT_V4_Brass",
+      "MAT_V4_Raw_Inspection",
+      "MAT_V4_Remap_Test",
+      "Material"
+    ],
+    "objects": [
+      "CAM_V4_QA",
+      "LGT_V4_Fill",
+      "LGT_V4_Key",
+      "SM_V4_Poisson_Raw",
+      "SM_V4_Poisson_Raw_Rollback",
+      "SM_V4_Scan_CleanHigh",
+      "SM_V4_Vessel_LOD0"
+    ],
+    "protected_raw_present": true,
+    "rollback_present": true,
+    "sane_transforms": true
+  },
+  "stage": "blender_final_and_glb_reimport",
+  "status": "complete"
+}

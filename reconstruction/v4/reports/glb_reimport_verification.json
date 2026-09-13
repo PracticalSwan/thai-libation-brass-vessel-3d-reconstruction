@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "import_operator": "{'FINISHED'}",
+  "glb": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\Thai_Libation_Vessel_V4_FINAL.glb",
+  "objects": [
+    {
+      "name": "SM_V4_Vessel_LOD0",
+      "type": "MESH",
+      "verts": 199341,
+      "faces": 299324,
+      "uv_layers": 1,
+      "bounds_world": [
+        0.7030263543128967,
+        1.6516691446304321,
+        0.846035361289978
+      ]
+    }
+  ],
+  "mesh_object_count": 1,
+  "mesh_name": "SM_V4_Vessel_LOD0",
+  "world_bounds": [
+    [
+      -0.3807228207588196,
+      -0.4267527461051941,
+      0.10328014194965363
+    ],
+    [
+      0.32230353355407715,
+      0.41928258538246155,
+      1.7549492120742798
+    ]
+  ],
+  "world_dims": [
+    0.7030263543128967,
+    0.8460353314876556,
+    1.6516690701246262
+  ],
+  "world_dims_sorted": [
+    0.7030263543128967,
+    0.8460353314876556,
+    1.6516690701246262
+  ],
+  "finite_positions": true,
+  "finite_normals": true,
+  "materials": [
+    {
+      "name": "MAT_V4_Brass",
+      "images": [
+        {
+          "name": "T_V4_Vessel_AO",
+          "filepath": "",
+          "packed": true
+        }
+      ]
+    }
+  ],
+  "texture_refs": [
+    {
+      "name": "T_V4_Vessel_AO",
+      "filepath": "",
+      "packed": true
+    }
+  ],
+  "unexpected_debug_objects": [],
+  "render_paths": {
+    "front": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\final_glb_reimport_v1\\front.png",
+    "quarter": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\final_glb_reimport_v1\\quarter.png",
+    "side": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\final_glb_reimport_v1\\side.png",
+    "top_oblique": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\final_glb_reimport_v1\\top_oblique.png"
+  }
+}

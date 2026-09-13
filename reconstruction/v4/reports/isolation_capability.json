@@ -1,0 +1,11 @@
+{
+  "groundingdino_t": true,
+  "missing": [],
+  "required_models": [
+    "Grounding DINO-T/Swin-T",
+    "SAM 2.1 Hiera-small"
+  ],
+  "sam2_1_hiera_small": true,
+  "smallseg_primary": false,
+  "status": "available"
+}

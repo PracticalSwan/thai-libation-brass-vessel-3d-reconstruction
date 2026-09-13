@@ -1,0 +1,3150 @@
+{
+  "empty_board_sequences": {
+    "empty_g6": 51,
+    "empty_g8": 31,
+    "empty_g9": 25
+  },
+  "g8_boundary": {
+    "first_empty": "IMG20260912143726.jpg",
+    "last_geometry": "IMG20260912143718.jpg"
+  },
+  "g9_boundary": {
+    "first_empty": "IMG20260912144636.jpg",
+    "last_geometry": "IMG20260912144629.jpg"
+  },
+  "generated_at": "2026-09-12T10:57:00+00:00",
+  "logical_rings": {
+    "g7_r1": {
+      "angle_deg": null,
+      "elevation_role": "lower_horizontal",
+      "frame_count": 91,
+      "frames": [
+        {
+          "filename": "IMG20260912141912.jpg",
+          "frame_index": 0,
+          "phase_01": 0.0,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141915.jpg",
+          "frame_index": 1,
+          "phase_01": 0.010989010989,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141918.jpg",
+          "frame_index": 2,
+          "phase_01": 0.021978021978,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141921.jpg",
+          "frame_index": 3,
+          "phase_01": 0.032967032967,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141922.jpg",
+          "frame_index": 4,
+          "phase_01": 0.043956043956,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141924.jpg",
+          "frame_index": 5,
+          "phase_01": 0.054945054945,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141930.jpg",
+          "frame_index": 6,
+          "phase_01": 0.065934065934,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141934.jpg",
+          "frame_index": 7,
+          "phase_01": 0.076923076923,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141938.jpg",
+          "frame_index": 8,
+          "phase_01": 0.087912087912,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141942.jpg",
+          "frame_index": 9,
+          "phase_01": 0.098901098901,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141946.jpg",
+          "frame_index": 10,
+          "phase_01": 0.10989010989,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141953.jpg",
+          "frame_index": 11,
+          "phase_01": 0.120879120879,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141955.jpg",
+          "frame_index": 12,
+          "phase_01": 0.131868131868,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141957.jpg",
+          "frame_index": 13,
+          "phase_01": 0.142857142857,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912141959.jpg",
+          "frame_index": 14,
+          "phase_01": 0.153846153846,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142001.jpg",
+          "frame_index": 15,
+          "phase_01": 0.164835164835,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142004.jpg",
+          "frame_index": 16,
+          "phase_01": 0.175824175824,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142008.jpg",
+          "frame_index": 17,
+          "phase_01": 0.186813186813,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142010.jpg",
+          "frame_index": 18,
+          "phase_01": 0.197802197802,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142012.jpg",
+          "frame_index": 19,
+          "phase_01": 0.208791208791,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142014.jpg",
+          "frame_index": 20,
+          "phase_01": 0.21978021978,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142015.jpg",
+          "frame_index": 21,
+          "phase_01": 0.230769230769,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142017.jpg",
+          "frame_index": 22,
+          "phase_01": 0.241758241758,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142027.jpg",
+          "frame_index": 23,
+          "phase_01": 0.252747252747,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142030.jpg",
+          "frame_index": 24,
+          "phase_01": 0.263736263736,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142030_01.jpg",
+          "frame_index": 25,
+          "phase_01": 0.274725274725,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142032.jpg",
+          "frame_index": 26,
+          "phase_01": 0.285714285714,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142034.jpg",
+          "frame_index": 27,
+          "phase_01": 0.296703296703,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142036.jpg",
+          "frame_index": 28,
+          "phase_01": 0.307692307692,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142045.jpg",
+          "frame_index": 29,
+          "phase_01": 0.318681318681,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142048.jpg",
+          "frame_index": 30,
+          "phase_01": 0.32967032967,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142049.jpg",
+          "frame_index": 31,
+          "phase_01": 0.340659340659,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142051.jpg",
+          "frame_index": 32,
+          "phase_01": 0.351648351648,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142058.jpg",
+          "frame_index": 33,
+          "phase_01": 0.362637362637,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142059.jpg",
+          "frame_index": 34,
+          "phase_01": 0.373626373626,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142101.jpg",
+          "frame_index": 35,
+          "phase_01": 0.384615384615,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142103.jpg",
+          "frame_index": 36,
+          "phase_01": 0.395604395604,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142105.jpg",
+          "frame_index": 37,
+          "phase_01": 0.406593406593,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142106.jpg",
+          "frame_index": 38,
+          "phase_01": 0.417582417582,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142108.jpg",
+          "frame_index": 39,
+          "phase_01": 0.428571428571,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142117.jpg",
+          "frame_index": 40,
+          "phase_01": 0.43956043956,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142120.jpg",
+          "frame_index": 41,
+          "phase_01": 0.450549450549,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142121.jpg",
+          "frame_index": 42,
+          "phase_01": 0.461538461538,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142124.jpg",
+          "frame_index": 43,
+          "phase_01": 0.472527472527,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142125.jpg",
+          "frame_index": 44,
+          "phase_01": 0.483516483516,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142127.jpg",
+          "frame_index": 45,
+          "phase_01": 0.494505494505,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142128.jpg",
+          "frame_index": 46,
+          "phase_01": 0.505494505495,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142130.jpg",
+          "frame_index": 47,
+          "phase_01": 0.516483516484,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142131.jpg",
+          "frame_index": 48,
+          "phase_01": 0.527472527473,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142133.jpg",
+          "frame_index": 49,
+          "phase_01": 0.538461538462,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142135.jpg",
+          "frame_index": 50,
+          "phase_01": 0.549450549451,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142136.jpg",
+          "frame_index": 51,
+          "phase_01": 0.56043956044,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142138.jpg",
+          "frame_index": 52,
+          "phase_01": 0.571428571429,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142140.jpg",
+          "frame_index": 53,
+          "phase_01": 0.582417582418,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142148.jpg",
+          "frame_index": 54,
+          "phase_01": 0.593406593407,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142150.jpg",
+          "frame_index": 55,
+          "phase_01": 0.604395604396,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142151.jpg",
+          "frame_index": 56,
+          "phase_01": 0.615384615385,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142153.jpg",
+          "frame_index": 57,
+          "phase_01": 0.626373626374,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142154.jpg",
+          "frame_index": 58,
+          "phase_01": 0.637362637363,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142156.jpg",
+          "frame_index": 59,
+          "phase_01": 0.648351648352,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142158.jpg",
+          "frame_index": 60,
+          "phase_01": 0.659340659341,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142200.jpg",
+          "frame_index": 61,
+          "phase_01": 0.67032967033,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142202.jpg",
+          "frame_index": 62,
+          "phase_01": 0.681318681319,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142204.jpg",
+          "frame_index": 63,
+          "phase_01": 0.692307692308,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142206.jpg",
+          "frame_index": 64,
+          "phase_01": 0.703296703297,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142206_01.jpg",
+          "frame_index": 65,
+          "phase_01": 0.714285714286,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142207.jpg",
+          "frame_index": 66,
+          "phase_01": 0.725274725275,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142209.jpg",
+          "frame_index": 67,
+          "phase_01": 0.736263736264,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142210.jpg",
+          "frame_index": 68,
+          "phase_01": 0.747252747253,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142212.jpg",
+          "frame_index": 69,
+          "phase_01": 0.758241758242,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142213.jpg",
+          "frame_index": 70,
+          "phase_01": 0.769230769231,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142215.jpg",
+          "frame_index": 71,
+          "phase_01": 0.78021978022,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142217.jpg",
+          "frame_index": 72,
+          "phase_01": 0.791208791209,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142218.jpg",
+          "frame_index": 73,
+          "phase_01": 0.802197802198,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142220.jpg",
+          "frame_index": 74,
+          "phase_01": 0.813186813187,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142221.jpg",
+          "frame_index": 75,
+          "phase_01": 0.824175824176,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142223.jpg",
+          "frame_index": 76,
+          "phase_01": 0.835164835165,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142225.jpg",
+          "frame_index": 77,
+          "phase_01": 0.846153846154,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142228.jpg",
+          "frame_index": 78,
+          "phase_01": 0.857142857143,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142229.jpg",
+          "frame_index": 79,
+          "phase_01": 0.868131868132,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142231.jpg",
+          "frame_index": 80,
+          "phase_01": 0.879120879121,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142233.jpg",
+          "frame_index": 81,
+          "phase_01": 0.89010989011,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142234.jpg",
+          "frame_index": 82,
+          "phase_01": 0.901098901099,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142235.jpg",
+          "frame_index": 83,
+          "phase_01": 0.912087912088,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142238.jpg",
+          "frame_index": 84,
+          "phase_01": 0.923076923077,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142239.jpg",
+          "frame_index": 85,
+          "phase_01": 0.934065934066,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142241.jpg",
+          "frame_index": 86,
+          "phase_01": 0.945054945055,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142243.jpg",
+          "frame_index": 87,
+          "phase_01": 0.956043956044,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142244.jpg",
+          "frame_index": 88,
+          "phase_01": 0.967032967033,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142246.jpg",
+          "frame_index": 89,
+          "phase_01": 0.978021978022,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912142248.jpg",
+          "frame_index": 90,
+          "phase_01": 0.989010989011,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        }
+      ],
+      "phase_basis": "ordered_visual_phase",
+      "rotation_direction": "forward_ordered_phase",
+      "selected_count": 91,
+      "source_pass_id": "geo_g7"
+    },
+    "g7_r2": {
+      "angle_deg": null,
+      "elevation_role": "lower_horizontal",
+      "frame_count": 51,
+      "frames": [
+        {
+          "filename": "IMG20260912142249.jpg",
+          "frame_index": 0,
+          "phase_01": 0.0,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142251.jpg",
+          "frame_index": 1,
+          "phase_01": 0.019607843137,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142253.jpg",
+          "frame_index": 2,
+          "phase_01": 0.039215686275,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142254.jpg",
+          "frame_index": 3,
+          "phase_01": 0.058823529412,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142256.jpg",
+          "frame_index": 4,
+          "phase_01": 0.078431372549,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142258.jpg",
+          "frame_index": 5,
+          "phase_01": 0.098039215686,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142259.jpg",
+          "frame_index": 6,
+          "phase_01": 0.117647058824,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142301.jpg",
+          "frame_index": 7,
+          "phase_01": 0.137254901961,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142302.jpg",
+          "frame_index": 8,
+          "phase_01": 0.156862745098,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142304.jpg",
+          "frame_index": 9,
+          "phase_01": 0.176470588235,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142305.jpg",
+          "frame_index": 10,
+          "phase_01": 0.196078431373,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142307.jpg",
+          "frame_index": 11,
+          "phase_01": 0.21568627451,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142309.jpg",
+          "frame_index": 12,
+          "phase_01": 0.235294117647,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142315.jpg",
+          "frame_index": 13,
+          "phase_01": 0.254901960784,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142316.jpg",
+          "frame_index": 14,
+          "phase_01": 0.274509803922,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142318.jpg",
+          "frame_index": 15,
+          "phase_01": 0.294117647059,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142319.jpg",
+          "frame_index": 16,
+          "phase_01": 0.313725490196,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142321.jpg",
+          "frame_index": 17,
+          "phase_01": 0.333333333333,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142322.jpg",
+          "frame_index": 18,
+          "phase_01": 0.352941176471,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142324.jpg",
+          "frame_index": 19,
+          "phase_01": 0.372549019608,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142325.jpg",
+          "frame_index": 20,
+          "phase_01": 0.392156862745,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142326.jpg",
+          "frame_index": 21,
+          "phase_01": 0.411764705882,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142328.jpg",
+          "frame_index": 22,
+          "phase_01": 0.43137254902,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142329.jpg",
+          "frame_index": 23,
+          "phase_01": 0.450980392157,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142330.jpg",
+          "frame_index": 24,
+          "phase_01": 0.470588235294,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142332.jpg",
+          "frame_index": 25,
+          "phase_01": 0.490196078431,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142333.jpg",
+          "frame_index": 26,
+          "phase_01": 0.509803921569,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142334.jpg",
+          "frame_index": 27,
+          "phase_01": 0.529411764706,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142336.jpg",
+          "frame_index": 28,
+          "phase_01": 0.549019607843,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142337.jpg",
+          "frame_index": 29,
+          "phase_01": 0.56862745098,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142338.jpg",
+          "frame_index": 30,
+          "phase_01": 0.588235294118,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142339.jpg",
+          "frame_index": 31,
+          "phase_01": 0.607843137255,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142341.jpg",
+          "frame_index": 32,
+          "phase_01": 0.627450980392,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142342.jpg",
+          "frame_index": 33,
+          "phase_01": 0.647058823529,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142343.jpg",
+          "frame_index": 34,
+          "phase_01": 0.666666666667,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142344.jpg",
+          "frame_index": 35,
+          "phase_01": 0.686274509804,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142345.jpg",
+          "frame_index": 36,
+          "phase_01": 0.705882352941,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142346.jpg",
+          "frame_index": 37,
+          "phase_01": 0.725490196078,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142348.jpg",
+          "frame_index": 38,
+          "phase_01": 0.745098039216,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142350.jpg",
+          "frame_index": 39,
+          "phase_01": 0.764705882353,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142352.jpg",
+          "frame_index": 40,
+          "phase_01": 0.78431372549,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142353.jpg",
+          "frame_index": 41,
+          "phase_01": 0.803921568627,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142354.jpg",
+          "frame_index": 42,
+          "phase_01": 0.823529411765,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142355.jpg",
+          "frame_index": 43,
+          "phase_01": 0.843137254902,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142356.jpg",
+          "frame_index": 44,
+          "phase_01": 0.862745098039,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142358.jpg",
+          "frame_index": 45,
+          "phase_01": 0.882352941176,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142359.jpg",
+          "frame_index": 46,
+          "phase_01": 0.901960784314,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142400.jpg",
+          "frame_index": 47,
+          "phase_01": 0.921568627451,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142401.jpg",
+          "frame_index": 48,
+          "phase_01": 0.941176470588,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142403.jpg",
+          "frame_index": 49,
+          "phase_01": 0.960784313725,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        },
+        {
+          "filename": "IMG20260912142404.jpg",
+          "frame_index": 50,
+          "phase_01": 0.980392156863,
+          "selected": false,
+          "selection_reason": "partial_repeated_cycle_secondary_ring"
+        }
+      ],
+      "phase_basis": "ordered_visual_phase",
+      "rotation_direction": "forward_ordered_phase",
+      "selected_count": 0,
+      "source_pass_id": "geo_g7"
+    },
+    "geo_g10": {
+      "angle_deg": null,
+      "elevation_role": "mid_high",
+      "frame_count": 59,
+      "frames": [
+        {
+          "filename": "IMG20260912145120.jpg",
+          "frame_index": 0,
+          "phase_01": 0.0,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145123.jpg",
+          "frame_index": 1,
+          "phase_01": 0.016949152542,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145127.jpg",
+          "frame_index": 2,
+          "phase_01": 0.033898305085,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145130.jpg",
+          "frame_index": 3,
+          "phase_01": 0.050847457627,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145132.jpg",
+          "frame_index": 4,
+          "phase_01": 0.067796610169,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145137.jpg",
+          "frame_index": 5,
+          "phase_01": 0.084745762712,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145140.jpg",
+          "frame_index": 6,
+          "phase_01": 0.101694915254,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145143.jpg",
+          "frame_index": 7,
+          "phase_01": 0.118644067797,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145145.jpg",
+          "frame_index": 8,
+          "phase_01": 0.135593220339,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145147.jpg",
+          "frame_index": 9,
+          "phase_01": 0.152542372881,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145149.jpg",
+          "frame_index": 10,
+          "phase_01": 0.169491525424,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145152.jpg",
+          "frame_index": 11,
+          "phase_01": 0.186440677966,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145153.jpg",
+          "frame_index": 12,
+          "phase_01": 0.203389830508,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145155.jpg",
+          "frame_index": 13,
+          "phase_01": 0.220338983051,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145158.jpg",
+          "frame_index": 14,
+          "phase_01": 0.237288135593,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145200.jpg",
+          "frame_index": 15,
+          "phase_01": 0.254237288136,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145204.jpg",
+          "frame_index": 16,
+          "phase_01": 0.271186440678,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145207.jpg",
+          "frame_index": 17,
+          "phase_01": 0.28813559322,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145210.jpg",
+          "frame_index": 18,
+          "phase_01": 0.305084745763,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145213.jpg",
+          "frame_index": 19,
+          "phase_01": 0.322033898305,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145216.jpg",
+          "frame_index": 20,
+          "phase_01": 0.338983050847,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145218.jpg",
+          "frame_index": 21,
+          "phase_01": 0.35593220339,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145220.jpg",
+          "frame_index": 22,
+          "phase_01": 0.372881355932,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145223.jpg",
+          "frame_index": 23,
+          "phase_01": 0.389830508475,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145225.jpg",
+          "frame_index": 24,
+          "phase_01": 0.406779661017,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145227.jpg",
+          "frame_index": 25,
+          "phase_01": 0.423728813559,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145229.jpg",
+          "frame_index": 26,
+          "phase_01": 0.440677966102,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145231.jpg",
+          "frame_index": 27,
+          "phase_01": 0.457627118644,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145233.jpg",
+          "frame_index": 28,
+          "phase_01": 0.474576271186,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145235.jpg",
+          "frame_index": 29,
+          "phase_01": 0.491525423729,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145236.jpg",
+          "frame_index": 30,
+          "phase_01": 0.508474576271,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145239.jpg",
+          "frame_index": 31,
+          "phase_01": 0.525423728814,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145244.jpg",
+          "frame_index": 32,
+          "phase_01": 0.542372881356,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145247.jpg",
+          "frame_index": 33,
+          "phase_01": 0.559322033898,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145249.jpg",
+          "frame_index": 34,
+          "phase_01": 0.576271186441,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145251.jpg",
+          "frame_index": 35,
+          "phase_01": 0.593220338983,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145254.jpg",
+          "frame_index": 36,
+          "phase_01": 0.610169491525,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145256.jpg",
+          "frame_index": 37,
+          "phase_01": 0.627118644068,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145258.jpg",
+          "frame_index": 38,
+          "phase_01": 0.64406779661,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145300.jpg",
+          "frame_index": 39,
+          "phase_01": 0.661016949153,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145303.jpg",
+          "frame_index": 40,
+          "phase_01": 0.677966101695,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145304.jpg",
+          "frame_index": 41,
+          "phase_01": 0.694915254237,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145305.jpg",
+          "frame_index": 42,
+          "phase_01": 0.71186440678,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145308.jpg",
+          "frame_index": 43,
+          "phase_01": 0.728813559322,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145311.jpg",
+          "frame_index": 44,
+          "phase_01": 0.745762711864,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145314.jpg",
+          "frame_index": 45,
+          "phase_01": 0.762711864407,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145317.jpg",
+          "frame_index": 46,
+          "phase_01": 0.779661016949,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145319.jpg",
+          "frame_index": 47,
+          "phase_01": 0.796610169492,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145319_01.jpg",
+          "frame_index": 48,
+          "phase_01": 0.813559322034,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145321.jpg",
+          "frame_index": 49,
+          "phase_01": 0.830508474576,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145324.jpg",
+          "frame_index": 50,
+          "phase_01": 0.847457627119,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145330.jpg",
+          "frame_index": 51,
+          "phase_01": 0.864406779661,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145333.jpg",
+          "frame_index": 52,
+          "phase_01": 0.881355932203,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145335.jpg",
+          "frame_index": 53,
+          "phase_01": 0.898305084746,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145337.jpg",
+          "frame_index": 54,
+          "phase_01": 0.915254237288,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145340.jpg",
+          "frame_index": 55,
+          "phase_01": 0.932203389831,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145342.jpg",
+          "frame_index": 56,
+          "phase_01": 0.949152542373,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145345.jpg",
+          "frame_index": 57,
+          "phase_01": 0.966101694915,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912145347.jpg",
+          "frame_index": 58,
+          "phase_01": 0.983050847458,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        }
+      ],
+      "phase_basis": "ordered_visual_phase",
+      "rotation_direction": "forward_ordered_phase",
+      "selected_count": 59,
+      "source_pass_id": "geo_g10"
+    },
+    "geo_g11": {
+      "angle_deg": null,
+      "elevation_role": "high",
+      "frame_count": 58,
+      "frames": [
+        {
+          "filename": "IMG20260912150136.jpg",
+          "frame_index": 0,
+          "phase_01": 0.0,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150139.jpg",
+          "frame_index": 1,
+          "phase_01": 0.01724137931,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150141.jpg",
+          "frame_index": 2,
+          "phase_01": 0.034482758621,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150144.jpg",
+          "frame_index": 3,
+          "phase_01": 0.051724137931,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150147.jpg",
+          "frame_index": 4,
+          "phase_01": 0.068965517241,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150150.jpg",
+          "frame_index": 5,
+          "phase_01": 0.086206896552,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150153.jpg",
+          "frame_index": 6,
+          "phase_01": 0.103448275862,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150155.jpg",
+          "frame_index": 7,
+          "phase_01": 0.120689655172,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150157.jpg",
+          "frame_index": 8,
+          "phase_01": 0.137931034483,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150203.jpg",
+          "frame_index": 9,
+          "phase_01": 0.155172413793,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150206.jpg",
+          "frame_index": 10,
+          "phase_01": 0.172413793103,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150209.jpg",
+          "frame_index": 11,
+          "phase_01": 0.189655172414,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150211.jpg",
+          "frame_index": 12,
+          "phase_01": 0.206896551724,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150213.jpg",
+          "frame_index": 13,
+          "phase_01": 0.224137931034,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150215.jpg",
+          "frame_index": 14,
+          "phase_01": 0.241379310345,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150218.jpg",
+          "frame_index": 15,
+          "phase_01": 0.258620689655,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150220.jpg",
+          "frame_index": 16,
+          "phase_01": 0.275862068966,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150222.jpg",
+          "frame_index": 17,
+          "phase_01": 0.293103448276,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150224.jpg",
+          "frame_index": 18,
+          "phase_01": 0.310344827586,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150226.jpg",
+          "frame_index": 19,
+          "phase_01": 0.327586206897,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150229.jpg",
+          "frame_index": 20,
+          "phase_01": 0.344827586207,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150231.jpg",
+          "frame_index": 21,
+          "phase_01": 0.362068965517,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150233.jpg",
+          "frame_index": 22,
+          "phase_01": 0.379310344828,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150235.jpg",
+          "frame_index": 23,
+          "phase_01": 0.396551724138,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150238.jpg",
+          "frame_index": 24,
+          "phase_01": 0.413793103448,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150241.jpg",
+          "frame_index": 25,
+          "phase_01": 0.431034482759,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150245.jpg",
+          "frame_index": 26,
+          "phase_01": 0.448275862069,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150246.jpg",
+          "frame_index": 27,
+          "phase_01": 0.465517241379,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150248.jpg",
+          "frame_index": 28,
+          "phase_01": 0.48275862069,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150250.jpg",
+          "frame_index": 29,
+          "phase_01": 0.5,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150252.jpg",
+          "frame_index": 30,
+          "phase_01": 0.51724137931,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150254.jpg",
+          "frame_index": 31,
+          "phase_01": 0.534482758621,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150256.jpg",
+          "frame_index": 32,
+          "phase_01": 0.551724137931,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150257.jpg",
+          "frame_index": 33,
+          "phase_01": 0.568965517241,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150259.jpg",
+          "frame_index": 34,
+          "phase_01": 0.586206896552,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150301.jpg",
+          "frame_index": 35,
+          "phase_01": 0.603448275862,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150303.jpg",
+          "frame_index": 36,
+          "phase_01": 0.620689655172,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150305.jpg",
+          "frame_index": 37,
+          "phase_01": 0.637931034483,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150307.jpg",
+          "frame_index": 38,
+          "phase_01": 0.655172413793,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150309.jpg",
+          "frame_index": 39,
+          "phase_01": 0.672413793103,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150311.jpg",
+          "frame_index": 40,
+          "phase_01": 0.689655172414,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150313.jpg",
+          "frame_index": 41,
+          "phase_01": 0.706896551724,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150315.jpg",
+          "frame_index": 42,
+          "phase_01": 0.724137931034,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150317.jpg",
+          "frame_index": 43,
+          "phase_01": 0.741379310345,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150317_01.jpg",
+          "frame_index": 44,
+          "phase_01": 0.758620689655,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150319.jpg",
+          "frame_index": 45,
+          "phase_01": 0.775862068966,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150321.jpg",
+          "frame_index": 46,
+          "phase_01": 0.793103448276,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150323.jpg",
+          "frame_index": 47,
+          "phase_01": 0.810344827586,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150326.jpg",
+          "frame_index": 48,
+          "phase_01": 0.827586206897,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150329.jpg",
+          "frame_index": 49,
+          "phase_01": 0.844827586207,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150332.jpg",
+          "frame_index": 50,
+          "phase_01": 0.862068965517,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150334.jpg",
+          "frame_index": 51,
+          "phase_01": 0.879310344828,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150336.jpg",
+          "frame_index": 52,
+          "phase_01": 0.896551724138,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150340.jpg",
+          "frame_index": 53,
+          "phase_01": 0.913793103448,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150343.jpg",
+          "frame_index": 54,
+          "phase_01": 0.931034482759,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150347.jpg",
+          "frame_index": 55,
+          "phase_01": 0.948275862069,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150347_01.jpg",
+          "frame_index": 56,
+          "phase_01": 0.965517241379,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150348.jpg",
+          "frame_index": 57,
+          "phase_01": 0.98275862069,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        }
+      ],
+      "phase_basis": "ordered_visual_phase",
+      "rotation_direction": "forward_ordered_phase",
+      "selected_count": 58,
+      "source_pass_id": "geo_g11"
+    },
+    "geo_g12": {
+      "angle_deg": null,
+      "elevation_role": "steep_high_top_interior",
+      "frame_count": 37,
+      "frames": [
+        {
+          "filename": "IMG20260912150514.jpg",
+          "frame_index": 0,
+          "phase_01": 0.0,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150514_01.jpg",
+          "frame_index": 1,
+          "phase_01": 0.027027027027,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150518.jpg",
+          "frame_index": 2,
+          "phase_01": 0.054054054054,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150520.jpg",
+          "frame_index": 3,
+          "phase_01": 0.081081081081,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150522.jpg",
+          "frame_index": 4,
+          "phase_01": 0.108108108108,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150525.jpg",
+          "frame_index": 5,
+          "phase_01": 0.135135135135,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150527.jpg",
+          "frame_index": 6,
+          "phase_01": 0.162162162162,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150529.jpg",
+          "frame_index": 7,
+          "phase_01": 0.189189189189,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150531.jpg",
+          "frame_index": 8,
+          "phase_01": 0.216216216216,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150533.jpg",
+          "frame_index": 9,
+          "phase_01": 0.243243243243,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150535.jpg",
+          "frame_index": 10,
+          "phase_01": 0.27027027027,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150537.jpg",
+          "frame_index": 11,
+          "phase_01": 0.297297297297,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150539.jpg",
+          "frame_index": 12,
+          "phase_01": 0.324324324324,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150541.jpg",
+          "frame_index": 13,
+          "phase_01": 0.351351351351,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150543.jpg",
+          "frame_index": 14,
+          "phase_01": 0.378378378378,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150545.jpg",
+          "frame_index": 15,
+          "phase_01": 0.405405405405,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150548.jpg",
+          "frame_index": 16,
+          "phase_01": 0.432432432432,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150551.jpg",
+          "frame_index": 17,
+          "phase_01": 0.459459459459,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150553.jpg",
+          "frame_index": 18,
+          "phase_01": 0.486486486486,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150557.jpg",
+          "frame_index": 19,
+          "phase_01": 0.513513513514,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150559.jpg",
+          "frame_index": 20,
+          "phase_01": 0.540540540541,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150601.jpg",
+          "frame_index": 21,
+          "phase_01": 0.567567567568,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150604.jpg",
+          "frame_index": 22,
+          "phase_01": 0.594594594595,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150605.jpg",
+          "frame_index": 23,
+          "phase_01": 0.621621621622,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150607.jpg",
+          "frame_index": 24,
+          "phase_01": 0.648648648649,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150609.jpg",
+          "frame_index": 25,
+          "phase_01": 0.675675675676,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150610.jpg",
+          "frame_index": 26,
+          "phase_01": 0.702702702703,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150612.jpg",
+          "frame_index": 27,
+          "phase_01": 0.72972972973,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150613.jpg",
+          "frame_index": 28,
+          "phase_01": 0.756756756757,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150615.jpg",
+          "frame_index": 29,
+          "phase_01": 0.783783783784,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150617.jpg",
+          "frame_index": 30,
+          "phase_01": 0.810810810811,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150619.jpg",
+          "frame_index": 31,
+          "phase_01": 0.837837837838,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150620.jpg",
+          "frame_index": 32,
+          "phase_01": 0.864864864865,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150622.jpg",
+          "frame_index": 33,
+          "phase_01": 0.891891891892,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150624.jpg",
+          "frame_index": 34,
+          "phase_01": 0.918918918919,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150627.jpg",
+          "frame_index": 35,
+          "phase_01": 0.945945945946,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912150627_01.jpg",
+          "frame_index": 36,
+          "phase_01": 0.972972972973,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        }
+      ],
+      "phase_basis": "ordered_visual_phase",
+      "rotation_direction": "forward_ordered_phase",
+      "selected_count": 37,
+      "source_pass_id": "geo_g12"
+    },
+    "geo_g8": {
+      "angle_deg": null,
+      "elevation_role": "lower_mid",
+      "frame_count": 72,
+      "frames": [
+        {
+          "filename": "IMG20260912143336.jpg",
+          "frame_index": 0,
+          "phase_01": 0.0,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143340.jpg",
+          "frame_index": 1,
+          "phase_01": 0.013888888889,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143344.jpg",
+          "frame_index": 2,
+          "phase_01": 0.027777777778,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143347.jpg",
+          "frame_index": 3,
+          "phase_01": 0.041666666667,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143356.jpg",
+          "frame_index": 4,
+          "phase_01": 0.055555555556,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143404.jpg",
+          "frame_index": 5,
+          "phase_01": 0.069444444444,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143409.jpg",
+          "frame_index": 6,
+          "phase_01": 0.083333333333,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143415.jpg",
+          "frame_index": 7,
+          "phase_01": 0.097222222222,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143419.jpg",
+          "frame_index": 8,
+          "phase_01": 0.111111111111,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143423.jpg",
+          "frame_index": 9,
+          "phase_01": 0.125,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143426.jpg",
+          "frame_index": 10,
+          "phase_01": 0.138888888889,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143429.jpg",
+          "frame_index": 11,
+          "phase_01": 0.152777777778,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143432.jpg",
+          "frame_index": 12,
+          "phase_01": 0.166666666667,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143435.jpg",
+          "frame_index": 13,
+          "phase_01": 0.180555555556,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143438.jpg",
+          "frame_index": 14,
+          "phase_01": 0.194444444444,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143441.jpg",
+          "frame_index": 15,
+          "phase_01": 0.208333333333,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143444.jpg",
+          "frame_index": 16,
+          "phase_01": 0.222222222222,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143449.jpg",
+          "frame_index": 17,
+          "phase_01": 0.236111111111,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143452.jpg",
+          "frame_index": 18,
+          "phase_01": 0.25,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143455.jpg",
+          "frame_index": 19,
+          "phase_01": 0.263888888889,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143458.jpg",
+          "frame_index": 20,
+          "phase_01": 0.277777777778,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143501.jpg",
+          "frame_index": 21,
+          "phase_01": 0.291666666667,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143503.jpg",
+          "frame_index": 22,
+          "phase_01": 0.305555555556,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143507.jpg",
+          "frame_index": 23,
+          "phase_01": 0.319444444444,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143510.jpg",
+          "frame_index": 24,
+          "phase_01": 0.333333333333,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143512.jpg",
+          "frame_index": 25,
+          "phase_01": 0.347222222222,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143516.jpg",
+          "frame_index": 26,
+          "phase_01": 0.361111111111,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143520.jpg",
+          "frame_index": 27,
+          "phase_01": 0.375,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143525.jpg",
+          "frame_index": 28,
+          "phase_01": 0.388888888889,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143525_01.jpg",
+          "frame_index": 29,
+          "phase_01": 0.402777777778,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143529.jpg",
+          "frame_index": 30,
+          "phase_01": 0.416666666667,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143529_01.jpg",
+          "frame_index": 31,
+          "phase_01": 0.430555555556,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143532.jpg",
+          "frame_index": 32,
+          "phase_01": 0.444444444444,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143535.jpg",
+          "frame_index": 33,
+          "phase_01": 0.458333333333,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143538.jpg",
+          "frame_index": 34,
+          "phase_01": 0.472222222222,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143540.jpg",
+          "frame_index": 35,
+          "phase_01": 0.486111111111,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143543.jpg",
+          "frame_index": 36,
+          "phase_01": 0.5,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143545.jpg",
+          "frame_index": 37,
+          "phase_01": 0.513888888889,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143548.jpg",
+          "frame_index": 38,
+          "phase_01": 0.527777777778,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143550.jpg",
+          "frame_index": 39,
+          "phase_01": 0.541666666667,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143553.jpg",
+          "frame_index": 40,
+          "phase_01": 0.555555555556,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143556.jpg",
+          "frame_index": 41,
+          "phase_01": 0.569444444444,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143558.jpg",
+          "frame_index": 42,
+          "phase_01": 0.583333333333,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143601.jpg",
+          "frame_index": 43,
+          "phase_01": 0.597222222222,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143603.jpg",
+          "frame_index": 44,
+          "phase_01": 0.611111111111,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143606.jpg",
+          "frame_index": 45,
+          "phase_01": 0.625,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143609.jpg",
+          "frame_index": 46,
+          "phase_01": 0.638888888889,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143612.jpg",
+          "frame_index": 47,
+          "phase_01": 0.652777777778,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143615.jpg",
+          "frame_index": 48,
+          "phase_01": 0.666666666667,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143617.jpg",
+          "frame_index": 49,
+          "phase_01": 0.680555555556,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143621.jpg",
+          "frame_index": 50,
+          "phase_01": 0.694444444444,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143624.jpg",
+          "frame_index": 51,
+          "phase_01": 0.708333333333,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143626.jpg",
+          "frame_index": 52,
+          "phase_01": 0.722222222222,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143629.jpg",
+          "frame_index": 53,
+          "phase_01": 0.736111111111,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143632.jpg",
+          "frame_index": 54,
+          "phase_01": 0.75,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143635.jpg",
+          "frame_index": 55,
+          "phase_01": 0.763888888889,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143637.jpg",
+          "frame_index": 56,
+          "phase_01": 0.777777777778,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143640.jpg",
+          "frame_index": 57,
+          "phase_01": 0.791666666667,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143642.jpg",
+          "frame_index": 58,
+          "phase_01": 0.805555555556,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143645.jpg",
+          "frame_index": 59,
+          "phase_01": 0.819444444444,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143648.jpg",
+          "frame_index": 60,
+          "phase_01": 0.833333333333,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143650.jpg",
+          "frame_index": 61,
+          "phase_01": 0.847222222222,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143654.jpg",
+          "frame_index": 62,
+          "phase_01": 0.861111111111,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143656.jpg",
+          "frame_index": 63,
+          "phase_01": 0.875,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143659.jpg",
+          "frame_index": 64,
+          "phase_01": 0.888888888889,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143702.jpg",
+          "frame_index": 65,
+          "phase_01": 0.902777777778,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143705.jpg",
+          "frame_index": 66,
+          "phase_01": 0.916666666667,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143708.jpg",
+          "frame_index": 67,
+          "phase_01": 0.930555555556,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143711.jpg",
+          "frame_index": 68,
+          "phase_01": 0.944444444444,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143713.jpg",
+          "frame_index": 69,
+          "phase_01": 0.958333333333,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143715.jpg",
+          "frame_index": 70,
+          "phase_01": 0.972222222222,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912143718.jpg",
+          "frame_index": 71,
+          "phase_01": 0.986111111111,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        }
+      ],
+      "phase_basis": "ordered_visual_phase",
+      "rotation_direction": "forward_ordered_phase",
+      "selected_count": 72,
+      "source_pass_id": "geo_g8"
+    },
+    "geo_g9": {
+      "angle_deg": null,
+      "elevation_role": "mid",
+      "frame_count": 55,
+      "frames": [
+        {
+          "filename": "IMG20260912144413.jpg",
+          "frame_index": 0,
+          "phase_01": 0.0,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144423.jpg",
+          "frame_index": 1,
+          "phase_01": 0.018181818182,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144425.jpg",
+          "frame_index": 2,
+          "phase_01": 0.036363636364,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144429.jpg",
+          "frame_index": 3,
+          "phase_01": 0.054545454545,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144433.jpg",
+          "frame_index": 4,
+          "phase_01": 0.072727272727,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144436.jpg",
+          "frame_index": 5,
+          "phase_01": 0.090909090909,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144439.jpg",
+          "frame_index": 6,
+          "phase_01": 0.109090909091,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144441.jpg",
+          "frame_index": 7,
+          "phase_01": 0.127272727273,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144444.jpg",
+          "frame_index": 8,
+          "phase_01": 0.145454545455,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144447.jpg",
+          "frame_index": 9,
+          "phase_01": 0.163636363636,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144450.jpg",
+          "frame_index": 10,
+          "phase_01": 0.181818181818,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144452.jpg",
+          "frame_index": 11,
+          "phase_01": 0.2,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144455.jpg",
+          "frame_index": 12,
+          "phase_01": 0.218181818182,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144457.jpg",
+          "frame_index": 13,
+          "phase_01": 0.236363636364,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144459.jpg",
+          "frame_index": 14,
+          "phase_01": 0.254545454545,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144502.jpg",
+          "frame_index": 15,
+          "phase_01": 0.272727272727,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144504.jpg",
+          "frame_index": 16,
+          "phase_01": 0.290909090909,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144506.jpg",
+          "frame_index": 17,
+          "phase_01": 0.309090909091,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144509.jpg",
+          "frame_index": 18,
+          "phase_01": 0.327272727273,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144512.jpg",
+          "frame_index": 19,
+          "phase_01": 0.345454545455,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144515.jpg",
+          "frame_index": 20,
+          "phase_01": 0.363636363636,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144517.jpg",
+          "frame_index": 21,
+          "phase_01": 0.381818181818,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144520.jpg",
+          "frame_index": 22,
+          "phase_01": 0.4,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144523.jpg",
+          "frame_index": 23,
+          "phase_01": 0.418181818182,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144525.jpg",
+          "frame_index": 24,
+          "phase_01": 0.436363636364,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144527.jpg",
+          "frame_index": 25,
+          "phase_01": 0.454545454545,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144529.jpg",
+          "frame_index": 26,
+          "phase_01": 0.472727272727,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144531.jpg",
+          "frame_index": 27,
+          "phase_01": 0.490909090909,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144534.jpg",
+          "frame_index": 28,
+          "phase_01": 0.509090909091,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144537.jpg",
+          "frame_index": 29,
+          "phase_01": 0.527272727273,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144540.jpg",
+          "frame_index": 30,
+          "phase_01": 0.545454545455,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144542.jpg",
+          "frame_index": 31,
+          "phase_01": 0.563636363636,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144545.jpg",
+          "frame_index": 32,
+          "phase_01": 0.581818181818,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144547.jpg",
+          "frame_index": 33,
+          "phase_01": 0.6,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144549.jpg",
+          "frame_index": 34,
+          "phase_01": 0.618181818182,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144551.jpg",
+          "frame_index": 35,
+          "phase_01": 0.636363636364,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144552.jpg",
+          "frame_index": 36,
+          "phase_01": 0.654545454545,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144554.jpg",
+          "frame_index": 37,
+          "phase_01": 0.672727272727,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144557.jpg",
+          "frame_index": 38,
+          "phase_01": 0.690909090909,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144559.jpg",
+          "frame_index": 39,
+          "phase_01": 0.709090909091,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144601.jpg",
+          "frame_index": 40,
+          "phase_01": 0.727272727273,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144602.jpg",
+          "frame_index": 41,
+          "phase_01": 0.745454545455,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144604.jpg",
+          "frame_index": 42,
+          "phase_01": 0.763636363636,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144606.jpg",
+          "frame_index": 43,
+          "phase_01": 0.781818181818,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144608.jpg",
+          "frame_index": 44,
+          "phase_01": 0.8,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144610.jpg",
+          "frame_index": 45,
+          "phase_01": 0.818181818182,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144612.jpg",
+          "frame_index": 46,
+          "phase_01": 0.836363636364,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144613.jpg",
+          "frame_index": 47,
+          "phase_01": 0.854545454545,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144615.jpg",
+          "frame_index": 48,
+          "phase_01": 0.872727272727,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144617.jpg",
+          "frame_index": 49,
+          "phase_01": 0.890909090909,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144619.jpg",
+          "frame_index": 50,
+          "phase_01": 0.909090909091,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144621.jpg",
+          "frame_index": 51,
+          "phase_01": 0.927272727273,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144624.jpg",
+          "frame_index": 52,
+          "phase_01": 0.945454545455,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144627.jpg",
+          "frame_index": 53,
+          "phase_01": 0.963636363636,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        },
+        {
+          "filename": "IMG20260912144629.jpg",
+          "frame_index": 54,
+          "phase_01": 0.981818181818,
+          "selected": true,
+          "selection_reason": "primary_geometry_candidate"
+        }
+      ],
+      "phase_basis": "ordered_visual_phase",
+      "rotation_direction": "forward_ordered_phase",
+      "selected_count": 55,
+      "source_pass_id": "geo_g9"
+    }
+  },
+  "rotation_direction_basis": "ordered timestamp phase; clockwise world direction is not measured",
+  "schema_version": 1,
+  "source_manifest_contract": {
+    "angle_deg_is_unmeasured": true,
+    "phase_is_inferred": true,
+    "role_totals": {
+      "appearance_reference": 158,
+      "empty_board": 107,
+      "geometry": 423
+    },
+    "total": 688
+  },
+  "source_root": "C:\\Assumption University\\CSX4213\\Project\\CSX4213_Project_V4_Images",
+  "wrap_detection": {
+    "geo_g10": {
+      "baseline_score": null,
+      "candidate_score": null,
+      "candidate_split_index": null,
+      "confidence": 0.0,
+      "frame_count": 59,
+      "method": "ordered_thumbnail_recurrence_neighborhoods",
+      "reason": "pass_too_short_for_repeated_cycle_gate",
+      "source_pass_id": "geo_g10",
+      "wrap_detected": false
+    },
+    "geo_g11": {
+      "baseline_score": null,
+      "candidate_score": null,
+      "candidate_split_index": null,
+      "confidence": 0.0,
+      "frame_count": 58,
+      "method": "ordered_thumbnail_recurrence_neighborhoods",
+      "reason": "pass_too_short_for_repeated_cycle_gate",
+      "source_pass_id": "geo_g11",
+      "wrap_detected": false
+    },
+    "geo_g12": {
+      "baseline_score": null,
+      "candidate_score": null,
+      "candidate_split_index": null,
+      "confidence": 0.0,
+      "frame_count": 37,
+      "method": "ordered_thumbnail_recurrence_neighborhoods",
+      "reason": "pass_too_short_for_repeated_cycle_gate",
+      "source_pass_id": "geo_g12",
+      "wrap_detected": false
+    },
+    "geo_g7": {
+      "baseline_score": 0.09989027841947973,
+      "candidate_ring_lengths": [
+        91,
+        51
+      ],
+      "candidate_score": 0.050832007778808475,
+      "candidate_split_index": 91,
+      "confidence": 0.3755102936819099,
+      "cycle_classification": "primary_complete_plus_partial_tail",
+      "frame_count": 142,
+      "logical_ring_ids": [
+        "g7_r1",
+        "g7_r2"
+      ],
+      "method": "ordered_thumbnail_recurrence_neighborhoods",
+      "primary_ring_id": "g7_r1",
+      "primary_selection_basis": "median_sharpness",
+      "reason": "multi_neighborhood_recurrence_supported",
+      "relative_score": 0.5088784272413807,
+      "separation": 0.10575064250292125,
+      "source_pass_id": "geo_g7",
+      "wrap_detected": true
+    },
+    "geo_g8": {
+      "baseline_score": null,
+      "candidate_score": null,
+      "candidate_split_index": null,
+      "confidence": 0.0,
+      "frame_count": 72,
+      "method": "ordered_thumbnail_recurrence_neighborhoods",
+      "reason": "pass_too_short_for_repeated_cycle_gate",
+      "source_pass_id": "geo_g8",
+      "wrap_detected": false
+    },
+    "geo_g9": {
+      "baseline_score": null,
+      "candidate_score": null,
+      "candidate_split_index": null,
+      "confidence": 0.0,
+      "frame_count": 55,
+      "method": "ordered_thumbnail_recurrence_neighborhoods",
+      "reason": "pass_too_short_for_repeated_cycle_gate",
+      "source_pass_id": "geo_g9",
+      "wrap_detected": false
+    }
+  }
+}
