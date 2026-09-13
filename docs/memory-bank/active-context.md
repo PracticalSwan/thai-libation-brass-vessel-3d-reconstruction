@@ -1,202 +1,138 @@
 # Active Context
 
-Updated: 2026-09-09
+Updated: 2026-09-13
 
 ## Current focus
 
-Final V2 is **complete, user-approved, exported, freshly re-imported, and accepted with `qa_verdict=SHIP`**. Plan 1 remains frozen and accepted at median silhouette IoU **0.901495**, minimum reliable-view IoU **0.856102**, median landmark error **0.011306** object height, and p95 **0.038080**. Corrected Plan 2 records **77 OK**, **63 camera failures**, **24 mask failures**, and **0 usable model mismatches**. Plans 3-5 produced 12 source-supported ornament families, practical cleanup, shared UVs, 2048² AO/tangent-normal/curvature bakes, component-level photo-informed texture fallback, polished-brass lookdev, and source-camera QA. Exact per-texel texture projection remains unachieved and explicitly disclosed at **0% direct projection / 100% inferred fallback fill**. Two user-review passes corrected the bowl/globe assembly downstream without rewriting the frozen Plan-1 profile: globe max radius **0.15989**, bowl/globe ratio **1.30**, narrow lower support/collar, and about **0.0604** rolled-rim clearance. The canonical `.blend` SHA is `70a47d0dd006fdd2a0c65e2d8302ff495f59037c9feb57b118009dd2820d34ed`; the canonical `.glb` SHA is `f0daa50f1198aa9cb79293780611c88af4910a64a13bf79495067d8c724a9f27`. Fresh GLB import preserves **37** meshes, one brass material, three embedded PBR images, exact bounds, and silhouette IoU **1.0**. Final export-completion verification passes **369/369** project tests, 297/297 raw-image integrity, and 288/288 selected-input verification.
+**V4 is the only active direction.** V1/V2 were rejected by the professor and V3 was visually rejected after direct Blender inspection. Their active reconstruction/model artifacts were removed; do not restore them unless historical recovery is explicitly requested.
 
-## Verified preprocessing state
+The final V4 photographs are present and cannot be retaken. **Implementation has progressed through ingest, isolation, learned matching, sparse reconstruction, and dense reconstruction. The active checkpoint is dense/post-fusion acceptance, immediately before raw Poisson meshing.**
 
-- Raw source: `IMG20260826122949/`, 297 immutable JPEG files at 3072 x 4080.
-- Final decisions: 207 `ACCEPT`, 81 `WARN`, and 9 `REJECT`.
-- Rejected images: indices 289-297 only, the separate hand-held/flipped sequence.
-- Selected set: all 288 `ACCEPT` + `WARN` images.
-- Selected variant: PREPROCESSED, using a geometry-preserving 15% LAB-luminance CLAHE blend.
-- Matching evidence: 2,483 PREPROCESSED versus 2,376 RAW fundamental-matrix RANSAC inliers over ten representative neighboring pairs; PREPROCESSED was non-worse on 9/10.
-- Final selected input: `preprocessing/pycolmap_input/images/`.
-- Fresh 2026-09-05 integrity check: 297/297 raw files unchanged and 288/288 selected files verified against `selection_manifest.csv`.
+Latest verified continuation facts:
 
-## Completed Step 6
+```text
+selected geometry / sparse registered: 372 / 372
+accepted sparse model: one connected model
+sparse points: 65,560
+observations: 460,628
+mean track length: ~7.026
+mean reprojection error: ~1.223 px
+camera model: SIMPLE_RADIAL
+cross-ring connections: 1005 in the healthy source graph
+corrected COLMAP fusion-mask resolution: 372 / 372, zero legacy fallback/missing
+corrected-mask fused SHA-256: df05019e2e56d1c54351f4b2cee161cbcfb7b782a3c6b0d4920d6e303f39d7d8
+```
 
-- `analysis_common.py` provides deterministic selected-manifest access and source integrity verification.
-- `geometry_detection.py` provides scaled SIFT, BF-L2 ratio matching, Fundamental Matrix/RANSAC, epilines, Sampson residuals, and explicit original/analysis scale metadata.
-- `shape_geometry.py` provides grayscale/Canny evidence, classical contour selection, box/centroid/PCA axis, and residual-gated optional ellipse fitting.
-- Primary pair 165-166: 4,653 / 4,643 keypoints, 478 candidates, 300 RANSAC inliers, 0.628 inlier ratio, median Sampson error 0.1431 px².
-- Supporting pair 255-256: 57 candidates / 18 inliers.
-- Six Step 6 presentation figures were generated and visually verified.
-- Measured results: `docs/geometry-ml/geometry-results.md`.
+The corrected-mask post-fusion report found `board_slab_detected=false`, `cloth_or_background_structure_detected=false`, `pedestal_board_webbing_detected=false`, and `vessel_identity_confirmed=true`. The remaining reported failure is driven by cross-ring continuity evidence that is currently invalidated by a coordinate-frame bug in `_depth_pair_consistency` plus an implementation-only 0.50-at-1% threshold.
 
-## Completed Steps 7 + 8
+Canonical immutable source:
 
-### Frozen segmentation dataset
+```text
+CSX4213_Project_V4_Images/
+```
 
-- 36 reviewed source-size binary masks under `ml_dataset/masks/`.
-- Sequence-aware split: 24 train / 6 validation / 6 held-out test.
-- Test indices: 72, 142, 165, 200, 255, 288.
-- Label manifest SHA-256: `9925bccf367221472e2301d7c360bd7ea4f5f947981d81b5da22f71fe5b02e0f`.
-- Annotation method: `opencv_assisted_visually_reviewed_bounded_correction`.
-- No CNN predictions were used as labels; no optional training-only expansion was needed.
-- Dataset record: `docs/geometry-ml/cnn-dataset.md`.
+Do not rename, move, recompress, rotate, overwrite, or delete those files. Historical `IMG20260826122949/` remains immutable evidence/reference and is not V4 geometry input.
 
-### SmallSegCNN training
+## Final V4 media audit
 
-- Project-defined compact U-Net-like CNN trained from random initialization with no pretrained weights/backbone.
-- Actual trainable parameters: 487,297.
-- Input: 384 x 288 `(H x W)`; BCE-with-logits + Dice loss; Adam lr 1e-3; batch 8; seed 4213; threshold 0.5.
-- Training environment: Python 3.14.2, PyTorch 2.13.0+cu130, torchvision 0.28.0+cu130, CUDA 13.0, NVIDIA GeForce RTX 5050 Laptop GPU.
-- 49 epochs completed; best validation epoch 39; runtime 332.112 s.
-- Best validation Dice 0.968066; best validation IoU 0.938252.
-- Final checkpoint remains local at `analysis/ml/checkpoints/best_small_seg_cnn.pt` by default.
+All 688 JPEGs were visually reviewed and inspected with ExifTool/decoded-image QA.
 
-### Frozen held-out evaluation
+```text
+688 total
+158 uncoated appearance/reference
+107 empty-board/background
+423 coated/marked object-bearing geometry
+3072 x 4080, EXIF orientation 1 for all files
+OPPO Reno12 F rear 26mm-equivalent camera, 3.98 mm, f/1.8, digital zoom 1 for all files
+```
 
-- Mean Dice 0.952521; median Dice 0.963377.
-- Mean IoU 0.910745; median IoU 0.929347.
-- Mean precision 0.930884; mean recall 0.976529.
-- Index 72 is the retained weak case: `background_false_positive` caused by the yellow classroom wall/background.
-- Index 200 has `minor_boundary_error`; the other four are recorded as `ok`.
-- Test predictions were not manually repaired and the model was not tuned after held-out inspection.
+Geometry/empty captures use consistent reported settings: ISO 100, 1/100 s, same lens/focal state and manual exposure/WB metadata. The 36 auto-exposure/auto-WB frames are early uncoated detail references, not geometry.
 
-### Step 8 feature-mask analysis
+Six object-bearing source passes were found:
 
-- Primary analysis reuses `geometry_detection.extract_sift`; there is no duplicate SIFT pipeline.
-- Primary masks are CNN-predicted held-out masks, not ground truth.
-- Across six tests: 28,673 SIFT keypoints; 27,431 inside predicted vessel masks; 1,242 outside.
-- Mean per-image vessel feature fraction: 0.952693.
-- These are descriptive counts only and do not prove reconstruction improvement.
-- Measured results: `docs/geometry-ml/ml-results.md`.
+```text
+geo_g7   142 images  14:19:12-14:24:04
+geo_g8    72 images  14:33:36-14:37:18
+geo_g9    55 images  14:44:13-14:46:29
+geo_g10   59 images  14:51:20-14:53:47
+geo_g11   58 images  15:01:36-15:03:48
+geo_g12   37 images  15:05:14-15:06:27
+```
 
-## Completed Step 9 — reconstruction readiness
+G7 has roughly twice a normal ring count plus visual recurrence evidence, so implementation must detect revolution wrap(s) before assigning phase rather than treating 142 views as one circle or blindly splitting at 71.
 
-### 9A full-sequence inference
+Known empty-board sweeps:
 
-- Reused the frozen `SmallSegCNN` checkpoint without retraining or changing the 0.5 threshold.
-- Generated 288 unedited full-sequence predictions under `analysis/ml/full_predictions/`.
-- Generated 288 deterministic connected-component cleanup masks under `analysis/ml/reconstruction_masks/`.
-- Cleanup changed 30 predictions; mean foreground fraction changed from 0.275260 to 0.274487.
-- The cleanup is intentionally conservative and does not remove false-positive regions that remain connected to the predicted vessel; the index-72 yellow-wall limitation remains visible.
+```text
+empty_g6  51 images  13:35:28-13:36:52
+empty_g8  31 images  14:37:26-14:38:25
+empty_g9  25 images  14:46:36-14:47:19
+```
 
-### 9B masked versus unmasked geometry benchmark
+The G8/G9 empty tails are same-setup negative evidence for board-leakage refinement. G6 may be associated with a geometry setup only after camera/framing compatibility is proven.
 
-- Frozen benchmark: 20 representative pairs x 3 feature modes using the existing Step 6 SIFT/Fundamental-Matrix stack.
-- `unmasked`: 5,344 candidates, 3,146 RANSAC inliers, median inlier ratio 0.506391, median Sampson error 0.133932, median grid coverage 0.625.
-- `raw_cnn`: 4,602 candidates, 2,841 inliers, median ratio 0.501026, median Sampson error 0.121050, median grid coverage 0.500.
-- `reconstruction_mask`: identical aggregate result to `raw_cnn` on the frozen pairs.
-- Both masked modes retained only 90.31% of unmasked inliers and failed the fixed 95% qualification floor.
-- Frozen Step 9 recommendation: **unmasked Step 6 SIFT** for later reconstruction preparation.
+No byte-identical duplicate exists. Same-second `_01` pairs include near-duplicates; preserve all source files but select only unique/useful geometry views in the manifest.
 
-### 9C full-sequence connectivity
+## Dominant real-media risks
 
-- Evaluated all 287 adjacent selected-image transitions with the frozen unmasked feature mode.
-- Strong adjacent edges: 273; weak adjacent edges: 14.
-- Tested 14 local skip bridges around weak transitions; strong skip bridges: 0.
-- Conservative subset decision: include 288/288 images; excluded count: 0.
-- `preprocessing/reconstruction_input_v1/manifest.csv` records all include decisions and references the existing selected JPEGs instead of duplicating them.
+The white cloth backdrop has visible folds/seams and is stationary, so it must never support SfM/MVS.
 
-### 9D camera readiness
+The wooden square board is the larger risk: it is richly textured **and rotates with the vessel**, so leaked board pixels can create false but geometrically consistent correspondence tracks and dense structure. V4 masking, sparse diagnostics, and dense fusion must explicitly prove that the vessel rather than the board supports the reconstruction.
 
-- Audited raw EXIF for all 288 selected filenames.
-- One complete camera signature across all 288: OPPO Reno12 F, 3072 x 4080, orientation 1, focal length 3.98 mm, 35-mm equivalent 26 mm, digital zoom 1.0, no missing recorded camera-readiness fields.
-- Starting recommendation for later SfM: one shared camera/intrinsics group, to be validated by actual reconstruction behavior.
-- No calibration, undistortion, image resampling, or reconstruction was performed.
+The dry-shampoo treatment reduced but did not remove brass specularity. Black random markers are dense on the outer bowl, globe/shoulder, pedestal/base, and much of the neck. Higher-risk/sparser regions are the finial, polished transition bands, bowl rim/interior, and base contact. High-angle geometry exists and supplies top/interior/finial evidence.
 
-## Completed Step 10 — sparse SfM
+The 158 uncoated images are reserved for material/lookdev. Broad clean rings are the primary material reference; close-detail references contain some clipping and occasional tripod/green-sheet intrusion and must be sampled selectively.
 
-- Added `pycolmap>=4.2,<5`; measured runtime used pyCOLMAP 4.2.0 on Windows.
-- Windows pyCOLMAP wheel exposed CPU-only SIFT, so the final internal sparse-feature limit is 1200 pixels; the 3072 x 4080 source JPEGs remain unchanged.
-- Camera mode: one shared `SIMPLE_RADIAL` camera initialized from the Step 9 26 mm 35-mm-equivalent evidence at `f=3069.0507 px`, center `(1536, 2040)`, `k=0`.
-- Baseline sequential overlap 20: 1,255,153 SIFT features, 1,500 non-empty matched pairs, 902 verified pairs, 7 sparse models, 216-image union coverage. Largest model: 73/288 images, 6,099 points, 21,351 observations, mean track 3.5007, mean reprojection error 1.2373 px.
-- One controlled overlap-40 retry: 7 sparse models, 223-image union coverage. Largest model again 73 images with 5,769 points, so the frozen ranking selected the baseline component.
-- Selected output: `reconstruction/sparse/best/` plus `points3D.ply`.
-- Visual review found a coherent local camera arc and plausible point cloud, but the fixed >=274-image global acceptance target was not met; `step10_summary.json` records `acceptance_met=false`.
-- Large component boundaries are consistent with earlier Step 9 weak transitions at 73-74, 145-146, and 203-204; this is evidence of fragmentation, not proof of a single cause.
-- Measured narrative: `docs/geometry-ml/sparse-reconstruction.md`.
+## Approved V4 pipeline
 
-## Completed Step 11 — sparse component bridging
+```text
+immutable final source
+-> deterministic 688-file manifest / role / logical-ring / phase audit
+-> Grounding DINO-T + SAM 2.1 masks
+-> phase-compatible empty-board negative refinement where available
+-> mask-filtered ALIKED-N16Rot + LightGlue
+-> circular + cross-ring phase-aware pair schedule
+-> COLMAP geometric verification
+-> pyCOLMAP incremental SfM + bundle adjustment
+-> vessel-centered/board-free sparse gate
+-> image + mask undistortion
+-> real bounded CUDA PatchMatch smoke
+-> full CUDA geometric PatchMatch + mask-aware geometric fusion
+-> Poisson raw mesh
+-> mandatory raw visual gate
+-> conservative Blender scan cleanup
+-> production mesh / UV / useful detail bake
+-> brass PBR from uncoated references
+-> canonical .blend + .glb
+-> fresh GLB re-import verification
+```
 
-- Added shared public Step 10 pyCOLMAP option/extraction/mapping helpers, `sparse_bridging.py`, `run_sparse_bridging.py`, and focused orchestration/contract tests.
-- Diagnosed exactly 2,340 deterministic non-local candidate pairs: 780 around each fixed boundary 73-74, 145-146, and 203-204.
-- Boundaries 73-74 and 145-146 produced zero geometrically verified candidates. Boundary 203-204 produced 68 qualified candidates and 8 selected bridges.
-- Targeted mapping was skipped by the frozen fail-closed gate because every boundary required at least one selected qualified bridge.
-- The one authorized CPU exhaustive fallback used block size 50 and produced 14,900 non-empty raw-match rows, 3,020 geometrically verified rows, eight sparse models, and 224-image union coverage.
-- The selected single model registers 73/288 images with 3,443 points, 12,914 observations, mean track length 3.7508, 1.1989 px mean reprojection error, and one shared `SIMPLE_RADIAL` camera.
-- Visual review found a smooth local camera arc and plausible local point structure, but incomplete coverage and outliers; the registration figure confirms only indices 1-73 are registered.
-- `step11_summary.json` records `bridge_success=false` and `dense_reconstruction_started=false`. The disconnected 224-image union is diagnostic evidence, not a global model.
-- Measured narrative: `docs/geometry-ml/sparse-component-bridging.md`.
+No SIFT comparison, alternate 3D stack, dense-method comparison, mesher bake-off, or synthetic replacement is planned.
 
-## Completed Step 12 — learned sparse recovery capability boundary
+## Camera and matching implications
 
-- Implemented `learned_sparse_recovery.py`, `run_learned_sparse_recovery.py`, and focused domain/runner tests using only ALIKED-N16Rot + ALIKED-LightGlue and the conditional LoMa-B + LoMa-L fallback.
-- The deterministic boundary preserves explicit CPU learned matcher options for both sequential and imported matching, exact Step 11 candidate identity, strict per-image feature-cache layout fingerprints, strongest-single-model acceptance, bounded cleanup, and no learned exhaustive or dense API.
-- Python 3.14.2 / pyCOLMAP 4.2.0 exposed the required learned enums and valid CPU option objects with `max_image_size=1600`; `pycolmap.has_cuda=false`.
-- The real ALIKED smoke on `IMG20260826122949.jpg` and `IMG20260826122953.jpg` failed before extraction because the installed wheel lacks ONNX support. The exact exception is preserved in `step12_capability.json` and `step12_aliked_attempt.json`.
-- The frozen gate stopped 288-image ALIKED extraction and all learned diagnostics/mapping. LoMa stayed `not_run` because it cannot be used as a silent bypass for a missing native learned-runtime prerequisite.
-- Final reports record no selected frontend/model, `metric_acceptance_met=false`, `visual_plausibility_status=failed`, `learned_recovery_success=false`, and `dense_reconstruction_started=false`.
-- Only the strongest-single-model SIFT comparison figure was applicable; it was visually inspected and contains no fabricated learned result. Measured narrative: `docs/geometry-ml/learned-sparse-recovery.md`.
+Actual EXIF strongly supports one shared geometry intrinsic group by default: same device/lens/focal/zoom/resolution/orientation. Start with `SIMPLE_RADIAL`, but split/change only if calibration evidence requires it.
 
-## Completed Step 13 — external learned global recovery
+Cross-ring start angles are not measured. Implementation must estimate circular phase offsets from vessel-only learned match/inlier support and pair by normalized phase rather than raw index. Unequal ring counts and G7 repeated coverage make fixed-index sequential matching invalid.
 
-- Added one official CVG LightGlue dependency pinned to commit `eb42fee2d71449efb0aa5c10549752b5d75384d8`; no existing Torch, torchvision, pyCOLMAP, NumPy, or CUDA package was upgraded/downgraded for Step 13.
-- Real CUDA capability smoke succeeded with 4,096 ALIKED-N16Rot features per smoke image and 2,952 raw LightGlue matches.
-- Reused the exact Step 11 2,340-pair candidate identities and unchanged bridge thresholds. Learned matching produced 778 qualified candidates at 73-74, 418 at 145-146, and 745 at 203-204, with 8 selected bridges per boundary.
-- Diagnostic accounting records 363,318 imported LightGlue matches before verification and 363,171 COLMAP match rows after verification; 147 were removed by geometric verification.
-- One full mapping schedule contained 5,550 sequential overlap-20 pairs plus 24 selected learned bridges = 5,574 unique pairs. It produced 5,269,937 raw LightGlue matches; the verified mapping DB contained 288 images, 1,129,555 keypoints, 5,531 non-empty match rows, and 5,264 verified pairs.
-- pyCOLMAP produced three sparse models. The strongest registered 266/288 images with 29,713 points, 106,480 observations, mean track length 3.5836, one `SIMPLE_RADIAL` camera, and 1.374824 px mean reprojection error.
-- The strongest model crosses the prior 73-74, 145-146, and 203-204 breaks but leaves selected indices 267-288 unregistered. It missed the frozen >=274 global gate by 8 images, so `metric_acceptance_met=false`, `visual_plausibility_status=failed`, and `step13_success=false`.
-- The 266-image model is preserved under `reconstruction/external_learned_recovery/best/` as evidence. Finalization re-ranked the existing local candidates and selected Step 10 `reconstruction/sparse/best` as the downstream source because Steps 10 and 11 both register 73 images and Step 10 has 6,099 points versus 3,443.
-- Four real Step 13 figures were opened and reviewed. The sparse view exposes camera/geometry outliers rather than hiding them, the registration view shows the 267-288 tail gap, and the model comparison shows 266 below the 274 gate.
-- Step 13 is the final sparse-recovery experiment. No retry, second learned frontend, parameter sweep, learned exhaustive matching, dense MVS, meshing, texturing, or Blender work was run.
-- Measured narrative: `docs/geometry-ml/external-learned-global-recovery.md`.
+## Tools verified during planning
 
-## Steps 14-17 local dense, mesh, and photo texture
+```text
+CodeGraph 1.6.0 provider/index available and current
+ExifTool 13.59
+FFmpeg 9.0.1
+COLMAP 4.2.0 commit be5e291 with CUDA
+```
 
-- Used only the frozen Step 10 local fallback: 73 registered images, 6,099 points, one `SIMPLE_RADIAL` camera, and 1.237305 px mean reprojection error. The Step 13 266-image model remains evidence only.
-- Verified the official COLMAP 4.2.0 CUDA CLI and Blender 5.2.0 LTS, then prepared exactly 73 readable undistorted images with unchanged poses/intrinsics/sparse points.
-- One preferred CUDA PatchMatch run completed all 73 depth/normal maps. Geometric fusion produced 391,899 finite colored points, 64.26 times the sparse source; 99.9980% are inside the one-span expanded Step 10 bounds and eight disclosed outliers remain visible.
-- Poisson produced 2,040,189 faces. The one Delaunay alternative was visually rejected for unsupported enclosing sheets.
-- Deterministic component filtering kept components with at least 0.5% of Poisson faces: 18 kept, 5,458 removed, 96.6387% of faces retained. One measured-ratio QEM simplification produced the accepted 283,341-vertex / 499,999-face final mesh.
-- One COLMAP texturing attempt preserved exact coordinates and face connectivity, produced a 4096 x 1902 atlas, and achieved 73.0045% meaningful UV coverage.
-- Headless Blender rendered three calibrated views and saved no `.blend` file. The preview shows truthful partial geometry, dark reflective brass, seams, missing areas, and disconnected surfaces. `steps14_17_success=true`; `blender_manual_cleanup_started=false`.
-- Measured report: `docs/geometry-ml/local-dense-mesh-texture.md`. Integrated machine-readable report: `reconstruction/local_dense/reports/steps14_17_summary.json`.
+Project handoff also previously verified Python 3.14.2, PyTorch 2.13.0+cu130 with CUDA, NVIDIA GeForce RTX 5050 Laptop GPU, and pyCOLMAP 4.2.0. Implementation refreshes these identities before use.
 
-## Verification and evidence
+## Immediate implementation action
 
-- Final Steps 14-17 verification passed 49 focused tests, 106 Step 10-13 regression tests, and all 247 project tests. The four new source modules and four test files compiled successfully.
-- Final hardening terminates the full Windows child-process tree on interruption, checks descendants before restart, refuses unrecorded final/texture outputs, enforces normalized UV coordinates, and records sampled-vertex preview mode for large Step 16 meshes.
-- The real `run_local_reconstruction.py --stage all` path completed with acceptance true and did not add PatchMatch, mesh, or texture attempts.
-- Final artifact reopening verified the Step 10 model, dense PLY, final mesh, textured PLY topology/UVs, atlas, Blender report, and integrated success report.
-- Integrity checks found 297/297 raw images unchanged, 288/288 selected images exact, all 73 local source images exact, and all 160 protected Step 10-13 files unchanged. `.codegraph/` and the private segmentation checkpoint remain present.
-- Documentation link/whitespace and Git diff checks passed. Task-created caches, preview inputs, duplicate Delaunay workspace copies, stale process state, per-camera render intermediates, and accidental `NUL` residue were removed; no `.blend` or manual/sculpt output exists.
-- Step 11-focused suite after review: **32 passed**.
-- Fresh complete project suite after Step 11 review: **141 passed**.
-- Step 12 maintenance boundary: **20 domain tests passed**, **14 runner tests passed**, and **49 Step 10/11 regression tests passed** after the fixes.
-- The runtime-specific LoMa `not_run` reason regression first raised the Step 12 runner suite to **15 passing tests**; final review added a blocked-attempt frontend-identity regression, bringing it to **16 passing tests**.
-- Final complete project verification after Step 12 review: **177 tests passed**; all four Step 12 source/test files compiled successfully.
-- Final Step 13 verification: **21 focused tests passed** and **198 complete project tests passed**. The four Step 13 source/test files compiled successfully and their generated compile-cache residue was removed.
-- Final Step 13 integrity verification found 297/297 raw images unchanged and 288/288 selected inputs matching the frozen manifest; all five protected Step 10/11 report hashes matched their pre-Step-13 values.
-- The retained Step 13 evidence model reopened at 266 registered images, 29,713 points, one `SIMPLE_RADIAL` camera, and 1.374823762049934 px mean reprojection error. The selected downstream Step 10 model reopened at 73 images / 6,099 points / 1.2373052447638215 px.
-- Step 13 cleanup removed its feature cache, diagnostic/mapping databases, pair lists, mapper workspace, and `work/` directory while preserving reports, the evidence model/PLY, and four figures.
-- Step 10/11 selected models reopened with their recorded metrics, and five protected Step 10/11 report hashes exactly matched the pre-Step-12 snapshots.
-- Final integrity verification again found 297/297 raw images unchanged and 288/288 selected images matching the frozen manifest.
-- Step 12 cleanup left no learned transient database, `work/` directory, learned `best/` model, PLY, or compile cache.
-- Syntax compilation succeeded for `learned_sparse_recovery.py`, `run_learned_sparse_recovery.py`, and both Step 12 test files.
-- `sparse_reconstruction.py`, `sparse_bridging.py`, `run_sparse_reconstruction.py`, and `run_sparse_bridging.py` compile successfully with `python -B -m py_compile`.
-- Fresh protected-source verification: 297/297 raw unchanged with zero mismatches; 288/288 selected images verified against `selection_manifest.csv`.
-- The selected Step 10 sparse model re-opened with pyCOLMAP 4.2.0 after finalization and matched `step10_summary.json`: 73 registered images, 6,099 points, one camera, 1.2373052447638215 px mean reprojection error.
-- The selected Step 11 model re-opened and matched `step11_summary.json`: 73 registered images, 3,443 points, one `SIMPLE_RADIAL` camera, 1.1988826674412258 px mean reprojection error.
-- Post-implementation review hardened feature-cache/exhaustive-resume identity validation and corrected the zero-inlier candidate-figure scale; neither change alters the measured Step 11 SfM result.
-- The three Step 10 JSON report hashes exactly matched their pre-Step-11 snapshots.
-- Both final Step 10 figures were visually inspected and explicitly label the 73-image output as the selected component rather than a global 288-image reconstruction.
-- Transient ~195 MB COLMAP databases from baseline/retry and task-created Python caches were removed after model/report export; the sparse component models, selected model, PLY, reports, and figures were preserved.
-- Steps 14-17 dense/MVS/mesh/texture work is complete at the approved 73-view local boundary; only automated headless Blender validation ran.
-- Step 9 measured evidence remains preserved under `analysis/`; Step 10 and Step 11 evidence is under `reconstruction/` and documented in the two sparse-result reports.
+Read `AGENTS.md`, this file, `progress.md`, the V4 spec, and the V4 implementation plan. Preserve the large intentional cleanup diff and all current V4 dense candidates/maps/hashes. **Do not restart Task 1 or any completed upstream stage.** First correct `_depth_pair_consistency` so source depth is compared against reprojected source-camera Z, add a distinct-pose regression, and re-run the ring audit on the existing true3 depth maps with the corrected 372/372 mask set. Treat the 0.50-at-1% score as diagnostic rather than an authoritative blocker. If corrected evidence and direct cloud inspection show a recognizable finite/rank-3 vessel without dominant board/background contamination, accept the best fused candidate and proceed immediately to one preserved raw Poisson mesh and the four-view raw visual gate. If viable, continue directly into Blender finalization, material/UV, canonical `.blend`/`.glb`, and fresh GLB re-import verification.
 
-## Local tooling
+Canonical planning files:
 
-- CodeGraph 1.6.0 is installed and this repository is initialized at `.codegraph/`; the maintenance review confirmed the project index is available and current.
-- Use CodeGraph when dependency, call-path, architecture, or change-impact analysis materially helps. Preserve `.codegraph/`; direct inspection is preferred for trivial edits.
-
-## Next action
-
-Final V2 reconstruction/export work is complete. Preserve the accepted local-dense evidence, rejected V1 prototype, frozen Plan-1/Plan-2 CV evidence, final `.blend`/`.glb`, export reports, and the disclosed component-level texture fallback. Do not reopen sparse/dense reconstruction or silently upgrade the texture claim. The next project action is coursework demo/report packaging and selection of progress-report figures; new Blender reconstruction work should occur only if a new source-supported defect or assessment requirement appears.
+```text
+docs/superpowers/specs/2026-09-10-v4-fast-end-to-end-reconstruction-design.md
+docs/superpowers/plans/2026-09-10-v4-fast-end-to-end-reconstruction.md
+```

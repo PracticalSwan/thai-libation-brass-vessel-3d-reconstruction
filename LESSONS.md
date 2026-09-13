@@ -2,47 +2,48 @@
 
 Read this after `AGENTS.md` when starting substantive work. Keep process lessons here; keep current project state in `docs/memory-bank/`.
 
-## 2026-08-27
+## Capture and preprocessing
 
-- Do not over-engineer, over-complicate, or over-test. The coursework benefits from simple, explainable code and verification proportional to actual risk.
-- Numerical image-quality thresholds are not authoritative by themselves. Validate them against the real capture distribution and visual coverage before rejecting frames.
-- Polished brass naturally produces moving highlights; reflection alone is not a rejection reason.
-- Raw smartphone images are immutable source evidence. Derived data must live outside the raw directory, and cleanup must never touch the originals.
-- Contact-sheet review found that the final hand-held/flipped sequence changes object pose/background relation and should not be treated like the fixed-object SfM orbit without explicit justification.
-- Choose a reconstruction input variant from the exact exported artifact's geometric correspondence evidence, not visual preference or an in-memory approximation. In the final ten-pair experiment, the mild quality-95 JPEG preprocessing produced more total verified inliers and was non-worse on 9 of 10 pairs.
+- Do not over-engineer or over-test. This coursework benefits from simple, explainable code and verification proportional to risk.
+- Numerical image-quality thresholds are not authoritative by themselves. Validate them against the real capture distribution and visual coverage.
+- Polished brass produces moving specular highlights; reflection alone is not a reason to reject a frame, but uncontrolled reflections can destroy dense multi-view consistency.
+- Raw smartphone images are immutable source evidence. Derived data belongs outside the raw directory.
+- A rotating-object sequence with a static background is valid for V4 only after the stationary background is excluded. The authoritative V4 capture is now a fixed-camera turntable sequence: the vessel rotates, background does not, so segmentation/masking must happen before learned feature extraction and must also constrain dense fusion.
+- On the white-background V4 setup, do not assume white-threshold segmentation will separate the vessel because the temporary dry-shampoo coating can be similarly light. Grounding DINO-T + SAM 2.1 is the primary isolation route; a fixed-camera empty-background reference is a refinement cue rather than a competing segmentation pipeline.
+- One horizontal orbit cannot observe the top, bowl interior, finial/lid transitions, and lower pedestal transitions well enough. Use multiple complete 360-degree circles at different fixed camera elevations while keeping the turntable axis fixed.
+- Temporary matte coating suppresses unstable specular highlights, while random non-periodic black spots on the coating supply local texture. Treat those marks only as correspondence texture and capture separate uncoated material references.
+- Choose preprocessing from actual geometric correspondence evidence. Do not copy the old LAB-CLAHE decision blindly to V4.
 
-## 2026-09-06
+## Feature matching and sparse reconstruction
 
-- Keep one owner for orchestration gates. Step 12's `all` stage duplicated ALIKED capability interpretation that already belonged to the diagnose stage, causing state-machine drift and two failing orchestration tests. Let each stage own its report semantics and let the top-level runner branch only on stage results.
-- Cache provenance must identify the exact per-image database layout, not only aggregate feature counts. A learned-feature database can preserve the same total while changing image-level keypoint/descriptor rows; persist a deterministic layout fingerprint before reusing it.
-- Learned pyCOLMAP matching must pass the chosen `FeatureMatchingOptions` explicitly to both sequential and imported-pair matching. Omitting either call can silently fall back to SIFT and invalidate the learned-recovery experiment.
-- On Windows tests that rebuild SQLite files, explicitly close fixture connections before unlinking or replacing the database; transaction context management alone does not close the connection.
-- Unit/orchestration tests validate the Step 12 control contract, not real learned reconstruction quality. Do not report ALIKED/LoMa recovery results until the native runtime stages are actually executed and measured.
-- External learned matching can recover pairwise boundaries and still miss a frozen global-model acceptance target. Step 13 recovered all three critical boundaries and raised the strongest model from 73 to 266 images, but the >=274 gate still failed; do not move the threshold after seeing the result.
-- Report imported learned correspondences before geometric verification separately from COLMAP match rows after verification; they are different quantities even when only a small fraction is removed.
-- External feature caches must explicitly validate their coordinate frame against the source image dimensions before COLMAP import; checking only finite/in-bounds keypoints is not sufficient provenance.
-- Dense full-coordinate minima and maxima are too sensitive to a few stereo outliers to serve as the only plausibility gate. Keep the full bounds and preview visible, then measure a robust percentile core and an explicit source-relative coverage fraction; this run had only 8 of 391,899 points outside the expanded Step 10 box.
-- A subprocess exit code is not sufficient evidence for scripted graphics validation. Blender initially returned success while its Python script had failed; use `--python-exit-code`, remove stale owned preview/report files before rerendering, and require both outputs to reopen.
-- Keep expensive stage outputs restartable by isolating attempt-owned directories and binding reuse to the current source, artifact, preview, tool, and renderer hashes. Persist visual rejection on the candidate itself so a restart cannot silently reconsider a failed mesh or create another alternative.
-- Mesh component ratio is evidence, not a visual substitute. The Delaunay candidate had an 89.50% dominant component but formed giant unsupported sheets, while the visually plausible Poisson surface was fragmented by the partial capture. Use the metric and full-bound preview together, then apply only a measured deterministic cleanup rule.
-- A parent-process PID is not enough for restart safety around native tools that may spawn workers. Terminate the full Windows process tree on interruption, check descendants before restart, and reject generated-output paths whose ownership is not bound by a persisted report.
-- Describe large-geometry previews at their actual evidence level. A deterministic sampled-vertex view can establish bounds, silhouette, and obvious sheets, while an exact mesh surface claim requires importing or rendering the triangle topology itself.
-- Cleanup subprocesses should not inherit console handles when their output is unused. MCP/headless hosts can expose unsupported stdin handles; route helper-process stdio to DEVNULL so timeout cleanup remains reliable.
-- Technical mesh validity is not visual identity. V1 reached zero reported non-manifold mesh objects and aggregate silhouette IoU 0.8060 yet still looked unlike the photographed artifact; final presentation reconstruction must use component-level multi-view CV constraints and source-vs-render visual vetoes rather than treating manifold topology or one aggregate silhouette metric as sufficient.
+- Learned matching must pass the chosen feature/matcher configuration explicitly through every extraction/matching/import stage; silent fallback to SIFT invalidates the experiment.
+- Cache provenance should identify per-image feature layout, mask identity, model/config fingerprint, and source image identity rather than only aggregate counts.
+- ALIKED-N16Rot + LightGlue recovered far more camera coverage than the old SIFT reconstruction on the original capture, so it remains the V4 matcher.
+- Better sparse registration does **not** imply better dense surface reconstruction. V3 reached 266 registered views yet still produced an unacceptable mesh.
+- V4 does not schedule a SIFT/learned-method comparison. Pair ALIKED/LightGlue by circular phase: nearby angular views, wider local neighbors, orbit closure, and corresponding phases across elevation rings.
+- Preserve lens-model consistency. If V4 uses identical fixed camera/lens/settings across rings, shared intrinsics are preferable to letting every frame drift independently. Do not force a shared camera across images whose real imaging contract differs.
+- The reconstructed cameras represent relative object/camera motion. For a turntable sequence, coherent circular virtual-camera rings are expected even though the physical camera was stationary during each capture circle.
 
-## V2 projection fitting: silhouette extrema are not axis-center endpoints
+## Dense reconstruction and meshing
 
-For tilted cameras, the visible top/bottom of a finite-radius revolved component is the projected profile/ring extremum, not the projection of the 3D axis-center endpoint. Likewise, paired semantic left/right landmarks must be evaluated against the named component's projected tangent/extrema rather than the whole assembly silhouette. Confusing these quantities produced systematic elevated-view vertical offsets and inflated globe landmark errors. The accepted Plan-1 fit uses profile-extrema semantics and component-aware lateral landmarks; preserve this distinction in Blender/source-camera validation.
+- COLMAP PatchMatch geometric consistency is the default and only planned dense route after a coherent sparse model.
+- Geometric stereo fusion must use vessel masks transformed consistently into the undistorted dense geometry so stationary background cannot be fused into the object cloud.
+- COLMAP StereoFusion resolves masks as `<image_name>.png`; when the image name already includes `.jpg`, the mask filename is therefore `.jpg.png`. A PNG payload stored only under the JPEG filename can silently bypass the intended mask contract.
+- Cross-view depth consistency must compare quantities expressed in the same camera frame. After backprojecting a reference depth sample and projecting the 3D point into a source view, compare the source depth map to the **reprojected source-camera Z**, never to the original reference-camera Z when the poses differ.
+- Numeric continuity thresholds are diagnostics unless the authoritative project plan explicitly makes them acceptance criteria. A threshold such as `mean_consistent_fraction_at_1pct >= 0.50` must not override direct evidence that the real mask-constrained fused cloud is recognizable and free of dominant board/background contamination.
+- Dense full-coordinate minima/maxima are sensitive to stereo outliers; inspect the actual cloud/mesh, not only scalar bounds.
+- Component ratios are evidence, not a substitute for visual inspection. A large dominant component can still be the wrong shape.
+- Poisson can create a technically valid but visually wrong surface from noisy/fragmented dense points. Always show and preserve the raw surface before cleanup.
+- If the chosen dense route hits a resource limit, make only the bounded same-method resolution retry. Do not switch to a competing 3D reconstruction stack merely to compare methods.
 
-## 2026-09-08
+## Blender and final asset
 
-- Passing a small canonical camera set can still overfit the selected views. Preserve an independent Step 13-registered non-canonical silhouette audit after Blender reconstruction and inspect the worst usable views before accepting geometry.
-- Do not deform geometry around a weak CNN mask or a known camera outlier. Classify downstream audit failures explicitly as mask, camera, or real model mismatch; only repeated evidence-backed model mismatch should route back to geometry.
-- Lens-model consistency is part of the CV contract. Raw source comparisons must use the verified `SIMPLE_RADIAL` projection, while Blender pinhole renders require paired undistorted derived references; mixing coordinate models can create false shape errors.
-- A completed 3D surface inevitably contains regions with different evidence strength. Persist direct multi-view, reviewed/detail-only, symmetry/repetition-inferred, and hidden generic-fill provenance so backside geometry, ornament repetition, and texture fill remain truthful and controllable.
+- Technical mesh validity is not visual identity. The user/professor must be able to recognize the real object.
+- Do not sculpt or hole-fill the first reconstruction preview before it is judged.
+- After raw geometry passes, Blender cleanup may remove tiny components, smooth/relax conservatively, repair defensible holes, use controlled voxel-remesh/shrinkwrap only where necessary, create a practical production mesh, UV unwrap, and build the final material.
+- If the geometry capture uses removable matte spray/marker spots, final brass appearance must come from a separate uncoated reference set rather than from the coated geometry images.
+- A working final asset requires both an editable Blender master and a cleanly re-importable exported GLB.
 
-## 2026-09-09
+## V3 rejection lesson — 2026-09-10
 
-- glTF portability is a separate material contract from Blender lookdev. Preserve the editable master shader, then derive a bounded PBR-compatible export representation instead of destructively flattening the source `.blend`.
-- For polished metal, raw RGB render differences can be dominated by tangent reconstruction and specular highlight placement even when exported geometry is exact. Keep hard structural gates such as silhouette, bounds, object/material presence, and embedded textures; if the planned RGB tolerance is adjusted, do it once, record the measured reason, and never hide the difference image.
-- A truthful fallback may be promotion-ready without becoming a successful direct method. The Plan-5 component-level photo-informed material fallback can support the accepted final appearance while its report still states 0% direct per-texel projection and 100% inferred fill; downstream documentation and guards must preserve that distinction.
+The V3 ALIKED-N16Rot + LightGlue solution registered 266/288 views and the full photometric run produced 266 depth/normal maps, about 80,015 fused dense points, and a 657,693-face Poisson mesh. Direct Blender inspection was still visually poor. The old capture is therefore abandoned for reconstruction. **V4 must spend effort on acquisition quality first, not on further parameter tuning of the rejected dataset.**

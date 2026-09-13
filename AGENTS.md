@@ -2,129 +2,97 @@
 
 ## Scope and objective
 
-This repository is the CSX4213 Computer Vision project for reconstructing a Thai brass libation vessel from smartphone photographs.
+This repository is the CSX4213 Computer Vision project for reconstructing a real Thai brass libation vessel from photographs.
 
-Current phase: preprocessing and Steps 6-17 are complete and verified; sparse recovery remains closed and Step 13 is camera/reference evidence only. V1 under `reconstruction/reference_assisted/` remains a visually rejected prototype. Final V2 is complete, user-approved, exported, freshly re-imported, and accepted with `qa_verdict=SHIP`. The accepted Plan-1 Gate-B fit remains the macro-geometry foundation (median silhouette IoU 0.901495, minimum reliable-view IoU 0.856102, median landmark error 0.011306 object height, p95 0.038080), and its profile JSON remains frozen. Plan 2's corrected non-canonical audit reports zero usable model mismatches. Plans 3-5 produced 12 source-supported ornament families, practical cleanup/UV/bakes, polished-brass lookdev, and a disclosed component-level photo-informed texture fallback; exact per-texel projection was not achieved and must not be claimed. Two user-review passes corrected a source-visible bowl/globe assembly defect downstream without rewriting Plan 1: the finalization profile uses a compact ellipsoidal globe/shoulder envelope (max radius 0.15989), bowl/globe max-radius ratio 1.30, and a separate narrow lower globe support visible inside the bowl. Canonical final assets are `reconstruction/reference_assisted_v2/final/Thai_Libation_Vessel_FINAL.blend` and `.glb`; the fresh GLB re-import preserves exact bounds and silhouette IoU 1.0.
+Current phase: **V4 dense reconstruction/post-fusion acceptance.** V1, V2, and V3 were visually rejected and their reconstruction/model artifacts have been removed. Do not restore or continue those versions unless the user explicitly asks for historical recovery.
 
-## Core rules
+The immutable incoming V4 source set is `CSX4213_Project_V4_Images/` (688 JPEGs). The approved planning documents classify it as 158 uncoated appearance/reference images, 107 empty-board/background images, and 423 object-bearing geometry images. Do not rename, move, recompress, rotate, overwrite, or otherwise modify those files. The current objective is to finish the already-running V4 pipeline from the newest verified state: correct/re-evaluate dense acceptance evidence -> accept the best real mask-constrained fused cloud when the essential visual/structural gates pass -> one preserved raw Poisson mesh -> Blender conservative cleanup/material/export -> final `.blend` and `.glb` -> fresh GLB re-import verification.
 
-- Do not over-engineer, over-complicate, or over-test. Prefer the smallest coherent solution and verification proportional to risk.
-- Preserve the student's existing structure and course explainability. Code must remain understandable enough to explain and reproduce for coursework assessment.
-- Treat `IMG20260826122949/` as immutable raw data. Never overwrite, rename, resize, crop, rotate, recompress, normalize, or delete any original image.
-- The user has authorized publishing the raw photographs and image-processing evidence to the public repository. Raw-file immutability still applies after publication.
-- Preserve photogrammetric geometry. Preprocessing may change photometry mildly but must not crop, warp, perspective-correct, rotate, synthesize detail, remove reflections with AI, or otherwise move image features.
-- Use most usable photographs. Reject only frames that meaningfully harm SfM; preserve angular coverage and overlap.
-- Reflective brass highlights are expected. Do not reject images solely because they contain specular reflections.
-- Use pyCOLMAP for the reconstruction stage rather than hiding the workflow behind the COLMAP GUI.
-- Do not deploy anything unless deployment is explicitly required. This project is primarily local/offline coursework.
-- Deadline execution policy: once an upstream V2 gate passes, continue immediately to the next Blender stage instead of spending another window on already-accepted CV work. Spend the available Blender time on source-supported construction, defect correction, topology, UV/bakes, textures/materials, and visual QA rather than speculative refinements.
-- Pre-export user approval remains a hard gate for any future rebuild/export. `run_final_model.py --stage all` intentionally stops at `final-validate`; the separate `export` stage requires `reports/user_export_approval.json` with `approved=true`. The current final export was performed only after that approval was recorded; do not bypass this gate on later revisions.
+## Protected material
 
-## V2 computer-vision continuity contract
+- `IMG20260826122949/` is historical raw evidence. Keep it immutable unless the user explicitly authorizes its deletion.
+- `preprocessing/` and existing analysis material are historical/reusable references; never mix their old derived images into V4.
+- Preserve reusable source such as OpenCV geometry utilities, ALIKED/LightGlue code, COLMAP/PLY helpers, and ML/segmentation utilities until V4 replacements are working.
+- `.codegraph/` is local code-intelligence state. Maintain it when needed, but never publish its database, daemon state, sockets, or logs.
+- Never publish private checkpoints from `analysis/ml/checkpoints/`.
 
-- Plan 1 is the accepted macro-geometry contract. Downstream Blender work must consume it rather than replacing it with an eyeballed model; return to Plan 1 only when downstream evidence proves a real CV/profile defect.
-- Geometry and final photo-match metrics must be distortion-consistent with the frozen Step 13 `SIMPLE_RADIAL` cameras. Blender's ordinary pinhole camera is display-only unless the source is explicitly undistorted with a matching derived pinhole camera and recorded transform/provenance.
-- `geometry-validate` must include a low-resolution registered-view coverage audit outside the 16 canonical fit views using Step 13 cameras plus existing Step 9/CNN or reviewed masks. Do not optimize directly against this audit set. Inspect the worst views and distinguish mask/camera failure from real model mismatch; a real structural mismatch routes back to the responsible geometry stage.
-- Maintain a per-component surface-evidence coverage report that records directly observed versus symmetry/repetition-inferred versus unsupported/hidden regions. Use it to constrain backside completion, ornament repetition, texture filling, and final QA; never present inferred regions as directly reconstructed.
-- Reuse Step 6 classical edge/contour/PCA/ellipse evidence as an independent diagnostic for circular rims, feet, shoulder/lid rings, and the projected vessel axis where the source edge is reliable. It is a cross-check, not permission to override stronger reviewed multi-view evidence.
-- Do not add a new NeRF/3DGS/neural reconstruction pipeline, retrain the frozen CNN, or reopen sparse/dense photogrammetry merely to finish V2. The deadline path is the accepted CV fit -> Blender reconstruction -> CV validation -> source-derived detail/texture workflow already specified.
+## V4 capture boundary
+
+The final incoming V4 images already exist in `CSX4213_Project_V4_Images/`. Treat that directory as an immutable source boundary. Store manifests and derived V4 products under `capture_v4/` and reconstruction products under `reconstruction/v4/`; do not duplicate or relocate the raw set unless a later implementation need is evidence-backed.
+
+The authoritative V4 geometry capture is **fixed-camera turntable/object-rotation photogrammetry on a white background**. During each capture pass the camera stays completely stationary and the vessel rotates through one full 360-degree circle. The camera may be repositioned only between complete circles.
+
+The final media contains six object-bearing geometry passes spanning lower/horizontal through upper/steep-high coverage; no recapture is possible or required by this project state. The audited EXIF shows one 3072x4080 OPPO Reno12 F rear-lens state with 3.98 mm / 26 mm-equivalent focal length and digital zoom 1 throughout, while the geometry/empty sequences use consistent ISO 100, 1/100 s, and manual-exposure/WB metadata. Use the actual sequence model in the approved spec/plan rather than inventing idealized ring counts or angles.
+
+Because the white background is stationary while the object rotates, **background features are invalid reconstruction features**. Vessel segmentation/masking is mandatory before ALIKED/LightGlue and sparse SfM, and dense reconstruction must also exclude the stationary background. Do not rely on simple white-threshold segmentation because the temporary matte coating may be similar in color to the background.
+
+For geometry capture, use the removable Caring Easy dry-shampoo coating to suppress brass specularity and add non-repeating random black marker spots preferably on the coating, not bare brass. Vary spacing, avoid grids/periodic patterns and oversized blobs, and distribute features across the bowl, globe, neck, lid/finial, pedestal, and transition areas. These marks are texture for correspondence only; never turn them into fabricated geometry.
+
+The final source includes 107 empty-board/background frames and 158 uncoated appearance/reference frames. G8 and G9 contain same-setup rotating empty-board tails that are approved as negative refinement evidence near the base; use G6 only when camera/framing compatibility is proven. Use the uncoated set for final brass material work and never use the coated/marker geometry frames as the final material source.
+
+## V4 reconstruction route
+
+Use one strong primary pipeline. Do not schedule algorithm bake-offs or alternate reconstruction stacks.
+
+1. **Ingest/minimal QA**: decode stills/video, extract frames where needed, inspect camera metadata, resolve orientation, and reject only unreadable or catastrophic blur/exposure failures. FFmpeg and ExifTool are preferred ingest/metadata tools when available.
+2. **Object isolation**: use pretrained Grounding DINO-T to obtain the vessel ROI and SAM 2.1 Hiera-small for the full-resolution mask. Use SAM 2 temporal propagation for ordered rings/video when useful. An empty-background reference is an additional deterministic refinement cue, not a competing segmentation method.
+3. **Conservative preprocessing + learned matching**: preserve image geometry, then use only ALIKED-N16Rot + LightGlue. Discard every learned keypoint outside the object feature mask. Build acquisition-aware pairs from nearby angular views, wider local neighbors, orbit closure, and corresponding phases across elevation rings.
+4. **Sparse reconstruction**: import learned correspondences into COLMAP, run geometric verification, then pyCOLMAP incremental SfM + bundle adjustment. Share intrinsics only for images with the same real camera/lens/settings/resolution contract. Determine the actual camera model from V4 metadata/runtime, with `SIMPLE_RADIAL` only as the initial likely model.
+5. **Dense reconstruction**: undistort the accepted sparse model and its masks consistently, run CUDA COLMAP PatchMatch with geometric consistency, then **geometric** stereo fusion with the object masks so stationary background cannot enter the fused cloud. The only resource fallback is reducing dense max image size from 2000 to 1600 on CUDA OOM.
+6. **Mesh**: use Poisson reconstruction only. Preserve the fused cloud and raw Poisson mesh unchanged until direct visual inspection; remove only unsupported floaters/noise afterward.
+7. **Blender finalization**: inspect the real raw mesh first; then clean, smooth/relax conservatively, repair only defensible holes, use controlled voxel-remesh/shrinkwrap only when needed, create a practical production mesh, UV/detail bake, build brass PBR from uncoated references, and export an editable Blender master plus working GLB.
+
+## Current dense acceptance direction
+
+- The accepted sparse reconstruction has already reached full selected-view registration and the active work is dense/post-fusion acceptance. Do not restart ingest, segmentation, matching, or sparse SfM unless new evidence identifies an upstream defect.
+- Before any new PatchMatch rerun, correct the cross-camera depth-continuity metric in `v4_postfusion.py::_depth_pair_consistency`: after reprojecting a reference point into the source camera, compare the sampled source depth map against the **source-camera Z returned by `_project_points`**, not the original reference-camera depth value. Add a focused regression with distinct camera poses, then re-run the ring audit on the existing true3 geometric depth maps and corrected masks. Metric re-evaluation alone does not justify PatchMatch recomputation.
+- COLMAP StereoFusion mask resolution must follow `<image_name>.png`; for a source named `foo.jpg`, the fusion mask is `foo.jpg.png`. Preserve the corrected 372/372 resolvable-mask contract.
+- `mean_consistent_fraction_at_1pct >= 0.50` is an implementation diagnostic, not an authoritative project requirement. Do not let that numeric threshold alone permanently block progress when the corrected evidence and direct visual inspection show a real, finite/rank-3, recognizable vessel cloud without dominant board/background contamination.
+- Use corrected cross-ring depth evidence to localize genuine discontinuities. If a real geometry break is visible, repair only the smallest affected transition/chunks. Do not restart the full 2000-pixel dense reconstruction merely to chase a diagnostic score.
+- Once the corrected-mask dense cloud passes the essential contamination/identity gate, advance immediately to **one** preserved raw Poisson mesh and inspect fused cloud + raw Poisson from front/quarter/side/top-oblique. If that raw geometry is viable, proceed directly to Blender; do not add more audit infrastructure unless it protects a concrete failure mode.
+- Preserve every accepted dense candidate/workspace/map/hash and the raw Poisson once created. Never overwrite prior evidence merely to produce a cleaner report.
+
+## Time policy
+
+The user wants speed. Skip broad parameter sweeps, broad historical regression suites, duplicate reports, and professor-facing documentation unless explicitly requested.
+
+Keep only essential gates that prevent wasted compute or a broken final asset:
+
+- new V4 media decode correctly;
+- masks preserve the complete vessel;
+- sparse virtual cameras form coherent orbital/ring trajectories with cross-ring connectivity;
+- the real raw dense cloud/Poisson mesh is visually plausible before Blender cleanup;
+- the final Blender master opens correctly;
+- the exported GLB cleanly re-imports.
+
+## CodeGraph navigation
+
+- At the start of architecture-sensitive V4 work, call the available code-intelligence status surface first.
+- After a large cleanup/refactor or when the index is stale, rebuild from the repository root with `codegraph index --force --quiet .`.
+- Use CodeGraph structural search first for symbols, callers/callees, dependency paths, change impact, reusable helpers, and blast radius.
+- Use direct guarded file reads/searches for exact literals, generated paths, configuration values, and content that may be stale or unsupported by the index.
+- Before modifying an existing V4-reusable module, inspect its structural callers/tests and then its exact source. CodeGraph is navigation evidence, not runtime proof.
+- `.codegraph/` must remain Git-ignored.
+- Do not use Codex CLI to run CodeGraph or any other task.
+
+## Core engineering rules
+
+- Prefer the smallest coherent implementation and reuse existing code before adding dependencies.
+- Preserve camera/lens-model consistency; do not mix raw distorted pixels with pinhole renders.
+- Do not fabricate geometry, poses, metrics, screenshots, or reconstruction results.
+- Show the real raw reconstruction before manual Blender beautification.
+- No synthetic/reference-modeled geometry is allowed before the raw reconstruction is inspected and accepted as a viable basis.
+- No Codex CLI agent/AI execution is permitted. Use the exposed ChatGPT integrations/tools.
+- Git milestone authorization: the user explicitly authorizes a focused commit and push to the current configured upstream branch whenever a **major verified V4 milestone** is reached/completed (for example: dense acceptance, raw Poisson acceptance, Blender model acceptance, final export/re-import completion, or another comparably large completed step). Before each milestone commit, inspect branch/upstream/status and the intended diff, stage only milestone-related files, exclude secrets/temp/unrelated user-owned work, use a descriptive commit message, push normally, and verify the remote state. Do not create noisy commits for minor edits/checkpoints. Do not create branches/tags/releases, rewrite history, or force-push unless separately authorized.
 
 ## Session startup
 
 1. Read this file and `CLAUDE.md`.
-2. Read `LESSONS.md` if present, then `docs/memory-bank/active-context.md` and `docs/memory-bank/progress.md` if present.
-3. Inspect Git status and the files relevant to the requested task before editing.
-4. Treat unrelated local changes as contributor-owned work.
-
-## CodeGraph
-
-- `.codegraph/` is installed project state. Use CodeGraph when it materially helps with dependencies, call paths, architecture, or change impact; use direct inspection for trivial edits.
-- Preserve `.codegraph/` unless an explicit CodeGraph maintenance task requires changing or removing it.
-
-## Skills, plugins, and subagents
-
-- Use relevant installed skills and plugins automatically when they materially improve the task; do not add ceremony to simple work.
-- Subagents may be used automatically when they materially reduce uncertainty or parallelize independent work.
-- If using subagents, use only available `*-glm` / GLM-variant agents backed by GLM-5.3. Do not invoke non-GLM variants for this project.
-- Prefer the GLM-5.3 1M-context variants for broad repository or dataset reasoning so the large context is used effectively rather than spawning many narrow agents.
-- Good fits include `python-pro-glm`, `data-scientist-glm`, `machine-learning-engineer-glm`, `test-automator-glm`, and `code-reviewer-glm` when their scopes match.
-- If the GLM request limit is reached, stop using subagents and continue with the parent agent only. Do not fall back to other subagent models.
-- The parent agent must verify subagent claims from files, diffs, tests, or runtime evidence before accepting them.
-
-## Preprocessing requirements
-
-- Audit all raw images for readability, dimensions, EXIF, blur, exposure, contrast, clipping, duplicates, and useful local features.
-- Base thresholds on the real dataset plus visual inspection, not old demonstration thresholds.
-- Decisions should distinguish `ACCEPT`, `WARN`, and `REJECT`; warnings do not automatically become rejects.
-- Compare representative RAW vs PREPROCESSED neighboring-frame SIFT matching before choosing the final reconstruction input variant.
-- Produce explicit reports and a deterministic selected-image set for later pyCOLMAP use.
-- Stop before pyCOLMAP unless the user explicitly continues to reconstruction after preprocessing is verified complete.
-
-## Geometry and ML extension
-
-The shared geometry/ML design is `docs/superpowers/specs/2026-08-27-geometry-ml-integration-design.md`. Steps 6-17 are implemented and verified to their approved boundaries:
-
-- Step 6: `docs/superpowers/plans/2026-08-27-step-6-geometry-detection-analysis.md`.
-- Steps 7+8: `docs/superpowers/plans/2026-08-27-steps-7-8-ml-segmentation-feature-mask-analysis.md`.
-- Step 9: `docs/superpowers/plans/2026-09-05-step-9-reconstruction-readiness.md`; measured results are in `docs/geometry-ml/reconstruction-readiness.md`.
-- Step 10: `docs/superpowers/plans/2026-09-05-step-10-sparse-sfm.md`; measured results are in `docs/geometry-ml/sparse-reconstruction.md`.
-- Step 11: `docs/superpowers/plans/2026-09-05-step-11-sparse-component-bridging.md`; measured results are in `docs/geometry-ml/sparse-component-bridging.md`.
-- Step 12: design `docs/superpowers/specs/2026-09-05-step-12-learned-sparse-recovery-design.md`; plan `docs/superpowers/plans/2026-09-05-step-12-learned-sparse-recovery.md`; measured capability boundary `docs/geometry-ml/learned-sparse-recovery.md`. The native learned path stopped at the missing-ONNX capability gate.
-- Step 13: design `docs/superpowers/specs/2026-09-06-step-13-external-learned-global-recovery-design.md`; plan `docs/superpowers/plans/2026-09-06-step-13-external-learned-global-recovery.md`; measured result `docs/geometry-ml/external-learned-global-recovery.md`. The one external learned map reached 266/288 but failed the frozen >=274 gate, so Step 10 is the selected local fallback.
-- Steps 14-17: design `docs/superpowers/specs/2026-09-06-steps-14-17-local-dense-mesh-texture-design.md`; plan `docs/superpowers/plans/2026-09-06-steps-14-17-local-dense-mesh-texture.md`; measured result `docs/geometry-ml/local-dense-mesh-texture.md`. The local CUDA dense, mesh, photo-texture, and headless Blender validation gates all passed.
-- Reference-assisted V1 presentation rebuild: design `docs/superpowers/specs/2026-09-06-reference-assisted-presentation-rebuild-design.md`; plan `docs/superpowers/plans/2026-09-06-reference-assisted-presentation-rebuild.md`; measured result `docs/geometry-ml/reference-assisted-presentation-model.md`. Preserve it as a separate inferred, visually rejected prototype; do not relabel it as direct dense reconstruction or final presentation output. Final V2 is governed by `docs/superpowers/specs/2026-09-06-final-high-fidelity-vessel-design.md` and the `2026-09-06-final-*` plan set.
-
-- Step 6 exposes verified selected-image access, reusable SIFT keypoints/descriptors and scale metadata, Fundamental Matrix/RANSAC, epipolar geometry, and classical 2D vessel geometry.
-- Steps 7+8 use a small project-defined binary segmentation CNN trained from random initialization; no pretrained backbone, SAM checkpoint, transfer learning, or external segmentation API is part of the verified baseline.
-- The frozen labeled set contains 36 reviewed selected images: 24 train, 6 validation, 6 held-out test, split by separated capture positions/view groups rather than a random neighboring-frame shuffle.
-- Model selection used training/validation evidence only. The held-out test split was evaluated after the model and 0.5 threshold were frozen.
-- Step 8 reuses Step 6 SIFT extraction to measure features inside versus outside CNN-predicted vessel masks; it does not claim reconstruction improvement.
-- Measured Steps 7+8 results are documented in `docs/geometry-ml/cnn-dataset.md` and `docs/geometry-ml/ml-results.md`.
-- Step 9 ran the frozen CNN across all 288 selected images, benchmarked unmasked versus two masked SIFT modes, audited all 287 adjacent transitions, and audited raw EXIF for every selected filename.
-- Step 9B measured `unmasked` SIFT as the reconstruction-readiness baseline: the masked modes retained only 90.31% of unmasked RANSAC inliers and failed the fixed 95% qualification floor.
-- Step 9C conservatively keeps all 288 selected images because none of the 14 weak adjacent transitions had a strong local skip bridge that justified removing the middle frame.
-- Step 9D measured one complete camera signature across all 288 selected frames, supporting one shared camera/intrinsics group as the starting recommendation for later validation.
-- Step 10 used pyCOLMAP 4.2.0 with native unmasked SIFT, one shared `SIMPLE_RADIAL` camera, sequential matching, and incremental mapping. The selected baseline component registers 73/288 images with 6,099 points and 1.2373 px mean reprojection error.
-- The single overlap-40 retry did not improve the largest-component registration count; Step 10 therefore records `acceptance_met=false` and preserves the disconnected sparse components instead of claiming global reconstruction success.
-- Step 11 evaluated exactly 2,340 deterministic non-local pairs around boundaries 73-74, 145-146, and 203-204. The first two boundaries had zero geometrically verified candidates; only 203-204 produced qualified bridges, so targeted mapping was skipped by design.
-- The one authorized CPU exhaustive fallback produced eight models with 224-image union coverage, but its strongest single model still registers 73/288 images with 3,443 points and 1.1989 px mean reprojection error. Step 11 records `bridge_success=false`.
-- Weak CNN predictions must remain visible and documented; they must not be manually repaired and reported as model output.
-- Course-presentation figures must come from real generated project outputs. Do not fabricate geometry, segmentation, training metrics, camera poses, point clouds, or reconstruction results.
-- Step 12 stopped at the approved native capability gate because the installed pyCOLMAP wheel lacks the ONNX support required by ALIKED extraction. Step 13 was the separately authorized architecture change and is complete: one pinned external ALIKED + LightGlue frontend, one diagnostic, one mapping attempt, no retry/sweep/exhaustive fallback, and no dense API. Do not reopen sparse-recovery experimentation or change the >=274 acceptance gate after the result.
-- Steps 14-17 are complete at the approved local boundary. Preserve the exact Step 10 source and all dense/mesh/texture attempt ledgers. Do not rerun PatchMatch, add mesh candidates, alter the deterministic component rule, replace the photo texture, or clean the `reconstruction/local_dense/` evidence as an optimization sweep. The accepted final mesh is `reconstruction/local_dense/mesh/final_mesh.ply`; the accepted textured asset is under `reconstruction/local_dense/texture/attempt_1/`. This protection does not prohibit the separately authorized V2 Blender cleanup/retopology/sculpt stages after their own CV geometry and ornament gates pass.
-
-## Verification
-
-For changed Python code, run the narrow relevant checks and then the real path:
-
-- `python -m py_compile` for changed preprocessing scripts.
-- Relevant tests only; do not inflate the suite without a real regression risk.
-- Run the full preprocessing pipeline on the real capture set before claiming readiness.
-- Confirm every selected derived output is readable and report/output counts agree.
-- Re-hash the raw dataset and prove originals are unchanged.
-- Visually inspect representative outputs and any rejected/warned outliers.
-- Before commit/push, inspect `git status`, the intended diff, and staged files; exclude secrets, temporary/test junk, and unrelated work. Raw images and intentional image-processing evidence are allowed repository content.
-
-## Removal and cleanup policy
-
-Cleanup is required before task completion, but it must be bounded and evidence-based.
-
-- Remove test residue and task-created temporary artifacts once they are no longer needed: `__pycache__/`, `.pytest_cache/`, temporary probes, scratch scripts, transient contact sheets/previews that are not intentional deliverables, debug logs, temporary exports, partial failed outputs, and stale generated files superseded by the verified pipeline.
-- Remove obsolete demo-only files or references when the real workflow replaces them, provided they are inside this project and are not protected/user-authored material still needed for history or assessment.
-- Do not retain duplicate generated outputs, abandoned experiments, temporary comparison folders, or tool-created residue merely because they are harmless.
-- Never delete or modify `IMG20260826122949/` or its original image files. Preserve raw manifests/evidence needed to prove immutability.
-- Never delete contributor work, source code, reports, documentation, Git history, or assets unless the target is clearly obsolete/task-created or the user explicitly authorizes removal.
-- Before broad cleanup, inspect the exact removal set. Prefer exact paths over wildcards. After cleanup, verify required outputs still exist and Git status contains no unintended deletions.
-
-## Git and collaboration
-
-- Repository: `PracticalSwan/thai-libation-brass-vessel-3d-reconstruction`.
-- Default branch: `main`.
-- Raw photographs and intentional image-processing evidence are tracked in Git by user direction. Only secrets belong in `.gitignore`; cleanup policy handles disposable residue instead of hiding it indefinitely.
-- `IMG20260826122949.zip` is a redundant local archive, not part of the requested raw-image/processing publication set. Leave it untracked unless the user separately requests an archive-publication method.
-- Keep commits scoped and descriptive. Do not rewrite history or force-push without explicit authorization.
-- Update `CHANGELOG.md` and `docs/memory-bank/` after meaningful verified milestones, not after trivial edits.
+2. Read `LESSONS.md`, `docs/memory-bank/active-context.md`, and `docs/memory-bank/progress.md` for substantive continuation.
+3. Inspect current workspace/Git state and preserve unrelated user-owned changes.
+4. Verify CodeGraph is current and use it for structural navigation before changing reusable V4 source.
+5. Read the approved V4 spec/plan and continue from the **newest verified checkpoint**, not from stale unchecked boxes. At the current checkpoint, dense metric correction/re-evaluation precedes any new PatchMatch work; once dense is visually acceptable, move to Poisson and Blender without reopening completed upstream stages.
 
 ## Completion standard
 
-A phase is complete only when the requested behavior is implemented, directly verified, temporary residue is cleaned, protected raw data is unchanged, documentation/memory reflects the real state, and Git/publication state is verified when publication was in scope.
+V4 is complete only when the fixed-camera turntable capture has produced a visually acceptable full sparse+dense reconstruction, one preserved raw Poisson mesh, a cleaned scan-derived Blender model, a working canonical `.blend`, and a final GLB that cleanly re-imports for inspection.
