@@ -1,0 +1,44 @@
+{
+  "source": "historical V4 sparse model 0 + verified database.db",
+  "pairs": [
+    {
+      "first": "IMG20260912145220.jpg",
+      "second": "IMG20260912145223.jpg",
+      "ring": "geo_g10",
+      "verified_inliers": 449,
+      "two_view_rotation_deg": 15.881522521983891,
+      "final_rotation_deg": 103.84300534224978,
+      "rotation_disagreement_deg": 87.96148282026589,
+      "shared_final_tracks": 0,
+      "near_duplicate": false,
+      "trajectory_outlier": false,
+      "evaluable": true
+    },
+    {
+      "first": "IMG20260912145254.jpg",
+      "second": "IMG20260912145256.jpg",
+      "ring": "geo_g10",
+      "verified_inliers": 454,
+      "two_view_rotation_deg": 14.729639749291287,
+      "final_rotation_deg": 32.23798898713625,
+      "rotation_disagreement_deg": 17.508349237844965,
+      "shared_final_tracks": 10,
+      "near_duplicate": false,
+      "trajectory_outlier": false,
+      "evaluable": true
+    },
+    {
+      "first": "IMG20260912145330.jpg",
+      "second": "IMG20260912145333.jpg",
+      "ring": "geo_g10",
+      "verified_inliers": 475,
+      "two_view_rotation_deg": 11.814560784488657,
+      "final_rotation_deg": 61.53530777117205,
+      "rotation_disagreement_deg": 49.720746986683395,
+      "shared_final_tracks": 7,
+      "near_duplicate": false,
+      "trajectory_outlier": false,
+      "evaluable": true
+    }
+  ]
+}

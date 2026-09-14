@@ -1,0 +1,16 @@
+{
+  "schema_version": 3,
+  "canonical_path": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\database_snapshot_v3_canonical.db",
+  "canonical_sha256": "658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a",
+  "creation_logical_sha256": "ec4d9a4c9a548903d71704401e50e666408a933dfdb19cc02cbe8e93fd860f97",
+  "table_counts": {
+    "cameras": 1,
+    "images": 372,
+    "keypoints": 372,
+    "matches": 2121,
+    "two_view_geometries": 2121
+  },
+  "source_path": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\database_snapshot_v2_test.db",
+  "source_sha256": "658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a",
+  "read_policy": "immutable bytes after creation; never open this path with SQLite or pyCOLMAP; copy bytes to a disposable working database before every read or write"
+}
