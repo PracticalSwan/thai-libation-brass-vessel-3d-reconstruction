@@ -253,8 +253,13 @@ v3 immutable SQLite snapshot + disposable lineage COMPLETE / HASH VERIFIED
 calibrated fixed independent audit                COMPLETE / 1,868 pairs
 pyCOLMAP 4.2 GLOMAP candidate                    COMPLETE / STRICT GATE FAILED, PRESERVED
 rotation-consensus sparse replacement            COMPLETE / STRICT GATE PASSED
-sparse milestone publication                     NEXT / authorized after focused tests and diff review
-fresh compatible dense workspace                 NOT STARTED
+sparse milestone publication                     COMPLETE / 97bccd3 pushed and origin/main verified
+production dense provenance gate                 COMPLETE / exact-one-write + zero-source-only + sparse-hash lineage hardened and regression-tested
+fresh compatible dense workspace                 NEXT / must use accepted sparse hash above
 PatchMatch/fusion/depth/coverage/contamination   NOT STARTED
 Poisson/Blender/GLB                              NOT STARTED
 ```
+
+## Dense provenance hardening checkpoint (2026-09-14)
+
+Before any repaired PatchMatch run, `audit_final_tile_configs` now fails closed unless the actual geometric tile set contains every registered reference exactly once, contains no source-only reference writes, and carries the accepted repaired sparse model/gate hashes. `postfusion_evidence_gate` independently verifies the same sparse lineage and can compare it to the expected accepted model-directory hash. The historical duplicate-write regression fixture (567 configured references, 372 unique views, 158 duplicates) remains rejected, and a valid exact-one-write fixture is covered. No new repaired PatchMatch computation has started at this checkpoint.

@@ -59,6 +59,7 @@ from v4_dense import (
     dense_workspace_paths,
     dense_typed_file_counts,
     finalize_dense_visual_gate,
+    load_accepted_sparse_lineage,
     postfusion_evidence_gate,
     prune_dense_photometric_maps,
     render_dense_contact_sheet,
@@ -84,6 +85,7 @@ from v4_postfusion import (
     render_semantic_fused_views,
     summarize_g8_g9_negative_evidence,
 )
+from v4_repair import stable_directory_sha256
 from v4_isolation import (
     SegmentationCapabilityError,
     official_model_identity,
@@ -603,6 +605,7 @@ def _fresh_dense_tag(base: str, *, workspace_root: Path | None = None) -> str:
 
 def run_dense_preflight(store: StageStateStore) -> dict[str, Any]:
     sparse_path, sparse_report = _sparse_report()
+    accepted_sparse_lineage = load_accepted_sparse_lineage()
     config = V4DenseConfig()
     isolation_path = RECONSTRUCTION_V4_ROOT / "work" / "isolation_records.json"
     if not isolation_path.is_file():
@@ -737,12 +740,19 @@ def _run_dense_patch_match(
 
 def run_dense(store: StageStateStore) -> dict[str, Any]:
     sparse_path, sparse_report = _sparse_report()
+    accepted_sparse_lineage = load_accepted_sparse_lineage()
     isolation_path = RECONSTRUCTION_V4_ROOT / "work" / "isolation_records.json"
     isolation_records = _read_records(isolation_path)
     image_names = _dense_image_names(sparse_report)
     sparse_model_path = Path(str(sparse_report["models"][int(sparse_report.get("best_model_index", 0))]["model_path"]))
     if not sparse_model_path.is_dir():
         raise FileNotFoundError(f"V4 sparse model directory is missing: {sparse_model_path}")
+    observed_sparse_hash = stable_directory_sha256(sparse_model_path)
+    if observed_sparse_hash != accepted_sparse_lineage["accepted_sparse_model_sha256"]:
+        raise RuntimeError(
+            "V4 dense work is blocked: the sparse model is not the accepted repaired sparse candidate "
+            f"({observed_sparse_hash} != {accepted_sparse_lineage['accepted_sparse_model_sha256']})"
+        )
     config = V4DenseConfig()
     preflight_path = RECONSTRUCTION_V4_ROOT / "reports" / "dense_preflight.json"
     input_hashes = {
@@ -987,6 +997,7 @@ def run_dense(store: StageStateStore) -> dict[str, Any]:
             image_names=image_names,
             ring_by_name=ring_by_name,
             max_sources=dense_source_limit,
+            sparse_lineage=accepted_sparse_lineage,
             prior_review_estimate={
                 "references_without_cross_ring_source_count": 150,
                 "cross_ring_directed_source_count": 954,
@@ -1039,6 +1050,7 @@ def run_dense(store: StageStateStore) -> dict[str, Any]:
             "workspace_root": str(full_paths["root"].resolve()),
             "contamination": contamination,
             "source_selection_audit": tile_audit,
+            "sparse_lineage": accepted_sparse_lineage,
             "ring_transition_audit": ring_audit,
             "semantic_previews": {key: str(path.resolve()) for key, path in semantic_preview_paths.items()},
             "g8_g9_negative_evidence": negative_evidence,
@@ -1046,6 +1058,7 @@ def run_dense(store: StageStateStore) -> dict[str, Any]:
         contamination_report["postfusion_evidence_gate"] = postfusion_evidence_gate(
             contamination_report,
             fused_path=fused_path,
+            expected_sparse_model_sha256=accepted_sparse_lineage["accepted_sparse_model_sha256"],
         )
         write_json(contamination_report_path, contamination_report)
         report = {
@@ -1096,6 +1109,7 @@ def run_dense(store: StageStateStore) -> dict[str, Any]:
 
 
 def run_dense_visual(store: StageStateStore) -> dict[str, Any]:
+    accepted_sparse_lineage = load_accepted_sparse_lineage()
     report_path = RECONSTRUCTION_V4_ROOT / "reports" / "dense_gate.json"
     if not report_path.is_file():
         raise FileNotFoundError(f"V4 dense report is missing: {report_path}")
@@ -1113,6 +1127,7 @@ def run_dense_visual(store: StageStateStore) -> dict[str, Any]:
     postfusion_gate = postfusion_evidence_gate(
         contamination_report,
         fused_path=Path(str(dense_report.get("fused_path", ""))),
+        expected_sparse_model_sha256=accepted_sparse_lineage["accepted_sparse_model_sha256"],
     )
     if not postfusion_gate["passed"]:
         raise RuntimeError(
@@ -1163,6 +1178,7 @@ def run_dense_visual(store: StageStateStore) -> dict[str, Any]:
 
 
 def run_mesh(store: StageStateStore) -> dict[str, Any]:
+    accepted_sparse_lineage = load_accepted_sparse_lineage()
     dense_path = RECONSTRUCTION_V4_ROOT / "reports" / "dense_gate.json"
     if not dense_path.is_file():
         raise FileNotFoundError(f"V4 dense report is missing: {dense_path}")
@@ -1176,6 +1192,7 @@ def run_mesh(store: StageStateStore) -> dict[str, Any]:
     postfusion_gate = postfusion_evidence_gate(
         contamination_report,
         fused_path=Path(str(dense_report.get("fused_path", ""))),
+        expected_sparse_model_sha256=accepted_sparse_lineage["accepted_sparse_model_sha256"],
     )
     if not postfusion_gate["passed"]:
         raise RuntimeError(

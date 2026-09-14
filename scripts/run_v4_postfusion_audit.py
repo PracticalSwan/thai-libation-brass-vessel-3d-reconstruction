@@ -12,7 +12,7 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from v4_config import CAPTURE_V4_ROOT, RECONSTRUCTION_V4_ROOT, sha256_file, write_json
-from v4_dense import postfusion_evidence_gate
+from v4_dense import load_accepted_sparse_lineage, postfusion_evidence_gate
 from v4_postfusion import build_postfusion_evidence, load_ring_by_name, summarize_g8_g9_negative_evidence
 
 
@@ -30,6 +30,7 @@ def main() -> int:
     parser.add_argument("--output", type=Path, default=RECONSTRUCTION_V4_ROOT / "reports" / "dense_contamination_gate.json")
     args = parser.parse_args()
     dense_report = _read_json(args.dense_report)
+    sparse_lineage = load_accepted_sparse_lineage()
     fused_path = Path(str(dense_report.get("fused_path", "")))
     if not fused_path.is_file():
         raise FileNotFoundError(f"fused cloud is missing: {fused_path}")
@@ -65,6 +66,7 @@ def main() -> int:
         image_names=image_names,
         ring_by_name=ring_by_name,
         tile_config_paths=configs,
+        sparse_lineage=sparse_lineage,
         prior_review_estimate={
             "references_without_cross_ring_source_count": 150,
             "cross_ring_directed_source_count": 954,
@@ -76,7 +78,11 @@ def main() -> int:
             args.isolation_records,
         ),
     )
-    evidence["postfusion_evidence_gate"] = postfusion_evidence_gate(evidence, fused_path=fused_path)
+    evidence["postfusion_evidence_gate"] = postfusion_evidence_gate(
+        evidence,
+        fused_path=fused_path,
+        expected_sparse_model_sha256=sparse_lineage["accepted_sparse_model_sha256"],
+    )
     evidence["dense_report_sha256_before_update"] = sha256_file(args.dense_report)
     write_json(args.output, evidence)
     dense_report["metrics"] = dict(dense_report.get("metrics", {}))

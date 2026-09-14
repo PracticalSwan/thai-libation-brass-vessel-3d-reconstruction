@@ -9,7 +9,7 @@ as a failed/indeterminate measurement; callers must not turn it into a zero.
 
 from __future__ import annotations
 
-from collections import defaultdict
+from collections import Counter, defaultdict
 import csv
 import hashlib
 import json
@@ -23,6 +23,8 @@ from PIL import Image, ImageDraw
 
 from local_reconstruction_io import read_ply
 from v4_config import sha256_file, write_json
+from v4_dense import validate_sparse_lineage
+from v4_repair import stable_directory_sha256
 
 
 SEMANTIC_VIEW_KEYS = ("front", "quarter", "side", "top_oblique")
@@ -171,6 +173,7 @@ def audit_final_tile_configs(
     image_names: Sequence[str],
     ring_by_name: Mapping[str, str],
     max_sources: int,
+    sparse_lineage: Mapping[str, Any] | None = None,
     prior_review_estimate: Mapping[str, Any] | None = None,
     chunk_size: int | None = None,
 ) -> dict[str, Any]:
@@ -184,6 +187,10 @@ def audit_final_tile_configs(
     configured_reference_count = 0
     source_only_reference_count = 0
     source_only_references: set[str] = set()
+    reference_occurrences: Counter[str] = Counter()
+    sparse_lineage_check = validate_sparse_lineage(sparse_lineage)
+    if not sparse_lineage_check["passed"]:
+        errors.extend(str(reason) for reason in sparse_lineage_check["reasons"])
     for path in sorted((Path(value) for value in config_paths), key=lambda item: item.name):
         try:
             parsed = parse_dense_pair_config(path)
@@ -204,8 +211,14 @@ def audit_final_tile_configs(
                 expected_for_config = set(ordered_names[start : start + int(chunk_size)])
                 if not expected_for_config:
                     errors.append(f"tile index {tile_index} has no intended references: {path.name}")
-        references_to_record = configured_refs if expected_for_config is None else configured_refs & expected_for_config
-        extras = configured_refs if expected_for_config is None else configured_refs - expected_for_config
+        intended_for_config = expected if expected_for_config is None else expected_for_config
+        references_to_record = configured_refs & intended_for_config
+        extras = configured_refs - intended_for_config
+        if extras:
+            errors.append(
+                f"tile config {path.name} contains {len(extras)} source-only reference writes: "
+                + ", ".join(sorted(extras))
+            )
         missing_for_config = set() if expected_for_config is None else expected_for_config - configured_refs
         if missing_for_config:
             errors.append(
@@ -215,6 +228,7 @@ def audit_final_tile_configs(
         configured_reference_count += len(configured_refs)
         source_only_reference_count += len(extras)
         source_only_references.update(extras)
+        reference_occurrences.update(configured_refs)
         config_record = {
             "path": str(path.resolve()),
             "sha256": sha256_file(path),
@@ -247,6 +261,24 @@ def audit_final_tile_configs(
                 "cross_ring_source_count": len(cross),
                 "has_cross_ring_source": bool(cross),
             }
+    duplicate_reference_writes = {
+        name: int(count)
+        for name, count in sorted(reference_occurrences.items())
+        if int(count) != 1
+    }
+    missing_reference_writes = sorted(expected - set(reference_occurrences))
+    exact_one_reference_write = (
+        set(reference_occurrences) == expected
+        and not duplicate_reference_writes
+        and not missing_reference_writes
+    )
+    if duplicate_reference_writes:
+        errors.append(
+            "registered/source reference writes must occur exactly once; non-unit occurrences: "
+            + ", ".join(f"{name}={count}" for name, count in duplicate_reference_writes.items())
+        )
+    if missing_reference_writes:
+        errors.append(f"reference writes omit {len(missing_reference_writes)} registered references")
     missing = sorted(expected - set(records))
     if missing:
         errors.append(f"final tile configs omit {len(missing)} registered references")
@@ -276,6 +308,10 @@ def audit_final_tile_configs(
         "configured_reference_count_total": configured_reference_count,
         "source_only_reference_count": source_only_reference_count,
         "source_only_references": sorted(source_only_references),
+        "reference_occurrence_counts": {name: int(count) for name, count in sorted(reference_occurrences.items())},
+        "duplicate_reference_writes": duplicate_reference_writes,
+        "missing_reference_writes": missing_reference_writes,
+        "exact_one_reference_write": exact_one_reference_write,
         "by_reference_ring": dict(sorted((key, dict(value)) for key, value in by_ring.items())),
     }
     discrepancy = None
@@ -296,13 +332,14 @@ def audit_final_tile_configs(
             },
         }
     return {
-        "status": "passed" if not errors and set(records) == expected else "failed",
+        "status": "passed" if not errors and set(records) == expected and exact_one_reference_write else "failed",
         "errors": errors,
         "configs": configs,
         "observed": observed,
         "references": [records[name] for name in sorted(records, key=lambda value: (_normal_name(value),))],
         "deviation_from_original_source_selection": deviation,
         "prior_review_discrepancy": discrepancy,
+        "sparse_lineage": sparse_lineage_check,
     }
 
 
@@ -608,7 +645,11 @@ def measure_fused_contamination(
 
 
 def _fingerprint_path(path: Path) -> str:
-    return sha256_file(path) if path.is_file() else ""
+    if path.is_file():
+        return sha256_file(path)
+    if path.is_dir():
+        return stable_directory_sha256(path)
+    return ""
 
 
 def _draw_projected_view(
@@ -958,6 +999,7 @@ def build_postfusion_evidence(
     image_names: Sequence[str],
     ring_by_name: Mapping[str, str],
     tile_config_paths: Sequence[Path],
+    sparse_lineage: Mapping[str, Any] | None = None,
     prior_review_estimate: Mapping[str, Any] | None = None,
     negative_evidence: Mapping[str, Any] | None = None,
     preview_dir: Path,
@@ -970,6 +1012,7 @@ def build_postfusion_evidence(
         image_names=image_names,
         ring_by_name=ring_by_name,
         max_sources=max_sources,
+        sparse_lineage=sparse_lineage,
         prior_review_estimate=prior_review_estimate,
         chunk_size=24,
     )
@@ -1001,6 +1044,7 @@ def build_postfusion_evidence(
         "workspace_root": str(Path(workspace_root).resolve()),
         "contamination": contamination,
         "source_selection_audit": tile_audit,
+        "sparse_lineage": dict(sparse_lineage or {}),
         "ring_transition_audit": ring,
         "semantic_previews": {key: {"path": str(path.resolve()), "sha256": sha256_file(path)} for key, path in previews.items()},
         "g8_g9_negative_evidence": dict(negative_evidence or {"status": "not_supplied"}),

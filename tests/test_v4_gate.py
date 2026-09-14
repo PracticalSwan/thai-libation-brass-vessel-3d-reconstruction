@@ -196,19 +196,36 @@ def _postfusion_report(root: Path) -> dict[str, object]:
                     "source_count": 1,
                 }
             ],
+            "references": [
+                {"reference": "a.jpg"},
+                {"reference": "b.jpg"},
+                {"reference": "c.jpg"},
+                {"reference": "d.jpg"},
+            ],
             "observed": {
                 "reference_count": 4,
                 "registered_image_count": 4,
                 "configured_reference_count_total": 4,
+                "source_only_reference_count": 0,
                 "directed_source_count": 4,
                 "cross_ring_directed_source_count": 2,
                 "references_without_cross_ring_source_count": 0,
+                "reference_occurrence_counts": {"a.jpg": 1, "b.jpg": 1, "c.jpg": 1, "d.jpg": 1},
+                "duplicate_reference_writes": {},
+                "missing_reference_writes": [],
+                "exact_one_reference_write": True,
             },
             "deviation_from_original_source_selection": {
                 "original_plan": "COLMAP automatic/default source selection",
                 "deviation_is_intentional": True,
                 "max_sources": 6,
             },
+        },
+        "sparse_lineage": {
+            "status": "accepted_sparse_candidate",
+            "sparse_gate_passed": True,
+            "accepted_sparse_model_sha256": "a" * 64,
+            "accepted_sparse_gate_sha256": "b" * 64,
         },
         "ring_transition_audit": {
             "status": "passed",
@@ -455,6 +472,24 @@ def test_postfusion_evidence_gate_rejects_legacy_unextended_fusion_masks(tmp_pat
     assert checked["passed"] is False
     assert checked["checks"]["fusion_mask_resolution_verified"] is False
     assert any("COLMAP's image-name-plus-.png resolver" in reason for reason in checked["reasons"])
+
+
+def test_postfusion_evidence_gate_requires_exact_accepted_sparse_hash(tmp_path: Path):
+    report = _postfusion_report(tmp_path / "sparse-lineage")
+    report.pop("sparse_lineage")
+    missing = postfusion_evidence_gate(report, fused_path=Path(str(report["fused_path"])))
+    assert missing["passed"] is False
+    assert missing["checks"]["accepted_sparse_lineage_verified"] is False
+
+    report = _postfusion_report(tmp_path / "sparse-lineage-mismatch")
+    mismatched = postfusion_evidence_gate(
+        report,
+        fused_path=Path(str(report["fused_path"])),
+        expected_sparse_model_sha256="c" * 64,
+    )
+    assert mismatched["passed"] is False
+    assert mismatched["checks"]["accepted_sparse_lineage_verified"] is False
+    assert any("does not match the accepted repaired sparse model hash" in reason for reason in mismatched["reasons"])
 
 
 def test_dense_finalization_rejects_a_visual_pass_without_postfusion_report(tmp_path: Path):

@@ -124,6 +124,69 @@ def test_final_tile_audit_reports_actual_cross_ring_support_and_missing_referenc
     assert "omit 1 registered references" in " ".join(report["errors"])
 
 
+def test_historical_567_reference_372_unique_158_duplicate_configuration_is_rejected(tmp_path: Path):
+    names = [f"view_{index:03d}.jpg" for index in range(372)]
+    ring_by_name = {name: "g1" for name in names}
+    first = tmp_path / "tile-000.cfg"
+    second = tmp_path / "tile-001.cfg"
+    third = tmp_path / "tile-002.cfg"
+
+    def config_text(references: list[str]) -> str:
+        return "".join(f"{reference}\nsrc.jpg\n" for reference in references)
+
+    first.write_text(config_text(names), encoding="utf-8")
+    second.write_text(config_text(names[:158]), encoding="utf-8")
+    third.write_text(config_text(names[:37]), encoding="utf-8")
+    report = audit_final_tile_configs(
+        [first, second, third],
+        image_names=names,
+        ring_by_name=ring_by_name,
+        max_sources=6,
+    )
+    assert report["status"] == "failed"
+    assert report["observed"]["configured_reference_count_total"] == 567
+    assert report["observed"]["reference_count"] == 372
+    assert len(report["observed"]["duplicate_reference_writes"]) == 158
+    assert report["observed"]["exact_one_reference_write"] is False
+
+    source_only = tmp_path / "tile-003.cfg"
+    source_only.write_text("unknown.jpg\nsrc.jpg\n", encoding="utf-8")
+    source_only_report = audit_final_tile_configs(
+        [source_only],
+        image_names=["a.jpg"],
+        ring_by_name={"a.jpg": "g1"},
+        max_sources=6,
+    )
+    assert source_only_report["status"] == "failed"
+    assert source_only_report["observed"]["source_only_reference_count"] == 1
+
+
+def test_tile_audit_requires_accepted_sparse_lineage(tmp_path: Path):
+    config = tmp_path / "tile.cfg"
+    config.write_text("a.jpg\nb.jpg\nb.jpg\na.jpg\n", encoding="utf-8")
+    kwargs = {
+        "config_paths": [config],
+        "image_names": ["a.jpg", "b.jpg"],
+        "ring_by_name": {"a.jpg": "g1", "b.jpg": "g2"},
+        "max_sources": 6,
+    }
+    missing = audit_final_tile_configs(**kwargs)
+    assert missing["status"] == "failed"
+    assert missing["sparse_lineage"]["passed"] is False
+
+    lineage = {
+        "status": "accepted_sparse_candidate",
+        "sparse_gate_passed": True,
+        "accepted_sparse_model_sha256": "a" * 64,
+        "accepted_sparse_gate_sha256": "b" * 64,
+    }
+    accepted = audit_final_tile_configs(**kwargs, sparse_lineage=lineage)
+    assert accepted["status"] == "passed"
+    assert accepted["sparse_lineage"]["passed"] is True
+    assert accepted["observed"]["exact_one_reference_write"] is True
+    assert accepted["observed"]["source_only_reference_count"] == 0
+
+
 def test_image_bottom_escape_does_not_mislabel_upper_points_as_webbing():
     result = _classify_bottom_escape(
         heights=[0.8, 0.7, -1.0, -0.9],

@@ -31,6 +31,7 @@ from v4_dense import (
     build_stereo_fusion_command,
     dense_failure_category,
     dense_typed_file_counts,
+    load_accepted_sparse_lineage,
     postfusion_evidence_gate,
 )
 from v4_postfusion import (
@@ -203,6 +204,7 @@ def main() -> int:
     setup_path = args.setup.resolve()
     report_path = args.report.resolve()
     setup = _read_json(setup_path)
+    sparse_lineage = load_accepted_sparse_lineage()
     if setup.get("status") != "prepared":
         raise ValueError("priority rerun setup is not in prepared state")
     rerun_tag = str(setup.get("rerun_tag", "")).strip()
@@ -251,6 +253,7 @@ def main() -> int:
         image_names=image_names,
         ring_by_name=ring_by_name,
         max_sources=MAX_SOURCES,
+        sparse_lineage=sparse_lineage,
         prior_review_estimate={
             "references_without_cross_ring_source_count": 150,
             "cross_ring_directed_source_count": 954,
@@ -435,6 +438,7 @@ def main() -> int:
             image_names=image_names,
             ring_by_name=ring_by_name,
             tile_config_paths=combined_configs,
+            sparse_lineage=sparse_lineage,
             prior_review_estimate={
                 "references_without_cross_ring_source_count": 150,
                 "cross_ring_directed_source_count": 954,
@@ -443,7 +447,11 @@ def main() -> int:
             preview_dir=RECONSTRUCTION_V4_ROOT / "previews" / f"dense_{rerun_tag}_semantic",
             max_sources=MAX_SOURCES,
         )
-        postfusion["postfusion_evidence_gate"] = postfusion_evidence_gate(postfusion, fused_path=fused_path)
+        postfusion["postfusion_evidence_gate"] = postfusion_evidence_gate(
+            postfusion,
+            fused_path=fused_path,
+            expected_sparse_model_sha256=sparse_lineage["accepted_sparse_model_sha256"],
+        )
         evidence_path = RECONSTRUCTION_V4_ROOT / "reports" / f"dense_{rerun_tag}_gate.json"
         evidence = {
             "schema_version": 1,

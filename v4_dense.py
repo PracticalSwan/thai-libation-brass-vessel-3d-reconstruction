@@ -299,11 +299,71 @@ def _finite_number(value: Any) -> bool:
     return not isinstance(value, bool) and isinstance(value, (int, float)) and math.isfinite(float(value))
 
 
+def validate_sparse_lineage(
+    lineage: Mapping[str, Any] | None,
+    *,
+    expected_sparse_model_sha256: str | None = None,
+) -> dict[str, Any]:
+    """Validate the accepted repaired sparse hash carried into dense evidence."""
+
+    reasons: list[str] = []
+    if not isinstance(lineage, Mapping):
+        return {"passed": False, "reasons": ["accepted repaired sparse lineage is missing"]}
+    model_sha = str(lineage.get("accepted_sparse_model_sha256", "")).strip().lower()
+    gate_sha = str(lineage.get("accepted_sparse_gate_sha256", "")).strip().lower()
+    if not _valid_sha256(model_sha):
+        reasons.append("accepted repaired sparse model hash is missing or invalid")
+    if not _valid_sha256(gate_sha):
+        reasons.append("accepted repaired sparse gate hash is missing or invalid")
+    if lineage.get("status") != "accepted_sparse_candidate":
+        reasons.append("sparse lineage does not identify an accepted sparse candidate")
+    if lineage.get("sparse_gate_passed") is not True:
+        reasons.append("sparse lineage does not record a passed sparse gate")
+    if expected_sparse_model_sha256 is not None:
+        expected = str(expected_sparse_model_sha256).strip().lower()
+        if not _valid_sha256(expected) or model_sha != expected:
+            reasons.append("dense lineage does not match the accepted repaired sparse model hash")
+    return {
+        "passed": not reasons,
+        "reasons": reasons,
+        "accepted_sparse_model_sha256": model_sha,
+        "accepted_sparse_gate_sha256": gate_sha,
+        "status": lineage.get("status"),
+        "sparse_gate_passed": lineage.get("sparse_gate_passed"),
+    }
+
+
+def load_accepted_sparse_lineage(report_path: Path | None = None) -> dict[str, Any]:
+    """Load the versioned accepted sparse checkpoint for dense lineage."""
+
+    path = Path(report_path) if report_path is not None else (
+        RECONSTRUCTION_V4_ROOT
+        / "repair"
+        / "sparse_v1"
+        / "accepted_sparse_v4_rotation_consensus_v1.json"
+    )
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(payload, Mapping):
+        raise ValueError(f"accepted sparse report must be an object: {path}")
+    lineage = {
+        "status": payload.get("status"),
+        "sparse_gate_passed": payload.get("sparse_gate_passed"),
+        "accepted_sparse_model_sha256": payload.get("source_model_sha256"),
+        "accepted_sparse_gate_sha256": payload.get("sparse_gate_sha256"),
+        "accepted_sparse_report_path": str(path.resolve()),
+    }
+    check = validate_sparse_lineage(lineage)
+    if not check["passed"]:
+        raise ValueError("accepted sparse report is not a valid dense lineage source: " + "; ".join(check["reasons"]))
+    return lineage
+
+
 def postfusion_evidence_gate(
     report: Mapping[str, Any] | None,
     *,
     fused_path: Path | None = None,
     expected_fused_sha256: str | None = None,
+    expected_sparse_model_sha256: str | None = None,
 ) -> dict[str, Any]:
     """Validate the evidence contract emitted after geometric fusion.
 
@@ -326,6 +386,7 @@ def postfusion_evidence_gate(
         "contamination_findings_explicit_and_clean": False,
         "source_selection_evidence_verified": False,
         "ring_transition_evidence_verified": False,
+        "accepted_sparse_lineage_verified": False,
     }
     reasons: list[str] = []
     if not isinstance(report, Mapping):
@@ -334,6 +395,14 @@ def postfusion_evidence_gate(
     if report.get("status") != "passed":
         reasons.append("post-fusion evidence report status is not passed")
     checks["postfusion_report_status_passed"] = report.get("status") == "passed"
+
+    sparse_lineage = validate_sparse_lineage(
+        report.get("sparse_lineage"),
+        expected_sparse_model_sha256=expected_sparse_model_sha256,
+    )
+    if not sparse_lineage["passed"]:
+        reasons.extend(str(reason) for reason in sparse_lineage["reasons"])
+    checks["accepted_sparse_lineage_verified"] = bool(sparse_lineage["passed"])
 
     report_hash = str(report.get("fused_sha256", "")).strip().lower()
     actual_hash = ""
@@ -521,7 +590,21 @@ def postfusion_evidence_gate(
         and int(source_observed.get("registered_image_count", 0)) > 0
         and int(source_observed.get("reference_count")) == int(source_observed.get("registered_image_count"))
         and _nonnegative_int(source_observed.get("configured_reference_count_total"))
-        and int(source_observed.get("configured_reference_count_total", 0)) > 0
+        and int(source_observed.get("configured_reference_count_total", 0)) == int(source_observed.get("registered_image_count", 0))
+        and _nonnegative_int(source_observed.get("source_only_reference_count"))
+        and int(source_observed.get("source_only_reference_count", 0)) == 0
+        and source_observed.get("exact_one_reference_write") is True
+        and isinstance(source_observed.get("reference_occurrence_counts"), Mapping)
+        and set(source_observed.get("reference_occurrence_counts", {})) == set(
+            item.get("reference") for item in (source.get("references", []) if isinstance(source, Mapping) else [])
+            if isinstance(item, Mapping) and item.get("reference") is not None
+        )
+        and all(
+            type(value) is int and value == 1
+            for value in source_observed.get("reference_occurrence_counts", {}).values()
+        )
+        and not source_observed.get("duplicate_reference_writes")
+        and not source_observed.get("missing_reference_writes")
         and _nonnegative_int(source_observed.get("directed_source_count"))
         and int(source_observed.get("directed_source_count", 0)) > 0
         and _nonnegative_int(source_observed.get("cross_ring_directed_source_count"))
@@ -663,7 +746,12 @@ def postfusion_evidence_gate(
         reasons.append("fused ring-transition continuity evidence is missing or not measured from geometric depth pairs")
     checks["ring_transition_evidence_verified"] = bool(ring_valid)
 
-    return {"passed": bool(all(checks.values())), "checks": checks, "reasons": reasons}
+    return {
+        "passed": bool(all(checks.values())),
+        "checks": checks,
+        "reasons": reasons,
+        "accepted_sparse_lineage": sparse_lineage,
+    }
 
 
 def contamination_assessment(metrics: Mapping[str, Any]) -> dict[str, Any]:
@@ -1497,11 +1585,13 @@ __all__ = [
     "dense_typed_file_counts",
     "dense_workspace_paths",
     "finalize_dense_visual_gate",
+    "load_accepted_sparse_lineage",
     "postfusion_evidence_gate",
     "prune_dense_photometric_maps",
     "render_dense_contact_sheet",
     "reviewed_evidence_gate",
     "resource_fallback",
+    "validate_sparse_lineage",
     "undistort_v4_masks",
     "write_dense_image_list",
     "write_dense_pair_config",

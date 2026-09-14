@@ -27,6 +27,7 @@ from v4_dense import (
     build_dense_pair_adjacency,
     build_prioritized_dense_pair_adjacency,
     dense_typed_file_counts,
+    load_accepted_sparse_lineage,
     undistort_v4_masks,
     write_prioritized_dense_pair_config,
 )
@@ -174,6 +175,7 @@ def _prepare_mask_sources(
 
 
 def _build_setup(*, target_root: Path, rerun_tag: str, min_cross_sources: int) -> dict[str, Any]:
+    sparse_lineage = load_accepted_sparse_lineage()
     image_names = _image_names()
     records = _isolation_records()
     ring_by_name = load_ring_by_name(RECONSTRUCTION_V4_ROOT / "work" / "isolation_records.json")
@@ -269,6 +271,7 @@ def _build_setup(*, target_root: Path, rerun_tag: str, min_cross_sources: int) -
         image_names=image_names,
         ring_by_name=ring_by_name,
         max_sources=MAX_SOURCES,
+        sparse_lineage=sparse_lineage,
         chunk_size=CHUNK_SIZE,
     )
     graph_support = {
@@ -294,6 +297,7 @@ def _build_setup(*, target_root: Path, rerun_tag: str, min_cross_sources: int) -
         "original_fused_path": str((RECONSTRUCTION_V4_ROOT / "dense" / "fused.ply").resolve()),
         "original_fused_sha256": sha256_file(RECONSTRUCTION_V4_ROOT / "dense" / "fused.ply"),
         "sparse_report": str((RECONSTRUCTION_V4_ROOT / "reports" / "sparse_report.json").resolve()),
+        "sparse_lineage": sparse_lineage,
         "pair_schedule": str(schedule_path.resolve()),
         "pair_schedule_sha256": sha256_file(schedule_path),
         "isolation_records": str((RECONSTRUCTION_V4_ROOT / "work" / "isolation_records.json").resolve()),
