@@ -10,11 +10,49 @@ import v4_postfusion as postfusion
 from v4_postfusion import (
     _classify_bottom_escape,
     _ring_transition_acceptance,
+    anatomy_region_evidence,
     audit_final_tile_configs,
     parse_dense_pair_config,
     read_colmap_float_map,
     resolve_colmap_fusion_mask,
 )
+
+
+def test_anatomy_region_evidence_requires_a_resolved_narrow_finial():
+    rng = np.random.default_rng(42)
+    # Dense synthetic support with a narrow top element.
+    lower = rng.normal(size=(2400, 3)) * 0.02
+    lower[:, 1] = rng.uniform(0.0, 0.92, len(lower))
+    finial = rng.normal(size=(500, 3)) * 0.01
+    finial[:, 1] = rng.uniform(0.93, 1.0, len(finial))
+    points = np.concatenate([lower, finial], axis=0)
+    basis = {
+        "center": [0.0, 0.0, 0.0],
+        "vertical": [0.0, 1.0, 0.0],
+        "front": [1.0, 0.0, 0.0],
+        "right": [0.0, 0.0, 1.0],
+    }
+    passed = anatomy_region_evidence(
+        points,
+        basis_vectors=basis,
+        inside_support=np.ones(len(points), dtype=bool),
+        inside_view_counts=np.full(len(points), 8, dtype=np.int32),
+        support_view_count=8,
+    )
+    assert passed["status"] == "passed"
+    assert passed["finial_shape"]["resolved_narrow_top_element"] is True
+
+    broad = points.copy()
+    broad[points[:, 1] >= 0.93, 0] *= 12.0
+    failed = anatomy_region_evidence(
+        broad,
+        basis_vectors=basis,
+        inside_support=np.ones(len(broad), dtype=bool),
+        inside_view_counts=np.full(len(broad), 8, dtype=np.int32),
+        support_view_count=8,
+    )
+    assert failed["status"] == "failed"
+    assert "finial:resolved_narrow_top_element" in failed["failures"]
 
 
 def test_ring_consistency_threshold_is_diagnostic_not_acceptance_gate():

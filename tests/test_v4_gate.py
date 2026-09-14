@@ -6,7 +6,12 @@ from pathlib import Path
 
 import pytest
 
-from v4_dense import dense_gate, finalize_dense_visual_gate, postfusion_evidence_gate
+from v4_dense import (
+    dense_gate,
+    finalize_dense_visual_gate,
+    postfusion_evidence_gate,
+    validate_sparse_lineage,
+)
 from v4_mesh import finalize_raw_visual_gate, raw_visual_gate
 from v4_sparse import sparse_gate
 
@@ -83,6 +88,39 @@ def _canonical_hash(payload: object) -> str:
     return hashlib.sha256(encoded).hexdigest()
 
 
+def test_best_defensible_sparse_lineage_is_explicit_and_does_not_claim_strict_pass() -> None:
+    lineage = {
+        "status": "best_defensible_sparse_candidate",
+        "best_defensible": True,
+        "sparse_gate_passed": False,
+        "accepted_sparse_model_sha256": "a" * 64,
+        "accepted_sparse_gate_sha256": "b" * 64,
+        "selection_report_sha256": "c" * 64,
+        "strict_gate_failures": ["mask_projection_per_view"],
+    }
+
+    result = validate_sparse_lineage(lineage)
+
+    assert result["passed"] is True
+    assert result["best_defensible"] is True
+    assert result["sparse_gate_passed"] is False
+
+
+def test_accepted_sparse_lineage_still_requires_a_strict_gate_pass() -> None:
+    result = validate_sparse_lineage(
+        {
+            "status": "accepted_sparse_candidate",
+            "best_defensible": True,
+            "sparse_gate_passed": False,
+            "accepted_sparse_model_sha256": "a" * 64,
+            "accepted_sparse_gate_sha256": "b" * 64,
+        }
+    )
+
+    assert result["passed"] is False
+    assert "sparse lineage does not record a passed sparse gate" in result["reasons"]
+
+
 def _postfusion_report(root: Path) -> dict[str, object]:
     root.mkdir(parents=True, exist_ok=True)
     fused = root / "fused.ply"
@@ -95,6 +133,44 @@ def _postfusion_report(root: Path) -> dict[str, object]:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(name.encode("utf-8"))
         semantic[name] = {"path": str(path), "sha256": hashlib.sha256(path.read_bytes()).hexdigest()}
+    anatomy_root = root / "anatomy"
+    anatomy = {}
+    anatomy_names = (
+        "bowl_interior",
+        "rim",
+        "globe_shoulder",
+        "continuous_neck",
+        "lid_tiers",
+        "finial",
+        "pedestal_transitions",
+        "base",
+    )
+    anatomy_regions = {}
+    for name in anatomy_names:
+        anatomy_regions[name] = {
+            "region_name": name,
+            "point_count": 500,
+            "supported_point_count": 480,
+            "supported_fraction": 0.96,
+            "projected_coverage_fraction": 0.90,
+            "connected_support_fraction": 0.95,
+            "height_bin_occupancy_fraction": 1.0,
+        }
+    for name in anatomy_names:
+        path = anatomy_root / f"{name}.png"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_bytes(f"anatomy-{name}".encode("utf-8"))
+        anatomy[name] = {
+            "path": str(path),
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "anatomy_label": name,
+            "region_crop": {
+                "region_name": name,
+                "projection_scope": "region_only_height_crop",
+                "whole_object_projection": False,
+                "region_measurement_sha256": _canonical_hash(anatomy_regions[name]),
+            },
+        }
     contamination_evidence = {
         "fused_sha256": fused_hash,
         "workspace_root": str(root),
@@ -116,6 +192,17 @@ def _postfusion_report(root: Path) -> dict[str, object]:
         "sample_count": 4,
         "visible_count": 4,
         "inside_fraction_quantiles": [0.8, 0.9, 1.0],
+    }
+    contamination_anatomy = {
+        "schema_version": 2,
+        "status": "passed",
+        "passed": True,
+        "no_major_vessel_scale_holes": True,
+        "regions": anatomy_regions,
+        "finial_shape": {
+            "resolved_narrow_top_element": True,
+            "finial_to_lid_radius_ratio": 0.5,
+        },
     }
     contamination_metrics = {
         key: {
@@ -172,6 +259,7 @@ def _postfusion_report(root: Path) -> dict[str, object]:
         "fused_path": str(fused),
         "fused_sha256": fused_hash,
         "semantic_previews": semantic,
+        "anatomy_previews": anatomy,
         "contamination": {
             "status": "measured",
             "metrics": contamination_metrics,
@@ -184,6 +272,7 @@ def _postfusion_report(root: Path) -> dict[str, object]:
             "evidence": contamination_evidence,
             "camera_count": 4,
             "ring_counts": {"g1": 2, "g2": 2},
+            "anatomy": contamination_anatomy,
         },
         "source_selection_audit": {
             "status": "passed",
@@ -490,6 +579,43 @@ def test_postfusion_evidence_gate_requires_exact_accepted_sparse_hash(tmp_path: 
     assert mismatched["passed"] is False
     assert mismatched["checks"]["accepted_sparse_lineage_verified"] is False
     assert any("does not match the accepted repaired sparse model hash" in reason for reason in mismatched["reasons"])
+
+
+def test_postfusion_evidence_gate_requires_all_eight_anatomy_views(tmp_path: Path):
+    report = _postfusion_report(tmp_path / "anatomy")
+    checked = postfusion_evidence_gate(report, fused_path=Path(str(report["fused_path"])))
+    assert checked["checks"]["anatomy_preview_evidence_verified"] is True
+    assert checked["passed"] is True
+
+    report = _postfusion_report(tmp_path / "anatomy-missing")
+    report["anatomy_previews"].pop("finial")  # type: ignore[index]
+    checked = postfusion_evidence_gate(report, fused_path=Path(str(report["fused_path"])))
+    assert checked["passed"] is False
+    assert checked["checks"]["anatomy_preview_evidence_verified"] is False
+    assert any("eight hashable anatomy" in reason for reason in checked["reasons"])
+
+
+def test_eight_renamed_whole_object_projections_cannot_satisfy_anatomy_gate(tmp_path: Path):
+    report = _postfusion_report(tmp_path / "whole-object-renamed")
+    for item in report["anatomy_previews"].values():  # type: ignore[union-attr]
+        item["region_crop"]["projection_scope"] = "whole_object"  # type: ignore[index]
+        item["region_crop"]["whole_object_projection"] = True  # type: ignore[index]
+    checked = postfusion_evidence_gate(report, fused_path=Path(str(report["fused_path"])))
+    assert checked["passed"] is False
+    assert checked["checks"]["anatomy_preview_evidence_verified"] is False
+    assert checked["checks"]["anatomy_region_measurements_verified"] is True
+
+
+def test_anatomy_region_gate_rejects_unresolved_finial_even_with_hashes(tmp_path: Path):
+    report = _postfusion_report(tmp_path / "unresolved-finial")
+    report["contamination"]["anatomy"]["finial_shape"]["resolved_narrow_top_element"] = False  # type: ignore[index]
+    report["contamination"]["anatomy"]["passed"] = False  # type: ignore[index]
+    report["contamination"]["anatomy"]["status"] = "failed"  # type: ignore[index]
+    report["contamination"]["anatomy"]["no_major_vessel_scale_holes"] = False  # type: ignore[index]
+    checked = postfusion_evidence_gate(report, fused_path=Path(str(report["fused_path"])))
+    assert checked["passed"] is False
+    assert checked["checks"]["anatomy_region_measurements_verified"] is False
+    assert any("anatomy region measurements" in reason for reason in checked["reasons"])
 
 
 def test_dense_finalization_rejects_a_visual_pass_without_postfusion_report(tmp_path: Path):

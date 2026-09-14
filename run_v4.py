@@ -64,6 +64,7 @@ from v4_dense import (
     prune_dense_photometric_maps,
     render_dense_contact_sheet,
     resource_fallback,
+    validate_patch_match_runtime_phases,
     undistort_v4_masks,
     write_dense_image_list,
     write_dense_pair_config,
@@ -735,6 +736,8 @@ def _run_dense_patch_match(
         result["status"] = "completed"
         result["failure_category"] = None
         result["completed_with_missing_file_warnings"] = True
+    if result.get("status") == "completed" and config.geom_consistency and config.filter:
+        result["runtime_phase_gate"] = validate_patch_match_runtime_phases(patch_log)
     return result
 
 

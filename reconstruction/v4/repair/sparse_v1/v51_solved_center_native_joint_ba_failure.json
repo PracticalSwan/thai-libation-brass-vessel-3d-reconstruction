@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "failed_closed",
+  "promotion_allowed": false,
+  "dense_allowed_from_this_attempt": false,
+  "method": "v6-center initialization -> calibrated translation solve with v43 rotations -> native pyCOLMAP 4.2 exact-graph retriangulation -> one configured joint Ceres BA",
+  "runner": "C:\\Assumption University\\CSX4213\\Project\\scripts\\run_v4_v50_solved_center_native_diagnostic.py",
+  "output_root": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v51_solved_center_native_joint_ba",
+  "exact_graph": {
+    "pair_count": 1530,
+    "two_view_geometry_inlier_rows": 959765,
+    "raw_match_rows": 959765,
+    "pair_ids_sha256": "c01f5037307ff9589efb78baef5ed6dd43c95bb2bbd719af8687e69691c2adf2"
+  },
+  "bundle_adjustment_configuration": {
+    "registered_image_count": 372,
+    "explicitly_selected_image_count": 372,
+    "anchor_image_id": 1,
+    "configured_residual_count": 404258,
+    "intrinsics_fixed": true,
+    "gauge_fixed": true
+  },
+  "bundle_adjustment_summary": {
+    "termination_type": "NO_CONVERGENCE",
+    "num_residuals": 404258,
+    "model_written": false,
+    "failure_policy": "fail closed; no BA model or sparse gate result is promoted"
+  },
+  "native_retriangulation_model": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v51_solved_center_native_joint_ba\\native_retriangulation",
+  "native_retriangulation_model_sha256": "9dc48dbd128e21a73518eac5ef654ca14124e8f259690b3522520bf3bbe99d10",
+  "native_retriangulation_summary": {
+    "registered_images": 372,
+    "points3D": 91906,
+    "observations": 202129,
+    "mean_track_length": 2.199301460187583,
+    "fraction_track_length_ge3": 0.1615128500859574,
+    "mean_reprojection_error": 1.1742118778042312
+  },
+  "canonical_snapshot_sha256_before": "658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a",
+  "canonical_snapshot_sha256_after": "658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a",
+  "canonical_snapshot_hash_stable": true,
+  "canonical_wal_present": false,
+  "canonical_shm_present": false,
+  "independent_lineage": {
+    "audit_manifest_sha256": "47055ecc2cdc8d9d4f2eda546b6bb71e7e31f85ac7817c7da43465fca512e358",
+    "raw_audit_sha256": "39c46fb6e164655b590a776db4d1ec422b4edfb178e3ef492f908b7d5c9ad5a0",
+    "classification_sha256": "cdf051b0946201732b9775be8e4cff09609e9e1839a819d3690e7c201c2bf9f7",
+    "canonical_logical_sha256": "ec4d9a4c9a548903d71704401e50e666408a933dfdb19cc02cbe8e93fd860f97"
+  },
+  "next_step": "Freeze the best defensible previously measured sparse candidate; do not treat this native pre-BA model as the final sparse source."
+}

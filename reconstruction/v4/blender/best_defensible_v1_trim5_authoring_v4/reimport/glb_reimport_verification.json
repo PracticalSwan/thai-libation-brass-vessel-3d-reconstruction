@@ -1,0 +1,100 @@
+{
+  "checks": {
+    "material_present": true,
+    "mesh_nonzero": true,
+    "normals_ok": true,
+    "only_final_exported": true,
+    "passed": true,
+    "sane_bounds": true,
+    "textures_resolve": true,
+    "uvs_present": true
+  },
+  "finite_normals": true,
+  "finite_positions": true,
+  "glb": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v4\\Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5.glb",
+  "glb_sha256": "e35be3364c82521e2201f824ff4e21a02dfdbb420e722d1e25c923cfaab79011",
+  "import_operator": "{'FINISHED'}",
+  "materials": [
+    {
+      "images": [
+        {
+          "filepath": "",
+          "name": "T_V4_BestDefensible_AO",
+          "packed": true,
+          "resolved": true
+        }
+      ],
+      "name": "MAT_V4_Brass"
+    }
+  ],
+  "mesh_name": "SM_V4_Vessel_LOD0",
+  "mesh_object_count": 1,
+  "objects": [
+    {
+      "bounds_world": [
+        0.9204720258712769,
+        1.0502078533172607,
+        2.145545482635498
+      ],
+      "faces": 294713,
+      "finite_normals": true,
+      "finite_positions": true,
+      "materials": [
+        {
+          "images": [
+            {
+              "filepath": "",
+              "name": "T_V4_BestDefensible_AO",
+              "packed": true,
+              "resolved": true
+            }
+          ],
+          "name": "MAT_V4_Brass"
+        }
+      ],
+      "name": "SM_V4_Vessel_LOD0",
+      "type": "MESH",
+      "uv_layers": 1,
+      "verts": 296967
+    }
+  ],
+  "renders": {
+    "view_00_000.png": "731f011152d265a5147b4ae16aeadb3c1e68ffff36cc7c16de1ec2cc42f64a4e",
+    "view_01_045.png": "fdc3a6aaef5849e1651073abac1a9ecf3723b8bfb6b82eef1deadd4cd8283771",
+    "view_02_090.png": "6c0d94f63669dbf8a75f3d6bdc840fd48568d12ac4684af3d91f38a0074ad768",
+    "view_03_135.png": "dc00e037dcda7007a344ca731fdcefba9f3d20ba820a6bdec8f2bb042a33826e",
+    "view_04_180.png": "c6b3d2bb44b927d1fadfadad52cdc2bfa40595d91cf96da562e65639223b8b07",
+    "view_05_225.png": "560a316e36cfd1cee9d0da337aba50e6d7c1bf37a63ba10f872f79cea6b05761",
+    "view_06_270.png": "721675c7f44151155ba596572abac37f4741fa9fbf933c673b59ba471c4702dd",
+    "view_07_315.png": "5a2d07f739cbd3ced93dfc1703299627dd115502d392f3b770749f8730c138e6"
+  },
+  "schema_version": 1,
+  "stage": "fresh_factory_empty_glb_reimport",
+  "status": "passed",
+  "texture_refs": [
+    {
+      "filepath": "",
+      "name": "T_V4_BestDefensible_AO",
+      "packed": true,
+      "resolved": true
+    }
+  ],
+  "unexpected_debug_objects": [],
+  "world_bounds": [
+    [
+      -0.4602360129356384,
+      -0.5251039266586304,
+      0.0
+    ],
+    [
+      0.4602360129356384,
+      0.5251039266586304,
+      2.145545482635498
+    ]
+  ],
+  "world_dims": [
+    0.9204720258712769,
+    1.0502078533172607,
+    2.145545482635498
+  ]
+}

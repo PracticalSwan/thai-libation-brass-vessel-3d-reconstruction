@@ -31,6 +31,37 @@ from v4_repair import create_disposable_sqlite_from_manifest, load_canonical_sql
 # seed only removes RANSAC's otherwise process-dependent model selection.
 CALIBRATED_RANSAC_SEED = 4201
 
+# pyCOLMAP exposes both TwoViewGeometry.tri_angle and
+# Rotation3d.angle() in radians.  The persisted audit contract is degrees so
+# that thresholds and SO(3) diagnostics are unambiguous to downstream tools.
+PYCOLMAP_ANGLE_UNITS = {
+    "TwoViewGeometry.tri_angle": "radians",
+    "Rotation3d.angle": "radians",
+}
+AUDIT_ANGLE_UNITS = {
+    "triangulation_angle": "degrees",
+    "rotation_angle": "degrees",
+}
+
+
+def radians_to_degrees(value: float | None) -> float | None:
+    """Convert a finite pyCOLMAP angle without silently changing its unit."""
+
+    if value is None:
+        return None
+    value = float(value)
+    if not math.isfinite(value):
+        return None
+    return float(math.degrees(value))
+
+
+def _optional_tri_angle_degrees(value: float | None) -> float | None:
+    """Convert COLMAP's non-negative triangulation angle sentinel to degrees."""
+
+    if value is None or not math.isfinite(float(value)) or float(value) < 0.0:
+        return None
+    return radians_to_degrees(float(value))
+
 
 def _camera_matrix(camera: Any) -> tuple[np.ndarray, np.ndarray]:
     params = np.asarray(camera.params, dtype=np.float64).reshape(-1)
@@ -137,9 +168,10 @@ def audit_pair(database: Any, first_name: str, second_name: str) -> dict[str, An
     reestimated_inliers = 0
     reestimate_reason = None
     calibrated_rotation = None
+    calibrated_translation = None
     calibrated_inliers = 0
     calibrated_config = None
-    calibrated_tri_angle = None
+    calibrated_tri_angle_rad = None
     calibrated_cheirality_inliers = 0
     calibrated_cheirality_fraction = 0.0
     calibrated_essential_rank_ratio = None
@@ -179,7 +211,7 @@ def audit_pair(database: Any, first_name: str, second_name: str) -> dict[str, An
         if calibrated is not None:
             calibrated_config = int(calibrated.config)
             calibrated_inliers = int(len(np.asarray(calibrated.inlier_matches)))
-            calibrated_tri_angle = float(calibrated.tri_angle)
+            calibrated_tri_angle_rad = float(calibrated.tri_angle)
             calibrated_essential = np.asarray(calibrated.E, dtype=np.float64)
             if calibrated_essential.shape == (3, 3) and np.isfinite(calibrated_essential).all():
                 calibrated_singular_values = np.linalg.svd(calibrated_essential, compute_uv=False)
@@ -189,6 +221,9 @@ def audit_pair(database: Any, first_name: str, second_name: str) -> dict[str, An
                     )
             if calibrated.cam2_from_cam1 is not None:
                 calibrated_rotation = np.asarray(calibrated.cam2_from_cam1.rotation.matrix(), dtype=np.float64)
+                calibrated_translation = np.asarray(
+                    calibrated.cam2_from_cam1.translation, dtype=np.float64
+                ).reshape(3)
             calibrated_rows = np.asarray(calibrated.inlier_matches, dtype=np.int64).reshape(-1, 2)
             valid_calibrated_rows = (
                 (calibrated_rows[:, 0] >= 0)
@@ -261,12 +296,14 @@ def audit_pair(database: Any, first_name: str, second_name: str) -> dict[str, An
         "independent_reestimate_reason": reestimate_reason,
         "calibrated_reestimate_config": calibrated_config,
         "calibrated_reestimate_inliers": calibrated_inliers,
-        "calibrated_reestimate_tri_angle_deg": calibrated_tri_angle,
+        "calibrated_reestimate_tri_angle_rad": calibrated_tri_angle_rad,
+        "calibrated_reestimate_tri_angle_deg": _optional_tri_angle_degrees(calibrated_tri_angle_rad),
         "calibrated_reestimate_cheirality_inliers": calibrated_cheirality_inliers,
         "calibrated_reestimate_cheirality_fraction": calibrated_cheirality_fraction,
         "calibrated_essential_rank3_to_rank1": calibrated_essential_rank_ratio,
         "calibrated_reestimate_rotation_matrix_first_to_second": calibrated_rotation.tolist() if calibrated_rotation is not None else None,
         "calibrated_reestimate_rotation_angle_deg": _matrix_angle(calibrated_rotation),
+        "calibrated_reestimate_translation_first_to_second": calibrated_translation.tolist() if calibrated_translation is not None else None,
         "calibrated_reestimate_vs_stored_geodesic_deg": _matrix_angle(calibrated_rotation @ rotation.T) if calibrated_rotation is not None and rotation is not None else None,
         "calibrated_reestimate_reason": calibrated_reason,
         "sampson_median": float(np.median(sampson)) if len(sampson) else None,
@@ -274,7 +311,8 @@ def audit_pair(database: Any, first_name: str, second_name: str) -> dict[str, An
         "homography_inliers": homography_inliers,
         "homography_inlier_fraction": float(homography_inliers / len(matches)) if len(matches) else 0.0,
         "homography_status": homography_status,
-        "tri_angle_deg": float(geometry.tri_angle) if math.isfinite(float(geometry.tri_angle)) else None,
+        "tri_angle_rad": float(geometry.tri_angle) if math.isfinite(float(geometry.tri_angle)) else None,
+        "tri_angle_deg": _optional_tri_angle_degrees(float(geometry.tri_angle)),
     }
 
 
@@ -307,9 +345,11 @@ def main() -> int:
             database.close()
     canonical_sha_after = hashlib.sha256(canonical_path.read_bytes()).hexdigest()
     payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "method": "independent frozen SQLite snapshot correspondence and essential-matrix audit via disposable working copy; deterministic RANSAC seed",
         "calibrated_ransac_seed": CALIBRATED_RANSAC_SEED,
+        "angle_units": AUDIT_ANGLE_UNITS,
+        "pycolmap_angle_source_units": PYCOLMAP_ANGLE_UNITS,
         "database": str(canonical_path),
         "snapshot_manifest": str(args.snapshot_manifest.resolve()),
         "snapshot_manifest_sha256": snapshot_manifest["manifest_sha256"],

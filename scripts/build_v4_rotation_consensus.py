@@ -367,6 +367,387 @@ def build_rotation_consensus(
     return orientations, report
 
 
+def build_ring_aligned_repair(
+    records: Sequence[Mapping[str, Any]],
+    reference_orientations: Mapping[str, np.ndarray],
+    *,
+    ring_order: Sequence[str] = DEFAULT_RING_ORDER,
+    gauge_threshold_deg: float = 15.0,
+) -> tuple[dict[str, np.ndarray], dict[str, Any]]:
+    """Repair same-ring pose islands while retaining a reference world gauge.
+
+    The calibrated graph determines each ring's relative rotations.  Its
+    per-ring gauge is otherwise arbitrary, so this helper aligns the
+    synchronized field to the existing image-derived model using the largest
+    robust cluster of ``R_reference @ R_local.T`` gauges.  A low-support
+    gauge is reported rather than hidden; callers must still run the complete
+    sparse gate.  No phase/order prior or synthetic geometry is introduced.
+    """
+
+    if not math.isfinite(float(gauge_threshold_deg)) or float(gauge_threshold_deg) <= 0.0:
+        raise ValueError("gauge_threshold_deg must be finite and positive")
+    reference = {
+        str(name): np.asarray(matrix, dtype=np.float64)
+        for name, matrix in reference_orientations.items()
+    }
+    for name, matrix in reference.items():
+        if matrix.shape != (3, 3) or not np.isfinite(matrix).all():
+            raise ValueError(f"invalid reference orientation for {name}")
+
+    corrected: dict[str, np.ndarray] = {}
+    ring_reports: list[dict[str, Any]] = []
+    for ring in tuple(str(value) for value in ring_order):
+        local, local_report = _component_orientation(records, ring)
+        gauge_candidates = [
+            (name, reference[name] @ local[name].T)
+            for name in sorted(local)
+            if name in reference
+        ]
+        if not gauge_candidates:
+            ring_reports.append({
+                **local_report,
+                "gauge_support_count": 0,
+                "gauge_support_fraction": 0.0,
+                "gauge_threshold_deg": float(gauge_threshold_deg),
+                "gauge_status": "missing_reference_overlap",
+            })
+            continue
+
+        best_key: tuple[int, float, str] | None = None
+        best_inliers: list[tuple[str, np.ndarray]] = []
+        for name, candidate in gauge_candidates:
+            inliers = [
+                item
+                for item in gauge_candidates
+                if rotation_geodesic_deg(candidate, item[1]) <= gauge_threshold_deg
+            ]
+            key = (
+                len(inliers),
+                -float(sum(rotation_geodesic_deg(candidate, item[1]) for item in inliers)),
+                name,
+            )
+            if best_key is None or key > best_key:
+                best_key = key
+                best_inliers = inliers
+        gauge = _average_rotations(
+            [matrix for _, matrix in best_inliers],
+            [1.0 for _ in best_inliers],
+        )
+        for name, local_rotation in local.items():
+            corrected[name] = gauge @ local_rotation
+        change_values = [
+            rotation_geodesic_deg(corrected[name], reference[name])
+            for name in local
+            if name in reference
+        ]
+        gauge_residuals = [
+            rotation_geodesic_deg(gauge, candidate)
+            for _, candidate in gauge_candidates
+        ]
+        support_fraction = len(best_inliers) / len(gauge_candidates)
+        ring_reports.append({
+            **local_report,
+            "gauge_support_count": len(best_inliers),
+            "gauge_support_fraction": float(support_fraction),
+            "gauge_candidate_count": len(gauge_candidates),
+            "gauge_threshold_deg": float(gauge_threshold_deg),
+            "gauge_status": "supported" if support_fraction >= 0.5 else "low_support",
+            "gauge_residual_quantiles_deg": _rotation_quantiles(gauge_residuals),
+            "reference_change_quantiles_deg": _rotation_quantiles(change_values),
+        })
+
+    # Keep registered images that have no usable calibrated ring edge at their
+    # original image-derived pose; the acceptance gate will expose any harm.
+    for name, matrix in reference.items():
+        corrected.setdefault(name, matrix.copy())
+    report = {
+        "schema_version": 1,
+        "method": "calibrated same-ring synchronization with largest robust reference-gauge cluster",
+        "ring_order": [str(value) for value in ring_order],
+        "gauge_threshold_deg": float(gauge_threshold_deg),
+        "orientation_count": len(corrected),
+        "reference_orientation_count": len(reference),
+        "same_ring_reports": ring_reports,
+        "low_support_rings": [
+            item["ring"]
+            for item in ring_reports
+            if item.get("gauge_status") != "supported"
+        ],
+        "retained_reference_pose_policy": "uncovered registered images retain their source-model pose; all candidate poses remain subject to independent sparse gates",
+    }
+    return corrected, report
+
+
+def build_source_component_pose_repair(
+    records: Sequence[Mapping[str, Any]],
+    reference_orientations: Mapping[str, np.ndarray],
+    *,
+    ring_order: Sequence[str] = DEFAULT_RING_ORDER,
+    source_edge_threshold_deg: float = 30.0,
+) -> tuple[dict[str, np.ndarray], dict[str, Any]]:
+    """Repair only source pose islands using calibrated image-derived edges.
+
+    The failed global rotation-consensus candidates integrated small local
+    rotation errors around an entire ring, destroying the source model's
+    useful camera gauge and mask agreement.  This architecture keeps the
+    source pose field as the default, cuts only same-ring edges whose source
+    relative rotation disagrees with the calibrated first-to-second rotation
+    beyond the sparse gate threshold, and aligns the resulting components with
+    the calibrated graph.  One largest component per ring is anchored to the
+    source gauge; every other component is reached through deterministic
+    calibrated links, preferring same-ring evidence before cross-ring bridges.
+
+    No frame order, turntable orbit, or fixed audit-pair preference is used.
+    All conditioned calibrated edges remain in the returned residual report,
+    including edges not selected for the component spanning tree.
+    """
+
+    if not math.isfinite(float(source_edge_threshold_deg)) or source_edge_threshold_deg <= 0.0:
+        raise ValueError("source_edge_threshold_deg must be finite and positive")
+    reference = {
+        str(name): np.asarray(matrix, dtype=np.float64)
+        for name, matrix in reference_orientations.items()
+    }
+    for name, matrix in reference.items():
+        if matrix.shape != (3, 3) or not np.isfinite(matrix).all():
+            raise ValueError(f"invalid reference orientation for {name}")
+
+    conditioned_edges: list[dict[str, Any]] = []
+    ring_nodes: dict[str, set[str]] = defaultdict(set)
+    for record in records:
+        matrix = calibrated_rotation(record)
+        if matrix is None or not bool(record.get("well_conditioned_calibrated")):
+            continue
+        first, second = str(record["first"]), str(record["second"])
+        if first not in reference or second not in reference:
+            continue
+        source_relative = reference[second] @ reference[first].T
+        source_residual = rotation_geodesic_deg(source_relative, matrix)
+        edge = {
+            "pair_id": int(record.get("pair_id", 0)),
+            "first": first,
+            "second": second,
+            "ring": str(record.get("ring", "")),
+            "second_ring": str(record.get("second_ring", "")),
+            "same_ring": bool(record.get("same_ring")),
+            "calibrated_inliers": max(1, int(record.get("calibrated_inliers", 1))),
+            "calibrated_rotation": matrix,
+            "source_relative": source_relative,
+            "source_residual_deg": float(source_residual),
+        }
+        conditioned_edges.append(edge)
+        if edge["same_ring"] and edge["ring"] == edge["second_ring"]:
+            ring_nodes.setdefault(edge["ring"], set()).update((first, second))
+
+    component_of: dict[str, tuple[str, str]] = {}
+    component_nodes: dict[tuple[str, str], list[str]] = {}
+    for ring, nodes in sorted(ring_nodes.items()):
+        parent = {name: name for name in nodes}
+
+        def find(name: str) -> str:
+            while parent[name] != name:
+                parent[name] = parent[parent[name]]
+                name = parent[name]
+            return name
+
+        def union(first: str, second: str) -> None:
+            first_root, second_root = find(first), find(second)
+            if first_root != second_root:
+                parent[second_root] = first_root
+
+        for edge in conditioned_edges:
+            if (
+                edge["same_ring"]
+                and edge["ring"] == ring
+                and edge["second_ring"] == ring
+                and edge["source_residual_deg"] <= source_edge_threshold_deg
+            ):
+                union(edge["first"], edge["second"])
+        for name in sorted(nodes):
+            component = (ring, find(name))
+            component_of[name] = component
+            component_nodes.setdefault(component, []).append(name)
+
+    # Keep any registered image not covered by a same-ring calibrated edge in
+    # a singleton source-gauge component; this is explicit negative evidence,
+    # not an invented pose.
+    for name in sorted(reference):
+        if name not in component_of:
+            component = ("uncovered", name)
+            component_of[name] = component
+            component_nodes.setdefault(component, []).append(name)
+
+    links: dict[tuple[tuple[str, str], tuple[str, str]], list[dict[str, Any]]] = defaultdict(list)
+    for edge in conditioned_edges:
+        first_component = component_of[edge["first"]]
+        second_component = component_of[edge["second"]]
+        if first_component == second_component:
+            continue
+        key = tuple(sorted((first_component, second_component), key=str))
+        links[key].append(edge)
+
+    selected_links: list[dict[str, Any]] = []
+    for key, candidates in links.items():
+        selected = sorted(
+            candidates,
+            key=lambda edge: (
+                -int(edge["same_ring"]),
+                -int(edge["calibrated_inliers"]),
+                float(edge["source_residual_deg"]),
+                int(edge["pair_id"]),
+            ),
+        )[0]
+        selected_links.append(selected)
+    selected_link_object_ids = {id(edge) for edge in selected_links}
+
+    # One source-gauge anchor per observed ring preserves the useful mask and
+    # translation gauge.  A deterministic best-link expansion reaches pose
+    # islands through same-ring evidence before cross-ring links.
+    anchors: set[tuple[str, str]] = set()
+    for ring in sorted(ring_nodes):
+        candidates = [component for component in component_nodes if component[0] == ring]
+        if candidates:
+            anchors.add(max(candidates, key=lambda component: (len(component_nodes[component]), str(component))))
+    corrections: dict[tuple[str, str], np.ndarray] = {
+        component: np.eye(3, dtype=np.float64) for component in anchors
+    }
+    assigned = set(corrections)
+    component_graph: dict[tuple[str, str], list[tuple[dict[str, Any], tuple[str, str]]]] = defaultdict(list)
+    for edge in selected_links:
+        first_component = component_of[edge["first"]]
+        second_component = component_of[edge["second"]]
+        component_graph[first_component].append((edge, second_component))
+        component_graph[second_component].append((edge, first_component))
+
+    while True:
+        candidates: list[tuple[int, int, float, int, tuple[str, str], tuple[str, str], dict[str, Any]]] = []
+        for source_component in sorted(assigned, key=str):
+            for edge, target_component in component_graph[source_component]:
+                if target_component in assigned:
+                    continue
+                candidates.append(
+                    (
+                        int(edge["same_ring"]),
+                        int(edge["calibrated_inliers"]),
+                        -float(edge["source_residual_deg"]),
+                        -int(edge["pair_id"]),
+                        source_component,
+                        target_component,
+                        edge,
+                    )
+                )
+        if not candidates:
+            break
+        _, _, _, _, source_component, target_component, edge = max(candidates)
+        first_component = component_of[edge["first"]]
+        second_component = component_of[edge["second"]]
+        matrix = np.asarray(edge["calibrated_rotation"], dtype=np.float64)
+        source_relative = np.asarray(edge["source_relative"], dtype=np.float64)
+        if source_component == first_component and target_component == second_component:
+            corrections[target_component] = matrix @ corrections[source_component] @ source_relative.T
+        elif source_component == second_component and target_component == first_component:
+            corrections[target_component] = matrix.T @ corrections[source_component] @ source_relative
+        else:  # pragma: no cover - component graph construction invariant
+            raise RuntimeError("component link orientation is inconsistent")
+        assigned.add(target_component)
+
+    corrected = {
+        name: corrections.get(component_of[name], np.eye(3, dtype=np.float64)) @ matrix
+        for name, matrix in reference.items()
+    }
+    residual_rows: list[dict[str, Any]] = []
+    for edge in conditioned_edges:
+        first, second = edge["first"], edge["second"]
+        relative = corrected[second] @ corrected[first].T
+        corrected_residual = rotation_geodesic_deg(relative, edge["calibrated_rotation"])
+        residual_rows.append(
+            {
+                "pair_id": edge["pair_id"],
+                "first": first,
+                "second": second,
+                "ring": edge["ring"],
+                "same_ring": edge["same_ring"],
+                "source_residual_deg": edge["source_residual_deg"],
+                "corrected_residual_deg": corrected_residual,
+                "selected_component_link": id(edge) in selected_link_object_ids,
+            }
+        )
+
+    def quantiles(values: Sequence[float]) -> list[float]:
+        return (
+            [float(value) for value in np.quantile(np.asarray(values, dtype=np.float64), [0, 0.5, 0.9, 0.95, 0.99, 1.0])]
+            if values
+            else []
+        )
+
+    ring_reports: list[dict[str, Any]] = []
+    for ring in sorted(ring_nodes):
+        values = [row for row in residual_rows if row["ring"] == ring and row["same_ring"]]
+        ring_reports.append(
+            {
+                "ring": ring,
+                "component_count": sum(1 for component in component_nodes if component[0] == ring),
+                "source_residual_quantiles_deg": quantiles([float(row["source_residual_deg"]) for row in values]),
+                "corrected_residual_quantiles_deg": quantiles([float(row["corrected_residual_deg"]) for row in values]),
+                "corrected_residual_over_threshold_count": sum(
+                    float(row["corrected_residual_deg"]) > source_edge_threshold_deg for row in values
+                ),
+            }
+        )
+
+    return corrected, {
+        "schema_version": 1,
+        "method": "source-gauge component pose repair from calibrated first-to-second rotations",
+        "source_edge_threshold_deg": float(source_edge_threshold_deg),
+        "reference_orientation_count": len(reference),
+        "conditioned_edge_count": len(conditioned_edges),
+        "component_count": len(component_nodes),
+        "assigned_component_count": len(assigned),
+        "unassigned_components": [str(component) for component in sorted(component_nodes, key=str) if component not in assigned],
+        "anchors": [
+            {"ring": component[0], "component": component[1], "image_count": len(component_nodes[component])}
+            for component in sorted(anchors, key=str)
+        ],
+        "components": [
+            {
+                "ring": component[0],
+                "component": component[1],
+                "image_count": len(component_nodes[component]),
+                "images": sorted(component_nodes[component]),
+                "correction_geodesic_deg": rotation_geodesic_deg(
+                    corrections.get(component, np.eye(3, dtype=np.float64)), np.eye(3, dtype=np.float64)
+                ),
+            }
+            for component in sorted(component_nodes, key=str)
+        ],
+        "selected_component_links": [
+            {
+                "pair_id": int(edge["pair_id"]),
+                "first": edge["first"],
+                "second": edge["second"],
+                "same_ring": bool(edge["same_ring"]),
+                "calibrated_inliers": int(edge["calibrated_inliers"]),
+                "source_residual_deg": float(edge["source_residual_deg"]),
+            }
+            for edge in sorted(selected_links, key=lambda item: int(item["pair_id"]))
+        ],
+        "ring_reports": ring_reports,
+        "residual_evidence": residual_rows,
+        "retained_evidence_policy": "all conditioned calibrated edges remain measured; only component gauge corrections are applied",
+    }
+
+
+def _rotation_quantiles(values: Sequence[float]) -> list[float]:
+    """Return deterministic rotation quantiles for repair reports."""
+
+    if not values:
+        return []
+    return [
+        float(value)
+        for value in np.quantile(np.asarray(values, dtype=np.float64), [0, 0.5, 0.9, 0.95, 0.99, 1.0])
+    ]
+
+
 def _image_ring_map(records: Sequence[Mapping[str, Any]]) -> dict[str, str]:
     result: dict[str, str] = {}
     for record in records:
@@ -388,6 +769,8 @@ def write_consensus_model(
     min_points_per_pair: int = 20,
     max_reprojection_px: float = 12.0,
     max_median_reprojection_px: float = 6.0,
+    track_pair_order: str = "pair_id",
+    priority_pair_ids: set[int] | None = None,
 ) -> dict[str, Any]:
     """Copy or rebuild image-derived tracks using synchronized rotations.
 
@@ -431,6 +814,7 @@ def write_consensus_model(
     cameras = {int(camera_id): new.camera(int(camera_id)) for camera_id in new.cameras}
     poses = {int(image_id): new.image(int(image_id)).cam_from_world() for image_id in new.reg_image_ids()}
     rejected: Counter[str] = Counter()
+    track_builder_stats: dict[str, Any] = {}
     added = 0
     if database is None:
         point_sources: Iterable[tuple[list[Any], np.ndarray]] = (
@@ -449,7 +833,15 @@ def write_consensus_model(
                 min_points_per_pair=min_points_per_pair,
             )
         else:
-            point_sources = _database_track_components(database, poses, old, allowed_pair_ids or set())
+            point_sources = _database_track_components(
+                database,
+                poses,
+                old,
+                allowed_pair_ids or set(),
+                track_builder_stats=track_builder_stats,
+                pair_order=track_pair_order,
+                priority_pair_ids=priority_pair_ids,
+            )
 
     for source_elements, color in point_sources:
         elements = list(source_elements)
@@ -524,6 +916,7 @@ def write_consensus_model(
         "mean_track_length": float(new.compute_mean_track_length()),
         "added_points": added,
         "rejected_tracks": dict(rejected),
+        "track_builder": track_builder_stats,
     }
 
 
@@ -533,36 +926,78 @@ def _database_track_components(
     source_reconstruction: Any,
     allowed_pair_ids: set[int],
     *,
-    max_component_observations: int = 50,
+    max_component_observations: int = 372,
+    track_builder_stats: dict[str, Any] | None = None,
+    pair_order: str = "pair_id",
+    priority_pair_ids: set[int] | None = None,
 ) -> Iterable[tuple[list[Any], np.ndarray]]:
-    """Yield disjoint observation components from verified two-view matches."""
+    """Yield conflict-free multi-view components from verified two-view matches.
+
+    A blind union-find over pair matches can merge a repeated or contradictory
+    keypoint into one component that contains several observations from the
+    same image.  The old implementation discarded that entire component, which
+    could erase most of the graph (including a component spanning all 372
+    images).  Track construction now refuses a merge when the two roots already
+    contain the same image.  The raw pair graph is untouched; only the derived
+    track partition changes, and every yielded observation still comes directly
+    from an image-derived verified match.
+    """
 
     from v4_repair import decode_colmap_pair_id
 
     image_by_id = {int(image.image_id): image for image in database.read_all_images()}
     parent: dict[tuple[int, int], tuple[int, int]] = {}
     size: dict[tuple[int, int], int] = {}
+    image_sets: dict[tuple[int, int], set[int]] = {}
+    conflict_merges = 0
+    accepted_merges = 0
 
     def find(node: tuple[int, int]) -> tuple[int, int]:
         parent.setdefault(node, node)
         size.setdefault(node, 1)
+        image_sets.setdefault(node, {int(node[0])})
         while parent[node] != node:
             parent[node] = parent[parent[node]]
             node = parent[node]
         return node
 
     def union(first: tuple[int, int], second: tuple[int, int]) -> None:
+        nonlocal conflict_merges, accepted_merges
         first_root, second_root = find(first), find(second)
         if first_root == second_root:
+            return
+        if image_sets[first_root].intersection(image_sets[second_root]):
+            conflict_merges += 1
             return
         if size[first_root] < size[second_root]:
             first_root, second_root = second_root, first_root
         parent[second_root] = first_root
         size[first_root] += size[second_root]
+        image_sets[first_root].update(image_sets[second_root])
+        del image_sets[second_root]
+        accepted_merges += 1
 
+    if pair_order not in {"pair_id", "strongest_verified_inliers", "fixed_audit_priority"}:
+        raise ValueError(
+            "pair_order must be 'pair_id', 'strongest_verified_inliers', or 'fixed_audit_priority'"
+        )
     pair_ids, geometries = database.read_two_view_geometries()
+    pair_records: list[tuple[int, Any, int]] = []
     for pair_id, geometry in zip(pair_ids, geometries):
-        pair_value = int(pair_id)
+        matches = np.asarray(
+            getattr(geometry, "inlier_matches", np.empty((0, 2), dtype=np.uint32))
+        )
+        count = int(matches.shape[0]) if matches.ndim == 2 and matches.shape[1] == 2 else 0
+        pair_records.append((int(pair_id), geometry, count))
+    if pair_order == "strongest_verified_inliers":
+        pair_records.sort(key=lambda item: (-item[2], item[0]))
+    elif pair_order == "fixed_audit_priority":
+        priority = priority_pair_ids or set()
+        pair_records.sort(key=lambda item: (0 if item[0] in priority else 1, -item[2], item[0]))
+    else:
+        pair_records.sort(key=lambda item: item[0])
+    observed_match_rows = 0
+    for pair_value, geometry, _ in pair_records:
         if pair_value not in allowed_pair_ids:
             continue
         try:
@@ -574,20 +1009,49 @@ def _database_track_components(
         matches = np.asarray(getattr(geometry, "inlier_matches", np.empty((0, 2), dtype=np.uint32)))
         if matches.ndim != 2 or matches.shape[1] != 2:
             continue
-        for first_index, second_index in matches.astype(np.int64, copy=False):
+        for first_index, second_index in sorted(matches.astype(np.int64, copy=False).tolist()):
             union((first_id, int(first_index)), (second_id, int(second_index)))
+            observed_match_rows += 1
 
     components: dict[tuple[int, int], list[tuple[int, int]]] = defaultdict(list)
     for node in sorted(parent):
         components[find(node)].append(node)
+    yielded_components = 0
+    rejected_short = 0
+    rejected_large = 0
+    rejected_conflicting = 0
     for nodes in sorted(components.values(), key=lambda value: value[0]):
         if len(nodes) < 2 or len(nodes) > max_component_observations:
+            if len(nodes) < 2:
+                rejected_short += 1
+            else:
+                rejected_large += 1
             continue
         image_ids = [node[0] for node in nodes]
         if len(image_ids) != len(set(image_ids)):
+            rejected_conflicting += 1
             continue
         elements = [__import__("pycolmap").TrackElement(image_id, index) for image_id, index in nodes]
+        yielded_components += 1
         yield elements, np.asarray([128, 128, 128], dtype=np.uint8)
+    if track_builder_stats is not None:
+        track_builder_stats.update(
+            {
+                "method": "conflict_aware_union_find_observation_components",
+                "pair_order": pair_order,
+                "priority_pair_count": int(len(priority_pair_ids or set())),
+                "allowed_pair_count": int(len(allowed_pair_ids)),
+                "observed_verified_match_rows": int(observed_match_rows),
+                "accepted_component_merges": int(accepted_merges),
+                "same_image_conflict_merges_rejected": int(conflict_merges),
+                "component_count": int(len(components)),
+                "yielded_component_count": int(yielded_components),
+                "rejected_short_component_count": int(rejected_short),
+                "rejected_large_component_count": int(rejected_large),
+                "rejected_conflicting_component_count": int(rejected_conflicting),
+                "maximum_component_observations": int(max_component_observations),
+            }
+        )
 
 
 def _database_pair_track_components(
@@ -744,6 +1208,30 @@ def recover_translation_direction_edges(
         if first_name not in orientations or second_name not in orientations:
             failures["missing_orientation"] += 1
             continue
+        calibrated_translation = record_by_pair[pair_value].get(
+            "calibrated_reestimate_translation_first_to_second"
+        )
+        if calibrated_translation is not None:
+            direction = -np.asarray(orientations[second_name], dtype=np.float64).T @ np.asarray(
+                calibrated_translation,
+                dtype=np.float64,
+            ).reshape(3)
+            norm = float(np.linalg.norm(direction))
+            if np.isfinite(direction).all() and norm > 1e-9:
+                direction /= norm
+                edges.append({
+                    "pair_id": pair_value,
+                    "first": first_name,
+                    "second": second_name,
+                    "first_id": first_id,
+                    "second_id": second_id,
+                    "direction_world": direction.tolist(),
+                    "weight": max(1.0, float(record_by_pair[pair_value].get("calibrated_inliers", 1))),
+                    "same_ring": bool(record_by_pair[pair_value].get("same_ring")),
+                    "translation_source": "calibrated_reestimate",
+                })
+                continue
+            failures["invalid_calibrated_direction"] += 1
         essential = np.asarray(getattr(geometry, "E", np.empty((0, 0))), dtype=np.float64)
         matches = np.asarray(getattr(geometry, "inlier_matches", np.empty((0, 2))), dtype=np.int64)
         if essential.shape != (3, 3) or matches.ndim != 2 or matches.shape[1] != 2 or len(matches) < 8:
@@ -784,6 +1272,7 @@ def recover_translation_direction_edges(
             "direction_world": direction.tolist(),
             "weight": max(1.0, float(record_by_pair[pair_value].get("calibrated_inliers", 1))),
             "same_ring": bool(record_by_pair[pair_value].get("same_ring")),
+            "translation_source": "database_essential_fallback",
         })
     return edges, {
         "candidate_edge_count": len(edges),
@@ -829,7 +1318,12 @@ def solve_camera_centers(
             direction = np.asarray(edge["direction_world"], dtype=np.float64)
             delta = centers[edge["second"]] - centers[edge["first"]]
             scale = float(np.dot(delta, direction))
-            scales.append(max(abs(scale), 1e-4))
+            # Calibrated re-estimation plus cheirality gives a directed
+            # first-to-second translation.  Taking abs(scale) would silently
+            # turn an inconsistent candidate center into evidence for the
+            # opposite direction.  Keep the scale positive and let the
+            # robust residual down-weight an initially wrong-sign edge.
+            scales.append(max(scale, 1e-4))
             residuals.append(float(np.linalg.norm(delta - scales[-1] * direction)))
         residual_scale = max(float(np.median(residuals)), 1e-4)
         rows = 3 * len(usable)
@@ -862,11 +1356,14 @@ def solve_camera_centers(
         if change < 1e-7:
             break
     final_residuals = []
+    final_negative_direction_count = 0
     for edge in usable:
         direction = np.asarray(edge["direction_world"], dtype=np.float64)
         delta = centers[edge["second"]] - centers[edge["first"]]
         scale = float(np.dot(delta, direction))
-        final_residuals.append(float(np.linalg.norm(delta - max(abs(scale), 1e-4) * direction)))
+        if scale <= 0.0:
+            final_negative_direction_count += 1
+        final_residuals.append(float(np.linalg.norm(delta - max(scale, 1e-4) * direction)))
     if final_residuals:
         residual_quantiles = [
             float(value) for value in np.quantile(final_residuals, [0, 0.5, 0.9, 0.95, 0.99, 1.0])
@@ -877,6 +1374,10 @@ def solve_camera_centers(
         "anchor": anchor,
         "iterations": iterations + 1,
         "negative_initial_direction_count": negative_initial,
+        "negative_final_direction_count": final_negative_direction_count,
+        "positive_final_direction_fraction": float(
+            (len(usable) - final_negative_direction_count) / max(len(usable), 1)
+        ),
         "direction_residual_quantiles": residual_quantiles,
     }
 
@@ -891,6 +1392,22 @@ def main() -> int:
     parser.add_argument("--output-report", required=True, type=Path)
     parser.add_argument("--source-model", type=Path)
     parser.add_argument("--output-model", type=Path)
+    parser.add_argument(
+        "--source-component-pose-repair",
+        action="store_true",
+        help=(
+            "retain the source model gauge and repair only source pose islands "
+            "with conditioned calibrated component links"
+        ),
+    )
+    parser.add_argument(
+        "--source-pose-track-repair",
+        action="store_true",
+        help=(
+            "retain every source-model camera pose and rebuild only the image-derived "
+            "multi-view tracks from the disposable calibrated graph"
+        ),
+    )
     parser.add_argument(
         "--snapshot-manifest",
         type=Path,
@@ -911,15 +1428,103 @@ def main() -> int:
     parser.add_argument("--ring-order", nargs="*", default=list(DEFAULT_RING_ORDER))
     parser.add_argument("--max-reprojection-px", type=float, default=12.0)
     parser.add_argument("--max-median-reprojection-px", type=float, default=6.0)
+    parser.add_argument(
+        "--track-pair-order",
+        choices=("pair_id", "strongest_verified_inliers", "fixed_audit_priority"),
+        default="pair_id",
+        help=(
+            "deterministic verified-graph track order; strongest_verified_inliers "
+            "builds a maximum-support conflict-free partition; fixed_audit_priority "
+            "places the independent fixed audit edges first"
+        ),
+    )
+    parser.add_argument(
+        "--priority-pairs-manifest",
+        type=Path,
+        help="independent fixed audit manifest used only to prioritize measured graph edges",
+    )
     args = parser.parse_args()
     classification_payload = json.loads(args.classification.read_text(encoding="utf-8"))
     records = classification_payload.get("classification", classification_payload)
     if not isinstance(records, list):
         raise ValueError("classification payload must contain a classification list")
-    orientations, report = build_rotation_consensus(records, ring_order=args.ring_order)
+    priority_pair_ids: set[int] = set()
+    priority_manifest_sha256: str | None = None
+    if args.priority_pairs_manifest is not None:
+        priority_payload = json.loads(args.priority_pairs_manifest.read_text(encoding="utf-8"))
+        priority_records = priority_payload.get("pairs", priority_payload) if isinstance(priority_payload, dict) else priority_payload
+        if not isinstance(priority_records, list):
+            raise ValueError("priority-pairs-manifest must contain a pairs list")
+        priority_pair_ids = {int(item["pair_id"]) for item in priority_records if isinstance(item, Mapping) and "pair_id" in item}
+        priority_manifest_sha256 = _sha256(args.priority_pairs_manifest)
+    if args.track_pair_order == "fixed_audit_priority" and not priority_pair_ids:
+        raise ValueError("fixed_audit_priority requires a non-empty --priority-pairs-manifest")
+    if args.source_pose_track_repair:
+        if args.source_model is None:
+            raise ValueError("--source-model is required with --source-pose-track-repair")
+        import pycolmap
+
+        source_reconstruction = pycolmap.Reconstruction(str(args.source_model))
+        orientations = {
+            str(image.name): np.asarray(image.cam_from_world().rotation.matrix(), dtype=np.float64)
+            for image in source_reconstruction.images.values()
+            if image.has_pose
+        }
+        # Still derive the allowed graph edges from the calibrated consensus
+        # policy.  Only the source poses are retained; no mapper-allocated or
+        # pair-local tracks are inherited from the source model.
+        _, selection_report = build_rotation_consensus(records, ring_order=args.ring_order)
+        report = dict(selection_report)
+        report["method"] = "source-pose track rebuild from calibrated graph"
+        report["source_pose_model"] = str(args.source_model.resolve())
+        report["source_pose_model_sha256"] = _sha256(args.source_model / "images.bin")
+    elif args.source_component_pose_repair:
+        if args.source_model is None:
+            raise ValueError("--source-model is required with --source-component-pose-repair")
+        import pycolmap
+
+        source_reconstruction = pycolmap.Reconstruction(str(args.source_model))
+        reference_orientations = {
+            str(image.name): np.asarray(image.cam_from_world().rotation.matrix(), dtype=np.float64)
+            for image in source_reconstruction.images.values()
+            if image.has_pose
+        }
+        orientations, pose_report = build_source_component_pose_repair(
+            records,
+            reference_orientations,
+            ring_order=args.ring_order,
+        )
+        # Keep the existing calibrated rotation-consensus selector as the
+        # versioned graph policy; the new architecture changes only the pose
+        # field used to write the candidate, not which verified edges are
+        # eligible for mapping.
+        _, selection_report = build_rotation_consensus(records, ring_order=args.ring_order)
+        report = dict(selection_report)
+        report["method"] = "source-gauge component pose repair with calibrated graph mapping selection"
+        report["pose_repair"] = pose_report
+    else:
+        orientations, report = build_rotation_consensus(records, ring_order=args.ring_order)
     report["classification_path"] = str(args.classification.resolve())
     report["classification_sha256"] = _sha256(args.classification)
     report["orientation_count"] = len(orientations)
+    report["track_provenance"] = {
+        "source": "verified_disposable_sqlite_graph",
+        "independent_graph": bool(args.snapshot_manifest is not None),
+        "independent_graph_sha256": report["classification_sha256"],
+        "constructed_pairwise_tracks": bool(args.pairwise_tracks),
+        "track_builder": "disjoint_pair_allocator" if args.pairwise_tracks else "union_find_observation_components",
+        "track_pair_order": args.track_pair_order,
+        "priority_pairs_manifest": str(args.priority_pairs_manifest.resolve()) if args.priority_pairs_manifest else None,
+        "priority_pairs_manifest_sha256": priority_manifest_sha256,
+        "priority_pair_count": len(priority_pair_ids),
+        "pose_repair": (
+            "source_pose_track_rebuild"
+            if args.source_pose_track_repair
+            else "source_component"
+            if args.source_component_pose_repair
+            else "rotation_consensus"
+        ),
+    }
     if args.source_model is not None or args.output_model is not None:
         if args.source_model is None or args.output_model is None:
             raise ValueError("--source-model and --output-model must be provided together")
@@ -976,6 +1581,8 @@ def main() -> int:
                         min_points_per_pair=args.min_points_per_pair,
                         max_reprojection_px=args.max_reprojection_px,
                         max_median_reprojection_px=args.max_median_reprojection_px,
+                        track_pair_order=args.track_pair_order,
+                        priority_pair_ids=priority_pair_ids,
                     )
                 finally:
                     database.close()

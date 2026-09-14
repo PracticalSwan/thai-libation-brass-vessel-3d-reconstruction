@@ -9,6 +9,7 @@ import json
 import math
 import os
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import threading
@@ -37,6 +38,16 @@ CONTAMINATION_FINDING_KEYS = (
     "vessel_identity_confirmed",
 )
 SEMANTIC_VIEW_KEYS = ("front", "quarter", "side", "top_oblique")
+ANATOMY_VIEW_KEYS = (
+    "bowl_interior",
+    "rim",
+    "globe_shoulder",
+    "continuous_neck",
+    "lid_tiers",
+    "finial",
+    "pedestal_transitions",
+    "base",
+)
 REQUIRED_REVIEW_REGION_KEYS = (
     "bowl_and_interior",
     "globe_or_shoulder",
@@ -185,6 +196,103 @@ def build_patch_match_command(
     return command
 
 
+def validate_patch_match_runtime_phases(
+    log_path: Path,
+    *,
+    require_geometric: bool = True,
+) -> dict[str, Any]:
+    """Verify COLMAP's observed photometric then geometric PatchMatch phases.
+
+    COLMAP 4.2 writes a photometric pass before the geometric/filter pass even
+    when the requested command enables geometric consistency.  Acceptance must
+    inspect the runtime log rather than infer the phase from the command line:
+    a completed geometric run needs at least one ``0/0`` option block followed
+    by at least one ``1/1`` block.
+    """
+
+    path = Path(log_path)
+    if not path.is_file():
+        raise RuntimeError(f"PatchMatch runtime log is missing: {path}")
+    text = path.read_text(encoding="utf-8", errors="replace")
+    blocks = text.split("--- PatchMatchOptions ---")[1:]
+    phase_blocks: list[dict[str, int]] = []
+    for block in blocks:
+        geom_match = re.search(r"\bgeom_consistency:\s*([01])\b", block)
+        filter_match = re.search(r"\bfilter:\s*([01])\b", block)
+        if geom_match is None or filter_match is None:
+            continue
+        phase_blocks.append(
+            {
+                "geom_consistency": int(geom_match.group(1)),
+                "filter": int(filter_match.group(1)),
+            }
+        )
+    photometric_count = sum(
+        item["geom_consistency"] == 0 and item["filter"] == 0
+        for item in phase_blocks
+    )
+    geometric_count = sum(
+        item["geom_consistency"] == 1 and item["filter"] == 1
+        for item in phase_blocks
+    )
+    first_photometric = next(
+        (index for index, item in enumerate(phase_blocks) if item == {"geom_consistency": 0, "filter": 0}),
+        None,
+    )
+    first_geometric = next(
+        (index for index, item in enumerate(phase_blocks) if item == {"geom_consistency": 1, "filter": 1}),
+        None,
+    )
+    phase_order_valid = (
+        first_photometric is not None
+        and first_geometric is not None
+        and first_photometric < first_geometric
+    )
+    evidence = {
+        "log_path": str(path.resolve()),
+        "phase_block_count": len(phase_blocks),
+        "photometric_block_count": photometric_count,
+        "geometric_block_count": geometric_count,
+        "first_photometric_block_index": first_photometric,
+        "first_geometric_block_index": first_geometric,
+        "phase_order_valid": phase_order_valid,
+        "passed": (not require_geometric)
+        or (photometric_count > 0 and geometric_count > 0 and phase_order_valid),
+    }
+    if require_geometric and not evidence["passed"]:
+        raise RuntimeError(
+            "completed geometric PatchMatch is missing the required photometric pre-pass "
+            "and subsequent geom_consistency=1/filter=1 runtime phase"
+        )
+    return evidence
+
+
+def classify_dense_postfusion_completion(report: Mapping[str, Any]) -> dict[str, Any]:
+    """Classify a completed dense report without relabelling strict failure.
+
+    A fresh, fully executed dense candidate remains useful evidence when the
+    unchanged post-fusion gate fails.  The failure is preserved verbatim and
+    the caller may continue through the explicitly best-defensible dense
+    path; this helper never turns that candidate into a strict pass.
+    """
+
+    strict_gate_passed = report.get("passed") is True
+    reasons_value = report.get("reasons", [])
+    if isinstance(reasons_value, (list, tuple)):
+        reasons = [str(reason) for reason in reasons_value]
+    elif reasons_value:
+        reasons = [str(reasons_value)]
+    else:
+        reasons = []
+    return {
+        "strict_gate_passed": strict_gate_passed,
+        "best_defensible": not strict_gate_passed,
+        "continuation_allowed": True,
+        "status": "dense_evidence_passed" if strict_gate_passed else "dense_best_defensible",
+        "strict_failure_reasons": reasons,
+    }
+
+
 def build_stereo_fusion_command(
     workspace_path: Path,
     output_path: Path,
@@ -304,21 +412,41 @@ def validate_sparse_lineage(
     *,
     expected_sparse_model_sha256: str | None = None,
 ) -> dict[str, Any]:
-    """Validate the accepted repaired sparse hash carried into dense evidence."""
+    """Validate the hash-bound sparse source carried into dense evidence.
+
+    The normal ``accepted_sparse_candidate`` path still requires the complete
+    strict sparse gate.  The explicit ``best_defensible_sparse_candidate``
+    path is only for the documented end-to-end fallback policy: it must carry
+    a non-empty strict-gate failure list and a separate selection-report hash,
+    and it must keep ``sparse_gate_passed`` false rather than relabeling the
+    candidate as strictly accepted.
+    """
 
     reasons: list[str] = []
     if not isinstance(lineage, Mapping):
         return {"passed": False, "reasons": ["accepted repaired sparse lineage is missing"]}
     model_sha = str(lineage.get("accepted_sparse_model_sha256", "")).strip().lower()
     gate_sha = str(lineage.get("accepted_sparse_gate_sha256", "")).strip().lower()
+    status = lineage.get("status")
+    best_defensible = bool(lineage.get("best_defensible", False))
     if not _valid_sha256(model_sha):
         reasons.append("accepted repaired sparse model hash is missing or invalid")
     if not _valid_sha256(gate_sha):
         reasons.append("accepted repaired sparse gate hash is missing or invalid")
-    if lineage.get("status") != "accepted_sparse_candidate":
-        reasons.append("sparse lineage does not identify an accepted sparse candidate")
-    if lineage.get("sparse_gate_passed") is not True:
-        reasons.append("sparse lineage does not record a passed sparse gate")
+    if status == "accepted_sparse_candidate":
+        if lineage.get("sparse_gate_passed") is not True:
+            reasons.append("sparse lineage does not record a passed sparse gate")
+    elif status == "best_defensible_sparse_candidate" and best_defensible:
+        if lineage.get("sparse_gate_passed") is not False:
+            reasons.append("best-defensible sparse lineage must keep sparse_gate_passed false")
+        selection_sha = str(lineage.get("selection_report_sha256", "")).strip().lower()
+        if not _valid_sha256(selection_sha):
+            reasons.append("best-defensible sparse selection-report hash is missing or invalid")
+        failures = lineage.get("strict_gate_failures")
+        if not isinstance(failures, Sequence) or isinstance(failures, (str, bytes)) or not failures:
+            reasons.append("best-defensible sparse lineage must record strict sparse gate failures")
+    else:
+        reasons.append("sparse lineage does not identify an accepted or best-defensible sparse candidate")
     if expected_sparse_model_sha256 is not None:
         expected = str(expected_sparse_model_sha256).strip().lower()
         if not _valid_sha256(expected) or model_sha != expected:
@@ -328,8 +456,11 @@ def validate_sparse_lineage(
         "reasons": reasons,
         "accepted_sparse_model_sha256": model_sha,
         "accepted_sparse_gate_sha256": gate_sha,
-        "status": lineage.get("status"),
+        "status": status,
         "sparse_gate_passed": lineage.get("sparse_gate_passed"),
+        "best_defensible": best_defensible,
+        "strict_gate_failures": list(lineage.get("strict_gate_failures") or []),
+        "selection_report_sha256": str(lineage.get("selection_report_sha256", "")).strip().lower(),
     }
 
 
@@ -348,6 +479,9 @@ def load_accepted_sparse_lineage(report_path: Path | None = None) -> dict[str, A
     lineage = {
         "status": payload.get("status"),
         "sparse_gate_passed": payload.get("sparse_gate_passed"),
+        "best_defensible": payload.get("best_defensible", False),
+        "strict_gate_failures": payload.get("strict_gate_failures", []),
+        "selection_report_sha256": payload.get("selection_report_sha256", ""),
         "accepted_sparse_model_sha256": payload.get("source_model_sha256"),
         "accepted_sparse_gate_sha256": payload.get("sparse_gate_sha256"),
         "accepted_sparse_report_path": str(path.resolve()),
@@ -380,6 +514,8 @@ def postfusion_evidence_gate(
         "postfusion_report_status_passed": False,
         "fused_cloud_hash_verified": False,
         "semantic_preview_evidence_verified": False,
+        "anatomy_preview_evidence_verified": False,
+        "anatomy_region_measurements_verified": False,
         "fused_cloud_multiview_contamination": False,
         "fusion_mask_resolution_verified": False,
         "contamination_metrics_provenance_verified": False,
@@ -457,6 +593,95 @@ def postfusion_evidence_gate(
     checks["semantic_preview_evidence_verified"] = len(semantic_paths) == len(SEMANTIC_VIEW_KEYS) and len(semantic_hashes) == len(SEMANTIC_VIEW_KEYS)
 
     contamination = report.get("contamination")
+    anatomy = report.get("anatomy_previews")
+    anatomy_paths: set[str] = set()
+    anatomy_hashes: set[str] = set()
+    anatomy_labels: set[str] = set()
+    if not isinstance(anatomy, Mapping) or not set(ANATOMY_VIEW_KEYS).issubset(set(anatomy)):
+        reasons.append("post-fusion evidence must contain all eight hashable anatomy inspection previews")
+    else:
+        for key in ANATOMY_VIEW_KEYS:
+            item = anatomy.get(key)
+            crop = item.get("region_crop") if isinstance(item, Mapping) else None
+            if (
+                not isinstance(item, Mapping)
+                or str(item.get("anatomy_label", key)) != key
+                or not isinstance(crop, Mapping)
+                or crop.get("region_name") != key
+                or crop.get("projection_scope") != "region_only_height_crop"
+                or crop.get("whole_object_projection") is not False
+            ):
+                reasons.append(f"post-fusion anatomy preview evidence is missing or mislabeled for {key}")
+                continue
+            path = Path(str(item.get("path", "")))
+            digest = str(item.get("sha256", "")).strip().lower()
+            if not path.is_file() or not _valid_sha256(digest):
+                reasons.append(f"post-fusion anatomy preview evidence is invalid for {key}")
+                continue
+            try:
+                actual = sha256_file(path)
+            except OSError as error:
+                reasons.append(f"post-fusion anatomy preview cannot be read for {key}: {error}")
+                continue
+            if actual != digest:
+                reasons.append(f"post-fusion anatomy preview hash mismatch for {key}")
+                continue
+            anatomy_paths.add(str(path.resolve()))
+            anatomy_hashes.add(digest)
+            anatomy_labels.add(str(item.get("anatomy_label")))
+        if len(anatomy_paths) < len(ANATOMY_VIEW_KEYS) or len(anatomy_hashes) < len(ANATOMY_VIEW_KEYS):
+            reasons.append("post-fusion anatomy previews must be eight distinct hash-verified files")
+    checks["anatomy_preview_evidence_verified"] = (
+        set(ANATOMY_VIEW_KEYS).issubset(anatomy_labels)
+        and len(anatomy_paths) >= len(ANATOMY_VIEW_KEYS)
+        and len(anatomy_hashes) >= len(ANATOMY_VIEW_KEYS)
+    )
+
+    contamination_anatomy = contamination.get("anatomy") if isinstance(contamination, Mapping) else None
+    anatomy_regions = contamination_anatomy.get("regions") if isinstance(contamination_anatomy, Mapping) else None
+    anatomy_region_valid = (
+        isinstance(contamination_anatomy, Mapping)
+        and contamination_anatomy.get("schema_version") == 2
+        and contamination_anatomy.get("status") == "passed"
+        and contamination_anatomy.get("passed") is True
+        and contamination_anatomy.get("no_major_vessel_scale_holes") is True
+        and isinstance(anatomy_regions, Mapping)
+        and set(anatomy_regions) == set(ANATOMY_VIEW_KEYS)
+        and isinstance(contamination_anatomy.get("finial_shape"), Mapping)
+        and contamination_anatomy.get("finial_shape", {}).get("resolved_narrow_top_element") is True
+    )
+    if not anatomy_region_valid:
+        failures = contamination_anatomy.get("failures", []) if isinstance(contamination_anatomy, Mapping) else []
+        reasons.append(
+            "post-fusion anatomy region measurements are missing or failed"
+            + (": " + ", ".join(str(value) for value in failures[:8]) if failures else "")
+        )
+    if anatomy_region_valid:
+        for key in ANATOMY_VIEW_KEYS:
+            item = anatomy.get(key) if isinstance(anatomy, Mapping) else None
+            crop = item.get("region_crop") if isinstance(item, Mapping) else None
+            measured = anatomy_regions.get(key)
+            if not isinstance(crop, Mapping) or not isinstance(measured, Mapping):
+                anatomy_region_valid = False
+                break
+            if crop.get("region_measurement_sha256") != _canonical_sha256(measured):
+                anatomy_region_valid = False
+                reasons.append(f"anatomy region measurement hash mismatch for {key}")
+                break
+            required_numeric = (
+                "point_count",
+                "supported_point_count",
+                "supported_fraction",
+                "projected_coverage_fraction",
+                "connected_support_fraction",
+                "height_bin_occupancy_fraction",
+            )
+            if any(not _finite_number(measured.get(field)) for field in required_numeric):
+                anatomy_region_valid = False
+                reasons.append(f"anatomy region measurement is incomplete for {key}")
+                break
+    checks["anatomy_region_measurements_verified"] = bool(anatomy_region_valid)
+
     contamination_metrics = contamination.get("metrics") if isinstance(contamination, Mapping) else None
     contamination_evidence = contamination.get("evidence") if isinstance(contamination, Mapping) else None
     contamination_findings = contamination.get("findings") if isinstance(contamination, Mapping) else None
@@ -1570,12 +1795,14 @@ def finalize_dense_visual_gate(
 
 
 __all__ = [
+    "ANATOMY_VIEW_KEYS",
     "V4DenseConfig",
     "build_dense_pair_adjacency",
     "build_prioritized_dense_pair_adjacency",
     "build_image_undistorter_command",
     "build_patch_match_command",
     "build_stereo_fusion_command",
+    "classify_dense_postfusion_completion",
     "colmap_help",
     "contamination_assessment",
     "dense_depth_file_counts",
@@ -1591,6 +1818,7 @@ __all__ = [
     "render_dense_contact_sheet",
     "reviewed_evidence_gate",
     "resource_fallback",
+    "validate_patch_match_runtime_phases",
     "validate_sparse_lineage",
     "undistort_v4_masks",
     "write_dense_image_list",

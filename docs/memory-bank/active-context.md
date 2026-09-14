@@ -8,7 +8,11 @@ Updated: 2026-09-14
 
 The active goal is:
 
-> Complete the V4 repair end-to-end from the newest verified repository state: first correct or safely replace the proven `geo_g10` sparse pose inconsistencies while preserving validated V4 evidence and unrelated work, then rebuild and select the best evidence-backed dense reconstruction using corrected source selection and strict trajectory/depth/coverage/contamination/continuity gates, produce a genuinely connected and anatomically complete Poisson vessel, finish only scan-preserving Blender/LOD0/UV/material work with honest appearance provenance, export and fresh-reimport the final GLB, run all relevant regression/integrity checks, update the V4 documentation, and complete focused milestone/final commit-and-push verification.
+> Complete V4 end-to-end now with the strongest defensible full computer-vision result realistically recoverable from the captured evidence. Use bounded repair/escalation ladders, keep strict research-grade gate failures honest, and stop indefinite candidate churn once a best-defensible image-derived sparse/dense/Poisson artifact can be frozen. Continue through fresh compatible dense reconstruction, Poisson, scan-preserving Blender/LOD0/UV/material work, final `.blend`/GLB, fresh GLB re-import, tests, hashes, docs, and focused publication. Never fabricate missing anatomy or convert a failed gate into a false pass.
+
+## Completion-first best-result policy
+
+Strict gates remain preferred targets and diagnostics, not permission to stall the project indefinitely. When a bounded evidence-backed stage cannot satisfy every strict threshold, select the strongest genuine CV artifact by measured geometry/coverage/continuity/contamination/provenance, label it `best-defensible`, preserve its failed checks unchanged, document the residual limitation, and continue downstream. Missing anatomy that the photographs cannot recover must remain a documented limitation rather than being manually/reference-assisted modeled in Blender.
 
 Canonical current documents:
 
@@ -121,27 +125,60 @@ The preserved raw Poisson has 644 connected components and only about 66.57% of 
 
 ## Current execution boundary
 
-Implementation has **not** yet completed the new full-repair plan. Start from Task 0/Task 1 of the canonical plan, not from the old “final V4 complete” checkpoint.
+Sparse repair is no longer the active loop. The corrected v51 joint-BA harness selected all 372 images and configured 404,258 residuals, but the single permitted joint BA terminated `NO_CONVERGENCE`; that result remains negative evidence. The project has therefore frozen v47 as the current hash-bound **best-defensible** sparse source, with its strict mask-projection failures preserved rather than relabeled as passed.
 
-Immediate order:
+The active downstream order is now:
 
 ```text
-1. protect/recover live state
-2. implement sparse-integrity diagnostics + historical-failure regression
-3. build corrected verified sparse constraint graph
-4. repair or safely replace sparse reconstruction
-5. accept repaired sparse and milestone commit/push
-6. create fresh compatible dense workspace; reject duplicate reference writes
-7. run bounded repaired CUDA PatchMatch/fusion ladder
-8. strict dense anatomical acceptance + milestone commit/push
-9. strict connected Poisson acceptance + milestone commit/push
-10. scan-preserving Blender/LOD0/UV/detail/AO
-11. honest uncoated-reference appearance workflow
-12. final .blend/.glb, fresh GLB re-import, eight-view verification
-13. tests/hashes/docs/final focused commit+push and remote verification
+1. finish the fresh v47-derived CUDA dense run with exactly one PatchMatch reference write per registered image
+2. select the strongest genuine dense cloud by measured depth support, projected coverage, contamination and anatomy; preserve any failed strict targets
+3. run bounded Poisson reconstruction and select the strongest connected scan-derived mesh
+4. perform only scripted scan-preserving Blender cleanup/LOD0/UV/detail/AO
+5. build automated project-image-derived brass appearance; no invented/reference-assisted texture or geometry
+6. save final .blend and GLB, fresh factory-empty GLB re-import, >=8-view verification
+7. run relevant tests/hashes/docs and complete focused commit/push + remote verification
 ```
 
-If accepted sparse camera geometry changes, historical true3 depth/normal maps are diagnostic-only and must not be reused as final dense evidence unless compatibility is explicitly proven.
+Historical true3 depth/normal maps remain diagnostic-only and must not be reused as final evidence for the v47-derived reconstruction. No further sparse candidate churn is justified unless a new concrete causal defect blocks the fresh dense route itself.
+
+## 2026-09-15 downstream best-defensible artifact checkpoint
+
+The fresh v47-derived geometric PatchMatch run is complete and remains
+untouched: its runtime log contains the full photometric pre-pass followed by
+the geometric/filter phase, with exactly 372 geometric depth maps and 372
+geometric normal maps. The unchanged strict post-fusion gate is preserved as a
+failure, not weakened. The selected default fused cloud is the strongest
+measured candidate by support/coverage/contamination evidence; the bounded
+`min_num_pixels=3` same-map variant remains comparison evidence only. Poisson
+continued from the selected fresh cloud, and trim-5 is retained as a
+component-connected diagnostic while its unresolved finial and major-hole
+anatomy gates remain failed.
+
+The best-defensible technical Blender/GLB continuation is versioned under
+`reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v4/`. It is
+computer-vision-only and scan-preserving: raw Poisson and clean-high objects
+are preserved, LOD0 received only duplicate/invalid polygon cleanup, UV/AO and
+the deterministic uncoated-reference brass material were scripted, and
+photographic texture projection remains explicitly unverified. The
+hash-bound appearance statistics are the 158-image report
+`reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v2/appearance_stats.json`
+with SHA-256
+`bae0f78aa119a14930c2045d0b27ecbe40bf6ea98b6a6da4e9b7c7d2d196a77e` and source
+manifest SHA-256
+`1b075d2d6e250ad562b2c4dd2158cc691cbe6b20cd2b49766ac08b9c63bc4a5c`.
+The blend SHA
+is `e94fc932c5368b18e3d4fa22127968543465dec9913840944eaf4adabf0df3c9`; the
+GLB SHA is
+`e35be3364c82521e2201f824ff4e21a02dfdbb420e722d1e25c923cfaab79011`.
+
+A fresh factory-empty Blender re-import passed exactly one final mesh,
+finite geometry/normals, UV/material/packed-AO resolution, sane bounds, no
+debug objects, and eight deterministic renders. The report is
+`reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v4/reimport/glb_reimport_verification.json`.
+This does not promote the raw mesh or claim full vessel anatomy: the dense
+strict gate, `finial:resolved_narrow_top_element`, and
+`no_major_vessel_scale_holes=false` remain explicit limitations. No missing
+anatomy was fabricated or hidden by Blender.
 
 ## Protected boundaries
 
@@ -158,7 +195,7 @@ Historical V4 sparse/dense/Poisson/Blender/GLB artifacts remain rollback/evidenc
 
 ## Completion standard
 
-Do not mark V4 complete until the repaired sparse candidate passes integrity, compatible dense reconstruction passes depth/coverage/contamination/anatomical gates, Poisson passes the hard component/no-major-hole gate, Blender cleanup remains scan-derived, appearance provenance is honest, and the final GLB passes fresh factory-empty re-import with anatomy preserved. Completion must also include relevant tests/hash integrity, current docs, and verified focused Git publication.
+Mark V4 complete when the strongest defensible full CV result has been carried through fresh compatible dense reconstruction, Poisson, scan-preserving Blender, final `.blend`/GLB, fresh factory-empty GLB re-import, relevant tests/hash integrity, current docs, and verified focused Git publication. Strict research-grade failures may remain only after the bounded repair ladder is exhausted; those checks must remain explicitly failed and be reported as residual limitations rather than being weakened or hidden.
 
 ## 2026-09-14 sparse architecture-switch checkpoint
 

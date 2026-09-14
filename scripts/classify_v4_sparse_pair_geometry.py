@@ -41,6 +41,12 @@ def _is_so3(matrix: np.ndarray) -> bool:
     )
 
 
+def _is_translation_direction(value: Any) -> bool:
+    vector = np.asarray(value, dtype=np.float64).reshape(-1) if value is not None else np.empty(0)
+    norm = float(np.linalg.norm(vector)) if len(vector) == 3 else 0.0
+    return bool(len(vector) == 3 and np.isfinite(vector).all() and norm > 1e-12)
+
+
 def _pair_id_sha(pair_ids: list[int]) -> str:
     return hashlib.sha256(
         json.dumps(pair_ids, separators=(",", ":"), sort_keys=False).encode("utf-8")
@@ -106,6 +112,21 @@ def main() -> int:
     }
     expected_pair_ids = [int(item["pair_id"]) for item in audit["pairs"]]
     observed_pair_ids = [int(item["pair_id"]) for item in raw.get("records", [])]
+    expected_angle_units = {
+        "triangulation_angle": "degrees",
+        "rotation_angle": "degrees",
+    }
+    if raw.get("angle_units") != expected_angle_units:
+        raise ValueError(
+            "raw audit does not declare corrected degree units; regenerate it from the immutable snapshot"
+        )
+    if raw.get("pycolmap_angle_source_units") != {
+        "TwoViewGeometry.tri_angle": "radians",
+        "Rotation3d.angle": "radians",
+    }:
+        raise ValueError("raw audit is missing the explicit pyCOLMAP radian source-unit contract")
+    if int(raw.get("schema_version", 0)) < 2:
+        raise ValueError("raw audit schema predates the explicit calibrated angle-unit contract")
     if raw.get("database_sha256") != snapshot["canonical_sha256"]:
         raise ValueError("raw audit is not bound to the manifest raw SHA")
     if raw.get("snapshot_manifest_sha256") != snapshot_manifest_sha:
@@ -132,6 +153,8 @@ def main() -> int:
         )
         config = int(record.get("calibrated_reestimate_config") or -1)
         tri = record.get("calibrated_reestimate_tri_angle_deg")
+        tri_rad = record.get("calibrated_reestimate_tri_angle_rad")
+        translation = record.get("calibrated_reestimate_translation_first_to_second")
         cheirality = float(record.get("calibrated_reestimate_cheirality_fraction") or 0.0)
         homography = float(record.get("homography_inlier_fraction") or 0.0)
         rank_ratio = float(
@@ -144,6 +167,14 @@ def main() -> int:
             reasons.append("calibrated_config_not_2")
         if not _is_so3(matrix):
             reasons.append("calibrated_rotation_not_so3")
+        if not _is_translation_direction(translation):
+            reasons.append("calibrated_translation_missing_or_degenerate")
+        if tri is not None and tri_rad is not None:
+            expected_tri = math.degrees(float(tri_rad))
+            if not math.isfinite(float(tri)) or abs(float(tri) - expected_tri) > 1e-8:
+                raise ValueError(
+                    f"raw audit pair {pair_id} has inconsistent radian/degree triangulation fields"
+                )
         if int(record.get("calibrated_reestimate_inliers") or 0) < args.minimum_inliers:
             reasons.append("calibrated_inliers_below_floor")
         if tri is None or not math.isfinite(float(tri)) or float(tri) <= args.minimum_triangulation_angle_deg:
@@ -169,6 +200,7 @@ def main() -> int:
                 "calibrated_rotation_deg": float(
                     math.degrees(math.acos(np.clip((float(np.trace(matrix)) - 1.0) / 2.0, -1.0, 1.0)))
                 ) if _is_so3(matrix) else None,
+                "calibrated_translation_first_to_second": translation,
                 "calibrated_inliers": int(record.get("calibrated_reestimate_inliers") or 0),
                 "calibrated_tri_angle_deg": tri,
                 "calibrated_cheirality_fraction": cheirality,
@@ -199,15 +231,20 @@ def main() -> int:
             "independent_audit_record": {
                 "calibrated_reestimate_rotation_matrix_first_to_second": item[
                     "calibrated_rotation_matrix_first_to_second"
-                ]
+                ],
+                "calibrated_reestimate_translation_first_to_second": item[
+                    "calibrated_translation_first_to_second"
+                ],
             },
         }
         for item in classification
         if item["well_conditioned_calibrated"]
     ]
     payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "method": "fixed raw ALIKED/LightGlue audit classification: calibrated rotation, triangulation, cheirality, homography, essential-rank and local cycle consistency",
+        "angle_units": expected_angle_units,
+        "pycolmap_angle_source_units": raw["pycolmap_angle_source_units"],
         "snapshot_manifest": str(args.snapshot_manifest.resolve()),
         "snapshot_manifest_sha256": snapshot_manifest_sha,
         "canonical_snapshot_sha256": snapshot["canonical_sha256"],

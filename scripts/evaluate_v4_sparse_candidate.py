@@ -22,7 +22,9 @@ from v4_repair import (
     create_disposable_sqlite_from_manifest,
     load_ring_metadata,
     load_canonical_sqlite_snapshot_manifest,
+    sparse_camera_center_translation_evidence,
     sparse_integrity_gate,
+    sparse_mask_projection_evidence,
     stable_directory_sha256,
 )
 
@@ -76,6 +78,9 @@ def _bind_calibrated_audit_evidence(
         result["two_view_rotation_matrix_first_to_second"] = matrix
         result["two_view_rotation_deg"] = raw.get("calibrated_reestimate_rotation_angle_deg")
         result["calibrated_reestimate_inliers"] = raw.get("calibrated_reestimate_inliers")
+        result["calibrated_reestimate_translation_first_to_second"] = raw.get(
+            "calibrated_reestimate_translation_first_to_second"
+        )
         result["calibrated_reestimate_tri_angle_deg"] = raw.get("calibrated_reestimate_tri_angle_deg")
         result["calibrated_reestimate_cheirality_fraction"] = raw.get(
             "calibrated_reestimate_cheirality_fraction"
@@ -105,6 +110,8 @@ def main() -> int:
     parser.add_argument("--snapshot-manifest", required=True, type=Path)
     parser.add_argument("--graph-report", type=Path)
     parser.add_argument("--expected-model-sha256")
+    parser.add_argument("--mask-root", required=True, type=Path)
+    parser.add_argument("--track-provenance", required=True, type=Path)
     args = parser.parse_args()
 
     ring_metadata = load_ring_metadata(args.ring_metadata)
@@ -116,6 +123,9 @@ def main() -> int:
     pair_ids = [int(item["pair_id"]) for item in audit_manifest["pairs"]]
     raw_audit = json.loads(args.raw_audit_report.read_text(encoding="utf-8"))
     calibrated_classification = json.loads(args.calibrated_classification.read_text(encoding="utf-8"))
+    track_provenance = json.loads(args.track_provenance.read_text(encoding="utf-8"))
+    if not isinstance(track_provenance, dict):
+        raise RuntimeError("track provenance must be a JSON object")
     manifest_sha256 = hashlib.sha256(args.audit_manifest.read_bytes()).hexdigest()
     snapshot_manifest_sha256 = hashlib.sha256(args.snapshot_manifest.read_bytes()).hexdigest()
     calibrated_classification_sha256 = hashlib.sha256(args.calibrated_classification.read_bytes()).hexdigest()
@@ -135,6 +145,15 @@ def main() -> int:
         and len(raw_pair_ids) == len(pair_ids)
         and len(set(raw_pair_ids)) == len(raw_pair_ids)
         and raw_pair_ids_sha256 == expected_pair_ids_sha256
+        and raw_audit.get("schema_version", 0) >= 2
+        and raw_audit.get("angle_units") == {
+            "triangulation_angle": "degrees",
+            "rotation_angle": "degrees",
+        }
+        and raw_audit.get("pycolmap_angle_source_units") == {
+            "TwoViewGeometry.tri_angle": "radians",
+            "Rotation3d.angle": "radians",
+        }
     )
     calibrated_audit_bound = bool(
         calibrated_classification.get("raw_audit_report_sha256")
@@ -143,6 +162,11 @@ def main() -> int:
         and calibrated_classification.get("fixed_pair_count") == len(pair_ids)
         and calibrated_classification.get("fixed_pair_ids_sha256") == expected_pair_ids_sha256
         and len(calibrated_classification.get("classification", [])) == len(pair_ids)
+        and calibrated_classification.get("schema_version", 0) >= 2
+        and calibrated_classification.get("angle_units") == {
+            "triangulation_angle": "degrees",
+            "rotation_angle": "degrees",
+        }
     )
     if not calibrated_audit_bound:
         raise RuntimeError("calibrated audit classification is not bound to the fixed raw audit/manifest")
@@ -180,6 +204,35 @@ def main() -> int:
                 raw_audit,
                 calibrated_classification,
             )
+            classification_by_pair = {
+                int(item["pair_id"]): item
+                for item in calibrated_classification.get("classification", [])
+                if isinstance(item, dict) and "pair_id" in item
+            }
+            translation_records = []
+            for item in raw_audit.get("records", []):
+                if not isinstance(item, dict) or "pair_id" not in item:
+                    continue
+                merged = dict(item)
+                merged.update(
+                    {
+                        "well_conditioned_calibrated": bool(
+                            classification_by_pair.get(int(item["pair_id"]), {}).get(
+                                "well_conditioned_calibrated", False
+                            )
+                        )
+                    }
+                )
+                translation_records.append(merged)
+            mask_projection = sparse_mask_projection_evidence(
+                reconstruction,
+                args.mask_root,
+                ring_metadata,
+            )
+            camera_center_translation = sparse_camera_center_translation_evidence(
+                reconstruction,
+                translation_records,
+            )
             gate = sparse_integrity_gate(
                 reconstruction,
                 ring_metadata,
@@ -197,6 +250,9 @@ def main() -> int:
                 },
                 expected_model_sha256=args.expected_model_sha256,
                 audit_exclusions=exclusions,
+                track_provenance=track_provenance,
+                mask_projection_evidence=mask_projection,
+                camera_center_evidence=camera_center_translation,
             )
         finally:
             database.close()
@@ -207,12 +263,23 @@ def main() -> int:
     gate["checks"]["canonical_snapshot_hash_stable"] = canonical_snapshot_hash_stable
     gate["checks"]["independent_raw_audit_bound"] = raw_audit_bound
     gate["checks"]["calibrated_audit_bound"] = calibrated_audit_bound
+    gate["checks"]["calibrated_angle_units_bound"] = bool(
+        raw_audit.get("angle_units") == {
+            "triangulation_angle": "degrees",
+            "rotation_angle": "degrees",
+        }
+        and calibrated_classification.get("angle_units") == {
+            "triangulation_angle": "degrees",
+            "rotation_angle": "degrees",
+        }
+    )
     gate["checks"]["canonical_snapshot_lineage_manifest_bound"] = snapshot_manifest_bound
     gate["passed"] = bool(
         gate.get("passed")
         and canonical_snapshot_hash_stable
         and raw_audit_bound
         and calibrated_audit_bound
+        and gate["checks"]["calibrated_angle_units_bound"]
         and snapshot_manifest_bound
     )
     graph_lineage = {}
@@ -245,6 +312,9 @@ def main() -> int:
         "calibrated_classification_sha256": calibrated_classification_sha256,
         "calibrated_audit_bound": calibrated_audit_bound,
         "raw_audit_pair_ids_sha256": raw_pair_ids_sha256,
+        "track_provenance_path": str(args.track_provenance.resolve()),
+        "track_provenance_sha256": hashlib.sha256(args.track_provenance.read_bytes()).hexdigest(),
+        "mask_root": str(args.mask_root.resolve()),
         "model_path": str(args.model.resolve()),
         "evidence": evidence,
     }
@@ -265,6 +335,9 @@ def main() -> int:
             "independent_raw_audit_bound": raw_audit_bound,
             "raw_audit_pair_ids_sha256": raw_pair_ids_sha256,
             "expected_pair_ids_sha256": expected_pair_ids_sha256,
+            "track_provenance_path": str(args.track_provenance.resolve()),
+            "track_provenance_sha256": hashlib.sha256(args.track_provenance.read_bytes()).hexdigest(),
+            "mask_root": str(args.mask_root.resolve()),
             "exclusion_report_sha256": hashlib.sha256(args.exclusions.read_bytes()).hexdigest(),
             "graph_lineage": graph_lineage,
             "initializer": {"image_id1": 56, "image_id2": 59},

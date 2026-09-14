@@ -1,0 +1,27 @@
+{
+  "after": {
+    "edges": 445011,
+    "faces": 294713,
+    "vertices": 151547
+  },
+  "before": {
+    "edges": 445011,
+    "faces": 296636,
+    "vertices": 151547
+  },
+  "clean_high_object_untouched": true,
+  "degenerate_faces_removed": 0,
+  "duplicate_vertex_merge_targets": 0,
+  "geometry_creation": false,
+  "input_blend": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v3\\Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5.blend",
+  "input_blend_sha256": "a6bfbd5565334665a6f1538cc4a64191863fa383ec4d204edc07d1c7a2134d2f",
+  "loose_edges_removed": 0,
+  "loose_vertices_removed": 0,
+  "mesh_validate_changed": true,
+  "object": "SM_V4_Vessel_LOD0",
+  "output_blend": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v4\\Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5.blend",
+  "output_blend_sha256": "e94fc932c5368b18e3d4fa22127968543465dec9913840944eaf4adabf0df3c9",
+  "raw_object_untouched": true,
+  "schema_version": 1,
+  "status": "complete"
+}

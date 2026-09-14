@@ -28,6 +28,40 @@ from v4_repair import stable_directory_sha256
 
 
 SEMANTIC_VIEW_KEYS = ("front", "quarter", "side", "top_oblique")
+ANATOMY_VIEW_KEYS = (
+    "bowl_interior",
+    "rim",
+    "globe_shoulder",
+    "continuous_neck",
+    "lid_tiers",
+    "finial",
+    "pedestal_transitions",
+    "base",
+)
+# The anatomy contract is deliberately region based.  These normalized
+# vertical intervals are measured from the accepted vertical basis (robust
+# 1st/99th percentile bounds), not from the eight preview names.  Intervals
+# overlap at the physical transitions so a narrow seam cannot make a vessel
+# appear disconnected merely because it falls on a bin boundary.
+ANATOMY_REGION_SPECS = {
+    "bowl_interior": (0.28, 0.56),
+    "rim": (0.48, 0.66),
+    "globe_shoulder": (0.52, 0.75),
+    "continuous_neck": (0.70, 0.86),
+    "lid_tiers": (0.82, 0.94),
+    "finial": (0.93, 1.00),
+    "pedestal_transitions": (0.12, 0.32),
+    "base": (0.00, 0.18),
+}
+ANATOMY_REGION_THRESHOLDS = {
+    "min_points": 250,
+    "min_supported_fraction": 0.75,
+    "min_projected_coverage_fraction": 0.60,
+    "min_connected_support_fraction": 0.75,
+    "min_height_bin_occupancy_fraction": 0.75,
+    "min_support_views": 3,
+    "finial_max_lid_radius_ratio": 0.85,
+}
 _EPS = 1e-9
 
 
@@ -613,10 +647,18 @@ def measure_fused_contamination(
         "board_plane_fraction": board_plane_fraction,
         "board_plane_radius_ratio": board_plane_radius_ratio,
     }
-    anatomy = anatomy_band_evidence(
+    basis_payload = {
+        "center": center.tolist(),
+        "vertical": vertical.tolist(),
+        "front": front.tolist(),
+        "right": right.tolist(),
+    }
+    anatomy = anatomy_region_evidence(
         points,
-        basis_vectors={"center": center.tolist(), "vertical": vertical.tolist()},
+        basis_vectors=basis_payload,
         inside_support=inside_fraction >= 0.5,
+        inside_view_counts=inside_counts,
+        support_view_count=len(infos),
     )
     metrics = {
         "board_point_fraction": _metric(board_plane_fraction, count=int(round(board_plane_fraction * len(points))), denominator=len(points), method="fused-cloud-bottom-plane-ransac-with-camera-mask-support", evidence=evidence),
@@ -639,7 +681,7 @@ def measure_fused_contamination(
         "sampled_point_indices": {"count": len(indices), "first": int(indices[0]), "last": int(indices[-1])},
         "camera_count": len(infos),
         "ring_counts": dict(sorted({ring: sum(1 for name, _ in infos if str(ring_by_name.get(name, "unknown")) == ring) for ring in set(ring_by_name.get(name, "unknown") for name, _ in infos)}.items())),
-        "basis_vectors": {"center": center.tolist(), "vertical": vertical.tolist(), "front": front.tolist(), "right": right.tolist()},
+        "basis_vectors": basis_payload,
         "anatomy": anatomy,
     }
 
@@ -750,6 +792,83 @@ def render_semantic_fused_views(
             title=f"V4 fused cloud — {key.replace('_', ' ')}",
             target=Path(output_dir) / f"dense_fused_{key}.png",
             highlight=highlight,
+        )
+    return result
+
+
+def render_anatomy_fused_views(
+    fused_path: Path,
+    output_dir: Path,
+    *,
+    basis_vectors: Mapping[str, Sequence[float]] | None = None,
+    region_evidence: Mapping[str, Any] | None = None,
+    max_points: int = 120_000,
+) -> dict[str, Path]:
+    """Render eight region-only projections of the measured fused cloud.
+
+    A whole-object projection merely renamed ``finial`` or ``base`` cannot
+    satisfy this production evidence contract.
+    """
+
+    data = read_ply(Path(fused_path))
+    xyz = np.asarray(data["xyz"], dtype=np.float64)
+    if len(xyz) == 0:
+        raise ValueError("cannot render anatomy views from an empty fused cloud")
+    colors = data.get("colors")
+    if colors is None:
+        colors = np.full((len(xyz), 3), 185, dtype=np.uint8)
+    else:
+        colors = np.asarray(colors, dtype=np.uint8)
+    indices = np.arange(len(xyz), dtype=np.int64)
+    if len(indices) > max_points:
+        indices = np.linspace(0, len(xyz) - 1, num=max_points, dtype=np.int64)
+    points, colors = xyz[indices], colors[indices]
+    if basis_vectors:
+        center = np.asarray(basis_vectors["center"], dtype=np.float64)
+        vertical = np.asarray(basis_vectors["vertical"], dtype=np.float64)
+        front = np.asarray(basis_vectors["front"], dtype=np.float64)
+        right = np.asarray(basis_vectors["right"], dtype=np.float64)
+    else:
+        center, vertical, front, right = _vertical_basis(points, np.empty((0, 3), dtype=np.float64))
+
+    def unit(value: np.ndarray) -> np.ndarray:
+        norm = float(np.linalg.norm(value))
+        if norm <= _EPS:
+            raise ValueError("anatomy inspection basis contains a zero vector")
+        return value / norm
+
+    vertical, front, right = unit(vertical), unit(front), unit(right)
+    views: dict[str, tuple[np.ndarray, np.ndarray, np.ndarray]] = {
+        "bowl_interior": (right, unit(vertical + front * 0.65), unit(front - vertical * 0.65)),
+        "rim": (unit(right + front * 0.45), unit(vertical + front * 0.85), unit(front - vertical * 0.85)),
+        "globe_shoulder": (right, vertical, front),
+        "continuous_neck": (unit(right - front * 0.25), vertical, unit(front + right * 0.25)),
+        "lid_tiers": (unit(right + front * 0.35), unit(vertical + front * 0.25), unit(front - vertical * 0.25)),
+        "finial": (front, vertical, -right),
+        "pedestal_transitions": (right, unit(vertical - front * 0.40), unit(front + vertical * 0.40)),
+        "base": (unit(right - front * 0.45), unit(vertical - front * 0.70), unit(front + vertical * 0.70)),
+    }
+    normalized, _ = _anatomy_normalized_height(
+        points,
+        basis_vectors={"center": center.tolist(), "vertical": vertical.tolist()},
+    )
+    region_masks = _anatomy_region_masks(normalized)
+    result: dict[str, Path] = {}
+    for key in ANATOMY_VIEW_KEYS:
+        horizontal, screen_vertical, depth = views[key]
+        region_points = points[region_masks[key]]
+        region_colors = colors[region_masks[key]]
+        if len(region_points) == 0:
+            raise ValueError(f"anatomy region has no measured fused points: {key}")
+        result[key] = _draw_projected_view(
+            region_points,
+            region_colors,
+            center=center,
+            horizontal=horizontal,
+            vertical=screen_vertical,
+            depth_axis=depth,
+            title=f"V4 fused cloud — region crop: {key.replace('_', ' ')}",
+            target=Path(output_dir) / f"dense_fused_anatomy_{key}.png",
         )
     return result
 
@@ -963,31 +1082,240 @@ def audit_ring_transitions(
     }
 
 
+def _anatomy_normalized_height(
+    xyz: np.ndarray,
+    *,
+    basis_vectors: Mapping[str, Sequence[float]],
+) -> tuple[np.ndarray, dict[str, Any]]:
+    """Return robust normalized height and the exact bounds used.
+
+    The robust bounds prevent a few high-ring outliers from redefining the
+    anatomy intervals.  The bounds are persisted in the evidence so a later
+    reviewer can reproduce every crop and measurement from the accepted
+    vertical basis.
+    """
+
+    points = np.asarray(xyz, dtype=np.float64)
+    center = np.asarray(basis_vectors["center"], dtype=np.float64)
+    vertical = np.asarray(basis_vectors["vertical"], dtype=np.float64)
+    vertical /= max(float(np.linalg.norm(vertical)), _EPS)
+    height = (points - center) @ vertical
+    if len(height) == 0 or not np.isfinite(height).all():
+        raise ValueError("anatomy height evidence requires finite points")
+    low, high = (float(value) for value in np.quantile(height, [0.01, 0.99]))
+    if high - low <= _EPS:
+        raise ValueError("anatomy height evidence has no measurable vertical span")
+    normalized = np.clip((height - low) / (high - low), 0.0, 1.0)
+    return normalized, {
+        "center": [float(value) for value in center],
+        "vertical": [float(value) for value in vertical],
+        "robust_height_bounds": [low, high],
+        "normalization": "(height - q01) / (q99 - q01), clipped to [0,1]",
+    }
+
+
+def _anatomy_region_masks(normalized_height: np.ndarray) -> dict[str, np.ndarray]:
+    height = np.asarray(normalized_height, dtype=np.float64)
+    return {
+        name: (height >= float(bounds[0])) & (height <= float(bounds[1]))
+        for name, bounds in ANATOMY_REGION_SPECS.items()
+    }
+
+
+def _largest_voxel_component_fraction(points: np.ndarray, *, bins: int = 12) -> tuple[float, int]:
+    """Estimate connected scan support without inventing topology.
+
+    Occupancy cells are built only from measured supported points.  A 26-neighbor
+    component is used because a sparse MVS surface can legitimately touch at a
+    diagonal between adjacent cells.  The result is a conservative support
+    diagnostic, not a mesh repair operation.
+    """
+
+    values = np.asarray(points, dtype=np.float64)
+    if len(values) == 0:
+        return 0.0, 0
+    low = np.quantile(values, 0.01, axis=0)
+    high = np.quantile(values, 0.99, axis=0)
+    span = np.maximum(high - low, _EPS)
+    cells = np.floor((values - low) / span * float(bins)).astype(np.int64)
+    cells = np.clip(cells, 0, bins - 1)
+    occupied = {tuple(int(value) for value in cell) for cell in np.unique(cells, axis=0)}
+    if not occupied:
+        return 0.0, 0
+    largest = 0
+    neighbors = [
+        (dx, dy, dz)
+        for dx in (-1, 0, 1)
+        for dy in (-1, 0, 1)
+        for dz in (-1, 0, 1)
+        if (dx, dy, dz) != (0, 0, 0)
+    ]
+    remaining = set(occupied)
+    while remaining:
+        seed = remaining.pop()
+        stack = [seed]
+        size = 1
+        while stack:
+            current = stack.pop()
+            for delta in neighbors:
+                candidate = (
+                    current[0] + delta[0],
+                    current[1] + delta[1],
+                    current[2] + delta[2],
+                )
+                if candidate in remaining:
+                    remaining.remove(candidate)
+                    stack.append(candidate)
+                    size += 1
+        largest = max(largest, size)
+    return float(largest / len(occupied)), len(occupied)
+
+
+def anatomy_region_evidence(
+    xyz: np.ndarray,
+    *,
+    basis_vectors: Mapping[str, Sequence[float]],
+    inside_support: np.ndarray,
+    inside_view_counts: np.ndarray | None = None,
+    support_view_count: int = 0,
+) -> dict[str, Any]:
+    """Measure each required anatomy region from the accepted vertical basis.
+
+    This is intentionally independent of preview filenames.  Every region is
+    cropped by normalized height, evaluated for mask-supported points,
+    multi-view projection support, voxel connectivity, and vertical-bin
+    continuity.  The finial additionally must be a resolved narrow top element
+    relative to the lid tiers; a broad whole-object cap cannot satisfy it.
+    """
+
+    points = np.asarray(xyz, dtype=np.float64)
+    support = np.asarray(inside_support, dtype=bool)
+    if len(points) != len(support):
+        raise ValueError("anatomy support mask length does not match points")
+    if inside_view_counts is None:
+        view_counts = support.astype(np.int32)
+    else:
+        view_counts = np.asarray(inside_view_counts, dtype=np.int32)
+        if len(view_counts) != len(points) or np.any(view_counts < 0):
+            raise ValueError("anatomy view-support counts are invalid")
+    normalized, normalization = _anatomy_normalized_height(points, basis_vectors=basis_vectors)
+    region_masks = _anatomy_region_masks(normalized)
+    center = np.asarray(basis_vectors["center"], dtype=np.float64)
+    front = np.asarray(basis_vectors.get("front", [1.0, 0.0, 0.0]), dtype=np.float64)
+    right = np.asarray(basis_vectors.get("right", [0.0, 0.0, 1.0]), dtype=np.float64)
+    front /= max(float(np.linalg.norm(front)), _EPS)
+    right /= max(float(np.linalg.norm(right)), _EPS)
+    radial = np.sqrt(((points - center) @ front) ** 2 + ((points - center) @ right) ** 2)
+    regions: dict[str, dict[str, Any]] = {}
+    min_points = int(ANATOMY_REGION_THRESHOLDS["min_points"])
+    min_support_views = int(ANATOMY_REGION_THRESHOLDS["min_support_views"])
+    for name in ANATOMY_VIEW_KEYS:
+        selected = region_masks[name]
+        supported = selected & support
+        selected_count = int(selected.sum())
+        supported_count = int(supported.sum())
+        projected = selected & (view_counts >= min_support_views)
+        projected_count = int(projected.sum())
+        local_supported = points[supported]
+        connected_fraction, occupied_cells = _largest_voxel_component_fraction(local_supported)
+        bounds = ANATOMY_REGION_SPECS[name]
+        bins = np.linspace(float(bounds[0]), float(bounds[1]), num=9)
+        occupied_bins = 0
+        for low, high in zip(bins[:-1], bins[1:]):
+            if int(np.sum(supported & (normalized >= low) & (normalized <= high))) > 0:
+                occupied_bins += 1
+        height_bin_fraction = float(occupied_bins / 8.0)
+        regions[name] = {
+            "region_name": name,
+            "normalized_height_bounds": [float(bounds[0]), float(bounds[1])],
+            "point_count": selected_count,
+            "supported_point_count": supported_count,
+            "supported_fraction": float(supported_count / selected_count) if selected_count else 0.0,
+            "projected_coverage_fraction": float(projected_count / selected_count) if selected_count else 0.0,
+            "projected_supported_point_count": projected_count,
+            "minimum_support_views": min_support_views,
+            "camera_view_count": int(support_view_count),
+            "median_inside_view_count": float(np.median(view_counts[selected])) if selected_count else 0.0,
+            "connected_support_fraction": float(connected_fraction),
+            "occupied_voxel_cells": int(occupied_cells),
+            "height_bin_occupancy_fraction": height_bin_fraction,
+            "support_gate": {
+                "min_points": min_points,
+                "min_supported_fraction": float(ANATOMY_REGION_THRESHOLDS["min_supported_fraction"]),
+                "min_projected_coverage_fraction": float(ANATOMY_REGION_THRESHOLDS["min_projected_coverage_fraction"]),
+                "min_connected_support_fraction": float(ANATOMY_REGION_THRESHOLDS["min_connected_support_fraction"]),
+                "min_height_bin_occupancy_fraction": float(ANATOMY_REGION_THRESHOLDS["min_height_bin_occupancy_fraction"]),
+            },
+        }
+
+    lid = region_masks["lid_tiers"] & support
+    finial = region_masks["finial"] & support
+    lid_radius = float(np.median(radial[lid])) if lid.any() else 0.0
+    finial_radius = float(np.median(radial[finial])) if finial.any() else 0.0
+    ratio = float(finial_radius / lid_radius) if lid_radius > _EPS else float("inf")
+    finial_shape = {
+        "lid_supported_radius_median": lid_radius,
+        "finial_supported_radius_median": finial_radius,
+        "finial_to_lid_radius_ratio": ratio,
+        "max_finial_to_lid_radius_ratio": float(ANATOMY_REGION_THRESHOLDS["finial_max_lid_radius_ratio"]),
+        "resolved_narrow_top_element": bool(
+            lid_radius > _EPS
+            and finial_radius > _EPS
+            and ratio <= float(ANATOMY_REGION_THRESHOLDS["finial_max_lid_radius_ratio"])
+        ),
+    }
+
+    failures: list[str] = []
+    for name, item in regions.items():
+        checks = {
+            "point_count": int(item["point_count"]) >= min_points,
+            "supported_fraction": float(item["supported_fraction"]) >= float(ANATOMY_REGION_THRESHOLDS["min_supported_fraction"]),
+            "projected_coverage_fraction": float(item["projected_coverage_fraction"]) >= float(ANATOMY_REGION_THRESHOLDS["min_projected_coverage_fraction"]),
+            "connected_support_fraction": float(item["connected_support_fraction"]) >= float(ANATOMY_REGION_THRESHOLDS["min_connected_support_fraction"]),
+            "height_bin_occupancy_fraction": float(item["height_bin_occupancy_fraction"]) >= float(ANATOMY_REGION_THRESHOLDS["min_height_bin_occupancy_fraction"]),
+        }
+        item["checks"] = checks
+        if not all(checks.values()):
+            failures.extend(f"{name}:{key}" for key, passed in checks.items() if not passed)
+    if not finial_shape["resolved_narrow_top_element"]:
+        failures.append("finial:resolved_narrow_top_element")
+    return {
+        "schema_version": 2,
+        "status": "passed" if not failures else "failed",
+        "passed": not failures,
+        "regions": regions,
+        "finial_shape": finial_shape,
+        "normalization": normalization,
+        "thresholds": dict(ANATOMY_REGION_THRESHOLDS),
+        "support_view_count": int(support_view_count),
+        "failures": failures,
+        "no_major_vessel_scale_holes": not failures,
+    }
+
+
 def anatomy_band_evidence(
     xyz: np.ndarray,
     *,
     basis_vectors: Mapping[str, Sequence[float]],
     inside_support: np.ndarray,
 ) -> dict[str, Any]:
-    center = np.asarray(basis_vectors["center"], dtype=np.float64)
-    vertical = np.asarray(basis_vectors["vertical"], dtype=np.float64)
-    height = (xyz - center) @ vertical
-    quantiles = np.quantile(height, [0.0, 0.22, 0.55, 0.82, 1.0])
-    bands = {
-        "pedestal_and_base": (quantiles[0], quantiles[1]),
-        "bowl_and_globe": (quantiles[1], quantiles[2]),
-        "shoulder_and_neck": (quantiles[2], quantiles[3]),
-        "lid_and_finial": (quantiles[3], quantiles[4]),
-    }
-    result: dict[str, Any] = {}
-    for name, (low, high) in bands.items():
-        selected = (height >= low) & (height <= high)
-        result[name] = {
-            "point_count": int(selected.sum()),
-            "supported_fraction": float(np.mean(inside_support[selected])) if selected.any() else 0.0,
-            "height_range": [float(low), float(high)],
+    """Backward-compatible summary for older reports.
+
+    New acceptance code uses :func:`anatomy_region_evidence`; this helper is
+    retained for historical readers and exposes the same measured normalized
+    bands without treating names alone as acceptance evidence.
+    """
+
+    normalized, normalization = _anatomy_normalized_height(xyz, basis_vectors=basis_vectors)
+    result = {
+        name: {
+            "point_count": int(mask.sum()),
+            "supported_fraction": float(np.mean(np.asarray(inside_support, dtype=bool)[mask])) if mask.any() else 0.0,
+            "normalized_height_bounds": [float(value) for value in ANATOMY_REGION_SPECS[name]],
         }
-    return result
+        for name, mask in _anatomy_region_masks(normalized).items()
+    }
+    return {"schema_version": 2, "normalization": normalization, "regions": result}
 
 
 def build_postfusion_evidence(
@@ -1004,6 +1332,7 @@ def build_postfusion_evidence(
     negative_evidence: Mapping[str, Any] | None = None,
     preview_dir: Path,
     max_sources: int = 6,
+    chunk_size: int | None = 24,
 ) -> dict[str, Any]:
     """Run the complete read-only post-fusion evidence pass."""
 
@@ -1014,7 +1343,7 @@ def build_postfusion_evidence(
         max_sources=max_sources,
         sparse_lineage=sparse_lineage,
         prior_review_estimate=prior_review_estimate,
-        chunk_size=24,
+        chunk_size=chunk_size,
     )
     contamination = measure_fused_contamination(
         fused_path,
@@ -1036,9 +1365,22 @@ def build_postfusion_evidence(
         preview_dir,
         basis_vectors=contamination["basis_vectors"],
     )
+    anatomy_previews = render_anatomy_fused_views(
+        fused_path,
+        preview_dir,
+        basis_vectors=contamination["basis_vectors"],
+        region_evidence=contamination["anatomy"],
+    )
+    anatomy_measurements = contamination.get("anatomy", {})
+    anatomy_complete = (
+        set(anatomy_previews) == set(ANATOMY_VIEW_KEYS)
+        and isinstance(anatomy_measurements, Mapping)
+        and anatomy_measurements.get("status") == "passed"
+    )
+    basis_hash = _canonical_sha256(contamination["basis_vectors"])
     return {
-        "schema_version": 1,
-        "status": "passed" if contamination["status"] == "measured" and tile_audit["status"] == "passed" and ring["status"] == "passed" else "failed",
+        "schema_version": 2,
+        "status": "passed" if contamination["status"] == "measured" and tile_audit["status"] == "passed" and ring["status"] == "passed" and anatomy_complete else "failed",
         "fused_path": str(Path(fused_path).resolve()),
         "fused_sha256": sha256_file(Path(fused_path)),
         "workspace_root": str(Path(workspace_root).resolve()),
@@ -1047,13 +1389,32 @@ def build_postfusion_evidence(
         "sparse_lineage": dict(sparse_lineage or {}),
         "ring_transition_audit": ring,
         "semantic_previews": {key: {"path": str(path.resolve()), "sha256": sha256_file(path)} for key, path in previews.items()},
+        "anatomy_previews": {
+            key: {
+                "path": str(path.resolve()),
+                "sha256": sha256_file(path),
+                "anatomy_label": key,
+                "region_crop": {
+                    "region_name": key,
+                    "projection_scope": "region_only_height_crop",
+                    "whole_object_projection": False,
+                    "basis_sha256": basis_hash,
+                    "region_measurement_sha256": _canonical_sha256(anatomy_measurements.get("regions", {}).get(key, {})),
+                },
+            }
+            for key, path in anatomy_previews.items()
+        },
         "g8_g9_negative_evidence": dict(negative_evidence or {"status": "not_supplied"}),
     }
 
 
 __all__ = [
+    "ANATOMY_VIEW_KEYS",
+    "ANATOMY_REGION_SPECS",
+    "ANATOMY_REGION_THRESHOLDS",
     "SEMANTIC_VIEW_KEYS",
     "anatomy_band_evidence",
+    "anatomy_region_evidence",
     "audit_final_tile_configs",
     "audit_ring_transitions",
     "build_postfusion_evidence",
@@ -1064,5 +1425,6 @@ __all__ = [
     "parse_dense_pair_config",
     "read_colmap_float_map",
     "render_semantic_fused_views",
+    "render_anatomy_fused_views",
     "resolve_colmap_fusion_mask",
 ]

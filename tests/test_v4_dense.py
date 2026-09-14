@@ -10,10 +10,40 @@ from v4_dense import (
     build_dense_pair_adjacency,
     build_prioritized_dense_pair_adjacency,
     build_patch_match_command,
+    classify_dense_postfusion_completion,
+    validate_patch_match_runtime_phases,
     write_dense_pair_config,
     write_prioritized_dense_pair_config,
     write_dense_smoke_config,
 )
+
+
+def test_dense_postfusion_failure_is_preserved_but_allows_completion_path() -> None:
+    result = classify_dense_postfusion_completion(
+        {
+            "passed": False,
+            "reasons": ["projected coverage below threshold", "finial support missing"],
+        }
+    )
+    assert result["strict_gate_passed"] is False
+    assert result["best_defensible"] is True
+    assert result["continuation_allowed"] is True
+    assert result["status"] == "dense_best_defensible"
+    assert result["strict_failure_reasons"] == [
+        "projected coverage below threshold",
+        "finial support missing",
+    ]
+
+
+def test_dense_postfusion_pass_is_not_relabelled_best_defensible() -> None:
+    result = classify_dense_postfusion_completion({"passed": True, "reasons": []})
+    assert result == {
+        "strict_gate_passed": True,
+        "best_defensible": False,
+        "continuation_allowed": True,
+        "status": "dense_evidence_passed",
+        "strict_failure_reasons": [],
+    }
 
 
 def test_patch_match_command_carries_explicit_geometric_switch_values(monkeypatch):
@@ -59,6 +89,39 @@ def test_photometric_command_explicitly_disables_geometric_filtering(monkeypatch
     )
     assert command[command.index("--PatchMatchStereo.geom_consistency") + 1] == "0"
     assert command[command.index("--PatchMatchStereo.filter") + 1] == "0"
+
+
+def test_completed_geometric_patch_match_requires_both_runtime_phases(tmp_path: Path):
+    log = tmp_path / "patch_match.log"
+    log.write_text(
+        """
+I patch_match_options.cc:45] --- PatchMatchOptions ---
+I patch_match_options.cc:60] geom_consistency: 0
+I patch_match_options.cc:63] filter: 0
+I patch_match_options.cc:45] --- PatchMatchOptions ---
+I patch_match_options.cc:60] geom_consistency: 1
+I patch_match_options.cc:63] filter: 1
+""",
+        encoding="utf-8",
+    )
+
+    evidence = validate_patch_match_runtime_phases(log)
+
+    assert evidence["passed"] is True
+    assert evidence["photometric_block_count"] == 1
+    assert evidence["geometric_block_count"] == 1
+
+
+def test_completed_geometric_patch_match_rejects_missing_geometric_phase(tmp_path: Path):
+    log = tmp_path / "patch_match.log"
+    log.write_text(
+        "I patch_match_options.cc:60] geom_consistency: 0\n"
+        "I patch_match_options.cc:63] filter: 0\n",
+        encoding="utf-8",
+    )
+
+    with pytest.raises(RuntimeError, match="subsequent geom_consistency=1/filter=1 runtime phase"):
+        validate_patch_match_runtime_phases(log)
 
 
 def test_pair_config_expands_schedule_bidirectionally_and_supports_chunks(

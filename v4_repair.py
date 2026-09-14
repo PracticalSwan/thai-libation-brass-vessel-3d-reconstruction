@@ -43,6 +43,18 @@ class SparseIntegrityConfig:
     maximum_mean_reprojection_error: float = 3.0
     minimum_sparse_points: int = 100
     minimum_sparse_observations: int = 1000
+    minimum_multi_view_track_fraction: float = 0.50
+    minimum_track_length_p50: float = 3.0
+    minimum_track_length_p90: float = 4.0
+    minimum_view_mask_precision_p10: float = 0.90
+    minimum_view_mask_recall_p10: float = 0.60
+    minimum_view_mask_iou_p10: float = 0.60
+    minimum_ring_mask_precision_mean: float = 0.90
+    minimum_ring_mask_recall_mean: float = 0.60
+    minimum_ring_mask_iou_mean: float = 0.60
+    maximum_translation_direction_p90_deg: float = 35.0
+    minimum_translation_positive_scale_fraction: float = 0.95
+    maximum_translation_orthogonal_residual_p90: float = 0.60
 
     def validate(self) -> "SparseIntegrityConfig":
         if self.minimum_verified_inliers < 1 or self.minimum_shared_tracks < 0:
@@ -61,6 +73,26 @@ class SparseIntegrityConfig:
             raise ValueError("maximum_mean_reprojection_error must be finite and positive")
         if self.minimum_sparse_points < 1 or self.minimum_sparse_observations < 1:
             raise ValueError("sparse point/observation thresholds must be positive")
+        if not 0.0 < self.minimum_multi_view_track_fraction <= 1.0:
+            raise ValueError("minimum_multi_view_track_fraction must be in (0, 1]")
+        if self.minimum_track_length_p50 < 2.0 or self.minimum_track_length_p90 < 2.0:
+            raise ValueError("track-length quantile thresholds must be at least two views")
+        for name in (
+            "minimum_view_mask_precision_p10",
+            "minimum_view_mask_recall_p10",
+            "minimum_view_mask_iou_p10",
+            "minimum_ring_mask_precision_mean",
+            "minimum_ring_mask_recall_mean",
+            "minimum_ring_mask_iou_mean",
+            "minimum_translation_positive_scale_fraction",
+        ):
+            value = float(getattr(self, name))
+            if not 0.0 <= value <= 1.0:
+                raise ValueError(f"{name} must be in [0, 1]")
+        if not math.isfinite(self.maximum_translation_direction_p90_deg) or not 0.0 < self.maximum_translation_direction_p90_deg <= 180.0:
+            raise ValueError("maximum_translation_direction_p90_deg must be in (0, 180]")
+        if not math.isfinite(self.maximum_translation_orthogonal_residual_p90) or self.maximum_translation_orthogonal_residual_p90 < 0.0:
+            raise ValueError("maximum_translation_orthogonal_residual_p90 must be nonnegative")
         return self
 
 
@@ -307,6 +339,114 @@ def copy_frozen_sqlite_snapshot(source: str | Path, destination: str | Path) -> 
     return {"source_path": str(source_path), "working_path": str(destination_path), "sha256": destination_sha}
 
 
+def validate_exact_mapper_graph(
+    database: str | Path,
+    expected_pair_ids: Iterable[int],
+    *,
+    canonical_path: str | Path | None = None,
+    require_raw_matches: bool = True,
+) -> dict[str, Any]:
+    """Fail closed unless a disposable mapper DB has exactly the expected graph.
+
+    COLMAP reconstruction consumes verified inlier correspondences from
+    ``two_view_geometries``.  Raw ``matches`` are pruned as a defensive
+    lineage boundary so a future runtime cannot reintroduce a non-retained
+    pair through feature-matching input.  This helper only opens ``database``
+    and rejects the manifest-bound canonical path when it is supplied.
+    """
+
+    database_path = Path(database).resolve()
+    if not database_path.is_file():
+        raise ValueError(f"mapper database is missing: {database_path}")
+    if canonical_path is not None and database_path == Path(canonical_path).resolve():
+        raise ValueError("mapper preflight may only open a disposable database copy")
+    expected = {int(pair_id) for pair_id in expected_pair_ids}
+    readonly_uri = f"file:{database_path.as_posix()}?mode=ro&immutable=1"
+    connection = sqlite3.connect(readonly_uri, uri=True)
+    try:
+        table_names = {
+            str(row[0])
+            for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name IN ('matches', 'two_view_geometries')"
+            )
+        }
+        if "two_view_geometries" not in table_names:
+            raise ValueError("mapper database is missing two_view_geometries")
+        verified = {
+            int(row[0])
+            for row in connection.execute(
+                "SELECT pair_id FROM two_view_geometries WHERE rows > 0"
+            )
+        }
+        verified_inlier_rows = int(
+            connection.execute(
+                "SELECT COALESCE(SUM(rows), 0) FROM two_view_geometries WHERE rows > 0"
+            ).fetchone()[0]
+            or 0
+        )
+        raw_matches = (
+            {
+                int(row[0])
+                for row in connection.execute("SELECT pair_id FROM matches WHERE rows > 0")
+            }
+            if "matches" in table_names
+            else set()
+        )
+        raw_match_rows = (
+            int(connection.execute("SELECT COALESCE(SUM(rows), 0) FROM matches WHERE rows > 0").fetchone()[0] or 0)
+            if "matches" in table_names
+            else 0
+        )
+    finally:
+        connection.close()
+    extra_verified = sorted(verified - expected)
+    missing_verified = sorted(expected - verified)
+    extra_raw = sorted(raw_matches - expected)
+    missing_raw = sorted(expected - raw_matches)
+    verified_exact = verified == expected
+    raw_exact = raw_matches == expected
+    expected_pair_ids_sha256 = hashlib.sha256(
+        json.dumps(sorted(expected), separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    verified_pair_ids_sha256 = hashlib.sha256(
+        json.dumps(sorted(verified), separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    raw_match_pair_ids_sha256 = hashlib.sha256(
+        json.dumps(sorted(raw_matches), separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    checks = {
+        "two_view_geometry_pair_ids_exact": verified_exact,
+        "raw_match_pair_ids_exact": raw_exact if require_raw_matches else True,
+        "two_view_geometry_count_exact": len(verified) == len(expected),
+        "raw_match_pair_count_exact": len(raw_matches) == len(expected) if require_raw_matches else True,
+    }
+    return {
+        "passed": bool(all(checks.values())),
+        "checks": checks,
+        "two_view_geometry_pair_ids_exact": verified_exact,
+        "raw_match_pair_ids_exact": raw_exact,
+        "database_path": str(database_path),
+        "expected_pair_count": len(expected),
+        "expected_pair_ids_sha256": expected_pair_ids_sha256,
+        "nonempty_two_view_geometry_count": len(verified),
+        "nonempty_two_view_geometry_inlier_rows": verified_inlier_rows,
+        "actual_two_view_geometry_pair_ids_sha256": verified_pair_ids_sha256,
+        "extra_two_view_geometry_pair_ids": extra_verified,
+        "missing_two_view_geometry_pair_ids": missing_verified,
+        "raw_match_pair_count": len(raw_matches),
+        "raw_match_rows": raw_match_rows,
+        "actual_raw_match_pair_ids_sha256": raw_match_pair_ids_sha256,
+        "extra_raw_match_pair_ids": extra_raw,
+        "missing_raw_match_pair_ids": missing_raw,
+        "raw_matches_required_for_track_establishment": False,
+        "track_loading_path": (
+            "pycolmap 4.2 global_mapping -> DatabaseCache/CorrespondenceGraph "
+            "from two_view_geometries.inlier_matches; raw matches retained only "
+            "as defensive source lineage"
+        ),
+    }
+
+
 def _camera_matrix(camera: Any) -> np.ndarray:
     params = np.asarray(camera.params, dtype=np.float64).reshape(-1)
     if len(params) < 3:
@@ -356,6 +496,405 @@ def _rotation_geodesic_deg(first: np.ndarray | None, second: np.ndarray | None) 
         return None
     cosine = np.clip((float(np.trace(relative)) - 1.0) / 2.0, -1.0, 1.0)
     return float(math.degrees(math.acos(float(cosine))))
+
+
+def sparse_track_distribution_evidence(
+    reconstruction: Any,
+    *,
+    config: SparseIntegrityConfig = SparseIntegrityConfig(),
+    provenance: Mapping[str, Any] | None = None,
+) -> dict[str, Any]:
+    """Measure genuine reconstruction track lengths independently of pair evidence.
+
+    A mapper report that allocates one disjoint two-view point per selected pair
+    can make a minimum shared-track check look healthy without establishing a
+    globally connected SfM model.  This measurement reads the model's actual
+    track elements and rejects that construction explicitly.  The provenance
+    binding is intentionally required by the production gate so callers cannot
+    relabel pair-local tracks as global continuity evidence.
+    """
+
+    config.validate()
+    lengths: list[int] = []
+    duplicate_image_tracks = 0
+    try:
+        points = list(getattr(reconstruction, "points3D", {}).values())
+    except Exception:
+        points = []
+    for point in points:
+        elements = list(getattr(getattr(point, "track", None), "elements", ()) or ())
+        image_ids = [int(getattr(element, "image_id", -1)) for element in elements]
+        if len(image_ids) != len(set(image_ids)):
+            duplicate_image_tracks += 1
+        if len(image_ids) >= 2:
+            lengths.append(len(image_ids))
+    values = np.asarray(lengths, dtype=np.float64)
+    provenance_payload = dict(provenance or {})
+    provenance_bound = bool(
+        provenance_payload
+        and str(provenance_payload.get("source", "")).strip()
+        and str(provenance_payload.get("independent_graph_sha256", ""))
+        and re.fullmatch(r"[0-9a-fA-F]{64}", str(provenance_payload.get("independent_graph_sha256", "")))
+        and bool(provenance_payload.get("independent_graph", False))
+    )
+    constructed_pairwise = bool(provenance_payload.get("constructed_pairwise_tracks", False))
+    if len(values):
+        quantiles = {
+            "p10": float(np.quantile(values, 0.10)),
+            "p50": float(np.quantile(values, 0.50)),
+            "p90": float(np.quantile(values, 0.90)),
+            "p99": float(np.quantile(values, 0.99)),
+        }
+        mean = float(np.mean(values))
+        maximum = int(np.max(values))
+        fraction_ge3 = float(np.mean(values >= 3.0))
+        fraction_ge4 = float(np.mean(values >= 4.0))
+        fraction_eq2 = float(np.mean(values == 2.0))
+    else:
+        quantiles = {key: 0.0 for key in ("p10", "p50", "p90", "p99")}
+        mean = 0.0
+        maximum = 0
+        fraction_ge3 = fraction_ge4 = fraction_eq2 = 0.0
+    checks = {
+        "track_evidence_available": bool(len(values)),
+        "no_duplicate_image_observations": duplicate_image_tracks == 0,
+        "independent_track_provenance_bound": provenance_bound,
+        "pair_local_track_partition_rejected": not constructed_pairwise,
+        "multi_view_track_fraction": fraction_ge3 >= config.minimum_multi_view_track_fraction,
+        "track_length_p50": quantiles["p50"] >= config.minimum_track_length_p50,
+        "track_length_p90": quantiles["p90"] >= config.minimum_track_length_p90,
+    }
+    return {
+        "schema_version": 1,
+        "method": "actual COLMAP reconstruction track elements; independent graph provenance required",
+        "point_count_with_tracks": int(len(values)),
+        "mean_track_length": mean,
+        "maximum_track_length": maximum,
+        "track_length_quantiles": quantiles,
+        "fraction_track_length_ge3": fraction_ge3,
+        "fraction_track_length_ge4": fraction_ge4,
+        "fraction_track_length_eq2": fraction_eq2,
+        "duplicate_image_track_count": int(duplicate_image_tracks),
+        "provenance": provenance_payload,
+        "checks": checks,
+        "passed": bool(all(checks.values())),
+        "thresholds": {
+            "minimum_multi_view_track_fraction": config.minimum_multi_view_track_fraction,
+            "minimum_track_length_p50": config.minimum_track_length_p50,
+            "minimum_track_length_p90": config.minimum_track_length_p90,
+        },
+    }
+
+
+def _resolve_sparse_mask_path(mask_root: Path, image_name: str) -> Path | None:
+    candidates = (
+        mask_root / image_name,
+        mask_root / f"{image_name}.png",
+        mask_root / f"{Path(image_name).stem}.png",
+        mask_root / f"{Path(image_name).stem}.jpg",
+    )
+    return next((candidate for candidate in candidates if candidate.is_file()), None)
+
+
+def _summary_quantiles(values: Sequence[float]) -> dict[str, float]:
+    if not values:
+        return {"mean": 0.0, "p10": 0.0, "p50": 0.0, "min": 0.0}
+    array = np.asarray(values, dtype=np.float64)
+    return {
+        "mean": float(np.mean(array)),
+        "p10": float(np.quantile(array, 0.10)),
+        "p50": float(np.quantile(array, 0.50)),
+        "min": float(np.min(array)),
+    }
+
+
+def sparse_mask_projection_evidence(
+    reconstruction: Any,
+    mask_root: str | Path | None,
+    ring_metadata: Mapping[str, Mapping[str, Any]],
+    *,
+    config: SparseIntegrityConfig = SparseIntegrityConfig(),
+    dilation_px: int = 5,
+) -> dict[str, Any]:
+    """Compare the complete sparse cloud projection with immutable vessel masks.
+
+    Every finite sparse point is projected into every registered view.  Point
+    precision is the in-mask fraction of those projections.  Recall and IoU
+    compare a fixed, documented 11x11-pixel dilated projection footprint with
+    the binary vessel mask.  This deliberately measures global cross-view
+    consistency, not only the matched observations that created a point.
+    """
+
+    config.validate()
+    if mask_root is None:
+        return {
+            "schema_version": 1,
+            "method": "all finite sparse points projected into every registered view against exact immutable masks",
+            "status": "missing_mask_root",
+            "passed": False,
+            "checks": {"mask_root_available": False},
+            "views": [],
+            "rings": {},
+        }
+    import cv2
+
+    root = Path(mask_root).resolve()
+    if not root.is_dir():
+        return {
+            "schema_version": 1,
+            "method": "all finite sparse points projected into every registered view against exact immutable masks",
+            "status": "missing_mask_root",
+            "passed": False,
+            "checks": {"mask_root_available": False},
+            "mask_root": str(root),
+            "views": [],
+            "rings": {},
+        }
+    points = []
+    for point in list(getattr(reconstruction, "points3D", {}).values()):
+        xyz = np.asarray(getattr(point, "xyz", ()), dtype=np.float64).reshape(-1)
+        if xyz.shape == (3,) and np.isfinite(xyz).all():
+            points.append(xyz)
+    xyz_world = np.asarray(points, dtype=np.float64).reshape((-1, 3)) if points else np.empty((0, 3), dtype=np.float64)
+    registered_names: list[str] = []
+    try:
+        registered_names = sorted(
+            str(reconstruction.image(int(image_id)).name)
+            for image_id in reconstruction.reg_image_ids()
+        )
+    except Exception:
+        registered_names = []
+    kernel_size = max(1, int(dilation_px) * 2 + 1)
+    view_rows: list[dict[str, Any]] = []
+    missing_masks: list[str] = []
+    shape_mismatches: list[str] = []
+    for name in registered_names:
+        image = reconstruction.find_image_with_name(name)
+        camera = reconstruction.camera(int(image.camera_id))
+        mask_path = _resolve_sparse_mask_path(root, name)
+        if mask_path is None:
+            missing_masks.append(name)
+            continue
+        mask = cv2.imread(str(mask_path), cv2.IMREAD_GRAYSCALE)
+        expected_shape = (int(camera.height), int(camera.width))
+        if mask is None or mask.shape != expected_shape:
+            shape_mismatches.append(name)
+            continue
+        mask_binary = mask > 0
+        pose = image.cam_from_world()
+        rotation = np.asarray(pose.rotation.matrix(), dtype=np.float64)
+        translation = np.asarray(pose.translation, dtype=np.float64).reshape(3)
+        camera_points = xyz_world @ rotation.T + translation if len(xyz_world) else np.empty((0, 3), dtype=np.float64)
+        finite = np.isfinite(camera_points).all(axis=1) & (camera_points[:, 2] > 0.0)
+        camera_points = camera_points[finite]
+        projected = np.asarray(camera.img_from_cam(camera_points), dtype=np.float64) if len(camera_points) else np.empty((0, 2), dtype=np.float64)
+        valid = np.isfinite(projected).all(axis=1)
+        projected = projected[valid]
+        valid = (
+            (projected[:, 0] >= 0.0)
+            & (projected[:, 0] < float(camera.width))
+            & (projected[:, 1] >= 0.0)
+            & (projected[:, 1] < float(camera.height))
+        ) if len(projected) else np.empty(0, dtype=bool)
+        projected = projected[valid]
+        pixels = np.rint(projected).astype(np.int32) if len(projected) else np.empty((0, 2), dtype=np.int32)
+        if len(pixels):
+            valid_pixels = (
+                (pixels[:, 0] >= 0)
+                & (pixels[:, 0] < int(camera.width))
+                & (pixels[:, 1] >= 0)
+                & (pixels[:, 1] < int(camera.height))
+            )
+            pixels = pixels[valid_pixels]
+        in_mask = mask_binary[pixels[:, 1], pixels[:, 0]] if len(pixels) else np.empty(0, dtype=bool)
+        precision = float(np.mean(in_mask)) if len(in_mask) else 0.0
+        footprint = np.zeros(mask_binary.shape, dtype=np.uint8)
+        if len(pixels):
+            footprint[pixels[:, 1], pixels[:, 0]] = 1
+            footprint = cv2.dilate(footprint, np.ones((kernel_size, kernel_size), dtype=np.uint8), iterations=1)
+        intersection = int(np.logical_and(footprint > 0, mask_binary).sum())
+        union = int(np.logical_or(footprint > 0, mask_binary).sum())
+        mask_area = int(mask_binary.sum())
+        recall = float(intersection / max(mask_area, 1))
+        iou = float(intersection / max(union, 1))
+        view_rows.append(
+            {
+                "image_name": name,
+                "ring": str(ring_metadata.get(name, {}).get("ring", "unknown")),
+                "projected_point_count": int(len(pixels)),
+                "in_mask_point_count": int(np.sum(in_mask)),
+                "mask_area_pixels": mask_area,
+                "precision": precision,
+                "recall": recall,
+                "iou": iou,
+            }
+        )
+    ring_rows: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for row in view_rows:
+        ring_rows[str(row["ring"])].append(row)
+    ring_summary = {
+        ring: {
+            "view_count": len(rows),
+            "precision": _summary_quantiles([float(row["precision"]) for row in rows]),
+            "recall": _summary_quantiles([float(row["recall"]) for row in rows]),
+            "iou": _summary_quantiles([float(row["iou"]) for row in rows]),
+        }
+        for ring, rows in sorted(ring_rows.items())
+    }
+    expected_rings = sorted(
+        {str(value.get("ring")) for value in ring_metadata.values() if value.get("selected", True)}
+    )
+    view_precision = _summary_quantiles([float(row["precision"]) for row in view_rows])
+    view_recall = _summary_quantiles([float(row["recall"]) for row in view_rows])
+    view_iou = _summary_quantiles([float(row["iou"]) for row in view_rows])
+    checks = {
+        "mask_root_available": True,
+        "all_registered_views_measured": len(view_rows) == len(registered_names) and not missing_masks and not shape_mismatches,
+        "view_precision_p10": view_precision["p10"] >= config.minimum_view_mask_precision_p10,
+        "view_recall_p10": view_recall["p10"] >= config.minimum_view_mask_recall_p10,
+        "view_iou_p10": view_iou["p10"] >= config.minimum_view_mask_iou_p10,
+        "all_selected_rings_measured": bool(expected_rings) and all(
+            ring in ring_summary and ring_summary[ring]["view_count"] > 0 for ring in expected_rings
+        ),
+        "ring_precision_mean": bool(expected_rings) and all(
+            ring_summary[ring]["precision"]["mean"] >= config.minimum_ring_mask_precision_mean
+            for ring in expected_rings if ring in ring_summary
+        ),
+        "ring_recall_mean": bool(expected_rings) and all(
+            ring_summary[ring]["recall"]["mean"] >= config.minimum_ring_mask_recall_mean
+            for ring in expected_rings if ring in ring_summary
+        ),
+        "ring_iou_mean": bool(expected_rings) and all(
+            ring_summary[ring]["iou"]["mean"] >= config.minimum_ring_mask_iou_mean
+            for ring in expected_rings if ring in ring_summary
+        ),
+    }
+    return {
+        "schema_version": 1,
+        "method": "all finite sparse points projected into every registered view against exact immutable masks",
+        "projection_footprint": {
+            "dilation_px": int(dilation_px),
+            "kernel_size": kernel_size,
+            "recall_definition": "mask pixels intersecting the fixed dilated projected-point footprint divided by mask foreground pixels",
+            "iou_definition": "intersection over union of the same footprint and mask foreground",
+        },
+        "mask_root": str(root),
+        "registered_view_count": len(registered_names),
+        "measured_view_count": len(view_rows),
+        "missing_masks": missing_masks,
+        "shape_mismatches": shape_mismatches,
+        "view_summary": {"precision": view_precision, "recall": view_recall, "iou": view_iou},
+        "rings": ring_summary,
+        "views": view_rows,
+        "checks": checks,
+        "passed": bool(all(checks.values())),
+        "thresholds": {
+            "minimum_view_mask_precision_p10": config.minimum_view_mask_precision_p10,
+            "minimum_view_mask_recall_p10": config.minimum_view_mask_recall_p10,
+            "minimum_view_mask_iou_p10": config.minimum_view_mask_iou_p10,
+            "minimum_ring_mask_precision_mean": config.minimum_ring_mask_precision_mean,
+            "minimum_ring_mask_recall_mean": config.minimum_ring_mask_recall_mean,
+            "minimum_ring_mask_iou_mean": config.minimum_ring_mask_iou_mean,
+        },
+    }
+
+
+def sparse_camera_center_translation_evidence(
+    reconstruction: Any,
+    translation_records: Sequence[Mapping[str, Any]] | None,
+    *,
+    config: SparseIntegrityConfig = SparseIntegrityConfig(),
+) -> dict[str, Any]:
+    """Validate one camera-center field against calibrated image translations.
+
+    Calibrated two-view translation is a direction-only quantity.  The gate
+    therefore checks the common candidate camera centers for finite, positive
+    projections on those directions and bounded orthogonal residuals.  It does
+    not invent metric scale or use capture phase as a substitute for evidence.
+    """
+
+    config.validate()
+    records = list(translation_records or [])
+    centers: dict[str, np.ndarray] = {}
+    rotations: dict[str, np.ndarray] = {}
+    try:
+        for image_id in reconstruction.reg_image_ids():
+            image = reconstruction.image(int(image_id))
+            pose = image.cam_from_world()
+            center = np.asarray(image.projection_center(), dtype=np.float64).reshape(3)
+            rotation = np.asarray(pose.rotation.matrix(), dtype=np.float64)
+            if np.isfinite(center).all() and rotation.shape == (3, 3) and np.isfinite(rotation).all():
+                centers[str(image.name)] = center
+                rotations[str(image.name)] = rotation
+    except Exception:
+        centers = {}
+        rotations = {}
+    rows: list[dict[str, Any]] = []
+    for record in records:
+        if record.get("well_conditioned_calibrated") is False:
+            continue
+        first, second = str(record.get("first", "")), str(record.get("second", ""))
+        vector = record.get("calibrated_translation_first_to_second")
+        if vector is None:
+            vector = record.get("calibrated_reestimate_translation_first_to_second")
+        if first not in centers or second not in centers or vector is None:
+            continue
+        direction_camera = np.asarray(vector, dtype=np.float64).reshape(-1)
+        if direction_camera.shape != (3,) or not np.isfinite(direction_camera).all():
+            continue
+        direction_norm = float(np.linalg.norm(direction_camera))
+        if direction_norm <= 1e-9:
+            continue
+        direction_world = -rotations[second].T @ (direction_camera / direction_norm)
+        direction_world /= max(float(np.linalg.norm(direction_world)), 1e-12)
+        delta = centers[second] - centers[first]
+        delta_norm = float(np.linalg.norm(delta))
+        if delta_norm <= 1e-9 or not np.isfinite(delta).all():
+            continue
+        scale = float(np.dot(delta, direction_world))
+        residual = float(np.linalg.norm(delta - scale * direction_world) / delta_norm)
+        cosine = float(np.clip(scale / delta_norm, -1.0, 1.0))
+        rows.append(
+            {
+                "pair_id": int(record.get("pair_id", 0)),
+                "first": first,
+                "second": second,
+                "same_ring": bool(record.get("same_ring", False)),
+                "center_distance": delta_norm,
+                "projected_scale": scale,
+                "orthogonal_residual_fraction": residual,
+                "direction_error_deg": float(math.degrees(math.acos(cosine))),
+            }
+        )
+    direction_errors = [float(row["direction_error_deg"]) for row in rows]
+    residuals = [float(row["orthogonal_residual_fraction"]) for row in rows]
+    scales = [float(row["projected_scale"]) for row in rows]
+    positive_fraction = float(np.mean(np.asarray(scales) > 0.0)) if scales else 0.0
+    checks = {
+        "translation_evidence_available": bool(rows),
+        "finite_camera_centers": bool(centers),
+        "direction_error_p90": bool(direction_errors) and float(np.quantile(direction_errors, 0.90)) <= config.maximum_translation_direction_p90_deg,
+        "positive_projected_scale_fraction": positive_fraction >= config.minimum_translation_positive_scale_fraction,
+        "orthogonal_residual_p90": bool(residuals) and float(np.quantile(residuals, 0.90)) <= config.maximum_translation_orthogonal_residual_p90,
+    }
+    return {
+        "schema_version": 1,
+        "method": "calibrated two-view translation directions compared with candidate camera centers",
+        "candidate_center_count": len(centers),
+        "evaluated_edge_count": len(rows),
+        "direction_error_deg": _summary_quantiles(direction_errors),
+        "orthogonal_residual_fraction": _summary_quantiles(residuals),
+        "projected_scale": _summary_quantiles(scales),
+        "positive_projected_scale_fraction": positive_fraction,
+        "edges": rows,
+        "checks": checks,
+        "passed": bool(all(checks.values())),
+        "thresholds": {
+            "maximum_translation_direction_p90_deg": config.maximum_translation_direction_p90_deg,
+            "minimum_translation_positive_scale_fraction": config.minimum_translation_positive_scale_fraction,
+            "maximum_translation_orthogonal_residual_p90": config.maximum_translation_orthogonal_residual_p90,
+        },
+    }
 
 
 def _recover_two_view_rotation(
@@ -775,6 +1314,9 @@ def sparse_integrity_gate(
     database_lineage: Mapping[str, Any] | None = None,
     expected_model_sha256: str | None = None,
     audit_exclusions: Mapping[str, Mapping[str, Any]] | None = None,
+    track_provenance: Mapping[str, Any] | None = None,
+    mask_projection_evidence: Mapping[str, Any] | None = None,
+    camera_center_evidence: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Apply strict sparse acceptance against a fixed, independent audit set.
 
@@ -902,6 +1444,15 @@ def sparse_integrity_gate(
         mean_reprojection_error = float(reconstruction.compute_mean_reprojection_error())
     except Exception:
         pass
+    track_distribution = sparse_track_distribution_evidence(
+        reconstruction,
+        config=config,
+        provenance=track_provenance,
+    )
+    mask_projection = dict(mask_projection_evidence or {})
+    camera_center_translation = dict(camera_center_evidence or {})
+    mask_checks = dict(mask_projection.get("checks") or {})
+    camera_checks = dict(camera_center_translation.get("checks") or {})
     checks = {
         "independent_audit_evidence_bound": independent_bound and bool(audit_evidence),
         "audit_exclusion_justifications_bound": exclusion_justifications_valid,
@@ -922,6 +1473,25 @@ def sparse_integrity_gate(
         "observation_health": observation_count >= config.minimum_sparse_observations,
         "mean_reprojection_health": math.isfinite(mean_reprojection_error)
         and mean_reprojection_error <= config.maximum_mean_reprojection_error,
+        "independent_multiview_track_distribution": bool(track_distribution.get("passed")),
+        "mask_projection_per_view": bool(
+            mask_checks.get("all_registered_views_measured")
+            and mask_checks.get("view_precision_p10")
+            and mask_checks.get("view_recall_p10")
+            and mask_checks.get("view_iou_p10")
+        ),
+        "mask_projection_per_ring": bool(
+            mask_checks.get("all_selected_rings_measured")
+            and mask_checks.get("ring_precision_mean")
+            and mask_checks.get("ring_recall_mean")
+            and mask_checks.get("ring_iou_mean")
+        ),
+        "camera_center_translation_scale_consistency": bool(camera_center_translation.get("passed"))
+        and bool(
+            camera_checks.get("direction_error_p90")
+            and camera_checks.get("positive_projected_scale_fraction")
+            and camera_checks.get("orthogonal_residual_p90")
+        ),
     }
     return {
         "passed": bool(all(checks.values())),
@@ -948,6 +1518,9 @@ def sparse_integrity_gate(
         "database_lineage": dict(database_lineage or {}),
         "audit_evidence_source": "independent_sqlite_snapshot" if independent_bound else "caller_pair_evidence_diagnostic_only",
         "trajectory_summaries": trajectory_summaries,
+        "track_distribution": track_distribution,
+        "mask_projection": mask_projection,
+        "camera_center_translation": camera_center_translation,
         "failures": {
             "rotation": [dict(item) for item in disagreement_failures],
             "shared_tracks": [dict(item) for item in track_failures],
@@ -1090,17 +1663,20 @@ def prune_colmap_database(
     image_ids_by_name: Mapping[str, int],
     snapshot_manifest: str | Path,
 ) -> Path:
-    """Snapshot a COLMAP DB and retain only the selected verified pair rows.
+    """Copy a frozen source DB and retain only the selected verified pairs.
 
-    ``source`` must be the manifest-bound frozen canonical snapshot.  It is
-    copied as bytes to a disposable working database before SQLite opens it,
-    so the canonical file cannot acquire WAL/SHM state during pruning.
+    The source may be the manifest-bound canonical snapshot or a disposable
+    byte copy created from it.  In either case it is copied before SQLite
+    opens the destination, and the canonical path is never opened.  Both the
+    verified ``two_view_geometries`` rows and raw ``matches`` rows are pruned
+    because the exact graph is a provenance boundary for the mapper.
     """
 
     manifest = load_canonical_sqlite_snapshot_manifest(snapshot_manifest)
     source_path, destination_path = Path(source).resolve(), Path(destination).resolve()
-    if source_path != Path(manifest["canonical_path"]).resolve():
-        raise ValueError("pruning source must equal the canonical_path recorded in snapshot_manifest")
+    canonical_path = Path(manifest["canonical_path"]).resolve()
+    if destination_path == canonical_path:
+        raise ValueError("pruning destination may not be the canonical SQLite snapshot")
     if not source_path.is_file():
         raise ValueError(f"source COLMAP database is missing: {source_path}")
     if destination_path.exists():
@@ -1111,12 +1687,23 @@ def prune_colmap_database(
         colmap_pair_id(image_ids_by_name[str(pair[0])], image_ids_by_name[str(pair[1])])
         for pair in selected_pairs
     ]
-    with sqlite3.connect(str(destination_path)) as connection:
+    connection = sqlite3.connect(str(destination_path))
+    try:
         connection.execute("CREATE TEMP TABLE selected_repair_pairs(pair_id INTEGER PRIMARY KEY)")
         connection.executemany("INSERT INTO selected_repair_pairs(pair_id) VALUES (?)", ((int(value),) for value in sorted(set(pair_ids))))
         connection.execute("DELETE FROM matches WHERE pair_id NOT IN (SELECT pair_id FROM selected_repair_pairs)")
         connection.execute("DELETE FROM two_view_geometries WHERE pair_id NOT IN (SELECT pair_id FROM selected_repair_pairs)")
         connection.commit()
+    finally:
+        connection.close()
+    preflight = validate_exact_mapper_graph(
+        destination_path,
+        pair_ids,
+        canonical_path=canonical_path,
+        require_raw_matches=True,
+    )
+    if not preflight["passed"]:
+        raise RuntimeError(f"exact mapper graph pruning failed closed: {preflight}")
     return destination_path
 
 
@@ -1197,9 +1784,13 @@ __all__ = [
     "parse_patchmatch_reference_config",
     "prune_colmap_database",
     "raw_component_gate",
+    "sparse_camera_center_translation_evidence",
     "sparse_integrity_gate",
+    "sparse_mask_projection_evidence",
+    "sparse_track_distribution_evidence",
     "sqlite_logical_digest",
     "stable_directory_sha256",
+    "validate_exact_mapper_graph",
     "validate_one_reference_write",
     "write_sparse_graph_report",
 ]

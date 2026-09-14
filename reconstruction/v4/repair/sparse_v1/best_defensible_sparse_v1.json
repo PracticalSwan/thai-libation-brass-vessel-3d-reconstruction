@@ -1,0 +1,30 @@
+{
+  "best_defensible": true,
+  "dense_lineage_policy": "fresh_dense_from_best_defensible_sparse_only; no historical dense reuse",
+  "independent_lineage": {
+    "audit_manifest_sha256": "47055ecc2cdc8d9d4f2eda546b6bb71e7e31f85ac7817c7da43465fca512e358",
+    "canonical_logical_sha256": "ec4d9a4c9a548903d71704401e50e666408a933dfdb19cc02cbe8e93fd860f97",
+    "canonical_snapshot_sha256": "658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a",
+    "classification_sha256": "cdf051b0946201732b9775be8e4cff09609e9e1839a819d3690e7c201c2bf9f7",
+    "pair_ids_sha256": "c01f5037307ff9589efb78baef5ed6dd43c95bb2bbd719af8687e69691c2adf2",
+    "raw_audit_sha256": "39c46fb6e164655b590a776db4d1ec422b4edfb178e3ef492f908b7d5c9ad5a0"
+  },
+  "registered_images": 372,
+  "ring_graph_connected": true,
+  "schema_version": 2,
+  "selection_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v1_selection.json",
+  "selection_report_sha256": "1504748d33c5139814957dc4fe219bab3f8226598a51b7819fdee549c9242933",
+  "source_model": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v47_v43_fixed_pose_retriangulation",
+  "source_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+  "sparse_gate": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\repair_sparse_gate_v47_v43_fixed_pose_retriangulation.json",
+  "sparse_gate_passed": false,
+  "sparse_gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+  "status": "best_defensible_sparse_candidate",
+  "strict_gate_failures": [
+    "mask_projection_per_ring",
+    "mask_projection_per_view"
+  ],
+  "track_provenance": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\track_provenance_v47_v43_fixed_pose_retriangulation.json",
+  "track_provenance_sha256": "9bcfbfd6710b5f3fa6fd029e778fcf313b4f682ef896dd8fd166268e74b39af1",
+  "translation_positive_scale_fraction": 0.9973856209150327
+}
