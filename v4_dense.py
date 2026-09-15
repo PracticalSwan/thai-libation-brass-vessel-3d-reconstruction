@@ -25,6 +25,7 @@ from v4_config import (
     sha256_file,
     write_json,
 )
+from v4_repair import stable_directory_sha256
 
 CONTAMINATION_METRIC_KEYS = (
     "board_point_fraction",
@@ -471,11 +472,36 @@ def load_accepted_sparse_lineage(report_path: Path | None = None) -> dict[str, A
         RECONSTRUCTION_V4_ROOT
         / "repair"
         / "sparse_v1"
-        / "accepted_sparse_v4_rotation_consensus_v1.json"
+        / "best_defensible_sparse_v2.json"
     )
     payload = json.loads(path.read_text(encoding="utf-8"))
     if not isinstance(payload, Mapping):
         raise ValueError(f"accepted sparse report must be an object: {path}")
+    def verify_file(field: str, hash_field: str, label: str) -> None:
+        value = payload.get(field)
+        expected = str(payload.get(hash_field, "")).strip().lower()
+        if not isinstance(value, str) or not value.strip() or not _valid_sha256(expected):
+            raise ValueError(f"accepted sparse report has incomplete {label} provenance: {path}")
+        artifact = Path(value).resolve()
+        if not artifact.is_file():
+            raise ValueError(f"accepted sparse report {label} artifact is missing: {artifact}")
+        observed = sha256_file(artifact)
+        if observed != expected:
+            raise ValueError(f"accepted sparse report {label} hash does not match: {artifact}")
+
+    source_model_value = payload.get("source_model")
+    source_model_expected = str(payload.get("source_model_sha256", "")).strip().lower()
+    if not isinstance(source_model_value, str) or not source_model_value.strip() or not _valid_sha256(source_model_expected):
+        raise ValueError(f"accepted sparse report has incomplete source-model provenance: {path}")
+    source_model = Path(source_model_value).resolve()
+    if not source_model.is_dir():
+        raise ValueError(f"accepted sparse source model directory is missing: {source_model}")
+    observed_model = stable_directory_sha256(source_model)
+    if observed_model != source_model_expected:
+        raise ValueError(f"accepted sparse source model hash does not match: {source_model}")
+    verify_file("selection_report", "selection_report_sha256", "selection-report")
+    verify_file("sparse_gate", "sparse_gate_sha256", "sparse-gate")
+    verify_file("track_provenance", "track_provenance_sha256", "track-provenance")
     lineage = {
         "status": payload.get("status"),
         "sparse_gate_passed": payload.get("sparse_gate_passed"),

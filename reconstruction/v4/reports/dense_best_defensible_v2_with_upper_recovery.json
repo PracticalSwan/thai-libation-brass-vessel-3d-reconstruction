@@ -1,0 +1,223 @@
+{
+  "best_defensible": true,
+  "historical_dense_selection": {
+    "historical_sparse_lineage": {
+      "accepted_sparse_gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+      "accepted_sparse_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+      "accepted_sparse_report_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v1.json",
+      "best_defensible": true,
+      "selection_report_sha256": "1504748d33c5139814957dc4fe219bab3f8226598a51b7819fdee549c9242933",
+      "sparse_gate_passed": false,
+      "status": "best_defensible_sparse_candidate",
+      "strict_gate_failures": [
+        "mask_projection_per_ring",
+        "mask_projection_per_view"
+      ]
+    },
+    "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_best_defensible_v1_with_min3.json",
+    "sha256": "1e07cdc08675c612d28d722f9673a7691ca3005c184af1a47ca91cabe332e30c"
+  },
+  "lineage_authority": {
+    "accepted_sparse_lineage": {
+      "accepted_sparse_gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+      "accepted_sparse_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+      "accepted_sparse_report_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v2.json",
+      "best_defensible": true,
+      "selection_report_sha256": "d48687a4e92272ae99184eaf903011a0526e1023bbf3de009c1c782bc12ad2ce",
+      "sparse_gate_passed": false,
+      "status": "best_defensible_sparse_candidate",
+      "strict_gate_failures": [
+        "mask_projection_per_ring",
+        "mask_projection_per_view"
+      ]
+    },
+    "accepted_sparse_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v2.json",
+    "accepted_sparse_report_sha256": "5121e2fd1834ede45423b8a302613fd85996a4e8889fe98690d4cecc7d6580f5"
+  },
+  "lineage_rebind": {
+    "gate_bytes_unchanged": true,
+    "historical_dense_reports_preserved": true,
+    "model_bytes_unchanged": true,
+    "new_sparse_report_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v2.json",
+    "old_sparse_report_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v1.json",
+    "status": "rebound_without_geometry_change"
+  },
+  "poisson_policy": "the selected fused cloud may feed only the best-defensible Poisson handoff while strict dense/anatomy failures remain explicit",
+  "schema_version": 1,
+  "selected": {
+    "evidence_summary": {
+      "anatomy_failures": [
+        "finial:resolved_narrow_top_element"
+      ],
+      "anatomy_passed": false,
+      "anatomy_status": "failed",
+      "contamination": {
+        "board_point_fraction": 0.0071916666666666665,
+        "cloth_or_background_point_fraction": 0.0028833333333333332,
+        "pedestal_board_webbing_point_fraction": 0.0
+      },
+      "contamination_penalty_mean": 0.0033583333333333334,
+      "finial_shape": {
+        "finial_supported_radius_median": 0.2687680572484679,
+        "finial_to_lid_radius_ratio": 1.0177845894451105,
+        "lid_supported_radius_median": 0.26407165134520116,
+        "max_finial_to_lid_radius_ratio": 0.85,
+        "resolved_narrow_top_element": false
+      },
+      "region_connected_mean": 0.9987870860336524,
+      "region_coverage_mean": 1.0,
+      "region_support_mean": 0.9956062176822009,
+      "regions": {
+        "base": {
+          "connected_support_fraction": 1.0,
+          "projected_coverage_fraction": 1.0,
+          "supported_fraction": 0.9992448166964163
+        },
+        "bowl_interior": {
+          "connected_support_fraction": 0.9985611510791367,
+          "projected_coverage_fraction": 1.0,
+          "supported_fraction": 0.9965354612306936
+        },
+        "continuous_neck": {
+          "connected_support_fraction": 1.0,
+          "projected_coverage_fraction": 1.0,
+          "supported_fraction": 1.0
+        },
+        "finial": {
+          "connected_support_fraction": 0.9917355371900827,
+          "projected_coverage_fraction": 1.0,
+          "supported_fraction": 0.9825549897063603
+        },
+        "globe_shoulder": {
+          "connected_support_fraction": 1.0,
+          "projected_coverage_fraction": 1.0,
+          "supported_fraction": 0.9971763002292747
+        },
+        "lid_tiers": {
+          "connected_support_fraction": 1.0,
+          "projected_coverage_fraction": 1.0,
+          "supported_fraction": 0.9930364372469636
+        },
+        "pedestal_transitions": {
+          "connected_support_fraction": 1.0,
+          "projected_coverage_fraction": 1.0,
+          "supported_fraction": 1.0
+        },
+        "rim": {
+          "connected_support_fraction": 1.0,
+          "projected_coverage_fraction": 1.0,
+          "supported_fraction": 0.9963017363478991
+        }
+      },
+      "ring_transition_status": "passed",
+      "source_selection_status": "passed"
+    },
+    "fused_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\dense\\fused_dense_best_defensible_v1_full_geometric_phase.ply",
+    "fused_sha256": "4a596f562d8bace90cac39deb38479f21a01eb9c09e02eb86fa26876e38c7d73",
+    "map_counts": {
+      "geometric_depth_count": 372,
+      "geometric_normal_count": 372,
+      "photometric_depth_count": 0,
+      "photometric_normal_count": 0
+    },
+    "postfusion_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_dense_best_defensible_v1_full_geometric_phase_postfusion.json",
+    "postfusion_report_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+    "registered_view_count": 372,
+    "run_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_dense_best_defensible_v1_full_geometric_phase_run.json",
+    "run_report_sha256": "20c215cb10c7677cfdf2e7a22617d475fffa045339068876abf211e476d437d6",
+    "runtime_phase_gate": {
+      "first_geometric_block_index": 372,
+      "first_photometric_block_index": 0,
+      "geometric_block_count": 372,
+      "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_dense_best_defensible_v1_full_geometric_phase_tile_000_patch_match.log",
+      "passed": true,
+      "phase_block_count": 744,
+      "phase_order_valid": true,
+      "photometric_block_count": 372
+    },
+    "score": [
+      0,
+      0,
+      0.9956062176822009,
+      1.0,
+      0.9987870860336524,
+      -0.0033583333333333334
+    ],
+    "sparse_lineage": {
+      "accepted_sparse_gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+      "accepted_sparse_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+      "accepted_sparse_report_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v2.json",
+      "best_defensible": true,
+      "selection_report_sha256": "d48687a4e92272ae99184eaf903011a0526e1023bbf3de009c1c782bc12ad2ce",
+      "sparse_gate_passed": false,
+      "status": "best_defensible_sparse_candidate",
+      "strict_gate_failures": [
+        "mask_projection_per_ring",
+        "mask_projection_per_view"
+      ]
+    },
+    "strict_failure_reasons": [
+      "post-fusion evidence report status is not passed",
+      "post-fusion anatomy region measurements are missing or failed: finial:resolved_narrow_top_element"
+    ],
+    "strict_gate_passed": false,
+    "workspace": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\dense_best_defensible_v1_full_geometric_phase\\dense_best_defensible_v1_full_geometric_phase"
+  },
+  "selection_policy": "retain the complete two-phase 372-view dense winner; a separate 3072px geo_g12 recovery is comparison-only unless it resolves a narrower finial and improves the measured baseline",
+  "status": "best_defensible_dense_candidate",
+  "strict_failure_reasons": [
+    "post-fusion evidence report status is not passed",
+    "post-fusion anatomy region measurements are missing or failed: finial:resolved_narrow_top_element"
+  ],
+  "strict_gate_passed": false,
+  "upper_ring_recovery": {
+    "candidate_finial_shape": {
+      "finial_supported_radius_median": 0.2856149498962187,
+      "finial_to_lid_radius_ratio": 1.0922269378171634,
+      "lid_supported_radius_median": 0.2614978078338058,
+      "max_finial_to_lid_radius_ratio": 0.85,
+      "resolved_narrow_top_element": false
+    },
+    "decision": {
+      "baseline_finial_to_lid_radius_ratio": 1.0177845894451105,
+      "candidate_finial_to_lid_radius_ratio": 1.0922269378171634,
+      "candidate_resolved_narrow_top_element": false,
+      "promote_upper_recovery": false,
+      "ratio_improved": false,
+      "status": "recovery_exhausted_unresolved"
+    },
+    "fused_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\dense\\fused_upper_geo_g12_3072_v2.ply",
+    "fused_sha256": "5bce4a2adb4b53900a0e1881e79978c83d77e1f2300e01097d7795ac0a82c980",
+    "map_counts": {
+      "geometric_depth_count": 37,
+      "geometric_normal_count": 37,
+      "photometric_depth_count": 37,
+      "photometric_normal_count": 37
+    },
+    "patch_match_log": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch_match.log",
+    "patch_match_log_sha256": "2615bd3e0c5a068707c2e0bfad78d8904f733d0608d5304abcba371b9f6b33fa",
+    "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_upper_geo_g12_3072_v2_run.json",
+    "postfusion_anatomy_failures": [
+      "lid_tiers:connected_support_fraction",
+      "finial:resolved_narrow_top_element"
+    ],
+    "postfusion_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_upper_geo_g12_3072_v2_postfusion.json",
+    "postfusion_report_sha256": "56ac217e1f0d75ac751d46f2c8e54c792cce470eb6106c238d5307c773f2cc61",
+    "postfusion_status": "failed",
+    "ring": "geo_g12",
+    "runtime_phase_gate": {
+      "first_geometric_block_index": 37,
+      "first_photometric_block_index": 0,
+      "geometric_block_count": 37,
+      "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch_match.log",
+      "passed": true,
+      "phase_block_count": 74,
+      "phase_order_valid": true,
+      "photometric_block_count": 37
+    },
+    "sha256": "a6d44bf1736aa5b4bc76d8928dcef2423f25146757cc4e7cad2bfe86a287b5a2",
+    "status": "recovery_exhausted_unresolved",
+    "tag": "upper_geo_g12_3072_v2",
+    "target_reference_count": 37
+  }
+}

@@ -1,0 +1,470 @@
+{
+  "anatomy_region_evidence": {
+    "failures": [
+      "finial:resolved_narrow_top_element"
+    ],
+    "finial_shape": {
+      "finial_supported_radius_median": 0.27346163530143563,
+      "finial_to_lid_radius_ratio": 1.0083513910339492,
+      "lid_supported_radius_median": 0.27119676506920065,
+      "max_finial_to_lid_radius_ratio": 0.85,
+      "resolved_narrow_top_element": false
+    },
+    "no_major_vessel_scale_holes": false,
+    "normalization": {
+      "center": [
+        0.04481670260429382,
+        1.0802055597305298,
+        -0.2819477319717407
+      ],
+      "normalization": "(height - q01) / (q99 - q01), clipped to [0,1]",
+      "robust_height_bounds": [
+        -0.9862780128719063,
+        0.8499980852452864
+      ],
+      "vertical": [
+        0.07908592810310996,
+        0.9968656274347961,
+        0.0020825021248581385
+      ]
+    },
+    "passed": false,
+    "regions": {
+      "base": {
+        "camera_view_count": 8,
+        "checks": {
+          "connected_support_fraction": true,
+          "height_bin_occupancy_fraction": true,
+          "point_count": true,
+          "projected_coverage_fraction": true,
+          "supported_fraction": true
+        },
+        "connected_support_fraction": 1.0,
+        "height_bin_occupancy_fraction": 1.0,
+        "median_inside_view_count": 8.0,
+        "minimum_support_views": 3,
+        "normalized_height_bounds": [
+          0.0,
+          0.18
+        ],
+        "occupied_voxel_cells": 866,
+        "point_count": 533610,
+        "projected_coverage_fraction": 1.0,
+        "projected_supported_point_count": 533610,
+        "region_name": "base",
+        "support_gate": {
+          "min_connected_support_fraction": 0.75,
+          "min_height_bin_occupancy_fraction": 0.75,
+          "min_points": 250,
+          "min_projected_coverage_fraction": 0.6,
+          "min_supported_fraction": 0.75
+        },
+        "supported_fraction": 1.0,
+        "supported_point_count": 533610
+      },
+      "bowl_interior": {
+        "camera_view_count": 8,
+        "checks": {
+          "connected_support_fraction": true,
+          "height_bin_occupancy_fraction": true,
+          "point_count": true,
+          "projected_coverage_fraction": true,
+          "supported_fraction": true
+        },
+        "connected_support_fraction": 1.0,
+        "height_bin_occupancy_fraction": 1.0,
+        "median_inside_view_count": 8.0,
+        "minimum_support_views": 3,
+        "normalized_height_bounds": [
+          0.28,
+          0.56
+        ],
+        "occupied_voxel_cells": 738,
+        "point_count": 1798564,
+        "projected_coverage_fraction": 1.0,
+        "projected_supported_point_count": 1798564,
+        "region_name": "bowl_interior",
+        "support_gate": {
+          "min_connected_support_fraction": 0.75,
+          "min_height_bin_occupancy_fraction": 0.75,
+          "min_points": 250,
+          "min_projected_coverage_fraction": 0.6,
+          "min_supported_fraction": 0.75
+        },
+        "supported_fraction": 1.0,
+        "supported_point_count": 1798564
+      },
+      "continuous_neck": {
+        "camera_view_count": 8,
+        "checks": {
+          "connected_support_fraction": true,
+          "height_bin_occupancy_fraction": true,
+          "point_count": true,
+          "projected_coverage_fraction": true,
+          "supported_fraction": true
+        },
+        "connected_support_fraction": 1.0,
+        "height_bin_occupancy_fraction": 1.0,
+        "median_inside_view_count": 8.0,
+        "minimum_support_views": 3,
+        "normalized_height_bounds": [
+          0.7,
+          0.86
+        ],
+        "occupied_voxel_cells": 932,
+        "point_count": 585663,
+        "projected_coverage_fraction": 1.0,
+        "projected_supported_point_count": 585663,
+        "region_name": "continuous_neck",
+        "support_gate": {
+          "min_connected_support_fraction": 0.75,
+          "min_height_bin_occupancy_fraction": 0.75,
+          "min_points": 250,
+          "min_projected_coverage_fraction": 0.6,
+          "min_supported_fraction": 0.75
+        },
+        "supported_fraction": 1.0,
+        "supported_point_count": 585663
+      },
+      "finial": {
+        "camera_view_count": 8,
+        "checks": {
+          "connected_support_fraction": true,
+          "height_bin_occupancy_fraction": true,
+          "point_count": true,
+          "projected_coverage_fraction": true,
+          "supported_fraction": true
+        },
+        "connected_support_fraction": 1.0,
+        "height_bin_occupancy_fraction": 1.0,
+        "median_inside_view_count": 8.0,
+        "minimum_support_views": 3,
+        "normalized_height_bounds": [
+          0.93,
+          1.0
+        ],
+        "occupied_voxel_cells": 796,
+        "point_count": 370510,
+        "projected_coverage_fraction": 1.0,
+        "projected_supported_point_count": 370510,
+        "region_name": "finial",
+        "support_gate": {
+          "min_connected_support_fraction": 0.75,
+          "min_height_bin_occupancy_fraction": 0.75,
+          "min_points": 250,
+          "min_projected_coverage_fraction": 0.6,
+          "min_supported_fraction": 0.75
+        },
+        "supported_fraction": 1.0,
+        "supported_point_count": 370510
+      },
+      "globe_shoulder": {
+        "camera_view_count": 8,
+        "checks": {
+          "connected_support_fraction": true,
+          "height_bin_occupancy_fraction": true,
+          "point_count": true,
+          "projected_coverage_fraction": true,
+          "supported_fraction": true
+        },
+        "connected_support_fraction": 1.0,
+        "height_bin_occupancy_fraction": 1.0,
+        "median_inside_view_count": 8.0,
+        "minimum_support_views": 3,
+        "normalized_height_bounds": [
+          0.52,
+          0.75
+        ],
+        "occupied_voxel_cells": 1091,
+        "point_count": 1841322,
+        "projected_coverage_fraction": 1.0,
+        "projected_supported_point_count": 1841322,
+        "region_name": "globe_shoulder",
+        "support_gate": {
+          "min_connected_support_fraction": 0.75,
+          "min_height_bin_occupancy_fraction": 0.75,
+          "min_points": 250,
+          "min_projected_coverage_fraction": 0.6,
+          "min_supported_fraction": 0.75
+        },
+        "supported_fraction": 1.0,
+        "supported_point_count": 1841322
+      },
+      "lid_tiers": {
+        "camera_view_count": 8,
+        "checks": {
+          "connected_support_fraction": true,
+          "height_bin_occupancy_fraction": true,
+          "point_count": true,
+          "projected_coverage_fraction": true,
+          "supported_fraction": true
+        },
+        "connected_support_fraction": 1.0,
+        "height_bin_occupancy_fraction": 1.0,
+        "median_inside_view_count": 8.0,
+        "minimum_support_views": 3,
+        "normalized_height_bounds": [
+          0.82,
+          0.94
+        ],
+        "occupied_voxel_cells": 1018,
+        "point_count": 530750,
+        "projected_coverage_fraction": 1.0,
+        "projected_supported_point_count": 530750,
+        "region_name": "lid_tiers",
+        "support_gate": {
+          "min_connected_support_fraction": 0.75,
+          "min_height_bin_occupancy_fraction": 0.75,
+          "min_points": 250,
+          "min_projected_coverage_fraction": 0.6,
+          "min_supported_fraction": 0.75
+        },
+        "supported_fraction": 1.0,
+        "supported_point_count": 530750
+      },
+      "pedestal_transitions": {
+        "camera_view_count": 8,
+        "checks": {
+          "connected_support_fraction": true,
+          "height_bin_occupancy_fraction": true,
+          "point_count": true,
+          "projected_coverage_fraction": true,
+          "supported_fraction": true
+        },
+        "connected_support_fraction": 1.0,
+        "height_bin_occupancy_fraction": 1.0,
+        "median_inside_view_count": 8.0,
+        "minimum_support_views": 3,
+        "normalized_height_bounds": [
+          0.12,
+          0.32
+        ],
+        "occupied_voxel_cells": 1104,
+        "point_count": 423052,
+        "projected_coverage_fraction": 1.0,
+        "projected_supported_point_count": 423052,
+        "region_name": "pedestal_transitions",
+        "support_gate": {
+          "min_connected_support_fraction": 0.75,
+          "min_height_bin_occupancy_fraction": 0.75,
+          "min_points": 250,
+          "min_projected_coverage_fraction": 0.6,
+          "min_supported_fraction": 0.75
+        },
+        "supported_fraction": 1.0,
+        "supported_point_count": 423052
+      },
+      "rim": {
+        "camera_view_count": 8,
+        "checks": {
+          "connected_support_fraction": true,
+          "height_bin_occupancy_fraction": true,
+          "point_count": true,
+          "projected_coverage_fraction": true,
+          "supported_fraction": true
+        },
+        "connected_support_fraction": 1.0,
+        "height_bin_occupancy_fraction": 1.0,
+        "median_inside_view_count": 8.0,
+        "minimum_support_views": 3,
+        "normalized_height_bounds": [
+          0.48,
+          0.66
+        ],
+        "occupied_voxel_cells": 1030,
+        "point_count": 1616678,
+        "projected_coverage_fraction": 1.0,
+        "projected_supported_point_count": 1616678,
+        "region_name": "rim",
+        "support_gate": {
+          "min_connected_support_fraction": 0.75,
+          "min_height_bin_occupancy_fraction": 0.75,
+          "min_points": 250,
+          "min_projected_coverage_fraction": 0.6,
+          "min_supported_fraction": 0.75
+        },
+        "supported_fraction": 1.0,
+        "supported_point_count": 1616678
+      }
+    },
+    "schema_version": 2,
+    "status": "failed",
+    "support_view_count": 8,
+    "thresholds": {
+      "finial_max_lid_radius_ratio": 0.85,
+      "min_connected_support_fraction": 0.75,
+      "min_height_bin_occupancy_fraction": 0.75,
+      "min_points": 250,
+      "min_projected_coverage_fraction": 0.6,
+      "min_support_views": 3,
+      "min_supported_fraction": 0.75
+    }
+  },
+  "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+  "basis_source": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_dense_best_defensible_v1_full_geometric_phase_postfusion.json",
+  "basis_vectors": {
+    "center": [
+      0.04481670260429382,
+      1.0802055597305298,
+      -0.2819477319717407
+    ],
+    "front": [
+      -0.9842551037555807,
+      0.07775387578085297,
+      0.15873318976240208
+    ],
+    "right": [
+      0.15807373819569392,
+      -0.014603274978100107,
+      0.98731931899095
+    ],
+    "vertical": [
+      0.07908592810310996,
+      0.9968656274347961,
+      0.0020825021248581385
+    ]
+  },
+  "max_faces": 180000,
+  "mesh_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\mesh\\poisson_best_defensible_v1_depth13_trim5.ply",
+  "mesh_sha256": "33fe1f6e7f696d8fd46d4a7c324d0e4f5fd9ff6a2ad4fb08e9f851a0437d6941",
+  "schema_version": 2,
+  "status": "rendered",
+  "views": {
+    "base": {
+      "anatomy_label": "base",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5\\raw_poisson_base.png",
+      "region_crop": {
+        "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+        "face_count": 1065016,
+        "normalized_height_bounds": [
+          0.0,
+          0.18
+        ],
+        "projection_scope": "region_only_face_subset",
+        "region_name": "base",
+        "vertex_count": 534346,
+        "whole_object_projection": false
+      },
+      "sha256": "c654cf826472e17f89f8a02bc6912983ad025f34f44460add1d7705304d3833d"
+    },
+    "bowl_interior": {
+      "anatomy_label": "bowl_interior",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5\\raw_poisson_bowl_interior.png",
+      "region_crop": {
+        "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+        "face_count": 3594841,
+        "normalized_height_bounds": [
+          0.28,
+          0.56
+        ],
+        "projection_scope": "region_only_face_subset",
+        "region_name": "bowl_interior",
+        "vertex_count": 1803756,
+        "whole_object_projection": false
+      },
+      "sha256": "5ba7ff7d2677b0778d849bac9284a05d2fde21b6c5f91a7cfb9b69ce596cf8a0"
+    },
+    "continuous_neck": {
+      "anatomy_label": "continuous_neck",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5\\raw_poisson_continuous_neck.png",
+      "region_crop": {
+        "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+        "face_count": 1171074,
+        "normalized_height_bounds": [
+          0.7,
+          0.86
+        ],
+        "projection_scope": "region_only_face_subset",
+        "region_name": "continuous_neck",
+        "vertex_count": 589198,
+        "whole_object_projection": false
+      },
+      "sha256": "cbcec06a9ffef6a11d393dbc6a58942ce688addcdc4dc69d2cbc3b3cf25ceb25"
+    },
+    "finial": {
+      "anatomy_label": "finial",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5\\raw_poisson_finial.png",
+      "region_crop": {
+        "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+        "face_count": 740201,
+        "normalized_height_bounds": [
+          0.93,
+          1.0
+        ],
+        "projection_scope": "region_only_face_subset",
+        "region_name": "finial",
+        "vertex_count": 372315,
+        "whole_object_projection": false
+      },
+      "sha256": "11081c75ca3de1ec76c2fae5da434fb01b6dda3c6802accd2751a317baccdd11"
+    },
+    "globe_shoulder": {
+      "anatomy_label": "globe_shoulder",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5\\raw_poisson_globe_shoulder.png",
+      "region_crop": {
+        "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+        "face_count": 3681735,
+        "normalized_height_bounds": [
+          0.52,
+          0.75
+        ],
+        "projection_scope": "region_only_face_subset",
+        "region_name": "globe_shoulder",
+        "vertex_count": 1846027,
+        "whole_object_projection": false
+      },
+      "sha256": "e4908851c2160908e83efb507e4ba7dd74ed37df3b84af05ebd948302faedaa0"
+    },
+    "lid_tiers": {
+      "anatomy_label": "lid_tiers",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5\\raw_poisson_lid_tiers.png",
+      "region_crop": {
+        "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+        "face_count": 1060875,
+        "normalized_height_bounds": [
+          0.82,
+          0.94
+        ],
+        "projection_scope": "region_only_face_subset",
+        "region_name": "lid_tiers",
+        "vertex_count": 533055,
+        "whole_object_projection": false
+      },
+      "sha256": "9488345b02f5c1c98b87faa4c231458c89de4044345d69a3f1cd130794c08177"
+    },
+    "pedestal_transitions": {
+      "anatomy_label": "pedestal_transitions",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5\\raw_poisson_pedestal_transitions.png",
+      "region_crop": {
+        "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+        "face_count": 845288,
+        "normalized_height_bounds": [
+          0.12,
+          0.32
+        ],
+        "projection_scope": "region_only_face_subset",
+        "region_name": "pedestal_transitions",
+        "vertex_count": 424647,
+        "whole_object_projection": false
+      },
+      "sha256": "f00f84b25f4ce97c127acd5c41d0b31db6adc0b3d170ee11bfb8b78f29af6a74"
+    },
+    "rim": {
+      "anatomy_label": "rim",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5\\raw_poisson_rim.png",
+      "region_crop": {
+        "basis_sha256": "69f8e2c5ef6c8b80ea511da5957c116fc64715f8fcb111a34823faa36edc99da",
+        "face_count": 3232411,
+        "normalized_height_bounds": [
+          0.48,
+          0.66
+        ],
+        "projection_scope": "region_only_face_subset",
+        "region_name": "rim",
+        "vertex_count": 1621950,
+        "whole_object_projection": false
+      },
+      "sha256": "be5259b350e72523d21dc31903d62af9e3718a07b3e22780667b6d3ad6667cae"
+    }
+  }
+}

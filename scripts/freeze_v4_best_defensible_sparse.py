@@ -22,8 +22,10 @@ from v4_repair import stable_directory_sha256
 
 
 REPAIR_ROOT = PROJECT_ROOT / "reconstruction" / "v4" / "repair" / "sparse_v1"
-SELECTION_PATH = REPAIR_ROOT / "best_defensible_sparse_v1_selection.json"
-LINEAGE_PATH = REPAIR_ROOT / "best_defensible_sparse_v1.json"
+# V1 is immutable historical evidence. V2 corrects the candidate-eligibility
+# bug discovered during the final completion audit without rewriting V1.
+SELECTION_PATH = REPAIR_ROOT / "best_defensible_sparse_v2_selection.json"
+LINEAGE_PATH = REPAIR_ROOT / "best_defensible_sparse_v2.json"
 V51_FAILURE_PATH = REPAIR_ROOT / "v51_solved_center_native_joint_ba_failure.json"
 
 
@@ -31,7 +33,44 @@ def _sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def _candidate(name: str, gate_name: str, provenance_name: str) -> dict[str, Any]:
+def _candidate_process_evidence(payload: dict[str, Any]) -> dict[str, Any]:
+    """Validate explicit candidate-specific solver and promotion evidence."""
+
+    bundle = payload.get("bundle_adjustment", {})
+    summary = bundle.get("summary", {}) if isinstance(bundle, dict) else {}
+    try:
+        residuals = int(summary.get("num_residuals", 0))
+    except (TypeError, ValueError):
+        residuals = 0
+    termination = str(summary.get("termination_type", ""))
+    termination_upper = termination.upper()
+    ba_ran = residuals > 0 and "FAILURE" not in termination_upper and "NO_CONVERGENCE" not in termination_upper
+    promotion_allowed = payload.get("promotion_allowed") is True
+    candidate_eligible = payload.get("full_sparse_candidate_eligible") is True
+    reasons: list[str] = []
+    if not ba_ran:
+        reasons.append("bundle_adjustment_not_successfully_executed")
+    if not promotion_allowed:
+        reasons.append("promotion_not_allowed")
+    if not candidate_eligible:
+        reasons.append("full_sparse_candidate_not_eligible")
+    return {
+        "valid": not reasons,
+        "reasons": reasons,
+        "bundle_adjustment_num_residuals": residuals,
+        "bundle_adjustment_termination_type": termination,
+        "promotion_allowed": promotion_allowed,
+        "full_sparse_candidate_eligible": candidate_eligible,
+    }
+
+
+def _candidate(
+    name: str,
+    gate_name: str,
+    provenance_name: str,
+    *,
+    process_evidence_name: str | None = None,
+) -> dict[str, Any]:
     gate_path = REPAIR_ROOT / gate_name
     provenance_path = REPAIR_ROOT / provenance_name
     gate = json.loads(gate_path.read_text(encoding="utf-8"))
@@ -65,7 +104,16 @@ def _candidate(name: str, gate_name: str, provenance_name: str) -> dict[str, Any
         and checks.get("sqlite_snapshot_lineage_bound") is True
         and checks.get("cross_ring_graph_connected") is True
     )
-    defensible = bool(exact_372 and pose_and_trajectory_clean and provenance_clean)
+    process_evidence: dict[str, Any] | None = None
+    process_valid = True
+    if process_evidence_name is not None:
+        process_path = REPAIR_ROOT / process_evidence_name
+        process_payload = json.loads(process_path.read_text(encoding="utf-8"))
+        process_evidence = _candidate_process_evidence(process_payload)
+        process_evidence["path"] = str(process_path.resolve())
+        process_evidence["sha256"] = _sha256(process_path)
+        process_valid = bool(process_evidence["valid"])
+    defensible = bool(exact_372 and pose_and_trajectory_clean and provenance_clean and process_valid)
     return {
         "name": name,
         "gate_path": str(gate_path.resolve()),
@@ -79,6 +127,8 @@ def _candidate(name: str, gate_name: str, provenance_name: str) -> dict[str, Any
         "exact_372_model": exact_372,
         "pose_and_trajectory_clean": pose_and_trajectory_clean,
         "provenance_clean": provenance_clean,
+        "process_evidence": process_evidence,
+        "process_valid": process_valid,
         "defensible_for_downstream_cv": defensible,
         "registered_images": int(gate.get("registered_images", 0)),
         "points3D": int(gate.get("sparse_points", 0)),
@@ -135,6 +185,7 @@ def run() -> dict[str, Any]:
             "v50b_solved_center_native_ba_diagnostic",
             "v50b_sparse_gate.json",
             "track_provenance_v50b_solved_center_native_ba.json",
+            process_evidence_name="v50b_solved_center_native_diagnostic.json",
         ),
     ]
     defensible = [candidate for candidate in candidates if candidate["defensible_for_downstream_cv"]]
@@ -142,12 +193,14 @@ def run() -> dict[str, Any]:
         raise RuntimeError("no measured 372-view candidate satisfies the best-defensible prerequisites")
     selected = max(defensible, key=_selection_score)
     selection_payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "status": "best_defensible_sparse_selection",
+        "supersedes_selection": str((REPAIR_ROOT / "best_defensible_sparse_v1_selection.json").resolve()),
         "method": (
             "compare hash-bound versioned sparse candidates; require exact 372-view one-model lineage, "
-            "zero independent pose/trajectory failures, genuine non-pair-local tracks, and connected ring graph; "
-            "rank remaining candidates by mask IoU/precision/recall p10, multiview-track fraction, then reprojection"
+            "zero independent pose/trajectory failures, genuine non-pair-local tracks, connected ring graph, "
+            "and any candidate-specific optimization/promotion evidence to be valid; rank remaining candidates "
+            "by mask IoU/precision/recall p10, multiview-track fraction, then reprojection"
         ),
         "strict_gate_was_not_weakened": True,
         "dense_source_policy": (

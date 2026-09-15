@@ -968,3 +968,67 @@ fractions but still fails `finial:resolved_narrow_top_element` and
 scan-derived broad/noisy upper cap and do not establish a resolved narrow
 finial. These failures remain visible in both export and re-import reports;
 Blender was not used to compensate for missing vessel-scale anatomy.
+
+## Execution ownership split and pre-Blender reset (2026-09-15)
+
+After the host computer restart, the active direction was narrowed deliberately. The local Codex executor now owns **only the remaining work before Blender**: recover persisted 3072px `geo_g12` state rather than assuming the interrupted process completed; finish the bounded high-ring recovery if necessary; compare and freeze the strongest genuine dense candidate; finish/freeze the strongest defensible Poisson; correct/verify lineage, hashes and relevant pre-Blender tests; update the pre-Blender documentation; and complete the focused pre-Blender Git milestone with verified `origin/main` synchronization.
+
+The handoff boundary is the verified, versioned, hash-bound Poisson mesh plus its complete evidence package. Once that exists, the Codex/local executor must stop. Existing `best_defensible_v1_trim5_authoring_v4` Blender/GLB artifacts remain preserved diagnostic history and are not to be modified by the pre-Blender executor. ChatGPT using Blender MCP will own the later scan-preserving Blender cleanup, LOD0/UV/normal-detail/AO, appearance/material work, final `.blend`/GLB, fresh re-import, visual verification, final documentation, and final publication.
+
+## Pre-Blender handoff freeze after restart (2026-09-15)
+
+The persisted restart state was checked before rerunning compute. The old
+`upper_geo_g12_3072_v1_smoke` and broad high-ring smoke stopped during their
+geometric phases (3/8 and 4/15), with no complete production reports, so they
+were retained as incomplete evidence. The bounded fresh run
+`upper_geo_g12_3072_v2` completed in a separate workspace using CUDA GPU 0:
+the smoke was 8/8 photometric plus 8/8 geometric and the production run was
+37/37 of each map type. Its runtime phase gate and exact 37-reference
+one-reference-one-write config passed. Mask-aware StereoFusion produced a
+646,666-point geo_g12 cloud with SHA-256
+`5bce4a2adb4b53900a0e1881e79978c83d77e1f2300e01097d7795ac0a82c980`.
+
+The high-ring result did not improve the complete dense winner: its finial/lid
+radius ratio was `1.0922269378` versus the baseline `1.0177845894`, the narrow
+finial remained unresolved, and lid-tier connected support plus the
+no-major-hole finding remained failed. Its run report is
+`reconstruction/v4/reports/dense_upper_geo_g12_3072_v2_run.json` and its
+status is `recovery_exhausted_unresolved`; it is comparison-only evidence.
+
+The authoritative sparse V2 report is
+`reconstruction/v4/repair/sparse_v1/best_defensible_sparse_v2.json` (SHA-256
+`5121e2fd1834ede45423b8a302613fd85996a4e8889fe98690d4cecc7d6580f5`; source
+model SHA-256 `b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e`;
+selection SHA-256 `d48687a4e92272ae99184eaf903011a0526e1023bbf3de009c1c782bc12ad2ce`).
+The selected full dense cloud remains the fresh 372-view 2000px candidate
+(`4a596f562d8bace90cac39deb38479f21a01eb9c09e02eb86fa26876e38c7d73`). A new
+lineage wrapper,
+`reconstruction/v4/reports/dense_best_defensible_v2_with_upper_recovery.json`
+(SHA-256
+`d6fad39ac7f30476eb89a2a4b2b49acb4b2eb2aa5549178bfcc4d900ed76fcf4`), binds
+that unchanged cloud and its historical run/post-fusion reports to
+`best_defensible_sparse_v2.json`. The wrapper verifies the current sparse
+model, selection, sparse-gate, and track-provenance hashes; historical V1
+reports are preserved rather than rewritten.
+
+The final bounded Poisson comparison retained depth-13/trim-10 as negative
+evidence (1,337 components; dominant `0.6847469289`, second `0.2619244906`)
+and selected depth-13/trim-5 (2,158 components; dominant `0.9925222754`,
+second `0.0007196492`) as the strongest connected scan-derived shell. The
+mesh SHA-256 is
+`33fe1f6e7f696d8fd46d4a7c324d0e4f5fd9ff6a2ad4fb08e9f851a0437d6941`. The
+versioned handoff report is
+`reconstruction/v4/reports/raw_poisson_best_defensible_v2_handoff.json`
+(SHA-256
+`4e1251e216b34783b87ff1e58664df8c0f306e44383431e4c9644443f8a9655a`). It
+explicitly says `best_defensible_poisson_handoff`, `handoff_allowed=true`, and
+strict `promotion_allowed=false`. The dense strict gate, unresolved
+`finial:resolved_narrow_top_element`,
+`no_major_vessel_scale_holes=false`, and semantic detached-component proof
+remain failures/limitations; no anatomy was fabricated.
+
+Fresh verification after the handoff edits: 106 V4 tests passed; 67 root,
+script, and V4-test Python files compiled; and an independent hash/lineage
+audit passed for sparse V2, the dense wrapper, the 3072px reports/fused cloud,
+the Poisson attempts, the anatomy evidence, and the selected mesh. No
+Blender/GLB path was opened or mutated by this pre-Blender phase.

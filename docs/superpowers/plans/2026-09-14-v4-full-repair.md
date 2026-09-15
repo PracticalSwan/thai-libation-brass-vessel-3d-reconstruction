@@ -1,8 +1,8 @@
 # V4 Full Repair Implementation Plan
 
-> **Execution rule:** Continue from the newest verified repository/runtime state. Do not replay completed work mechanically. Use the canonical design at `docs/superpowers/specs/2026-09-14-v4-full-repair-design.md`. Do not use Codex CLI.
+> **Execution rule:** Continue from the newest verified repository/runtime state. Do not replay completed work mechanically. Use the canonical design at `docs/superpowers/specs/2026-09-14-v4-full-repair-design.md`. Do not use Codex CLI. As of 2026-09-15, the current Codex/local executor has a hard stop at the verified Poisson/pre-Blender handoff; ChatGPT + Blender MCP owns Blender and everything after Blender.
 
-**Goal:** Complete the V4 repair end-to-end: repair or safely replace the proven `geo_g10` sparse pose defects, regenerate compatible dense reconstruction with corrected source selection and strict provenance/quality gates, obtain a genuinely connected anatomically complete Poisson vessel, finish scan-preserving Blender/LOD0/UV/material work, export/fresh-reimport GLB, verify everything, update docs, and complete focused milestone/final commit-and-push verification.
+**Goal:** Complete V4 in two controlled ownership phases. The current Codex/local phase must finish every remaining task through the strongest verified, versioned, hash-bound scan-derived Poisson mesh, including post-restart recovery of any interrupted dense work, dense/Poisson selection, lineage, tests/hashes/docs and the focused pre-Blender Git milestone. It must then stop. The later ChatGPT + Blender MCP phase will perform scan-preserving Blender/LOD0/UV/baking/material work, final `.blend`/GLB, fresh re-import, final verification/docs and final publication.
 
 ## Global constraints
 
@@ -22,9 +22,18 @@
 - Exact Git staging only; no `git add .`, no force-push/history rewrite.
 - Major milestone commits are authorized only after verified sparse repair, dense acceptance, raw Poisson acceptance, and final Blender+GLB acceptance.
 
+## Execution ownership override — 2026-09-15 user directive
+
+This override is authoritative for current execution:
+
+- **Codex/local executor:** recover the newest state after restart; inspect persisted 3072px `geo_g12` logs/workspaces/reports before rerunning; complete or resume that bounded recovery only if evidence shows it is incomplete; freeze the strongest genuine dense candidate; finish the bounded Poisson ladder; freeze/hash-bind the strongest connected scan-derived Poisson; verify pre-Blender lineage/tests/compile/hashes/docs; clean only pre-Blender residue; perform the focused pre-Blender commit/push and verify `origin/main`.
+- **Codex/local hard stop:** after the verified Poisson + evidence package is ready, do not open, modify, regenerate, clean, save, export, or otherwise touch Blender scenes, `.blend`/GLB artifacts, Blender-specific finalization, appearance/material finalization, fresh GLB re-import, or post-Blender publication.
+- **ChatGPT + Blender MCP:** owns Tasks 9-12 and all final Blender/GLB work after the handoff.
+- Existing Blender/GLB candidates are historical/diagnostic evidence until the post-Blender owner revisits them.
+
 ## Completion-first override — 2026-09-14 user directive
 
-This directive supersedes later wording that would otherwise block the entire project indefinitely on a research-grade gate. Strict gates remain preferred targets and must still be computed exactly; they are never to be relabeled as passed. After a bounded evidence-backed repair/escalation ladder has been exhausted, freeze the strongest defensible genuine CV artifact, record every remaining failed check and limitation, and continue to the next stage. The required end state is a complete full-CV sparse -> fresh dense -> Poisson -> scan-preserving Blender -> `.blend`/GLB pipeline with honest limitations, not endless candidate churn. Missing anatomy must never be invented manually, reference-assisted, symmetrized, lathed, primitive-modeled, sculpted, or texture-fabricated to improve the result.
+This directive supersedes later wording that would otherwise block the entire project indefinitely on a research-grade gate. Strict gates remain preferred targets and must still be computed exactly; they are never to be relabeled as passed. After a bounded evidence-backed repair/escalation ladder has been exhausted, freeze the strongest defensible genuine CV artifact, record every remaining failed check and limitation, and continue only within the current executor's ownership boundary. The required overall end state remains a complete full-CV sparse -> fresh dense -> Poisson -> scan-preserving Blender -> `.blend`/GLB pipeline with honest limitations, but the current Codex/local executor stops at the verified Poisson handoff and ChatGPT + Blender MCP owns the remaining stages. Missing anatomy must never be invented manually, reference-assisted, symmetrized, lathed, primitive-modeled, sculpted, or texture-fabricated to improve the result.
 
 ---
 
@@ -34,7 +43,7 @@ This directive supersedes later wording that would otherwise block the entire pr
 - [ ] Inspect Git root, branch, upstream, current status, recent commits, and exact unrelated user-owned changes.
 - [ ] Verify CodeGraph/index status before structural source changes.
 - [ ] Inventory historical V4 sparse/dense/Poisson/canonical Blender+GLB artifacts and hashes without rewriting them.
-- [ ] Confirm COLMAP 4.2 CUDA, pyCOLMAP, Python, GPU 0, and Blender 5.2 identities before compute.
+- [ ] Confirm COLMAP 4.2 CUDA, pyCOLMAP, Python, and GPU 0 identities before pre-Blender compute. Blender 5.2 identity is deferred to the post-Blender owner.
 - [ ] Create/confirm versioned repair namespaces under `reconstruction/v4/repair/` and `D:\Side Projects\CSX4213_V4_Dense_Work\workspace_v4repair_*`.
 
 **Acceptance:** historical artifacts remain byte-identical; no unrelated files are changed; live repair state is documented.
@@ -213,16 +222,44 @@ Reject candidates that gain points by adding board/background, doubled anatomy, 
 - [ ] Render and inspect at least eight raw-mesh views using the same explicit anatomy fields as dense acceptance.
 - [ ] Require `no_major_vessel_scale_holes=true`.
 - [ ] Keep the historical 644-component / ~0.6657-dominant raw Poisson as a regression that must fail the repaired gate.
-- [ ] If raw Poisson misses strict thresholds, perform only the bounded evidence-backed retry justified by the measured cause; once that ladder is exhausted, select the strongest connected scan-derived Poisson, keep the failed thresholds explicit, and continue to Blender without fabricating missing anatomy.
+- [ ] If raw Poisson misses strict thresholds, perform only the bounded evidence-backed retry justified by the measured cause; once that ladder is exhausted, select the strongest connected scan-derived Poisson, keep the failed thresholds explicit, and freeze it for the pre-Blender handoff. Do not enter Blender or fabricate missing anatomy.
 - [ ] At raw Poisson acceptance, make the focused raw-mesh milestone commit/push if the artifact is publication-appropriate and verify remote/LFS state as applicable.
 
 **Acceptance:** genuinely connected, anatomically complete reconstruction-derived raw vessel.
 
 ---
 
-## Task 9 — Build scan-preserving Blender master and LOD0
+## Task 8.5 — Freeze and hand off the complete pre-Blender state — COMPLETE (2026-09-15)
 
-Use connected Blender MCP and/or absolute Blender 5.2 executable. Read the Blender project skills/instructions before mutation. Every geometry operation in this stage must be scripted/reproducible and non-creative.
+- [x] After any host restart, inspect persisted high-ring logs/workspaces/reports first. Do not assume a previously launched CUDA/COLMAP process completed and do not start a duplicate run unless the persisted state proves the prior attempt incomplete or invalid.
+- [x] If the bounded 3072px `geo_g12` recovery is incomplete, resume or rerun only the missing/invalid portion in its separate workspace; if it completed, audit the persisted result instead of replaying it.
+- [x] Compare the 3072px result against the current best-defensible dense candidate using measured support/coverage/contamination/anatomy evidence. Promote only if objectively stronger; otherwise document recovery exhaustion and preserve the existing winner.
+- [x] Complete the bounded Poisson ladder from the selected dense source and freeze the strongest connected scan-derived Poisson with every failed anatomy/continuity gate preserved exactly.
+- [x] Verify the sparse V2 lineage, dense selection, Poisson input/output hashes, reports, and artifact paths all point to the exact current bytes.
+- [x] Run the relevant pre-Blender V4 tests, directly affected shared tests, compile checks, and `git diff --check`/equivalent whitespace validation.
+- [x] Remove only task-created pre-Blender residue that is neither required evidence nor needed for reproducibility. Do not alter Blender/GLB directories.
+- [x] Update the pre-Blender instructions/current-status docs and any directly affected reports with measured state.
+- [x] Inspect Git root/branch/status/upstream/intended diff; stage only intended pre-Blender source/tests/docs/compact evidence/artifacts; create/push the focused pre-Blender milestone commit when appropriate; verify `origin/main` equals the intended commit.
+- [x] Produce a concise handoff containing the selected sparse/dense/Poisson paths and SHA-256 values, remaining strict failures, exact verification results, and any work intentionally deferred to Blender.
+- [x] **STOP. Do not proceed to Task 9.**
+
+Measured handoff artifacts: `dense_best_defensible_v2_with_upper_recovery.json`
+(SHA-256 `d6fad39ac7f30476eb89a2a4b2b49acb4b2eb2aa5549178bfcc4d900ed76fcf4`)
+and `raw_poisson_best_defensible_v2_handoff.json` (SHA-256
+`4e1251e216b34783b87ff1e58664df8c0f306e44383431e4c9644443f8a9655a`). The
+selected trim-5 Poisson mesh is hash-bound as
+`33fe1f6e7f696d8fd46d4a7c324d0e4f5fd9ff6a2ad4fb08e9f851a0437d6941`. The
+handoff is best-defensible, not strict: dense/anatomy failures and the
+detached-component semantic-proof limitation remain visible. Blender/GLB
+work is owned by the post-Blender executor.
+
+**Acceptance:** a verified, versioned, hash-bound Poisson input plus complete evidence package is ready for ChatGPT + Blender MCP, with the pre-Blender Git state verified and no Blender/GLB mutation performed.
+
+---
+
+## Task 9 — POST-BLENDER OWNER: ChatGPT + Blender MCP — Build scan-preserving Blender master and LOD0
+
+This task is **out of scope for the current Codex/local executor**. ChatGPT + Blender MCP will start it only after Task 8.5 is accepted. Use connected Blender MCP and/or absolute Blender 5.2 executable. Read the Blender project skills/instructions before mutation. Every geometry operation in this stage must be scripted/reproducible and non-creative.
 
 - [ ] Import accepted repaired raw Poisson into a versioned repaired `.blend` and preserve an immutable raw object/collection + rollback copy.
 - [ ] Audit components, boundary/non-manifold edges, loose/degenerate geometry, normals, bounds/transforms and material/UV state.
@@ -240,7 +277,7 @@ Use connected Blender MCP and/or absolute Blender 5.2 executable. Read the Blend
 
 ---
 
-## Task 10 — Build automated project-image-derived brass appearance
+## Task 10 — POST-BLENDER OWNER: ChatGPT + Blender MCP — Build automated project-image-derived brass appearance
 
 - [ ] Implement/verify fail-closed filtering for the 158 uncoated project appearance images.
 - [ ] Attempt automated appearance-camera localization/alignment against accepted repaired geometry without changing geometry.
@@ -254,7 +291,7 @@ Use connected Blender MCP and/or absolute Blender 5.2 executable. Read the Blend
 
 ---
 
-## Task 11 — Final Blender gate, GLB export and fresh re-import
+## Task 11 — POST-BLENDER OWNER: ChatGPT + Blender MCP — Final Blender gate, GLB export and fresh re-import
 
 - [ ] Strengthen final Blender gate to require accepted repaired raw hash, clean-high/LOD0 continuity, UVs, material provenance, finite/sane transforms and explicit anatomical completeness.
 - [ ] Save versioned repaired master first.
@@ -269,7 +306,7 @@ Use connected Blender MCP and/or absolute Blender 5.2 executable. Read the Blend
 
 ---
 
-## Task 12 — Full verification, documentation and final publication
+## Task 12 — POST-BLENDER OWNER: ChatGPT + Blender MCP — Full verification, documentation and final publication
 
 - [ ] Run all relevant V4 repair tests, including sparse integrity, graph selection, dense provenance, depth/coverage/contamination, mesh continuity, appearance provenance and Blender/GLB gate tests.
 - [ ] At minimum run `py -3 -m pytest -q tests/test_v4_*.py tests/test_v4_repair.py -p no:cacheprovider` plus `tests/test_v4_appearance.py` if created.
@@ -300,4 +337,4 @@ Use connected Blender MCP and/or absolute Blender 5.2 executable. Read the Blend
 
 ## Completion rule
 
-Do not stop before producing the complete end-to-end 3D deliverable. Use the next bounded evidence-backed repair level only while it has a realistic causal path to improvement; once a stage's bounded ladder is exhausted, freeze the strongest defensible genuine CV artifact and continue through dense, Poisson, Blender and fresh GLB. Completion may include explicitly failed research-grade checks and documented missing anatomy, but never by relabeling failures as passes, accepting incompatible historical dense maps, or fabricating vessel-scale geometry.
+For the **current Codex/local assignment**, do not stop before Task 8.5 is complete, but **do stop there**: the verified Poisson + evidence handoff is the current completion target. Use the next bounded evidence-backed repair level only while it has a realistic causal path to improvement; once the dense/Poisson ladder is exhausted, freeze the strongest defensible genuine CV artifacts, verify/publish the pre-Blender state, and hand off. Do not enter Blender. The overall V4 project continues later through Tasks 9-12 under ChatGPT + Blender MCP. Completion may include explicitly failed research-grade checks and documented missing anatomy, but never by relabeling failures as passes, accepting incompatible historical dense maps, or fabricating vessel-scale geometry.

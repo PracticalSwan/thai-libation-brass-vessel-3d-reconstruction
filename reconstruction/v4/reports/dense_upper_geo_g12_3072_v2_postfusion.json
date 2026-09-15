@@ -1,0 +1,1402 @@
+{
+  "anatomy_previews": {
+    "base": {
+      "anatomy_label": "base",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_anatomy_base.png",
+      "region_crop": {
+        "basis_sha256": "2d0cafe52cc0cec5610cc696d324775238f9f829a636ed356ca28d29430a2368",
+        "projection_scope": "region_only_height_crop",
+        "region_measurement_sha256": "e36aa2dbdcfcad5cd49b9d74a3b9f5983fa72dc4364f70388d63bb0ee6dc58d2",
+        "region_name": "base",
+        "whole_object_projection": false
+      },
+      "sha256": "b8e2876d372d05dec492c9b0cbb1998feb034dde69e15d0a708edc99af52ad10"
+    },
+    "bowl_interior": {
+      "anatomy_label": "bowl_interior",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_anatomy_bowl_interior.png",
+      "region_crop": {
+        "basis_sha256": "2d0cafe52cc0cec5610cc696d324775238f9f829a636ed356ca28d29430a2368",
+        "projection_scope": "region_only_height_crop",
+        "region_measurement_sha256": "ecaccf32f67af67c9756cda3751e87aaeb4cae35fc8b2c4efbec214d62db95a7",
+        "region_name": "bowl_interior",
+        "whole_object_projection": false
+      },
+      "sha256": "19c1094e22276b9df9765090628ddc213c2367e76371fec192cb6fb54a1125cf"
+    },
+    "continuous_neck": {
+      "anatomy_label": "continuous_neck",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_anatomy_continuous_neck.png",
+      "region_crop": {
+        "basis_sha256": "2d0cafe52cc0cec5610cc696d324775238f9f829a636ed356ca28d29430a2368",
+        "projection_scope": "region_only_height_crop",
+        "region_measurement_sha256": "7c50e1b0b4025f5054d1fae0cc371a4f859ada9f6aa8ead408774677999124d9",
+        "region_name": "continuous_neck",
+        "whole_object_projection": false
+      },
+      "sha256": "bec9085f7a0ee9a3c76e997f5926570ac7328b92e3f79638d53bcf301caa0b75"
+    },
+    "finial": {
+      "anatomy_label": "finial",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_anatomy_finial.png",
+      "region_crop": {
+        "basis_sha256": "2d0cafe52cc0cec5610cc696d324775238f9f829a636ed356ca28d29430a2368",
+        "projection_scope": "region_only_height_crop",
+        "region_measurement_sha256": "05f9f7e0932d83b87a3482e2f03df9ec0ebc2f04286e7e20709fbf5505169490",
+        "region_name": "finial",
+        "whole_object_projection": false
+      },
+      "sha256": "968efd4ccac5d1e1fb81961072cc94751f5f6d8cd6576e77e8e0a5ce5dc90d7c"
+    },
+    "globe_shoulder": {
+      "anatomy_label": "globe_shoulder",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_anatomy_globe_shoulder.png",
+      "region_crop": {
+        "basis_sha256": "2d0cafe52cc0cec5610cc696d324775238f9f829a636ed356ca28d29430a2368",
+        "projection_scope": "region_only_height_crop",
+        "region_measurement_sha256": "c87f69c206bac193835ce27971de63d8fde7356400e053439dc987d86634d377",
+        "region_name": "globe_shoulder",
+        "whole_object_projection": false
+      },
+      "sha256": "34c35e44a633ca14fa84c7713818765a4292f502e055968d682e19d117c08c43"
+    },
+    "lid_tiers": {
+      "anatomy_label": "lid_tiers",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_anatomy_lid_tiers.png",
+      "region_crop": {
+        "basis_sha256": "2d0cafe52cc0cec5610cc696d324775238f9f829a636ed356ca28d29430a2368",
+        "projection_scope": "region_only_height_crop",
+        "region_measurement_sha256": "967b4c77cff4a795272a312ce9315b1f5a8b07a67ed2bcfe22f749465b801643",
+        "region_name": "lid_tiers",
+        "whole_object_projection": false
+      },
+      "sha256": "c0b0db0e7b8b43278b573b415edaa0e0deedeb0a9705914c9afbbcda0c826cd9"
+    },
+    "pedestal_transitions": {
+      "anatomy_label": "pedestal_transitions",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_anatomy_pedestal_transitions.png",
+      "region_crop": {
+        "basis_sha256": "2d0cafe52cc0cec5610cc696d324775238f9f829a636ed356ca28d29430a2368",
+        "projection_scope": "region_only_height_crop",
+        "region_measurement_sha256": "e59ce6b036c94c7d3ba80f24ace77aa1979b910f97733a43bf82659af3e6b1a0",
+        "region_name": "pedestal_transitions",
+        "whole_object_projection": false
+      },
+      "sha256": "9f12b042ab58ee68847bbdbf12c461d54eb547034b6b693b91a237191401549b"
+    },
+    "rim": {
+      "anatomy_label": "rim",
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_anatomy_rim.png",
+      "region_crop": {
+        "basis_sha256": "2d0cafe52cc0cec5610cc696d324775238f9f829a636ed356ca28d29430a2368",
+        "projection_scope": "region_only_height_crop",
+        "region_measurement_sha256": "37f9daa19cae11bb40da25a8f94c2566c549e7344f8c3781a9d8c642270c69fa",
+        "region_name": "rim",
+        "whole_object_projection": false
+      },
+      "sha256": "07460697a66b8d3ee2cce1c2e01a5f661e3afecd8a69883fab385339ebbe048b"
+    }
+  },
+  "contamination": {
+    "anatomy": {
+      "failures": [
+        "lid_tiers:connected_support_fraction",
+        "finial:resolved_narrow_top_element"
+      ],
+      "finial_shape": {
+        "finial_supported_radius_median": 0.2856149498962187,
+        "finial_to_lid_radius_ratio": 1.0922269378171634,
+        "lid_supported_radius_median": 0.2614978078338058,
+        "max_finial_to_lid_radius_ratio": 0.85,
+        "resolved_narrow_top_element": false
+      },
+      "no_major_vessel_scale_holes": false,
+      "normalization": {
+        "center": [
+          0.05737490952014923,
+          0.8517862558364868,
+          -0.21352773904800415
+        ],
+        "normalization": "(height - q01) / (q99 - q01), clipped to [0,1]",
+        "robust_height_bounds": [
+          -0.805326876602538,
+          0.9471525549354411
+        ],
+        "vertical": [
+          0.08883541593887624,
+          0.9944349549088815,
+          0.05663381790359634
+        ]
+      },
+      "passed": false,
+      "regions": {
+        "base": {
+          "camera_view_count": 37,
+          "checks": {
+            "connected_support_fraction": true,
+            "height_bin_occupancy_fraction": true,
+            "point_count": true,
+            "projected_coverage_fraction": true,
+            "supported_fraction": true
+          },
+          "connected_support_fraction": 0.9906542056074766,
+          "height_bin_occupancy_fraction": 1.0,
+          "median_inside_view_count": 37.0,
+          "minimum_support_views": 3,
+          "normalized_height_bounds": [
+            0.0,
+            0.18
+          ],
+          "occupied_voxel_cells": 535,
+          "point_count": 21448,
+          "projected_coverage_fraction": 1.0,
+          "projected_supported_point_count": 21448,
+          "region_name": "base",
+          "support_gate": {
+            "min_connected_support_fraction": 0.75,
+            "min_height_bin_occupancy_fraction": 0.75,
+            "min_points": 250,
+            "min_projected_coverage_fraction": 0.6,
+            "min_supported_fraction": 0.75
+          },
+          "supported_fraction": 1.0,
+          "supported_point_count": 21448
+        },
+        "bowl_interior": {
+          "camera_view_count": 37,
+          "checks": {
+            "connected_support_fraction": true,
+            "height_bin_occupancy_fraction": true,
+            "point_count": true,
+            "projected_coverage_fraction": true,
+            "supported_fraction": true
+          },
+          "connected_support_fraction": 1.0,
+          "height_bin_occupancy_fraction": 1.0,
+          "median_inside_view_count": 37.0,
+          "minimum_support_views": 3,
+          "normalized_height_bounds": [
+            0.28,
+            0.56
+          ],
+          "occupied_voxel_cells": 422,
+          "point_count": 68840,
+          "projected_coverage_fraction": 1.0,
+          "projected_supported_point_count": 68840,
+          "region_name": "bowl_interior",
+          "support_gate": {
+            "min_connected_support_fraction": 0.75,
+            "min_height_bin_occupancy_fraction": 0.75,
+            "min_points": 250,
+            "min_projected_coverage_fraction": 0.6,
+            "min_supported_fraction": 0.75
+          },
+          "supported_fraction": 1.0,
+          "supported_point_count": 68840
+        },
+        "continuous_neck": {
+          "camera_view_count": 37,
+          "checks": {
+            "connected_support_fraction": true,
+            "height_bin_occupancy_fraction": true,
+            "point_count": true,
+            "projected_coverage_fraction": true,
+            "supported_fraction": true
+          },
+          "connected_support_fraction": 0.7927272727272727,
+          "height_bin_occupancy_fraction": 1.0,
+          "median_inside_view_count": 37.0,
+          "minimum_support_views": 3,
+          "normalized_height_bounds": [
+            0.7,
+            0.86
+          ],
+          "occupied_voxel_cells": 275,
+          "point_count": 1195,
+          "projected_coverage_fraction": 1.0,
+          "projected_supported_point_count": 1195,
+          "region_name": "continuous_neck",
+          "support_gate": {
+            "min_connected_support_fraction": 0.75,
+            "min_height_bin_occupancy_fraction": 0.75,
+            "min_points": 250,
+            "min_projected_coverage_fraction": 0.6,
+            "min_supported_fraction": 0.75
+          },
+          "supported_fraction": 1.0,
+          "supported_point_count": 1195
+        },
+        "finial": {
+          "camera_view_count": 37,
+          "checks": {
+            "connected_support_fraction": true,
+            "height_bin_occupancy_fraction": true,
+            "point_count": true,
+            "projected_coverage_fraction": true,
+            "supported_fraction": true
+          },
+          "connected_support_fraction": 0.9920212765957447,
+          "height_bin_occupancy_fraction": 1.0,
+          "median_inside_view_count": 37.0,
+          "minimum_support_views": 3,
+          "normalized_height_bounds": [
+            0.93,
+            1.0
+          ],
+          "occupied_voxel_cells": 376,
+          "point_count": 3544,
+          "projected_coverage_fraction": 1.0,
+          "projected_supported_point_count": 3544,
+          "region_name": "finial",
+          "support_gate": {
+            "min_connected_support_fraction": 0.75,
+            "min_height_bin_occupancy_fraction": 0.75,
+            "min_points": 250,
+            "min_projected_coverage_fraction": 0.6,
+            "min_supported_fraction": 0.75
+          },
+          "supported_fraction": 1.0,
+          "supported_point_count": 3544
+        },
+        "globe_shoulder": {
+          "camera_view_count": 37,
+          "checks": {
+            "connected_support_fraction": true,
+            "height_bin_occupancy_fraction": true,
+            "point_count": true,
+            "projected_coverage_fraction": true,
+            "supported_fraction": true
+          },
+          "connected_support_fraction": 0.9941972920696325,
+          "height_bin_occupancy_fraction": 1.0,
+          "median_inside_view_count": 37.0,
+          "minimum_support_views": 3,
+          "normalized_height_bounds": [
+            0.52,
+            0.75
+          ],
+          "occupied_voxel_cells": 517,
+          "point_count": 28761,
+          "projected_coverage_fraction": 1.0,
+          "projected_supported_point_count": 28761,
+          "region_name": "globe_shoulder",
+          "support_gate": {
+            "min_connected_support_fraction": 0.75,
+            "min_height_bin_occupancy_fraction": 0.75,
+            "min_points": 250,
+            "min_projected_coverage_fraction": 0.6,
+            "min_supported_fraction": 0.75
+          },
+          "supported_fraction": 0.9942630645666006,
+          "supported_point_count": 28596
+        },
+        "lid_tiers": {
+          "camera_view_count": 37,
+          "checks": {
+            "connected_support_fraction": false,
+            "height_bin_occupancy_fraction": true,
+            "point_count": true,
+            "projected_coverage_fraction": true,
+            "supported_fraction": true
+          },
+          "connected_support_fraction": 0.6587301587301587,
+          "height_bin_occupancy_fraction": 0.75,
+          "median_inside_view_count": 37.0,
+          "minimum_support_views": 3,
+          "normalized_height_bounds": [
+            0.82,
+            0.94
+          ],
+          "occupied_voxel_cells": 126,
+          "point_count": 593,
+          "projected_coverage_fraction": 1.0,
+          "projected_supported_point_count": 593,
+          "region_name": "lid_tiers",
+          "support_gate": {
+            "min_connected_support_fraction": 0.75,
+            "min_height_bin_occupancy_fraction": 0.75,
+            "min_points": 250,
+            "min_projected_coverage_fraction": 0.6,
+            "min_supported_fraction": 0.75
+          },
+          "supported_fraction": 1.0,
+          "supported_point_count": 593
+        },
+        "pedestal_transitions": {
+          "camera_view_count": 37,
+          "checks": {
+            "connected_support_fraction": true,
+            "height_bin_occupancy_fraction": true,
+            "point_count": true,
+            "projected_coverage_fraction": true,
+            "supported_fraction": true
+          },
+          "connected_support_fraction": 0.9944649446494465,
+          "height_bin_occupancy_fraction": 1.0,
+          "median_inside_view_count": 36.0,
+          "minimum_support_views": 3,
+          "normalized_height_bounds": [
+            0.12,
+            0.32
+          ],
+          "occupied_voxel_cells": 542,
+          "point_count": 16857,
+          "projected_coverage_fraction": 1.0,
+          "projected_supported_point_count": 16857,
+          "region_name": "pedestal_transitions",
+          "support_gate": {
+            "min_connected_support_fraction": 0.75,
+            "min_height_bin_occupancy_fraction": 0.75,
+            "min_points": 250,
+            "min_projected_coverage_fraction": 0.6,
+            "min_supported_fraction": 0.75
+          },
+          "supported_fraction": 1.0,
+          "supported_point_count": 16857
+        },
+        "rim": {
+          "camera_view_count": 37,
+          "checks": {
+            "connected_support_fraction": true,
+            "height_bin_occupancy_fraction": true,
+            "point_count": true,
+            "projected_coverage_fraction": true,
+            "supported_fraction": true
+          },
+          "connected_support_fraction": 1.0,
+          "height_bin_occupancy_fraction": 1.0,
+          "median_inside_view_count": 37.0,
+          "minimum_support_views": 3,
+          "normalized_height_bounds": [
+            0.48,
+            0.66
+          ],
+          "occupied_voxel_cells": 511,
+          "point_count": 46458,
+          "projected_coverage_fraction": 1.0,
+          "projected_supported_point_count": 46458,
+          "region_name": "rim",
+          "support_gate": {
+            "min_connected_support_fraction": 0.75,
+            "min_height_bin_occupancy_fraction": 0.75,
+            "min_points": 250,
+            "min_projected_coverage_fraction": 0.6,
+            "min_supported_fraction": 0.75
+          },
+          "supported_fraction": 0.9964484050109776,
+          "supported_point_count": 46293
+        }
+      },
+      "schema_version": 2,
+      "status": "failed",
+      "support_view_count": 37,
+      "thresholds": {
+        "finial_max_lid_radius_ratio": 0.85,
+        "min_connected_support_fraction": 0.75,
+        "min_height_bin_occupancy_fraction": 0.75,
+        "min_points": 250,
+        "min_projected_coverage_fraction": 0.6,
+        "min_support_views": 3,
+        "min_supported_fraction": 0.75
+      }
+    },
+    "basis_vectors": {
+      "center": [
+        0.05737490952014923,
+        0.8517862558364868,
+        -0.21352773904800415
+      ],
+      "front": [
+        -0.690104814651523,
+        0.020449487923430605,
+        0.7234204608928728
+      ],
+      "right": [
+        0.718236460832889,
+        -0.10334862794948137,
+        0.6880809890058043
+      ],
+      "vertical": [
+        0.08883541593887624,
+        0.9944349549088815,
+        0.05663381790359634
+      ]
+    },
+    "camera_count": 37,
+    "evidence": {
+      "board_plane_fraction": 0.006625,
+      "board_plane_radius_ratio": 0.372606032907082,
+      "camera_count": 37,
+      "fused_sha256": "5bce4a2adb4b53900a0e1881e79978c83d77e1f2300e01097d7795ac0a82c980",
+      "geometry_local_bottom_escape_count": 0,
+      "geometry_local_bottom_escape_min_views": 2,
+      "geometry_local_height_quantile": 0.15,
+      "geometry_local_height_threshold": -0.5355632135211055,
+      "image_bottom_escape_count": 7,
+      "inside_fraction_quantiles": [
+        0.8378378378378378,
+        1.0,
+        1.0
+      ],
+      "mask_count": 37,
+      "mask_dir": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2\\masks",
+      "mask_resolution": {
+        "legacy_fallback_count": 0,
+        "missing_count": 0,
+        "resolution_counts": {
+          "colmap_image_name_plus_png": 37
+        },
+        "resolved_count": 37,
+        "resolver": "colmap_image_name_plus_png"
+      },
+      "multi_view_projection": {
+        "aggregation": "all_registered_camera_views",
+        "mask_count": 37,
+        "view_count": 37
+      },
+      "sample_count": 120000,
+      "sparse_model_sha256": "56c068a56380b3dcc3c7e93949bd33fb943228f9684e7ae0ba9ee55d5e09636a",
+      "visible_count": 120000,
+      "workspace_root": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2"
+    },
+    "findings": {
+      "board_slab_detected": false,
+      "cloth_or_background_structure_detected": false,
+      "pedestal_board_webbing_detected": false,
+      "vessel_identity_confirmed": true
+    },
+    "method_version": "v4-postfusion-mask-projection-2",
+    "metrics": {
+      "board_point_fraction": {
+        "count": 795,
+        "denominator": 120000,
+        "evidence_sha256": "a50ff65f38a85fa5000b62c2c77b9ad82a2ae51a8a8935991fc1b1e33686b6fe",
+        "measurement_method": "fused-cloud-bottom-plane-ransac-with-camera-mask-support",
+        "value": 0.006625
+      },
+      "cloth_or_background_point_fraction": {
+        "count": 165,
+        "denominator": 120000,
+        "evidence_sha256": "a50ff65f38a85fa5000b62c2c77b9ad82a2ae51a8a8935991fc1b1e33686b6fe",
+        "measurement_method": "fused-cloud-multi-view-projection-mask-escape",
+        "value": 0.001375
+      },
+      "image_bottom_escape_point_fraction": {
+        "count": 7,
+        "denominator": 120000,
+        "evidence_sha256": "a50ff65f38a85fa5000b62c2c77b9ad82a2ae51a8a8935991fc1b1e33686b6fe",
+        "measurement_method": "fused-cloud-projection-mask-image-bottom-band-escape",
+        "value": 5.833333333333333e-05
+      },
+      "pedestal_board_webbing_point_fraction": {
+        "count": 0,
+        "denominator": 120000,
+        "evidence_sha256": "a50ff65f38a85fa5000b62c2c77b9ad82a2ae51a8a8935991fc1b1e33686b6fe",
+        "measurement_method": "fused-cloud-low-world-height-two-view-mask-escape",
+        "value": 0.0
+      }
+    },
+    "ring_counts": {
+      "geo_g12": 37
+    },
+    "sampled_point_indices": {
+      "count": 120000,
+      "first": 0,
+      "last": 646665
+    },
+    "status": "measured"
+  },
+  "fused_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\dense\\fused_upper_geo_g12_3072_v2.ply",
+  "fused_sha256": "5bce4a2adb4b53900a0e1881e79978c83d77e1f2300e01097d7795ac0a82c980",
+  "g8_g9_negative_evidence": {
+    "approved_passes": [
+      "empty_g8",
+      "empty_g9"
+    ],
+    "empty_frames": {
+      "empty_g8": {
+        "frame_count": 31,
+        "frame_index_max": 454,
+        "frame_index_min": 424,
+        "source_sha256": [
+          "c9460b8e8e710d5b6535e590b5eccd55275070a10d5b86026baa0579da3b859b",
+          "14877acef8d72da2ab5d61dc0b236affc298625abcd5cfcaa5ac3cf047a8d7e6",
+          "2c0001ebfa8e7356a1c43eb7862c609d563661b1f40c45610b2983885efe90ab",
+          "c18eaf797ed36531ec8a062faa03944b1f93425051f9df28a8194793d4b659bb",
+          "af4245576045549e7d5a72e47ae7ecb20f55a0dfb29b5f5048488ec1d4c4d8e9",
+          "f6613fb986f4c91acf391c052f0951a9991674dbd5ad604bb04131f291e05f28",
+          "0a0198eb952ea0e441c6967b3ac545e6bd26bd23bcf61d1fca24e71bde05faa8",
+          "fb77842cfc8280daa2aefc4e71104b67927063da76103ff8ad0258e5e010fed4",
+          "7d8e649b9c968ee0eb51bfa6da10de7845d4024ec04d45ae9d6b0be8aee391f8",
+          "322f002a33fc32773338b0ef20268e7b47c410aab4418d0664b885a4dd7d4f70",
+          "a7d3aa5030c4bdf684272db58248d9c720fdbac13f42e1d81c3a7c96f1958ddb",
+          "6c577b2977edc330b322f1c13b8d48af74d1f58655e10b18345d0ba28ea00658",
+          "df586b0b38d9c1e7d15d8d1f03f81915e0c300c7ce8c9d9c4edbfb7c3320445a",
+          "09e4dc7fdea807afe2ff48366c8d4971dd7c0c77be58f1173b67baf24d804465",
+          "25a24db3fbc7955871c4d38d469c97e6ce887ca1e969bea834f3a44b2fd42d58",
+          "3d191e40b5952c6b96d908df0ca31fc7a2c5ec4eba6a7576a07b3869dff543ea",
+          "e6236c01f713b365e590f25f2a7c92c262d329737fce50bc2991de409a443edb",
+          "5faf7ffb3e35013ce82c7bafd164c3b6428ddaef65845afc6a6ea938de635c7d",
+          "b2e966ff39d66ef9eb3cf8692a829525c0d9a5cd36b9e66bf0c251b5312be622",
+          "190a38b982c1ad9d337d77624736ecf55321a4545ad89f4e4201db7af302fc31",
+          "b8c791c07715344a93703e46787301071ad01752b7cbd7bd5227cb221f3a4024",
+          "df9b360844721909369763c928765b0177cea13cab2638901dd1b578ed9e65f2",
+          "492a21b6e17948fcdadf93bfa5bbc1d981010be748a1840deefe41757dcb0cda",
+          "7affbdaed3dd2b0cf5f1797140df567d2c31789204162fc097b9ba8520bd40fa",
+          "d5856e3bb5f2c3fb6f4eaa1b4dc636fb751ed80c1cf20cf607f947f102682abc",
+          "b960d0281955855b023d9a03ac67d35935c88307ae21c9b54c80a7b115f89177",
+          "d5ee24b50cfe0b05758101c2319b65aa42a76e3d4cd9b6e345fa9e9792f38c44",
+          "8992af2fac89f0e4b1fb272df044366efdf029f3e1a6d376452088e989b36142",
+          "f83e16740e3eae69956aedf1aa030396f5d1ff5f11f0b5330f5623a214bc470e",
+          "a8e0bbe54843b22dde5ee1180bd4dbf9342e5bc94d46a0376bb816d7557663c8",
+          "5c85ec51a81477c408b76dedbb5917741cac1257a7e5a35e0c24141f347e0067"
+        ]
+      },
+      "empty_g9": {
+        "frame_count": 25,
+        "frame_index_max": 534,
+        "frame_index_min": 510,
+        "source_sha256": [
+          "5d01ab484576ddd73221205d90136c37900a55624626e37844678deacfc57a0e",
+          "6516f4332d09809f9b05171d3f0f052f70a80c7b2b9266d46c8836f7b27ccd1d",
+          "170f70a0d466b65b7351920dfb72313f9f21f6c1bc13475002c07d2a3c6f4272",
+          "5265e27cd9d11b097dd8e0f22d75450aa752a29eb27f497e99c9ce52899f5aa9",
+          "454fd07277e279f1f406d711d2379462b85ae67b061b7dc0355491d50ded4435",
+          "84002b972f361adae05cd35cd5ac0916548caaa11839b0276849a110059edef5",
+          "cd5cc13c35661afef6dbf566d74de7532b574ecd93fb95dfbd4cf13834aafd62",
+          "cae6b039389818cdc24a19ce4de9076dbcbf5c8f6216c716add9d1c79f94353b",
+          "77e3a1496de8d4c4bed00d6d32c4a8cbf8cb443acda04e001b495a96b8c9accc",
+          "a78dcedf982c30c9c7d17ce4dec8c73c9823f7dd3b702e775eed6e94241a2e40",
+          "c361c89093a8d59d8e34e9b3c90d0b93d9786d2c73172726743e36f07b84904e",
+          "9138bc1431dadfc659a921689509fc6aee03b7104d50263ac8ab8290f02772cc",
+          "240823453e63398d85d49fd58daee44e330c3b1cc1067c38399beb116b7c6a15",
+          "bf17789a2840e01c544ef9274d86cce0e3c8c73ba1266af82367bc5c0fb0487b",
+          "4dd507497819ec671e9d4f91bf3c6f11a0a475cedc4b66ba65d1820a66a06c07",
+          "d52aea9fdf6c71961c15bd409e7dee78e35e78c02a900cd01e1a65b2704628ef",
+          "4ef7d13c975d28c551b41d2babdef8047ecb0ff00bfd1848c1b48b2d2ab19051",
+          "33b32b03839599a383a6f38d8292e98eaa2e14120ed978bf9af5519bd56f570a",
+          "a543634f7d2e30ae936a83aeb24348b311a48f7bf7b9a4309bf8bcb61ba95465",
+          "f83c251d61edbd794195dcdc7164364abdca8a3e308780cab809dae8a56c0c86",
+          "134fe6f78e51ff0c93a65b275b6cb05bbe03c75fcd08b496ae31465ef109c290",
+          "cefeb9e6d2623f863ea849f0b0ff1afdc513bf7985a86700d32fdb9121739bf9",
+          "5beaef8eb6b9857f8ebe2d700c721949723da0783a61b72a56de5aebd193ae88",
+          "e1f34732723816a16667a6fa402806c54dd4d7e8ca149450cf81c59312cb7ff4",
+          "a9f4eed83249d9113f31cb1b3441e48952b2248b1c85c3affe2b0cf77e0d44a2"
+        ]
+      }
+    },
+    "geometry_refinement_status_counts": {
+      "deferred_until_registered_empty_reference": 127
+    },
+    "isolation_records_sha256": "4214bee5929fa7beaa8aa1fedf2ea40e19c5bf0094daa27b218962a9a1d3b958",
+    "source_manifest_sha256": "1b075d2d6e250ad562b2c4dd2158cc691cbe6b20cd2b49766ac08b9c63bc4a5c",
+    "status": "deferred_until_registered_empty_reference",
+    "use": "negative-only refinement if post-fusion review detects board slab, pedestal webbing, or background structure"
+  },
+  "ring_transition_audit": {
+    "acceptance_note": "bounded graph is not accepted; preserve maps and rerun only affected dense chunks with local plus cross-ring source priority",
+    "evidence": {
+      "depth_dir": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2\\stereo\\depth_maps",
+      "evaluated_pair_count": 0,
+      "mask_dir": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2\\masks",
+      "mask_resolver": "colmap_image_name_plus_png",
+      "pair_measurement_method": "project_reference_geometric_depth_into_source_and_compare_masked_geometric_depth",
+      "sparse_model_path": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2\\sparse",
+      "workspace_root": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2"
+    },
+    "passed": false,
+    "status": "failed",
+    "transition_count": 0,
+    "transitions": {}
+  },
+  "schema_version": 2,
+  "semantic_previews": {
+    "front": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_front.png",
+      "sha256": "f5227a38f6e8e3e6f912ec49b7ae973437033f24c0d46464bdc9d4a09546b197"
+    },
+    "quarter": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_quarter.png",
+      "sha256": "cf0cc3dc664f7e3e1f3a7e7226bcbf45f701bfc69c984ec539c87b109bbc6cef"
+    },
+    "side": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_side.png",
+      "sha256": "8ffaa3fab4761a85977383264d6920ac5666ce3cda708b4279285fbf769f04a7"
+    },
+    "top_oblique": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\dense_upper_geo_g12_3072_v2_semantic\\dense_fused_top_oblique.png",
+      "sha256": "e889a41ae5c0027f029efb77751cf08360e0d06b14aea9ddfb8e3e35d3efc345"
+    }
+  },
+  "source_selection_audit": {
+    "configs": [
+      {
+        "configured_reference_count": 37,
+        "expected_reference_count": null,
+        "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch-match.cfg",
+        "reference_count": 37,
+        "sha256": "a05a24554ba2408333775f94bcaf7acfb2894a38718d0142963cbce466df6c21",
+        "source_count": 174,
+        "source_only_reference_count": 0,
+        "source_only_references": []
+      }
+    ],
+    "deviation_from_original_source_selection": {
+      "actual_plan": "explicit acquisition graph with manifest-order max_sources=6 truncation per reference",
+      "bounded_graph_sufficiency": "pending_ring_transition_and_multi_view_acceptance",
+      "deviation_is_intentional": true,
+      "max_sources": 6,
+      "original_plan": "COLMAP automatic/default source selection"
+    },
+    "errors": [],
+    "observed": {
+      "by_reference_ring": {
+        "geo_g12": {
+          "cross_ring_sources": 0,
+          "no_cross_ring": 37,
+          "references": 37
+        }
+      },
+      "configured_reference_count_total": 37,
+      "cross_ring_directed_source_count": 0,
+      "directed_source_count": 174,
+      "duplicate_reference_writes": {},
+      "exact_one_reference_write": true,
+      "missing_reference_writes": [],
+      "reference_count": 37,
+      "reference_occurrence_counts": {
+        "IMG20260912150514.jpg": 1,
+        "IMG20260912150514_01.jpg": 1,
+        "IMG20260912150518.jpg": 1,
+        "IMG20260912150520.jpg": 1,
+        "IMG20260912150522.jpg": 1,
+        "IMG20260912150525.jpg": 1,
+        "IMG20260912150527.jpg": 1,
+        "IMG20260912150529.jpg": 1,
+        "IMG20260912150531.jpg": 1,
+        "IMG20260912150533.jpg": 1,
+        "IMG20260912150535.jpg": 1,
+        "IMG20260912150537.jpg": 1,
+        "IMG20260912150539.jpg": 1,
+        "IMG20260912150541.jpg": 1,
+        "IMG20260912150543.jpg": 1,
+        "IMG20260912150545.jpg": 1,
+        "IMG20260912150548.jpg": 1,
+        "IMG20260912150551.jpg": 1,
+        "IMG20260912150553.jpg": 1,
+        "IMG20260912150557.jpg": 1,
+        "IMG20260912150559.jpg": 1,
+        "IMG20260912150601.jpg": 1,
+        "IMG20260912150604.jpg": 1,
+        "IMG20260912150605.jpg": 1,
+        "IMG20260912150607.jpg": 1,
+        "IMG20260912150609.jpg": 1,
+        "IMG20260912150610.jpg": 1,
+        "IMG20260912150612.jpg": 1,
+        "IMG20260912150613.jpg": 1,
+        "IMG20260912150615.jpg": 1,
+        "IMG20260912150617.jpg": 1,
+        "IMG20260912150619.jpg": 1,
+        "IMG20260912150620.jpg": 1,
+        "IMG20260912150622.jpg": 1,
+        "IMG20260912150624.jpg": 1,
+        "IMG20260912150627.jpg": 1,
+        "IMG20260912150627_01.jpg": 1
+      },
+      "references_without_cross_ring_source": [
+        "IMG20260912150514.jpg",
+        "IMG20260912150514_01.jpg",
+        "IMG20260912150518.jpg",
+        "IMG20260912150520.jpg",
+        "IMG20260912150522.jpg",
+        "IMG20260912150525.jpg",
+        "IMG20260912150527.jpg",
+        "IMG20260912150529.jpg",
+        "IMG20260912150531.jpg",
+        "IMG20260912150533.jpg",
+        "IMG20260912150535.jpg",
+        "IMG20260912150537.jpg",
+        "IMG20260912150539.jpg",
+        "IMG20260912150541.jpg",
+        "IMG20260912150543.jpg",
+        "IMG20260912150545.jpg",
+        "IMG20260912150548.jpg",
+        "IMG20260912150551.jpg",
+        "IMG20260912150553.jpg",
+        "IMG20260912150557.jpg",
+        "IMG20260912150559.jpg",
+        "IMG20260912150601.jpg",
+        "IMG20260912150604.jpg",
+        "IMG20260912150605.jpg",
+        "IMG20260912150607.jpg",
+        "IMG20260912150609.jpg",
+        "IMG20260912150610.jpg",
+        "IMG20260912150612.jpg",
+        "IMG20260912150613.jpg",
+        "IMG20260912150615.jpg",
+        "IMG20260912150617.jpg",
+        "IMG20260912150619.jpg",
+        "IMG20260912150620.jpg",
+        "IMG20260912150622.jpg",
+        "IMG20260912150624.jpg",
+        "IMG20260912150627.jpg",
+        "IMG20260912150627_01.jpg"
+      ],
+      "references_without_cross_ring_source_count": 37,
+      "registered_image_count": 37,
+      "source_only_reference_count": 0,
+      "source_only_references": []
+    },
+    "prior_review_discrepancy": null,
+    "references": [
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150514.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 2,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150518.jpg",
+          "IMG20260912150520.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150514_01.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 3,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150518.jpg",
+          "IMG20260912150520.jpg",
+          "IMG20260912150522.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150518.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 5,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150520.jpg",
+          "IMG20260912150514_01.jpg",
+          "IMG20260912150514.jpg",
+          "IMG20260912150522.jpg",
+          "IMG20260912150525.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150520.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150522.jpg",
+          "IMG20260912150518.jpg",
+          "IMG20260912150525.jpg",
+          "IMG20260912150514_01.jpg",
+          "IMG20260912150514.jpg",
+          "IMG20260912150527.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150522.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150520.jpg",
+          "IMG20260912150525.jpg",
+          "IMG20260912150518.jpg",
+          "IMG20260912150527.jpg",
+          "IMG20260912150529.jpg",
+          "IMG20260912150514_01.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150525.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150522.jpg",
+          "IMG20260912150527.jpg",
+          "IMG20260912150520.jpg",
+          "IMG20260912150529.jpg",
+          "IMG20260912150531.jpg",
+          "IMG20260912150518.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150527.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150525.jpg",
+          "IMG20260912150529.jpg",
+          "IMG20260912150531.jpg",
+          "IMG20260912150522.jpg",
+          "IMG20260912150533.jpg",
+          "IMG20260912150520.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150529.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150531.jpg",
+          "IMG20260912150527.jpg",
+          "IMG20260912150533.jpg",
+          "IMG20260912150525.jpg",
+          "IMG20260912150535.jpg",
+          "IMG20260912150522.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150531.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 5,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150529.jpg",
+          "IMG20260912150533.jpg",
+          "IMG20260912150535.jpg",
+          "IMG20260912150527.jpg",
+          "IMG20260912150537.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150533.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150535.jpg",
+          "IMG20260912150531.jpg",
+          "IMG20260912150537.jpg",
+          "IMG20260912150529.jpg",
+          "IMG20260912150527.jpg",
+          "IMG20260912150539.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150535.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150533.jpg",
+          "IMG20260912150537.jpg",
+          "IMG20260912150531.jpg",
+          "IMG20260912150539.jpg",
+          "IMG20260912150529.jpg",
+          "IMG20260912150541.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150537.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150535.jpg",
+          "IMG20260912150539.jpg",
+          "IMG20260912150533.jpg",
+          "IMG20260912150541.jpg",
+          "IMG20260912150531.jpg",
+          "IMG20260912150543.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150539.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150537.jpg",
+          "IMG20260912150541.jpg",
+          "IMG20260912150535.jpg",
+          "IMG20260912150533.jpg",
+          "IMG20260912150543.jpg",
+          "IMG20260912150545.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150541.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150539.jpg",
+          "IMG20260912150543.jpg",
+          "IMG20260912150537.jpg",
+          "IMG20260912150535.jpg",
+          "IMG20260912150545.jpg",
+          "IMG20260912150548.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150543.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150545.jpg",
+          "IMG20260912150541.jpg",
+          "IMG20260912150539.jpg",
+          "IMG20260912150548.jpg",
+          "IMG20260912150537.jpg",
+          "IMG20260912150551.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150545.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150543.jpg",
+          "IMG20260912150548.jpg",
+          "IMG20260912150551.jpg",
+          "IMG20260912150541.jpg",
+          "IMG20260912150553.jpg",
+          "IMG20260912150539.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150548.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150551.jpg",
+          "IMG20260912150545.jpg",
+          "IMG20260912150553.jpg",
+          "IMG20260912150543.jpg",
+          "IMG20260912150557.jpg",
+          "IMG20260912150541.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150551.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 6,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150548.jpg",
+          "IMG20260912150553.jpg",
+          "IMG20260912150545.jpg",
+          "IMG20260912150557.jpg",
+          "IMG20260912150559.jpg",
+          "IMG20260912150543.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150553.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 5,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150551.jpg",
+          "IMG20260912150557.jpg",
+          "IMG20260912150548.jpg",
+          "IMG20260912150559.jpg",
+          "IMG20260912150545.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150557.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150559.jpg",
+          "IMG20260912150553.jpg",
+          "IMG20260912150601.jpg",
+          "IMG20260912150551.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150559.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150601.jpg",
+          "IMG20260912150557.jpg",
+          "IMG20260912150604.jpg",
+          "IMG20260912150553.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150601.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150559.jpg",
+          "IMG20260912150604.jpg",
+          "IMG20260912150557.jpg",
+          "IMG20260912150605.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150604.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150601.jpg",
+          "IMG20260912150605.jpg",
+          "IMG20260912150559.jpg",
+          "IMG20260912150607.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150605.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150607.jpg",
+          "IMG20260912150604.jpg",
+          "IMG20260912150601.jpg",
+          "IMG20260912150609.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150607.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150609.jpg",
+          "IMG20260912150605.jpg",
+          "IMG20260912150610.jpg",
+          "IMG20260912150604.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150609.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150607.jpg",
+          "IMG20260912150610.jpg",
+          "IMG20260912150612.jpg",
+          "IMG20260912150605.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150610.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150612.jpg",
+          "IMG20260912150609.jpg",
+          "IMG20260912150607.jpg",
+          "IMG20260912150613.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150612.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150610.jpg",
+          "IMG20260912150613.jpg",
+          "IMG20260912150609.jpg",
+          "IMG20260912150615.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150613.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150615.jpg",
+          "IMG20260912150612.jpg",
+          "IMG20260912150610.jpg",
+          "IMG20260912150617.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150615.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 5,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150613.jpg",
+          "IMG20260912150617.jpg",
+          "IMG20260912150612.jpg",
+          "IMG20260912150619.jpg",
+          "IMG20260912150610.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150617.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150619.jpg",
+          "IMG20260912150615.jpg",
+          "IMG20260912150613.jpg",
+          "IMG20260912150620.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150619.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150617.jpg",
+          "IMG20260912150620.jpg",
+          "IMG20260912150615.jpg",
+          "IMG20260912150622.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150620.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150622.jpg",
+          "IMG20260912150619.jpg",
+          "IMG20260912150624.jpg",
+          "IMG20260912150617.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150622.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150624.jpg",
+          "IMG20260912150620.jpg",
+          "IMG20260912150627_01.jpg",
+          "IMG20260912150627.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150624.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 4,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150622.jpg",
+          "IMG20260912150627.jpg",
+          "IMG20260912150627_01.jpg",
+          "IMG20260912150620.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150627.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 3,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150624.jpg",
+          "IMG20260912150622.jpg",
+          "IMG20260912150620.jpg"
+        ]
+      },
+      {
+        "cross_ring_source_count": 0,
+        "has_cross_ring_source": false,
+        "reference": "IMG20260912150627_01.jpg",
+        "reference_ring": "geo_g12",
+        "same_ring_source_count": 2,
+        "source_rings": [
+          "geo_g12"
+        ],
+        "sources": [
+          "IMG20260912150624.jpg",
+          "IMG20260912150622.jpg"
+        ]
+      }
+    ],
+    "sparse_lineage": {
+      "accepted_sparse_gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+      "accepted_sparse_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+      "best_defensible": true,
+      "passed": true,
+      "reasons": [],
+      "selection_report_sha256": "d48687a4e92272ae99184eaf903011a0526e1023bbf3de009c1c782bc12ad2ce",
+      "sparse_gate_passed": false,
+      "status": "best_defensible_sparse_candidate",
+      "strict_gate_failures": [
+        "mask_projection_per_ring",
+        "mask_projection_per_view"
+      ]
+    },
+    "status": "passed"
+  },
+  "sparse_lineage": {
+    "accepted_sparse_gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+    "accepted_sparse_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+    "accepted_sparse_report_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v2.json",
+    "best_defensible": true,
+    "selection_report_sha256": "d48687a4e92272ae99184eaf903011a0526e1023bbf3de009c1c782bc12ad2ce",
+    "sparse_gate_passed": false,
+    "status": "best_defensible_sparse_candidate",
+    "strict_gate_failures": [
+      "mask_projection_per_ring",
+      "mask_projection_per_view"
+    ]
+  },
+  "status": "failed",
+  "workspace_root": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2"
+}

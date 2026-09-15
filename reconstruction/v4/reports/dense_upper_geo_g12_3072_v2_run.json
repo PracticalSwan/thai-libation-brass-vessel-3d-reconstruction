@@ -1,0 +1,1092 @@
+{
+  "accepted_sparse_model": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v47_v43_fixed_pose_retriangulation",
+  "accepted_sparse_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+  "accepted_sparse_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v2.json",
+  "baseline_finial_shape": {
+    "finial_supported_radius_median": 0.2687680572484679,
+    "finial_to_lid_radius_ratio": 1.0177845894451105,
+    "lid_supported_radius_median": 0.26407165134520116,
+    "max_finial_to_lid_radius_ratio": 0.85,
+    "resolved_narrow_top_element": false
+  },
+  "baseline_selection": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_best_defensible_v1_with_min3.json",
+  "baseline_selection_sha256": "1e07cdc08675c612d28d722f9673a7691ca3005c184af1a47ca91cabe332e30c",
+  "candidate_finial_shape": {
+    "finial_supported_radius_median": 0.2856149498962187,
+    "finial_to_lid_radius_ratio": 1.0922269378171634,
+    "lid_supported_radius_median": 0.2614978078338058,
+    "max_finial_to_lid_radius_ratio": 0.85,
+    "resolved_narrow_top_element": false
+  },
+  "config_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch-match.cfg",
+  "database_lineage": {
+    "image_count": 372,
+    "manifest_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\canonical_sqlite_snapshot_v3.json",
+    "supported_pair_count": 2118,
+    "two_view_geometry_count": 2118,
+    "working_copy_sha256": "658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a"
+  },
+  "decision": {
+    "baseline_finial_to_lid_radius_ratio": 1.0177845894451105,
+    "candidate_finial_to_lid_radius_ratio": 1.0922269378171634,
+    "candidate_resolved_narrow_top_element": false,
+    "promote_upper_recovery": false,
+    "ratio_improved": false,
+    "status": "recovery_exhausted_unresolved"
+  },
+  "fused_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\dense\\fused_upper_geo_g12_3072_v2.ply",
+  "fused_sha256": "5bce4a2adb4b53900a0e1881e79978c83d77e1f2300e01097d7795ac0a82c980",
+  "fusion": {
+    "args": [
+      "C:\\Users\\LOQ\\AppData\\Local\\Programs\\COLMAP\\4.2.0\\bin\\colmap.exe",
+      "stereo_fusion",
+      "--workspace_path",
+      "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2",
+      "--workspace_format",
+      "COLMAP",
+      "--input_type",
+      "geometric",
+      "--output_type",
+      "PLY",
+      "--output_path",
+      "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\dense\\fused_upper_geo_g12_3072_v2.ply",
+      "--StereoFusion.mask_path",
+      "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2\\masks",
+      "--StereoFusion.max_image_size",
+      "3072"
+    ],
+    "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_stereo_fusion.log",
+    "log_sha256": "f67244d3c7856ebd4effb04cf4e0d4417e365844b19b5c9a94b90f383917c0ce",
+    "output_tail": "I20260915 09:59:58.258015 27940 fusion.cc:79] --- StereoFusion::Options ---\r\nI20260915 09:59:58.259280 27940 fusion.cc:80] mask_path: \"D:\\\\Side Projects\\\\CSX4213_V4_Dense_Work\\\\upper_geo_g12_3072_v2\\\\masks\"\r\nI20260915 09:59:58.259298 27940 fusion.cc:81] max_image_size: 3072\r\nI20260915 09:59:58.259303 27940 fusion.cc:82] min_num_pixels: 5\r\nI20260915 09:59:58.259308 27940 fusion.cc:83] max_num_pixels: 10000\r\nI20260915 09:59:58.259313 27940 fusion.cc:84] max_traversal_depth: 100\r\nI20260915 09:59:58.259318 27940 fusion.cc:85] max_reproj_error: 2\r\nI20260915 09:59:58.259328 27940 fusion.cc:86] max_depth_error: 0.01\r\nI20260915 09:59:58.259335 27940 fusion.cc:87] max_normal_error: 10\r\nI20260915 09:59:58.259340 27940 fusion.cc:88] check_num_images: 50\r\nI20260915 09:59:58.259345 27940 fusion.cc:89] use_cache: 0\r\nI20260915 09:59:58.259352 27940 fusion.cc:90] cache_size: 32\r\nI20260915 09:59:58.259358 27940 fusion.cc:93] bbox_min: -3.40282e+38 -3.40282e+38 -3.40282e+38\r\nI20260915 09:59:58.259553 27940 fusion.cc:94] bbox_max: 3.40282e+38 3.40282e+38 3.40282e+38\r\nI20260915 09:59:58.259567 27940 fusion.cc:144] Reading workspace...\r\nI20260915 09:59:58.415720 27940 workspace.cc:103] Loading workspace data with 20 threads...\r\nI20260915 10:00:03.778483 27940 timer.cc:90] Elapsed time: 0.089 [minutes]\r\nI20260915 10:00:03.791046 27940 fusion.cc:179] Reading configuration...\r\nI20260915 10:00:18.336338 27940 fusion.cc:247] Starting fusion with 20 threads\r\nI20260915 10:00:18.339574 27940 fusion.cc:283] Fusing image [1/372] with index 0\r\nI20260915 10:00:18.339953 27940 fusion.cc:310]  in 0.000s (0 points)\r\nI20260915 10:00:18.340263 27940 fusion.cc:283] Fusing image [2/372] with index 335\r\nI20260915 10:00:19.151862 27940 fusion.cc:310]  in 0.812s (48155 points)\r\nI20260915 10:00:19.151975 27940 fusion.cc:283] Fusing image [3/372] with index 337\r\nI20260915 10:00:20.084866 27940 fusion.cc:310]  in 0.933s (151502 points)\r\nI20260915 10:00:20.084963 27940 fusion.cc:283] Fusing image [4/372] with index 338\r\nI20260915 10:00:20.857365 27940 fusion.cc:310]  in 0.772s (201455 points)\r\nI20260915 10:00:20.857456 27940 fusion.cc:283] Fusing image [5/372] with index 339\r\nI20260915 10:00:21.625057 27940 fusion.cc:310]  in 0.768s (240079 points)\r\nI20260915 10:00:21.625160 27940 fusion.cc:283] Fusing image [6/372] with index 340\r\nI20260915 10:00:22.369961 27940 fusion.cc:310]  in 0.745s (273121 points)\r\nI20260915 10:00:22.370062 27940 fusion.cc:283] Fusing image [7/372] with index 341\r\nI20260915 10:00:23.012599 27940 fusion.cc:310]  in 0.643s (303210 points)\r\nI20260915 10:00:23.012679 27940 fusion.cc:283] Fusing image [8/372] with index 342\r\nI20260915 10:00:23.623032 27940 fusion.cc:310]  in 0.610s (330300 points)\r\nI20260915 10:00:23.623121 27940 fusion.cc:283] Fusing image [9/372] with index 343\r\nI20260915 10:00:24.171554 27940 fusion.cc:310]  in 0.548s (359263 points)\r\nI20260915 10:00:24.171637 27940 fusion.cc:283] Fusing image [10/372] with index 344\r\nI20260915 10:00:24.735390 27940 fusion.cc:310]  in 0.564s (380221 points)\r\nI20260915 10:00:24.735503 27940 fusion.cc:283] Fusing image [11/372] with index 345\r\nI20260915 10:00:25.281159 27940 fusion.cc:310]  in 0.546s (397763 points)\r\nI20260915 10:00:25.281241 27940 fusion.cc:283] Fusing image [12/372] with index 346\r\nI20260915 10:00:25.824544 27940 fusion.cc:310]  in 0.543s (416165 points)\r\nI20260915 10:00:25.824645 27940 fusion.cc:283] Fusing image [13/372] with index 347\r\nI20260915 10:00:26.393053 27940 fusion.cc:310]  in 0.568s (433042 points)\r\nI20260915 10:00:26.393161 27940 fusion.cc:283] Fusing image [14/372] with index 348\r\nI20260915 10:00:26.928015 27940 fusion.cc:310]  in 0.535s (448513 points)\r\nI20260915 10:00:26.928115 27940 fusion.cc:283] Fusing image [15/372] with index 349\r\nI20260915 10:00:27.438646 27940 fusion.cc:310]  in 0.511s (466148 points)\r\nI20260915 10:00:27.438727 27940 fusion.cc:283] Fusing image [16/372] with index 350\r\nI20260915 10:00:27.957668 27940 fusion.cc:310]  in 0.519s (485921 points)\r\nI20260915 10:00:27.957769 27940 fusion.cc:283] Fusing image [17/372] with index 351\r\nI20260915 10:00:28.492404 27940 fusion.cc:310]  in 0.535s (505798 points)\r\nI20260915 10:00:28.493689 27940 fusion.cc:283] Fusing image [18/372] with index 352\r\nI20260915 10:00:29.072569 27940 fusion.cc:310]  in 0.579s (521330 points)\r\nI20260915 10:00:29.072661 27940 fusion.cc:283] Fusing image [19/372] with index 353\r\nI20260915 10:00:29.648112 27940 fusion.cc:310]  in 0.575s (531237 points)\r\nI20260915 10:00:29.648220 27940 fusion.cc:283] Fusing image [20/372] with index 354\r\nI20260915 10:00:30.157151 27940 fusion.cc:310]  in 0.509s (544580 points)\r\nI20260915 10:00:30.157251 27940 fusion.cc:283] Fusing image [21/372] with index 355\r\nI20260915 10:00:30.644747 27940 fusion.cc:310]  in 0.488s (557280 points)\r\nI20260915 10:00:30.644835 27940 fusion.cc:283] Fusing image [22/372] with index 356\r\nI20260915 10:00:31.118675 27940 fusion.cc:310]  in 0.474s (568748 points)\r\nI20260915 10:00:31.118767 27940 fusion.cc:283] Fusing image [23/372] with index 357\r\nI20260915 10:00:31.605050 27940 fusion.cc:310]  in 0.486s (578882 points)\r\nI20260915 10:00:31.605114 27940 fusion.cc:283] Fusing image [24/372] with index 358\r\nI20260915 10:00:32.086446 27940 fusion.cc:310]  in 0.481s (589359 points)\r\nI20260915 10:00:32.086523 27940 fusion.cc:283] Fusing image [25/372] with index 359\r\nI20260915 10:00:32.540015 27940 fusion.cc:310]  in 0.454s (600257 points)\r\nI20260915 10:00:32.540104 27940 fusion.cc:283] Fusing image [26/372] with index 360\r\nI20260915 10:00:33.008379 27940 fusion.cc:310]  in 0.468s (609686 points)\r\nI20260915 10:00:33.008460 27940 fusion.cc:283] Fusing image [27/372] with index 361\r\nI20260915 10:00:33.501849 27940 fusion.cc:310]  in 0.493s (618315 points)\r\nI20260915 10:00:33.501931 27940 fusion.cc:283] Fusing image [28/372] with index 362\r\nI20260915 10:00:33.963522 27940 fusion.cc:310]  in 0.462s (624938 points)\r\nI20260915 10:00:33.963596 27940 fusion.cc:283] Fusing image [29/372] with index 363\r\nI20260915 10:00:34.417946 27940 fusion.cc:310]  in 0.454s (630320 points)\r\nI20260915 10:00:34.418032 27940 fusion.cc:283] Fusing image [30/372] with index 364\r\nI20260915 10:00:34.861621 27940 fusion.cc:310]  in 0.444s (632950 points)\r\nI20260915 10:00:34.861702 27940 fusion.cc:283] Fusing image [31/372] with index 365\r\nI20260915 10:00:35.328348 27940 fusion.cc:310]  in 0.467s (636424 points)\r\nI20260915 10:00:35.328446 27940 fusion.cc:283] Fusing image [32/372] with index 366\r\nI20260915 10:00:35.784860 27940 fusion.cc:310]  in 0.456s (638784 points)\r\nI20260915 10:00:35.784929 27940 fusion.cc:283] Fusing image [33/372] with index 367\r\nI20260915 10:00:36.217678 27940 fusion.cc:310]  in 0.433s (641397 points)\r\nI20260915 10:00:36.217774 27940 fusion.cc:283] Fusing image [34/372] with index 368\r\nI20260915 10:00:36.648356 27940 fusion.cc:310]  in 0.431s (645809 points)\r\nI20260915 10:00:36.648422 27940 fusion.cc:283] Fusing image [35/372] with index 369\r\nI20260915 10:00:37.125591 27940 fusion.cc:310]  in 0.477s (646627 points)\r\nI20260915 10:00:37.125680 27940 fusion.cc:283] Fusing image [36/372] with index 371\r\nI20260915 10:00:37.611296 27940 fusion.cc:310]  in 0.486s (646666 points)\r\nI20260915 10:00:37.611373 27940 fusion.cc:283] Fusing image [37/372] with index 370\r\nI20260915 10:00:38.034892 27940 fusion.cc:310]  in 0.424s (646666 points)\r\nI20260915 10:00:38.034970 27940 fusion.cc:283] Fusing image [38/372] with index 336\r\nI20260915 10:00:38.699239 27940 fusion.cc:310]  in 0.664s (646666 points)\r\nI20260915 10:00:38.794807 27940 fusion.cc:337] Number of fused points: 646666\r\nI20260915 10:00:38.797203 27940 timer.cc:90] Elapsed time: 0.676 [minutes]\r\nI20260915 10:00:39.096149 27940 mvs.cc:395] Writing output: \"C:\\\\Assumption University\\\\CSX4213\\\\Project\\\\reconstruction\\\\v4\\\\dense\\\\fused_upper_geo_g12_3072_v2.ply\"\r\n",
+    "returncode": 0,
+    "runtime_seconds": 42.3181687999986,
+    "started_at": "2026-09-15T02:59:58.187994+00:00",
+    "status": "completed"
+  },
+  "graph_selection": {
+    "cross_ring_reference_count": 313,
+    "graph_file_sha256": "e6b2f0eff6cf89c2927d5a6875634eecdf38678fb00e1dc27d01f3557367cfca",
+    "graph_pair_count": 1354,
+    "graph_pair_sha256": "62291f0817f01013013b07dfc99072140af4e11850d851948f7b3fa086874487",
+    "graph_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\corrected_sparse_graph_v3.json",
+    "max_sources": 6,
+    "method": "corrected verified graph plus disposable v3 two-view inlier support; no phase or turntable pose prior",
+    "reference_count": 372,
+    "references_without_cross_ring_source": [
+      "IMG20260912141915.jpg",
+      "IMG20260912142008.jpg",
+      "IMG20260912142012.jpg",
+      "IMG20260912142017.jpg",
+      "IMG20260912142051.jpg",
+      "IMG20260912142128.jpg",
+      "IMG20260912142206_01.jpg",
+      "IMG20260912142229.jpg",
+      "IMG20260912144425.jpg",
+      "IMG20260912144436.jpg",
+      "IMG20260912144439.jpg",
+      "IMG20260912144441.jpg",
+      "IMG20260912144444.jpg",
+      "IMG20260912144455.jpg",
+      "IMG20260912144502.jpg",
+      "IMG20260912144504.jpg",
+      "IMG20260912144506.jpg",
+      "IMG20260912144515.jpg",
+      "IMG20260912144523.jpg",
+      "IMG20260912144525.jpg",
+      "IMG20260912144527.jpg",
+      "IMG20260912144529.jpg",
+      "IMG20260912144531.jpg",
+      "IMG20260912144534.jpg",
+      "IMG20260912144537.jpg",
+      "IMG20260912144540.jpg",
+      "IMG20260912144542.jpg",
+      "IMG20260912145233.jpg",
+      "IMG20260912145303.jpg",
+      "IMG20260912145304.jpg",
+      "IMG20260912145319.jpg",
+      "IMG20260912145319_01.jpg",
+      "IMG20260912150309.jpg",
+      "IMG20260912150311.jpg",
+      "IMG20260912150315.jpg",
+      "IMG20260912150317_01.jpg",
+      "IMG20260912150319.jpg",
+      "IMG20260912150321.jpg",
+      "IMG20260912150323.jpg",
+      "IMG20260912150334.jpg",
+      "IMG20260912150336.jpg",
+      "IMG20260912150347.jpg",
+      "IMG20260912150347_01.jpg",
+      "IMG20260912150514_01.jpg",
+      "IMG20260912150518.jpg",
+      "IMG20260912150520.jpg",
+      "IMG20260912150522.jpg",
+      "IMG20260912150525.jpg",
+      "IMG20260912150527.jpg",
+      "IMG20260912150529.jpg",
+      "IMG20260912150533.jpg",
+      "IMG20260912150535.jpg",
+      "IMG20260912150537.jpg",
+      "IMG20260912150539.jpg",
+      "IMG20260912150541.jpg",
+      "IMG20260912150543.jpg",
+      "IMG20260912150545.jpg",
+      "IMG20260912150548.jpg",
+      "IMG20260912150551.jpg"
+    ],
+    "schema_version": 1,
+    "verified_edge_count": 1354
+  },
+  "map_counts": {
+    "geometric_depth_count": 37,
+    "geometric_normal_count": 37,
+    "photometric_depth_count": 37,
+    "photometric_normal_count": 37
+  },
+  "mask_summary": {
+    "camera": {
+      "height": 3072,
+      "model": "PINHOLE",
+      "params": [
+        2538.864516256735,
+        2538.7533688231038,
+        1156.5,
+        1536.0
+      ],
+      "width": 2313
+    },
+    "image_count": 37,
+    "manifest_sha256": "0c2e11aaddc687d0ba36848645b22f0f723329bccc6d4c18be4a22a4c51cadb5",
+    "output_mask_dir": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2\\masks",
+    "records": [
+      {
+        "name": "IMG20260912150514.jpg",
+        "output_name": "IMG20260912150514.jpg.png",
+        "output_nonzero_fraction": 0.17936352725536822,
+        "output_sha256": "cc0f6b88043775a665e0fbbfe2d4d7d28a032936ca472a3c51985bdad76f5db8",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "45b075bedb0f99b97441a6d47a2238f455dbec20cd5f28314b1a010778164a57",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150514_01.jpg",
+        "output_name": "IMG20260912150514_01.jpg.png",
+        "output_nonzero_fraction": 0.17661679569282318,
+        "output_sha256": "2efc503b9b2a6e348889d325ef7469b5aa96eeda7efe03191e0e726d4c581d3c",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "5f7268c72fd8ff016728e523e4fac5f0668478e9a94cc8bf9cc4f88bc93ee1b4",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150518.jpg",
+        "output_name": "IMG20260912150518.jpg.png",
+        "output_nonzero_fraction": 0.17455572668972474,
+        "output_sha256": "2e59325bdb148b0e5f81fb4c3b353f1d735716f8aa5abec949e975330a3ba9c0",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "5d0e7fab4aa0b677efe3d454c13d006513d2ab7c9b1c7762a9ba780874e5dcf3",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150520.jpg",
+        "output_name": "IMG20260912150520.jpg.png",
+        "output_nonzero_fraction": 0.17458401449236202,
+        "output_sha256": "bfa576c357bdce44c09e5b6bc432931a98cf5b5233cb99f66602b44779699b1d",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "17d5ed293a6aa0f925484a7b18401174eaf7c92686c185868796b45307ba1a01",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150522.jpg",
+        "output_name": "IMG20260912150522.jpg.png",
+        "output_nonzero_fraction": 0.1755045643284335,
+        "output_sha256": "0d1b6fa5c4ffa9b72b08737784a0ee9b637b5229b80af328fc04cde74afd9c0d",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "769d0d70ee42b9f8a750c80c12bde37d0999363e57d9de6c03bbde58de6e72a9",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150525.jpg",
+        "output_name": "IMG20260912150525.jpg.png",
+        "output_nonzero_fraction": 0.1735044337260412,
+        "output_sha256": "a497ad6721564e65c966fa98dffc81ae2413b07877279411c0d10de891a379ae",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "810c8f52d76f6bd52231610f4e6e05f606debff150f626d3beb99ad73c258a83",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150527.jpg",
+        "output_name": "IMG20260912150527.jpg.png",
+        "output_nonzero_fraction": 0.1732274665838017,
+        "output_sha256": "da534df1e4da69ae2b824875b3a0fbe9dd46bc9169c22c12066b80dcb1524556",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "905a2e8c7f3981f3dff31321dbf339ef1387516c1089186495a5e2c76e429d78",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150529.jpg",
+        "output_name": "IMG20260912150529.jpg.png",
+        "output_nonzero_fraction": 0.1726301858156795,
+        "output_sha256": "a2f53978dc0d49666e88753565aa59fd8951992b0e47e1ff96a581cd09facfba",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "f5c9d5d4baa8c4dde605f4d1121d6cbc8a8acf9b3fe92ef0dbf84a6f52d204c5",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150531.jpg",
+        "output_name": "IMG20260912150531.jpg.png",
+        "output_nonzero_fraction": 0.1734595391536965,
+        "output_sha256": "9f8e16b65fabbff6010833b0a8c50ebe03c8d32a6e003030915c0e1389c3a3be",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "f3f852d663686d86da21ff2459d24d83394114f1b23fadbdf1f1351affbdaede",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150533.jpg",
+        "output_name": "IMG20260912150533.jpg.png",
+        "output_nonzero_fraction": 0.17201179474708173,
+        "output_sha256": "8a460ab01dff3bccc99dfd01a21f4e081177c771edd115dc480637bf21771ff7",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "0df39f3a4d41c7fc1affca26ed1e203f93e270a88b89fae1618ba42065c7fe07",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150535.jpg",
+        "output_name": "IMG20260912150535.jpg.png",
+        "output_nonzero_fraction": 0.16925267847492434,
+        "output_sha256": "4910cb234c1cd3feb726deaf598beaac77d63eed85dbdd12548664d536aad1ba",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "c57b8796d4bef53f8c17f8ecd22a71a6eddd620884db95920a150b21a84c55ed",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150537.jpg",
+        "output_name": "IMG20260912150537.jpg.png",
+        "output_nonzero_fraction": 0.1656325434140366,
+        "output_sha256": "0a561d9c557273140ae7deb3ba319fd391cbb1abfe43bfa5a89f9a2c9e21aff3",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "54004103a164e16249a30342c921fc6495d4c5f5a240165f6d2b43a74b31e6e5",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150539.jpg",
+        "output_name": "IMG20260912150539.jpg.png",
+        "output_nonzero_fraction": 0.16377005197074507,
+        "output_sha256": "8aae9efef1ae4d8ea879d4183835da8dacc7e93bad4d64dfba8205af24f7b119",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "39e5b68e2a66ab7432aae94721bd3617ef69f6dff79f5e9ae606c3600ca6924b",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150541.jpg",
+        "output_name": "IMG20260912150541.jpg.png",
+        "output_nonzero_fraction": 0.15947748347204208,
+        "output_sha256": "dadac0ef64778aeab7ed33a72ab0753447c5518ca7acf157b8148ad812f1de54",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "712c711e424c2e0a3a26a5c356026827a7500f6833fcfb3e94b1f0137e5dd0cf",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150543.jpg",
+        "output_name": "IMG20260912150543.jpg.png",
+        "output_nonzero_fraction": 0.15687458342340393,
+        "output_sha256": "6642dd4287e9aa35ff4fe7ffa0965a59da1f0fe1d0fe38862f5e14a566149692",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "4e5ce6a728283766f2f33353cb2e17aea1061cb6ff7300a630da1be9de9493a8",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150545.jpg",
+        "output_name": "IMG20260912150545.jpg.png",
+        "output_nonzero_fraction": 0.1547014890924485,
+        "output_sha256": "2aa46bef53633253a623f807dc55ca70c63512f05a9df9fc8c03ecbebcb246ae",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "2d77496dc7bcc6fbf3b05db8e587a239c3531c705bf355111681e5d53a8b040b",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150548.jpg",
+        "output_name": "IMG20260912150548.jpg.png",
+        "output_nonzero_fraction": 0.15246773783145987,
+        "output_sha256": "29584f2040d5f8da6f1fa38aa69c34210e6ad3c516184f02a24340c2794580b3",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "3c929bcec98ca184a14b5ced72535d0b3e7f332a970ae61db7f85140517516c3",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150551.jpg",
+        "output_name": "IMG20260912150551.jpg.png",
+        "output_nonzero_fraction": 0.15113933699020032,
+        "output_sha256": "0d9ca5f0836fadd4d2100a2a8b69cbf02bfdc77e14c63db9fbc3eb8f47e0af4e",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "aaaee40a3806b2f5581035cbc791c9e3274cdb130979fd5f1c25573e40e014bd",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150553.jpg",
+        "output_name": "IMG20260912150553.jpg.png",
+        "output_nonzero_fraction": 0.14904575812436952,
+        "output_sha256": "146bca954fbd05192ce3eb196039617d951af7b6edf6a2fca257490fc545838a",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "a23fed408118befa830f7e0eeb92d6c0b34bc451f0f5733b1cf96514a240fc8a",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150557.jpg",
+        "output_name": "IMG20260912150557.jpg.png",
+        "output_nonzero_fraction": 0.14617714976041216,
+        "output_sha256": "7d037e2835523e6b16afffd5673e50ff1ab7b1a089ca248dcdc4fb95a6c5cd34",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "ab3f45e06d8ecc2af988bc0aaa462b2dc04d4bb9ef019bbe630f74619e8a911b",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150559.jpg",
+        "output_name": "IMG20260912150559.jpg.png",
+        "output_nonzero_fraction": 0.14548670219952442,
+        "output_sha256": "a36696c3b3eab0a7ab6b292dbc93e3eb78869eb3221ce4fa4a2e14bff7859017",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "6d6c9360274d9e2b725608d80cb6f345eddb1524ae76347975ea5e7e9782d184",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150601.jpg",
+        "output_name": "IMG20260912150601.jpg.png",
+        "output_nonzero_fraction": 0.14300638262898113,
+        "output_sha256": "13725ab2d4396980fac81a43746831723a7175879e4b3d1c4eb57300854e0a16",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "2a426aa146385b7a0a667aed36969aff1465c19bca613ef31b1a6ae6688c3897",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150604.jpg",
+        "output_name": "IMG20260912150604.jpg.png",
+        "output_nonzero_fraction": 0.1424200792171062,
+        "output_sha256": "9850582d0347aed5925eeae1c95cb2d7449e0d05a2c7fdf95448c87c8d218754",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "8f727c87d7cd21702f31f362fdcf914f24dea75bc36b1de150361bb4b1a584ef",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150605.jpg",
+        "output_name": "IMG20260912150605.jpg.png",
+        "output_nonzero_fraction": 0.141933134952803,
+        "output_sha256": "6e3f06c40555cfed62e4312d034233c7f843e98186db08aaabc31e8ed687b567",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "d3fce3e58dc691a1dfb55efcfdf2988193b7503426efb175f4273d8e7c468456",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150607.jpg",
+        "output_name": "IMG20260912150607.jpg.png",
+        "output_nonzero_fraction": 0.14209202514771582,
+        "output_sha256": "7be25cf62ab018964883259ffa087ad702c66a6be64bbc9d4a4c70629e47ff05",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "a924adc80a6003c55b3d0b1c7c2cf605580873ad4fa0ee4a6c58dda1920bf69d",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150609.jpg",
+        "output_name": "IMG20260912150609.jpg.png",
+        "output_nonzero_fraction": 0.14122368812148725,
+        "output_sha256": "70735946b1ad4d8f0efe2fa7beeccfda7000c64620bb41f03bf91fb9c1ea641f",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "c88b825ebc8be2914909c36f36f915ca92ad1d80f7a9d5386f460a5c23e9a3d5",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150610.jpg",
+        "output_name": "IMG20260912150610.jpg.png",
+        "output_nonzero_fraction": 0.1411303805933852,
+        "output_sha256": "4770fa347a6e0506fb8a4fcaf9b307808329849aefedddd661df6c11fa835687",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "1c60bd03dc73ee294a49e2044a1d3ddfa137486ea6974b2b16560cecb9b90c9c",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150612.jpg",
+        "output_name": "IMG20260912150612.jpg.png",
+        "output_nonzero_fraction": 0.14019266104626027,
+        "output_sha256": "e1c134fed89f99c950b1361034ad61bcf7045819a340255f5069c680be7fe62c",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "50c508598c02bd7d54977feb382cc6b1e0df5cc93852f788149c959683c5b3cf",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150613.jpg",
+        "output_name": "IMG20260912150613.jpg.png",
+        "output_nonzero_fraction": 0.1404886274589278,
+        "output_sha256": "2e23576fae0afda6e7cc0821a1188e38a52042f988db59f81b655c00f2bb39e5",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "d058a0e0aa8a2b41ca680d9c0ac38601247d28b12112e7b92540c3454868bdfc",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150615.jpg",
+        "output_name": "IMG20260912150615.jpg.png",
+        "output_nonzero_fraction": 0.13895433082036315,
+        "output_sha256": "b02014fc086f365e49536f26bfa937d988e6f4b38361a2eb5f35694ea32eac2e",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "b577bb74a1758bf64ee08dd3c4a8ea41f44e204d584808e296cf8e2376a00be9",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150617.jpg",
+        "output_name": "IMG20260912150617.jpg.png",
+        "output_nonzero_fraction": 0.13897515965016574,
+        "output_sha256": "ec6680dd7ba33b89221e9395ea1f8c0d5d712cba71a418cae24019a4e7a10bd8",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "f5e9f6bbcf3df60f023f967ef93c66bc1f1c63ff7843d4b9bebae0e5f08a0c4d",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150619.jpg",
+        "output_name": "IMG20260912150619.jpg.png",
+        "output_nonzero_fraction": 0.13912996852031992,
+        "output_sha256": "84a39e18c05355b9095aa9d30e1083a1a4ae82172519403a66f3d42163123c9e",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "eea3d7ed335ecefb47dba0f6c2619721b2682ae20dfe1dd0b774313e51ec6ff9",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150620.jpg",
+        "output_name": "IMG20260912150620.jpg.png",
+        "output_nonzero_fraction": 0.14116866060491426,
+        "output_sha256": "84a7b2f30eaaa5cab20e2507a145bcc3ab06ad956e8057445c56e97db94c7805",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "6d9158ef3a36edc0a1c90755cb83768cae33860b8ad30c9beb017f47d9f2c790",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150622.jpg",
+        "output_name": "IMG20260912150622.jpg.png",
+        "output_nonzero_fraction": 0.1427873984453812,
+        "output_sha256": "61362739f2566b198726f07aa970fc23e1fee4f3dce273e5b8e6751668da60ec",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "59da33034ce77f0ff0499d9fcb999670c93be83bc6a041f3ec58dc9d7248b887",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150624.jpg",
+        "output_name": "IMG20260912150624.jpg.png",
+        "output_nonzero_fraction": 0.1427187196011673,
+        "output_sha256": "2185a1095859bc8ddee3ae4e5d05825f7151b32ca64008fb7a36a2a528cfa1c5",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "615acf672c1f6728a4d7e88d6c8802277f304f6cb4174fa14b3f8b570b75c97a",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150627.jpg",
+        "output_name": "IMG20260912150627.jpg.png",
+        "output_nonzero_fraction": 0.14479949155137628,
+        "output_sha256": "d704d6da7183e431ecd50ca03381bdad30b64610b8e18b0ea0c82e03a6e4d0c1",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "77e199816bdce66cc192b69f9051585f3fe9d9650a0220d78abbc6f1554947a4",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      },
+      {
+        "name": "IMG20260912150627_01.jpg",
+        "output_name": "IMG20260912150627_01.jpg.png",
+        "output_nonzero_fraction": 0.145083776931114,
+        "output_sha256": "d782318e0bc9f4b0deaeb0df1b8a24c9656d4c18d1654e39837f06d433bf81b7",
+        "output_shape": [
+          3072,
+          2313
+        ],
+        "source_sha256": "3d452c6c92517905afd12e5371edccfc4c13c24317831ed5f78247c8d92daa1c",
+        "source_shape": [
+          4080,
+          3072
+        ]
+      }
+    ],
+    "source_mask_dir": "C:\\Assumption University\\CSX4213\\Project\\capture_v4\\derived\\masks",
+    "sparse_model_path": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v47_v43_fixed_pose_retriangulation",
+    "status": "complete"
+  },
+  "max_image_size": 3072,
+  "patch_match": {
+    "args": [
+      "C:\\Users\\LOQ\\AppData\\Local\\Programs\\COLMAP\\4.2.0\\bin\\colmap.exe",
+      "patch_match_stereo",
+      "--workspace_path",
+      "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2",
+      "--workspace_format",
+      "COLMAP",
+      "--PatchMatchStereo.max_image_size",
+      "3072",
+      "--PatchMatchStereo.gpu_index",
+      "0",
+      "--PatchMatchStereo.geom_consistency",
+      "1",
+      "--PatchMatchStereo.filter",
+      "1",
+      "--config_path",
+      "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch-match.cfg"
+    ],
+    "depth_counts": {
+      "consistency_graph_count": 0,
+      "depth_map_count": 74,
+      "normal_map_count": 74
+    },
+    "failure_category": null,
+    "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch_match.log",
+    "log_sha256": "2615bd3e0c5a068707c2e0bfad78d8904f733d0608d5304abcba371b9f6b33fa",
+    "output_tail": "I20260915 09:58:54.207690  4160 patch_match_options.cc:62] geom_consistency_max_cost: 3\r\nI20260915 09:58:54.207704  4160 patch_match_options.cc:63] filter: 1\r\nI20260915 09:58:54.207716  4160 patch_match_options.cc:64] filter_min_ncc: 0.1\r\nI20260915 09:58:54.207735  4160 patch_match_options.cc:65] filter_min_triangulation_angle: 3\r\nI20260915 09:58:54.207749  4160 patch_match_options.cc:66] filter_min_num_consistent: 2\r\nI20260915 09:58:54.207761  4160 patch_match_options.cc:67] filter_geom_consistency_max_cost: 1\r\nI20260915 09:58:54.207775  4160 patch_match_options.cc:68] write_consistency_graph: 0\r\nI20260915 09:58:54.207788  4160 patch_match_options.cc:69] allow_missing_files: 0\r\nI20260915 09:58:54.207800  4160 patch_match_options.cc:70] num_threads: -1\r\nI20260915 09:58:54.207814  4160 patch_match.cc:129] --- PatchMatch::Run ---\r\nI20260915 09:58:54.431808  4160 cudacc.cc:52] Initialization: 0.0467s\r\nI20260915 09:58:55.431256  4160 cudacc.cc:52]  Sweep 1: 0.9993s\r\nI20260915 09:58:56.417488  4160 cudacc.cc:52]  Sweep 2: 0.9861s\r\nI20260915 09:58:57.405908  4160 cudacc.cc:52]  Sweep 3: 0.9883s\r\nI20260915 09:58:58.353778  4160 cudacc.cc:52]  Sweep 4: 0.9477s\r\nI20260915 09:58:58.353866  4160 cudacc.cc:52] Iteration 1: 3.9220s\r\nI20260915 09:58:59.342549  4160 cudacc.cc:52]  Sweep 1: 0.9886s\r\nI20260915 09:59:00.290658  4160 cudacc.cc:52]  Sweep 2: 0.9480s\r\nI20260915 09:59:01.275101  4160 cudacc.cc:52]  Sweep 3: 0.9843s\r\nI20260915 09:59:02.216055  4160 cudacc.cc:52]  Sweep 4: 0.9408s\r\nI20260915 09:59:02.216147  4160 cudacc.cc:52] Iteration 2: 3.8623s\r\nI20260915 09:59:03.200026  4160 cudacc.cc:52]  Sweep 1: 0.9839s\r\nI20260915 09:59:04.132476  4160 cudacc.cc:52]  Sweep 2: 0.9324s\r\nI20260915 09:59:05.114343  4160 cudacc.cc:52]  Sweep 3: 0.9818s\r\nI20260915 09:59:06.038569  4160 cudacc.cc:52]  Sweep 4: 0.9241s\r\nI20260915 09:59:06.038767  4160 cudacc.cc:52] Iteration 3: 3.8226s\r\nI20260915 09:59:07.022921  4160 cudacc.cc:52]  Sweep 1: 0.9841s\r\nI20260915 09:59:07.946292  4160 cudacc.cc:52]  Sweep 2: 0.9233s\r\nI20260915 09:59:08.929011  4160 cudacc.cc:52]  Sweep 3: 0.9826s\r\nI20260915 09:59:09.849351  4160 cudacc.cc:52]  Sweep 4: 0.9202s\r\nI20260915 09:59:09.849445  4160 cudacc.cc:52] Iteration 4: 3.8106s\r\nI20260915 09:59:10.833275  4160 cudacc.cc:52]  Sweep 1: 0.9838s\r\nI20260915 09:59:11.752830  4160 cudacc.cc:52]  Sweep 2: 0.9194s\r\nI20260915 09:59:12.733082  4160 cudacc.cc:52]  Sweep 3: 0.9802s\r\nI20260915 09:59:13.678140  4160 cudacc.cc:52]  Sweep 4: 0.9449s\r\nI20260915 09:59:13.678232  4160 cudacc.cc:52] Iteration 5: 3.8288s\r\nI20260915 09:59:13.678275  4160 cudacc.cc:52] Total: 19.2934s\r\nI20260915 09:59:13.678288  4160 patch_match.cc:525] \r\nWriting geometric output for IMG20260912150624.jpg\r\nI20260915 09:59:14.994586  4160 patch_match.cc:419] === Processing view 36 / 37 for IMG20260912150627.jpg ===\r\nI20260915 09:59:14.994794  4160 patch_match.cc:466] Reading inputs...\r\nI20260915 09:59:15.031725  4160 patch_match.cc:56] --- PatchMatch::Problem ---\r\nI20260915 09:59:15.031801  4160 patch_match.cc:57] ref_image_idx: 370\r\nI20260915 09:59:15.031820  4160 patch_match.cc:64] src_image_idxs: 368 369 367\r\nI20260915 09:59:15.031837  4160 patch_match_options.cc:46] --- PatchMatchOptions ---\r\nI20260915 09:59:15.031850  4160 patch_match_options.cc:47] max_image_size: 3072\r\nI20260915 09:59:15.031861  4160 patch_match_options.cc:48] gpu_index: 0\r\nI20260915 09:59:15.031872  4160 patch_match_options.cc:49] depth_min: 1.06994\r\nI20260915 09:59:15.031895  4160 patch_match_options.cc:50] depth_max: 3.1177\r\nI20260915 09:59:15.031907  4160 patch_match_options.cc:51] window_radius: 5\r\nI20260915 09:59:15.031918  4160 patch_match_options.cc:52] window_step: 1\r\nI20260915 09:59:15.031928  4160 patch_match_options.cc:53] sigma_spatial: 5\r\nI20260915 09:59:15.031940  4160 patch_match_options.cc:54] sigma_color: 0.2\r\nI20260915 09:59:15.031952  4160 patch_match_options.cc:55] num_samples: 15\r\nI20260915 09:59:15.031963  4160 patch_match_options.cc:56] ncc_sigma: 0.6\r\nI20260915 09:59:15.031974  4160 patch_match_options.cc:57] min_triangulation_angle: 1\r\nI20260915 09:59:15.031986  4160 patch_match_options.cc:58] incident_angle_sigma: 0.9\r\nI20260915 09:59:15.031997  4160 patch_match_options.cc:59] num_iterations: 5\r\nI20260915 09:59:15.032010  4160 patch_match_options.cc:60] geom_consistency: 1\r\nI20260915 09:59:15.032020  4160 patch_match_options.cc:61] geom_consistency_regularizer: 0.3\r\nI20260915 09:59:15.032032  4160 patch_match_options.cc:62] geom_consistency_max_cost: 3\r\nI20260915 09:59:15.032044  4160 patch_match_options.cc:63] filter: 1\r\nI20260915 09:59:15.032054  4160 patch_match_options.cc:64] filter_min_ncc: 0.1\r\nI20260915 09:59:15.032066  4160 patch_match_options.cc:65] filter_min_triangulation_angle: 3\r\nI20260915 09:59:15.032077  4160 patch_match_options.cc:66] filter_min_num_consistent: 2\r\nI20260915 09:59:15.032088  4160 patch_match_options.cc:67] filter_geom_consistency_max_cost: 1\r\nI20260915 09:59:15.032100  4160 patch_match_options.cc:68] write_consistency_graph: 0\r\nI20260915 09:59:15.032113  4160 patch_match_options.cc:69] allow_missing_files: 0\r\nI20260915 09:59:15.032136  4160 patch_match_options.cc:70] num_threads: -1\r\nI20260915 09:59:15.032152  4160 patch_match.cc:129] --- PatchMatch::Run ---\r\nI20260915 09:59:15.208441  4160 cudacc.cc:52] Initialization: 0.0364s\r\nI20260915 09:59:16.184755  4160 cudacc.cc:52]  Sweep 1: 0.9762s\r\nI20260915 09:59:17.064129  4160 cudacc.cc:52]  Sweep 2: 0.8793s\r\nI20260915 09:59:18.025678  4160 cudacc.cc:52]  Sweep 3: 0.9614s\r\nI20260915 09:59:18.881050  4160 cudacc.cc:52]  Sweep 4: 0.8553s\r\nI20260915 09:59:18.881146  4160 cudacc.cc:52] Iteration 1: 3.6726s\r\nI20260915 09:59:19.840039  4160 cudacc.cc:52]  Sweep 1: 0.9589s\r\nI20260915 09:59:20.687590  4160 cudacc.cc:52]  Sweep 2: 0.8474s\r\nI20260915 09:59:21.643795  4160 cudacc.cc:52]  Sweep 3: 0.9561s\r\nI20260915 09:59:22.490923  4160 cudacc.cc:52]  Sweep 4: 0.8470s\r\nI20260915 09:59:22.491020  4160 cudacc.cc:52] Iteration 2: 3.6099s\r\nI20260915 09:59:23.450693  4160 cudacc.cc:52]  Sweep 1: 0.9596s\r\nI20260915 09:59:24.292253  4160 cudacc.cc:52]  Sweep 2: 0.8415s\r\nI20260915 09:59:25.246712  4160 cudacc.cc:52]  Sweep 3: 0.9544s\r\nI20260915 09:59:26.085426  4160 cudacc.cc:52]  Sweep 4: 0.8386s\r\nI20260915 09:59:26.085516  4160 cudacc.cc:52] Iteration 3: 3.5945s\r\nI20260915 09:59:27.043318  4160 cudacc.cc:52]  Sweep 1: 0.9578s\r\nI20260915 09:59:27.880349  4160 cudacc.cc:52]  Sweep 2: 0.8369s\r\nI20260915 09:59:28.833386  4160 cudacc.cc:52]  Sweep 3: 0.9529s\r\nI20260915 09:59:29.670098  4160 cudacc.cc:52]  Sweep 4: 0.8366s\r\nI20260915 09:59:29.670166  4160 cudacc.cc:52] Iteration 4: 3.5847s\r\nI20260915 09:59:30.627250  4160 cudacc.cc:52]  Sweep 1: 0.9571s\r\nI20260915 09:59:31.462130  4160 cudacc.cc:52]  Sweep 2: 0.8348s\r\nI20260915 09:59:32.414462  4160 cudacc.cc:52]  Sweep 3: 0.9523s\r\nI20260915 09:59:33.280643  4160 cudacc.cc:52]  Sweep 4: 0.8661s\r\nI20260915 09:59:33.280741  4160 cudacc.cc:52] Iteration 5: 3.6106s\r\nI20260915 09:59:33.280775  4160 cudacc.cc:52] Total: 18.1090s\r\nI20260915 09:59:33.280797  4160 patch_match.cc:525] \r\nWriting geometric output for IMG20260912150627.jpg\r\nI20260915 09:59:34.562375  4160 patch_match.cc:419] === Processing view 37 / 37 for IMG20260912150627_01.jpg ===\r\nI20260915 09:59:34.562488  4160 patch_match.cc:466] Reading inputs...\r\nI20260915 09:59:34.591819  4160 patch_match.cc:56] --- PatchMatch::Problem ---\r\nI20260915 09:59:34.591910  4160 patch_match.cc:57] ref_image_idx: 371\r\nI20260915 09:59:34.591928  4160 patch_match.cc:64] src_image_idxs: 368 369\r\nI20260915 09:59:34.591942  4160 patch_match_options.cc:46] --- PatchMatchOptions ---\r\nI20260915 09:59:34.591953  4160 patch_match_options.cc:47] max_image_size: 3072\r\nI20260915 09:59:34.591967  4160 patch_match_options.cc:48] gpu_index: 0\r\nI20260915 09:59:34.591977  4160 patch_match_options.cc:49] depth_min: 1.06635\r\nI20260915 09:59:34.591999  4160 patch_match_options.cc:50] depth_max: 3.10993\r\nI20260915 09:59:34.592011  4160 patch_match_options.cc:51] window_radius: 5\r\nI20260915 09:59:34.592022  4160 patch_match_options.cc:52] window_step: 1\r\nI20260915 09:59:34.592033  4160 patch_match_options.cc:53] sigma_spatial: 5\r\nI20260915 09:59:34.592045  4160 patch_match_options.cc:54] sigma_color: 0.2\r\nI20260915 09:59:34.592057  4160 patch_match_options.cc:55] num_samples: 15\r\nI20260915 09:59:34.592067  4160 patch_match_options.cc:56] ncc_sigma: 0.6\r\nI20260915 09:59:34.592079  4160 patch_match_options.cc:57] min_triangulation_angle: 1\r\nI20260915 09:59:34.592091  4160 patch_match_options.cc:58] incident_angle_sigma: 0.9\r\nI20260915 09:59:34.592103  4160 patch_match_options.cc:59] num_iterations: 5\r\nI20260915 09:59:34.592117  4160 patch_match_options.cc:60] geom_consistency: 1\r\nI20260915 09:59:34.592129  4160 patch_match_options.cc:61] geom_consistency_regularizer: 0.3\r\nI20260915 09:59:34.592141  4160 patch_match_options.cc:62] geom_consistency_max_cost: 3\r\nI20260915 09:59:34.592160  4160 patch_match_options.cc:63] filter: 1\r\nI20260915 09:59:34.592173  4160 patch_match_options.cc:64] filter_min_ncc: 0.1\r\nI20260915 09:59:34.592185  4160 patch_match_options.cc:65] filter_min_triangulation_angle: 3\r\nI20260915 09:59:34.592197  4160 patch_match_options.cc:66] filter_min_num_consistent: 2\r\nI20260915 09:59:34.592208  4160 patch_match_options.cc:67] filter_geom_consistency_max_cost: 1\r\nI20260915 09:59:34.592220  4160 patch_match_options.cc:68] write_consistency_graph: 0\r\nI20260915 09:59:34.592235  4160 patch_match_options.cc:69] allow_missing_files: 0\r\nI20260915 09:59:34.592246  4160 patch_match_options.cc:70] num_threads: -1\r\nI20260915 09:59:34.592259  4160 patch_match.cc:129] --- PatchMatch::Run ---\r\nI20260915 09:59:34.712039  4160 cudacc.cc:52] Initialization: 0.0258s\r\nI20260915 09:59:35.655637  4160 cudacc.cc:52]  Sweep 1: 0.9435s\r\nI20260915 09:59:36.501543  4160 cudacc.cc:52]  Sweep 2: 0.8458s\r\nI20260915 09:59:37.437760  4160 cudacc.cc:52]  Sweep 3: 0.9361s\r\nI20260915 09:59:38.259632  4160 cudacc.cc:52]  Sweep 4: 0.8218s\r\nI20260915 09:59:38.259748  4160 cudacc.cc:52] Iteration 1: 3.5476s\r\nI20260915 09:59:39.190952  4160 cudacc.cc:52]  Sweep 1: 0.9311s\r\nI20260915 09:59:40.003973  4160 cudacc.cc:52]  Sweep 2: 0.8129s\r\nI20260915 09:59:40.932204  4160 cudacc.cc:52]  Sweep 3: 0.9282s\r\nI20260915 09:59:41.739577  4160 cudacc.cc:52]  Sweep 4: 0.8073s\r\nI20260915 09:59:41.739687  4160 cudacc.cc:52] Iteration 2: 3.4799s\r\nI20260915 09:59:42.670113  4160 cudacc.cc:52]  Sweep 1: 0.9304s\r\nI20260915 09:59:43.474508  4160 cudacc.cc:52]  Sweep 2: 0.8043s\r\nI20260915 09:59:44.401353  4160 cudacc.cc:52]  Sweep 3: 0.9268s\r\nI20260915 09:59:45.213948  4160 cudacc.cc:52]  Sweep 4: 0.8125s\r\nI20260915 09:59:45.214046  4160 cudacc.cc:52] Iteration 3: 3.4744s\r\nI20260915 09:59:46.142658  4160 cudacc.cc:52]  Sweep 1: 0.9286s\r\nI20260915 09:59:46.944725  4160 cudacc.cc:52]  Sweep 2: 0.8020s\r\nI20260915 09:59:47.872123  4160 cudacc.cc:52]  Sweep 3: 0.9273s\r\nI20260915 09:59:48.674170  4160 cudacc.cc:52]  Sweep 4: 0.8018s\r\nI20260915 09:59:48.674280  4160 cudacc.cc:52] Iteration 4: 3.4602s\r\nI20260915 09:59:49.604605  4160 cudacc.cc:52]  Sweep 1: 0.9303s\r\nI20260915 09:59:50.404493  4160 cudacc.cc:52]  Sweep 2: 0.7997s\r\nI20260915 09:59:51.331525  4160 cudacc.cc:52]  Sweep 3: 0.9270s\r\nI20260915 09:59:52.156830  4160 cudacc.cc:52]  Sweep 4: 0.8252s\r\nI20260915 09:59:52.157009  4160 cudacc.cc:52] Iteration 5: 3.4827s\r\nI20260915 09:59:52.157054  4160 cudacc.cc:52] Total: 17.4711s\r\nI20260915 09:59:52.157077  4160 patch_match.cc:525] \r\nWriting geometric output for IMG20260912150627_01.jpg\r\nI20260915 09:59:53.499459 14560 timer.cc:90] Elapsed time: 25.501 [minutes]\r\n",
+    "returncode": 0,
+    "runtime_phase_gate": {
+      "first_geometric_block_index": 37,
+      "first_photometric_block_index": 0,
+      "geometric_block_count": 37,
+      "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch_match.log",
+      "passed": true,
+      "phase_block_count": 74,
+      "phase_order_valid": true,
+      "photometric_block_count": 37
+    },
+    "runtime_seconds": 1530.5703878999993,
+    "started_at": "2026-09-15T02:34:23.358820+00:00",
+    "status": "completed",
+    "typed_counts": {
+      "geometric_depth_count": 37,
+      "geometric_normal_count": 37,
+      "photometric_depth_count": 37,
+      "photometric_normal_count": 37
+    }
+  },
+  "postfusion_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_upper_geo_g12_3072_v2_postfusion.json",
+  "postfusion_report_sha256": "56ac217e1f0d75ac751d46f2c8e54c792cce470eb6106c238d5307c773f2cc61",
+  "ring": "geo_g12",
+  "schema_version": 1,
+  "smoke": {
+    "config_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_smoke_patch-match.cfg",
+    "image_names": [
+      "IMG20260912150514.jpg",
+      "IMG20260912150514_01.jpg",
+      "IMG20260912150518.jpg",
+      "IMG20260912150520.jpg",
+      "IMG20260912150522.jpg",
+      "IMG20260912150525.jpg",
+      "IMG20260912150527.jpg",
+      "IMG20260912150529.jpg"
+    ],
+    "mask_summary": {
+      "camera": {
+        "height": 3072,
+        "model": "PINHOLE",
+        "params": [
+          2538.864516256735,
+          2538.7533688231038,
+          1156.5,
+          1536.0
+        ],
+        "width": 2313
+      },
+      "image_count": 8,
+      "manifest_sha256": "b711ad1cc51b2c5e5f76405f810b674c0f25a7d668cbb1484144efb2704e46fe",
+      "output_mask_dir": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2_smoke\\masks",
+      "records": [
+        {
+          "name": "IMG20260912150514.jpg",
+          "output_name": "IMG20260912150514.jpg.png",
+          "output_nonzero_fraction": 0.17936352725536822,
+          "output_sha256": "cc0f6b88043775a665e0fbbfe2d4d7d28a032936ca472a3c51985bdad76f5db8",
+          "output_shape": [
+            3072,
+            2313
+          ],
+          "source_sha256": "45b075bedb0f99b97441a6d47a2238f455dbec20cd5f28314b1a010778164a57",
+          "source_shape": [
+            4080,
+            3072
+          ]
+        },
+        {
+          "name": "IMG20260912150514_01.jpg",
+          "output_name": "IMG20260912150514_01.jpg.png",
+          "output_nonzero_fraction": 0.17661679569282318,
+          "output_sha256": "2efc503b9b2a6e348889d325ef7469b5aa96eeda7efe03191e0e726d4c581d3c",
+          "output_shape": [
+            3072,
+            2313
+          ],
+          "source_sha256": "5f7268c72fd8ff016728e523e4fac5f0668478e9a94cc8bf9cc4f88bc93ee1b4",
+          "source_shape": [
+            4080,
+            3072
+          ]
+        },
+        {
+          "name": "IMG20260912150518.jpg",
+          "output_name": "IMG20260912150518.jpg.png",
+          "output_nonzero_fraction": 0.17455572668972474,
+          "output_sha256": "2e59325bdb148b0e5f81fb4c3b353f1d735716f8aa5abec949e975330a3ba9c0",
+          "output_shape": [
+            3072,
+            2313
+          ],
+          "source_sha256": "5d0e7fab4aa0b677efe3d454c13d006513d2ab7c9b1c7762a9ba780874e5dcf3",
+          "source_shape": [
+            4080,
+            3072
+          ]
+        },
+        {
+          "name": "IMG20260912150520.jpg",
+          "output_name": "IMG20260912150520.jpg.png",
+          "output_nonzero_fraction": 0.17458401449236202,
+          "output_sha256": "bfa576c357bdce44c09e5b6bc432931a98cf5b5233cb99f66602b44779699b1d",
+          "output_shape": [
+            3072,
+            2313
+          ],
+          "source_sha256": "17d5ed293a6aa0f925484a7b18401174eaf7c92686c185868796b45307ba1a01",
+          "source_shape": [
+            4080,
+            3072
+          ]
+        },
+        {
+          "name": "IMG20260912150522.jpg",
+          "output_name": "IMG20260912150522.jpg.png",
+          "output_nonzero_fraction": 0.1755045643284335,
+          "output_sha256": "0d1b6fa5c4ffa9b72b08737784a0ee9b637b5229b80af328fc04cde74afd9c0d",
+          "output_shape": [
+            3072,
+            2313
+          ],
+          "source_sha256": "769d0d70ee42b9f8a750c80c12bde37d0999363e57d9de6c03bbde58de6e72a9",
+          "source_shape": [
+            4080,
+            3072
+          ]
+        },
+        {
+          "name": "IMG20260912150525.jpg",
+          "output_name": "IMG20260912150525.jpg.png",
+          "output_nonzero_fraction": 0.1735044337260412,
+          "output_sha256": "a497ad6721564e65c966fa98dffc81ae2413b07877279411c0d10de891a379ae",
+          "output_shape": [
+            3072,
+            2313
+          ],
+          "source_sha256": "810c8f52d76f6bd52231610f4e6e05f606debff150f626d3beb99ad73c258a83",
+          "source_shape": [
+            4080,
+            3072
+          ]
+        },
+        {
+          "name": "IMG20260912150527.jpg",
+          "output_name": "IMG20260912150527.jpg.png",
+          "output_nonzero_fraction": 0.1732274665838017,
+          "output_sha256": "da534df1e4da69ae2b824875b3a0fbe9dd46bc9169c22c12066b80dcb1524556",
+          "output_shape": [
+            3072,
+            2313
+          ],
+          "source_sha256": "905a2e8c7f3981f3dff31321dbf339ef1387516c1089186495a5e2c76e429d78",
+          "source_shape": [
+            4080,
+            3072
+          ]
+        },
+        {
+          "name": "IMG20260912150529.jpg",
+          "output_name": "IMG20260912150529.jpg.png",
+          "output_nonzero_fraction": 0.1726301858156795,
+          "output_sha256": "a2f53978dc0d49666e88753565aa59fd8951992b0e47e1ff96a581cd09facfba",
+          "output_shape": [
+            3072,
+            2313
+          ],
+          "source_sha256": "f5c9d5d4baa8c4dde605f4d1121d6cbc8a8acf9b3fe92ef0dbf84a6f52d204c5",
+          "source_shape": [
+            4080,
+            3072
+          ]
+        }
+      ],
+      "source_mask_dir": "C:\\Assumption University\\CSX4213\\Project\\capture_v4\\derived\\masks",
+      "sparse_model_path": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v47_v43_fixed_pose_retriangulation",
+      "status": "complete"
+    },
+    "patch_match": {
+      "args": [
+        "C:\\Users\\LOQ\\AppData\\Local\\Programs\\COLMAP\\4.2.0\\bin\\colmap.exe",
+        "patch_match_stereo",
+        "--workspace_path",
+        "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2_smoke",
+        "--workspace_format",
+        "COLMAP",
+        "--PatchMatchStereo.max_image_size",
+        "3072",
+        "--PatchMatchStereo.gpu_index",
+        "0",
+        "--PatchMatchStereo.geom_consistency",
+        "1",
+        "--PatchMatchStereo.filter",
+        "1",
+        "--config_path",
+        "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_smoke_patch-match.cfg"
+      ],
+      "depth_counts": {
+        "consistency_graph_count": 0,
+        "depth_map_count": 16,
+        "normal_map_count": 16
+      },
+      "failure_category": null,
+      "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_smoke_patch_match.log",
+      "log_sha256": "71c8ecbfb0c484c0903d05e988bd072e1cacba98ef9ce9bebaa1d3bdfaa98f7b",
+      "output_tail": "I20260915 09:33:00.972447 27152 patch_match_options.cc:62] geom_consistency_max_cost: 3\r\nI20260915 09:33:00.972462 27152 patch_match_options.cc:63] filter: 1\r\nI20260915 09:33:00.972475 27152 patch_match_options.cc:64] filter_min_ncc: 0.1\r\nI20260915 09:33:00.972490 27152 patch_match_options.cc:65] filter_min_triangulation_angle: 3\r\nI20260915 09:33:00.972503 27152 patch_match_options.cc:66] filter_min_num_consistent: 2\r\nI20260915 09:33:00.972515 27152 patch_match_options.cc:67] filter_geom_consistency_max_cost: 1\r\nI20260915 09:33:00.972530 27152 patch_match_options.cc:68] write_consistency_graph: 0\r\nI20260915 09:33:00.972542 27152 patch_match_options.cc:69] allow_missing_files: 0\r\nI20260915 09:33:00.972554 27152 patch_match_options.cc:70] num_threads: -1\r\nI20260915 09:33:00.972569 27152 patch_match.cc:129] --- PatchMatch::Run ---\r\nI20260915 09:33:01.213780 27152 cudacc.cc:52] Initialization: 0.0567s\r\nI20260915 09:33:02.253625 27152 cudacc.cc:52]  Sweep 1: 1.0396s\r\nI20260915 09:33:03.358279 27152 cudacc.cc:52]  Sweep 2: 1.1045s\r\nI20260915 09:33:04.386369 27152 cudacc.cc:52]  Sweep 3: 1.0280s\r\nI20260915 09:33:05.437721 27152 cudacc.cc:52]  Sweep 4: 1.0513s\r\nI20260915 09:33:05.437827 27152 cudacc.cc:52] Iteration 1: 4.2239s\r\nI20260915 09:33:06.466587 27152 cudacc.cc:52]  Sweep 1: 1.0287s\r\nI20260915 09:33:07.494871 27152 cudacc.cc:52]  Sweep 2: 1.0282s\r\nI20260915 09:33:08.520102 27152 cudacc.cc:52]  Sweep 3: 1.0252s\r\nI20260915 09:33:09.535428 27152 cudacc.cc:52]  Sweep 4: 1.0152s\r\nI20260915 09:33:09.535550 27152 cudacc.cc:52] Iteration 2: 4.0977s\r\nI20260915 09:33:10.564168 27152 cudacc.cc:52]  Sweep 1: 1.0286s\r\nI20260915 09:33:11.643522 27152 cudacc.cc:52]  Sweep 2: 1.0792s\r\nI20260915 09:33:12.676014 27152 cudacc.cc:52]  Sweep 3: 1.0324s\r\nI20260915 09:33:13.743492 27152 cudacc.cc:52]  Sweep 4: 1.0673s\r\nI20260915 09:33:13.743600 27152 cudacc.cc:52] Iteration 3: 4.2081s\r\nI20260915 09:33:14.771794 27152 cudacc.cc:52]  Sweep 1: 1.0281s\r\nI20260915 09:33:15.779627 27152 cudacc.cc:52]  Sweep 2: 1.0077s\r\nI20260915 09:33:16.803722 27152 cudacc.cc:52]  Sweep 3: 1.0240s\r\nI20260915 09:33:17.801075 27152 cudacc.cc:52]  Sweep 4: 0.9973s\r\nI20260915 09:33:17.801174 27152 cudacc.cc:52] Iteration 4: 4.0576s\r\nI20260915 09:33:18.823906 27152 cudacc.cc:52]  Sweep 1: 1.0227s\r\nI20260915 09:33:19.824440 27152 cudacc.cc:52]  Sweep 2: 1.0005s\r\nI20260915 09:33:20.844959 27152 cudacc.cc:52]  Sweep 3: 1.0204s\r\nI20260915 09:33:21.871931 27152 cudacc.cc:52]  Sweep 4: 1.0269s\r\nI20260915 09:33:21.872006 27152 cudacc.cc:52] Iteration 5: 4.0708s\r\nI20260915 09:33:21.872027 27152 cudacc.cc:52] Total: 20.7152s\r\nI20260915 09:33:21.872036 27152 patch_match.cc:525] \r\nWriting geometric output for IMG20260912150525.jpg\r\nI20260915 09:33:23.189803 27152 patch_match.cc:419] === Processing view 7 / 8 for IMG20260912150527.jpg ===\r\nI20260915 09:33:23.189910 27152 patch_match.cc:466] Reading inputs...\r\nI20260915 09:33:23.237521 27152 patch_match.cc:56] --- PatchMatch::Problem ---\r\nI20260915 09:33:23.237609 27152 patch_match.cc:57] ref_image_idx: 341\r\nI20260915 09:33:23.237632 27152 patch_match.cc:64] src_image_idxs: 339 338 340 342\r\nI20260915 09:33:23.237647 27152 patch_match_options.cc:46] --- PatchMatchOptions ---\r\nI20260915 09:33:23.237659 27152 patch_match_options.cc:47] max_image_size: 3072\r\nI20260915 09:33:23.237672 27152 patch_match_options.cc:48] gpu_index: 0\r\nI20260915 09:33:23.237684 27152 patch_match_options.cc:49] depth_min: 0.938463\r\nI20260915 09:33:23.237705 27152 patch_match_options.cc:50] depth_max: 2.94352\r\nI20260915 09:33:23.237719 27152 patch_match_options.cc:51] window_radius: 5\r\nI20260915 09:33:23.237731 27152 patch_match_options.cc:52] window_step: 1\r\nI20260915 09:33:23.237747 27152 patch_match_options.cc:53] sigma_spatial: 5\r\nI20260915 09:33:23.237761 27152 patch_match_options.cc:54] sigma_color: 0.2\r\nI20260915 09:33:23.237775 27152 patch_match_options.cc:55] num_samples: 15\r\nI20260915 09:33:23.237787 27152 patch_match_options.cc:56] ncc_sigma: 0.6\r\nI20260915 09:33:23.237804 27152 patch_match_options.cc:57] min_triangulation_angle: 1\r\nI20260915 09:33:23.237818 27152 patch_match_options.cc:58] incident_angle_sigma: 0.9\r\nI20260915 09:33:23.237832 27152 patch_match_options.cc:59] num_iterations: 5\r\nI20260915 09:33:23.237845 27152 patch_match_options.cc:60] geom_consistency: 1\r\nI20260915 09:33:23.237863 27152 patch_match_options.cc:61] geom_consistency_regularizer: 0.3\r\nI20260915 09:33:23.237877 27152 patch_match_options.cc:62] geom_consistency_max_cost: 3\r\nI20260915 09:33:23.237890 27152 patch_match_options.cc:63] filter: 1\r\nI20260915 09:33:23.237903 27152 patch_match_options.cc:64] filter_min_ncc: 0.1\r\nI20260915 09:33:23.237916 27152 patch_match_options.cc:65] filter_min_triangulation_angle: 3\r\nI20260915 09:33:23.237934 27152 patch_match_options.cc:66] filter_min_num_consistent: 2\r\nI20260915 09:33:23.237947 27152 patch_match_options.cc:67] filter_geom_consistency_max_cost: 1\r\nI20260915 09:33:23.237960 27152 patch_match_options.cc:68] write_consistency_graph: 0\r\nI20260915 09:33:23.237972 27152 patch_match_options.cc:69] allow_missing_files: 0\r\nI20260915 09:33:23.237984 27152 patch_match_options.cc:70] num_threads: -1\r\nI20260915 09:33:23.238005 27152 patch_match.cc:129] --- PatchMatch::Run ---\r\nI20260915 09:33:23.427736 27152 cudacc.cc:52] Initialization: 0.0472s\r\nI20260915 09:33:24.444681 27152 cudacc.cc:52]  Sweep 1: 1.0168s\r\nI20260915 09:33:25.483165 27152 cudacc.cc:52]  Sweep 2: 1.0384s\r\nI20260915 09:33:26.488706 27152 cudacc.cc:52]  Sweep 3: 1.0054s\r\nI20260915 09:33:27.516979 27152 cudacc.cc:52]  Sweep 4: 1.0282s\r\nI20260915 09:33:27.517173 27152 cudacc.cc:52] Iteration 1: 4.0893s\r\nI20260915 09:33:28.518642 27152 cudacc.cc:52]  Sweep 1: 1.0014s\r\nI20260915 09:33:29.484916 27152 cudacc.cc:52]  Sweep 2: 0.9662s\r\nI20260915 09:33:30.482280 27152 cudacc.cc:52]  Sweep 3: 0.9972s\r\nI20260915 09:33:31.446639 27152 cudacc.cc:52]  Sweep 4: 0.9643s\r\nI20260915 09:33:31.446745 27152 cudacc.cc:52] Iteration 2: 3.9295s\r\nI20260915 09:33:32.446643 27152 cudacc.cc:52]  Sweep 1: 0.9999s\r\nI20260915 09:33:33.405024 27152 cudacc.cc:52]  Sweep 2: 0.9582s\r\nI20260915 09:33:34.398835 27152 cudacc.cc:52]  Sweep 3: 0.9937s\r\nI20260915 09:33:35.342722 27152 cudacc.cc:52]  Sweep 4: 0.9438s\r\nI20260915 09:33:35.342799 27152 cudacc.cc:52] Iteration 3: 3.8961s\r\nI20260915 09:33:36.343112 27152 cudacc.cc:52]  Sweep 1: 1.0003s\r\nI20260915 09:33:37.294573 27152 cudacc.cc:52]  Sweep 2: 0.9514s\r\nI20260915 09:33:38.293441 27152 cudacc.cc:52]  Sweep 3: 0.9987s\r\nI20260915 09:33:39.271597 27152 cudacc.cc:52]  Sweep 4: 0.9779s\r\nI20260915 09:33:39.271712 27152 cudacc.cc:52] Iteration 4: 3.9289s\r\nI20260915 09:33:40.271937 27152 cudacc.cc:52]  Sweep 1: 1.0002s\r\nI20260915 09:33:41.218641 27152 cudacc.cc:52]  Sweep 2: 0.9466s\r\nI20260915 09:33:42.219305 27152 cudacc.cc:52]  Sweep 3: 1.0006s\r\nI20260915 09:33:43.188382 27152 cudacc.cc:52]  Sweep 4: 0.9690s\r\nI20260915 09:33:43.188517 27152 cudacc.cc:52] Iteration 5: 3.9168s\r\nI20260915 09:33:43.188563 27152 cudacc.cc:52] Total: 19.8082s\r\nI20260915 09:33:43.188592 27152 patch_match.cc:525] \r\nWriting geometric output for IMG20260912150527.jpg\r\nI20260915 09:33:44.815632 27152 patch_match.cc:419] === Processing view 8 / 8 for IMG20260912150529.jpg ===\r\nI20260915 09:33:44.815828 27152 patch_match.cc:466] Reading inputs...\r\nI20260915 09:33:44.858753 27152 patch_match.cc:56] --- PatchMatch::Problem ---\r\nI20260915 09:33:44.858859 27152 patch_match.cc:57] ref_image_idx: 342\r\nI20260915 09:33:44.858889 27152 patch_match.cc:64] src_image_idxs: 341 339 340\r\nI20260915 09:33:44.858907 27152 patch_match_options.cc:46] --- PatchMatchOptions ---\r\nI20260915 09:33:44.858920 27152 patch_match_options.cc:47] max_image_size: 3072\r\nI20260915 09:33:44.858933 27152 patch_match_options.cc:48] gpu_index: 0\r\nI20260915 09:33:44.858944 27152 patch_match_options.cc:49] depth_min: 0.942213\r\nI20260915 09:33:44.858963 27152 patch_match_options.cc:50] depth_max: 2.95711\r\nI20260915 09:33:44.858976 27152 patch_match_options.cc:51] window_radius: 5\r\nI20260915 09:33:44.858987 27152 patch_match_options.cc:52] window_step: 1\r\nI20260915 09:33:44.858998 27152 patch_match_options.cc:53] sigma_spatial: 5\r\nI20260915 09:33:44.859016 27152 patch_match_options.cc:54] sigma_color: 0.2\r\nI20260915 09:33:44.859079 27152 patch_match_options.cc:55] num_samples: 15\r\nI20260915 09:33:44.859092 27152 patch_match_options.cc:56] ncc_sigma: 0.6\r\nI20260915 09:33:44.859101 27152 patch_match_options.cc:57] min_triangulation_angle: 1\r\nI20260915 09:33:44.859110 27152 patch_match_options.cc:58] incident_angle_sigma: 0.9\r\nI20260915 09:33:44.859119 27152 patch_match_options.cc:59] num_iterations: 5\r\nI20260915 09:33:44.859127 27152 patch_match_options.cc:60] geom_consistency: 1\r\nI20260915 09:33:44.859132 27152 patch_match_options.cc:61] geom_consistency_regularizer: 0.3\r\nI20260915 09:33:44.859138 27152 patch_match_options.cc:62] geom_consistency_max_cost: 3\r\nI20260915 09:33:44.859146 27152 patch_match_options.cc:63] filter: 1\r\nI20260915 09:33:44.859152 27152 patch_match_options.cc:64] filter_min_ncc: 0.1\r\nI20260915 09:33:44.859160 27152 patch_match_options.cc:65] filter_min_triangulation_angle: 3\r\nI20260915 09:33:44.859165 27152 patch_match_options.cc:66] filter_min_num_consistent: 2\r\nI20260915 09:33:44.859170 27152 patch_match_options.cc:67] filter_geom_consistency_max_cost: 1\r\nI20260915 09:33:44.859175 27152 patch_match_options.cc:68] write_consistency_graph: 0\r\nI20260915 09:33:44.859180 27152 patch_match_options.cc:69] allow_missing_files: 0\r\nI20260915 09:33:44.859186 27152 patch_match_options.cc:70] num_threads: -1\r\nI20260915 09:33:44.859192 27152 patch_match.cc:129] --- PatchMatch::Run ---\r\nI20260915 09:33:45.194537 27152 cudacc.cc:52] Initialization: 0.0861s\r\nI20260915 09:33:46.228504 27152 cudacc.cc:52]  Sweep 1: 1.0338s\r\nI20260915 09:33:47.188391 27152 cudacc.cc:52]  Sweep 2: 0.9598s\r\nI20260915 09:33:48.168288 27152 cudacc.cc:52]  Sweep 3: 0.9798s\r\nI20260915 09:33:49.106705 27152 cudacc.cc:52]  Sweep 4: 0.9383s\r\nI20260915 09:33:49.106802 27152 cudacc.cc:52] Iteration 1: 3.9122s\r\nI20260915 09:33:50.087643 27152 cudacc.cc:52]  Sweep 1: 0.9808s\r\nI20260915 09:33:51.023535 27152 cudacc.cc:52]  Sweep 2: 0.9358s\r\nI20260915 09:33:52.003483 27152 cudacc.cc:52]  Sweep 3: 0.9799s\r\nI20260915 09:33:52.916208 27152 cudacc.cc:52]  Sweep 4: 0.9126s\r\nI20260915 09:33:52.916305 27152 cudacc.cc:52] Iteration 2: 3.8095s\r\nI20260915 09:33:53.893647 27152 cudacc.cc:52]  Sweep 1: 0.9773s\r\nI20260915 09:33:54.813980 27152 cudacc.cc:52]  Sweep 2: 0.9203s\r\nI20260915 09:33:55.785261 27152 cudacc.cc:52]  Sweep 3: 0.9712s\r\nI20260915 09:33:56.689449 27152 cudacc.cc:52]  Sweep 4: 0.9041s\r\nI20260915 09:33:56.689548 27152 cudacc.cc:52] Iteration 3: 3.7732s\r\nI20260915 09:33:57.669096 27152 cudacc.cc:52]  Sweep 1: 0.9795s\r\nI20260915 09:33:58.591024 27152 cudacc.cc:52]  Sweep 2: 0.9218s\r\nI20260915 09:33:59.564843 27152 cudacc.cc:52]  Sweep 3: 0.9737s\r\nI20260915 09:34:00.462219 27152 cudacc.cc:52]  Sweep 4: 0.8972s\r\nI20260915 09:34:00.462320 27152 cudacc.cc:52] Iteration 4: 3.7727s\r\nI20260915 09:34:01.439128 27152 cudacc.cc:52]  Sweep 1: 0.9767s\r\nI20260915 09:34:02.349750 27152 cudacc.cc:52]  Sweep 2: 0.9105s\r\nI20260915 09:34:03.325672 27152 cudacc.cc:52]  Sweep 3: 0.9758s\r\nI20260915 09:34:04.260630 27152 cudacc.cc:52]  Sweep 4: 0.9349s\r\nI20260915 09:34:04.260740 27152 cudacc.cc:52] Iteration 5: 3.7984s\r\nI20260915 09:34:04.260789 27152 cudacc.cc:52] Total: 19.1526s\r\nI20260915 09:34:04.260820 27152 patch_match.cc:525] \r\nWriting geometric output for IMG20260912150529.jpg\r\nI20260915 09:34:05.932329 20308 timer.cc:90] Elapsed time: 5.508 [minutes]\r\n",
+      "returncode": 0,
+      "runtime_phase_gate": {
+        "first_geometric_block_index": 8,
+        "first_photometric_block_index": 0,
+        "geometric_block_count": 8,
+        "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_smoke_patch_match.log",
+        "passed": true,
+        "phase_block_count": 16,
+        "phase_order_valid": true,
+        "photometric_block_count": 8
+      },
+      "runtime_seconds": 330.778518000001,
+      "started_at": "2026-09-15T02:28:35.394428+00:00",
+      "status": "completed",
+      "typed_counts": {
+        "geometric_depth_count": 8,
+        "geometric_normal_count": 8,
+        "photometric_depth_count": 8,
+        "photometric_normal_count": 8
+      }
+    },
+    "workspace_setup": {
+      "status": "complete",
+      "undistorter": {
+        "args": [
+          "C:\\Users\\LOQ\\AppData\\Local\\Programs\\COLMAP\\4.2.0\\bin\\colmap.exe",
+          "image_undistorter",
+          "--image_path",
+          "C:\\Assumption University\\CSX4213\\Project\\capture_v4\\derived\\mvs_images",
+          "--input_path",
+          "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v47_v43_fixed_pose_retriangulation",
+          "--output_path",
+          "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2_smoke",
+          "--output_type",
+          "COLMAP",
+          "--max_image_size",
+          "3072",
+          "--image_list_path",
+          "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_smoke_image_list.txt"
+        ],
+        "failure_category": null,
+        "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_smoke_image_undistorter.log",
+        "log_sha256": "0ad1c9f87213c6828c97708d8aed961260686172b24fd21e3661e0a289207fa6",
+        "output_tail": "I20260915 09:28:30.832763 10480 image.cc:377] === Reading reconstruction ===\r\nI20260915 09:28:30.969732 10480 image.cc:380] => Reconstruction with 372 images and 87964 points\r\nI20260915 09:28:30.980107 10480 undistorters.cc:167] === Image undistortion ===\r\nI20260915 09:28:30.984102 10480 undistorters.cc:209] Undistorting image [1/8]\r\nI20260915 09:28:31.382193 10480 undistorters.cc:209] Undistorting image [2/8]\r\nI20260915 09:28:31.394131 10480 undistorters.cc:209] Undistorting image [3/8]\r\nI20260915 09:28:31.394195 10480 undistorters.cc:209] Undistorting image [4/8]\r\nI20260915 09:28:31.395748 10480 undistorters.cc:209] Undistorting image [5/8]\r\nI20260915 09:28:31.395798 10480 undistorters.cc:209] Undistorting image [6/8]\r\nI20260915 09:28:31.395807 10480 undistorters.cc:209] Undistorting image [7/8]\r\nI20260915 09:28:31.395813 10480 undistorters.cc:209] Undistorting image [8/8]\r\nI20260915 09:28:31.395818 10480 undistorters.cc:223] Writing reconstruction...\r\nI20260915 09:28:31.640461 10480 undistorters.cc:228] Writing configuration...\r\nI20260915 09:28:31.641195 10480 undistorters.cc:232] Writing scripts...\r\nI20260915 09:28:31.641596 10480 timer.cc:90] Elapsed time: 0.011 [minutes]\r\n",
+        "returncode": 0,
+        "runtime_seconds": 1.741592500000479,
+        "started_at": "2026-09-15T02:28:29.985857+00:00",
+        "status": "completed"
+      }
+    }
+  },
+  "sparse_lineage": {
+    "accepted_sparse_gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+    "accepted_sparse_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+    "accepted_sparse_report_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v2.json",
+    "best_defensible": true,
+    "selection_report_sha256": "d48687a4e92272ae99184eaf903011a0526e1023bbf3de009c1c782bc12ad2ce",
+    "sparse_gate_passed": false,
+    "status": "best_defensible_sparse_candidate",
+    "strict_gate_failures": [
+      "mask_projection_per_ring",
+      "mask_projection_per_view"
+    ]
+  },
+  "stage": "bounded_3072_high_ring_dense_recovery",
+  "status": "recovery_exhausted_unresolved",
+  "tag": "upper_geo_g12_3072_v2",
+  "target_reference_count": 37,
+  "target_references": [
+    "IMG20260912150514.jpg",
+    "IMG20260912150514_01.jpg",
+    "IMG20260912150518.jpg",
+    "IMG20260912150520.jpg",
+    "IMG20260912150522.jpg",
+    "IMG20260912150525.jpg",
+    "IMG20260912150527.jpg",
+    "IMG20260912150529.jpg",
+    "IMG20260912150531.jpg",
+    "IMG20260912150533.jpg",
+    "IMG20260912150535.jpg",
+    "IMG20260912150537.jpg",
+    "IMG20260912150539.jpg",
+    "IMG20260912150541.jpg",
+    "IMG20260912150543.jpg",
+    "IMG20260912150545.jpg",
+    "IMG20260912150548.jpg",
+    "IMG20260912150551.jpg",
+    "IMG20260912150553.jpg",
+    "IMG20260912150557.jpg",
+    "IMG20260912150559.jpg",
+    "IMG20260912150601.jpg",
+    "IMG20260912150604.jpg",
+    "IMG20260912150605.jpg",
+    "IMG20260912150607.jpg",
+    "IMG20260912150609.jpg",
+    "IMG20260912150610.jpg",
+    "IMG20260912150612.jpg",
+    "IMG20260912150613.jpg",
+    "IMG20260912150615.jpg",
+    "IMG20260912150617.jpg",
+    "IMG20260912150619.jpg",
+    "IMG20260912150620.jpg",
+    "IMG20260912150622.jpg",
+    "IMG20260912150624.jpg",
+    "IMG20260912150627.jpg",
+    "IMG20260912150627_01.jpg"
+  ],
+  "workspace_setup": {
+    "status": "complete",
+    "undistorter": {
+      "args": [
+        "C:\\Users\\LOQ\\AppData\\Local\\Programs\\COLMAP\\4.2.0\\bin\\colmap.exe",
+        "image_undistorter",
+        "--image_path",
+        "C:\\Assumption University\\CSX4213\\Project\\capture_v4\\derived\\mvs_images",
+        "--input_path",
+        "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v47_v43_fixed_pose_retriangulation",
+        "--output_path",
+        "D:\\Side Projects\\CSX4213_V4_Dense_Work\\upper_geo_g12_3072_v2",
+        "--output_type",
+        "COLMAP",
+        "--max_image_size",
+        "3072",
+        "--image_list_path",
+        "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_image_list.txt"
+      ],
+      "failure_category": null,
+      "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_image_undistorter.log",
+      "log_sha256": "2fd6e3d9627d1aa2aba788ebcfcaa012c9f6d7f40226e9a47fc1e40525c1ec47",
+      "output_tail": "I20260915 09:34:06.297465 15920 image.cc:377] === Reading reconstruction ===\r\nI20260915 09:34:06.493450 15920 image.cc:380] => Reconstruction with 372 images and 87964 points\r\nI20260915 09:34:06.503253 15920 undistorters.cc:167] === Image undistortion ===\r\nI20260915 09:34:06.506998 15920 undistorters.cc:209] Undistorting image [1/37]\r\nI20260915 09:34:07.146534 15920 undistorters.cc:209] Undistorting image [2/37]\r\nI20260915 09:34:07.270855 15920 undistorters.cc:209] Undistorting image [3/37]\r\nI20260915 09:34:07.270936 15920 undistorters.cc:209] Undistorting image [4/37]\r\nI20260915 09:34:07.270950 15920 undistorters.cc:209] Undistorting image [5/37]\r\nI20260915 09:34:07.270960 15920 undistorters.cc:209] Undistorting image [6/37]\r\nI20260915 09:34:07.270970 15920 undistorters.cc:209] Undistorting image [7/37]\r\nI20260915 09:34:07.270979 15920 undistorters.cc:209] Undistorting image [8/37]\r\nI20260915 09:34:07.270988 15920 undistorters.cc:209] Undistorting image [9/37]\r\nI20260915 09:34:07.270997 15920 undistorters.cc:209] Undistorting image [10/37]\r\nI20260915 09:34:07.271007 15920 undistorters.cc:209] Undistorting image [11/37]\r\nI20260915 09:34:07.361211 15920 undistorters.cc:209] Undistorting image [12/37]\r\nI20260915 09:34:07.361319 15920 undistorters.cc:209] Undistorting image [13/37]\r\nI20260915 09:34:07.361336 15920 undistorters.cc:209] Undistorting image [14/37]\r\nI20260915 09:34:07.361347 15920 undistorters.cc:209] Undistorting image [15/37]\r\nI20260915 09:34:07.361358 15920 undistorters.cc:209] Undistorting image [16/37]\r\nI20260915 09:34:07.361368 15920 undistorters.cc:209] Undistorting image [17/37]\r\nI20260915 09:34:07.361377 15920 undistorters.cc:209] Undistorting image [18/37]\r\nI20260915 09:34:07.361389 15920 undistorters.cc:209] Undistorting image [19/37]\r\nI20260915 09:34:07.361400 15920 undistorters.cc:209] Undistorting image [20/37]\r\nI20260915 09:34:07.361410 15920 undistorters.cc:209] Undistorting image [21/37]\r\nI20260915 09:34:07.686201 15920 undistorters.cc:209] Undistorting image [22/37]\r\nI20260915 09:34:07.686278 15920 undistorters.cc:209] Undistorting image [23/37]\r\nI20260915 09:34:07.686293 15920 undistorters.cc:209] Undistorting image [24/37]\r\nI20260915 09:34:07.686302 15920 undistorters.cc:209] Undistorting image [25/37]\r\nI20260915 09:34:07.686312 15920 undistorters.cc:209] Undistorting image [26/37]\r\nI20260915 09:34:07.695273 15920 undistorters.cc:209] Undistorting image [27/37]\r\nI20260915 09:34:07.873279 15920 undistorters.cc:209] Undistorting image [28/37]\r\nI20260915 09:34:07.886333 15920 undistorters.cc:209] Undistorting image [29/37]\r\nI20260915 09:34:07.886430 15920 undistorters.cc:209] Undistorting image [30/37]\r\nI20260915 09:34:07.886448 15920 undistorters.cc:209] Undistorting image [31/37]\r\nI20260915 09:34:07.898358 15920 undistorters.cc:209] Undistorting image [32/37]\r\nI20260915 09:34:07.907411 15920 undistorters.cc:209] Undistorting image [33/37]\r\nI20260915 09:34:07.907494 15920 undistorters.cc:209] Undistorting image [34/37]\r\nI20260915 09:34:07.907513 15920 undistorters.cc:209] Undistorting image [35/37]\r\nI20260915 09:34:07.907528 15920 undistorters.cc:209] Undistorting image [36/37]\r\nI20260915 09:34:07.907541 15920 undistorters.cc:209] Undistorting image [37/37]\r\nI20260915 09:34:07.907554 15920 undistorters.cc:223] Writing reconstruction...\r\nI20260915 09:34:08.201799 15920 undistorters.cc:228] Writing configuration...\r\nI20260915 09:34:08.203209 15920 undistorters.cc:232] Writing scripts...\r\nI20260915 09:34:08.203770 15920 timer.cc:90] Elapsed time: 0.028 [minutes]\r\n",
+      "returncode": 0,
+      "runtime_seconds": 2.0657918000015343,
+      "started_at": "2026-09-15T02:34:06.224135+00:00",
+      "status": "completed"
+    }
+  }
+}

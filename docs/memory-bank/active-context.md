@@ -125,21 +125,27 @@ The preserved raw Poisson has 644 connected components and only about 66.57% of 
 
 ## Current execution boundary
 
-Sparse repair is no longer the active loop. The corrected v51 joint-BA harness selected all 372 images and configured 404,258 residuals, but the single permitted joint BA terminated `NO_CONVERGENCE`; that result remains negative evidence. The project has therefore frozen v47 as the current hash-bound **best-defensible** sparse source, with its strict mask-projection failures preserved rather than relabeled as passed.
+Sparse repair is no longer the active loop. The corrected v51 joint-BA harness selected all 372 images and configured 404,258 residuals, but the single permitted joint BA terminated `NO_CONVERGENCE`; that result remains negative evidence. The project has therefore frozen v47 as the current hash-bound **best-defensible** sparse source, with its strict mask-projection failures preserved rather than relabeled as passed. The V2 sparse selector additionally fixes the v50b provenance defect: the historical zero-residual failed BA is not eligible for downstream CV, while v47 remains selected.
 
-The active downstream order is now:
+The current work is split at a strict **pre-Blender handoff**:
 
 ```text
-1. finish the fresh v47-derived CUDA dense run with exactly one PatchMatch reference write per registered image
-2. select the strongest genuine dense cloud by measured depth support, projected coverage, contamination and anatomy; preserve any failed strict targets
-3. run bounded Poisson reconstruction and select the strongest connected scan-derived mesh
-4. perform only scripted scan-preserving Blender cleanup/LOD0/UV/detail/AO
-5. build automated project-image-derived brass appearance; no invented/reference-assisted texture or geometry
-6. save final .blend and GLB, fresh factory-empty GLB re-import, >=8-view verification
-7. run relevant tests/hashes/docs and complete focused commit/push + remote verification
+Codex/local executor now:
+1. recover the post-restart state from persisted logs/workspaces/reports; do not assume the interrupted 3072px geo_g12 attempt finished
+2. complete or resume the bounded 3072px high-ring recovery only when persisted evidence shows it is incomplete
+3. compare/freeze the strongest genuine dense cloud with every strict failure preserved
+4. finish the bounded Poisson ladder and freeze the strongest connected scan-derived Poisson input
+5. verify sparse/dense/Poisson lineage, hashes, relevant tests/compile checks, pre-Blender docs, and focused pre-Blender commit/push + origin/main synchronization
+6. STOP before Blender and hand off the verified Poisson + evidence package
+
+ChatGPT + Blender MCP later:
+7. scripted scan-preserving Blender cleanup/LOD0/UV/normal-detail/AO
+8. project-derived appearance/material work
+9. final .blend/GLB, fresh factory-empty re-import, >=8-view verification
+10. final docs/hash integrity/final focused publication
 ```
 
-Historical true3 depth/normal maps remain diagnostic-only and must not be reused as final evidence for the v47-derived reconstruction. No further sparse candidate churn is justified unless a new concrete causal defect blocks the fresh dense route itself.
+Historical true3 depth/normal maps remain diagnostic-only and must not be reused as final evidence for the v47-derived reconstruction. No further sparse candidate churn is justified unless a new concrete causal defect blocks the fresh dense route itself. The pre-Blender executor must not touch Blender/GLB artifacts or Blender-specific finalization while completing this handoff.
 
 ## 2026-09-15 downstream best-defensible artifact checkpoint
 
@@ -180,6 +186,8 @@ strict gate, `finial:resolved_narrow_top_element`, and
 `no_major_vessel_scale_holes=false` remain explicit limitations. No missing
 anatomy was fabricated or hidden by Blender.
 
+That Blender/GLB continuation is now **preserved historical/diagnostic evidence, not the active pre-Blender execution target**. The current Codex/local executor must leave it untouched. After the Poisson handoff is frozen, ChatGPT + Blender MCP will independently perform the final Blender cleanup and all subsequent finalization from the selected pre-Blender source.
+
 ## Protected boundaries
 
 Do not modify or publish:
@@ -195,7 +203,7 @@ Historical V4 sparse/dense/Poisson/Blender/GLB artifacts remain rollback/evidenc
 
 ## Completion standard
 
-Mark V4 complete when the strongest defensible full CV result has been carried through fresh compatible dense reconstruction, Poisson, scan-preserving Blender, final `.blend`/GLB, fresh factory-empty GLB re-import, relevant tests/hash integrity, current docs, and verified focused Git publication. Strict research-grade failures may remain only after the bounded repair ladder is exhausted; those checks must remain explicitly failed and be reported as residual limitations rather than being weakened or hidden.
+For the current Codex/local phase, completion means a strongest-defensible dense result and strongest connected scan-derived Poisson are frozen with correct provenance, hashes, relevant pre-Blender verification/docs, and verified focused Git publication, then handed off without touching Blender. Overall V4 completion occurs only after ChatGPT + Blender MCP performs the scan-preserving Blender/final-asset stages, fresh GLB re-import, final verification/docs, and final publication. Strict research-grade failures may remain only after the bounded repair ladder is exhausted; those checks must remain explicitly failed and be reported as residual limitations rather than being weakened or hidden.
 
 ## 2026-09-14 sparse architecture-switch checkpoint
 
@@ -233,3 +241,52 @@ Measured acceptance evidence is 372/372 registered views in exactly one model, 5
 The canonical SQLite snapshot was restored from a verified byte-identical backup after an exploratory probe accidentally opened the canonical path; the final raw hash is again exactly `658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a`, the creation logical digest is unchanged, and no `-wal`/`-shm` sidecars exist. The direct-open policy remains forbidden: future audit, dense-preparation, or verification commands must create and open only disposable working copies from `canonical_sqlite_snapshot_v3.json`.
 
 Sparse milestone publication is now authorized by the passing gate. Dense work may begin only from this accepted sparse hash, in a fresh compatible workspace; all historical dense maps remain diagnostic-only.
+
+## 2026-09-15 pre-Blender V4 handoff freeze
+
+The post-restart state was audited before any rerun. The earlier
+`upper_geo_g12_3072_v1_smoke` and broad high-ring smoke were incomplete (their
+geometric phases stopped at 3/8 and 4/15), so a fresh versioned run was
+justified. `scripts/run_v4_upper_dense_recovery.py --tag
+upper_geo_g12_3072_v2 --smoke-count 8` then completed on CUDA GPU 0 in its
+separate workspace with 8/8 smoke and 37/37 production photometric and
+geometric depth/normal maps. The production runtime phase gate passed, the
+one-reference-one-write config contains 37 unique geo_g12 references, and
+mask-aware StereoFusion produced 646,666 points (fused SHA-256
+`5bce4a2adb4b53900a0e1881e79978c83d77e1f2300e01097d7795ac0a82c980`).
+
+The high-ring post-fusion evidence remains a failure, not a promotion: the
+candidate finial/lid radius ratio is `1.0922269378` versus the full dense
+baseline `1.0177845894`, `resolved_narrow_top_element=false`, and the
+lid-tier connected-support and no-major-hole checks remain failed. The run is
+therefore recorded as `recovery_exhausted_unresolved` comparison evidence.
+
+The authoritative sparse V2 report is
+`reconstruction/v4/repair/sparse_v1/best_defensible_sparse_v2.json` (SHA-256
+`5121e2fd1834ede45423b8a302613fd85996a4e8889fe98690d4cecc7d6580f5`; source
+model SHA-256 `b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e`;
+selection SHA-256 `d48687a4e92272ae99184eaf903011a0526e1023bbf3de009c1c782bc12ad2ce`).
+The complete 372-view 2000px dense winner is rebound, without changing its
+fused bytes, to the current sparse V2 lineage in
+`reconstruction/v4/reports/dense_best_defensible_v2_with_upper_recovery.json`
+(report SHA-256
+`d6fad39ac7f30476eb89a2a4b2b49acb4b2eb2aa5549178bfcc4d900ed76fcf4`; fused
+SHA-256 `4a596f562d8bace90cac39deb38479f21a01eb9c09e02eb86fa26876e38c7d73`).
+Historical V1-named dense reports remain unchanged evidence. Sparse V2 is
+rehash-validated for its source model, selection report, sparse gate, and
+track-provenance file whenever it enters dense lineage.
+
+The bounded Poisson attempts were compared from that dense lineage. Depth 13 /
+trim 10 remains rejected (1,337 components, dominant fraction `0.6847469289`,
+second `0.2619244906`); trim 5 is the strongest connected candidate (2,158
+components, dominant `0.9925222754`, second `0.0007196492`, mesh SHA-256
+`33fe1f6e7f696d8fd46d4a7c324d0e4f5fd9ff6a2ad4fb08e9f851a0437d6941`). The
+versioned handoff is
+`reconstruction/v4/reports/raw_poisson_best_defensible_v2_handoff.json`
+(report SHA-256
+`4e1251e216b34783b87ff1e58664df8c0f306e44383431e4c9644443f8a9655a`). It is
+`best_defensible_poisson_handoff` with `handoff_allowed=true` and strict
+`promotion_allowed=false`; `finial:resolved_narrow_top_element`,
+`no_major_vessel_scale_holes=false`, and semantic detached-component proof
+remain explicit failures/limitations. No Blender or GLB artifact was opened,
+modified, regenerated, cleaned, exported, or re-imported in this phase.

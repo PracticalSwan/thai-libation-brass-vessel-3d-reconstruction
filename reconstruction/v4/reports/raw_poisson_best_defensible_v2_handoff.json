@@ -1,0 +1,271 @@
+{
+  "anatomy_evidence": {
+    "failures": [
+      "finial:resolved_narrow_top_element"
+    ],
+    "finial_shape": {
+      "finial_supported_radius_median": 0.27346163530143563,
+      "finial_to_lid_radius_ratio": 1.0083513910339492,
+      "lid_supported_radius_median": 0.27119676506920065,
+      "max_finial_to_lid_radius_ratio": 0.85,
+      "resolved_narrow_top_element": false
+    },
+    "no_major_vessel_scale_holes": false,
+    "passed": false,
+    "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\previews\\raw_poisson_best_defensible_v1_depth13_trim5_evidence.json",
+    "region_count": 8,
+    "region_names": [
+      "base",
+      "bowl_interior",
+      "continuous_neck",
+      "finial",
+      "globe_shoulder",
+      "lid_tiers",
+      "pedestal_transitions",
+      "rim"
+    ],
+    "sha256": "a158a48681b3b908d1a30642636694901ab188ef889e35cb280d4d956572d9c8",
+    "status": "rendered"
+  },
+  "best_defensible": true,
+  "blender_input": {
+    "allowed": true,
+    "mesh_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\mesh\\poisson_best_defensible_v1_depth13_trim5.ply",
+    "mesh_sha256": "33fe1f6e7f696d8fd46d4a7c324d0e4f5fd9ff6a2ad4fb08e9f851a0437d6941",
+    "required_downstream_constraints": [
+      "scan-preserving scripted cleanup only",
+      "no manual anatomy completion",
+      "carry strict failures into final documentation"
+    ],
+    "strict_promotion_remains_false": true
+  },
+  "blocking_reasons": [
+    "dense_strict_postfusion_gate_failed",
+    "finial:resolved_narrow_top_element",
+    "raw_anatomy_region_gate_failed",
+    "raw_no_major_vessel_scale_holes_failed",
+    "unsupported_large_detached_component_not_proven"
+  ],
+  "dense_selection": {
+    "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_best_defensible_v2_with_upper_recovery.json",
+    "selected_fused_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\dense\\fused_dense_best_defensible_v1_full_geometric_phase.ply",
+    "selected_fused_sha256": "4a596f562d8bace90cac39deb38479f21a01eb9c09e02eb86fa26876e38c7d73",
+    "sha256": "d6fad39ac7f30476eb89a2a4b2b49acb4b2eb2aa5549178bfcc4d900ed76fcf4",
+    "sparse_lineage": {
+      "accepted_sparse_gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+      "accepted_sparse_model_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+      "accepted_sparse_report_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v2.json",
+      "best_defensible": true,
+      "selection_report_sha256": "d48687a4e92272ae99184eaf903011a0526e1023bbf3de009c1c782bc12ad2ce",
+      "sparse_gate_passed": false,
+      "status": "best_defensible_sparse_candidate",
+      "strict_gate_failures": [
+        "mask_projection_per_ring",
+        "mask_projection_per_view"
+      ]
+    },
+    "status": "best_defensible_dense_candidate",
+    "strict_failure_reasons": [
+      "post-fusion evidence report status is not passed",
+      "post-fusion anatomy region measurements are missing or failed: finial:resolved_narrow_top_element"
+    ],
+    "strict_gate_passed": false
+  },
+  "handoff_allowed": true,
+  "handoff_policy": "completion-first bounded CV continuation: hand the strongest genuine connected scan-derived Poisson mesh to Blender while keeping strict anatomy and detached-component limitations explicit",
+  "poisson": {
+    "algorithm": "COLMAP Poisson",
+    "attempts": [
+      {
+        "bounding_box_extents": [
+          0.9204172492027283,
+          2.14541095495224,
+          1.050616443157196
+        ],
+        "component_count": 2158,
+        "component_gate": {
+          "checks": {
+            "component_evidence_available": true,
+            "dominant_face_fraction": true,
+            "second_largest_face_fraction": true
+          },
+          "component_count": 2158,
+          "dominant_face_fraction": 0.9925222753844022,
+          "passed": true,
+          "second_largest_face_fraction": 0.0007196491700194399,
+          "thresholds": {
+            "dominant_min": 0.95,
+            "second_max": 0.02
+          }
+        },
+        "dominant_face_fraction": 0.9925222753844022,
+        "face_count": 9899268,
+        "finite_xyz_fraction": 1.0,
+        "has_color": true,
+        "largest_non_dominant_face_count": 7124,
+        "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\mesh\\poisson_best_defensible_v1_depth13_trim5.ply",
+        "rank": 3,
+        "second_largest_face_fraction": 0.0007196491700194399,
+        "sha256": "33fe1f6e7f696d8fd46d4a7c324d0e4f5fd9ff6a2ad4fb08e9f851a0437d6941",
+        "vertex_count": 4952940
+      },
+      {
+        "bounding_box_extents": [
+          0.8715643286705017,
+          1.9291507481248118,
+          0.933337390422821
+        ],
+        "component_count": 1337,
+        "component_gate": {
+          "checks": {
+            "component_evidence_available": true,
+            "dominant_face_fraction": false,
+            "second_largest_face_fraction": false
+          },
+          "component_count": 1337,
+          "dominant_face_fraction": 0.6847469288627744,
+          "passed": false,
+          "second_largest_face_fraction": 0.26192449055946454,
+          "thresholds": {
+            "dominant_min": 0.95,
+            "second_max": 0.02
+          }
+        },
+        "dominant_face_fraction": 0.6847469288627744,
+        "face_count": 4581202,
+        "finite_xyz_fraction": 1.0,
+        "has_color": true,
+        "largest_non_dominant_face_count": 1199929,
+        "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\mesh\\poisson_best_defensible_v1_depth13_trim10.ply",
+        "rank": 3,
+        "second_largest_face_fraction": 0.26192449055946454,
+        "sha256": "bc67f807534364ca8f78f65022578f56fd6c7786542fc9781fd0dbd6fdc0f5e7",
+        "vertex_count": 2367193
+      }
+    ],
+    "component_gate": {
+      "checks": {
+        "component_evidence_available": true,
+        "dominant_face_fraction": true,
+        "second_largest_face_fraction": true
+      },
+      "component_count": 2158,
+      "dominant_face_fraction": 0.9925222753844022,
+      "passed": true,
+      "second_largest_face_fraction": 0.0007196491700194399,
+      "thresholds": {
+        "dominant_min": 0.95,
+        "second_max": 0.02
+      }
+    },
+    "detached_component_assessment": {
+      "fraction_proxy_passed": true,
+      "largest_non_dominant_face_count": 7124,
+      "largest_non_dominant_face_fraction": 0.0007196491700194399,
+      "limitation": "Persisted Poisson evidence contains connected-component sizes but no semantic/spatial provenance proving that every detached component is supported anatomy.",
+      "passed": false,
+      "semantic_detachedness_proven": false,
+      "status": "bounded_face_fraction_proxy",
+      "threshold_fraction": 0.02
+    },
+    "generation_provenance": {
+      "algorithm": "COLMAP poisson_mesher",
+      "exact_historical_invocation_persisted": false,
+      "limitation": "The historical trim-5 shell did not retain its exact invoking command; the bytes, COLMAP algorithm identity, metrics, and anatomy evidence are hash-bound.",
+      "status": "artifact_and_report_recovered"
+    },
+    "historical_diagnostic": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\raw_poisson_best_defensible_v1_depth13_trim5_diagnostic.json",
+      "sha256": "587603fecba16e7db53546d82f922dd24716d3a964aef6f36b8cbcf7a68ed64a"
+    },
+    "input_dense_fused_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\dense\\fused_dense_best_defensible_v1_full_geometric_phase.ply",
+    "input_dense_fused_sha256": "4a596f562d8bace90cac39deb38479f21a01eb9c09e02eb86fa26876e38c7d73",
+    "selected": {
+      "bounding_box_extents": [
+        0.9204172492027283,
+        2.14541095495224,
+        1.050616443157196
+      ],
+      "component_count": 2158,
+      "component_gate": {
+        "checks": {
+          "component_evidence_available": true,
+          "dominant_face_fraction": true,
+          "second_largest_face_fraction": true
+        },
+        "component_count": 2158,
+        "dominant_face_fraction": 0.9925222753844022,
+        "passed": true,
+        "second_largest_face_fraction": 0.0007196491700194399,
+        "thresholds": {
+          "dominant_min": 0.95,
+          "second_max": 0.02
+        }
+      },
+      "dominant_face_fraction": 0.9925222753844022,
+      "face_count": 9899268,
+      "finite_xyz_fraction": 1.0,
+      "has_color": true,
+      "largest_non_dominant_face_count": 7124,
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\mesh\\poisson_best_defensible_v1_depth13_trim5.ply",
+      "rank": 3,
+      "second_largest_face_fraction": 0.0007196491700194399,
+      "sha256": "33fe1f6e7f696d8fd46d4a7c324d0e4f5fd9ff6a2ad4fb08e9f851a0437d6941",
+      "vertex_count": 4952940
+    }
+  },
+  "promotion_allowed": false,
+  "schema_version": 2,
+  "status": "best_defensible_poisson_handoff",
+  "strict_gate_passed": false,
+  "upper_ring_recovery": {
+    "candidate_finial_shape": {
+      "finial_supported_radius_median": 0.2856149498962187,
+      "finial_to_lid_radius_ratio": 1.0922269378171634,
+      "lid_supported_radius_median": 0.2614978078338058,
+      "max_finial_to_lid_radius_ratio": 0.85,
+      "resolved_narrow_top_element": false
+    },
+    "decision": {
+      "baseline_finial_to_lid_radius_ratio": 1.0177845894451105,
+      "candidate_finial_to_lid_radius_ratio": 1.0922269378171634,
+      "candidate_resolved_narrow_top_element": false,
+      "promote_upper_recovery": false,
+      "ratio_improved": false,
+      "status": "recovery_exhausted_unresolved"
+    },
+    "fused_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\dense\\fused_upper_geo_g12_3072_v2.ply",
+    "fused_sha256": "5bce4a2adb4b53900a0e1881e79978c83d77e1f2300e01097d7795ac0a82c980",
+    "map_counts": {
+      "geometric_depth_count": 37,
+      "geometric_normal_count": 37,
+      "photometric_depth_count": 37,
+      "photometric_normal_count": 37
+    },
+    "patch_match_log": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch_match.log",
+    "patch_match_log_sha256": "2615bd3e0c5a068707c2e0bfad78d8904f733d0608d5304abcba371b9f6b33fa",
+    "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_upper_geo_g12_3072_v2_run.json",
+    "postfusion_anatomy_failures": [
+      "lid_tiers:connected_support_fraction",
+      "finial:resolved_narrow_top_element"
+    ],
+    "postfusion_report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_upper_geo_g12_3072_v2_postfusion.json",
+    "postfusion_report_sha256": "56ac217e1f0d75ac751d46f2c8e54c792cce470eb6106c238d5307c773f2cc61",
+    "postfusion_status": "failed",
+    "ring": "geo_g12",
+    "runtime_phase_gate": {
+      "first_geometric_block_index": 37,
+      "first_photometric_block_index": 0,
+      "geometric_block_count": 37,
+      "log_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\work\\dense_upper_geo_g12_3072_v2_patch_match.log",
+      "passed": true,
+      "phase_block_count": 74,
+      "phase_order_valid": true,
+      "photometric_block_count": 37
+    },
+    "sha256": "a6d44bf1736aa5b4bc76d8928dcef2423f25146757cc4e7cad2bfe86a287b5a2",
+    "status": "recovery_exhausted_unresolved",
+    "tag": "upper_geo_g12_3072_v2",
+    "target_reference_count": 37
+  }
+}

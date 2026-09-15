@@ -45,7 +45,7 @@ from v4_repair import (
 )
 
 
-DEFAULT_ACCEPTED_REPORT = RECONSTRUCTION_V4_ROOT / "repair" / "sparse_v1" / "accepted_sparse_v4_rotation_consensus_v1.json"
+DEFAULT_ACCEPTED_REPORT = RECONSTRUCTION_V4_ROOT / "repair" / "sparse_v1" / "best_defensible_sparse_v2.json"
 DEFAULT_GRAPH_REPORT = RECONSTRUCTION_V4_ROOT / "repair" / "sparse_v1" / "corrected_sparse_graph_v3.json"
 DEFAULT_SNAPSHOT_MANIFEST = RECONSTRUCTION_V4_ROOT / "repair" / "sparse_v1" / "canonical_sqlite_snapshot_v3.json"
 DEFAULT_TAG = "repair_rotation_consensus_v1"

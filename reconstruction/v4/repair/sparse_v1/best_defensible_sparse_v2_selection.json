@@ -1,0 +1,260 @@
+{
+  "candidate_comparison": [
+    {
+      "defensible_for_downstream_cv": true,
+      "exact_372_model": true,
+      "fraction_track_length_ge3": 0.9991354033531313,
+      "gate_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\repair_sparse_gate_v43_match_conflict_free_outlier_cap15_direct_calibrated_global.json",
+      "gate_sha256": "83ab2550969074a30bcf4625b73c1580362a2724d8acf038c7e9d90c3990f84c",
+      "mask_p10": {
+        "iou": 0.5849977221621191,
+        "precision": 0.7598000150364634,
+        "recall": 0.6752898659947428
+      },
+      "mean_reprojection_error": 1.1178618909469722,
+      "mean_track_length": 7.277986617547553,
+      "model_directory": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v43_match_conflict_free_outlier_cap15_direct_calibrated_global\\0",
+      "model_directory_sha256": "7160a30d86f3b22a4a751cc34b4b55cc506ecb64570595b0f008a599cf34833b",
+      "name": "v43_direct_calibrated_global",
+      "observations": 387218,
+      "points3D": 53204,
+      "pose_and_trajectory_clean": true,
+      "pose_failure_count": 0,
+      "process_evidence": null,
+      "process_valid": true,
+      "provenance_clean": true,
+      "provenance_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\glomap_v43_match_conflict_free_outlier_cap15_direct_calibrated_global_track_provenance.json",
+      "provenance_sha256": "e45d4616bb2cab59f1909858ea84340a72c0a5cf94e92049d0dbb4a6a8a52935",
+      "registered_images": 372,
+      "ring_graph_connected": true,
+      "shared_track_failure_count": 0,
+      "strict_gate_failures": [
+        "mask_projection_per_ring",
+        "mask_projection_per_view"
+      ],
+      "strict_gate_passed": false,
+      "trajectory_failure_count": 0,
+      "translation_positive_scale_fraction": 0.9973856209150327
+    },
+    {
+      "defensible_for_downstream_cv": true,
+      "exact_372_model": true,
+      "fraction_track_length_ge3": 0.8121958983220409,
+      "gate_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\repair_sparse_gate_v47_v43_fixed_pose_retriangulation.json",
+      "gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+      "mask_p10": {
+        "iou": 0.6382695600199962,
+        "precision": 0.7731776635896503,
+        "recall": 0.7717095983749321
+      },
+      "mean_reprojection_error": 1.2028210037836289,
+      "mean_track_length": 5.25195534536856,
+      "model_directory": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v47_v43_fixed_pose_retriangulation",
+      "model_directory_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+      "name": "v47_v43_fixed_pose_retriangulation",
+      "observations": 461983,
+      "points3D": 87964,
+      "pose_and_trajectory_clean": true,
+      "pose_failure_count": 0,
+      "process_evidence": null,
+      "process_valid": true,
+      "provenance_clean": true,
+      "provenance_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\track_provenance_v47_v43_fixed_pose_retriangulation.json",
+      "provenance_sha256": "9bcfbfd6710b5f3fa6fd029e778fcf313b4f682ef896dd8fd166268e74b39af1",
+      "registered_images": 372,
+      "ring_graph_connected": true,
+      "shared_track_failure_count": 0,
+      "strict_gate_failures": [
+        "mask_projection_per_ring",
+        "mask_projection_per_view"
+      ],
+      "strict_gate_passed": false,
+      "trajectory_failure_count": 0,
+      "translation_positive_scale_fraction": 0.9973856209150327
+    },
+    {
+      "defensible_for_downstream_cv": false,
+      "exact_372_model": true,
+      "fraction_track_length_ge3": 0.8043463672154617,
+      "gate_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\v49_sparse_gate.json",
+      "gate_sha256": "54f6dc4094f9fb5361b49e8754bc99eb207cd7cd36403ca98e472dc7f1c2e8fe",
+      "mask_p10": {
+        "iou": 0.7470678737737937,
+        "precision": 0.9250441289638344,
+        "recall": 0.8136607486085087
+      },
+      "mean_reprojection_error": 1.1903220398051686,
+      "mean_track_length": 5.125950697924123,
+      "model_directory": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v49_v26_pose_exact_graph_retriangulation",
+      "model_directory_sha256": "0ce7187706ea8d8061ecd32c5f40028cc2b1548f1181744c6184ebb38a59c79f",
+      "name": "v49_v26_pose_exact_graph_retriangulation",
+      "observations": 458301,
+      "points3D": 89408,
+      "pose_and_trajectory_clean": false,
+      "pose_failure_count": 15,
+      "process_evidence": null,
+      "process_valid": true,
+      "provenance_clean": true,
+      "provenance_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\track_provenance_v49_v26_pose_exact_graph_retriangulation.json",
+      "provenance_sha256": "cb8e24942dcc719f8b930d19df5d4af13db671763eb5c28c349de13aaa1ab323",
+      "registered_images": 372,
+      "ring_graph_connected": true,
+      "shared_track_failure_count": 11,
+      "strict_gate_failures": [
+        "same_ring_pose_consistency",
+        "shared_track_continuity"
+      ],
+      "strict_gate_passed": false,
+      "trajectory_failure_count": 0,
+      "translation_positive_scale_fraction": 0.9921568627450981
+    },
+    {
+      "defensible_for_downstream_cv": false,
+      "exact_372_model": true,
+      "fraction_track_length_ge3": 0.1615128500859574,
+      "gate_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\v50b_sparse_gate.json",
+      "gate_sha256": "eafe497bcd844be282655514d798f06d423c887645c04c3a2710240eedb49c34",
+      "mask_p10": {
+        "iou": 0.05770328514743431,
+        "precision": 0.058497310337985685,
+        "recall": 0.17575984275836415
+      },
+      "mean_reprojection_error": 1.1742118778042312,
+      "mean_track_length": 2.199301460187583,
+      "model_directory": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v50b_solved_center_native_diagnostic\\joint_ba",
+      "model_directory_sha256": "0fb2deadf574c4f25f68ba68da9ac1103197d4fac0014629f28ce4fce070a14f",
+      "name": "v50b_solved_center_native_ba_diagnostic",
+      "observations": 202129,
+      "points3D": 91906,
+      "pose_and_trajectory_clean": true,
+      "pose_failure_count": 0,
+      "process_evidence": {
+        "bundle_adjustment_num_residuals": 0,
+        "bundle_adjustment_termination_type": "BundleAdjustmentTerminationType.FAILURE",
+        "full_sparse_candidate_eligible": false,
+        "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\v50b_solved_center_native_diagnostic.json",
+        "promotion_allowed": false,
+        "reasons": [
+          "bundle_adjustment_not_successfully_executed",
+          "promotion_not_allowed",
+          "full_sparse_candidate_not_eligible"
+        ],
+        "sha256": "d31473a49692c37ac88c344812d869f158dc35ef20e2a27140697207ee89ebde",
+        "valid": false
+      },
+      "process_valid": false,
+      "provenance_clean": true,
+      "provenance_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\track_provenance_v50b_solved_center_native_ba.json",
+      "provenance_sha256": "60e07f88258f86342332ae1d400260962e80dac5b12024be9ddc9f2097904b41",
+      "registered_images": 372,
+      "ring_graph_connected": true,
+      "shared_track_failure_count": 462,
+      "strict_gate_failures": [
+        "independent_multiview_track_distribution",
+        "mask_projection_per_ring",
+        "mask_projection_per_view",
+        "shared_track_continuity"
+      ],
+      "strict_gate_passed": false,
+      "trajectory_failure_count": 0,
+      "translation_positive_scale_fraction": 0.9810457516339869
+    }
+  ],
+  "defensible_candidate_names": [
+    "v43_direct_calibrated_global",
+    "v47_v43_fixed_pose_retriangulation"
+  ],
+  "dense_source_policy": "Downstream dense is explicitly sourced from this best-defensible record; strict sparse failures remain visible and are not relabeled as a strict sparse pass.",
+  "final_corrected_ba_attempt": {
+    "bundle_adjustment_configuration": {
+      "anchor_image_id": 1,
+      "configured_residual_count": 404258,
+      "explicitly_selected_image_count": 372,
+      "gauge_fixed": true,
+      "intrinsics_fixed": true,
+      "registered_image_count": 372
+    },
+    "bundle_adjustment_summary": {
+      "failure_policy": "fail closed; no BA model or sparse gate result is promoted",
+      "model_written": false,
+      "num_residuals": 404258,
+      "termination_type": "NO_CONVERGENCE"
+    },
+    "canonical_shm_present": false,
+    "canonical_snapshot_hash_stable": true,
+    "canonical_snapshot_sha256_after": "658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a",
+    "canonical_snapshot_sha256_before": "658aad6db7d14185ff6678d9d7fa0ed75dab3cac3d71a1f32a3d49111e73f49a",
+    "canonical_wal_present": false,
+    "dense_allowed_from_this_attempt": false,
+    "exact_graph": {
+      "pair_count": 1530,
+      "pair_ids_sha256": "c01f5037307ff9589efb78baef5ed6dd43c95bb2bbd719af8687e69691c2adf2",
+      "raw_match_rows": 959765,
+      "two_view_geometry_inlier_rows": 959765
+    },
+    "independent_lineage": {
+      "audit_manifest_sha256": "47055ecc2cdc8d9d4f2eda546b6bb71e7e31f85ac7817c7da43465fca512e358",
+      "canonical_logical_sha256": "ec4d9a4c9a548903d71704401e50e666408a933dfdb19cc02cbe8e93fd860f97",
+      "classification_sha256": "cdf051b0946201732b9775be8e4cff09609e9e1839a819d3690e7c201c2bf9f7",
+      "raw_audit_sha256": "39c46fb6e164655b590a776db4d1ec422b4edfb178e3ef492f908b7d5c9ad5a0"
+    },
+    "method": "v6-center initialization -> calibrated translation solve with v43 rotations -> native pyCOLMAP 4.2 exact-graph retriangulation -> one configured joint Ceres BA",
+    "native_retriangulation_model": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v51_solved_center_native_joint_ba\\native_retriangulation",
+    "native_retriangulation_model_sha256": "9dc48dbd128e21a73518eac5ef654ca14124e8f259690b3522520bf3bbe99d10",
+    "native_retriangulation_summary": {
+      "fraction_track_length_ge3": 0.1615128500859574,
+      "mean_reprojection_error": 1.1742118778042312,
+      "mean_track_length": 2.199301460187583,
+      "observations": 202129,
+      "points3D": 91906,
+      "registered_images": 372
+    },
+    "next_step": "Freeze the best defensible previously measured sparse candidate; do not treat this native pre-BA model as the final sparse source.",
+    "output_root": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v51_solved_center_native_joint_ba",
+    "promotion_allowed": false,
+    "runner": "C:\\Assumption University\\CSX4213\\Project\\scripts\\run_v4_v50_solved_center_native_diagnostic.py",
+    "schema_version": 1,
+    "status": "failed_closed"
+  },
+  "method": "compare hash-bound versioned sparse candidates; require exact 372-view one-model lineage, zero independent pose/trajectory failures, genuine non-pair-local tracks, connected ring graph, and any candidate-specific optimization/promotion evidence to be valid; rank remaining candidates by mask IoU/precision/recall p10, multiview-track fraction, then reprojection",
+  "schema_version": 2,
+  "selected_candidate": {
+    "defensible_for_downstream_cv": true,
+    "exact_372_model": true,
+    "fraction_track_length_ge3": 0.8121958983220409,
+    "gate_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\repair_sparse_gate_v47_v43_fixed_pose_retriangulation.json",
+    "gate_sha256": "95c776949a5af2c90c7ea8f5f3a3f541e95d0f1ce526488716832a316fc5fd53",
+    "mask_p10": {
+      "iou": 0.6382695600199962,
+      "precision": 0.7731776635896503,
+      "recall": 0.7717095983749321
+    },
+    "mean_reprojection_error": 1.2028210037836289,
+    "mean_track_length": 5.25195534536856,
+    "model_directory": "D:\\Side Projects\\CSX4213_V4_Dense_Work\\workspace_v4repair_sparse_v1\\sparse_candidate_v47_v43_fixed_pose_retriangulation",
+    "model_directory_sha256": "b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e",
+    "name": "v47_v43_fixed_pose_retriangulation",
+    "observations": 461983,
+    "points3D": 87964,
+    "pose_and_trajectory_clean": true,
+    "pose_failure_count": 0,
+    "process_evidence": null,
+    "process_valid": true,
+    "provenance_clean": true,
+    "provenance_path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\track_provenance_v47_v43_fixed_pose_retriangulation.json",
+    "provenance_sha256": "9bcfbfd6710b5f3fa6fd029e778fcf313b4f682ef896dd8fd166268e74b39af1",
+    "registered_images": 372,
+    "ring_graph_connected": true,
+    "shared_track_failure_count": 0,
+    "strict_gate_failures": [
+      "mask_projection_per_ring",
+      "mask_projection_per_view"
+    ],
+    "strict_gate_passed": false,
+    "trajectory_failure_count": 0,
+    "translation_positive_scale_fraction": 0.9973856209150327
+  },
+  "status": "best_defensible_sparse_selection",
+  "strict_gate_was_not_weakened": true,
+  "supersedes_selection": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\repair\\sparse_v1\\best_defensible_sparse_v1_selection.json"
+}
