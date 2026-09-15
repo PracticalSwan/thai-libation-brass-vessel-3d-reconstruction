@@ -290,3 +290,15 @@ versioned handoff is
 `no_major_vessel_scale_holes=false`, and semantic detached-component proof
 remain explicit failures/limitations. No Blender or GLB artifact was opened,
 modified, regenerated, cleaned, exported, or re-imported in this phase.
+
+## 2026-09-15 final Blender + GLB completion
+
+The post-Blender owner completed the frozen Poisson handoff without changing the reconstruction geometry. The historical apparent duplicate was traced to `SM_V4_Scan_CleanHigh` being visible directly over `SM_V4_Vessel_LOD0` in the authoring viewport; the GLB itself contained only one mesh. The final master preserves `SM_V4_Poisson_Raw` (4,952,940 vertices / 9,899,268 faces) and `SM_V4_Scan_CleanHigh` (597,208 / 1,187,912) as hidden rollback/source objects, while final LOD0 remains exactly 151,547 vertices / 294,713 faces with unchanged mesh geometry and transforms.
+
+The accepted versioned authoring directory is `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v6/`. The final master SHA-256 is `622a676a480a9b2a59c546de255146b1bd665ab54320bb04dff9eb8e03e3a273` and the final GLB SHA-256 is `15ca1f76b773b5124a2b1c4abf16c63ca2380a1dbf019c84ac8214a5063e43de`. The inherited UV layout had only ~0.0001723 summed face UV area; a deterministic signed-dominant-normal six-way box atlas replaced only the LOD0 UV coordinates, increasing summed UV area to ~0.716584 without changing vertices, faces, or transforms. Fresh 2048px AO and CleanHigh-to-LOD0 tangent normal maps were then baked from scan geometry.
+
+Final appearance is fail-closed and project-derived. BaseColor and Roughness come from the frozen 158-image uncoated appearance statistics (`bae0f78aa119a14930c2045d0b27ecbe40bf6ea98b6a6da4e9b7c7d2d196a77e`), with source-manifest SHA-256 `1b075d2d6e250ad562b2c4dd2158cc691cbe6b20cd2b49766ac08b9c63bc4a5c`. `photographic_projection_verified=false`; coated geometry vertex colors are not exported, and no manual/reference-assisted color or texture matching is claimed.
+
+A fresh factory-empty Blender 5.2 GLB import passed one-final-mesh, finite position/normal, UV, BaseColor/Roughness/Normal/AO connection, material, bounds, no-nonmesh-export and no-vertex-color checks. Eight final authoring and eight fresh-reimport views were rendered. Their mean 8-bit pixel MAE is ~0.000637 and minimum PSNR is ~78.56 dB, establishing material/shape export equivalence. All eight reimport views were also visually inspected: duplicate z-fighting is gone and the material is stable, but the scan-derived upper neck/lid/finial remains broken/open/noisy in multiple views. This matches the frozen dense/Poisson failures and was deliberately not repaired with fabricated geometry. The result is therefore complete as the strongest defensible genuine CV artifact, not a strict anatomy pass.
+
+The verified v6 bytes were promoted to `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend` and `.glb` only after the final checks. Previous canonical hashes and Git rollback commit `625168138471dce0c8f01eda284dab7acd9be55f` are recorded in the v6 `canonical_promotion_report.json`.

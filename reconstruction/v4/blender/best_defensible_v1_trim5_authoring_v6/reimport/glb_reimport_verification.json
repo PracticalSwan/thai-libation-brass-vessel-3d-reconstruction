@@ -1,0 +1,250 @@
+{
+  "checks": {
+    "material_present": true,
+    "mesh_nonzero": true,
+    "no_nonmesh_exported": true,
+    "normals_ok": true,
+    "only_final_exported": true,
+    "passed": true,
+    "positions_ok": true,
+    "required_base_color_connected": true,
+    "required_normal_maps_connected": true,
+    "required_occlusion_connected": true,
+    "required_roughness_connected": true,
+    "required_textures_present": true,
+    "sane_bounds": true,
+    "textures_resolve": true,
+    "uvs_present": true,
+    "vertex_colors_not_exported": true
+  },
+  "finite_normals": true,
+  "finite_positions": true,
+  "glb": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5_FINAL.glb",
+  "glb_sha256": "15ca1f76b773b5124a2b1c4abf16c63ca2380a1dbf019c84ac8214a5063e43de",
+  "import_operator": "{'FINISHED'}",
+  "imported_nonmesh_objects_before_qa": [],
+  "materials": [
+    {
+      "base_color_images": [
+        "T_V4_BestDefensible_BaseColor"
+      ],
+      "images": [
+        {
+          "colorspace": "sRGB",
+          "filepath": "",
+          "name": "T_V4_BestDefensible_BaseColor",
+          "packed": true,
+          "resolved": true
+        },
+        {
+          "colorspace": "Non-Color",
+          "filepath": "",
+          "name": "T_V4_BestDefensible_Roughness",
+          "packed": true,
+          "resolved": true
+        },
+        {
+          "colorspace": "Non-Color",
+          "filepath": "",
+          "name": "T_V4_BestDefensible_Normal",
+          "packed": true,
+          "resolved": true
+        },
+        {
+          "colorspace": "Non-Color",
+          "filepath": "",
+          "name": "T_V4_BestDefensible_AO",
+          "packed": true,
+          "resolved": true
+        }
+      ],
+      "name": "MAT_V4_Brass",
+      "normal_map_images": [
+        "T_V4_BestDefensible_Normal"
+      ],
+      "occlusion_images": [
+        "T_V4_BestDefensible_AO"
+      ],
+      "roughness_images": [
+        "T_V4_BestDefensible_Roughness"
+      ]
+    }
+  ],
+  "mesh_name": "SM_V4_Vessel_LOD0",
+  "mesh_object_count": 1,
+  "objects": [
+    {
+      "bounds_world": [
+        0.9204720258712769,
+        1.0502078533172607,
+        2.145545482635498
+      ],
+      "color_attributes": [],
+      "faces": 294713,
+      "finite_normals": true,
+      "finite_positions": true,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "materials": [
+        {
+          "base_color_images": [
+            "T_V4_BestDefensible_BaseColor"
+          ],
+          "images": [
+            {
+              "colorspace": "sRGB",
+              "filepath": "",
+              "name": "T_V4_BestDefensible_BaseColor",
+              "packed": true,
+              "resolved": true
+            },
+            {
+              "colorspace": "Non-Color",
+              "filepath": "",
+              "name": "T_V4_BestDefensible_Roughness",
+              "packed": true,
+              "resolved": true
+            },
+            {
+              "colorspace": "Non-Color",
+              "filepath": "",
+              "name": "T_V4_BestDefensible_Normal",
+              "packed": true,
+              "resolved": true
+            },
+            {
+              "colorspace": "Non-Color",
+              "filepath": "",
+              "name": "T_V4_BestDefensible_AO",
+              "packed": true,
+              "resolved": true
+            }
+          ],
+          "name": "MAT_V4_Brass",
+          "normal_map_images": [
+            "T_V4_BestDefensible_Normal"
+          ],
+          "occlusion_images": [
+            "T_V4_BestDefensible_AO"
+          ],
+          "roughness_images": [
+            "T_V4_BestDefensible_Roughness"
+          ]
+        }
+      ],
+      "name": "SM_V4_Vessel_LOD0",
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "type": "MESH",
+      "uv_layers": 1,
+      "verts": 271682
+    }
+  ],
+  "observed_base_color_images": [
+    "T_V4_BestDefensible_BaseColor"
+  ],
+  "observed_image_names": [
+    "T_V4_BestDefensible_AO",
+    "T_V4_BestDefensible_BaseColor",
+    "T_V4_BestDefensible_Normal",
+    "T_V4_BestDefensible_Roughness"
+  ],
+  "observed_normal_image_names": [
+    "T_V4_BestDefensible_Normal"
+  ],
+  "observed_occlusion_images": [
+    "T_V4_BestDefensible_AO"
+  ],
+  "observed_roughness_images": [
+    "T_V4_BestDefensible_Roughness"
+  ],
+  "renders": {
+    "view_00_000.png": "cd1b08efe0881ae98e1c9ad8d148290ce34b633b0dba7b4853670312da60b769",
+    "view_01_045.png": "5e3ba906c1180694becbe38355cfc17e9cd33d89565e0dce0f7bbd7e9afc2410",
+    "view_02_090.png": "34c9693c398df77af5b083d7f92774103724e514f15e38537f26edbf704d84b5",
+    "view_03_135.png": "bd3427f94d761215c210747644e73a644d719128a210d62a627fc602714f0f9a",
+    "view_04_180.png": "aa9b0542de0b76a5756823ef374d9b35b0e47b9eda5e6ca0429b63435801a80e",
+    "view_05_225.png": "1fb71e2531d0471ac1878a4e904385ee488ea3c863a245378bd33335d61fe479",
+    "view_06_270.png": "610fa6e6e05508a6870b28a72a85d7dba60da4f798dadeb248835f3eda7ddc34",
+    "view_07_315.png": "587f8da8ea889667517ef95d7fd953bc2fad36af3905d0c716d32b52cffe7b43"
+  },
+  "required_base_color_images": [
+    "T_V4_BestDefensible_BaseColor"
+  ],
+  "required_images": [
+    "T_V4_BestDefensible_AO",
+    "T_V4_BestDefensible_BaseColor",
+    "T_V4_BestDefensible_Normal",
+    "T_V4_BestDefensible_Roughness"
+  ],
+  "required_normal_images": [
+    "T_V4_BestDefensible_Normal"
+  ],
+  "required_occlusion_images": [
+    "T_V4_BestDefensible_AO"
+  ],
+  "required_roughness_images": [
+    "T_V4_BestDefensible_Roughness"
+  ],
+  "schema_version": 2,
+  "stage": "fresh_factory_empty_glb_reimport",
+  "status": "passed",
+  "texture_refs": [
+    {
+      "colorspace": "sRGB",
+      "filepath": "",
+      "name": "T_V4_BestDefensible_BaseColor",
+      "packed": true,
+      "resolved": true
+    },
+    {
+      "colorspace": "Non-Color",
+      "filepath": "",
+      "name": "T_V4_BestDefensible_Roughness",
+      "packed": true,
+      "resolved": true
+    },
+    {
+      "colorspace": "Non-Color",
+      "filepath": "",
+      "name": "T_V4_BestDefensible_Normal",
+      "packed": true,
+      "resolved": true
+    },
+    {
+      "colorspace": "Non-Color",
+      "filepath": "",
+      "name": "T_V4_BestDefensible_AO",
+      "packed": true,
+      "resolved": true
+    }
+  ],
+  "world_bounds": [
+    [
+      -0.4602360129356384,
+      -0.5251039266586304,
+      0.0
+    ],
+    [
+      0.4602360129356384,
+      0.5251039266586304,
+      2.145545482635498
+    ]
+  ],
+  "world_dims": [
+    0.9204720258712769,
+    1.0502078533172607,
+    2.145545482635498
+  ]
+}

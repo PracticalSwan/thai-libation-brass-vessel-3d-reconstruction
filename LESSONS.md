@@ -50,6 +50,8 @@ Read this after `AGENTS.md` when starting substantive work. Keep process lessons
 - If the geometry capture uses removable matte spray/marker spots, final brass appearance must come from a separate uncoated reference set rather than from the coated geometry images.
 - A working final asset requires both an editable Blender master and a cleanly re-importable exported GLB.
 - When execution is deliberately split at the Poisson/Blender boundary, the pre-Blender executor must freeze a hash-bound Poisson + evidence handoff and stop. Do not let a pre-Blender recovery task opportunistically mutate historical Blender/GLB artifacts; the designated Blender owner must start from the frozen handoff and independently verify the final scene/export.
+- A technically present UV layer is not enough for production bakes. Inspect actual UV face-area utilization and the baked AO/normal images; highly fragmented scan UVs can pass presence checks while wasting almost the entire texture. A deterministic geometry-derived atlas is a valid technical repair when it changes UVs only and preserves mesh geometry/transforms.
+- Apparent duplicate geometry in Blender must be separated from export duplication. Overlapping preserved CleanHigh and LOD0 objects can create viewport z-fighting even when a fresh GLB contains exactly one mesh; diagnose scene visibility and fresh-import object counts before deleting source meshes.
 
 ## V3 rejection lesson — 2026-09-10
 

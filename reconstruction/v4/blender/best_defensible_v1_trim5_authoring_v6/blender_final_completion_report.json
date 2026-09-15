@@ -1,0 +1,373 @@
+{
+  "ao_bake": {
+    "geometry_creation": false,
+    "method": "cycles_ambient_occlusion_bake_on_final_lod0_uv",
+    "packed": true,
+    "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_AO.png",
+    "sha256": "cdd8746620c101683c929c88188d6431f934035b69b12537fd98c23d0a45c3a6",
+    "size": 2048,
+    "source_object": "SM_V4_Vessel_LOD0",
+    "status": "passed",
+    "target_object": "SM_V4_Vessel_LOD0"
+  },
+  "appearance": {
+    "ao_texture": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_AO.png",
+      "sha256": "cdd8746620c101683c929c88188d6431f934035b69b12537fd98c23d0a45c3a6"
+    },
+    "appearance_stats": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v2\\appearance_stats.json",
+    "appearance_stats_sha256": "bae0f78aa119a14930c2045d0b27ecbe40bf6ea98b6a6da4e9b7c7d2d196a77e",
+    "artist_authored_color_or_texture_used": false,
+    "base_color_linear_median": [
+      0.23074007632738597,
+      0.14412847455130065,
+      0.1046164892921616
+    ],
+    "base_color_srgb_median": [
+      0.5176470875740051,
+      0.4156862795352936,
+      0.35686275362968445
+    ],
+    "base_color_texture": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_BaseColor.png",
+      "sha256": "ce10adc43dee637ea612ba7ab08140490cf1f1662eb0b2a1ef22b269cbb76506"
+    },
+    "coated_geometry_vertex_colors_used_for_final_appearance": false,
+    "copied_appearance_stats": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\appearance_stats.json",
+    "copied_appearance_stats_sha256": "bae0f78aa119a14930c2045d0b27ecbe40bf6ea98b6a6da4e9b7c7d2d196a77e",
+    "image_count": 158,
+    "manual_reference_matching_used": false,
+    "metallic": 0.85,
+    "metallic_provenance": "fixed brass-conductor prior; no photographic projection claimed",
+    "photographic_projection_verified": false,
+    "roughness": 0.3079020830375555,
+    "roughness_provenance": "0.25 + 0.5 * selected-pixel luminance standard deviation, clamped to [0.20, 0.60]",
+    "roughness_texture": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_Roughness.png",
+      "sha256": "643c1566a24ba80eed68cc724b447a9aceb1b5c0198b97591768037357c36c6c"
+    },
+    "selected_pixel_count": 1072329,
+    "source_manifest": "C:\\Assumption University\\CSX4213\\Project\\capture_v4\\manifests\\source_manifest.csv",
+    "source_manifest_sha256": "1b075d2d6e250ad562b2c4dd2158cc691cbe6b20cd2b49766ac08b9c63bc4a5c",
+    "source_role": "appearance_reference"
+  },
+  "blend": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5_FINAL.blend",
+  "blend_sha256": "622a676a480a9b2a59c546de255146b1bd665ab54320bb04dff9eb8e03e3a273",
+  "clean_high_preserved": true,
+  "duplicate_appearance_root_cause": "historical authoring viewport showed overlapping CleanHigh and LOD0; final source/work collections are hidden and only LOD0 is exported",
+  "final_object": "SM_V4_Vessel_LOD0",
+  "geometry_after": {
+    "SM_V4_Poisson_Raw": {
+      "dimensions": [
+        0.9204172492027283,
+        1.0506165027618408,
+        2.1454110145568848
+      ],
+      "edges": 14849031,
+      "faces": 9899268,
+      "finite_vertices": true,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4952940
+    },
+    "SM_V4_Scan_CleanHigh": {
+      "dimensions": [
+        0.9202675819396973,
+        1.0502078533172607,
+        2.1454110145568848
+      ],
+      "edges": 1781943,
+      "faces": 1187912,
+      "finite_vertices": true,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 597208
+    },
+    "SM_V4_Vessel_LOD0": {
+      "dimensions": [
+        0.9204720258712769,
+        1.0502078533172607,
+        2.145545482635498
+      ],
+      "edges": 445011,
+      "faces": 294713,
+      "finite_vertices": true,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 151547
+    }
+  },
+  "geometry_before": {
+    "SM_V4_Poisson_Raw": {
+      "dimensions": [
+        0.9204172492027283,
+        1.0506165027618408,
+        2.1454110145568848
+      ],
+      "edges": 14849031,
+      "faces": 9899268,
+      "finite_vertices": true,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 4952940
+    },
+    "SM_V4_Scan_CleanHigh": {
+      "dimensions": [
+        0.9202675819396973,
+        1.0502078533172607,
+        2.1454110145568848
+      ],
+      "edges": 1781943,
+      "faces": 1187912,
+      "finite_vertices": true,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 597208
+    },
+    "SM_V4_Vessel_LOD0": {
+      "dimensions": [
+        0.9204720258712769,
+        1.0502078533172607,
+        2.145545482635498
+      ],
+      "edges": 445011,
+      "faces": 294713,
+      "finite_vertices": true,
+      "location": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "rotation_euler": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "vertices": 151547
+    }
+  },
+  "geometry_unchanged": true,
+  "glb": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5_FINAL.glb",
+  "glb_sha256": "15ca1f76b773b5124a2b1c4abf16c63ca2380a1dbf019c84ac8214a5063e43de",
+  "input_blend": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v4\\Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5.blend",
+  "input_blend_sha256": "e94fc932c5368b18e3d4fa22127968543465dec9913840944eaf4adabf0df3c9",
+  "known_limitations": [
+    "dense strict post-fusion anatomy gate remains authoritative",
+    "finial/narrow-top anatomy is unresolved and is not manually repaired",
+    "no_major_vessel_scale_holes remains false in the reconstruction evidence",
+    "semantic support for all detached Poisson components is not proven",
+    "photographic_projection_verified=false; BaseColor/Roughness use deterministic 158-image uncoated-project statistics instead",
+    "normal/detail is baked only from the preserved scan-derived clean-high mesh"
+  ],
+  "material_links": [
+    "N_V4_BestDefensible_NormalMap.Normal->Principled BSDF.Normal",
+    "Principled BSDF.BSDF->Material Output.Surface",
+    "T_V4_BestDefensible_AO.Color->N_V4_glTF_Material_Output.Occlusion",
+    "T_V4_BestDefensible_BaseColor.Color->Principled BSDF.Base Color",
+    "T_V4_BestDefensible_Normal.Color->N_V4_BestDefensible_NormalMap.Color",
+    "T_V4_BestDefensible_Roughness.Color->Principled BSDF.Roughness"
+  ],
+  "materials": [
+    "MAT_V4_Brass"
+  ],
+  "normal_detail_bake": {
+    "cage_extrusion": 0.004291090965270996,
+    "cage_extrusion_relative_to_lod_max_dimension": 0.002,
+    "geometry_creation": false,
+    "max_ray_distance": 0.02145545482635498,
+    "max_ray_distance_relative_to_lod_max_dimension": 0.01,
+    "packed": true,
+    "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_Normal.png",
+    "sha256": "608a8c55dfb74afcd6582228237b5a3887bdbf0e9c1a8975511521d578dd5984",
+    "size": 2048,
+    "source_object": "SM_V4_Scan_CleanHigh",
+    "space": "TANGENT",
+    "status": "passed",
+    "target_object": "SM_V4_Vessel_LOD0"
+  },
+  "packed_images": [
+    "T_V4_BestDefensible_AO",
+    "T_V4_BestDefensible_BaseColor",
+    "T_V4_BestDefensible_Normal",
+    "T_V4_BestDefensible_Roughness"
+  ],
+  "poisson_handoff": {
+    "decision": null,
+    "report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\raw_poisson_best_defensible_v2_handoff.json",
+    "report_sha256": "4e1251e216b34783b87ff1e58664df8c0f306e44383431e4c9644443f8a9655a",
+    "status": "best_defensible_poisson_handoff"
+  },
+  "principled_metallic": 0.8500000238418579,
+  "raw_preserved": true,
+  "required_packed_images_present": true,
+  "schema_version": 3,
+  "stage": "final_scan_preserving_blender_cleanup_uv_project_appearance_ao_detail_bake_export",
+  "status": "complete_with_documented_anatomy_limitation",
+  "textures": {
+    "T_V4_BestDefensible_AO": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_AO.png",
+      "sha256": "cdd8746620c101683c929c88188d6431f934035b69b12537fd98c23d0a45c3a6"
+    },
+    "T_V4_BestDefensible_BaseColor": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_BaseColor.png",
+      "sha256": "ce10adc43dee637ea612ba7ab08140490cf1f1662eb0b2a1ef22b269cbb76506"
+    },
+    "T_V4_BestDefensible_Normal": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_Normal.png",
+      "sha256": "608a8c55dfb74afcd6582228237b5a3887bdbf0e9c1a8975511521d578dd5984"
+    },
+    "T_V4_BestDefensible_Roughness": {
+      "path": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\blender\\best_defensible_v1_trim5_authoring_v6\\T_V4_BestDefensible_Roughness.png",
+      "sha256": "643c1566a24ba80eed68cc724b447a9aceb1b5c0198b97591768037357c36c6c"
+    }
+  },
+  "upper_recovery": {
+    "decision": {
+      "baseline_finial_to_lid_radius_ratio": 1.0177845894451105,
+      "candidate_finial_to_lid_radius_ratio": 1.0922269378171634,
+      "candidate_resolved_narrow_top_element": false,
+      "promote_upper_recovery": false,
+      "ratio_improved": false,
+      "status": "recovery_exhausted_unresolved"
+    },
+    "report": "C:\\Assumption University\\CSX4213\\Project\\reconstruction\\v4\\reports\\dense_upper_geo_g12_3072_v2_run.json",
+    "report_sha256": "a6d44bf1736aa5b4bc76d8928dcef2423f25146757cc4e7cad2bfe86a287b5a2",
+    "status": "recovery_exhausted_unresolved"
+  },
+  "uv_atlas": {
+    "bounds": [
+      0.01026984304189682,
+      0.014999999664723873,
+      0.9897467494010925,
+      0.9850000143051147
+    ],
+    "geometry_creation": false,
+    "max_face_uv_area": 0.00032634940686371294,
+    "mean_face_uv_area": 2.431463859053113e-06,
+    "method": "signed_dominant_normal_six_way_box_atlas",
+    "name": "UVMap",
+    "occupied_bins_128": 8753,
+    "occupied_fraction_128": 0.53424072265625,
+    "padding_per_cell": 0.03,
+    "polygon_count": 294713,
+    "present": true,
+    "uv_area_sum": 0.7165840082931201,
+    "zero_area_faces": 11
+  },
+  "uv_before": {
+    "bounds": [
+      0.0024738330394029617,
+      0.0024738614447414875,
+      0.9958916306495667,
+      0.9925783276557922
+    ],
+    "max_face_uv_area": 9.650349085555537e-08,
+    "mean_face_uv_area": 5.847436882716433e-10,
+    "name": "UVMap",
+    "occupied_bins_128": 15926,
+    "occupied_fraction_128": 0.9720458984375,
+    "polygon_count": 294713,
+    "present": true,
+    "uv_area_sum": 0.00017233156660160083,
+    "zero_area_faces": 866
+  },
+  "uv_final": {
+    "bounds": [
+      0.01026984304189682,
+      0.014999999664723873,
+      0.9897467494010925,
+      0.9850000143051147
+    ],
+    "max_face_uv_area": 0.00032634940686371294,
+    "mean_face_uv_area": 2.431463859053113e-06,
+    "name": "UVMap",
+    "occupied_bins_128": 8753,
+    "occupied_fraction_128": 0.53424072265625,
+    "polygon_count": 294713,
+    "present": true,
+    "uv_area_sum": 0.7165840082931201,
+    "zero_area_faces": 11
+  },
+  "uv_layers": 1,
+  "vertex_color_export": "NONE",
+  "visibility": {
+    "clean_high_hidden_render": true,
+    "clean_high_hidden_viewport": true,
+    "lod0_visible_render": true,
+    "lod0_visible_viewport": true,
+    "raw_hidden_render": true,
+    "raw_hidden_viewport": true,
+    "source_collection_hidden_viewport": true,
+    "work_collection_hidden_viewport": true
+  }
+}

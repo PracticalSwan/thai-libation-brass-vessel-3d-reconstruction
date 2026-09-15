@@ -2,23 +2,24 @@
 
 Computer Vision coursework project for reconstructing a real Thai brass libation vessel from photographs.
 
-## Current status — V4 repair, pre-Blender handoff frozen; Blender pending
+## Current status — V4 best-defensible reconstruction complete
 
-V1 and V2 were rejected by the professor. V3 was also visually rejected after a full 266-view learned-feature photometric reconstruction was inspected in Blender. Historical evidence remains preserved where required, but the active target is the repaired V4 pipeline.
+V1 and V2 were rejected by the professor, and V3 was visually rejected after Blender inspection. V4 is now completed end-to-end under the project’s completion-first policy: every final artifact remains derived from the project capture/reconstruction evidence, strict failures remain explicit, and Blender was not used to fabricate missing anatomy.
 
-The final V4 source is immutable `CSX4213_Project_V4_Images/`: **688 JPEGs = 158 uncoated appearance/reference + 107 empty-board/background + 423 coated/marked object-bearing geometry images**. Historical photographs in `IMG20260826122949/` remain preserved as evidence/reference only and are not V4 reconstruction input. The previous V4 Blender/GLB continuation is preserved as diagnostic history, but final V4 completion is being re-established from the strongest defensible repaired sparse -> fresh dense -> Poisson lineage.
+The immutable V4 source is `CSX4213_Project_V4_Images/`: **688 JPEGs = 158 uncoated appearance/reference + 107 empty-board/background + 423 coated/marked object-bearing geometry images**. Historical photographs in `IMG20260826122949/` remain preserved as historical evidence and are not V4 reconstruction input.
 
-## Current verified repair state
+## Final verified V4 state
 
-- The repaired sparse pipeline has frozen v47 as the best-defensible 372-view source in `best_defensible_sparse_v2.json` (model SHA-256 `b1c4f142…23922e`; strict mask-projection failures remain explicit). The V2 selector also prevents the historical zero-residual failed v50b BA diagnostic from qualifying for downstream CV.
-- The fresh v47-derived 2000px CUDA PatchMatch run remains the selected complete dense candidate: 372/372 geometric depth and normal maps, one-reference-one-write provenance, and fused-cloud SHA-256 `4a596f56…c7d73`. Its strict dense/anatomy gate still fails, so it is explicitly best-defensible rather than a strict pass.
-- The bounded post-restart 3072px `geo_g12` recovery completed in a separate workspace with 37/37 photometric and geometric maps and fused-cloud SHA-256 `5bce4a2a…c980`. It did not improve the baseline (finial/lid ratio `1.0922269` vs `1.0177846`, unresolved), so it is retained as comparison-only evidence.
-- The strongest scan-derived Poisson remains the depth-13/trim-5 shell: 2,158 components, dominant face fraction `0.9925223`, second-largest `0.0007196`, mesh SHA-256 `33fe1f6e…d6941`. Its finial and major-hole anatomy gates remain failed. The versioned pre-Blender handoff is `reconstruction/v4/reports/raw_poisson_best_defensible_v2_handoff.json` and records `handoff_allowed=true` while strict `promotion_allowed=false`.
-- Existing Blender/GLB authoring outputs are preserved diagnostic evidence only for the current phase. They are not the active completion target and must not be modified by the pre-Blender executor.
+- Sparse: best-defensible 372-view v47 lineage in `best_defensible_sparse_v2.json`, source-model SHA-256 `b1c4f142…23922e`; strict mask-projection failures remain explicit.
+- Dense: selected 372-view/2000px CUDA geometric PatchMatch cloud SHA-256 `4a596f56…c7d73`, with exact one-reference-one-write provenance. The bounded 3072px `geo_g12` recovery completed 37/37 views but did not improve the unresolved upper anatomy, so it remains comparison evidence.
+- Poisson: selected depth-13/trim-5 scan-derived shell SHA-256 `33fe1f6e…d6941`, dominant face fraction `0.9925223`, second-largest `0.0007196`. The narrow-finial and major-hole anatomy checks remain failed and are not hidden.
+- Blender: versioned final master `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v6/Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5_FINAL.blend`, SHA-256 `622a676a…3a273`. Raw Poisson and CleanHigh remain preserved and hidden; LOD0 remains `151,547` vertices / `294,713` faces with unchanged geometry/transforms.
+- Appearance: reproducible BaseColor/Roughness from the complete **158-image uncoated project set**, scan-derived 2048px AO and CleanHigh→LOD0 tangent normal/detail, metallic brass response, and `photographic_projection_verified=false`. No coated-scan vertex colors, hand-picked reference, or artist-authored texture are used in the final export.
+- Export: versioned GLB SHA-256 `15ca1f76…e43de`. A fresh factory-empty Blender 5.2 re-import contains exactly one final mesh, valid UV/material/textures/normals, no camera/light/debug/source objects, and no exported vertex colors.
+- Visual QA: eight authoring views and eight fresh-reimport views are materially equivalent (mean 8-bit pixel MAE ~`0.000637`, minimum PSNR ~`78.56 dB`). No duplicate/z-fighting remains. The scan-derived upper neck/lid/finial defects remain visible and documented; strict anatomical acceptance is **not** claimed.
+- Canonical outputs `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend` and `.glb` are promoted from the verified v6 bytes. The previous canonical hashes and rollback Git commit are recorded in `canonical_promotion_report.json`.
 
-## Current execution ownership
-
-The work is deliberately split at the Poisson handoff. **Codex/local engineering completes everything before Blender**: restart recovery, bounded high-ring dense recovery, dense/Poisson selection, lineage, relevant tests/hashes/docs, and the focused pre-Blender Git milestone. It then stops. **ChatGPT using Blender MCP owns Blender cleanup and everything after Blender**: LOD0/UV/normal-detail/AO, project-derived appearance/material, final `.blend`/GLB, fresh re-import, visual verification, final docs, and final publication.
+The final deliverable is therefore the strongest defensible genuine CV reconstruction recoverable from the captured evidence, not a manually repaired or reference-assisted idealization.
 
 ## V4 target
 

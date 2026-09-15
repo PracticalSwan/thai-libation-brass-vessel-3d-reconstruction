@@ -5,4 +5,5 @@
 *.txt text eol=lf
 reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend filter=lfs diff=lfs merge=lfs -text
 reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v4/*.blend filter=lfs diff=lfs merge=lfs -text
+reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v6/*.blend filter=lfs diff=lfs merge=lfs -text
 reconstruction/v4/mesh/poisson_best_defensible_v1_depth13_trim5.ply filter=lfs diff=lfs merge=lfs -text

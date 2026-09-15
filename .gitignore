@@ -39,3 +39,4 @@ reconstruction/v4/work/v4_runtime/
 reconstruction/v4/dense/*/
 reconstruction/v4/dense/*.ply.vis
 reconstruction/v4/blender/*.blend1
+reconstruction/v4/blender/**/*.blend1
