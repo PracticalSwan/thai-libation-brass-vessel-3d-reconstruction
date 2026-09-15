@@ -308,17 +308,17 @@ This task is **out of scope for the current Codex/local executor**. ChatGPT + Bl
 
 ## Task 12 — POST-BLENDER OWNER: ChatGPT + Blender MCP — Full verification, documentation and final publication
 
-- [ ] Run all relevant V4 repair tests, including sparse integrity, graph selection, dense provenance, depth/coverage/contamination, mesh continuity, appearance provenance and Blender/GLB gate tests.
-- [ ] At minimum run `py -3 -m pytest -q tests/test_v4_*.py tests/test_v4_repair.py -p no:cacheprovider` plus `tests/test_v4_appearance.py` if created.
-- [ ] Run directly affected shared-module tests if reusable helpers were changed.
-- [ ] Run `py -3 -m compileall -q v4_*.py scripts` for touched V4 Python paths as appropriate.
-- [ ] Recompute SHA-256 for accepted repaired sparse report/model evidence, dense cloud, raw Poisson, repaired `.blend`, `.glb`, and textures.
-- [ ] Verify every report points to the exact current artifact bytes.
-- [ ] Remove only task-created temporary residue that is neither accepted evidence nor needed for reproducibility; do not delete failed candidate reports needed for diagnosis.
-- [ ] Update `docs/memory-bank/active-context.md`, `docs/memory-bank/progress.md`, `LESSONS.md`, and any affected project documentation with measured final state.
-- [ ] Inspect final Git status/diff; stage only intended repair code/tests/docs/compact evidence/artifacts.
-- [ ] Create the final focused commit and push.
-- [ ] Verify `origin/main` equals the final local commit and verify Git LFS objects where applicable.
+- [x] Run all relevant V4 repair tests, including sparse integrity, graph selection, dense provenance, depth/coverage/contamination, mesh continuity, appearance provenance and Blender/GLB gate tests.
+- [x] Run `py -3 -m pytest -q tests/test_v4_*.py tests/test_v4_repair.py -p no:cacheprovider`: 106 passed in the final verification run; no separate `tests/test_v4_appearance.py` exists.
+- [x] No additional shared-module regression suite was required by the post-Blender changes; verification stayed scoped to V4 plus the final Blender/GLB gates.
+- [x] Compile the touched finalizer/verifier Python paths successfully with `py -3 -m compileall -q`.
+- [x] Recompute SHA-256 for accepted repaired sparse report/model evidence, dense cloud, raw Poisson, repaired `.blend`, `.glb`, textures and final reports in `final_hash_manifest.json`.
+- [x] Verify every final report points to the exact current artifact bytes, including refreshed eight-view render hashes.
+- [x] Remove only task-created temporary Blender audit/probe/contact-sheet residue; preserve failed reconstruction candidates and historical diagnostic evidence.
+- [x] Update `docs/memory-bank/active-context.md`, `docs/memory-bank/progress.md`, `LESSONS.md`, `README.md`, and the canonical V4 repair plan with measured final state.
+- [x] Inspect final Git status/diff and stage only intended finalization code/docs/curated evidence/artifacts; unrelated user-owned changes remain untouched.
+- [x] Create and push the focused final Blender/GLB milestone commit; Git LFS uploaded the 344 MB final Blender object successfully.
+- [x] Fetch and verify `origin/main` against the pushed local commit and run `git lfs fsck` successfully.
 
 ## Final completion report must include
 
