@@ -33,13 +33,12 @@ The public README and project report must describe the project, captured dataset
 
 ## Protected material
 
-- `CSX4213_Project_V4_Images/` is the immutable final V4 source set: 688 JPEGs = 158 uncoated appearance inputs, 107 empty-board/background, 423 coated/marked geometry images. Never rename, move, recompress, rotate, overwrite, or delete them.
-- `IMG20260826122949/` is historical raw evidence. Keep it immutable unless explicitly authorized otherwise.
-- `analysis/ml/checkpoints/` contains private checkpoints. Never publish them.
-- `preprocessing/` and existing analysis material are historical/reusable references; do not mix old derived images into V4 geometry.
+- `CSX4213_Project_V4_Images/` is the immutable final V4 source set: 688 JPEGs = 158 uncoated appearance inputs, 107 empty-board/background, and 423 coated/marked geometry images. Never rename, move, recompress, rotate, overwrite, or delete them.
+- `capture_v4/derived/mvs_images/`, `capture_v4/derived/masks/`, and `capture_v4/derived/feature_masks/` are the current V4 processed-image sets. They contain 372 files each and are versioned project data; regenerate them only through the V4 pipeline and never substitute pre-V4 imagery.
+- Pre-V4 raw images, preprocessing outputs, analysis products, private legacy checkpoints, and their obsolete pipeline code/docs have been removed from the active repository. Do not restore or reuse them.
 - `.codegraph/` is local code-intelligence state. Preserve it and keep its database/log/socket artifacts out of commits.
 - Preserve unrelated `.ai-bridge/`, unrelated modified files, and user-owned work.
-- Preserve historical V4 sparse/dense/Poisson/Blender/GLB artifacts and hashes while repair candidates are evaluated. Do not overwrite them merely to simplify paths.
+- Preserve current V4 sparse/dense/Poisson/Blender/GLB artifacts and hashes while repair candidates are evaluated. Do not overwrite them merely to simplify paths.
 
 ## Capture boundary and real-media facts
 
@@ -167,7 +166,7 @@ The user explicitly authorizes focused commit and push to the configured upstrea
 
 For the current ownership split, milestone 3 is the **Codex/local pre-Blender completion point**. Milestone 4 belongs to the later ChatGPT + Blender MCP phase.
 
-Before each milestone commit: inspect root/branch/status/upstream/intended diff, stage only milestone-related files, exclude secrets/private weights/source media/temp/log/scratch/unrelated files, use a descriptive commit, push normally, and verify the remote commit. Do not make noisy per-task commits, create branches/tags/releases, force-push, or rewrite history without separate authorization.
+Before each milestone commit: inspect root/branch/status/upstream/intended diff, stage only milestone-related files, exclude secrets/private weights/temp/log/scratch/unrelated files, use a descriptive commit, push normally, and verify the remote commit. The current V4 raw source photographs and the three `capture_v4/derived/` processed-image sets are intentional repository content and must use Git LFS. Do not make noisy per-task commits, create branches/tags/releases, force-push, or rewrite history without separate authorization.
 
 ## Session startup
 

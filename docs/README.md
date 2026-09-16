@@ -1,46 +1,27 @@
 # Documentation Index
 
-This directory contains the technical and project documentation for the Thai Libation Brass Vessel 3D Reconstruction project.
+This directory contains the current technical documentation for the Thai Libation Brass Vessel 3D Reconstruction project.
 
 ## Current project documentation
 
-- **[Project Report](PROJECT_REPORT.md)** — human-facing overview of the project, dataset, computer vision pipeline, reconstruction outputs, asset preparation, and validation.
+- **[Project Report](PROJECT_REPORT.md)** — dataset, computer vision pipeline, reconstruction outputs, asset preparation, validation, and reproducibility.
 - **[Repository README](../README.md)** — concise project overview, pipeline summary, important artifacts, and repository map.
-- **[Active Context](memory-bank/active-context.md)** — current technical state and latest verified project context.
-- **[Progress Log](memory-bank/progress.md)** — chronological technical progress and major verification milestones.
-- **[V4 Full Repair Design](superpowers/specs/2026-09-14-v4-full-repair-design.md)** — detailed V4 reconstruction and repair architecture.
-- **[V4 Full Repair Plan](superpowers/plans/2026-09-14-v4-full-repair.md)** — implementation and verification plan for the V4 reconstruction lineage.
+- **[Active Context](memory-bank/active-context.md)** — newest verified technical state and continuation context.
+- **[Progress Log](memory-bank/progress.md)** — current V4/V7 engineering progress and verification milestones.
+- **[V4 Full Repair Design](superpowers/specs/2026-09-14-v4-full-repair-design.md)** — current reconstruction/repair architecture and evidence boundaries.
+- **[V4 Full Repair Plan](superpowers/plans/2026-09-14-v4-full-repair.md)** — current implementation and verification plan.
+- **[V4 Full Repair Handoff](handoffs/2026-09-14-v4-full-repair-codex.md)** — retained V4 execution handoff.
 
-## Supporting technical documentation
+## Current media record
 
-### Preprocessing
+The repository contains only the active V4 capture lineage:
 
-- `preprocessing/preprocessing-results.md` — dataset preprocessing and source-image preparation results.
+- `CSX4213_Project_V4_Images/` — 688 immutable raw JPEG photographs.
+- `capture_v4/manifests/` — role, sequence, exclusion, and media-audit records.
+- `capture_v4/derived/mvs_images/` — 372 current reconstruction images.
+- `capture_v4/derived/masks/` — 372 current vessel masks.
+- `capture_v4/derived/feature_masks/` — 372 current feature masks.
 
-### Geometry and reconstruction
+The raw and derived image trees are versioned with Git LFS. Pre-V4 raw data, preprocessing products, analysis outputs, checkpoints, obsolete pipeline code/tests, and superseded implementation documents have been removed from the active repository.
 
-- `geometry-ml/geometry-results.md` — geometric analysis results.
-- `geometry-ml/reconstruction-readiness.md` — reconstruction-readiness analysis.
-- `geometry-ml/sparse-reconstruction.md` — sparse reconstruction methodology and evidence.
-- `geometry-ml/sparse-component-bridging.md` — sparse connectivity work.
-- `geometry-ml/learned-sparse-recovery.md` — learned-feature sparse recovery work.
-- `geometry-ml/external-learned-global-recovery.md` — global recovery experiments and evidence.
-
-### Segmentation and feature analysis
-
-- `geometry-ml/cnn-dataset.md` — earlier segmentation dataset documentation.
-- `geometry-ml/ml-results.md` — segmentation and feature-mask analysis results.
-
-## Historical plans and specifications
-
-Files under `superpowers/plans/` and `superpowers/specs/` dated before the V4 full-repair documents record earlier stages of the project. They are retained for project history and implementation provenance. The current public summary is the Project Report, while the 2026-09-14 V4 full-repair design and plan remain the detailed technical references for the current reconstruction lineage.
-
-## Documentation scope
-
-The documentation separates three kinds of information:
-
-1. **Public project explanation** — `README.md` and `PROJECT_REPORT.md` describe what the project is, what methods were used, and what was produced.
-2. **Current engineering state** — `memory-bank/` records the newest verified technical state and continuation context.
-3. **Historical implementation evidence** — older plans, specifications, and geometry/segmentation documents preserve how earlier project stages were implemented and evaluated.
-
-Large temporary reconstruction workspaces, caches, repeated runtime logs, and disposable diagnostic outputs are not documentation deliverables. Selected reports, representative previews, manifests, and reproducible scripts are retained instead.
+Large transient COLMAP/CUDA workspaces, caches, runtime logs, model weights, and live V7 diagnostic outputs remain local unless explicitly promoted as verified project artifacts.

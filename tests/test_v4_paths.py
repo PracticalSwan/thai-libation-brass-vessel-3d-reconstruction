@@ -11,9 +11,7 @@ def _roots(tmp_path: Path):
     writable = (tmp_path / "capture_v4", tmp_path / "reconstruction" / "v4")
     protected = (
         tmp_path / "CSX4213_Project_V4_Images",
-        tmp_path / "IMG20260826122949",
         tmp_path / ".codegraph",
-        tmp_path / "analysis" / "ml" / "checkpoints",
     )
     return writable, protected
 
@@ -30,9 +28,7 @@ def test_output_boundary_resolves_traversal_and_protects_raw_roots(tmp_path: Pat
 
     bad = (
         tmp_path / "capture_v4" / ".." / "CSX4213_Project_V4_Images" / "copy.jpg",
-        tmp_path / "IMG20260826122949" / "derived.json",
         tmp_path / ".codegraph" / "cache.json",
-        tmp_path / "analysis" / "ml" / "checkpoints" / "out.pt",
         tmp_path / "unapproved" / "result.ply",
         tmp_path,
     )

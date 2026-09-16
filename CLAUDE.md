@@ -18,8 +18,8 @@ Use `docs/superpowers/specs/2026-09-14-v4-full-repair-design.md`, `docs/superpow
 - Preserve the canonical V4 output while V7 refinement is being evaluated. Promotion requires completed evidence, reproducible lineage, final asset verification, and exact hashes.
 - Do not over-engineer, over-complicate, or over-test. Prefer the smallest coherent solution and verification proportional to risk.
 - After a host restart, inspect persisted COLMAP/CUDA logs, workspaces, reports, and hashes before rerunning any interrupted dense job. Never infer completion from a previously launched process.
-- Preserve `CSX4213_Project_V4_Images/` and `IMG20260826122949/` as immutable source data. Never delete, modify, rename, overwrite, crop, resize, rotate, recompress, or otherwise transform their original photographs.
-- Never publish private checkpoints from `analysis/ml/checkpoints/`.
+- Preserve `CSX4213_Project_V4_Images/` as the only raw source set. Never delete, modify, rename, overwrite, crop, resize, rotate, recompress, or otherwise transform its 688 original photographs.
+- Treat `capture_v4/derived/mvs_images/`, `capture_v4/derived/masks/`, and `capture_v4/derived/feature_masks/` as the only current processed-image sets. They are intentional Git LFS content; pre-V4 image data/checkpoints have been removed and must not be restored.
 - Do not deploy unless deployment is explicitly required.
 - Use relevant installed skills and plugins automatically when they materially improve the task.
 - `.codegraph/` is installed project state. Use CodeGraph for dependency/call-path/change-impact questions when useful, and preserve it unless explicit maintenance requires otherwise.

@@ -3,7 +3,12 @@
 *.md text eol=lf
 *.toml text eol=lf
 *.txt text eol=lf
+
+# Current V4 source and derived image data are versioned with Git LFS.
+CSX4213_Project_V4_Images/** filter=lfs diff=lfs merge=lfs -text
+capture_v4/derived/** filter=lfs diff=lfs merge=lfs -text
+
+# Large final reconstruction assets.
 reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend filter=lfs diff=lfs merge=lfs -text
-reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v4/*.blend filter=lfs diff=lfs merge=lfs -text
 reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v6/*.blend filter=lfs diff=lfs merge=lfs -text
 reconstruction/v4/mesh/poisson_best_defensible_v1_depth13_trim5.ply filter=lfs diff=lfs merge=lfs -text

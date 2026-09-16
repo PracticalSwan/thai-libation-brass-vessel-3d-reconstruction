@@ -1,10 +1,10 @@
 # Active Context
 
-Updated: 2026-09-14
+Updated: 2026-09-16
 
 ## Current focus
 
-**V4 full reconstruction repair is the only active direction.** V1/V2 are professor-rejected historical work and V3 is user-rejected historical work. The prior V4 final is preserved as historical evidence but is no longer accepted for the user's requirement of a visually complete Thai libation vessel.
+**V4 full reconstruction repair is the only active direction.** The repository now contains only the authoritative V4 capture lineage and current V4 reconstruction/repair assets. Superseded pre-V4 image datasets, processing outputs, code, tests, checkpoints, and implementation documents have been removed from the active project.
 
 The active goal is:
 
@@ -21,7 +21,7 @@ docs/superpowers/specs/2026-09-14-v4-full-repair-design.md
 docs/superpowers/plans/2026-09-14-v4-full-repair.md
 ```
 
-The prior dense-only 2026-09-14 plan/spec and 2026-09-10 fast-end-to-end checkpoint are superseded for new execution.
+Older superseded implementation documents have been removed; the two V4 full-repair documents above are the canonical technical references for current execution.
 
 ## Historical V4 baseline — preserve, do not blindly reuse
 
@@ -190,16 +190,12 @@ That Blender/GLB continuation is historical/diagnostic provenance, not the activ
 
 ## Protected boundaries
 
-Do not modify or publish:
+- `CSX4213_Project_V4_Images/` is the only authoritative raw source tree. Keep all 688 photographs immutable; it is intentional Git LFS repository content.
+- `capture_v4/derived/mvs_images/`, `capture_v4/derived/masks/`, and `capture_v4/derived/feature_masks/` are the only current processed-image trees. They are intentional Git LFS repository content and must remain aligned with the V4 manifests.
+- `.codegraph/` runtime/database artifacts remain local and uncommitted.
+- Unrelated `.ai-bridge/` and unrelated user-owned changes remain outside this cleanup/publication scope.
 
-- `CSX4213_Project_V4_Images/`
-- `IMG20260826122949/`
-- `analysis/ml/checkpoints/`
-- `.codegraph/` runtime/database artifacts
-- unrelated `.ai-bridge/`
-- unrelated modified files such as existing user-owned `local_reconstruction.py` / `tests/test_learned_sparse_recovery.py` changes unless the repair independently requires and verifies them
-
-Historical V4 sparse/dense/Poisson/Blender/GLB artifacts remain rollback/evidence and must not be overwritten during candidate work.
+Current V4 sparse/dense/Poisson/Blender/GLB artifacts remain rollback/evidence and must not be overwritten during candidate work.
 
 ## Completion standard
 

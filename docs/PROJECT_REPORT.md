@@ -45,7 +45,7 @@ The authoritative V4 source dataset is stored in `CSX4213_Project_V4_Images/` an
 | Empty-board/background images | 107 | Background/support discrimination and acquisition evidence |
 | **Total** | **688** | Complete V4 capture |
 
-The raw source photographs are treated as immutable input. Processing takes place in derived directories and reconstruction workspaces so that the original capture remains unchanged.
+The raw source photographs are treated as immutable input. Processing takes place in derived directories and reconstruction workspaces so that the original capture remains unchanged. The 688 raw JPEGs and the current processed image trees are versioned with Git LFS so the repository contains the exact media used by the V4 pipeline without retaining superseded captures.
 
 ## 5. End-to-end computer vision pipeline
 
@@ -103,7 +103,7 @@ The segmentation pipeline uses:
 3. conservative mask refinement to preserve thin boundaries and the base region;
 4. empty-board/background evidence to reduce support-board leakage.
 
-The full-resolution masks are reused by later stages rather than relying on a simple color threshold. Derived masks and reconstruction inputs are stored under `capture_v4/derived/`.
+The full-resolution masks are reused by later stages rather than relying on a simple color threshold. The current derived set is stored under `capture_v4/derived/` and contains 372 reconstruction images in `mvs_images/`, 372 vessel masks in `masks/`, and 372 feature masks in `feature_masks/`. These processed images are versioned with Git LFS alongside the raw V4 photographs.
 
 ## 8. Stage 3 — Geometry-preserving preprocessing
 
@@ -289,16 +289,16 @@ Large temporary stereo workspaces, caches, repeated diagnostics, and other inter
 
 ```text
 CSX4213_Project_V4_Images/
-    Authoritative V4 photographs
+    688 authoritative V4 photographs (Git LFS)
 
-capture_v4/
-    Capture manifests, masks, MVS images, and derived inputs
+capture_v4/manifests/
+    Capture roles, sequence metadata, exclusions, and media audit
 
-analysis/
-    Computer-vision analysis, metrics, and representative visual evidence
+capture_v4/derived/
+    372 MVS images, 372 vessel masks, and 372 feature masks (Git LFS)
 
 docs/
-    Methodology, project documentation, and this report
+    Current methodology, project documentation, and this report
 
 reconstruction/v4/sparse/
     Sparse reconstruction artifacts

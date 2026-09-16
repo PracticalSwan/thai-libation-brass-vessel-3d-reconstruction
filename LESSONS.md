@@ -19,8 +19,8 @@ Read this after `AGENTS.md` when starting substantive work. Keep process lessons
 
 - Learned matching must pass the chosen feature/matcher configuration explicitly through every extraction/matching/import stage; silent fallback to SIFT invalidates the experiment.
 - Cache provenance should identify per-image feature layout, mask identity, model/config fingerprint, and source image identity rather than only aggregate counts.
-- ALIKED-N16Rot + LightGlue recovered far more camera coverage than the old SIFT reconstruction on the original capture, so it remains the V4 matcher.
-- Better sparse registration does **not** imply better dense surface reconstruction. V3 reached 266 registered views yet still produced an unacceptable mesh.
+- ALIKED-N16Rot + LightGlue is the current V4 matcher and must remain explicitly configured through extraction, matching, and import stages.
+- Better sparse registration does **not** imply better dense surface reconstruction. Dense acceptance still requires direct geometry, coverage, contamination, connectivity, and visual checks.
 - V4 does not schedule a SIFT/learned-method comparison. Pair ALIKED/LightGlue by circular phase: nearby angular views, wider local neighbors, orbit closure, and corresponding phases across elevation rings.
 - Preserve lens-model consistency. If V4 uses identical fixed camera/lens/settings across rings, shared intrinsics are preferable to letting every frame drift independently. Do not force a shared camera across images whose real imaging contract differs.
 - The reconstructed cameras represent relative object/camera motion. For a turntable sequence, coherent circular virtual-camera rings are expected even though the physical camera was stationary during each capture circle.
@@ -52,7 +52,3 @@ Read this after `AGENTS.md` when starting substantive work. Keep process lessons
 - When execution is deliberately split at the Poisson/Blender boundary, the pre-Blender executor must freeze a hash-bound Poisson + evidence handoff and stop. Do not let a pre-Blender recovery task opportunistically mutate historical Blender/GLB artifacts; the designated Blender owner must start from the frozen handoff and independently verify the final scene/export.
 - A technically present UV layer is not enough for production bakes. Inspect actual UV face-area utilization and the baked AO/normal images; highly fragmented scan UVs can pass presence checks while wasting almost the entire texture. A deterministic geometry-derived atlas is a valid technical repair when it changes UVs only and preserves mesh geometry/transforms.
 - Apparent duplicate geometry in Blender must be separated from export duplication. Overlapping preserved CleanHigh and LOD0 objects can create viewport z-fighting even when a fresh GLB contains exactly one mesh; diagnose scene visibility and fresh-import object counts before deleting source meshes.
-
-## V3 rejection lesson — 2026-09-10
-
-The V3 ALIKED-N16Rot + LightGlue solution registered 266/288 views and the full photometric run produced 266 depth/normal maps, about 80,015 fused dense points, and a 657,693-face Poisson mesh. Direct Blender inspection was still visually poor. The old capture is therefore abandoned for reconstruction. **V4 must spend effort on acquisition quality first, not on further parameter tuning of the rejected dataset.**

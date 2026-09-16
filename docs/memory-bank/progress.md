@@ -1,18 +1,12 @@
 # Progress
 
-Updated: 2026-09-14
+Updated: 2026-09-16
 
 ## Current project state
 
-The project is at **V4 full-repair implementation start**. The former V4 “final-model complete” checkpoint is superseded for the user's visually-complete-vessel requirement because later investigation proved an upstream sparse-pose defect and a dense-provenance defect that invalidate the old acceptance chain.
+The project is in **V4 full repair and V7 refinement**. The repository has been consolidated around the authoritative V4 capture and current V4 reconstruction lineage. Superseded pre-V4 raw images, preprocessing products, analysis/checkpoint trees, legacy pipeline code/tests, and obsolete implementation documents have been removed and must not be restored.
 
-Historical status:
-
-- V1: rejected by professor; historical only.
-- V2: rejected by professor; historical only.
-- V3: rejected by user after Blender inspection; historical only.
-- Prior V4 final: preserved as historical baseline/evidence, not current acceptance.
-- Large intentional historical cleanup diff remains user-owned and must not be restored.
+The verified V4 baseline remains preserved as rollback/evidence while the active V7 scan-preserving repair is evaluated. The current raw and processed image sets are intended Git LFS publication content.
 
 ## Completed investigation and planning
 
@@ -178,13 +172,11 @@ recover/protect newest state
 
 Preserve:
 
-- `CSX4213_Project_V4_Images/`
-- `IMG20260826122949/`
-- `analysis/ml/checkpoints/`
-- `.codegraph/`
-- unrelated `.ai-bridge/`
-- unrelated modified files, including current user-owned `local_reconstruction.py` and `tests/test_learned_sparse_recovery.py` unless the repair independently requires them
-- historical V4 dense/mesh/Blender/GLB artifacts as rollback/evidence
+- `CSX4213_Project_V4_Images/` as the immutable 688-photo raw source set and intentional Git LFS content
+- `capture_v4/derived/mvs_images/`, `capture_v4/derived/masks/`, and `capture_v4/derived/feature_masks/` as the current processed-image sets and intentional Git LFS content
+- `.codegraph/` as local code-intelligence state
+- unrelated `.ai-bridge/` and other unrelated user-owned work
+- current V4 dense/mesh/Blender/GLB artifacts as rollback/evidence
 
 Use exact-path staging and cleanup. Large dense/sparse transient candidate workspaces belong outside the repo under versioned scratch roots.
 

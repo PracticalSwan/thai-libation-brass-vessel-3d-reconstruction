@@ -6,7 +6,7 @@ This is a collaborative CSX4213 coursework repository. Keep changes small, expla
 
 1. Read `AGENTS.md` and `CLAUDE.md`.
 2. Inspect `git status` and preserve unrelated contributor work.
-3. Keep the versioned files in `IMG20260826122949/` immutable. Never edit them in place.
+3. Keep the 688 versioned files in `CSX4213_Project_V4_Images/` immutable. Never edit them in place; write processed images only under `capture_v4/derived/`.
 4. Do not over-engineer, over-complicate, or over-test.
 
 ## Development rules

@@ -23,19 +23,15 @@ from typing import Any, Mapping, Sequence
 
 PROJECT_ROOT = Path(__file__).resolve().parent
 V4_SOURCE_ROOT = PROJECT_ROOT / "CSX4213_Project_V4_Images"
-HISTORICAL_RAW_ROOT = PROJECT_ROOT / "IMG20260826122949"
 CAPTURE_V4_ROOT = PROJECT_ROOT / "capture_v4"
 RECONSTRUCTION_V4_ROOT = PROJECT_ROOT / "reconstruction" / "v4"
 V4_STAGE_STATE_PATH = RECONSTRUCTION_V4_ROOT / "work" / "stage_state.json"
 CODEGRAPH_ROOT = PROJECT_ROOT / ".codegraph"
-PRIVATE_CHECKPOINT_ROOT = PROJECT_ROOT / "analysis" / "ml" / "checkpoints"
 
 V4_WRITABLE_ROOTS = (CAPTURE_V4_ROOT, RECONSTRUCTION_V4_ROOT)
 V4_PROTECTED_ROOTS = (
     V4_SOURCE_ROOT,
-    HISTORICAL_RAW_ROOT,
     CODEGRAPH_ROOT,
-    PRIVATE_CHECKPOINT_ROOT,
 )
 
 STAGE_ORDER = (
@@ -106,9 +102,7 @@ def validate_output_path(
         resolve_path(value)
         for value in (protected_roots if protected_roots is not None else (
             root / "CSX4213_Project_V4_Images",
-            root / "IMG20260826122949",
             root / ".codegraph",
-            root / "analysis" / "ml" / "checkpoints",
         ))
     )
     candidate = resolve_path(path)
@@ -547,7 +541,6 @@ class StageStateStore:
 
 __all__ = [
     "CAPTURE_V4_ROOT",
-    "HISTORICAL_RAW_ROOT",
     "PROJECT_ROOT",
     "RECONSTRUCTION_V4_ROOT",
     "STAGE_ORDER",

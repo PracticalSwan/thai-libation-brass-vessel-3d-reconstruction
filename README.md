@@ -14,6 +14,8 @@ The current V4 dataset contains **688 JPEG images**:
 - **158 uncoated appearance images** for brass color/material statistics
 - **107 empty-board/background images** for background and board discrimination
 
+The immutable raw photographs are stored in `CSX4213_Project_V4_Images/`. The current derived reconstruction media are stored in `capture_v4/derived/` as **372 MVS images, 372 vessel masks, and 372 feature masks**. Both the raw and derived image trees are versioned with Git LFS; superseded pre-V4 captures and processing products are not part of the active repository.
+
 The geometry sequence uses a fixed-camera turntable/object-rotation setup on a white background. The object was photographed from multiple elevation passes with a locked rear-camera configuration. A temporary matte coating reduces specular reflection, and high-contrast markers improve local feature detection on the brass surface.
 
 For a fuller methodology and project summary, see **[Project Report](docs/PROJECT_REPORT.md)**.
@@ -148,13 +150,13 @@ The verified exported baseline contains one intended production mesh with the ex
 ## Repository structure
 
 ```text
-capture_v4/                     V4 manifests, masks, and derived capture inputs
-CSX4213_Project_V4_Images/      Immutable V4 source photographs
-analysis/                       Computer-vision analysis and representative evidence
-docs/                           Project documentation and detailed report
+CSX4213_Project_V4_Images/      688 immutable V4 source photographs (Git LFS)
+capture_v4/manifests/           Current capture roles, sequences, exclusions, and audit records
+capture_v4/derived/             372 MVS images + 372 masks + 372 feature masks (Git LFS)
+docs/                           Current project documentation and detailed report
 reconstruction/v4/              Sparse, dense, mesh, reports, previews, and Blender outputs
-scripts/                        Reproducible reconstruction and verification utilities
-tests/                          Regression and pipeline validation tests
+scripts/                        Reproducible V4 reconstruction and verification utilities
+tests/                          Current pipeline regression and validation tests
 ```
 
 Large temporary reconstruction workspaces, caches, and redundant diagnostics are intentionally not part of the final project record. The repository keeps the source data, selected reconstruction lineage, representative evidence, reproducible scripts, and final asset outputs needed to understand and verify the project.

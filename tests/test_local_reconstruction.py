@@ -51,7 +51,7 @@ def test_output_and_cleanup_cannot_escape_local_work(tmp_path):
     mod = domain()
     good = tmp_path / "reconstruction/local_dense/work/dense_workspace"
     assert mod.safe_output(tmp_path, good) == good.resolve()
-    for bad in (tmp_path / "IMG20260826122949/x", good / "../../../../sparse/best",
+    for bad in (tmp_path / "source_media/x", good / "../../../../sparse/best",
                 tmp_path / "reconstruction/local_dense"):
         with pytest.raises(ValueError):
             mod.safe_output(tmp_path, bad)

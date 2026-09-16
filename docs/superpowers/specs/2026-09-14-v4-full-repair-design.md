@@ -18,8 +18,8 @@ Complete V4 end-to-end from the newest verified repository state with the strong
 
 - The immutable source set is `CSX4213_Project_V4_Images/`: 688 JPEGs = 158 uncoated appearance/reference, 107 empty-board/background, 423 coated/marked geometry images.
 - Do not modify, rename, recompress, rotate, move, or delete those source JPEGs.
-- Preserve `IMG20260826122949/`, `analysis/ml/checkpoints/`, `.codegraph/`, unrelated `.ai-bridge/`, unrelated modified files, and all valid historical V4 evidence.
-- V1/V2/V3 are rejected historical reconstructions and are not repair inputs.
+- Preserve `CSX4213_Project_V4_Images/`, the current `capture_v4/derived/` processed-image trees, `.codegraph/`, unrelated `.ai-bridge/`, unrelated user-owned work, and all current V4 reconstruction evidence. Superseded pre-V4 raw media/checkpoints are removed and must not be restored.
+- Only the V4 capture lineage is an active reconstruction input; superseded pre-V4 reconstruction versions are not part of the active repository.
 - No new capture is available.
 - No Codex CLI.
 - Use the existing ALIKED-N16Rot + LightGlue evidence path, COLMAP/pyCOLMAP, CUDA PatchMatch on GPU 0, Poisson surface reconstruction, and Blender 5.2.

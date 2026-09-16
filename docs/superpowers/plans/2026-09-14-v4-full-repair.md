@@ -6,9 +6,9 @@
 
 ## Global constraints
 
-- Preserve immutable `CSX4213_Project_V4_Images/` and `IMG20260826122949/`.
-- Preserve private checkpoints, `.codegraph/`, unrelated `.ai-bridge/`, unrelated modified files, and all historical V4 artifacts.
-- Existing historical V4 sparse/dense/Poisson/Blender/GLB remain evidence, not current acceptance.
+- Preserve immutable `CSX4213_Project_V4_Images/` as the only raw source set and preserve the current processed image trees under `capture_v4/derived/`; both are intentional Git LFS publication content.
+- Preserve `.codegraph/`, unrelated `.ai-bridge/`, unrelated user-owned work, and the current V4 reconstruction artifacts/evidence. Superseded pre-V4 checkpoints and media are not part of the active repository.
+- The verified V4 sparse/dense/Poisson/Blender/GLB baseline remains rollback/evidence while V7 refinement is evaluated; do not overwrite it during candidate work.
 - This must remain a full computer-vision pipeline. Accepted geometry and appearance must be algorithmically derived from the project-captured images/reconstruction evidence; no external/reference-assisted modeling, manual sculpting/vertex-face editing, symmetry/lathe/primitive replacement, hand-built anatomy, manual reference matching, or artist-authored appearance fallback is allowed.
 - Blender is limited to scripted/reproducible technical cleanup, LOD/UV/baking/material construction from measured project data, and export/verification; it may not invent or reshape vessel anatomy.
 - No hand-built or symmetry/lathe replacement of missing vessel-scale geometry.
