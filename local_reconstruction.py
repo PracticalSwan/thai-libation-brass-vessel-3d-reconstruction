@@ -25,8 +25,16 @@ DENSE_COMMANDS = {"image_undistorter", "patch_match_stereo", "stereo_fusion",
 
 
 def sha256(path: Path) -> str:
+    # ``hashlib.file_digest`` is only available in newer Python runtimes.  The
+    # V4 environment is intentionally pinned to Python 3.10, so retain the
+    # same bounded streaming hash contract with a small compatibility fallback.
     with path.open("rb") as handle:
-        return hashlib.file_digest(handle, "sha256").hexdigest()
+        if hasattr(hashlib, "file_digest"):
+            return hashlib.file_digest(handle, "sha256").hexdigest()
+        digest = hashlib.sha256()
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+        return digest.hexdigest()
 
 
 def write_json(path: Path, payload: dict) -> None:

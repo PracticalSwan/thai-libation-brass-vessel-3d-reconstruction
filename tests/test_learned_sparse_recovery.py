@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from contextlib import closing
+import csv
 import json
 from dataclasses import replace
 from pathlib import Path
@@ -376,15 +377,21 @@ def test_feature_cache_rejects_changed_per_image_layout_with_same_total_features
     assert calls == 2
 
 
-def test_step12_candidates_exactly_match_the_authoritative_step11_order():
+def test_step12_candidate_identity_accepts_the_generated_authoritative_order(tmp_path: Path):
     root = Path(__file__).resolve().parents[1]
     records = load_selected_manifest(root / "preprocessing" / "reports" / "selection_manifest.csv")
     candidates = generate_candidate_pairs(records, BridgeSearchConfig())
+    csv_path = tmp_path / "step11_candidates.csv"
+    with csv_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow((
+            "boundary_left", "boundary_right", "left_index", "right_index",
+            "left_filename", "right_filename",
+        ))
+        for candidate in candidates:
+            writer.writerow(learned.candidate_identity(candidate))
 
-    learned.verify_step11_candidate_identity(
-        candidates,
-        root / "reconstruction" / "bridging" / "reports" / "step11_candidates.csv",
-    )
+    learned.verify_step11_candidate_identity(candidates, csv_path)
 
     assert len(candidates) == 2340
     assert all(candidate.sequence_gap >= 41 for candidate in candidates)

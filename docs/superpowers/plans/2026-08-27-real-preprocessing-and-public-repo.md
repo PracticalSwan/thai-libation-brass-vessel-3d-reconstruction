@@ -89,4 +89,3 @@
 - [ ] Verify repository metadata and files from GitHub after push.
 - [x] Collaborator invitations are owner-managed and out of scope for agents; do not invite collaborators.
 - [ ] Do not start pyCOLMAP yet.
-

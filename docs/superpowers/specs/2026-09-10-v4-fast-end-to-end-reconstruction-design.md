@@ -1,6 +1,6 @@
 # V4 Fast End-to-End Reconstruction Design
 
-**Status:** Approved execution design, updated 2026-09-13 for the current dense/post-fusion checkpoint. Earlier V4 ingest, masking, matching, sparse reconstruction, dense PatchMatch, and fusion work now exist; continue from the newest verified state rather than replaying the plan from Task 1.
+**Status:** Historical/superseded for new execution as of 2026-09-14. Preserve this file as prior requirements/context only. The active design is `docs/superpowers/specs/2026-09-14-v4-full-repair-design.md`; later investigation proved `geo_g10` sparse-pose inconsistencies and duplicate dense reference writes, so do not follow this file's former dense/post-fusion continuation checkpoint as the current implementation boundary. As of 2026-09-15, the current Codex/local executor stops at the verified Poisson pre-Blender handoff; ChatGPT + Blender MCP owns Blender and everything after Blender.
 
 **Goal:** Reconstruct the Thai libation brass vessel from the supplied final fixed-camera turntable capture and deliver a visually accurate, inspectable Blender master plus a working GLB using one evidence-bound reconstruction path. The supplied images are final and cannot be retaken; software must adapt to the media that exists.
 

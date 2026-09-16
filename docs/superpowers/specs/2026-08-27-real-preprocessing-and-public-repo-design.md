@@ -47,4 +47,3 @@ The repository will contain reproducible source code, tests, documentation, the 
 - Inspect Git status and intended diff before the first commit/push.
 - Verify the public repository metadata and committed files after publication.
 - Stop before pyCOLMAP reconstruction; that is the next stage.
-

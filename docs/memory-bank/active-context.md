@@ -186,7 +186,7 @@ strict gate, `finial:resolved_narrow_top_element`, and
 `no_major_vessel_scale_holes=false` remain explicit limitations. No missing
 anatomy was fabricated or hidden by Blender.
 
-That Blender/GLB continuation is now **preserved historical/diagnostic evidence, not the active pre-Blender execution target**. The current Codex/local executor must leave it untouched. After the Poisson handoff is frozen, ChatGPT + Blender MCP will independently perform the final Blender cleanup and all subsequent finalization from the selected pre-Blender source.
+That Blender/GLB continuation is historical/diagnostic provenance, not the active acceptance target. During the authorized 2026-09-16 storage cleanup, the superseded bulky `best_defensible_v1_trim5_authoring_v2/` and `best_defensible_v1_trim5_authoring_v4/` directories were removed after the accepted v6/canonical assets and their hashes were independently verified. The measurements and hashes above remain provenance records, but those superseded paths are no longer expected to exist. The accepted v6 baseline and the active v7 repair workspace remain preserved.
 
 ## Protected boundaries
 
@@ -304,3 +304,13 @@ A fresh factory-empty Blender 5.2 GLB import passed one-final-mesh, finite posit
 The verified v6 bytes were promoted to `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend` and `.glb` only after the final checks. Previous canonical hashes and Git rollback commit `625168138471dce0c8f01eda284dab7acd9be55f` are recorded in the v6 `canonical_promotion_report.json`.
 
 Final publication is complete. The focused Blender/GLB milestone commit `2d6e7b81bfe837321587669713b665396ad66592` was pushed to `origin/main`; Git LFS uploaded the 344 MB final Blender object, a post-push fetch confirmed local HEAD and `origin/main` were identical at that milestone, and `git lfs fsck` returned `Git LFS fsck OK`. The later documentation-only closure records these completed checks without changing the accepted final asset bytes.
+
+## 2026-09-16 storage-cleanup boundary
+
+The external scratch root `D:\\Side Projects\\CSX4213_V4_Dense_Work` was reduced from approximately 258.954 GB to 21.746 MB after the selected C: dense cloud, Poisson mesh, reports, report images, and Blender rollback/current assets were independently preserved. All failed/retry/smoke dense workspaces, the unpromoted 3072px upper-ring workspace, obsolete sparse candidates, and disposable sparse databases were removed. Historical D: paths in preserved reports remain provenance records and are not expected to exist after this cleanup. The only retained D: artifact is `workspace_v4repair_sparse_v1/sparse_candidate_v47_v43_fixed_pose_retriangulation`, containing five COLMAP model files and matching authoritative source-model SHA-256 `b1c4f142172a5d9652e00e47b9c66a273d4961ef9c115caea6b8debb2d23922e`.
+
+## 2026-09-16 documentation/publication refresh
+
+The human-facing project documentation was rebuilt around the actual image-to-3D workflow. `README.md` now gives the concise project overview, 688-image dataset split, end-to-end computer-vision pipeline, selected artifacts, representative evidence, material workflow, validation approach and repository map. `docs/PROJECT_REPORT.md` is the detailed report covering acquisition, Grounding DINO-T + SAM 2.1 isolation, ALIKED-N16Rot + LightGlue correspondence, COLMAP/pyCOLMAP sparse reconstruction, CUDA PatchMatch Stereo, mask-aware fusion, Poisson meshing, scan-preserving Blender asset preparation, project-image-derived brass appearance and clean GLB re-import verification. `docs/README.md` indexes current and historical technical documentation.
+
+The verified V6/canonical asset remains the publication baseline while V7 scan-preserving refinement continues. The V94 COLMAP diagnostic excluding `geo_g10`, `geo_g11` and `geo_g12` completed successfully on GPU 0 after this documentation pass began: 218 photometric and 218 geometric depth/normal maps were produced, mask-aware fusion completed with 194,205 points, and the diagnostic Poisson/QA outputs were generated. V94 remains an unpromoted V7 diagnostic pending comparative visual and geometric review, so its temporary D: workspace, runtime logs, multi-gigabyte V7 `.blend`, and repair-review artifacts remain excluded from this publication milestone. The process was allowed to finish without interruption.

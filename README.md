@@ -1,73 +1,170 @@
 # Thai Libation Brass Vessel 3D Reconstruction
 
-Computer Vision coursework project for reconstructing a real Thai brass libation vessel from photographs.
+CSX4213 Computer Vision project for reconstructing a real Thai brass libation vessel (ชุดกรวดน้ำ / ที่กรวดน้ำ) as a 3D asset from photographs.
 
-## Current status — V4 best-defensible reconstruction complete
+The project implements a complete image-to-3D computer vision workflow: controlled acquisition, object segmentation, learned local feature extraction and matching, sparse structure-from-motion, dense multi-view stereo, Poisson surface reconstruction, and scan-preserving 3D asset preparation.
 
-V1 and V2 were rejected by the professor, and V3 was visually rejected after Blender inspection. V4 is now completed end-to-end under the project’s completion-first policy: every final artifact remains derived from the project capture/reconstruction evidence, strict failures remain explicit, and Blender was not used to fabricate missing anatomy.
+## Project overview
 
-The immutable V4 source is `CSX4213_Project_V4_Images/`: **688 JPEGs = 158 uncoated appearance/reference + 107 empty-board/background + 423 coated/marked object-bearing geometry images**. Historical photographs in `IMG20260826122949/` remain preserved as historical evidence and are not V4 reconstruction input.
+The goal is to reconstruct the vessel from real captured images rather than manually model its shape. Geometry is derived from the coated/marked capture set, while a separate uncoated image set is used for brass appearance information. Blender is used only for technical mesh preparation, UV generation, baking, material setup, validation, and export; it is not used to invent missing vessel geometry.
 
-## Final verified V4 state
+The current V4 dataset contains **688 JPEG images**:
 
-- Sparse: best-defensible 372-view v47 lineage in `best_defensible_sparse_v2.json`, source-model SHA-256 `b1c4f142…23922e`; strict mask-projection failures remain explicit.
-- Dense: selected 372-view/2000px CUDA geometric PatchMatch cloud SHA-256 `4a596f56…c7d73`, with exact one-reference-one-write provenance. The bounded 3072px `geo_g12` recovery completed 37/37 views but did not improve the unresolved upper anatomy, so it remains comparison evidence.
-- Poisson: selected depth-13/trim-5 scan-derived shell SHA-256 `33fe1f6e…d6941`, dominant face fraction `0.9925223`, second-largest `0.0007196`. The narrow-finial and major-hole anatomy checks remain failed and are not hidden.
-- Blender: versioned final master `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v6/Thai_Libation_Vessel_V4_BEST_DEFENSIBLE_TRIM5_FINAL.blend`, SHA-256 `622a676a…3a273`. Raw Poisson and CleanHigh remain preserved and hidden; LOD0 remains `151,547` vertices / `294,713` faces with unchanged geometry/transforms.
-- Appearance: reproducible BaseColor/Roughness from the complete **158-image uncoated project set**, scan-derived 2048px AO and CleanHigh→LOD0 tangent normal/detail, metallic brass response, and `photographic_projection_verified=false`. No coated-scan vertex colors, hand-picked reference, or artist-authored texture are used in the final export.
-- Export: versioned GLB SHA-256 `15ca1f76…e43de`. A fresh factory-empty Blender 5.2 re-import contains exactly one final mesh, valid UV/material/textures/normals, no camera/light/debug/source objects, and no exported vertex colors.
-- Visual QA: eight authoring views and eight fresh-reimport views are materially equivalent (mean 8-bit pixel MAE ~`0.000637`, minimum PSNR ~`78.56 dB`). No duplicate/z-fighting remains. The scan-derived upper neck/lid/finial defects remain visible and documented; strict anatomical acceptance is **not** claimed.
-- Canonical outputs `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend` and `.glb` are promoted from the verified v6 bytes. The previous canonical hashes and rollback Git commit are recorded in `canonical_promotion_report.json`.
+- **423 coated/marked geometry images** for reconstruction
+- **158 uncoated appearance images** for brass color/material statistics
+- **107 empty-board/background images** for background and board discrimination
 
-The final deliverable is therefore the strongest defensible genuine CV reconstruction recoverable from the captured evidence, not a manually repaired or reference-assisted idealization.
+The geometry sequence uses a fixed-camera turntable/object-rotation setup on a white background. The object was photographed from multiple elevation passes with a locked rear-camera configuration. A temporary matte coating reduces specular reflection, and high-contrast markers improve local feature detection on the brass surface.
 
-## V4 target
+For a fuller methodology and project summary, see **[Project Report](docs/PROJECT_REPORT.md)**.
 
-Produce one complete working 3D asset from the new photographs using one fixed pipeline, with a deliberate execution handoff after Poisson:
+## Computer vision pipeline
 
 ```text
-new immutable fixed-camera turntable capture
--> FFmpeg/OpenCV ingest + ExifTool metadata + minimal QA
--> Grounding DINO-T + SAM 2.1 full-resolution vessel masks
--> conservative geometry-preserving preprocessing
--> ALIKED-N16Rot + LightGlue feature matching
--> COLMAP geometric verification
--> pyCOLMAP incremental SfM + bundle adjustment
--> image + mask undistortion
--> CUDA COLMAP PatchMatch geometric consistency
--> mask-aware geometric stereo fusion
--> Poisson raw mesh
--> PRE-BLENDER FREEZE + HASHED HANDOFF
-   [Codex/local executor stops here]
--> Blender raw-mesh inspection
--> conservative cleanup / production mesh / UV / detail bake
--> brass PBR material from uncoated references
--> editable Blender master + final GLB
--> clean GLB re-import verification
-   [ChatGPT + Blender MCP owns these stages]
+Controlled multi-view image capture
+        ↓
+Media ingest, metadata audit, and image QA
+        ↓
+Grounding DINO-T object localization
+        ↓
+SAM 2.1 full-resolution vessel segmentation
+        ↓
+Geometry-preserving preprocessing and masks
+        ↓
+ALIKED-N16Rot local feature extraction
+        ↓
+LightGlue feature matching
+        ↓
+COLMAP two-view geometric verification
+        ↓
+pyCOLMAP / COLMAP sparse Structure-from-Motion
+        ↓
+Camera refinement and bundle adjustment
+        ↓
+Image and mask undistortion
+        ↓
+CUDA COLMAP PatchMatch Stereo
+        ↓
+Mask-aware dense stereo fusion
+        ↓
+Poisson surface reconstruction
+        ↓
+Scan-preserving mesh cleanup and LOD preparation
+        ↓
+UV generation + AO/detail-normal baking
+        ↓
+Brass PBR material derived from uncoated captures
+        ↓
+Blender master + GLB export
+        ↓
+Fresh GLB re-import and multi-view verification
 ```
 
-V4 intentionally uses this one route. It does not schedule SIFT-vs-ALIKED, VGGT-vs-COLMAP, dense-method, or meshing bake-offs. A resource-only retry such as reducing PatchMatch from 2000 px to 1600 px is allowed when the same chosen algorithm hits VRAM limits.
+## Pipeline components
 
-## Authoritative V4 capture
+| Stage | Main methods / tools | Purpose |
+| --- | --- | --- |
+| Acquisition | Fixed camera, rotating object, multiple elevation passes | Capture overlapping views around the full vessel |
+| Media audit | FFmpeg, OpenCV, ExifTool | Verify decode, dimensions, metadata, and capture consistency |
+| Segmentation | Grounding DINO-T + SAM 2.1 | Isolate the vessel from the stationary background and rotating board |
+| Local features | ALIKED-N16Rot | Detect and describe repeatable local image features |
+| Matching | LightGlue | Match learned local features between overlapping views |
+| Geometry verification | COLMAP | Reject geometrically inconsistent correspondences |
+| Sparse reconstruction | pyCOLMAP / COLMAP SfM | Estimate camera poses and a sparse 3D point cloud |
+| Dense reconstruction | CUDA COLMAP PatchMatch Stereo | Estimate per-view depth and normal maps |
+| Dense fusion | Mask-aware stereo fusion | Combine depth estimates into a dense colored point cloud |
+| Meshing | COLMAP Poisson mesher | Convert the fused point cloud into a continuous scan-derived surface |
+| Asset preparation | Blender | Prepare LOD0, UVs, baked detail, material, and export without manual shape creation |
+| Validation | Geometry checks, hashes, multi-view renders, clean GLB re-import | Verify reproducibility and exported-asset integrity |
 
-The final acquisition is a **white-background fixed-camera turntable/object-rotation capture**. The audited set contains six object-bearing passes spanning lower/horizontal through upper/steep-high coverage, plus rotating empty-board sequences and a separate uncoated appearance/reference set. The geometry/empty sequences report one locked 3072x4080 OPPO Reno12 F rear-lens state at 3.98 mm / 26 mm-equivalent, digital zoom 1, ISO 100, 1/100 s, with manual-exposure/WB metadata.
+## Current reconstruction artifacts
 
-The dry-shampoo coating reduced but did not eliminate brass reflections. Random black markers provide useful non-periodic texture across most of the bowl, globe, neck, pedestal, and transitions; finial/rim/interior/base-contact regions remain higher risk.
+The repository contains a verified V4 reconstruction baseline together with an active scan-preserving refinement workspace.
 
-The white cloth background has visible stationary folds/seams, while the wooden board rotates with the vessel and is highly feature-rich. Board leakage is therefore a first-class SfM/MVS failure mode. Grounding DINO-T + SAM 2.1 is the authoritative isolation route; G8/G9 same-setup empty-board tails are used as negative refinement evidence near the base. Simple white-threshold segmentation is not the V4 plan, and no recapture is expected or requested.
+Key reconstruction artifacts include:
 
-## Fast execution policy
+- **Sparse model:** 372 registered reconstruction views in the selected V4 sparse lineage
+- **Dense fused cloud:** `reconstruction/v4/dense/fused_dense_best_defensible_v1_full_geometric_phase.ply`
+- **Selected Poisson mesh:** `reconstruction/v4/mesh/poisson_best_defensible_v1_depth13_trim5.ply`
+- **Canonical Blender asset:** `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend`
+- **Canonical GLB asset:** `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.glb`
+- **Current refinement workspace:** `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_repair/`
 
-For the current V4 repair, continue from the newest verified checkpoint in the audited V4 implementation plan. After a restart, inspect persisted compute evidence before rerunning anything. Skip broad historical regression suites, algorithm comparisons, large reports, and parameter sweeps. Keep only the checks that prevent wasting reconstruction time:
+The selected dense reconstruction contains approximately **1.93 million fused points**. The selected Poisson surface contains approximately **4.95 million vertices** before production-mesh reduction. The verified production LOD0 baseline contains **151,547 vertices** and **294,713 faces**.
 
-1. V4 media decode correctly;
-2. masks preserve the complete vessel;
-3. sparse virtual camera rings/points are coherent and cross-elevation registration is connected;
-4. the real raw dense cloud/Poisson mesh is visually plausible before cleanup and the pre-Blender handoff is hash-bound;
-5. **post-Blender:** the final Blender master opens correctly;
-6. **post-Blender:** the exported GLB cleanly re-imports.
+## Reconstruction evidence
 
-## Retained reusable code
+Representative outputs are kept in the repository so the main stages can be inspected without retaining every temporary diagnostic artifact.
 
-The project keeps capture-independent OpenCV QA/geometry utilities, ALIKED/LightGlue feature and database helpers, pyCOLMAP/COLMAP orchestration, PLY/mesh helpers, and segmentation utilities for V4. Legacy V3/Step-specific assumptions must be generalized rather than reused blindly.
+### Sparse reconstruction
+
+- `reconstruction/v4/previews/sparse_model_0_contact.png`
+- `reconstruction/v4/previews/sparse_model_0_trajectory.png`
+
+### Dense reconstruction
+
+- `reconstruction/v4/previews/dense_dense_best_defensible_v1_full_geometric_phase_semantic/`
+
+### Poisson mesh
+
+- `reconstruction/v4/previews/raw_poisson_best_defensible_v1_depth13_trim5/`
+
+### Final asset verification
+
+- `reconstruction/v4/previews/final_lod0_v1/`
+- `reconstruction/v4/previews/final_glb_reimport_v1/`
+
+## Appearance and material workflow
+
+The final brass appearance is separated from geometry reconstruction. The geometry images use temporary coating and markers, so their visible color is not treated as the final material reference.
+
+Instead, the project derives reproducible appearance statistics from the **158 uncoated photographs**. The production asset uses:
+
+- brass-colored Base Color derived from the uncoated capture set
+- metallic material response
+- roughness derived from the appearance statistics
+- scan-derived ambient-occlusion information
+- baked tangent-space normal/detail information from the higher-detail scan geometry
+
+This keeps the final appearance tied to the photographed project object while keeping geometry and appearance acquisition roles separate.
+
+## Validation and reproducibility
+
+The pipeline records manifests, reconstruction reports, model hashes, and validation outputs for the important stages. Validation includes:
+
+- source-image and metadata auditing
+- mask and feature-support checks
+- geometric match verification
+- sparse camera and track checks
+- dense depth/normal-map accounting
+- mask-aware fused-cloud inspection
+- Poisson connected-component measurements
+- finite geometry, normal, UV, and material checks
+- deterministic multi-view render comparison
+- clean GLB re-import into an empty Blender scene
+
+The verified exported baseline contains one intended production mesh with the expected material and texture connections. The authoring and re-import renders were also compared numerically to confirm that export preserves the prepared asset.
+
+## Repository structure
+
+```text
+capture_v4/                     V4 manifests, masks, and derived capture inputs
+CSX4213_Project_V4_Images/      Immutable V4 source photographs
+analysis/                       Computer-vision analysis and representative evidence
+docs/                           Project documentation and detailed report
+reconstruction/v4/              Sparse, dense, mesh, reports, previews, and Blender outputs
+scripts/                        Reproducible reconstruction and verification utilities
+tests/                          Regression and pipeline validation tests
+```
+
+Large temporary reconstruction workspaces, caches, and redundant diagnostics are intentionally not part of the final project record. The repository keeps the source data, selected reconstruction lineage, representative evidence, reproducible scripts, and final asset outputs needed to understand and verify the project.
+
+## Main technologies
+
+Python, PyTorch, OpenCV, Grounding DINO-T, SAM 2.1, ALIKED-N16Rot, LightGlue, pyCOLMAP, COLMAP 4.2, CUDA PatchMatch Stereo, Poisson surface reconstruction, Blender 5.2, FFmpeg, and ExifTool.
+
+## Project report
+
+A detailed description of the objective, acquisition design, computer vision methodology, implementation, reconstruction outputs, and validation is available in:
+
+**[docs/PROJECT_REPORT.md](docs/PROJECT_REPORT.md)**

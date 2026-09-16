@@ -1,6 +1,6 @@
 # V4 Fast End-to-End Reconstruction Implementation Plan
 
-> **Execution state:** updated 2026-09-13. V4 implementation has already progressed through ingest/masking/matching/sparse and into dense/post-fusion remediation. The older checkbox sequence remains useful as a requirements map, but **do not restart from the first unchecked/stale box**. Continue from the live checkpoint below. Do not use Codex CLI.
+> **Execution state:** historical/superseded for new execution as of 2026-09-14. Preserve this plan as prior requirements/context only. The active implementation plan is `docs/superpowers/plans/2026-09-14-v4-full-repair.md`; later investigation proved upstream `geo_g10` sparse-pose inconsistencies and duplicate dense reference writes, so the former dense/post-fusion continuation checkpoint below is not the current starting point. As of 2026-09-15, the current Codex/local executor stops at the verified Poisson pre-Blender handoff; ChatGPT + Blender MCP owns Blender and everything after Blender. Do not use Codex CLI.
 
 **Goal:** Convert the immutable final V4 still-image set into one scan-derived Thai libation vessel, verify the real reconstruction before manual cleanup, and deliver a canonical editable Blender file plus a cleanly re-importable GLB.
 

@@ -1,10 +1,18 @@
 # V4 Full Reconstruction Repair Design
 
-**Status:** Canonical V4 repair design as of 2026-09-14. This supersedes the dense-only repair assumption and the earlier fast end-to-end continuation checkpoint for all new V4 work.
+**Status:** Canonical V4 repair design as of 2026-09-14, with the 2026-09-15 execution-ownership override below. This supersedes the dense-only repair assumption and the earlier fast end-to-end continuation checkpoint for all new V4 work.
 
 ## Goal
 
-Complete V4 end-to-end from the newest verified repository state with the strongest defensible genuine computer-vision result realistically recoverable from the captured evidence. Use bounded evidence-backed repair/escalation ladders; strict research-grade gates remain preferred measurements but must not cause indefinite candidate churn. When a bounded stage cannot meet every strict threshold, freeze the strongest defensible image-derived artifact, preserve its failed checks unchanged, document the residual limitation, and continue through fresh compatible dense reconstruction, Poisson, scan-preserving Blender/LOD0/UV/material work, final `.blend`/GLB, fresh GLB re-import, verification, docs, and focused publication. Never reuse incompatible dense maps, falsely relabel a failed gate as passed, or fabricate missing vessel-scale anatomy.
+Complete V4 end-to-end from the newest verified repository state with the strongest defensible genuine computer-vision result realistically recoverable from the captured evidence, but execute it in two ownership phases. The current Codex/local phase ends at a verified, versioned, hash-bound Poisson + evidence handoff. The later ChatGPT + Blender MCP phase performs Blender and everything after Blender. Use bounded evidence-backed repair/escalation ladders; strict research-grade gates remain preferred measurements but must not cause indefinite candidate churn. Never reuse incompatible dense maps, falsely relabel a failed gate as passed, or fabricate missing vessel-scale anatomy.
+
+## Execution ownership boundary — 2026-09-15
+
+- The **pre-Blender owner (Codex/local executor)** must recover persisted state after restart, complete remaining dense/Poisson work, correct/verify lineage, tests, hashes and pre-Blender docs, and complete the focused pre-Blender Git milestone.
+- The handoff artifact is the strongest defensible scan-derived Poisson plus exact sparse/dense/Poisson provenance, reports, hashes and residual failures.
+- Once that handoff is ready, the pre-Blender owner must stop and must not touch `.blend`/GLB scenes/artifacts, Blender-specific finalization, appearance/material finalization, fresh GLB re-import, or post-Blender publication.
+- **ChatGPT + Blender MCP** owns the Blender cleanup, LOD0/UV/normal-detail/AO, appearance/material, final `.blend`/GLB, fresh re-import, visual inspection, final docs and final publication.
+- A reboot or disconnected tool session invalidates assumptions about an in-flight compute job, not the persisted evidence. Inspect logs/workspaces/artifacts first and rerun only if necessary.
 
 ## Non-negotiable boundaries
 
@@ -206,9 +214,9 @@ Acceptance requires:
 
 The historical 644-component / ~0.6657-dominant Poisson is a regression fixture that must fail.
 
-If Poisson misses strict thresholds, make only the bounded evidence-backed retry justified by the measured cause. Once that bounded ladder is exhausted, choose the strongest connected scan-derived Poisson, keep every failed threshold/visual limitation explicit, and continue to Blender. Do not bridge missing vessel-scale anatomy in Blender.
+If Poisson misses strict thresholds, make only the bounded evidence-backed retry justified by the measured cause. Once that bounded ladder is exhausted, choose the strongest connected scan-derived Poisson, keep every failed threshold/visual limitation explicit, and freeze it for the pre-Blender handoff. The current Codex/local executor stops there; ChatGPT + Blender MCP owns the later Blender stage. Do not bridge missing vessel-scale anatomy in Blender.
 
-### I. Blender remains scan-preserving and non-creative
+### I. POST-BLENDER OWNER: ChatGPT + Blender MCP — Blender remains scan-preserving and non-creative
 
 Only after a repaired raw Poisson is strictly accepted **or** the bounded Poisson ladder is exhausted and the strongest defensible connected scan-derived mesh is explicitly frozen with its failures documented:
 
@@ -221,7 +229,7 @@ Only after a repaired raw Poisson is strictly accepted **or** the bounded Poisso
 
 No whole-object remesh, sculpt, manual mesh edit, symmetry, lathe/revolve, primitive replacement, CAD/profile trace, or external-reference construction may manufacture or reshape neck/lid/finial/bowl/pedestal geometry. If vessel-scale anatomy is missing, return to the CV reconstruction stages.
 
-### J. Automated project-image-derived appearance reconstruction
+### J. POST-BLENDER OWNER: ChatGPT + Blender MCP — Automated project-image-derived appearance reconstruction
 
 Attempt automated auxiliary localization of the 158 uncoated project images against the accepted repaired geometry without modifying geometry.
 
@@ -231,7 +239,7 @@ If photographic projection cannot be verified, fail closed to a reproducible app
 
 Final material may include verified projected BaseColor or reproducible project-dataset-derived BaseColor statistics, data-derived Roughness, scan-derived Normal/detail, AO, and physically appropriate brass metallic response. Every appearance input and derivation must be recorded.
 
-### K. Final export and verification
+### K. POST-BLENDER OWNER: ChatGPT + Blender MCP — Final export and verification
 
 The repaired final must be validated in a fresh Blender 5.2 process and fresh GLB import.
 
@@ -258,9 +266,15 @@ The user has authorized focused commit and push for major verified V4 milestones
 
 Before each milestone: inspect root/branch/status/upstream/intended diff, stage only milestone files, exclude source JPEGs/private weights/scratch dense workspaces/logs/backups/unrelated changes, push normally, then verify `origin/main` equals the intended commit. No per-task noisy commits.
 
+For the current split, the raw-Poisson milestone is the Codex/local executor's final milestone. The Blender+GLB milestone is reserved for ChatGPT + Blender MCP.
+
+## Pre-Blender handoff definition
+
+The current Codex/local phase is done only when the strongest defensible sparse lineage is correct; fresh dense evidence is compatible and the bounded dense ladder is finished; the strongest connected scan-derived Poisson is selected and hash-bound; residual strict failures are preserved; relevant pre-Blender tests/compile/hash checks and documentation are current; task-created pre-Blender residue is cleaned; and the focused pre-Blender Git state is pushed/verified when appropriate. At that point the executor stops and hands the Poisson/evidence package to ChatGPT + Blender MCP.
+
 ## Definition of done
 
-V4 full reconstruction is complete when all of the following are true:
+Overall V4 full reconstruction is complete when all of the following are true across both ownership phases:
 
 1. the strongest defensible image-derived sparse source is hash-bound and its strict pass/fail state is recorded honestly;
 2. fresh dense maps are compatible with that sparse geometry and one-reference-one-write provenance is proven;
