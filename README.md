@@ -81,7 +81,7 @@ Fresh GLB re-import and multi-view verification
 
 ## Current reconstruction artifacts
 
-The repository contains a verified V4 reconstruction baseline together with an active scan-preserving refinement workspace.
+The repository contains the completed V4 reconstruction and its scan-preserving V7 final authoring lineage.
 
 Key reconstruction artifacts include:
 
@@ -90,13 +90,17 @@ Key reconstruction artifacts include:
 - **Selected Poisson mesh:** `reconstruction/v4/mesh/poisson_best_defensible_v1_depth13_trim5.ply`
 - **Canonical Blender asset:** `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend`
 - **Canonical GLB asset:** `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.glb`
-- **Current scan-preserving refinement:** `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V128.blend`
+- **Final scan-preserving authoring master:** `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V139.blend`
 
-The selected dense reconstruction contains approximately **1.93 million fused points**. The selected Poisson surface contains approximately **4.95 million vertices** before production-mesh reduction. The verified production LOD0 baseline contains **151,547 vertices** and **294,713 faces**. The current V7 authoring candidate remains a dense-derived scan mesh at **451,312 vertices / 902,838 faces**; its visible surfaces were cleaned with bounded scan-vertex smoothing while preserving the measured physical bottom opening and project-derived brass appearance. V7 has **not** been exported or promoted to the canonical names yet.
+The selected dense reconstruction contains approximately **1.93 million fused points**. The selected Poisson surface contains approximately **4.95 million vertices** before production-mesh reduction. The completed V139 final remains a dense-derived scan mesh at **451,312 vertices / 902,838 triangular faces**. Cleanup was limited to the reconstructed vertices and same-object scan evidence; the physical bottom opening remains intentional, and the final material comes from the verified project-wide uncoated-image statistics. The canonical GLB was re-imported in a fresh Blender 5.2 process and reproduced one mesh with the same topology, material, identity transforms, and dimensions.
 
 ## Reconstruction evidence
 
 Representative outputs are kept in the repository so the main stages can be inspected without retaining every temporary diagnostic artifact.
+
+### Acquisition setup
+
+- `private_images/` — coating, lighting, fixed-phone, rotating-board, and white-background setup photographs
 
 ### Sparse reconstruction
 
@@ -113,22 +117,23 @@ Representative outputs are kept in the repository so the main stages can be insp
 
 ### Final asset verification
 
-- `reconstruction/v4/previews/final_lod0_v1/`
-- `reconstruction/v4/previews/final_glb_reimport_v1/`
+- `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/previews/v139_final_surface_qa/`
+- `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/previews/v139_final_brass_qa/`
+- `reconstruction/v4/previews/final_lod0_v1/` — retained historical V6 verification
+- `reconstruction/v4/previews/final_glb_reimport_v1/` — retained historical V6 verification
 
 ## Appearance and material workflow
 
 The final brass appearance is separated from geometry reconstruction. The geometry images use temporary coating and markers, so their visible color is not treated as the final material reference.
 
-Instead, the project derives reproducible appearance statistics from the **158 uncoated photographs**. The production asset uses:
+Instead, the project derives reproducible appearance statistics from the **158 uncoated photographs**. The V139 production asset uses a single statistics-only brass material with:
 
-- brass-colored Base Color derived from the uncoated capture set
-- metallic material response
+- brass Base Color derived from the uncoated capture set
+- metallic response appropriate to the photographed brass surface
 - roughness derived from the appearance statistics
-- scan-derived ambient-occlusion information
-- baked tangent-space normal/detail information from the higher-detail scan geometry
+- surface relief supplied by the reconstructed mesh itself
 
-This keeps the final appearance tied to the photographed project object while keeping geometry and appearance acquisition roles separate.
+The earlier V6 asset retained topology-specific AO/normal-map work, but those maps are not attached to V139 because its topology/UV lineage differs. This keeps the final appearance tied to project evidence without claiming a photographic projection or incompatible texture bake.
 
 ## Validation and reproducibility
 

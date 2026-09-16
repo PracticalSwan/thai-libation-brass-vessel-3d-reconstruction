@@ -322,20 +322,22 @@ This task is **out of scope for the current Codex/local executor**. ChatGPT + Bl
 
 ## V7 scan-preserving refinement addendum — 2026-09-17
 
-The canonical V6 export remains the protected baseline. The later V7 authoring refinement is a separate pre-export milestone under the user's explicit scan-preserving override.
+The V6 export remains historical rollback evidence. The V7 scan-preserving refinement is now the completed canonical release under the user's explicit repair and final export authorization.
 
 - [x] Reject the V113/V114 replacement-looking geometry/material direction.
 - [x] Keep V94 as the dense-derived geometry base after V96 measured worse on the 3 cm ghost metric.
 - [x] Remove exactly the identified 70-face synthetic planar bottom cap and preserve one physical 72-edge bottom opening.
 - [x] Keep the bottom plane level while reducing measured centerline lean through the V119 scan-preserving shear.
 - [x] Use only guarded same-object CleanHigh lower-band donor displacement; protect the physical opening and reject large donor jumps.
-- [x] Clean the terminal only through existing scan vertices; do not add a sphere primitive or rebuilt finial.
-- [x] Perform bounded all-visible-surface cleanup/fairing/polish on reconstructed V94-derived vertices only. The selected V128 pass is constrained against V124 (median ~0.889 mm, p95 ~2.261 mm, p99 ~2.979 mm, max 9 mm), damps structural transition bands, and locks the physical opening boundary.
-- [x] Verify V128 topology: 451,312 vertices / 902,838 faces, one connected component, one 72-edge boundary loop, zero other non-manifold edges, finite positions.
-- [x] Review eight clay turntable views plus close base/bowl/globe/neck/terminal/bottom views and eight brass turntable views.
-- [x] Save and hash `Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V128.blend` (554,195,471 bytes; SHA-256 `132d9b0c30849a3af5c346e706a64eefc2f38796f7ff7b7b0649e5224551b57e`) and verify no missing external files.
+- [x] Clean and patch the terminal only through existing reconstructed vertices and same-scan evidence; do not add a sphere primitive or rebuilt finial.
+- [x] Continue bounded all-visible-surface cleanup through V139, with segmented eight-angle audits across holder, bowl, globe, tower, upper ring and terminal, while locking the physical bottom boundary.
+- [x] Verify V139 topology: 451,312 vertices / 902,838 triangular faces, one connected component, one 72-edge boundary loop, zero other non-manifold edges, zero zero-area faces, no loose vertices, finite positions and identity transforms.
+- [x] Review final eight-angle clay surface bands, full turntable, top-oblique/underside views, and the final brass turntable/closeups.
+- [x] Save and hash `Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V139.blend` (604,340,108 bytes; SHA-256 `951d11585d3b459251bb349acc5515877f4f223fb55189e37d5910f1716ee4f3`) and verify no missing external files.
 - [x] Keep `MAT_V4_V115_BrassStatsOnly`; no generic decoration or V6 topology-specific maps are attached to the V7 mesh.
-- [ ] **STOP before GLB export, fresh GLB re-import, or canonical promotion. Wait for explicit user confirmation.**
+- [x] Promote V139 to `Thai_Libation_Vessel_V4_FINAL.blend` and export `Thai_Libation_Vessel_V4_FINAL.glb` after explicit user authorization.
+- [x] Fresh-import the canonical GLB in Blender 5.2 factory-startup and verify exactly one mesh with matching 451,312 vertices / 902,838 triangles, material, transforms and dimensions.
+- [x] Hash the canonical final files: `.blend` `6663d83303fefac34bbbee85132ad64322e2e9b0bc4db73776f2a882a9d07a0c`; GLB `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`.
 
 ## Final completion report must include
 

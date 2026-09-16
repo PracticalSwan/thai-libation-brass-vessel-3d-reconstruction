@@ -32,6 +32,8 @@ Brass is challenging for photogrammetry because a polished metallic surface prod
 - a white background to simplify visual isolation;
 - empty-board/background images to help distinguish the vessel from the rotating support and stationary background.
 
+Setup photographs are retained in `private_images/` as practical evidence of the coating step, lighting arrangement, fixed-phone setup, rotating board, and white-background layout used during acquisition.
+
 The audited geometry capture uses the OPPO Reno12 F rear camera with a consistent lens state. Geometry and empty-board images are 3072 × 4080 pixels, captured using the same rear-camera configuration with digital zoom 1 and consistent exposure metadata.
 
 ## 4. V4 image dataset
@@ -66,9 +68,8 @@ Image acquisition
   -> mask-aware stereo fusion
   -> dense point cloud
   -> Poisson surface reconstruction
-  -> scan-preserving mesh preparation
-  -> UV and baked detail maps
-  -> brass PBR material
+  -> scan-preserving mesh preparation and bounded repair
+  -> project-image-derived brass material
   -> Blender master and GLB export
   -> clean re-import verification
 ```
@@ -211,61 +212,54 @@ Blender 5.2 is used as a technical post-processing environment after the image-d
 
 The asset-preparation stage includes:
 
-- preserving the raw Poisson scan as a source object;
-- producing a manageable production LOD0 mesh;
-- normal and topology cleanup that does not redesign the vessel;
-- UV generation;
-- ambient-occlusion baking;
-- higher-detail scan-to-LOD0 tangent-space normal/detail baking;
-- material construction;
-- GLB export and re-import verification.
+- preserving the raw Poisson/CleanHigh reconstruction as source evidence;
+- keeping the final geometry traceable to the dense-derived mesh;
+- removing only evidence-backed synthetic or defective scan geometry;
+- bounded smoothing/fairing of reconstructed vertices without redesigning the vessel;
+- material construction from project-derived appearance statistics;
+- GLB export and fresh-process re-import verification.
 
-The verified production LOD0 baseline contains:
-
-- **151,547 vertices**;
-- **294,713 faces**.
+An earlier V6 production LOD0 baseline contained **151,547 vertices / 294,713 faces** and retained its own UV/bake workflow. The completed V139 release instead keeps the higher-density repaired scan mesh because that lineage best preserves the reconstructed vessel.
 
 The current canonical files are:
 
 - `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend`
 - `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.glb`
 
-A later V7 workspace continues scan-preserving refinement while retaining the canonical baseline as a reproducible reference. Its current authoring candidate remains a reconstructed dense-derived mesh rather than a replacement model: a synthetic planar bottom cap was removed after comparison with preserved scan evidence, the physical bottom opening was retained, lower-band correction uses only same-object CleanHigh scan geometry, the existing terminal scan was locally cleaned without a primitive replacement, and visible surfaces were polished through bounded curvature-aware smoothing with the source topology preserved. The current V7 mesh has 451,312 vertices and 902,838 faces, one connected component, one intentional 72-edge bottom boundary loop, and no other non-manifold edges. It uses the project-derived statistics-only brass material and has not yet been exported to GLB or promoted to the canonical filenames.
+The final V7 authoring pass stayed on the reconstructed dense mesh rather than replacing vessel anatomy. A synthetic planar bottom cap was removed after comparison with preserved raw/CleanHigh evidence, leaving the real 72-edge physical opening. Lower-pedestal repair used only same-object CleanHigh geometry, and subsequent smoothing/fairing operated on reconstructed vertices with the opening boundary locked. The holder-to-middle-ring transition, bowl, globe, complete tower, upper ring, and terminal were inspected in segmented eight-angle closeups. The terminal was repaired from its existing scan vertices using bounded same-scan profile correction, local fairing, and robust sphere fitting; no primitive sphere, rebuilt finial, lathed profile, generic side, or external reference geometry was added.
+
+The completed object is `SM_V4_V139_SCAN_PRESERVING_FINAL`. It contains **451,312 vertices** and **902,838 triangular faces**, one connected component, one intentional 72-edge boundary loop, zero other non-manifold edges, no zero-area faces, no loose vertices, and identity transforms. Its dimensions are approximately **0.89744 × 0.89870 × 2.09221 m**. The physical bottom boundary remains level. Appearance uses only `MAT_V4_V115_BrassStatsOnly`, derived from the verified 158-image uncoated set; photographic texture projection was not claimed.
+
+V139 was promoted to the canonical `.blend` and exported as the canonical GLB. A fresh Blender 5.2 factory-startup process imported the GLB into an empty scene and verified exactly one mesh object with **451,312 vertices / 902,838 triangles**, the expected brass material, identity transforms, and matching dimensions. Canonical SHA-256 values are `6663d83303fefac34bbbee85132ad64322e2e9b0bc4db73776f2a882a9d07a0c` for `Thai_Libation_Vessel_V4_FINAL.blend` and `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6` for `Thai_Libation_Vessel_V4_FINAL.glb`.
 
 ## 18. Stage 13 — Brass appearance reconstruction
 
 Geometry and appearance are handled separately because the geometry images contain temporary coating and markers.
 
-The final appearance workflow uses the complete **158-image uncoated capture set** to derive reproducible brass appearance statistics. The production material combines:
+The final appearance workflow uses the complete **158-image uncoated capture set** to derive reproducible brass appearance statistics. V139 uses one statistics-only material, `MAT_V4_V115_BrassStatsOnly`, with dataset-derived Base Color, metallic response, and dataset-derived roughness. Surface relief comes from the reconstructed mesh itself.
 
-- dataset-derived brass Base Color;
-- metallic response appropriate to the photographed brass surface;
-- dataset-derived roughness;
-- baked ambient occlusion;
-- scan-derived tangent-space normal/detail information.
-
-This approach keeps the final material tied to the real photographed object rather than the temporary geometry-capture treatment.
+The earlier V6 asset retained topology-specific AO/normal-map work. Those maps are not reused on V139 because the V139 topology and UV lineage are different, and photographic projection was not independently verified. This keeps the final appearance tied to project evidence without attaching incompatible bakes or hand-reconstructed decoration.
 
 ## 19. Stage 14 — Export and clean re-import validation
 
 The production asset is exported as GLB and then loaded into a fresh Blender scene for independent verification.
 
-The re-import checks include:
+For the completed V139 release, the export gate checked geometry before export and then re-imported the canonical GLB in a fresh Blender 5.2 factory-startup process. The final checks include:
 
-- expected final mesh count;
-- finite vertex positions and normals;
-- valid UV coordinates;
-- material presence;
-- Base Color, Roughness, Normal, and AO texture connectivity;
-- expected scene bounds and transforms;
-- absence of unintended source/debug objects from the exported asset.
+- exactly one exported mesh object;
+- **451,312 vertices / 902,838 triangles** after re-import;
+- finite geometry and normals;
+- `MAT_V4_V115_BrassStatsOnly` present;
+- identity location, rotation, and scale;
+- dimensions matching the authoring object;
+- absence of source, rollback, camera, light, or debug objects in the exported GLB.
 
-Multi-view authoring renders are compared with corresponding re-import renders. The verified baseline achieved approximately **0.000637 mean 8-bit pixel MAE** and a minimum **78.56 dB PSNR** across the deterministic comparison views, showing that the exported GLB closely reproduces the prepared authoring asset.
+The V139 QA record is stored under:
 
-Representative validation renders are stored under:
+- `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/previews/v139_final_surface_qa/`;
+- `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/previews/v139_final_brass_qa/`.
 
-- `reconstruction/v4/previews/final_lod0_v1/`
-- `reconstruction/v4/previews/final_glb_reimport_v1/`
+The older deterministic V6 render-comparison folders remain in `reconstruction/v4/previews/final_lod0_v1/` and `reconstruction/v4/previews/final_glb_reimport_v1/` as historical evidence; their pixel metrics are not presented as V139 measurements.
 
 ## 20. Reproducibility and evidence management
 
