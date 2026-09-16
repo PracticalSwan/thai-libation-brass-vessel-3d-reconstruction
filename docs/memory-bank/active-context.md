@@ -1,6 +1,6 @@
 # Active Context
 
-Updated: 2026-09-16
+Updated: 2026-09-17
 
 ## Current focus
 
@@ -309,4 +309,12 @@ The external scratch root `D:\\Side Projects\\CSX4213_V4_Dense_Work` was reduced
 
 The human-facing project documentation was rebuilt around the actual image-to-3D workflow. `README.md` now gives the concise project overview, 688-image dataset split, end-to-end computer-vision pipeline, selected artifacts, representative evidence, material workflow, validation approach and repository map. `docs/PROJECT_REPORT.md` is the detailed report covering acquisition, Grounding DINO-T + SAM 2.1 isolation, ALIKED-N16Rot + LightGlue correspondence, COLMAP/pyCOLMAP sparse reconstruction, CUDA PatchMatch Stereo, mask-aware fusion, Poisson meshing, scan-preserving Blender asset preparation, project-image-derived brass appearance and clean GLB re-import verification. `docs/README.md` indexes current and historical technical documentation.
 
-The verified V6/canonical asset remains the publication baseline while V7 scan-preserving refinement continues. The V94 COLMAP diagnostic excluding `geo_g10`, `geo_g11` and `geo_g12` completed successfully on GPU 0 after this documentation pass began: 218 photometric and 218 geometric depth/normal maps were produced, mask-aware fusion completed with 194,205 points, and the diagnostic Poisson/QA outputs were generated. V94 remains an unpromoted V7 diagnostic pending comparative visual and geometric review, so its temporary D: workspace, runtime logs, multi-gigabyte V7 `.blend`, and repair-review artifacts remain excluded from this publication milestone. The process was allowed to finish without interruption.
+The verified V6/canonical asset remains the publication baseline while V7 scan-preserving refinement continues. The V94 COLMAP diagnostic excluding `geo_g10`, `geo_g11` and `geo_g12` completed successfully on GPU 0 after this documentation pass began: 218 photometric and 218 geometric depth/normal maps were produced, mask-aware fusion completed with 194,205 points, and the diagnostic Poisson/QA outputs were generated. V94 became the selected V7 dense-derived geometry base after later comparison showed V96 had a worse 3 cm translated-match ghost metric (`0.17226` versus V94 `0.14061`).
+
+## 2026-09-17 V7 scan-preserving authoring checkpoint
+
+The rejected V113/V114 reference-assisted-looking direction remains prohibited. The current selected authoring object is `SM_V4_V128_SCAN_SURFACE_POLISHED_FINAL`, saved in `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V128.blend` (554,195,471 bytes; SHA-256 `132d9b0c30849a3af5c346e706a64eefc2f38796f7ff7b7b0649e5224551b57e`). The scene preserves Raw, CleanHigh, V6, V94, V115/V116, V119/V120 and V124 rollback objects.
+
+V128 remains the reconstructed V94 mesh. Exactly 70 synthetic planar cap faces (area `0.3022912687200048 m²`) are removed; the physical bottom remains one intentional 72-edge boundary loop; the measured centerline correction remains about `6.85° -> 0.67°` with the bottom rim level. The lower band uses only guarded same-object CleanHigh donor displacement, and the top terminal uses only existing scan vertices. A subsequent all-visible-surface cleanup used bounded curvature-aware smoothing/fairing/polish with structural transition bands damped and the physical opening boundary locked. Relative to V124, total displacement is median ~`0.889 mm`, p95 ~`2.261 mm`, p99 ~`2.979 mm`, maximum `9 mm`. Final topology is 451,312 vertices / 902,838 faces, one connected component, one 72-edge boundary loop, zero other non-manifold edges, and finite geometry.
+
+The material is still `MAT_V4_V115_BrassStatsOnly` from the verified 158-image appearance statistics (`photographic_projection_verified=false`). Eight clay turntable views plus close base/bowl/globe/neck/terminal/bottom inspections and eight brass turntable views were reviewed. The model is cleaner while remaining visibly scan-derived; the terminal connection is still scan-incomplete and no generic ornament, side, pedestal, finial or primitive replacement was added. No GLB export or canonical promotion has occurred; wait for explicit user confirmation.

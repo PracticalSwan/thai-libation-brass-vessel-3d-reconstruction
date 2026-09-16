@@ -229,6 +229,12 @@ Only after a repaired raw Poisson is strictly accepted **or** the bounded Poisso
 
 No whole-object remesh, sculpt, manual mesh edit, symmetry, lathe/revolve, primitive replacement, CAD/profile trace, or external-reference construction may manufacture or reshape neck/lid/finial/bowl/pedestal geometry. If vessel-scale anatomy is missing, return to the CV reconstruction stages.
 
+#### V7 scan-preserving authoring override — 2026-09-16/17
+
+For the later V7 refinement, the user explicitly authorized localized cleanup/sculpt/smooth operations **on the reconstructed scan/dense mesh itself** and localized same-object donor reuse where supported by scan evidence. This does not authorize generic replacement anatomy, profile/lathe reconstruction, primitives, external-reference construction, or rebuilt ornament. The rejected V113/V114 replacement-looking direction remains invalid.
+
+The current V7 authoring candidate is `SM_V4_V128_SCAN_SURFACE_POLISHED_FINAL`, derived from V94. It preserves the intentionally open 72-edge physical bottom boundary, uses guarded `SM_V4_Scan_CleanHigh` donor displacement only on the lower band, cleans the terminal only through its existing scan vertices, and applies bounded curvature-aware surface smoothing/fairing/polish across visible reconstructed surfaces. The surface pass is constrained against V124 (median ~0.889 mm, p95 ~2.261 mm, p99 ~2.979 mm, max 9 mm displacement), with structural transition bands damped and the physical opening boundary locked. No remesh or synthetic geometry is introduced. The current checkpoint stops at the saved `.blend`; GLB export and canonical promotion remain blocked until explicit user confirmation.
+
 ### J. POST-BLENDER OWNER: ChatGPT + Blender MCP — Automated project-image-derived appearance reconstruction
 
 Attempt automated auxiliary localization of the 158 uncoated project images against the accepted repaired geometry without modifying geometry.

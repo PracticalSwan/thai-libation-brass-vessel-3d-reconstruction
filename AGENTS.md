@@ -181,3 +181,20 @@ Before each milestone commit: inspect root/branch/status/upstream/intended diff,
 ## Completion standard
 
 The **current Codex/local assignment** is complete when sparse/dense provenance is correct, the bounded dense ladder is exhausted or accepted, the strongest defensible Poisson is selected and hash-bound, pre-Blender verification/docs are current, and the focused pre-Blender publication is verified. The **overall V4 project** is complete only later, after ChatGPT + Blender MCP carries that frozen Poisson through scan-preserving Blender, final `.blend`/GLB, fresh GLB re-import, final verification/docs, and final focused publication. Strict research-grade gate failures may remain only when bounded evidence-backed attempts are exhausted; they must stay explicitly failed and be documented as residual limitations. Do not declare completion by falsifying a gate, reusing incompatible evidence, or fabricating missing vessel-scale geometry.
+
+## V7 scan-preserving Blender override — 2026-09-16
+
+The user explicitly narrowed the V7 Blender repair policy after rejecting a rebuilt-looking candidate. This override is authoritative for V7 authoring work:
+
+- Localized manual merge, cleanup, sculpt, and smoothing are allowed **only on the reconstructed scan/dense mesh itself**.
+- Intact geometry already present on the same rotationally repetitive vessel may be reused as a donor for a genuinely broken/missing side when needed.
+- External/reference-assisted anatomy construction, CAD/profile tracing, lathe/revolve replacement, primitive replacement, and wholesale hand-built finial/bowl/pedestal replacement remain prohibited.
+- The V113/V114 profile/replacement direction is rejected and must not be promoted as the final V7 model.
+- V94 remains the selected dense-derived geometry base; V96 completed but was rejected because its 3 cm translated-match ghost metric (`0.17226`) was worse than V94 (`0.14061`).
+- The selected V7 authoring candidate is `SM_V4_V128_SCAN_SURFACE_POLISHED_FINAL`. It remains the V94-derived reconstructed mesh: exactly 70 identified synthetic planar V94 cap faces (area `0.3022912687200048 m²`) are removed, one 72-edge physical bottom opening is preserved, the measured centerline correction remains about `6.85° -> 0.67°` with the bottom rim level, the lower band uses only guarded same-object `SM_V4_Scan_CleanHigh` donor displacement, and the terminal uses only its existing scan vertices. No primitive terminal, lathe/profile component, generic side, or rebuilt ornament is used.
+- V128 adds a bounded all-visible-surface cleanup/fairing/polish pass over the reconstructed vertices only. Relative to V124, median displacement is about `0.889 mm`, p95 about `2.261 mm`, p99 about `2.979 mm`, and the hard maximum is `9 mm`. Structural transition bands are damped and the intentional bottom boundary is locked; topology remains 451,312 vertices / 902,838 faces, one connected component, one 72-edge boundary loop, and zero other non-manifold edges.
+- No separate missing-side patch is present: the final multi-angle review did not establish a defensible localized silhouette loss, so no side was fabricated or symmetrized.
+- The restored bottom opening is intentional open geometry. Its 72 boundary edges are not to be auto-filled merely to make the mesh watertight.
+- Final appearance is `MAT_V4_V115_BrassStatsOnly`, derived from the verified 158 uncoated project images. `photographic_projection_verified=false`; do not attach v6 UV-specific AO/normal maps or rebuild ornament from reference crops. Decorative relief is whatever the scan geometry actually captured.
+- The saved V7 authoring master is `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V128.blend`, size `554195471` bytes, SHA-256 `132d9b0c30849a3af5c346e706a64eefc2f38796f7ff7b7b0649e5224551b57e`.
+- No V7 export is authorized yet. Keep the canonical V6 `.blend`/GLB unchanged until the user explicitly confirms export/promotion.

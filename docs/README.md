@@ -24,4 +24,4 @@ The repository contains only the active V4 capture lineage:
 
 The raw and derived image trees are versioned with Git LFS. Pre-V4 raw data, preprocessing products, analysis outputs, checkpoints, obsolete pipeline code/tests, and superseded implementation documents have been removed from the active repository.
 
-Large transient COLMAP/CUDA workspaces, caches, runtime logs, model weights, and live V7 diagnostic outputs remain local unless explicitly promoted as verified project artifacts.
+Large transient COLMAP/CUDA workspaces, caches, runtime logs, model weights, and rejected V7 diagnostic outputs remain local unless explicitly promoted as verified project artifacts. The current scan-preserving V7 authoring record is under `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/`; its selected V128 `.blend` is an authoring milestone only and remains pending user confirmation before any GLB export or canonical promotion.

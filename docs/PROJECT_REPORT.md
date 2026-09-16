@@ -230,7 +230,7 @@ The current canonical files are:
 - `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend`
 - `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.glb`
 
-A later V7 workspace continues scan-preserving refinement using additional measured reconstruction evidence while retaining the canonical baseline as a reproducible reference.
+A later V7 workspace continues scan-preserving refinement while retaining the canonical baseline as a reproducible reference. Its current authoring candidate remains a reconstructed dense-derived mesh rather than a replacement model: a synthetic planar bottom cap was removed after comparison with preserved scan evidence, the physical bottom opening was retained, lower-band correction uses only same-object CleanHigh scan geometry, the existing terminal scan was locally cleaned without a primitive replacement, and visible surfaces were polished through bounded curvature-aware smoothing with the source topology preserved. The current V7 mesh has 451,312 vertices and 902,838 faces, one connected component, one intentional 72-edge bottom boundary loop, and no other non-manifold edges. It uses the project-derived statistics-only brass material and has not yet been exported to GLB or promoted to the canonical filenames.
 
 ## 18. Stage 13 — Brass appearance reconstruction
 

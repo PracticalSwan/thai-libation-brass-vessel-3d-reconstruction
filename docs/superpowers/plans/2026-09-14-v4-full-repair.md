@@ -320,6 +320,23 @@ This task is **out of scope for the current Codex/local executor**. ChatGPT + Bl
 - [x] Create and push the focused final Blender/GLB milestone commit; Git LFS uploaded the 344 MB final Blender object successfully.
 - [x] Fetch and verify `origin/main` against the pushed local commit and run `git lfs fsck` successfully.
 
+## V7 scan-preserving refinement addendum — 2026-09-17
+
+The canonical V6 export remains the protected baseline. The later V7 authoring refinement is a separate pre-export milestone under the user's explicit scan-preserving override.
+
+- [x] Reject the V113/V114 replacement-looking geometry/material direction.
+- [x] Keep V94 as the dense-derived geometry base after V96 measured worse on the 3 cm ghost metric.
+- [x] Remove exactly the identified 70-face synthetic planar bottom cap and preserve one physical 72-edge bottom opening.
+- [x] Keep the bottom plane level while reducing measured centerline lean through the V119 scan-preserving shear.
+- [x] Use only guarded same-object CleanHigh lower-band donor displacement; protect the physical opening and reject large donor jumps.
+- [x] Clean the terminal only through existing scan vertices; do not add a sphere primitive or rebuilt finial.
+- [x] Perform bounded all-visible-surface cleanup/fairing/polish on reconstructed V94-derived vertices only. The selected V128 pass is constrained against V124 (median ~0.889 mm, p95 ~2.261 mm, p99 ~2.979 mm, max 9 mm), damps structural transition bands, and locks the physical opening boundary.
+- [x] Verify V128 topology: 451,312 vertices / 902,838 faces, one connected component, one 72-edge boundary loop, zero other non-manifold edges, finite positions.
+- [x] Review eight clay turntable views plus close base/bowl/globe/neck/terminal/bottom views and eight brass turntable views.
+- [x] Save and hash `Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V128.blend` (554,195,471 bytes; SHA-256 `132d9b0c30849a3af5c346e706a64eefc2f38796f7ff7b7b0649e5224551b57e`) and verify no missing external files.
+- [x] Keep `MAT_V4_V115_BrassStatsOnly`; no generic decoration or V6 topology-specific maps are attached to the V7 mesh.
+- [ ] **STOP before GLB export, fresh GLB re-import, or canonical promotion. Wait for explicit user confirmation.**
+
 ## Final completion report must include
 
 - accepted repaired sparse candidate lineage and exact evidence that the `geo_g10` contradictions are gone;

@@ -76,7 +76,7 @@ Fresh GLB re-import and multi-view verification
 | Dense reconstruction | CUDA COLMAP PatchMatch Stereo | Estimate per-view depth and normal maps |
 | Dense fusion | Mask-aware stereo fusion | Combine depth estimates into a dense colored point cloud |
 | Meshing | COLMAP Poisson mesher | Convert the fused point cloud into a continuous scan-derived surface |
-| Asset preparation | Blender | Prepare LOD0, UVs, baked detail, material, and export without manual shape creation |
+| Asset preparation | Blender | Preserve the reconstructed scan, perform bounded evidence-backed cleanup, prepare materials, and validate/export without generic replacement modeling |
 | Validation | Geometry checks, hashes, multi-view renders, clean GLB re-import | Verify reproducibility and exported-asset integrity |
 
 ## Current reconstruction artifacts
@@ -90,9 +90,9 @@ Key reconstruction artifacts include:
 - **Selected Poisson mesh:** `reconstruction/v4/mesh/poisson_best_defensible_v1_depth13_trim5.ply`
 - **Canonical Blender asset:** `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend`
 - **Canonical GLB asset:** `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.glb`
-- **Current refinement workspace:** `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_repair/`
+- **Current scan-preserving refinement:** `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V128.blend`
 
-The selected dense reconstruction contains approximately **1.93 million fused points**. The selected Poisson surface contains approximately **4.95 million vertices** before production-mesh reduction. The verified production LOD0 baseline contains **151,547 vertices** and **294,713 faces**.
+The selected dense reconstruction contains approximately **1.93 million fused points**. The selected Poisson surface contains approximately **4.95 million vertices** before production-mesh reduction. The verified production LOD0 baseline contains **151,547 vertices** and **294,713 faces**. The current V7 authoring candidate remains a dense-derived scan mesh at **451,312 vertices / 902,838 faces**; its visible surfaces were cleaned with bounded scan-vertex smoothing while preserving the measured physical bottom opening and project-derived brass appearance. V7 has **not** been exported or promoted to the canonical names yet.
 
 ## Reconstruction evidence
 
