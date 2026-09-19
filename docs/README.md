@@ -5,7 +5,9 @@ This directory contains the current technical documentation for the Thai Libatio
 ## Current project documentation
 
 - **[Project Report](PROJECT_REPORT.md)** — dataset, computer vision pipeline, reconstruction outputs, asset preparation, validation, and reproducibility.
+- **`Thai_Libation_Brass_Vessel_Final_Report.docx`** — final formatted paper/report deliverable.
 - **[Repository README](../README.md)** — concise project overview, pipeline summary, important artifacts, and repository map.
+- **`../submission/`** — professor-facing final 3D handoff: verified GLB, verified PLY, final model images, README, and checksums.
 - **[Active Context](memory-bank/active-context.md)** — newest verified technical state and continuation context.
 - **[Progress Log](memory-bank/progress.md)** — current V4/V7 engineering progress and verification milestones.
 - **[V4 Full Repair Design](superpowers/specs/2026-09-14-v4-full-repair-design.md)** — current reconstruction/repair architecture and evidence boundaries.

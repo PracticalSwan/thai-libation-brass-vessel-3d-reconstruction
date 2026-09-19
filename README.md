@@ -91,8 +91,13 @@ Key reconstruction artifacts include:
 - **Canonical Blender asset:** `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.blend`
 - **Canonical GLB asset:** `reconstruction/v4/blender/Thai_Libation_Vessel_V4_FINAL.glb`
 - **Final scan-preserving authoring master:** `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V139.blend`
+- **Professor submission package:** `submission/` — verified GLB and PLY deliverables, 14 final model images/contact sheets, README, and SHA-256 manifest
 
 The selected dense reconstruction contains approximately **1.93 million fused points**. The selected Poisson surface contains approximately **4.95 million vertices** before production-mesh reduction. The completed V139 final remains a dense-derived scan mesh at **451,312 vertices / 902,838 triangular faces**. Cleanup was limited to the reconstructed vertices and same-object scan evidence; the physical bottom opening remains intentional, and the final material comes from the verified project-wide uncoated-image statistics. The canonical GLB was re-imported in a fresh Blender 5.2 process and reproduced one mesh with the same topology, material, identity transforms, and dimensions.
+
+## Professor submission package
+
+The root-level `submission/` folder is the compact handoff intended for the professor. It contains `Thai_Libation_Vessel_Final.glb`, `Thai_Libation_Vessel_Final.ply`, eight 45-degree turntable images, four closeups, two contact sheets, `README.txt`, and `SHA256SUMS.txt`. The GLB preserves the final brass material; the PLY is a binary triangulated geometry-and-normals export. Both were imported into fresh Blender 5.2 factory-startup scenes and reproduced the final V139 topology of **451,312 vertices / 902,838 triangles** and matching scene-space dimensions. The GLB SHA-256 is `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`; the PLY SHA-256 is `42ab10ebec3b69dc8dc7ce28463a9d04fd3f0ecb3b35f888b62bc3c222eb9ff1`.
 
 ## Reconstruction evidence
 
@@ -158,8 +163,9 @@ The verified exported baseline contains one intended production mesh with the ex
 CSX4213_Project_V4_Images/      688 immutable V4 source photographs (Git LFS)
 capture_v4/manifests/           Current capture roles, sequences, exclusions, and audit records
 capture_v4/derived/             372 MVS images + 372 masks + 372 feature masks (Git LFS)
-docs/                           Current project documentation and detailed report
+docs/                           Current project documentation and final formatted report
 reconstruction/v4/              Sparse, dense, mesh, reports, previews, and Blender outputs
+submission/                     Professor-facing GLB, PLY, final model images, README, and checksums
 scripts/                        Reproducible V4 reconstruction and verification utilities
 tests/                          Current pipeline regression and validation tests
 ```
@@ -175,3 +181,5 @@ Python, PyTorch, OpenCV, Grounding DINO-T, SAM 2.1, ALIKED-N16Rot, LightGlue, py
 A detailed description of the objective, acquisition design, computer vision methodology, implementation, reconstruction outputs, and validation is available in:
 
 **[docs/PROJECT_REPORT.md](docs/PROJECT_REPORT.md)**
+
+The final formatted paper is also included as `docs/Thai_Libation_Brass_Vessel_Final_Report.docx`.

@@ -230,7 +230,7 @@ The final V7 authoring pass stayed on the reconstructed dense mesh rather than r
 
 The completed object is `SM_V4_V139_SCAN_PRESERVING_FINAL`. It contains **451,312 vertices** and **902,838 triangular faces**, one connected component, one intentional 72-edge boundary loop, zero other non-manifold edges, no zero-area faces, no loose vertices, and identity transforms. Its dimensions are approximately **0.89744 × 0.89870 × 2.09221 m**. The physical bottom boundary remains level. Appearance uses only `MAT_V4_V115_BrassStatsOnly`, derived from the verified 158-image uncoated set; photographic texture projection was not claimed.
 
-V139 was promoted to the canonical `.blend` and exported as the canonical GLB. A fresh Blender 5.2 factory-startup process imported the GLB into an empty scene and verified exactly one mesh object with **451,312 vertices / 902,838 triangles**, the expected brass material, identity transforms, and matching dimensions. Canonical SHA-256 values are `6663d83303fefac34bbbee85132ad64322e2e9b0bc4db73776f2a882a9d07a0c` for `Thai_Libation_Vessel_V4_FINAL.blend` and `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6` for `Thai_Libation_Vessel_V4_FINAL.glb`.
+V139 was promoted to the canonical `.blend` and exported as the canonical GLB. A fresh Blender 5.2 factory-startup process imported the GLB into an empty scene and verified exactly one mesh object with **451,312 vertices / 902,838 triangles**, the expected brass material, identity transforms, and matching dimensions. The current canonical SHA-256 values are `5eacf012b9940d1997291c4c1e0720776e2a658bf2c60b3a7e567947695e3436` for `Thai_Libation_Vessel_V4_FINAL.blend` and `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6` for `Thai_Libation_Vessel_V4_FINAL.glb`. The canonical `.blend` was later re-saved, changing its byte hash from `6663d83303fefac34bbbee85132ad64322e2e9b0bc4db73776f2a882a9d07a0c` without changing the selected V139 mesh: independent Blender 5.2 background verification matched the versioned V139 master in topology, material, transforms, dimensions, and semantic mesh SHA-256 `82348c02e61529d1f19d6e0a11e2c3fcf3228a354d1186c73691d84beb5a393b`. The canonical GLB bytes are unchanged.
 
 ## 18. Stage 13 — Brass appearance reconstruction
 
@@ -260,6 +260,10 @@ The V139 QA record is stored under:
 - `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/previews/v139_final_brass_qa/`.
 
 The older deterministic V6 render-comparison folders remain in `reconstruction/v4/previews/final_lod0_v1/` and `reconstruction/v4/previews/final_glb_reimport_v1/` as historical evidence; their pixel metrics are not presented as V139 measurements.
+
+### Professor-facing submission package
+
+The final handoff is collected under the root-level `submission/` directory. It contains the verified material-bearing `Thai_Libation_Vessel_Final.glb`, a binary triangulated `Thai_Libation_Vessel_Final.ply` geometry-and-normals export, eight 45-degree turntable views, four regional closeups, two contact sheets, a concise README, and a SHA-256 manifest. Fresh Blender 5.2 factory-startup imports independently verified both model files at **451,312 vertices / 902,838 triangles** with matching scene-space dimensions. The GLB preserves `MAT_V4_V115_BrassStatsOnly`; PLY is used as geometry interchange and does not carry the Blender shader. The GLB SHA-256 is `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`, and the PLY SHA-256 is `42ab10ebec3b69dc8dc7ce28463a9d04fd3f0ecb3b35f888b62bc3c222eb9ff1`.
 
 ## 20. Reproducibility and evidence management
 
@@ -292,7 +296,10 @@ capture_v4/derived/
     372 MVS images, 372 vessel masks, and 372 feature masks (Git LFS)
 
 docs/
-    Current methodology, project documentation, and this report
+    Current methodology, project documentation, and final formatted report
+
+submission/
+    Professor-facing verified GLB and PLY models, final model images, README, and checksums
 
 reconstruction/v4/sparse/
     Sparse reconstruction artifacts

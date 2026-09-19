@@ -337,7 +337,16 @@ The V6 export remains historical rollback evidence. The V7 scan-preserving refin
 - [x] Keep `MAT_V4_V115_BrassStatsOnly`; no generic decoration or V6 topology-specific maps are attached to the V7 mesh.
 - [x] Promote V139 to `Thai_Libation_Vessel_V4_FINAL.blend` and export `Thai_Libation_Vessel_V4_FINAL.glb` after explicit user authorization.
 - [x] Fresh-import the canonical GLB in Blender 5.2 factory-startup and verify exactly one mesh with matching 451,312 vertices / 902,838 triangles, material, transforms and dimensions.
-- [x] Hash the canonical final files: `.blend` `6663d83303fefac34bbbee85132ad64322e2e9b0bc4db73776f2a882a9d07a0c`; GLB `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`.
+- [x] Hash the canonical final files: current `.blend` `5eacf012b9940d1997291c4c1e0720776e2a658bf2c60b3a7e567947695e3436`; GLB `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`. The canonical `.blend` was re-saved after promotion; its semantic V139 mesh SHA-256 `82348c02e61529d1f19d6e0a11e2c3fcf3228a354d1186c73691d84beb5a393b` matches the versioned V139 master, while the previous canonical byte hash `6663d83303fefac34bbbee85132ad64322e2e9b0bc4db73776f2a882a9d07a0c` remains in Git history.
+
+### Final professor submission package — 2026-09-19
+
+- [x] Create root-level `submission/` and copy the verified canonical GLB to `Thai_Libation_Vessel_Final.glb`.
+- [x] Export `Thai_Libation_Vessel_Final.ply` from `SM_V4_V139_SCAN_PRESERVING_FINAL` as binary triangulated geometry with normals.
+- [x] Fresh-import the submission PLY and verify one mesh, 451,312 vertices / 902,838 triangles, identity transforms, and matching dimensions.
+- [x] Fresh-import the submission GLB and verify one mesh, 451,312 vertices / 902,838 triangles, one `MAT_V4_V115_BrassStatsOnly` material, identity transforms, and matching dimensions.
+- [x] Include eight turntable views, four regional closeups, two contact sheets, `README.txt`, and `SHA256SUMS.txt`.
+- [x] Record final submission hashes: GLB `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`; PLY `42ab10ebec3b69dc8dc7ce28463a9d04fd3f0ecb3b35f888b62bc3c222eb9ff1`.
 
 ## Final completion report must include
 
