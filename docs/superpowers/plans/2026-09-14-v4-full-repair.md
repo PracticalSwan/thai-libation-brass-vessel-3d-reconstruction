@@ -354,7 +354,7 @@ The V6 export remains historical provenance in Git history, but its superseded s
 - [x] Remove superseded V6 authoring/export assets, the standalone V128 checkpoint, pre-V139 V7 diagnostic/repair renders, historical V6 comparison renders and V6-only verification reports, transient `reconstruction/v4/work/` logs, old interim authoring/AO artifacts, and the duplicate `.blend1` backup.
 - [x] Regenerate the submission checksum manifest for the ready contents and update current-state documentation/instructions to the finished-project boundary.
 - [x] Verify final report/package integrity, ready-submission checksums, protected asset hashes/topology, full test suite, staged diff hygiene, and Git LFS integrity.
-- [ ] Commit the verified cleanup, push `main`, and prove `HEAD == origin/main == GitHub main` with no pending Git/LFS changes.
+- [x] Commit the verified cleanup, push `main`, and prove `HEAD == origin/main == GitHub main` with no pending Git/LFS changes.
 
 ## Final completion report must include
 
