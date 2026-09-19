@@ -20,8 +20,7 @@ MODEL FILES
 MODEL IMAGES
 The images/ folder contains:
 - 8 full turntable views at 45-degree intervals
-- 4 closeups: holder, bowl, tower, terminal
-- 2 contact sheets for quick review
+- 1 turntable contact sheet for quick review
 
 NOTES
 - Scene-space dimensions: approximately 0.89744 × 0.89870 × 2.09221 m.

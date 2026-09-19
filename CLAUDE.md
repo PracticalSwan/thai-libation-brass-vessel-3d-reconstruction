@@ -6,9 +6,9 @@
 
 ## Current execution target
 
-The project has a verified end-to-end V4 reconstruction baseline and is now in **V7 scan-preserving refinement and final documentation/publication maintenance**. Continue only from the newest verified repository/runtime state. The canonical V4 sparse, dense, Poisson, Blender, and GLB artifacts remain protected baselines unless a completed, independently verified V7 result is demonstrably stronger and explicitly promoted.
+The project has a verified end-to-end V4 reconstruction and a completed **V7 scan-preserving final release**. Continue only from the newest verified repository state. The selected sparse/dense/Poisson artifacts, V139 authoring master, canonical Blender/GLB assets, final report, and user-approved professor submission package are the protected finished state.
 
-A bounded dense reconstruction diagnostic may be running from the V7 repair workspace. Never interrupt, overwrite, delete, or publish a live workspace merely because it appears incomplete. Inspect the process, logs, reports, and output hashes after completion before deciding whether any result is promotable.
+Do not resume reconstruction diagnostics, candidate generation, Blender repair, material authoring, or export work unless the user explicitly reopens that scope. Finished-project maintenance should be limited to evidence-backed cleanup, documentation synchronization, integrity verification, and publication.
 
 Use `docs/superpowers/specs/2026-09-14-v4-full-repair-design.md`, `docs/superpowers/plans/2026-09-14-v4-full-repair.md`, `docs/memory-bank/active-context.md`, and `docs/memory-bank/progress.md` as the detailed technical history. Public-facing project documentation is `README.md` and `docs/PROJECT_REPORT.md`.
 

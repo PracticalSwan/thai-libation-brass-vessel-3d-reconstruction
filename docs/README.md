@@ -5,7 +5,7 @@ This directory contains the current technical documentation for the Thai Libatio
 ## Current project documentation
 
 - **[Project Report](PROJECT_REPORT.md)** — dataset, computer vision pipeline, reconstruction outputs, asset preparation, validation, and reproducibility.
-- **`Thai_Libation_Brass_Vessel_Final_Report.docx`** — final formatted paper/report deliverable.
+- **`Thai_Libation_Brass_Vessel_Final_Report.docx`** and **`Thai_Libation_Brass_Vessel_Final_Report.pdf`** — final formatted paper/report deliverables.
 - **[Repository README](../README.md)** — concise project overview, pipeline summary, important artifacts, and repository map.
 - **`../submission/`** — professor-facing final 3D handoff: verified GLB, verified PLY, final model images, README, and checksums.
 - **[Active Context](memory-bank/active-context.md)** — newest verified technical state and continuation context.
@@ -26,4 +26,4 @@ The repository contains only the active V4 capture lineage:
 
 The raw and derived image trees are versioned with Git LFS. Pre-V4 raw data, preprocessing products, analysis outputs, checkpoints, obsolete pipeline code/tests, and superseded implementation documents have been removed from the active repository.
 
-Large transient COLMAP/CUDA workspaces, caches, runtime logs, model weights, and rejected diagnostic outputs are not required for the completed deliverable. The scan-preserving V7 authoring record is under `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/`; V139 is the final authoring master, and its verified geometry has been promoted to the canonical `.blend` and GLB.
+Large transient COLMAP/CUDA workspaces, caches, runtime logs, model weights, superseded V6 assets, and rejected/pre-final diagnostic outputs are not required for the completed deliverable and have been removed from the active tree where safe. The scan-preserving V7 authoring record is under `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/`; it retains the V139 final authoring master and final V139 QA, and its verified geometry is promoted to the canonical `.blend` and GLB.

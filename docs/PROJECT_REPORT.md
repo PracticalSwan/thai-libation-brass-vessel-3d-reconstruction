@@ -259,11 +259,9 @@ The V139 QA record is stored under:
 - `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/previews/v139_final_surface_qa/`;
 - `reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/previews/v139_final_brass_qa/`.
 
-The older deterministic V6 render-comparison folders remain in `reconstruction/v4/previews/final_lod0_v1/` and `reconstruction/v4/previews/final_glb_reimport_v1/` as historical evidence; their pixel metrics are not presented as V139 measurements.
-
 ### Professor-facing submission package
 
-The final handoff is collected under the root-level `submission/` directory. It contains the verified material-bearing `Thai_Libation_Vessel_Final.glb`, a binary triangulated `Thai_Libation_Vessel_Final.ply` geometry-and-normals export, eight 45-degree turntable views, four regional closeups, two contact sheets, a concise README, and a SHA-256 manifest. Fresh Blender 5.2 factory-startup imports independently verified both model files at **451,312 vertices / 902,838 triangles** with matching scene-space dimensions. The GLB preserves `MAT_V4_V115_BrassStatsOnly`; PLY is used as geometry interchange and does not carry the Blender shader. The GLB SHA-256 is `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`, and the PLY SHA-256 is `42ab10ebec3b69dc8dc7ce28463a9d04fd3f0ecb3b35f888b62bc3c222eb9ff1`.
+The final handoff is collected under the root-level `submission/` directory. Its ready state contains the verified material-bearing `Thai_Libation_Vessel_Final.glb`, a binary triangulated `Thai_Libation_Vessel_Final.ply` geometry-and-normals export, eight 45-degree turntable views, one turntable contact sheet, a concise README, and a SHA-256 manifest. Fresh Blender 5.2 factory-startup imports independently verified both model files at **451,312 vertices / 902,838 triangles** with matching scene-space dimensions. The GLB preserves `MAT_V4_V115_BrassStatsOnly`; PLY is used as geometry interchange and does not carry the Blender shader. The GLB SHA-256 is `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`, and the PLY SHA-256 is `42ab10ebec3b69dc8dc7ce28463a9d04fd3f0ecb3b35f888b62bc3c222eb9ff1`.
 
 ## 20. Reproducibility and evidence management
 
@@ -281,7 +279,7 @@ The repository retains:
 - test coverage for important data and geometry contracts;
 - editable Blender and portable GLB outputs.
 
-Large temporary stereo workspaces, caches, repeated diagnostics, and other intermediate outputs are not treated as project deliverables and are excluded once the selected lineage has been preserved.
+Large temporary stereo workspaces, caches, repeated diagnostics, and other intermediate outputs are not treated as project deliverables and are excluded once the selected lineage has been preserved. The final cleanup also removes superseded V6 authoring/export files, the standalone V128 checkpoint, pre-V139 repair renders, and duplicate backup/runtime artifacts from the active tree; previously committed historical material remains recoverable from Git history.
 
 ## 21. Project directory map
 
@@ -314,7 +312,7 @@ reconstruction/v4/previews/
     Representative sparse, dense, mesh, and final-asset evidence
 
 reconstruction/v4/blender/
-    Blender authoring, canonical asset, GLB output, and current refinement workspace
+    Final V139 authoring master, canonical Blender/GLB assets, and final QA evidence
 
 scripts/
     Reconstruction, auditing, meshing, Blender, and verification utilities

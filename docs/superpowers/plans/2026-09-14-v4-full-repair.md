@@ -322,7 +322,7 @@ This task is **out of scope for the current Codex/local executor**. ChatGPT + Bl
 
 ## V7 scan-preserving refinement addendum — 2026-09-17
 
-The V6 export remains historical rollback evidence. The V7 scan-preserving refinement is now the completed canonical release under the user's explicit repair and final export authorization.
+The V6 export remains historical provenance in Git history, but its superseded standalone authoring/export files are removed from the active finished tree. The V7 scan-preserving V139 refinement is the completed canonical release under the user's explicit repair and final export authorization.
 
 - [x] Reject the V113/V114 replacement-looking geometry/material direction.
 - [x] Keep V94 as the dense-derived geometry base after V96 measured worse on the 3 cm ghost metric.
@@ -345,8 +345,16 @@ The V6 export remains historical rollback evidence. The V7 scan-preserving refin
 - [x] Export `Thai_Libation_Vessel_Final.ply` from `SM_V4_V139_SCAN_PRESERVING_FINAL` as binary triangulated geometry with normals.
 - [x] Fresh-import the submission PLY and verify one mesh, 451,312 vertices / 902,838 triangles, identity transforms, and matching dimensions.
 - [x] Fresh-import the submission GLB and verify one mesh, 451,312 vertices / 902,838 triangles, one `MAT_V4_V115_BrassStatsOnly` material, identity transforms, and matching dimensions.
-- [x] Include eight turntable views, four regional closeups, two contact sheets, `README.txt`, and `SHA256SUMS.txt`.
+- [x] Preserve the user-approved ready image set: eight turntable views plus one turntable contact sheet, with `README.txt` and regenerated `SHA256SUMS.txt`.
 - [x] Record final submission hashes: GLB `38a38dc17d23a4a19ecd991b6c4ff8023814b9d17fa6fbb13d0c78fe3e3f1ad6`; PLY `42ab10ebec3b69dc8dc7ce28463a9d04fd3f0ecb3b35f888b62bc3c222eb9ff1`.
+
+### Finished-project cleanup — 2026-09-20
+
+- [x] Preserve the ready submission, final DOCX/PDF report, immutable source/derived image sets, selected sparse/dense/Poisson lineage, scripts/tests, V139 authoring master/final QA, canonical `.blend`/GLB, and setup photographs.
+- [x] Remove superseded V6 authoring/export assets, the standalone V128 checkpoint, pre-V139 V7 diagnostic/repair renders, historical V6 comparison renders and V6-only verification reports, transient `reconstruction/v4/work/` logs, old interim authoring/AO artifacts, and the duplicate `.blend1` backup.
+- [x] Regenerate the submission checksum manifest for the ready contents and update current-state documentation/instructions to the finished-project boundary.
+- [x] Verify final report/package integrity, ready-submission checksums, protected asset hashes/topology, full test suite, staged diff hygiene, and Git LFS integrity.
+- [ ] Commit the verified cleanup, push `main`, and prove `HEAD == origin/main == GitHub main` with no pending Git/LFS changes.
 
 ## Final completion report must include
 
@@ -365,4 +373,4 @@ The V6 export remains historical rollback evidence. The V7 scan-preserving refin
 
 ## Completion rule
 
-For the **current Codex/local assignment**, do not stop before Task 8.5 is complete, but **do stop there**: the verified Poisson + evidence handoff is the current completion target. Use the next bounded evidence-backed repair level only while it has a realistic causal path to improvement; once the dense/Poisson ladder is exhausted, freeze the strongest defensible genuine CV artifacts, verify/publish the pre-Blender state, and hand off. Do not enter Blender. The overall V4 project continues later through Tasks 9-12 under ChatGPT + Blender MCP. Completion may include explicitly failed research-grade checks and documented missing anatomy, but never by relabeling failures as passes, accepting incompatible historical dense maps, or fabricating vessel-scale geometry.
+For the finished project, no further reconstruction, candidate generation, Blender geometry/material work, or export changes are in scope unless the user explicitly reopens them. Completion now means the protected final V139/canonical deliverables and user-approved submission remain intact and independently verifiable, current documentation matches the active tree, obsolete residue is removed without sacrificing required evidence, relevant tests/integrity checks pass, and the final commit is synchronized to GitHub `main` with no pending Git/LFS changes.

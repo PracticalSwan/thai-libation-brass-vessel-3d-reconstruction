@@ -30,8 +30,8 @@ reconstruction/v4/blender/**/*.blend1
 # Broad V7 repair scratch workspace remains local.
 reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_repair/
 
-# Superseded large scan-preserving checkpoints are retained locally for rollback;
-# V128 (historical tracked milestone), V139 (final authoring master), and canonical finals are published.
+# Superseded large scan-preserving checkpoint names remain ignored to prevent accidental reintroduction.
+# V139 is the final authoring master; canonical finals and the professor submission are the active deliverables.
 reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL.blend
 reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_FINAL_V124.blend
 reconstruction/v4/blender/best_defensible_v1_trim5_authoring_v7_scan_preserving/Thai_Libation_Vessel_V4_V7_SCAN_PRESERVING_CHECKPOINT_V136.blend
